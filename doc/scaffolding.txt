@@ -2,9 +2,7 @@ rails generate devise User
 
 rails g scaffold HostingInstitution institution:string address:text description:text contact_person:string contact_phone:string contact_email:string
 
-rails g scaffold Competition hosting_institution:references competition:string, start_date:date end_date:date
-                              status_cd:string description:text evaluation:text evaluation_criteria:text
-                              rules:text prizes:text resources:text
+rails g scaffold Competition hosting_institution:references competition:string, start_date:date end_date:date status_cd:string description:text evaluation:text evaluation_criteria:text rules:text prizes:text resources:text
 
 rails g model UserCompetition user:references competition:references rules_accepted:boolean
 

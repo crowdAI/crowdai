@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Hosting institution:</strong>
+  <%= @competition.hosting_institution %>
+</p>
+
+<p>
+  <strong>Competition:</strong>
+  <%= @competition.competition %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @competition.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @competition.end_date %>
+</p>
+
+<p>
+  <strong>Status cd:</strong>
+  <%= @competition.status_cd %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @competition.description %>
+</p>
+
+<p>
+  <strong>Evaluation:</strong>
+  <%= @competition.evaluation %>
+</p>
+
+<p>
+  <strong>Evaluation criteria:</strong>
+  <%= @competition.evaluation_criteria %>
+</p>
+
+<p>
+  <strong>Rules:</strong>
+  <%= @competition.rules %>
+</p>
+
+<p>
+  <strong>Prizes:</strong>
+  <%= @competition.prizes %>
+</p>
+
+<p>
+  <strong>Resources:</strong>
+  <%= @competition.resources %>
+</p>
+
+<%= link_to 'Edit', edit_competition_path(@competition) %> |
+<%= link_to 'Back', competitions_path %>

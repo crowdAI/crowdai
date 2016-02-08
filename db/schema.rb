@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208214028) do
+ActiveRecord::Schema.define(version: 20160208214216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,26 @@ ActiveRecord::Schema.define(version: 20160208214028) do
 
   add_index "competitions", ["hosting_institution_id"], name: "index_competitions_on_hosting_institution_id", using: :btree
 
+  create_table "dataset_files", force: :cascade do |t|
+    t.integer  "dataset_id"
+    t.integer  "seq"
+    t.string   "filename"
+    t.string   "filetype"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "dataset_files", ["dataset_id"], name: "index_dataset_files_on_dataset_id", using: :btree
+
+  create_table "datasets", force: :cascade do |t|
+    t.integer  "competition_id"
+    t.text     "description"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "datasets", ["competition_id"], name: "index_datasets_on_competition_id", using: :btree
+
   create_table "hosting_institutions", force: :cascade do |t|
     t.string   "institution"
     t.text     "address"
@@ -58,6 +78,17 @@ ActiveRecord::Schema.define(version: 20160208214028) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
+
+  create_table "submission_files", force: :cascade do |t|
+    t.integer  "submission_id"
+    t.integer  "seq"
+    t.string   "filename"
+    t.string   "filetype"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "submission_files", ["submission_id"], name: "index_submission_files_on_submission_id", using: :btree
 
   create_table "submissions", force: :cascade do |t|
     t.integer  "competition_id"
@@ -142,6 +173,9 @@ ActiveRecord::Schema.define(version: 20160208214028) do
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   add_foreign_key "competitions", "hosting_institutions"
+  add_foreign_key "dataset_files", "datasets"
+  add_foreign_key "datasets", "competitions"
+  add_foreign_key "submission_files", "submissions"
   add_foreign_key "submissions", "competitions"
   add_foreign_key "submissions", "teams"
   add_foreign_key "submissions", "users"

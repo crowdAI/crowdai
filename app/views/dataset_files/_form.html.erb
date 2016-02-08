@@ -1,0 +1,14 @@
+<%= simple_form_for(@dataset_file) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :dataset %>
+    <%= f.input :seq %>
+    <%= f.input :filename %>
+    <%= f.input :filetype %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

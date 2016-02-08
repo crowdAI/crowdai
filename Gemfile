@@ -45,7 +45,7 @@ group :development do
   gem 'guard'
   gem 'seed_dump'
   gem 'rails-footnotes', '>= 4.0.0', '<5'
-  gem 'rails-erd'
+  #gem 'rails-erd'
   gem 'railroady'
   gem 'better_errors'
   gem 'annotate'

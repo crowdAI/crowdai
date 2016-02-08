@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Competition:</strong>
+  <%= @dataset.competition %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @dataset.description %>
+</p>
+
+<%= link_to 'Edit', edit_dataset_path(@dataset) %> |
+<%= link_to 'Back', datasets_path %>

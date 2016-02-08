@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Datasets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Competition</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @datasets.each do |dataset| %>
+      <tr>
+        <td><%= dataset.competition %></td>
+        <td><%= dataset.description %></td>
+        <td><%= link_to 'Show', dataset %></td>
+        <td><%= link_to 'Edit', edit_dataset_path(dataset) %></td>
+        <td><%= link_to 'Destroy', dataset, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dataset', new_dataset_path %>

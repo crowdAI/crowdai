@@ -1,0 +1,21 @@
+rails generate devise User
+
+rails g scaffold HostingInstitution institution:string address:text description:text contact_person:string contact_phone:string contact_email:string
+
+rails g scaffold Competition hosting_institution:references competition:string, start_date:date end_date:date status_cd:string description:text evaluation:text evaluation_criteria:text rules:text prizes:text resources:text
+
+rails g model UserCompetition user:references competition:references rules_accepted:boolean
+
+rails g scaffold Team team:string description:text
+
+rails g model TeamUser team:references user:references from_date:date thru_date:date
+
+rails g scaffold Submission competition:references user:references team:references evaluated:boolean score:float ranking:float submission_type_cd:string withdrawn:boolean withdrawn_date:date
+
+rails g model SubmissionFile submission:references seq:integer filename:string filetype:string
+
+rails g scaffold Dataset competition:references description:text
+
+rails g scaffold DatasetFile dataset:references seq:integer filename:string filetype:string
+
+rails g scaffold Timeline competition:references seq:integer event:string event_time:datetime

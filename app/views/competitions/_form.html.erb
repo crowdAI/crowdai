@@ -1,0 +1,21 @@
+<%= simple_form_for(@competition) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :hosting_institution %>
+    <%= f.input :competition %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <%= f.input :status_cd %>
+    <%= f.input :description %>
+    <%= f.input :evaluation %>
+    <%= f.input :evaluation_criteria %>
+    <%= f.input :rules %>
+    <%= f.input :prizes %>
+    <%= f.input :resources %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

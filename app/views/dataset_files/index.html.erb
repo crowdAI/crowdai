@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Dataset Files</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Dataset</th>
+      <th>Seq</th>
+      <th>Filename</th>
+      <th>Filetype</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dataset_files.each do |dataset_file| %>
+      <tr>
+        <td><%= dataset_file.dataset %></td>
+        <td><%= dataset_file.seq %></td>
+        <td><%= dataset_file.filename %></td>
+        <td><%= dataset_file.filetype %></td>
+        <td><%= link_to 'Show', dataset_file %></td>
+        <td><%= link_to 'Edit', edit_dataset_file_path(dataset_file) %></td>
+        <td><%= link_to 'Destroy', dataset_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dataset file', new_dataset_file_path %>

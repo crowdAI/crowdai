@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Competitions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Hosting institution</th>
+      <th>Competition</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Status cd</th>
+      <th>Description</th>
+      <th>Evaluation</th>
+      <th>Evaluation criteria</th>
+      <th>Rules</th>
+      <th>Prizes</th>
+      <th>Resources</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @competitions.each do |competition| %>
+      <tr>
+        <td><%= competition.hosting_institution %></td>
+        <td><%= competition.competition %></td>
+        <td><%= competition.start_date %></td>
+        <td><%= competition.end_date %></td>
+        <td><%= competition.status_cd %></td>
+        <td><%= competition.description %></td>
+        <td><%= competition.evaluation %></td>
+        <td><%= competition.evaluation_criteria %></td>
+        <td><%= competition.rules %></td>
+        <td><%= competition.prizes %></td>
+        <td><%= competition.resources %></td>
+        <td><%= link_to 'Show', competition %></td>
+        <td><%= link_to 'Edit', edit_competition_path(competition) %></td>
+        <td><%= link_to 'Destroy', competition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Competition', new_competition_path %>

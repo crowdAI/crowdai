@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Institution:</strong>
+  <%= @hosting_institution.institution %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @hosting_institution.address %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @hosting_institution.description %>
+</p>
+
+<p>
+  <strong>Contact person:</strong>
+  <%= @hosting_institution.contact_person %>
+</p>
+
+<p>
+  <strong>Contact phone:</strong>
+  <%= @hosting_institution.contact_phone %>
+</p>
+
+<p>
+  <strong>Contact email:</strong>
+  <%= @hosting_institution.contact_email %>
+</p>
+
+<%= link_to 'Edit', edit_hosting_institution_path(@hosting_institution) %> |
+<%= link_to 'Back', hosting_institutions_path %>

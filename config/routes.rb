@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :timelines
   resources :dataset_files
   resources :datasets
   resources :submissions

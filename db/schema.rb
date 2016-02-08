@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208214216) do
+ActiveRecord::Schema.define(version: 20160208214246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,6 +127,17 @@ ActiveRecord::Schema.define(version: 20160208214216) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "timelines", force: :cascade do |t|
+    t.integer  "competition_id"
+    t.integer  "seq"
+    t.string   "event"
+    t.datetime "event_time"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "timelines", ["competition_id"], name: "index_timelines_on_competition_id", using: :btree
+
   create_table "user_competitions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "competition_id"
@@ -181,6 +192,7 @@ ActiveRecord::Schema.define(version: 20160208214216) do
   add_foreign_key "submissions", "users"
   add_foreign_key "team_users", "teams"
   add_foreign_key "team_users", "users"
+  add_foreign_key "timelines", "competitions"
   add_foreign_key "user_competitions", "competitions"
   add_foreign_key "user_competitions", "users"
 end

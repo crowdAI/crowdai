@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Timelines</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Competition</th>
+      <th>Seq</th>
+      <th>Event</th>
+      <th>Event time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @timelines.each do |timeline| %>
+      <tr>
+        <td><%= timeline.competition %></td>
+        <td><%= timeline.seq %></td>
+        <td><%= timeline.event %></td>
+        <td><%= timeline.event_time %></td>
+        <td><%= link_to 'Show', timeline %></td>
+        <td><%= link_to 'Edit', edit_timeline_path(timeline) %></td>
+        <td><%= link_to 'Destroy', timeline, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Timeline', new_timeline_path %>

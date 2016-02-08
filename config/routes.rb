@@ -1,14 +1,23 @@
 Rails.application.routes.draw do
-  resources :timelines
-  resources :dataset_files
-  resources :datasets
-  resources :submissions
-  resources :teams
-  resources :competitions
+
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   devise_for :users
 
+  resources :hosting_institutions do
+    resources :competitions
+  end
 
-  resources :hosting_institutions
+  resources :competitions do
+    resources :datasets
+    resources :timelines
+  end
+
+  resources :datasets do
+    resources :dataset_files
+  end
+
+
+  resources :submissions
+  resources :teams
 
 end

@@ -10,9 +10,7 @@ rails g scaffold Team team:string description:text
 
 rails g model TeamUser team:references user:references from_date:date thru_date:date
 
-rails g scaffold Submission competition:references user:references team:references
-                            evaluated:boolean score:float ranking:float submission_type_cd:string
-                            withdrawn:boolean withdrawn_date:date
+rails g scaffold Submission competition:references user:references team:references evaluated:boolean score:float ranking:float submission_type_cd:string withdrawn:boolean withdrawn_date:date
 
 rails g model SubmissionFile submission:references seq:integer filename:string filetype:string
 

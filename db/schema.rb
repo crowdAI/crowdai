@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208213706) do
+ActiveRecord::Schema.define(version: 20160208214028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,54 @@ ActiveRecord::Schema.define(version: 20160208213706) do
     t.datetime "updated_at",     null: false
   end
 
+  create_table "submissions", force: :cascade do |t|
+    t.integer  "competition_id"
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.boolean  "evaluated"
+    t.float    "score"
+    t.float    "ranking"
+    t.string   "submission_type_cd"
+    t.boolean  "withdrawn"
+    t.date     "withdrawn_date"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "submissions", ["competition_id"], name: "index_submissions_on_competition_id", using: :btree
+  add_index "submissions", ["team_id"], name: "index_submissions_on_team_id", using: :btree
+  add_index "submissions", ["user_id"], name: "index_submissions_on_user_id", using: :btree
+
+  create_table "team_users", force: :cascade do |t|
+    t.integer  "team_id"
+    t.integer  "user_id"
+    t.date     "from_date"
+    t.date     "thru_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "team_users", ["team_id"], name: "index_team_users_on_team_id", using: :btree
+  add_index "team_users", ["user_id"], name: "index_team_users_on_user_id", using: :btree
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "team"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "user_competitions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "competition_id"
+    t.boolean  "rules_accepted"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "user_competitions", ["competition_id"], name: "index_user_competitions_on_competition_id", using: :btree
+  add_index "user_competitions", ["user_id"], name: "index_user_competitions_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -94,4 +142,11 @@ ActiveRecord::Schema.define(version: 20160208213706) do
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   add_foreign_key "competitions", "hosting_institutions"
+  add_foreign_key "submissions", "competitions"
+  add_foreign_key "submissions", "teams"
+  add_foreign_key "submissions", "users"
+  add_foreign_key "team_users", "teams"
+  add_foreign_key "team_users", "users"
+  add_foreign_key "user_competitions", "competitions"
+  add_foreign_key "user_competitions", "users"
 end

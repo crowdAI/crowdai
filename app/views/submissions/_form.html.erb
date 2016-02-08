@@ -1,0 +1,19 @@
+<%= simple_form_for(@submission) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :competition %>
+    <%= f.association :user %>
+    <%= f.association :team %>
+    <%= f.input :evaluated %>
+    <%= f.input :score %>
+    <%= f.input :ranking %>
+    <%= f.input :submission_type_cd %>
+    <%= f.input :withdrawn %>
+    <%= f.input :withdrawn_date %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

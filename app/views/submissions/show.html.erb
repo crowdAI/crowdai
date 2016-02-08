@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Competition:</strong>
+  <%= @submission.competition %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @submission.user %>
+</p>
+
+<p>
+  <strong>Team:</strong>
+  <%= @submission.team %>
+</p>
+
+<p>
+  <strong>Evaluated:</strong>
+  <%= @submission.evaluated %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @submission.score %>
+</p>
+
+<p>
+  <strong>Ranking:</strong>
+  <%= @submission.ranking %>
+</p>
+
+<p>
+  <strong>Submission type cd:</strong>
+  <%= @submission.submission_type_cd %>
+</p>
+
+<p>
+  <strong>Withdrawn:</strong>
+  <%= @submission.withdrawn %>
+</p>
+
+<p>
+  <strong>Withdrawn date:</strong>
+  <%= @submission.withdrawn_date %>
+</p>
+
+<%= link_to 'Edit', edit_submission_path(@submission) %> |
+<%= link_to 'Back', submissions_path %>

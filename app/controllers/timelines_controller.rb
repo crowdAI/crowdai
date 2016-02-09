@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: timelines
+#
+#  id             :integer          not null, primary key
+#  competition_id :integer
+#  seq            :integer
+#  event          :string
+#  event_time     :datetime
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
 class TimelinesController < ApplicationController
   before_action :set_timeline, only: [:show, :edit, :update, :destroy]
 

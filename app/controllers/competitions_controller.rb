@@ -73,6 +73,14 @@ class CompetitionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def competition_params
-      params.require(:competition).permit(:hosting_institution_id, :competition, :start_date, :end_date, :status_cd, :description, :evaluation, :evaluation_criteria, :rules, :prizes, :resources)
+      params.require(:competition)
+            .permit(:hosting_institution_id, :competition, :start_date, :end_date,
+                    :status_cd, :description, :evaluation, :evaluation_criteria,
+                    :rules, :prizes, :resources,
+                    dataset_attributes: [:id, :competition_id, :description, :_destroy ],
+                    timeline_attributes: [:id, :competition_id, :seq, :event, :event_time, :_destroy ],
+                    submission_attributes: [:id, :competition_id, :user_id, :team_id, :evaluated, :score,
+                                            :ranking, :submission_type, :withdrawn, :withdrawn_date, :_destroy ]
+                    )
     end
 end

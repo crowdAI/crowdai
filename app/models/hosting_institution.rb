@@ -1,6 +1,12 @@
 class HostingInstitution < ActiveRecord::Base
   has_many :competitions, dependent: :destroy
+
+  validates :institution, presence: true
+  validates :contact_person, presence: true
+  validates :contact_phone, presence: true
+  validates :contact_email, presence: true
 end
+
 
 # == Schema Information
 #

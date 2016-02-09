@@ -9,6 +9,12 @@ class Competition < ActiveRecord::Base
   accepts_nested_attributes_for :datasets, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :timelines, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :submissions, reject_if: :all_blank, allow_destroy: true
+
+  as_enum :status, [:draft, :running, :completed], map: :string
+  validates :competition, presence: true
+  validates :start_date, presence: true
+  validates :end_date, presence: true  
+  validates :status, presence: true
 end
 
 # == Schema Information

@@ -1,0 +1,28 @@
+<nav class="navbar navbar-default">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="/">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+
+  <div class="pull-right">
+    <ul class="nav navbar-nav">
+
+      <%= render 'navbar_menu' %>
+
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= current_user.username %>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <% if current_user.admin? %>
+          <li><%= link_to 'Admin', admin_path %></li>
+          <% end %>
+          <li><%= link_to('Profile', edit_user_registration_path) %></li>
+          <li><%= link_to('Sign Out', destroy_user_session_path, :method => :delete) %></li>
+        </ul>
+      </li>
+
+    </ul>
+  </div>
+</nav>

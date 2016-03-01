@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.2.1"
+ruby "2.3.0"
 gem 'rails', '4.2.3'
 gem 'pg'
 
@@ -59,4 +59,5 @@ group :development, :test do
   gem "factory_girl_rails"
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  #gem 'rb-inotify', '~> 0.9.7'
 end

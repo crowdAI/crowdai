@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'landing_page/index'
+
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   devise_for :users
+
+
 
   resources :hosting_institutions do
     resources :competitions
@@ -19,5 +23,7 @@ Rails.application.routes.draw do
 
   resources :submissions
   resources :teams
+
+  root to: 'landing_page#index', as: '/'
 
 end

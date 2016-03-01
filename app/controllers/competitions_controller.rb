@@ -1,3 +1,23 @@
+# == Schema Information
+#
+# Table name: competitions
+#
+#  id                     :integer          not null, primary key
+#  hosting_institution_id :integer
+#  competition            :string
+#  start_date             :date
+#  end_date               :date
+#  status_cd              :string
+#  description            :text
+#  evaluation             :text
+#  evaluation_criteria    :text
+#  rules                  :text
+#  prizes                 :text
+#  resources              :text
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#
+
 class CompetitionsController < ApplicationController
   before_action :set_competition, only: [:show, :edit, :update, :destroy]
 
@@ -53,6 +73,14 @@ class CompetitionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def competition_params
-      params.require(:competition).permit(:hosting_institution_id, :competition, :start_date, :end_date, :status_cd, :description, :evaluation, :evaluation_criteria, :rules, :prizes, :resources)
+      params.require(:competition)
+            .permit(:hosting_institution_id, :competition, :start_date, :end_date,
+                    :status_cd, :description, :evaluation, :evaluation_criteria,
+                    :rules, :prizes, :resources,
+                    dataset_attributes: [:id, :competition_id, :description, :_destroy ],
+                    timeline_attributes: [:id, :competition_id, :seq, :event, :event_time, :_destroy ],
+                    submission_attributes: [:id, :competition_id, :user_id, :team_id, :evaluated, :score,
+                                            :ranking, :submission_type, :withdrawn, :withdrawn_date, :_destroy ]
+                    )
     end
 end

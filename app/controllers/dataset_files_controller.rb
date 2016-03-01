@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: dataset_files
+#
+#  id         :integer          not null, primary key
+#  dataset_id :integer
+#  seq        :integer
+#  filename   :string
+#  filetype   :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class DatasetFilesController < ApplicationController
   before_action :set_dataset_file, only: [:show, :edit, :update, :destroy]
 

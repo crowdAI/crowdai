@@ -21,10 +21,9 @@ resources :user_competitions
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   devise_for :users
 
-
-
   resources :hosting_institutions do
     resources :competitions
+    resources :users
   end
 
   resources :competitions do
@@ -35,7 +34,6 @@ resources :user_competitions
   resources :datasets do
     resources :dataset_files
   end
-
 
   resources :submissions
   resources :teams

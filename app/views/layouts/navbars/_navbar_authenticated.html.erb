@@ -10,7 +10,6 @@
 
       <%= render 'layouts/navbars/navbar_menu' %>
 
-
       <% if current_user.admin? %>
         <li><%= link_to 'Admin', admin_root_path %></li>
       <% end %>

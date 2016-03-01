@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :submissions
   has_many :team_users
   has_many :teams, through: :team_users
+  belongs_to :hosting_institution
 
 
   def admin?

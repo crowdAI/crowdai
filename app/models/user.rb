@@ -12,8 +12,8 @@ class User < ActiveRecord::Base
   has_many :user_competitions
   has_many :competitions, :through => :user_competitions
   has_many :submissions
-  has_many :user_teams
-  has_many :teams, through: :user_teams
+  has_many :team_users
+  has_many :teams, through: :team_users
 
 
   def admin?

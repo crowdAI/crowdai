@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: datasets
+#
+#  id             :integer          not null, primary key
+#  competition_id :integer
+#  description    :text
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
 require "rails_helper"
 
 RSpec.describe DatasetsController, type: :routing do

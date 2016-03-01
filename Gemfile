@@ -37,6 +37,9 @@ gem 'ransack'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 
+# API
+# gem 'rack-attack'
+
 # heroku
 gem 'rails_12factor', group: :production
 

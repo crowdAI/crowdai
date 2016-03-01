@@ -8,7 +8,7 @@
 </head>
 <body data-no-turbolink="false">
   <% if user_signed_in? %>
-    <%= render 'layouts/default_layout' %>
+    <%= render 'layouts/authenticated_layout' %>
   <% else %>
     <%= render 'layouts/public_layout' %>
  <% end %>

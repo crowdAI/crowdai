@@ -45,7 +45,7 @@ group :development do
   gem 'guard'
   gem 'seed_dump'
   gem 'rails-footnotes', '>= 4.0.0', '<5'
-  #gem 'rails-erd'
+  gem 'rails-erd'
   gem 'railroady'
   gem 'better_errors'
   gem 'annotate'
@@ -59,5 +59,4 @@ group :development, :test do
   gem "factory_girl_rails"
   gem 'web-console', '~> 2.0'
   gem 'spring'
-  #gem 'rb-inotify', '~> 0.9.7'
 end

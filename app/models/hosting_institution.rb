@@ -1,5 +1,6 @@
 class HostingInstitution < ActiveRecord::Base
   has_many :competitions, dependent: :destroy
+  has_many :users, dependent: :nullify
 
   validates :institution, presence: true
   validates :contact_person, presence: true

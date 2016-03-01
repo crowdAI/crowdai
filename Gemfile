@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
 
-ruby "2.2.1"
+ruby "2.3.0"
 gem 'rails', '4.2.3'
 gem 'pg'
 
-# user accounts
+# user accounts / admin
 gem 'devise'
+gem "administrate", "~> 0.1.4"
 
 # model
 gem 'simple_enum'
@@ -48,7 +49,7 @@ group :development do
   gem 'guard'
   gem 'seed_dump'
   gem 'rails-footnotes', '>= 4.0.0', '<5'
-  #gem 'rails-erd'
+  gem 'rails-erd'
   gem 'railroady'
   gem 'better_errors'
   gem 'annotate'

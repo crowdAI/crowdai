@@ -15,20 +15,30 @@
   <%= @hosting_institution.description %>
 </p>
 
-<p>
-  <strong>Contact person:</strong>
-  <%= @hosting_institution.contact_person %>
-</p>
 
-<p>
-  <strong>Contact phone:</strong>
-  <%= @hosting_institution.contact_phone %>
-</p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th></th>
+    </tr>
+  </thead>
 
-<p>
-  <strong>Contact email:</strong>
-  <%= @hosting_institution.contact_email %>
-</p>
+  <tbody>
+    <% @hosting_institution.users.each do |user| %>
+      <tr>
+        <td><%= user.hosting_institution_primary %></td>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td><%= user.phone_number %></td>
+        <td><%= link_to 'Remove', [@hosting_institution, user], method: :nullify, data: { confirm: 'Remove this user from the administration of your institution on CrowdAI?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<%= link_to 'Edit', edit_hosting_institution_path(@hosting_institution) %> |
-<%= link_to 'Back', hosting_institutions_path %>
+
+<%= link_to 'Edit Details', edit_hosting_institution_path(@hosting_institution) %>

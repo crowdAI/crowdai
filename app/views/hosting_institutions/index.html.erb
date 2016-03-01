@@ -1,37 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Hosting Institutions</h1>
+<div class="jumbotron">
+  <h2>Become a Hosting Institution on CrowdAI and draw on a global pool of researchers,
+    data scientists and machine learning experts.</h2>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Institution</th>
-      <th>Address</th>
-      <th>Description</th>
-      <th>Contact person</th>
-      <th>Contact phone</th>
-      <th>Contact email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @hosting_institutions.each do |hosting_institution| %>
-      <tr>
-        <td><%= hosting_institution.institution %></td>
-        <td><%= hosting_institution.address %></td>
-        <td><%= hosting_institution.description %></td>
-        <td><%= hosting_institution.contact_person %></td>
-        <td><%= hosting_institution.contact_phone %></td>
-        <td><%= hosting_institution.contact_email %></td>
-        <td><%= link_to 'Show', hosting_institution %></td>
-        <td><%= link_to 'Edit', edit_hosting_institution_path(hosting_institution) %></td>
-        <td><%= link_to 'Destroy', hosting_institution, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+<%= link_to 'Host Competitions', new_hosting_institution_path, class: 'btn btn-primary' %>
 
-<%= link_to 'New Hosting institution', new_hosting_institution_path %>
+
+
+<h1>Already hosting on CrowdAI</h1>
+
+<% @hosting_institutions.each do |hosting_institution| %>
+  <div class="jumbotron">
+    <h4><%= hosting_institution.institution %></h4>
+    <%= hosting_institution.description %>
+  </div>
+
+<% end %>

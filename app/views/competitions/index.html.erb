@@ -2,13 +2,7 @@
 
 <ul class="list-group">
   <% @competitions.each do |competition| %>
-    <li class="list-group-item">
-      <%= competition.hosting_institution %>
-      <%= competition.competition %>
-      <%= competition.start_date %>
-      <%= competition.end_date %>
-      <%= competition.status_cd %>
-    </li>
+    <%= render competition %>
   <% end %>
 </ul>
 

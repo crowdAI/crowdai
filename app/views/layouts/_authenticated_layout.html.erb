@@ -1,6 +1,32 @@
+<%= render partial: "layouts/flash_messages", flash: flash %>
 <%= render 'layouts/navbars/navbar_authenticated' %>
-<div class="container">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <%= yield %>
+
+<div class="container-fluid">
+
+  <% if content_for?(:header) %>
+    <div class="row">
+      <div class="col-md-12">
+        <%= yield(:header) %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <% if content_for?(:sidebar) %>
+      <div class="col-md-2 col-md-offset-1">
+        <%= yield(:sidebar) %>
+      </div>
+      <div class="col-md-8">
+        <%= yield %>
+      </div>
+      <div class="col-md-1"></div>
+    <% else %>
+      <div class="col-md-11 col-md-offset-1">
+        <%= yield %>
+      </div>
+      <div class="col-md-1"></div>
+    <% end %>
+  </div>
+
+  <%= render 'layouts/footer' %>
 </div>

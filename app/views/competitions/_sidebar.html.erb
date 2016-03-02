@@ -17,6 +17,7 @@
 
 <% if current_user.hosting_institution_id == @competition.hosting_institution_id %>
   <%= link_to 'Edit', edit_competition_path(@competition), class: 'btn btn-success' %>
+  <%= link_to 'Delete', @competition, method: :delete, data: { confirm: 'Permanently delete this competition from CrowdAI?' }, class: 'btn btn-danger' %>
 <% end %>
 
 <% end %>

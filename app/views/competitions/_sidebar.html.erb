@@ -1,8 +1,22 @@
 <% content_for(:sidebar) do %>
-  <ul>
-    <li>Dashbord</li>
-    <li>Home</li>
-    <li>Information</li>
-    <li>Leaderboard</li>
-  </ul>
+<br/>
+<br/>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <ul class="nav nav-stacked">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#evaluation">Evaluation</a></li>
+      <li><a href="#rules">Rules</a></li>
+      <li><a href="#prizes">Prizes</a></li>
+      <li><a href="#resources">Resources</a></li>
+      <hr/>
+      <li>Leaderboard</li>
+    </ul>
+  </div>
+</div>
+
+<% if current_user.hosting_institution_id == @competition.hosting_institution_id %>
+  <%= link_to 'Edit', edit_competition_path(@competition), class: 'btn btn-success' %>
+<% end %>
+
 <% end %>

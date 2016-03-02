@@ -8,3 +8,7 @@
 /* config variables  and mixins */
 @import "variables";
 @import "mixins";
+
+
+/* constrain images to Bootstrap columns */
+img { max-width: 100%; }

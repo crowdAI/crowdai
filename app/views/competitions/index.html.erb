@@ -1,12 +1,12 @@
-<p id="notice"><%= notice %></p>
+<% if current_user.hosting_institution.present? %>
+  <%= link_to '+ New Competition', new_competition_path, class: 'btn btn-primary' %>
+<% end %>
+<br/>
+<br/>
+
 
 <ul class="list-group">
   <% @competitions.each do |competition| %>
     <%= render competition %>
   <% end %>
 </ul>
-
-
-<hr/>
-
-<%= link_to 'New Competition', new_competition_path %>

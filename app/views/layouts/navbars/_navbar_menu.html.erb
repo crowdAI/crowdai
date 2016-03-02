@@ -1,4 +1,8 @@
-<li><%= link_to "Host", hosting_institutions_path %></li>
+<% if current_user.hosting_institution_id.present? %>
+  <li><%= link_to current_user.hosting_institution.institution, hosting_institution_path(current_user.hosting_institution) %></li>
+<% else %>
+  <li><%= link_to "Host", hosting_institutions_path %></li>
+<% end %>
 
 <li><%= link_to "Competitions", competitions_path %></li>
 <li><%= link_to "Datasets", datasets_path %></li>

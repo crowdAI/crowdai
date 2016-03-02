@@ -1,12 +1,14 @@
 <%= simple_form_for(@competition) do |f| %>
   <%= f.error_notification %>
 
+ <%= current_user.hosting_institution_id %>
+
   <div class="form-inputs">
-    <%= f.association :hosting_institution %>
+    <%= f.hidden_field :hosting_institution_id, value: current_user.hosting_institution_id %>
     <%= f.input :competition %>
     <%= f.input :start_date %>
     <%= f.input :end_date %>
-    <%= f.input :status_cd %>
+    <%= f.input :status, collection: enum_option_pairs(Competition, :status) %>
     <%= f.input :description %>
     <%= f.input :evaluation %>
     <%= f.input :evaluation_criteria %>

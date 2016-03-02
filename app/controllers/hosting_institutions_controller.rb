@@ -21,6 +21,7 @@ class HostingInstitutionsController < ApplicationController
   end
 
   def show
+    @competitions = Competition.where(hosting_institution: @hosting_institution)
   end
 
   def new
@@ -61,6 +62,6 @@ class HostingInstitutionsController < ApplicationController
     end
 
     def hosting_institution_params
-      params.require(:hosting_institution).permit(:institution, :address, :description, :contact_person, :contact_phone, :contact_email, :approved)
+      params.require(:hosting_institution).permit(:institution, :address, :description, :contact_person, :contact_phone, :contact_email, :approved, :hosting_institution_id, :status)
     end
 end

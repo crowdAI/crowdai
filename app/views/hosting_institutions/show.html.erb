@@ -16,6 +16,24 @@
 </p>
 
 
+<ul class="list-group">
+  <% @competitions.each do |competition| %>
+    <li class="list-group-item">
+      <%= competition.hosting_institution.institution %>
+      <%= competition.competition %>
+      <%= competition.start_date %>
+      <%= competition.end_date %>
+      <%= competition.status_cd %>
+    </li>
+  <% end %>
+</ul>
+
+
+
+<%= link_to 'New Competition', new_competition_path, class: 'btn btn-default' %>
+
+
+
 <table class="table table-striped">
   <thead>
     <tr>

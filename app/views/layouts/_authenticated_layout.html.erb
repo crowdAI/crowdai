@@ -1,6 +1,20 @@
+<%= render partial: "layouts/flash_messages", flash: flash %>
 <%= render 'layouts/navbars/navbar_authenticated' %>
-<div class="container">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <%= yield %>
+
+<div class="container-fluid">
+  <div class="row">
+    <% if content_for?(:sidebar) %>
+      <div class="col-md-2">
+        <%= yield(:sidebar) %>
+      </div>
+      <div class="col-md-10">
+        <%= yield %>
+      </div>
+    <% else %>
+      <div class="col-md-12">
+        <%= yield %>
+      </div>
+    <% end %>
+  </div>
+  <%= render 'layouts/footer' %>
 </div>

@@ -68,7 +68,7 @@ class CompetitionsController < ApplicationController
             .permit(:hosting_institution_id, :competition, :start_date, :end_date,
                     :status, :description, :evaluation, :evaluation_criteria,
                     :rules, :prizes, :resources,
-                    dataset_attributes: [:id, :competition_id, :description, :_destroy ],
+                    datasets_attributes: [:id, :competition_id, :description, :_destroy ],
                     timeline_attributes: [:id, :competition_id, :seq, :event, :event_time, :_destroy ],
                     submission_attributes: [:id, :competition_id, :user_id, :team_id, :evaluated, :score,
                                             :ranking, :submission_type, :withdrawn, :withdrawn_date, :_destroy ]

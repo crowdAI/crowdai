@@ -3,21 +3,50 @@
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Overview</a></li>
-    <li role="presentation"><a href="#datasets" aria-controls="datasets" role="tab" data-toggle="tab">Datasets</a></li>
-    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+    <li role="presentation" class="active">
+      <a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Overview</a>
+    </li>
+    <li role="presentation">
+      <a href="#evaluation" aria-controls="evalution" role="tab" data-toggle="tab">Evaluation</a>
+    </li>
+    <li role="presentation">
+      <a href="#rules" aria-controls="rules" role="tab" data-toggle="tab">Rules</a>
+    </li>
+    <li role="presentation">
+      <a href="#prizes" aria-controls="prizes" role="tab" data-toggle="tab">Prizes</a>
+    </li>
+    <li role="presentation">
+      <a href="#resources" aria-controls="resources" role="tab" data-toggle="tab">Resources</a>
+    </li>
+    <li role="presentation">
+      <a href="#datasets" aria-controls="datasets" role="tab" data-toggle="tab">Datasets</a>
+    </li>
   </ul>
 
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <%= render 'competitions/form/overview' %>
-    <%= render 'competitions/form/datasets' %>
-    <div role="tabpanel" class="tab-pane" id="messages">.3..</div>
-    <div role="tabpanel" class="tab-pane" id="settings">.4..</div>
+  <!-- content -->
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+
+      <%= simple_form_for(@competition) do |f| %>
+        <%= f.hidden_field :hosting_institution_id, value: current_user.hosting_institution_id %>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <%= render 'competitions/form/overview', f: f %>
+          <%= render 'competitions/form/evaluation', f: f %>
+          <%= render 'competitions/form/rules', f: f %>
+          <%= render 'competitions/form/prizes', f: f %>
+          <%= render 'competitions/form/resources', f: f %>
+
+
+
+          <%= render 'competitions/form/datasets' %>
+          <div role="tabpanel" class="tab-pane" id="messages">.3..</div>
+          <div role="tabpanel" class="tab-pane" id="settings">.4..</div>
+        </div>
+      <% end %>
+
+    </div>
   </div>
-
-
-
 
 </div>

@@ -1,9 +1,9 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @hosting_institution.institution %></h1>
 
-<p>
-  <strong>Institution:</strong>
-  <%= @hosting_institution.institution %>
-</p>
+<span class="pull-right">
+  <%= link_to '+ New Competition', new_competition_path, class: 'btn btn-primary' %>
+  <%= link_to 'Edit Details', edit_hosting_institution_path(@hosting_institution), class: 'btn btn-info' %>
+</span>
 
 <p>
   <strong>Address:</strong>
@@ -16,24 +16,19 @@
 </p>
 
 
+
+
+
 <ul class="list-group">
   <% @competitions.each do |competition| %>
-    <li class="list-group-item">
-      <%= competition.hosting_institution.institution %>
-      <%= competition.competition %>
-      <%= competition.start_date %>
-      <%= competition.end_date %>
-      <%= competition.status_cd %>
-    </li>
+    <%= render competition %>
   <% end %>
 </ul>
 
 
 
-<%= link_to 'New Competition', new_competition_path, class: 'btn btn-default' %>
 
-
-
+<h1>Your administrative users</h1>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -57,6 +52,3 @@
     <% end %>
   </tbody>
 </table>
-
-
-<%= link_to 'Edit Details', edit_hosting_institution_path(@hosting_institution) %>

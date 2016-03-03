@@ -1,0 +1,23 @@
+<div>
+  <%= render partial: 'sidebar' %>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Overview</a></li>
+    <li role="presentation"><a href="#datasets" aria-controls="datasets" role="tab" data-toggle="tab">Datasets</a></li>
+    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <%= render 'competitions/form/overview' %>
+    <%= render 'competitions/form/datasets' %>
+    <div role="tabpanel" class="tab-pane" id="messages">.3..</div>
+    <div role="tabpanel" class="tab-pane" id="settings">.4..</div>
+  </div>
+
+
+
+
+</div>

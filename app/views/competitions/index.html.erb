@@ -1,4 +1,4 @@
-<% if current_user.hosting_institution.present? %>
+<% if current_user.hosting_institution_id.present? %>
   <%= link_to '+ New Competition', new_competition_path, class: 'btn btn-primary' %>
 <% end %>
 <br/>

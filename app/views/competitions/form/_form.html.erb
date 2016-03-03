@@ -21,6 +21,9 @@
     <li role="presentation">
       <a href="#datasets" aria-controls="datasets" role="tab" data-toggle="tab">Datasets</a>
     </li>
+    <li role="presentation">
+      <a href="#timeline" aria-controls="timelines" role="tab" data-toggle="tab">Timeline</a>
+    </li>
   </ul>
 
   <!-- content -->
@@ -38,9 +41,7 @@
           <%= render 'competitions/form/prizes', f: f %>
           <%= render 'competitions/form/resources', f: f %>
           <%= render 'competitions/form/datasets', f: f %>
-          
-          <div role="tabpanel" class="tab-pane" id="messages">.3..</div>
-          <div role="tabpanel" class="tab-pane" id="settings">.4..</div>
+          <%= render 'competitions/form/timeline', f: f %>
         </div>
       <% end %>
 

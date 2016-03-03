@@ -1,5 +1,12 @@
 <div role="tabpanel" class="tab-pane" id="datasets">
 
-<h1>Datasets</h1>
+  <h1>Datasets</h1>
+  <%= simple_fields_for :datasets do |dataset| %>
+  <%= render 'competitions/form/dataset_fields', f: dataset %>
+  <% end %>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
 
 </div>

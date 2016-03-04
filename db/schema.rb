@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302093920) do
+ActiveRecord::Schema.define(version: 20160304094914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,7 +165,6 @@ ActiveRecord::Schema.define(version: 20160302093920) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.boolean  "admin",                       default: false
-    t.string   "phone_number"
     t.boolean  "verified",                    default: false
     t.date     "verification_date"
     t.string   "username"
@@ -177,6 +176,15 @@ ActiveRecord::Schema.define(version: 20160302093920) do
     t.string   "unconfirmed_email"
     t.integer  "hosting_institution_id"
     t.boolean  "hosting_institution_primary", default: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "name"
+    t.boolean  "email_public",                default: false
+    t.text     "bio"
+    t.string   "website"
+    t.string   "github"
+    t.string   "linkedin"
+    t.string   "twitter"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

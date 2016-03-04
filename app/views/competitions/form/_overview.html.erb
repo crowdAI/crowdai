@@ -1,0 +1,17 @@
+<div role="tabpanel" class="tab-pane active" id="overview">
+
+  <h1>Overview</h1>
+  <%= f.error_notification %>
+
+    <%= f.input :competition %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <%= f.input :status, collection: enum_option_pairs(Competition, :status) %>
+    <%= f.input :description, as: :bootsy, input_html: { rows: 20 } %>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+
+</div>
+  

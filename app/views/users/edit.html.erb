@@ -2,7 +2,7 @@
   <div class="col-md-10 col-md-offset-1">
     <h2>Profile</h2>
 
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= simple_form_for @user do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">

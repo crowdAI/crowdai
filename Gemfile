@@ -11,12 +11,15 @@ gem "administrate", "~> 0.1.4"
 # model
 gem 'simple_enum'
 
-# forms / data manipulation
+# forms / data manipulation / charts
 gem 'simple_form'
 gem 'country_select'
 gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables-rails.git'
 gem "cocoon"
 gem 'bootsy'
+gem 'groupdate'
+gem 'active_median'
+gem "chartkick"
 
 
 # javascript

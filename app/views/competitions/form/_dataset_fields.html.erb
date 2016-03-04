@@ -1,0 +1,7 @@
+<div class="nested-fields">
+  <%= f.input :description, as: :bootsy, input_html: { rows: 30 } %>
+  <%= f.simple_fields_for :dataset_files do |dataset_file| %>
+    <%= render 'competitions/form/dataset_file_fields', f: dataset_file %>
+  <% end %>
+  <%= link_to_add_association 'add file', f, :dataset_files,  html_options = { partial: 'competitions/form/dataset_file_fields', class: 'btn btn-default' } %>
+</div>

@@ -1,12 +1,13 @@
 class Competition < ActiveRecord::Base
   belongs_to :hosting_institution
-  has_many :datasets, dependent: :destroy
+  has_many :datasets
+  accepts_nested_attributes_for :datasets, reject_if: :all_blank, allow_destroy: true
+
   has_many :timelines, dependent: :destroy
   has_many :submissions, dependent: :destroy
   has_many :user_competitions
   has_many :users, :through => :user_competitions
 
-  accepts_nested_attributes_for :datasets, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :timelines, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :submissions, reject_if: :all_blank, allow_destroy: true
 

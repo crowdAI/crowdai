@@ -66,11 +66,12 @@ class CompetitionsController < ApplicationController
     def competition_params
       params.require(:competition)
             .permit(:hosting_institution_id, :competition, :start_date, :end_date,
-                    :status_cd, :description, :evaluation, :evaluation_criteria,
+                    :status, :description, :evaluation, :evaluation_criteria,
                     :rules, :prizes, :resources,
-                    dataset_attributes: [:id, :competition_id, :description, :_destroy ],
-                    timeline_attributes: [:id, :competition_id, :seq, :event, :event_time, :_destroy ],
-                    submission_attributes: [:id, :competition_id, :user_id, :team_id, :evaluated, :score,
+                    datasets_attributes: [:id, :competition_id, :description, :_destroy,
+                        dataset_files_attributes: [:id, :seq, :filename, :filetype, :_destroy ]],
+                    timelines_attributes: [:id, :competition_id, :seq, :event, :event_time, :_destroy ],
+                    submissions_attributes: [:id, :competition_id, :user_id, :team_id, :evaluated, :score,
                                             :ranking, :submission_type, :withdrawn, :withdrawn_date, :_destroy ]
                     )
     end

@@ -1,6 +1,6 @@
 class Dataset < ActiveRecord::Base
   belongs_to :competition
-  has_many :dataset_files, dependent: :destroy
+  has_many :dataset_files
   accepts_nested_attributes_for :dataset_files, reject_if: :all_blank, allow_destroy: true
 end
 

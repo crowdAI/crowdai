@@ -1,12 +1,24 @@
-<% if current_user.hosting_institution.present? %>
+
+<% if current_user.hosting_institution_id.present? %>
   <%= link_to '+ New Competition', new_competition_path, class: 'btn btn-primary' %>
 <% end %>
 <br/>
 <br/>
-
 
 <ul class="list-group">
   <% @competitions.each do |competition| %>
     <%= render competition %>
   <% end %>
 </ul>
+
+<%= area_chart Competition.group_by_minute(:created_at).maximum(:updated_at) %>
+<%= area_chart User.group_by_day(:created_at).maximum(:current_sign_in_at) %>
+<%= timeline [
+  ["Washington", "1789-04-29", "1797-03-03"],
+  ["Adams", "1797-03-03", "1801-03-03"],
+  ["Jefferson", "1801-03-03", "1809-03-03"]
+] %>
+
+
+
+<%= yield :charts_js %>

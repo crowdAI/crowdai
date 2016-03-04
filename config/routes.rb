@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
-  devise_for :users
+  devise_for :users, except: [:update]
+  resources :users, only: [:show, :edit, :update, :destroy]
 
   # Administrate
   namespace :admin do
@@ -21,7 +22,7 @@ Rails.application.routes.draw do
 
   get 'landing_page/index'
 
-  resources :users
+
 
   resources :hosting_institutions do
     resources :competitions
@@ -41,7 +42,7 @@ Rails.application.routes.draw do
     resources :submission_files
   end
 
-  resources :teams
+  # resources :teams
 
   root to: 'landing_page#index', as: '/'
 

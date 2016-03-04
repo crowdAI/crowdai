@@ -1,0 +1,19 @@
+<%= render partial: 'users/show/header', user: @user %>
+
+Last seen <%= time_ago_in_words(@user.last_sign_in_at) %> ago.<br/>
+<%= @user.first_name %><br/>
+<%= @user.last_name %><br/>
+<%= @user.email %><br/>
+<%= simple_format(@user.bio) %><br/>
+<% if @user.website.present? %>
+  Website: <%= @user.website %><br/>
+<% end %>
+<% if @user.github.present? %>
+  Github: <%= @user.github %><br/>
+<% end %>
+<% if @user.linkedin.present? %>
+  LinkedIn: <%= @user.linkedin %><br/>
+<% end %>
+<% if @user.twitter.present? %>
+  Twitter: <%= @user.twitter %>
+<% end %>

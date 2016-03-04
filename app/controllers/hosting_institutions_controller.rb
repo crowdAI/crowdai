@@ -62,6 +62,6 @@ class HostingInstitutionsController < ApplicationController
     end
 
     def hosting_institution_params
-      params.require(:hosting_institution).permit(:institution, :address, :description, :contact_person, :contact_phone, :contact_email, :approved, :hosting_institution_id, :status)
+      params.require(:hosting_institution).permit(:institution, :address, :description, :approved, :hosting_institution_id, :status)
     end
 end

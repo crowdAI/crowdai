@@ -1,29 +1,31 @@
 Rails.application.routes.draw do
 
-  resources :users
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
+  devise_for :users
+
+  # Administrate
   namespace :admin do
     resources :users
-resources :competitions
-resources :datasets
-resources :dataset_files
-resources :hosting_institutions
-
-resources :teams
-resources :team_users
-resources :timelines
-resources :user_competitions
-
+    resources :competitions
+    resources :datasets
+    resources :dataset_files
+    resources :hosting_institutions
+    resources :submissions
+    resources :submission_files
+    resources :teams
+    resources :team_users
+    resources :timelines
+    resources :user_competitions
     root to: "users#index"
   end
 
   get 'landing_page/index'
 
-  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
-  devise_for :users
+  resources :users
 
   resources :hosting_institutions do
     resources :competitions
-    end
+  end
 
   resources :competitions do
     resources :datasets
@@ -31,12 +33,12 @@ resources :user_competitions
     resources :submissions
   end
 
-  resources :submissions do
-    resources :submission_files
-  end
-
   resources :datasets do
     resources :dataset_files
+  end
+
+  resources :submissions do
+    resources :submission_files
   end
 
   resources :teams

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :competition do
-    hosting_institution nil { create :hosting_institution }
+    hosting_institution { FactoryGirl.create :hosting_institution }
     competition "The Second Annual Data Science Bowl"
     start_date "2016-03-01"
     end_date "2016-03-31"

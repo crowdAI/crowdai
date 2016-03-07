@@ -21,7 +21,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe 'basic User model basic validations' do
+  describe 'fields and associations' do
     subject { @user }
 
     it { should respond_to(:username) }

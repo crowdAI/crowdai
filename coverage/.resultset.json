@@ -930,7 +930,7 @@
       "/Users/sean/src/salathegroup/crowdai/spec/factories/competitions.rb": [
         1,
         1,
-        1,
+        2,
         1,
         1,
         1,
@@ -1405,9 +1405,6 @@
         1,
         null,
         1,
-        1,
-        1,
-        1,
         null,
         null,
         null,
@@ -1427,6 +1424,6 @@
         null
       ]
     },
-    "timestamp": 1457107614
+    "timestamp": 1457336673
   }
 }

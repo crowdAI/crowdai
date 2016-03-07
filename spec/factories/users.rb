@@ -10,6 +10,10 @@ FactoryGirl.define do
     trait :admin do
       admin true
     end
+
+    trait :hosting_user do
+      hosting_institution_primary true
+    end
   end
 
 end

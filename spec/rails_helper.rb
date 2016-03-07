@@ -6,8 +6,11 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'devise'
 require 'support/login_macros'
+require 'shoulda/matchers'
+
 
 ActiveRecord::Migration.maintain_test_schema!
+
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods

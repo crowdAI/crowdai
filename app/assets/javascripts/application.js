@@ -26,4 +26,7 @@
 //= require components/twbs
 //= require cocoon
 
+// modules
+//= require modules/users
+
 //= require turbolinks

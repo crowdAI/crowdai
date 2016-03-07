@@ -1,13 +1,23 @@
-
+/* gems */
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
 @import 'dataTables/bootstrap/3/jquery.dataTables.bootstrap';
 @import "bootsy";
 
-/* config variables  and mixins */
+/* config variables and mixins */
 @import "variables";
 @import "mixins";
+
+/* components */
+@import "components/navbar";
+
+/* modules */
+@import "modules/authorisation";
+
+
+
+
 
 
 /* constrain images to Bootstrap columns */

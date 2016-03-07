@@ -1,6 +1,7 @@
-<h2>Log in</h2>
+<div class="auth-form">
+  <h2>Log in</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-inputs">
     <%= f.input :login, required: true, autofocus: true, hint: "Username or Email Address" %>
     <%= f.input :password, required: true %>
@@ -10,6 +11,7 @@
   <div class="form-actions">
     <%= f.button :submit, "Log in" %>
   </div>
-<% end %>
+  <% end %>
 
-<%= render "devise/shared/links" %>
+  <%= render "devise/shared/links" %>
+</div>

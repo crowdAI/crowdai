@@ -9,11 +9,17 @@ RSpec.describe HostingInstitution, type: :model do
     it 'has a valid factory' do
       expect(@hosting_institution).to be_valid
     end
+
+    it { should validate_presence_of(:institution) }
   end
 
   describe 'fields and associations' do
     subject { @hosting_institution }
 
+    it { should respond_to(:institution) }
+
+    it { should respond_to(:users) }
+    it { should respond_to(:competitions) }
   end
 
   describe 'specific validations' do

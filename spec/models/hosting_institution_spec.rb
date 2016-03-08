@@ -6,9 +6,7 @@ RSpec.describe HostingInstitution, type: :model do
   end
 
   describe 'simple model pre-checks' do
-    it 'has a valid factory' do
-      expect(@hosting_institution).to be_valid
-    end
+
 
     it { should validate_presence_of(:institution) }
   end

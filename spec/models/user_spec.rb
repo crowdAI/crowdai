@@ -6,9 +6,6 @@ RSpec.describe User, type: :model do
   end
 
   describe 'basic User model pre-checks' do
-    it 'has a valid factory' do
-      expect(@user).to be_valid
-    end
 
     it 'has a valid admin user factory' do
       admin_user = build(:user, :admin)

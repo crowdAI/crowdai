@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :competition do
-    association :hosting_institution 
+    association :hosting_institution
     competition "Plant Village Disease Recognition Challenge"
     start_date "2016-03-25"
     end_date "2016-04-30"

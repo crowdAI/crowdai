@@ -6,9 +6,6 @@ RSpec.describe Submission, type: :model do
   end
 
   describe 'simple model pre-checks' do
-    it 'has a valid factory' do
-      expect(@submission).to be_valid
-    end
 
     it "should allow valid values" do
       %w(user team).each do |v|

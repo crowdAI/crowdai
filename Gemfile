@@ -50,7 +50,6 @@ gem 'figaro'
 
 # email
 gem 'mandrill-api'
-gem "letter_opener"
 
 
 group :development do

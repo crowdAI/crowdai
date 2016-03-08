@@ -71,4 +71,5 @@ group :development, :test do
   gem 'shoulda'
   gem 'shoulda-matchers', require: false
   gem 'capybara'
+  gem 'capybara-email'
 end

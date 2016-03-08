@@ -10,8 +10,6 @@ RSpec.describe Submission, type: :model do
       expect(@submission).to be_valid
     end
 
-    it { should validate_presence_of(:evaluated) }
-    it { should validate_presence_of(:withdrawn) }
     it "should allow valid values" do
       %w(user team).each do |v|
         should allow_value(v).for(:submission_type)

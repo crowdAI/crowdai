@@ -54,9 +54,9 @@ group :development do
   gem 'rails-footnotes', '>= 4.0.0', '<5'
   gem 'rails-erd'
   gem 'railroady'
-  gem 'better_errors'
   gem 'annotate'
   gem 'sdoc', '~> 0.4.0'
+  gem 'web-console', '~> 2.0'
 end
 
 
@@ -64,6 +64,10 @@ group :development, :test do
   gem 'byebug'
   gem "rspec-rails"
   gem "factory_girl_rails"
-  gem 'web-console', '~> 2.0'
+  gem 'faker'
+  gem 'database_cleaner'
+  gem 'simplecov', :require => false
   gem 'spring'
+  gem 'shoulda'
+  gem 'shoulda-matchers', require: false
 end

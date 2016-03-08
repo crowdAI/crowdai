@@ -13,9 +13,6 @@ class HostingInstitutionDashboard < Administrate::BaseDashboard
     institution: Field::String,
     address: Field::Text,
     description: Field::Text,
-    contact_person: Field::String,
-    contact_phone: Field::String,
-    contact_email: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }

@@ -35,7 +35,6 @@
       <th></th>
       <th>Username</th>
       <th>Email</th>
-      <th>Phone</th>
       <th></th>
     </tr>
   </thead>
@@ -46,8 +45,7 @@
         <td><%= user.hosting_institution_primary %></td>
         <td><%= user.username %></td>
         <td><%= user.email %></td>
-        <td><%= user.phone_number %></td>
-        <td><%= link_to 'Remove', [@hosting_institution, user], method: :nullify, data: { confirm: 'Remove this user from the administration of your institution on CrowdAI?' } %></td>
+        <td><%#= link_to 'Remove', [@hosting_institution, user], method: :nullify, data: { confirm: 'Remove this user from the administration of your institution on CrowdAI?' } %></td>
       </tr>
     <% end %>
   </tbody>

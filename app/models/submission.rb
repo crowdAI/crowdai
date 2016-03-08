@@ -6,7 +6,7 @@ class Submission < ActiveRecord::Base
   accepts_nested_attributes_for :submission_files, reject_if: :all_blank, allow_destroy: true
 
   as_enum :submission_type, [:user, :team], map: :string
-
+  validates_presence_of :submission_type
 end
 
 # == Schema Information

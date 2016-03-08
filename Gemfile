@@ -44,8 +44,13 @@ gem 'will_paginate-bootstrap'
 # API
 # gem 'rack-attack'
 
-# heroku
+# heroku / production
 gem 'rails_12factor', group: :production
+gem 'figaro'
+
+# email
+gem 'mandrill-api'
+gem "letter_opener"
 
 
 group :development do

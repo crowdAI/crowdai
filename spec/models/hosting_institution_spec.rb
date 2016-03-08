@@ -13,11 +13,13 @@ RSpec.describe HostingInstitution, type: :model do
     it { should validate_presence_of(:institution) }
   end
 
-  describe 'fields and associations' do
+  describe 'fields' do
     subject { @hosting_institution }
-
     it { should respond_to(:institution) }
+  end
 
+  describe 'associations' do
+    subject { @hosting_institution }
     it { should respond_to(:users) }
     it { should respond_to(:competitions) }
   end

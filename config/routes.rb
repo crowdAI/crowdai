@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     resources :datasets
     resources :timelines
     resources :submissions
+    resources :leaderboards, only: [:index, :show]
   end
 
   resources :datasets do

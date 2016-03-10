@@ -39,9 +39,7 @@ Rails.application.routes.draw do
     resources :dataset_files
   end
 
-  resources :submissions do
-    resources :submission_files
-  end
+
 
   # resources :teams
 

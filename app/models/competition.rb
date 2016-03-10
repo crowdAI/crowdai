@@ -8,6 +8,7 @@ class Competition < ActiveRecord::Base
   has_many :user_competitions
   has_many :users, :through => :user_competitions
   has_many :leaderboards
+  has_many :topics
 
   accepts_nested_attributes_for :timelines, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :submissions, reject_if: :all_blank, allow_destroy: true

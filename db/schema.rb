@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310103938) do
+ActiveRecord::Schema.define(version: 20160310142931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,18 @@ ActiveRecord::Schema.define(version: 20160310103938) do
   end
   add_index "datasets", ["competition_id"], name: "index_datasets_on_competition_id", using: :btree
 
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",           null: false
+    t.integer  "sluggable_id",   null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
   create_table "hosting_institutions", force: :cascade do |t|
     t.string   "institution"
     t.text     "address"
@@ -114,6 +126,19 @@ SELECT s.id,
           WHERE ((m.competition_id = s.competition_id) AND (m.user_id = s.user_id) AND (m.evaluated = true)))))
   END_VIEW_LEADERBOARDS
 
+  create_table "posts", force: :cascade do |t|
+    t.integer  "topic_id"
+    t.integer  "user_id"
+    t.text     "post"
+    t.integer  "votes",      default: 0
+    t.boolean  "flagged",    default: false
+    t.boolean  "notify",     default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+  add_index "posts", ["topic_id"], name: "index_posts_on_topic_id", using: :btree
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
   create_table "submission_files", force: :cascade do |t|
     t.integer  "submission_id"
     t.integer  "seq"
@@ -151,6 +176,19 @@ SELECT s.id,
     t.datetime "updated_at",     null: false
   end
   add_index "timelines", ["competition_id"], name: "index_timelines_on_competition_id", using: :btree
+
+  create_table "topics", force: :cascade do |t|
+    t.integer  "competition_id"
+    t.integer  "user_id"
+    t.string   "topic"
+    t.boolean  "sticky",         default: false
+    t.integer  "views",          default: 0
+    t.integer  "posts_count",    default: 0
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+  add_index "topics", ["competition_id"], name: "index_topics_on_competition_id", using: :btree
+  add_index "topics", ["user_id"], name: "index_topics_on_user_id", using: :btree
 
   create_table "user_competitions", force: :cascade do |t|
     t.integer  "user_id"
@@ -211,6 +249,8 @@ SELECT s.id,
   add_foreign_key "competitions", "hosting_institutions"
   add_foreign_key "dataset_files", "datasets"
   add_foreign_key "datasets", "competitions"
+  add_foreign_key "posts", "topics"
+  add_foreign_key "posts", "users"
   add_foreign_key "submission_files", "submissions"
   add_foreign_key "submissions", "competitions"
   add_foreign_key "submissions", "teams"
@@ -218,6 +258,8 @@ SELECT s.id,
   add_foreign_key "team_users", "teams"
   add_foreign_key "team_users", "users"
   add_foreign_key "timelines", "competitions"
+  add_foreign_key "topics", "competitions"
+  add_foreign_key "topics", "users"
   add_foreign_key "user_competitions", "competitions"
   add_foreign_key "user_competitions", "users"
   add_foreign_key "users", "hosting_institutions"

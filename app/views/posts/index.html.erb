@@ -1,0 +1,10 @@
+<%= render partial: 'competitions/sidebar' %>
+<%= render partial: 'competitions/header', competition: @competition %>
+
+
+<ul class="list-group">
+  <% @posts.each do |post| %>
+    <%= render post %>
+  <% end %>
+</ul>
+<%= render 'form' %>

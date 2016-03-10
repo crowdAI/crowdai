@@ -1,76 +1,55 @@
-# == Schema Information
-#
-# Table name: submissions
-#
-#  id                 :integer          not null, primary key
-#  competition_id     :integer
-#  user_id            :integer
-#  team_id            :integer
-#  evaluated          :boolean
-#  score              :float
-#  ranking            :float
-#  submission_type_cd :string
-#  withdrawn          :boolean
-#  withdrawn_date     :date
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#
-
 class SubmissionsController < ApplicationController
   before_action :set_submission, only: [:show, :edit, :update, :destroy]
+  before_action :set_competition
 
-  # GET /submissions
   def index
-    @submissions = Submission.all
+    @submissions = @competition.submissions.where(user_id: params[:leader_id])
   end
 
-  # GET /submissions/1
   def show
   end
 
-  # GET /submissions/new
   def new
-    @submission = Submission.new
+    @submission = @competition.submissions.new
   end
 
-  # GET /submissions/1/edit
   def edit
   end
 
-  # POST /submissions
   def create
     @submission = Submission.new(submission_params)
 
     if @submission.save
-      redirect_to @submission, notice: 'Submission was successfully created.'
+      redirect_to [@competition,@submission], notice: 'Submission was successfully created.'
     else
+      @errors = @submission.errors
       render :new
     end
   end
 
-  # PATCH/PUT /submissions/1
   def update
     if @submission.update(submission_params)
-      redirect_to @submission, notice: 'Submission was successfully updated.'
+      redirect_to [@competition,@submission], notice: 'Submission was successfully updated.'
     else
       render :edit
     end
   end
 
-  # DELETE /submissions/1
   def destroy
     @submission.destroy
     redirect_to submissions_url, notice: 'Submission was successfully destroyed.'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_submission
       @submission = Submission.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
+    def set_competition
+      @competition = Competition.find(params[:competition_id])
+    end
+
     def submission_params
-      params.require(:submission).permit(:competition_id, :user_id, :team_id, :evaluated, :score, :ranking, :submission_type_cd, :withdrawn, :withdrawn_date)
+      params.require(:submission).permit(:competition_id, :user_id, :team_id, :evaluated, :score, :ranking, :submission_type, :withdrawn, :withdrawn_date)
     end
 end

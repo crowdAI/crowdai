@@ -4,12 +4,14 @@ ruby "2.3.0"
 gem 'rails', '4.2.3'
 gem 'pg'
 
+
 # user accounts / admin
 gem 'devise'
 gem "administrate", "~> 0.1.4"
 
 # model
 gem 'simple_enum'
+gem "schema_plus_views"
 
 # forms / data manipulation / charts
 gem 'simple_form'
@@ -38,8 +40,7 @@ gem 'font-awesome-rails'
 
 # search / pagination
 gem 'ransack'
-gem 'will_paginate'
-gem 'will_paginate-bootstrap'
+gem 'kaminari'
 
 # API
 # gem 'rack-attack'

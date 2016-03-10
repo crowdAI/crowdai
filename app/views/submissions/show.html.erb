@@ -45,5 +45,5 @@
   <%= @submission.withdrawn_date %>
 </p>
 
-<%= link_to 'Edit', edit_submission_path(@submission) %> |
-<%= link_to 'Back', submissions_path %>
+<%= link_to 'Edit', edit_competition_submission_path(@competition,@submission) %> |
+<%= link_to 'Back', competition_submissions_path(@competition) %>

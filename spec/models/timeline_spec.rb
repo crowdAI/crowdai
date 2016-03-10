@@ -6,9 +6,6 @@ RSpec.describe Timeline, type: :model do
   end
 
   describe 'simple model pre-checks' do
-    it 'has a valid factory' do
-      expect(@timeline).to be_valid
-    end
 
     it { should validate_presence_of(:event) }
     it { should validate_presence_of(:event_time) }

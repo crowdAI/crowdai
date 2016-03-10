@@ -8,10 +8,6 @@ RSpec.describe Competition, type: :model do
   describe 'simple model pre-checks' do
     subject { @competition }
 
-    it 'has a valid factory' do
-      expect(@competition).to be_valid
-    end
-
     it { should validate_presence_of(:competition) }
     it { should validate_presence_of(:start_date) }
     it { should validate_presence_of(:end_date) }

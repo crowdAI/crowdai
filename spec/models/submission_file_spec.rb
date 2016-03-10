@@ -6,9 +6,7 @@ RSpec.describe SubmissionFile, type: :model do
   end
 
   describe 'simple model pre-checks' do
-    it 'has a valid factory' do
-      expect(@submission_file).to be_valid
-    end
+
   end
 
   describe 'fields and associations' do

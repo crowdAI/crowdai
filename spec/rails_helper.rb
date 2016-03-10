@@ -6,6 +6,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'devise'
 require 'support/login_macros'
+require 'support/factory_girl'
 require 'shoulda/matchers'
 
 

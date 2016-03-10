@@ -72,4 +72,5 @@ group :development, :test do
   gem 'shoulda-matchers', require: false
   gem 'capybara'
   gem 'capybara-email'
+  gem 'table_print'
 end

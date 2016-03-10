@@ -1,6 +1,13 @@
 require "rails_helper"
+require 'pp'
 
 RSpec.feature "competition", type: :feature do
+  before do
+    #@competition = build(:competition)
+    @hosting_institution = create(:hosting_institution)
+    @hosting_user = create(:user, hosting_institution: @hosting_institution)
+    pp @hosting_user
+  end
 
   let(:hosting_institution){ create :hosting_institution }
 

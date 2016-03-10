@@ -1,0 +1,26 @@
+<%= render partial: 'competitions/sidebar' %>
+<%= render partial: 'competitions/header', competition: @competition %>
+
+<table class='table table-hover table-striped table-bordered'>
+  <thead>
+    <tr>
+      <th>Ranking</th>
+      <th>User</th>
+      <th>Score</th>
+      <th>Entries</th>
+      <th>Submitted</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @leaderboards.each do |submission| %>
+      <tr>
+        <td><%= submission.ranking %></td>
+        <td><%= submission.user.username %></td>
+        <td><%= submission.score %></td>
+        <td><%= link_to 'Entries', '#' %></td>
+        <td><%= submission.updated_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

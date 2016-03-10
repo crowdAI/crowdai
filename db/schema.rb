@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304094914) do
+ActiveRecord::Schema.define(version: 20160310103938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,10 +42,9 @@ ActiveRecord::Schema.define(version: 20160304094914) do
     t.text     "rules"
     t.text     "prizes"
     t.text     "resources"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
-
   add_index "competitions", ["hosting_institution_id"], name: "index_competitions_on_hosting_institution_id", using: :btree
 
   create_table "dataset_files", force: :cascade do |t|
@@ -56,7 +55,6 @@ ActiveRecord::Schema.define(version: 20160304094914) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
   add_index "dataset_files", ["dataset_id"], name: "index_dataset_files_on_dataset_id", using: :btree
 
   create_table "datasets", force: :cascade do |t|
@@ -65,28 +63,16 @@ ActiveRecord::Schema.define(version: 20160304094914) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
-
   add_index "datasets", ["competition_id"], name: "index_datasets_on_competition_id", using: :btree
 
   create_table "hosting_institutions", force: :cascade do |t|
     t.string   "institution"
     t.text     "address"
     t.text     "description"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.boolean  "approved",    default: false
   end
-
-  create_table "submission_files", force: :cascade do |t|
-    t.integer  "submission_id"
-    t.integer  "seq"
-    t.string   "filename"
-    t.string   "filetype"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "submission_files", ["submission_id"], name: "index_submission_files_on_submission_id", using: :btree
 
   create_table "submissions", force: :cascade do |t|
     t.integer  "competition_id"
@@ -101,10 +87,38 @@ ActiveRecord::Schema.define(version: 20160304094914) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
-
   add_index "submissions", ["competition_id"], name: "index_submissions_on_competition_id", using: :btree
   add_index "submissions", ["team_id"], name: "index_submissions_on_team_id", using: :btree
   add_index "submissions", ["user_id"], name: "index_submissions_on_user_id", using: :btree
+
+  create_view "leaderboards", <<-'END_VIEW_LEADERBOARDS', :force => true
+SELECT s.id,
+    s.competition_id,
+    s.user_id,
+    NULL::unknown AS team_id,
+    s.score,
+    cnt.entries
+   FROM submissions s,
+    ( SELECT submissions.competition_id,
+            submissions.user_id,
+            submissions.team_id,
+            count(*) AS entries
+           FROM submissions
+          GROUP BY submissions.competition_id, submissions.user_id, submissions.team_id) cnt
+  WHERE ((s.evaluated = true) AND (s.user_id = cnt.user_id) AND (s.competition_id = cnt.competition_id) AND (s.score = ( SELECT max(m.score) AS max
+           FROM submissions m
+          WHERE ((m.competition_id = s.competition_id) AND (m.user_id = s.user_id) AND (m.evaluated = true)))))
+  END_VIEW_LEADERBOARDS
+
+  create_table "submission_files", force: :cascade do |t|
+    t.integer  "submission_id"
+    t.integer  "seq"
+    t.string   "filename"
+    t.string   "filetype"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+  add_index "submission_files", ["submission_id"], name: "index_submission_files_on_submission_id", using: :btree
 
   create_table "team_users", force: :cascade do |t|
     t.integer  "team_id"
@@ -114,7 +128,6 @@ ActiveRecord::Schema.define(version: 20160304094914) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
   add_index "team_users", ["team_id"], name: "index_team_users_on_team_id", using: :btree
   add_index "team_users", ["user_id"], name: "index_team_users_on_user_id", using: :btree
 
@@ -133,7 +146,6 @@ ActiveRecord::Schema.define(version: 20160304094914) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
-
   add_index "timelines", ["competition_id"], name: "index_timelines_on_competition_id", using: :btree
 
   create_table "user_competitions", force: :cascade do |t|
@@ -143,7 +155,6 @@ ActiveRecord::Schema.define(version: 20160304094914) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
-
   add_index "user_competitions", ["competition_id"], name: "index_user_competitions_on_competition_id", using: :btree
   add_index "user_competitions", ["user_id"], name: "index_user_competitions_on_user_id", using: :btree
 
@@ -171,8 +182,8 @@ ActiveRecord::Schema.define(version: 20160304094914) do
     t.string   "country"
     t.string   "city"
     t.string   "timezone"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "unconfirmed_email"
     t.integer  "hosting_institution_id"
     t.boolean  "hosting_institution_primary", default: false
@@ -186,7 +197,6 @@ ActiveRecord::Schema.define(version: 20160304094914) do
     t.string   "linkedin"
     t.string   "twitter"
   end
-
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["hosting_institution_id"], name: "index_users_on_hosting_institution_id", using: :btree

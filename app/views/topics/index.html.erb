@@ -18,7 +18,7 @@
     <% if @topics %>
     <% @topics.each do |topic| %>
       <tr>
-        <td><%= link_to topic.topic, topic_posts_path(topic) %></td>
+        <td><%= link_to topic.topic, new_topic_post_path(topic) %></td>
         <td><%= topic.sticky %></td>
         <td><%= topic.views %></td>
         <td><%= topic.posts_count %></td>

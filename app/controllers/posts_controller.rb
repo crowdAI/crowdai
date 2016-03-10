@@ -1,17 +1,17 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy]
   before_action :set_topic_and_competition
 
-  def index
-    @posts = @topic.posts
-    @post = @topic.posts.new
-  end
-
-  def show
-  end
 
   def new
+    @posts = @topic.posts
     @post = @topic.posts.new
+    if params[:quote]
+     quote_post = Post.find(params[:quote])
+     if quote_post
+       @post.post = "[quote]#{quote_post.post}[/quote]"
+     end
+   end
   end
 
   def edit
@@ -21,7 +21,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to [@topic,@post], notice: 'Post was successfully created.'
+      redirect_to new_topic_post_path(@topic), notice: 'Post was successfully created.'
     else
       render :new
     end
@@ -29,7 +29,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to [@topic,@post], notice: 'Post was successfully updated.'
+      redirect_to new_topic_post_path(@topic), notice: 'Post was successfully updated.'
     else
       render :edit
     end
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to posts_url, notice: 'Post was successfully destroyed.'
+    redirect_to new_topic_post_path(@topic), notice: 'Post was successfully destroyed.'
   end
 
   private

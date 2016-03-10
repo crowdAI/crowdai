@@ -1,4 +1,10 @@
   <li class="list-group-item">
     <%= simple_format(post.post) %>
+    <%= link_to "Quote", new_topic_post_path(@topic, :quote => post) %>
+    <%= link_to post.user.username, user_path(post.user) %>
+    <% if current_user.admin? || current_user == post.user %>
+      <%= link_to 'edit', edit_topic_post_path(@topic, post) %>
+      <%= link_to 'delete', [@topic, post], method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
   </li>
   <hr/>

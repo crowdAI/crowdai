@@ -3,7 +3,7 @@ class LeaderboardsController < ApplicationController
   before_action :set_competition
 
   def index
-    @leaderboards = @competition.submissions
+    @leaderboards = @competition.leaderboards
   end
 
   def show

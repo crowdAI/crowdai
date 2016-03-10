@@ -13,13 +13,13 @@
   </thead>
 
   <tbody>
-    <% @leaderboards.each do |submission| %>
+    <% @leaderboards.each_with_index do |leader,row| %>
       <tr>
-        <td><%= submission.ranking %></td>
-        <td><%= submission.user.username %></td>
-        <td><%= submission.score %></td>
-        <td><%= link_to 'Entries', '#' %></td>
-        <td><%= submission.updated_at %></td>
+        <td><%= row + 1 %></td>
+        <td><%= leader.user.username %></td>
+        <td><%= leader.score %></td>
+        <td><%= link_to 'Entries', competition_submissions_path(@competition, leader_id: leader.user_id) %></td>
+        <td><%= leader.updated_at %></td>
       </tr>
     <% end %>
   </tbody>

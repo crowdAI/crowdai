@@ -3,7 +3,7 @@ class SubmissionsController < ApplicationController
   before_action :set_competition
 
   def index
-    @submissions = Submission.all
+    @submissions = @competition.submissions.where(user_id: params[:leader_id])
   end
 
   def show

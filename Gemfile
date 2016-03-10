@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby "2.3.0"
 gem 'rails', '4.2.3'
 gem 'pg'
-gem "schema_plus_views"
+
 
 # user accounts / admin
 gem 'devise'
@@ -11,6 +11,7 @@ gem "administrate", "~> 0.1.4"
 
 # model
 gem 'simple_enum'
+gem "schema_plus_views"
 
 # forms / data manipulation / charts
 gem 'simple_form'

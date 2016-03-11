@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311100321) do
+ActiveRecord::Schema.define(version: 20160311153728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,23 @@ ActiveRecord::Schema.define(version: 20160311100321) do
     t.datetime "updated_at",     null: false
   end
   add_index "datasets", ["competition_id"], name: "index_datasets_on_competition_id", using: :btree
+
+  create_table "file_attachments", force: :cascade do |t|
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+    t.string   "description"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.string   "file_attachment_file_name"
+    t.string   "file_attachment_content_type"
+    t.integer  "file_attachment_file_size"
+    t.datetime "file_attachment_updated_at"
+  end
+  add_index "file_attachments", ["attachable_type", "attachable_id"], name: "index_file_attachments_on_attachable_type_and_attachable_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",           null: false

@@ -69,7 +69,7 @@ class CompetitionsController < ApplicationController
                     :status, :description, :evaluation, :evaluation_criteria,
                     :rules, :prizes, :resources,
                     datasets_attributes: [:id, :competition_id, :description, :_destroy,
-                        dataset_files_attributes: [:id, :seq, :filename, :filetype, :_destroy ]],
+                        file_attachments_attributes: [:id, :file_attachment, :_destroy ]],
                     timelines_attributes: [:id, :competition_id, :seq, :event, :event_time, :_destroy ],
                     submissions_attributes: [:id, :competition_id, :user_id, :team_id, :evaluated, :score,
                                             :ranking, :submission_type, :withdrawn, :withdrawn_date, :_destroy ]

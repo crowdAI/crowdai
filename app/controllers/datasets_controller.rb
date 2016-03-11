@@ -44,6 +44,7 @@ class DatasetsController < ApplicationController
     end
 
     def dataset_params
-      params.require(:dataset).permit(:competition_id, :description)
+      params.require(:dataset).permit(:competition_id, :description,
+        file_attachments_attributes: [:id, :file_attachment, :_destroy ])
     end
 end

@@ -1,5 +1,61 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
+    <div class='row user-header'>
+        <div class='col-md-3'>
+          <div class="user-square-image image-square" style="background-image: url(<%= avatar_medium_url(@user) %>)">
+            <%= image_tag avatar_medium_url(@user) %>
+          </div>
+        </div>
+        <div class='col-md-9'>
+          <%= simple_form_for(@user) do |f| %>
+            <%= f.error_notification %>
+            <%= f.input :first_name, hint: 'Used in email correspondence and on your profile. Defaults to Username if left blank.' %>
+            <%= f.input :last_name %>
+            <%= f.input :username, required: true, hint: 'May be changed.' %>
+            <%= f.input :email, required: true, hint: 'May be changed.' %>
+            <%= f.input :email_public, label: 'Display your email address publically?' %>
+            <%= f.input :website %>
+            <%= f.input :github %>
+            <%= f.input :linkedin %>
+            <%= f.input :twitter %>
+
+            <% if current_user.admin? %>
+              <%= f.association :hosting_institution, :include_blank => false, :label_method => lambda { |host| "#{host.institution}" } %>
+            <% else %>
+              <%= f.hosting_institution %>
+            <% end %>
+
+            <% if devise_mapping.confirmable? && @user.pending_reconfirmation? %>
+              <p>Currently waiting confirmation for: <%= @user.unconfirmed_email %></p>
+            <% end %>
+            <%= f.button :submit, "Update Details"  %>
+          <% end %>
+        </div>
+      </div>
+
+<div class="row">
+  <div class='col-md-6 col-md-offset-3'>
+      <%= simple_form_for(@user) do |f| %>
+          <%= f.error_notification %>
+          <%= f.simple_fields_for :image, @user.image.presence || Image.new do |avatar_fields| %>
+            <%= avatar_fields.error_notification %>
+            <div>
+              <img src="<%= avatar_medium_url(@user) %>"/>
+            </div>
+            <% if @user.image.present? %>
+              <%= avatar_fields.check_box '_destroy' %> remove?
+              or
+              <%= avatar_fields.label :image, "replace image?" %>
+            <% else %>
+              <%= avatar_fields.label :image, "Add your own image?" %>
+            <% end %>
+            <%= avatar_fields.file_field :image %>
+          <% end %>
+          <%=  f.button :submit, "Change Avatar" %>
+        <% end %>
+      </div>
+    </div>
+
     <h2>Profile</h2>
 
     <%= simple_form_for @user do |f| %>

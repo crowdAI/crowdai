@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310142931) do
+ActiveRecord::Schema.define(version: 20160311075349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,8 +50,6 @@ ActiveRecord::Schema.define(version: 20160310142931) do
   create_table "dataset_files", force: :cascade do |t|
     t.integer  "dataset_id"
     t.integer  "seq"
-    t.string   "filename"
-    t.string   "filetype"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -92,10 +90,7 @@ ActiveRecord::Schema.define(version: 20160310142931) do
     t.integer  "team_id"
     t.boolean  "evaluated"
     t.float    "score"
-    t.float    "ranking"
     t.string   "submission_type_cd"
-    t.boolean  "withdrawn"
-    t.date     "withdrawn_date"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
@@ -142,8 +137,6 @@ SELECT s.id,
   create_table "submission_files", force: :cascade do |t|
     t.integer  "submission_id"
     t.integer  "seq"
-    t.string   "filename"
-    t.string   "filetype"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end

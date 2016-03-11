@@ -24,24 +24,11 @@
 </p>
 
 <p>
-  <strong>Ranking:</strong>
-  <%= @submission.ranking %>
+  <strong>Submission type:</strong>
+  <%= @submission.submission_type %>
 </p>
 
-<p>
-  <strong>Submission type cd:</strong>
-  <%= @submission.submission_type_cd %>
-</p>
 
-<p>
-  <strong>Withdrawn:</strong>
-  <%= @submission.withdrawn %>
-</p>
-
-<p>
-  <strong>Withdrawn date:</strong>
-  <%= @submission.withdrawn_date %>
-</p>
 
 <%= link_to 'Edit', edit_competition_submission_path(@competition,@submission) %> |
 <%= link_to 'Back', competition_submissions_path(@competition) %>

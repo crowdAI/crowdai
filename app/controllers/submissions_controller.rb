@@ -50,6 +50,6 @@ class SubmissionsController < ApplicationController
     end
 
     def submission_params
-      params.require(:submission).permit(:competition_id, :user_id, :team_id, :evaluated, :score, :ranking, :submission_type, :withdrawn, :withdrawn_date)
+      params.require(:submission).permit(:competition_id, :user_id, :team_id, :evaluated, :score, :submission_type)
     end
 end

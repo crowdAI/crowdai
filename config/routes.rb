@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :posts
+  resources :topics
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   devise_for :users, except: [:update]
   resources :users, only: [:show, :edit, :update, :destroy]
@@ -17,12 +19,11 @@ Rails.application.routes.draw do
     resources :team_users
     resources :timelines
     resources :user_competitions
+    resources :topics
     root to: "users#index"
   end
 
   get 'landing_page/index'
-
-
 
   resources :hosting_institutions do
     resources :competitions
@@ -32,11 +33,16 @@ Rails.application.routes.draw do
     resources :datasets
     resources :timelines
     resources :submissions
-    resources :leaderboards, only: [:index, :show]
+    resources :leaderboards, only: [:index]
+    resources :topics
   end
 
   resources :datasets do
     resources :dataset_files
+  end
+
+  resources :topics do
+    resources :posts, only: [:new, :create, :edit, :update, :destroy]
   end
 
 

@@ -1,5 +1,7 @@
 <%= render partial: 'competitions/sidebar' %>
 <%= render partial: 'competitions/header', competition: @competition %>
 
+<%= render 'form' %>
 
-show
+<%= link_to 'Show', @post %> |
+<%= link_to 'Back', posts_path %>

@@ -1,0 +1,28 @@
+<div class="tab-pane" id="avatar">
+
+  <h1>Avatar</h1>
+  <div class="row">
+    <div class='col-md-6'>
+      <%= simple_form_for(@user) do |f| %>
+        <%= f.error_notification %>
+        <%= f.simple_fields_for :image, @user.image.presence || Image.new do |avatar_fields| %>
+          <%= avatar_fields.error_notification %>
+          <div>
+            <img src="<%= avatar_medium_url(@user) %>"/>
+          </div>
+
+          <% if @user.image.present? %>
+            <%= avatar_fields.check_box '_destroy' %> remove? or
+            <%= avatar_fields.label :image, "replace image?" %>
+          <% else %>
+            <%= avatar_fields.label :image, "Add your own image?" %>
+          <% end %>
+
+          <%= avatar_fields.file_field :image %>
+        <% end %>
+        <%=  f.button :submit, "Update Avatar" %>
+      <% end %>
+    </div>
+  </div>
+
+</div>

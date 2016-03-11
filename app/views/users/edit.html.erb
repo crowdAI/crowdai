@@ -1,102 +1,71 @@
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <div class='row user-header'>
-        <div class='col-md-3'>
-          <div class="user-square-image image-square" style="background-image: url(<%= avatar_medium_url(@user) %>)">
-            <%= image_tag avatar_medium_url(@user) %>
-          </div>
-        </div>
-        <div class='col-md-9'>
-          <%= simple_form_for(@user) do |f| %>
-            <%= f.error_notification %>
-            <%= f.input :first_name, hint: 'Used in email correspondence and on your profile. Defaults to Username if left blank.' %>
-            <%= f.input :last_name %>
-            <%= f.input :username, required: true, hint: 'May be changed.' %>
-            <%= f.input :email, required: true, hint: 'May be changed.' %>
-            <%= f.input :email_public, label: 'Display your email address publically?' %>
-            <%= f.input :website %>
-            <%= f.input :github %>
-            <%= f.input :linkedin %>
-            <%= f.input :twitter %>
+<br/>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 col-md-offset-1">
+      <div class="tabs-left">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
+          <li><a href="#avatar" data-toggle="tab">Avatar</a></li>
+          <li><a href="#account" data-toggle="tab">Account</a></li>
+          <li><a href="#emails" data-toggle="tab">Emails</a></li>
+          <li><a href="#competitions" data-toggle="tab">Competitions</a></li>
+          <li><a href="#notebooks" data-toggle="tab">Notebooks</a></li>
+          <li><a href="#activity" data-toggle="tab">Activity</a></li>
+        </ul>
+        <div class="tab-content">
+          <%= render 'users/edit/profile' %>
+          <%= render 'users/edit/avatar' %>
+          <%= render 'users/edit/account' %>
+          <%= render 'users/edit/emails' %>
+          <%= render 'users/edit/competitions' %>
+          <%= render 'users/edit/notebooks' %>
+          <%= render 'users/edit/activity' %>
+        </div><!-- /tab-content -->
+      </div><!-- /tabbable -->
+    </div><!-- /col -->
+  </div><!-- /row -->
+</div><!-- /container -->
 
-            <% if current_user.admin? %>
-              <%= f.association :hosting_institution, :include_blank => false, :label_method => lambda { |host| "#{host.institution}" } %>
-            <% else %>
-              <%= f.hosting_institution %>
-            <% end %>
 
-            <% if devise_mapping.confirmable? && @user.pending_reconfirmation? %>
-              <p>Currently waiting confirmation for: <%= @user.unconfirmed_email %></p>
-            <% end %>
-            <%= f.button :submit, "Update Details"  %>
-          <% end %>
-        </div>
+
+<!--
+<div class="container">
+  <div class="tabs-left">
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+      <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a>
+    </li>
+    <li>
+      <a href="#account" aria-controls="account" role="tab" data-toggle="tab">Account</a>
+    </li>
+    <li>
+      <a href="#avatars" aria-controls="avatars" role="tab" data-toggle="tab">Avatar</a>
+    </li>
+    <li>
+      <a href="#emails" aria-controls="emails" role="tab" data-toggle="tab">Emails</a>
+    </li>
+    <li>
+      <a href="#competitions" aria-controls="competitions" role="tab" data-toggle="tab">Competitions</a>
+    </li>
+    <li>
+      <a href="#notebooks" aria-controls="notebooks" role="tab" data-toggle="tab">Notebooks</a>
+    </li>
+    <li>
+      <a href="#activity" aria-controls="activity" role="tab" data-toggle="tab">Activity</a>
+    </li>
+  </ul>
+
+
+      <div class="tab-content">
+        <%= render 'users/edit/profile' %>
+        <%= render 'users/edit/avatar' %>
+        <%= render 'users/edit/account' %>
+        <%= render 'users/edit/emails' %>
+        <%= render 'users/edit/competitions' %>
+        <%= render 'users/edit/notebooks' %>
+        <%= render 'users/edit/activity' %>
       </div>
-
-<div class="row">
-  <div class='col-md-6 col-md-offset-3'>
-      <%= simple_form_for(@user) do |f| %>
-          <%= f.error_notification %>
-          <%= f.simple_fields_for :image, @user.image.presence || Image.new do |avatar_fields| %>
-            <%= avatar_fields.error_notification %>
-            <div>
-              <img src="<%= avatar_medium_url(@user) %>"/>
-            </div>
-            <% if @user.image.present? %>
-              <%= avatar_fields.check_box '_destroy' %> remove?
-              or
-              <%= avatar_fields.label :image, "replace image?" %>
-            <% else %>
-              <%= avatar_fields.label :image, "Add your own image?" %>
-            <% end %>
-            <%= avatar_fields.file_field :image %>
-          <% end %>
-          <%=  f.button :submit, "Change Avatar" %>
-        <% end %>
-      </div>
     </div>
 
-    <h2>Profile</h2>
-
-    <%= simple_form_for @user do |f| %>
-    <%= f.error_notification %>
-
-    <div class="form-inputs">
-      <%= f.input :first_name, hint: 'Used in email correspondence and on your profile. Defaults to Username if left blank.' %>
-      <%= f.input :last_name %>
-      <%= f.input :username, required: true, autofocus: true, hint: 'May be changed.' %>
-      <%= f.input :email, required: true, hint: 'May be changed.' %>
-      <%= f.input :email_public, label: 'Display your email address publically?' %>
-      <%= f.input :bio, as: :bootsy, input_html: { rows: 20 }, hint: 'Tell us something about yourself.' %>
-      <%= f.input :website %>
-      <%= f.input :github %>
-      <%= f.input :linkedin %>
-      <%= f.input :twitter %>
-
-      <% if current_user.admin? %>
-        <%= f.association :hosting_institution, :include_blank => false, :label_method => lambda { |host| "#{host.institution}" } %>
-      <% else %>
-        <%= f.hosting_institution %>
-      <% end %>
-
-      <% if @user.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for:
-        <%= @user.unconfirmed_email %></p>
-      <% end %>
-
-    </div>
-
-    <div class="form-actions">
-      <%= f.button :submit, "Update" %>
-    </div>
-    <% end %>
-
-    <h3>Cancel my account</h3>
-
-    <p>Unhappy?
-      <%= link_to "Cancel my account", registration_path(@user), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-    <%= link_to "Back", :back %>
-
-  </div>
 </div>
+-->

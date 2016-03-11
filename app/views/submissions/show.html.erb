@@ -1,13 +1,11 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: 'competitions/sidebar' %>
+<%= render partial: 'competitions/header', competition: @competition %>
 
-<p>
-  <strong>Competition:</strong>
-  <%= @submission.competition %>
-</p>
+<h2>Submission</h2>
 
 <p>
   <strong>User:</strong>
-  <%= @submission.user %>
+  <%= @submission.user.username %>
 </p>
 
 <p>

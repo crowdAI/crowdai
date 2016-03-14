@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   end
 
   resources :competitions do
-    resources :datasets
+      resources :dataset_files
     resources :timelines
     resources :submissions
     resources :leaderboards, only: [:index]

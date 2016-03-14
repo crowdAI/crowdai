@@ -30,7 +30,7 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
 
-      <%= simple_form_for(@competition) do |f| %>
+      <%= simple_form_for @competition do |f| %>
         <%= f.hidden_field :hosting_institution_id, value: current_user.hosting_institution_id %>
 
         <!-- Tab panes -->

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311153728) do
+ActiveRecord::Schema.define(version: 20160314154557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,24 +44,22 @@ ActiveRecord::Schema.define(version: 20160311153728) do
     t.text     "resources"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.text     "dataset_description"
   end
   add_index "competitions", ["hosting_institution_id"], name: "index_competitions_on_hosting_institution_id", using: :btree
 
   create_table "dataset_files", force: :cascade do |t|
-    t.integer  "dataset_id"
     t.integer  "seq"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-  add_index "dataset_files", ["dataset_id"], name: "index_dataset_files_on_dataset_id", using: :btree
-
-  create_table "datasets", force: :cascade do |t|
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "description"
+    t.string   "dataset_file_file_name"
+    t.string   "dataset_file_content_type"
+    t.integer  "dataset_file_file_size"
+    t.datetime "dataset_file_updated_at"
     t.integer  "competition_id"
-    t.text     "description"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
   end
-  add_index "datasets", ["competition_id"], name: "index_datasets_on_competition_id", using: :btree
+  add_index "dataset_files", ["competition_id"], name: "index_dataset_files_on_competition_id", using: :btree
 
   create_table "file_attachments", force: :cascade do |t|
     t.integer  "attachable_id"
@@ -270,8 +268,6 @@ SELECT s.id,
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
   add_foreign_key "competitions", "hosting_institutions"
-  add_foreign_key "dataset_files", "datasets"
-  add_foreign_key "datasets", "competitions"
   add_foreign_key "posts", "topics"
   add_foreign_key "posts", "users"
   add_foreign_key "submission_files", "submissions"

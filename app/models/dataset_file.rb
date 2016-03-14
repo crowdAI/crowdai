@@ -1,16 +1,6 @@
 class DatasetFile < ActiveRecord::Base
-  belongs_to :dataset
+  belongs_to :competition
+  
+  has_attached_file :dataset_file
+  validates_attachment :dataset_file, presence: true, content_type: { content_type: ["text/csv","text/plain"] }
 end
-
-# == Schema Information
-#
-# Table name: dataset_files
-#
-#  id         :integer          not null, primary key
-#  dataset_id :integer
-#  seq        :integer
-#  filename   :string
-#  filetype   :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#

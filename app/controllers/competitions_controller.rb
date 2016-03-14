@@ -10,13 +10,9 @@ class CompetitionsController < ApplicationController
 
   def new
     @competition = Competition.new
-    @competition.build_dataset
   end
 
   def edit
-    if @competition.dataset.nil?
-      @competition.build_dataset
-    end
   end
 
   def create

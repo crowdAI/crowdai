@@ -3,7 +3,7 @@ class SubmissionsController < ApplicationController
   before_action :set_competition
 
   def index
-    @submissions = @competition.submissions.where(user_id: params[:leader_id])
+    @submissions = @competition.submissions.where(user_id: current_user)
   end
 
   def show
@@ -11,6 +11,8 @@ class SubmissionsController < ApplicationController
 
   def new
     @submission = @competition.submissions.new
+    @submission.submission_files.build
+    @submission.submission_files.build
   end
 
   def edit
@@ -50,6 +52,7 @@ class SubmissionsController < ApplicationController
     end
 
     def submission_params
-      params.require(:submission).permit(:competition_id, :user_id, :team_id, :evaluated, :score, :submission_type)
+      params.require(:submission).permit(:competition_id, :user_id, :team_id, :description, :evaluated, :score, :submission_type,
+                                  submission_files_attributes: [:id, :seq, :submission_file, :_delete])
     end
 end

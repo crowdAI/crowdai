@@ -1,10 +1,4 @@
 <%= render partial: 'competitions/sidebar' %>
 <%= render partial: 'competitions/header', competition: @competition %>
 
-<%= @errors.inspect %>
-
-<h1>New Submission</h1>
-
 <%= render 'form' %>
-
-<%= link_to 'Back', competition_path(@competition) %>

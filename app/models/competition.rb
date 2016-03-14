@@ -14,7 +14,7 @@ class Competition < ActiveRecord::Base
   has_many :topics
 
   accepts_nested_attributes_for :timelines, reject_if: :all_blank, allow_destroy: true
-  accepts_nested_attributes_for :submissions, reject_if: :all_blank, allow_destroy: true
+  #accepts_nested_attributes_for :submissions, reject_if: :all_blank, allow_destroy: true TODO cleanup controller
 
   as_enum :status, [:draft, :running, :completed, :cancelled], map: :string
   validates_presence_of :competition

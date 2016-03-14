@@ -4,26 +4,34 @@
   <div class="form-inputs">
     <%= f.association :competition, as: :hidden %>
     <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.input :description, placeholder: 'Optionally describe this submission.', label: false %>
     <%= f.input :evaluated %>
     <%= f.input :score %>
     <%= f.hidden_field :submission_type, value: 'user' %>
-    <%= f.simple_fields_for :image, @user.image.presence || Image.new do |avatar_fields| %>
-      <%= avatar_fields.error_notification %>
-      <div>
-        <img src="<%= avatar_medium_url(@user) %>"/>
+
+
+    <%= f.simple_fields_for :submission_files do |file| %>
+      <div class="nested-fields">
+        <% if file.index == 0 %>
+          <b>Prediction file (CSV)</b>
+          <b>Archive of model and script</b>
+          <%= file.input :seq, value: 0 %>
+        <% else %>
+          <b>Archive of model and script</b>
+          <%= file.input :seq, value: 0 %>
+        <% end %>
+        <%= file.input :submission_file, as: :file, label: false %>
       </div>
-
-      <% if @user.image.present? %>
-        <%= avatar_fields.check_box '_destroy' %> remove? or
-        <%= avatar_fields.label :image, "replace image?" %>
-      <% else %>
-        <%= avatar_fields.label :image, "Add your own image?" %>
-      <% end %>
-
-      <%= avatar_fields.file_field :image %>
     <% end %>
-    <%=  f.button :submit, "Update Avatar" %>
-  </div>
+
+  
+
+
+    <%#= f.simple_fields_for :submission_files do |file| %>
+      <%#= render 'submission_file_fields', f: file %>
+    <%# end %>
+    <%#= link_to_add_association 'add file', f, :submission_files %>
+ </div>
 
   <div class="form-actions">
     <%= f.button :submit %>

@@ -1,28 +1,43 @@
 <%= render partial: 'competitions/sidebar' %>
 <%= render partial: 'competitions/header', competition: @competition %>
 
+<div class="row">
+  <div class="col-md-10">
+<div class="panel panel-default">
+  <div class="panel-heading">Submissions</div>
+  <div class="panel-body">
+    <p style="text-align:center">
+        <%= link_to 'Submit Entry', new_competition_submission_path(@competition), class: 'btn btn-primary btn-lg' %>
+    </p>
+      <p><b>TODO: Change this text</b>
+      Note: You can select up to 2 submissions to be used to calculate your final leaderboard score. If 2 submissions are not selected, they will be chosen based on your best submission scores on the public leaderboard.
 
-<div class="well">
-  <h3><%= @submissions.first.user.username %></h3>
+    Your final score will not be based on the same exact subset data as the public leaderboard, but rather a different private data subset of your full submission—your public score is only a rough indication of what your final score is.
+    You should thus choose submissions that will most likely be best overall, and not necessarily just on the public subset.
+    </p>
+
+    <table class='table table-hover table-striped table-bordered'>
+      <thead>
+        <tr>
+          <th>Submitted</th>
+          <th>Score</th>
+          <th>Files</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @submissions.each do |submission| %>
+          <tr>
+            <td><%= link_to submission.created_at, competition_submission_path(@competition, submission) %></td>
+            <td><%= link_to score(submission), competition_submission_path(@competition, submission) %></td>
+            <td><% submission.submission_files.each do |f| %>
+                    <%= f.submission_file_file_name %><br/>
+                <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-
-<table class='table table-hover table-striped table-bordered'>
-  <thead>
-    <tr>
-      <th>Submitted</th>
-      <th>Score</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @submissions.each do |submission| %>
-      <tr>
-        <td><%= link_to submission.created_at, competition_submission_path(@competition, submission) %></td>
-        <td><%= link_to score(submission), competition_submission_path(@competition, submission) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+</div></div>

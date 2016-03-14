@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314154557) do
+ActiveRecord::Schema.define(version: 20160314172258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(version: 20160314154557) do
     t.string   "submission_type_cd"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.text     "description"
   end
   add_index "submissions", ["competition_id"], name: "index_submissions_on_competition_id", using: :btree
   add_index "submissions", ["team_id"], name: "index_submissions_on_team_id", using: :btree
@@ -165,8 +166,12 @@ SELECT s.id,
   create_table "submission_files", force: :cascade do |t|
     t.integer  "submission_id"
     t.integer  "seq"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "submission_file_file_name"
+    t.string   "submission_file_content_type"
+    t.integer  "submission_file_file_size"
+    t.datetime "submission_file_updated_at"
   end
   add_index "submission_files", ["submission_id"], name: "index_submission_files_on_submission_id", using: :btree
 

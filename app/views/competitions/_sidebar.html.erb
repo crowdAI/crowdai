@@ -9,11 +9,10 @@
       <li><%= link_to 'Prizes', competition_path(@competition, anchor: 'prizes') %></li>
       <li><%= link_to 'Resources', competition_path(@competition, anchor: 'resources') %></li>
       <hr/>
-      <li><%= link_to 'Submit Entry', new_competition_submission_path(@competition) %></li>
+      <li><%= link_to 'Submissions', competition_submissions_path(@competition) %></li>
       <li><%= link_to 'Discussion', competition_topics_path(@competition) %><li>
       <li><%= link_to 'Leaderboard', competition_leaderboards_path(@competition) %></li>
       <li><%= link_to 'Dataset', competition_dataset_files_path(@competition) %></li>
-      <hr/>
     </ul>
   </div>
 </div>

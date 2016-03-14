@@ -13,18 +13,16 @@
 
   <div class="row">
     <% if content_for?(:sidebar) %>
-      <div class="col-md-2 col-md-offset-1">
+      <div class="col-md-2">
         <%= yield(:sidebar) %>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-10">
         <%= yield %>
       </div>
-      <div class="col-md-1"></div>
     <% else %>
-      <div class="col-md-11 col-md-offset-1">
+      <div class="col-md-12">
         <%= yield %>
       </div>
-      <div class="col-md-1"></div>
     <% end %>
   </div>
 

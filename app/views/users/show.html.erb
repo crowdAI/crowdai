@@ -1,19 +1,35 @@
-<%= render partial: 'users/show/header', user: @user %>
+<div class="container">
+  <%= render 'users/show/header' %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel">
+        <div class="panel-body">
 
-Last seen <%= time_ago_in_words(@user.last_sign_in_at) %> ago.<br/>
-<%= @user.first_name %><br/>
-<%= @user.last_name %><br/>
-<%= @user.email %><br/>
-<%= simple_format(@user.bio) %><br/>
-<% if @user.website.present? %>
-  Website: <%= @user.website %><br/>
-<% end %>
-<% if @user.github.present? %>
-  Github: <%= @user.github %><br/>
-<% end %>
-<% if @user.linkedin.present? %>
-  LinkedIn: <%= @user.linkedin %><br/>
-<% end %>
-<% if @user.twitter.present? %>
-  Twitter: <%= @user.twitter %>
-<% end %>
+          <div class="tabs-left">
+            <ul class="nav nav-tabs">
+              <li class="active">
+                <a href="#competitions" data-toggle="tab">Competitions</a>
+              </li>
+              <li>
+                <a href="#notebooks" data-toggle="tab">Notebooks</a>
+              </li>
+              <li>
+                <a href="#activity" data-toggle="tab">Activity</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <%= render 'users/show/competitions' %>
+              <%= render 'users/show/notebooks' %>
+              <%= render 'users/show/activity' %>
+            </div>
+            <!-- /tab-content -->
+          </div>
+          <!-- /tabbable -->
+        </div>
+        <!-- /col -->
+      </div>
+      <!-- /row -->
+    </div>
+  </div>
+</div>
+<!-- /container -->

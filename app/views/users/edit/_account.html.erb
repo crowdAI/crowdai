@@ -1,8 +1,30 @@
 <div class="tab-pane" id="account">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-2">
+      <%= simple_form_for(@user, url: password_path(@user), html: { method: :put }) do |f| %>
+      <%= f.error_notification %>
 
-  <h1>Account</h1>
+      <%= f.input :reset_password_token, as: :hidden %>
+      <%= f.full_error :reset_password_token %>
 
-  <h3>Cancel my account</h3>
+      <div class="form-inputs">
+        <%= f.input :password, label: "New password", required: true, autofocus: true %>
+        <%= f.input :password_confirmation, label: "Confirm your new password", required: true %>
+      </div>
 
-  <p><%= link_to "Cancel my account", registration_path(@user), data: { confirm: "Are you sure?" }, method: :delete %></p>
+      <div class="form-actions">
+        <%= f.button :submit, "Change my password" %>
+      </div>
+      <% end %>
+    </div>
+    <div class="col-md-4 col-md-offset-2">
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+
+      <h3><%= link_to "Cancel my account", registration_path(@user), data: { confirm: "Are you sure?" }, method: :delete %></h3>
+    </div>
+  </div>
+
 </div>

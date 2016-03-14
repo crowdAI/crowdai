@@ -1,71 +1,39 @@
-<br/>
 <div class="container">
+  <%= render 'users/edit/header' %>
   <div class="row">
-    <div class="col-md-9 col-md-offset-1">
-      <div class="tabs-left">
-        <ul class="nav nav-tabs">
-          <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
-          <li><a href="#avatar" data-toggle="tab">Avatar</a></li>
-          <li><a href="#account" data-toggle="tab">Account</a></li>
-          <li><a href="#emails" data-toggle="tab">Emails</a></li>
-          <li><a href="#competitions" data-toggle="tab">Competitions</a></li>
-          <li><a href="#notebooks" data-toggle="tab">Notebooks</a></li>
-          <li><a href="#activity" data-toggle="tab">Activity</a></li>
-        </ul>
-        <div class="tab-content">
-          <%= render 'users/edit/profile' %>
-          <%= render 'users/edit/avatar' %>
-          <%= render 'users/edit/account' %>
-          <%= render 'users/edit/emails' %>
-          <%= render 'users/edit/competitions' %>
-          <%= render 'users/edit/notebooks' %>
-          <%= render 'users/edit/activity' %>
-        </div><!-- /tab-content -->
-      </div><!-- /tabbable -->
-    </div><!-- /col -->
-  </div><!-- /row -->
-</div><!-- /container -->
+    <div class="col-md-12">
+      <div class="panel">
+        <div class="panel-body">
 
-
-
-<!--
-<div class="container">
-  <div class="tabs-left">
-  <ul class="nav nav-tabs" role="tablist">
-    <li class="active">
-      <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a>
-    </li>
-    <li>
-      <a href="#account" aria-controls="account" role="tab" data-toggle="tab">Account</a>
-    </li>
-    <li>
-      <a href="#avatars" aria-controls="avatars" role="tab" data-toggle="tab">Avatar</a>
-    </li>
-    <li>
-      <a href="#emails" aria-controls="emails" role="tab" data-toggle="tab">Emails</a>
-    </li>
-    <li>
-      <a href="#competitions" aria-controls="competitions" role="tab" data-toggle="tab">Competitions</a>
-    </li>
-    <li>
-      <a href="#notebooks" aria-controls="notebooks" role="tab" data-toggle="tab">Notebooks</a>
-    </li>
-    <li>
-      <a href="#activity" aria-controls="activity" role="tab" data-toggle="tab">Activity</a>
-    </li>
-  </ul>
-
-
-      <div class="tab-content">
-        <%= render 'users/edit/profile' %>
-        <%= render 'users/edit/avatar' %>
-        <%= render 'users/edit/account' %>
-        <%= render 'users/edit/emails' %>
-        <%= render 'users/edit/competitions' %>
-        <%= render 'users/edit/notebooks' %>
-        <%= render 'users/edit/activity' %>
+          <div class="tabs-left">
+            <ul class="nav nav-tabs">
+              <li class="active">
+                <a href="#account" data-toggle="tab">Account</a>
+              </li>
+              <li>
+                <a href="#competitions" data-toggle="tab">Competitions</a>
+              </li>
+              <li>
+                <a href="#notebooks" data-toggle="tab">Notebooks</a>
+              </li>
+              <li>
+                <a href="#activity" data-toggle="tab">Activity</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <%= render 'users/edit/account' %>
+              <%= render 'users/edit/competitions' %>
+              <%= render 'users/edit/notebooks' %>
+              <%= render 'users/edit/activity' %>
+            </div>
+            <!-- /tab-content -->
+          </div>
+          <!-- /tabbable -->
+        </div>
+        <!-- /col -->
       </div>
+      <!-- /row -->
     </div>
-
+  </div>
 </div>
--->
+<!-- /container -->

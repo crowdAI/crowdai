@@ -1,0 +1,2 @@
+<p>Currently waiting for confirmation of: <%= @user.unconfirmed_email %></p>
+<p><%= link_to "Resend confirmation email?", new_confirmation_path(@user) %></p>

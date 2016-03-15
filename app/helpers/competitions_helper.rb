@@ -8,4 +8,6 @@ module CompetitionsHelper
       image_path 'PV_avatar_medium.png'
     end
   end
+
+
 end

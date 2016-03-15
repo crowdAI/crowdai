@@ -1,0 +1,37 @@
+<%= simple_form_for(@user) do |f| %>
+<%= f.error_notification %>
+<div class="row">
+  <div class="col-md-4">
+    <%= f.input :username, required: true %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <% if current_user.admin? %>
+    <%= f.association :hosting_institution, :include_blank => false, :label_method => lambda { |host| "#{host.institution}" } %>
+  <% else %>
+    <% if f.hosting_institution.present? %>
+    <%= f.hosting_institution %>
+    <% end %>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    <%= f.input :email, required: true, hint: 'May be changed.' %>
+    <%= f.input :email_public, label: 'Display your email address publicaly?' %>
+
+  </div>
+  <div class="col-md-4">
+    <%= f.input :github %>
+    <%= f.input :linkedin %>
+    <%= f.input :twitter %>
+    <%= f.input :website %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <%= f.input :bio, as: :bootsy, input_html: { rows: 5 } %>
+  </div>
+</div>
+
+<%=  f.button :submit, "Update Profile" %>
+
+<% end %>
+</div>

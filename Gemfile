@@ -52,6 +52,15 @@ gem 'figaro'
 # email
 gem 'mandrill-api'
 
+# images
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'carrierwave'
+gem 'net-ssh'
+
+# Amazon
+gem 'aws-sdk', '~> 2.2'
+gem 'fog', '1.35.0'
+
 
 group :development do
   gem 'guard'

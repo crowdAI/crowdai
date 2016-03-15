@@ -1,11 +1,10 @@
-<%= simple_form_for(@dataset_file) do |f| %>
+<%= simple_form_for([@competition,@dataset_file]) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :dataset %>
     <%= f.input :seq %>
-    <%= f.input :filename %>
-    <%= f.input :filetype %>
+    <%= f.input :description %>
+    <%= f.input :dataset_file, as: :file %>
   </div>
 
   <div class="form-actions">

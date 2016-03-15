@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   has_many :teams, through: :team_users
   has_many :posts
   belongs_to :hosting_institution
+  has_one :image, as: :imageable, dependent: :destroy
+  accepts_nested_attributes_for :image, allow_destroy: true
 
 
   def admin?
@@ -47,37 +49,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def avatar
+    self.image.try(:image)
+  end
+
+  def avatar_medium_url
+  if self.image.present?
+    self.image.image.url(:medium)
+  else
+    "//#{ENV['HOST']}/assets/PV_avatar_medium.png"
+  end
 end
 
-# == Schema Information
-#
-# Table name: users
-#
-#  id                     :integer          not null, primary key
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  reset_password_token   :string
-#  reset_password_sent_at :datetime
-#  remember_created_at    :datetime
-#  sign_in_count          :integer          default(0), not null
-#  current_sign_in_at     :datetime
-#  last_sign_in_at        :datetime
-#  current_sign_in_ip     :inet
-#  last_sign_in_ip        :inet
-#  confirmation_token     :string
-#  confirmed_at           :datetime
-#  confirmation_sent_at   :datetime
-#  failed_attempts        :integer          default(0), not null
-#  unlock_token           :string
-#  locked_at              :datetime
-#  admin                  :boolean          default(FALSE)
-#  phone_number           :string
-#  verified               :boolean          default(FALSE)
-#  verification_date      :date
-#  username               :string
-#  country                :string
-#  city                   :string
-#  timezone               :string
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#
+end

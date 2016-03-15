@@ -1,0 +1,13 @@
+<div class="tab-pane" id="competitions">
+
+  <% if @user.competitions.any? %>
+    <ul class="list-group">
+      <% @user.competitions.each do |comp| %>
+        <li class="list-group-item"><%= comp.competition %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <h3><%= @user.username %> has not yet entered any competitions.</h3>
+  <% end %>
+  
+</div>

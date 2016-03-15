@@ -3,7 +3,7 @@ class SubmissionsController < ApplicationController
   before_action :set_competition
 
   def index
-    @submissions = @competition.submissions.where(user_id: params[:leader_id])
+    @submissions = @competition.submissions.where(user_id: current_user)
   end
 
   def show
@@ -11,6 +11,10 @@ class SubmissionsController < ApplicationController
 
   def new
     @submission = @competition.submissions.new
+    # TODO for the first competition we are working with 2 files.
+    # Make this competition config data in next release
+    @submission.submission_files.build(seq: 0)
+    @submission.submission_files.build(seq: 1)
   end
 
   def edit
@@ -20,7 +24,7 @@ class SubmissionsController < ApplicationController
     @submission = Submission.new(submission_params)
 
     if @submission.save
-      redirect_to [@competition,@submission], notice: 'Submission was successfully created.'
+      redirect_to competition_submissions_path(@competition)
     else
       @errors = @submission.errors
       render :new
@@ -50,6 +54,7 @@ class SubmissionsController < ApplicationController
     end
 
     def submission_params
-      params.require(:submission).permit(:competition_id, :user_id, :team_id, :evaluated, :score, :ranking, :submission_type, :withdrawn, :withdrawn_date)
+      params.require(:submission).permit(:competition_id, :user_id, :team_id, :description, :evaluated, :score, :submission_type,
+                                  submission_files_attributes: [:id, :seq, :submission_file, :_delete])
     end
 end

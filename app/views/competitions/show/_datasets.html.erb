@@ -1,25 +1,4 @@
 <div id="datasets">
   <h2>Datasets</h2>
-  <% competition.datasets.each do |dataset| %>
-    <table class="table table-condensed table-striped table-hover">
-      <thead>
-        <tr>
-          <th>Filename</th>
-          <th>Filetype</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% dataset.dataset_files.each do |dataset_file| %>
-          <tr>
-            <td><%= dataset_file.filename %></td>
-            <td><%= dataset_file.filetype %></td>
-            <td><%= link_to 'Remove', [dataset, dataset_file], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <hr/>
-    <%= simple_format dataset.description %>
-  <% end %>
+  <%= simple_format(competition.dataset.description) %>
 </div>

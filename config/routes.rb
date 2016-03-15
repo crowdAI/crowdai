@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :competitions
-    resources :datasets
     resources :dataset_files
     resources :hosting_institutions
     resources :submissions
@@ -30,15 +29,11 @@ Rails.application.routes.draw do
   end
 
   resources :competitions do
-    resources :datasets
+    resources :dataset_files
     resources :timelines
     resources :submissions
     resources :leaderboards, only: [:index]
     resources :topics
-  end
-
-  resources :datasets do
-    resources :dataset_files
   end
 
   resources :topics do
@@ -46,9 +41,7 @@ Rails.application.routes.draw do
   end
 
 
-
   # resources :teams
-
   root to: 'landing_page#index', as: '/'
 
 end

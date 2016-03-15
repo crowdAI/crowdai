@@ -1,15 +1,6 @@
-# == Schema Information
-#
-# Table name: dataset_files
-#
-#  id         :integer          not null, primary key
-#  dataset_id :integer
-#  seq        :integer
-#  filename   :string
-#  filetype   :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
-
 module DatasetFilesHelper
+  # TODO refactor see also sub_file_info
+  def file_info(file)
+    "#{file.dataset_file_file_name} (#{number_to_human_size(1024 * file.dataset_file_file_size)})"
+  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310142931) do
+ActiveRecord::Schema.define(version: 20160315085248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,35 +35,49 @@ ActiveRecord::Schema.define(version: 20160310142931) do
     t.string   "competition"
     t.date     "start_date"
     t.date     "end_date"
-    t.string   "status_cd",              default: "draft"
+    t.string   "status_cd",               default: "draft"
     t.text     "description"
     t.text     "evaluation"
     t.text     "evaluation_criteria"
     t.text     "rules"
     t.text     "prizes"
     t.text     "resources"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.text     "dataset_description"
+    t.text     "submission_instructions"
   end
   add_index "competitions", ["hosting_institution_id"], name: "index_competitions_on_hosting_institution_id", using: :btree
 
   create_table "dataset_files", force: :cascade do |t|
-    t.integer  "dataset_id"
     t.integer  "seq"
-    t.string   "filename"
-    t.string   "filetype"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-  add_index "dataset_files", ["dataset_id"], name: "index_dataset_files_on_dataset_id", using: :btree
-
-  create_table "datasets", force: :cascade do |t|
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "description"
+    t.string   "dataset_file_file_name"
+    t.string   "dataset_file_content_type"
+    t.integer  "dataset_file_file_size"
+    t.datetime "dataset_file_updated_at"
     t.integer  "competition_id"
-    t.text     "description"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
   end
-  add_index "datasets", ["competition_id"], name: "index_datasets_on_competition_id", using: :btree
+  add_index "dataset_files", ["competition_id"], name: "index_dataset_files_on_competition_id", using: :btree
+
+  create_table "file_attachments", force: :cascade do |t|
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+    t.string   "description"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.string   "file_attachment_file_name"
+    t.string   "file_attachment_content_type"
+    t.integer  "file_attachment_file_size"
+    t.datetime "file_attachment_updated_at"
+  end
+  add_index "file_attachments", ["attachable_type", "attachable_id"], name: "index_file_attachments_on_attachable_type_and_attachable_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",           null: false
@@ -86,18 +100,29 @@ ActiveRecord::Schema.define(version: 20160310142931) do
     t.boolean  "approved",    default: false
   end
 
+  create_table "images", force: :cascade do |t|
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.string   "description"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+  add_index "images", ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id", using: :btree
+
   create_table "submissions", force: :cascade do |t|
     t.integer  "competition_id"
     t.integer  "user_id"
     t.integer  "team_id"
     t.boolean  "evaluated"
     t.float    "score"
-    t.float    "ranking"
     t.string   "submission_type_cd"
-    t.boolean  "withdrawn"
-    t.date     "withdrawn_date"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.text     "description"
   end
   add_index "submissions", ["competition_id"], name: "index_submissions_on_competition_id", using: :btree
   add_index "submissions", ["team_id"], name: "index_submissions_on_team_id", using: :btree
@@ -142,10 +167,12 @@ SELECT s.id,
   create_table "submission_files", force: :cascade do |t|
     t.integer  "submission_id"
     t.integer  "seq"
-    t.string   "filename"
-    t.string   "filetype"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "submission_file_file_name"
+    t.string   "submission_file_content_type"
+    t.integer  "submission_file_file_size"
+    t.datetime "submission_file_updated_at"
   end
   add_index "submission_files", ["submission_id"], name: "index_submission_files_on_submission_id", using: :btree
 
@@ -247,8 +274,6 @@ SELECT s.id,
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
   add_foreign_key "competitions", "hosting_institutions"
-  add_foreign_key "dataset_files", "datasets"
-  add_foreign_key "datasets", "competitions"
   add_foreign_key "posts", "topics"
   add_foreign_key "posts", "users"
   add_foreign_key "submission_files", "submissions"

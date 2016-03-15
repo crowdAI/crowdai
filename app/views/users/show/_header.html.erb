@@ -1,10 +1,28 @@
-<% content_for :header do %>
-  <div class="page-header">
-    <h1><%= image_tag('http://loremflickr.com/g/320/320/profile', size: "170x170", class: 'img-rounded ing-responsive') %>
-        <%= @user.username %></h1>
-        15 Entries 3 Gold 1 Silver<br/>
-        <% if @user == current_user || current_user.admin %>
-          <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-success' %>
-        <% end %>
-    </div>
-<% end %>
+<br/>
+<div class="row">
+  <div class="col-md-2">
+    <img src="<%= avatar_medium_url(@user) %>" class="img-thumbnail" />
+      <% if current_user == @user || current_user.admin? %><br/>
+        <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-success pull-right" %>
+      <% end %>
+  </div>
+  <div class="col-md-10">
+    Last seen <%= time_ago_in_words(@user.last_sign_in_at) %> ago.<br/>
+    <%= @user.first_name %><br/>
+    <%= @user.last_name %><br/>
+    <%= @user.email %><br/>
+    <%= simple_format(@user.bio) %><br/>
+    <% if @user.website.present? %>
+      Website: <%= @user.website %><br/>
+    <% end %>
+    <% if @user.github.present? %>
+      Github: <%= @user.github %><br/>
+    <% end %>
+    <% if @user.linkedin.present? %>
+      LinkedIn: <%= @user.linkedin %><br/>
+    <% end %>
+    <% if @user.twitter.present? %>
+      Twitter: <%= @user.twitter %>
+    <% end %>
+  </div>
+</div>

@@ -5,6 +5,7 @@ class TopicsController < ApplicationController
 
   def index
     @topics = @competition.topics
+    @headline_post = Post.find_by_sql(headline_sql).first  # TODO move into model layer based on answers or views
   end
 
   def show
@@ -51,5 +52,18 @@ class TopicsController < ApplicationController
 
     def topic_params
       params.require(:topic).permit(:competition_id, :user_id, :topic, :sticky, :views, :posts_count)
+    end
+
+    def headline_sql
+      sql = %Q[
+        select p.id, substring(p.post from 0 for 40) as post, p.topic_id, u.username, t.topic as "topic_text"
+        from posts p, topics t, users u
+        where p.flagged = false
+        and p.topic_id = t.id
+        and p.user_id = u.id
+        and t.competition_id = #{@competition.id}
+        order by p.created_at desc
+        limit 1
+      ]
     end
 end

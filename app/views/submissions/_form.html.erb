@@ -4,13 +4,24 @@
   <div class="form-inputs">
     <%= f.association :competition, as: :hidden %>
     <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.input :evaluated %>
-    <%= f.input :score %>
-    <%= f.input :ranking %>
+    <%= f.input :description, placeholder: 'Optionally describe this submission.', label: false %>
     <%= f.hidden_field :submission_type, value: 'user' %>
-    <%= f.input :withdrawn %>
-    <%= f.input :withdrawn_date %>
-  </div>
+
+
+    <%= f.simple_fields_for :submission_files do |file| %>
+      <div class="nested-fields">
+        <!-- TODO will make this config-driven in next release -->
+        <% if file.index == 0 %>
+          <b>Prediction file (CSV)</b>
+        <% else %>
+          <b>Archive (.zip or .tar) of model and script</b>
+        <% end %>
+        <%= file.hidden_field :seq %>
+        <%= file.input :submission_file, as: :file, label: false %>
+      </div>
+    <% end %>
+
+ </div>
 
   <div class="form-actions">
     <%= f.button :submit %>

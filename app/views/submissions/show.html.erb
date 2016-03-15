@@ -1,47 +1,44 @@
 <%= render partial: 'competitions/sidebar' %>
 <%= render partial: 'competitions/header', competition: @competition %>
 
-<h2>Submission</h2>
+<div class="row">
+  <div class="col-md-10">
 
-<p>
-  <strong>User:</strong>
-  <%= @submission.user.username %>
-</p>
+    <div class="panel panel-default">
+      <div class="panel-body">
 
-<p>
-  <strong>Team:</strong>
-  <%= @submission.team %>
-</p>
+        <h3>Submission</h3>
+        <lead><%= @submission.created_at %></lead>
 
-<p>
-  <strong>Evaluated:</strong>
-  <%= @submission.evaluated %>
-</p>
+        <h4>Score:
+          <%= score(@submission) %></h4>
 
-<p>
-  <strong>Score:</strong>
-  <%= @submission.score %>
-</p>
+        <div class="row">
+          <div class="col-md-8">
+            <table class="table table-condensed table-bordered">
+              <thead>
+                <tr>
+                  <th>File</th>
+                  <th>Filename</th>
+                </tr>
+              </thead>
 
-<p>
-  <strong>Ranking:</strong>
-  <%= @submission.ranking %>
-</p>
-
-<p>
-  <strong>Submission type cd:</strong>
-  <%= @submission.submission_type_cd %>
-</p>
-
-<p>
-  <strong>Withdrawn:</strong>
-  <%= @submission.withdrawn %>
-</p>
-
-<p>
-  <strong>Withdrawn date:</strong>
-  <%= @submission.withdrawn_date %>
-</p>
-
-<%= link_to 'Edit', edit_competition_submission_path(@competition,@submission) %> |
-<%= link_to 'Back', competition_submissions_path(@competition) %>
+              <tbody>
+                <% @submission.submission_files.each do |file| %>
+                <tr>
+                  <td><% if file.seq == 0 %>
+                    <b>Prediction file</b>
+                  <% else %>
+                    <b>Archive of model and script</b>
+                    <% end %></td>
+                  <td><%= link_to sub_file_info(file), file.submission_file.url %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

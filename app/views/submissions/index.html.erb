@@ -1,28 +1,38 @@
 <%= render partial: 'competitions/sidebar' %>
 <%= render partial: 'competitions/header', competition: @competition %>
 
+<div class="row">
+  <div class="col-md-10">
+<div class="panel panel-default">
+  <div class="panel-heading">Submissions</div>
+  <div class="panel-body">
+    <p style="text-align:center">
+        <%= link_to 'Submit Entry', new_competition_submission_path(@competition), class: 'btn btn-primary btn-lg' %>
+    </p>
+    <p><%= simple_format(@competition.submission_instructions) %></p>
 
-<div class="well">
-  <h3><%= @submissions.first.user.username %></h3>
+    <table class='table table-hover table-striped table-bordered'>
+      <thead>
+        <tr>
+          <th>Submitted</th>
+          <th>Score</th>
+          <th>Files</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @submissions.each do |submission| %>
+          <tr>
+            <td><%= link_to submission.created_at, competition_submission_path(@competition, submission) %></td>
+            <td><%= link_to score(submission), competition_submission_path(@competition, submission) %></td>
+            <td><% submission.submission_files.each do |f| %>
+                    <%= f.submission_file_file_name %><br/>
+                <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-
-<table class='table table-hover table-striped table-bordered'>
-  <thead>
-    <tr>
-      <th>Submitted</th>
-      <th>Score</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @submissions.each do |submission| %>
-      <tr>
-        <td><%= link_to submission.created_at, competition_submission_path(@competition, submission) %></td>
-        <td><%= link_to score(submission), competition_submission_path(@competition, submission) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+</div></div>

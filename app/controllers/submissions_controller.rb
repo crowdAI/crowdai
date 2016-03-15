@@ -11,8 +11,10 @@ class SubmissionsController < ApplicationController
 
   def new
     @submission = @competition.submissions.new
-    @submission.submission_files.build
-    @submission.submission_files.build
+    # TODO for the first competition we are working with 2 files.
+    # Make this competition config data in next release
+    @submission.submission_files.build(seq: 0)
+    @submission.submission_files.build(seq: 1)
   end
 
   def edit
@@ -22,7 +24,7 @@ class SubmissionsController < ApplicationController
     @submission = Submission.new(submission_params)
 
     if @submission.save
-      redirect_to [@competition,@submission], notice: 'Submission was successfully created.'
+      redirect_to competition_submissions_path(@competition)
     else
       @errors = @submission.errors
       render :new

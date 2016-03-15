@@ -24,6 +24,9 @@
     <li role="presentation">
       <a href="#timeline" aria-controls="timelines" role="tab" data-toggle="tab">Timeline</a>
     </li>
+    <li role="presentation">
+      <a href="#submission-instructions" aria-controls="submission-instructions" role="tab" data-toggle="tab">Submission</a>
+    </li>
   </ul>
 
   <!-- content -->
@@ -41,6 +44,7 @@
           <%= render 'competitions/form/prizes', f: f %>
           <%= render 'competitions/form/resources', f: f %>
           <%= render 'competitions/form/timeline', f: f %>
+          <%= render 'competitions/form/submission_instructions', f: f %>
         </div>
       <% end %>
 

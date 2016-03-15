@@ -9,12 +9,7 @@
     <p style="text-align:center">
         <%= link_to 'Submit Entry', new_competition_submission_path(@competition), class: 'btn btn-primary btn-lg' %>
     </p>
-      <p><b>TODO: Change this text</b>
-      Note: You can select up to 2 submissions to be used to calculate your final leaderboard score. If 2 submissions are not selected, they will be chosen based on your best submission scores on the public leaderboard.
-
-    Your final score will not be based on the same exact subset data as the public leaderboard, but rather a different private data subset of your full submission—your public score is only a rough indication of what your final score is.
-    You should thus choose submissions that will most likely be best overall, and not necessarily just on the public subset.
-    </p>
+    <p><%= simple_format(@competition.submission_instructions) %></p>
 
     <table class='table table-hover table-striped table-bordered'>
       <thead>

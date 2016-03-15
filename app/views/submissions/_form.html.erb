@@ -5,32 +5,22 @@
     <%= f.association :competition, as: :hidden %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.input :description, placeholder: 'Optionally describe this submission.', label: false %>
-    <%= f.input :evaluated %>
-    <%= f.input :score %>
     <%= f.hidden_field :submission_type, value: 'user' %>
 
 
     <%= f.simple_fields_for :submission_files do |file| %>
       <div class="nested-fields">
+        <!-- TODO will make this config-driven in next release -->
         <% if file.index == 0 %>
           <b>Prediction file (CSV)</b>
-          <b>Archive of model and script</b>
-          <%= file.input :seq, value: 0 %>
         <% else %>
-          <b>Archive of model and script</b>
-          <%= file.input :seq, value: 0 %>
+          <b>Archive (.zip or .tar) of model and script</b>
         <% end %>
+        <%= file.hidden_field :seq %>
         <%= file.input :submission_file, as: :file, label: false %>
       </div>
     <% end %>
 
-  
-
-
-    <%#= f.simple_fields_for :submission_files do |file| %>
-      <%#= render 'submission_file_fields', f: file %>
-    <%# end %>
-    <%#= link_to_add_association 'add file', f, :submission_files %>
  </div>
 
   <div class="form-actions">

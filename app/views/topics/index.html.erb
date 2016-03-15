@@ -8,16 +8,15 @@
 </blockquote>
 
 
-<%= link_to 'New Topic', new_competition_topic_path(@competition), class: 'btn btn-primary' %>
 
 <table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
-      <th>Topic</th>
-      <th>Sticky</th>
-      <th>Views</th>
-      <th>Posts count</th>
-      <th colspan="2"></th>
+      <th>Topic
+          <span class="pull-right"><%= link_to '+ New Topic', new_competition_topic_path(@competition), class: 'btn btn-primary' %></span>
+      </th>
+      <th>Posts</th>
+      <th>Activity</th>
     </tr>
   </thead>
 
@@ -25,12 +24,17 @@
     <% if @topics %>
     <% @topics.each do |topic| %>
       <tr>
-        <td><%= link_to topic.topic, new_topic_post_path(topic) %></td>
-        <td><%= topic.sticky %></td>
-        <td><%= topic.views %></td>
-        <td><%= topic.posts_count %></td>
-        <td><%= link_to 'Edit', edit_competition_topic_path(@competition,topic) %></td>
-        <td><%= link_to 'Destroy', [@competition,topic], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= content_tag(:i, nil, class: 'fa fa-thumb-tack') if topic.sticky %>
+            <%= link_to topic.topic, new_topic_post_path(topic) %>
+            <% if current_user.admin? %>
+              <span class="pull-right">
+                <%= link_to 'Edit', edit_competition_topic_path(@competition,topic) %><br/>
+                <%= link_to 'Destroy', [@competition,topic], method: :delete, data: { confirm: 'Are you sure?' } %>
+              </span>
+            <% end %>
+          </td>
+        <td><%= topic.posts.count %></td>
+        <td><%= topic.last_activity %></td>
       </tr>
     <% end %>
     <% end %>

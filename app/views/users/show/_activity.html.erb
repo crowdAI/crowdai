@@ -1,4 +1,14 @@
 <div class="tab-pane" id="activity">
-  <h1>Activity</h1>
+
+  <br/>
+  <% if @user.posts.any? %>
+    <ul class="list-group">
+      <% @user.posts.each do |post| %>
+        <li class="list-group-item"><%= simple_format(post.post) %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <h3><%= @user.username %> has not yet made any posts.</h3>
+  <% end %>
 
 </div>

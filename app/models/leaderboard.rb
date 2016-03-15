@@ -7,10 +7,6 @@ end
 
 
 =begin
-SELECT *
-FROM   information_schema.VIEWS
-WHERE  table_name = 'leaderboards';
-
 SELECT s.id,
        s.competition_id,
        s.user_id,
@@ -38,5 +34,5 @@ WHERE  ( ( u.id = s.user_id )
                           FROM   submissions m
                           WHERE  ( ( m.competition_id = s.competition_id )
                                    AND ( m.user_id = s.user_id )
-                                   AND ( m.evaluated = TRUE ) )) ) ); 
+                                   AND ( m.evaluated = TRUE ) )) ) );
 =end

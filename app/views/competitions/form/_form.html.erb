@@ -6,6 +6,9 @@
     <li role="presentation" class="active">
       <a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Overview</a>
     </li>
+    <li role="presentation" role="tablist">
+      <a href="#logo" aria-controls="logo" role="tab" data-toggle="tab">Logo Image</a>
+    </li>
     <li role="presentation">
       <a href="#evaluation" aria-controls="evalution" role="tab" data-toggle="tab">Evaluation</a>
     </li>
@@ -39,6 +42,7 @@
         <!-- Tab panes -->
         <div class="tab-content">
           <%= render 'competitions/form/overview', f: f %>
+          <%= render 'competitions/form/logo', f: f %>
           <%= render 'competitions/form/evaluation', f: f %>
           <%= render 'competitions/form/rules', f: f %>
           <%= render 'competitions/form/prizes', f: f %>

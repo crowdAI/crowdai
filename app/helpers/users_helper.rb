@@ -1,4 +1,5 @@
 module UsersHelper
+  # TODO refactor image attachments
   def avatar_medium_url(user)
     if user.avatar
       user.avatar.url(:medium)

@@ -1,6 +1,13 @@
 <%= render partial: 'competitions/sidebar' %>
 <%= render partial: 'competitions/header', competition: @competition %>
 
+
+<blockquote>
+  <p><%= link_to @headline_post.post, competition_topic_path(@competition, @headline_post.topic_id) %></p>
+   <footer>Posted by <%= @headline_post.username %> in <cite><%= @headline_post.topic_text %></cite></footer>
+</blockquote>
+
+
 <%= link_to 'New Topic', new_competition_topic_path(@competition), class: 'btn btn-primary' %>
 
 <table class="table table-striped table-bordered table-hover">

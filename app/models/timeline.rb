@@ -3,4 +3,7 @@ class Timeline < ActiveRecord::Base
 
   validates :event, presence: true
   validates :event_time, presence: true
+
+  default_scope { order('seq') }
+
 end

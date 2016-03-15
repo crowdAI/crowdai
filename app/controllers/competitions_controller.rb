@@ -51,7 +51,8 @@ class CompetitionsController < ApplicationController
                     dataset_attributes: [:id, :competition_id, :description, :_destroy],
                     timelines_attributes: [:id, :competition_id, :seq, :event, :event_time, :_destroy ],
                     submissions_attributes: [:id, :competition_id, :user_id, :team_id, :evaluated, :score,
-                                            :ranking, :submission_type, :withdrawn, :withdrawn_date, :_destroy ]
+                                            :ranking, :submission_type, :withdrawn, :withdrawn_date, :_destroy ],
+                    image_attributes: [:id, :image, :_destroy ]
                     )
     end
 end

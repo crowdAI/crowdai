@@ -1,0 +1,29 @@
+<div class="tab-pane" id="logo">
+
+  <h1>Competition Logo</h1>
+  <div class="row">
+    <div class='col-md-6'>
+
+        <%= f.error_notification %>
+        <%= f.simple_fields_for :image, @competition.image.presence || Image.new do |image| %>
+          <%= image.error_notification %>
+          <div>
+            <img src="<%= image_medium_url(@competition) %>"/>
+          </div>
+
+          <% if @competition.image.present? %>
+            <%= image.check_box '_destroy' %> remove
+          <% end %>
+
+          <span class="btn btn-default btn-file">
+              Browse <%= image.file_field :image %>
+          </span>
+
+
+        <% end %>
+        <%=  f.button :submit, "Update Logo" %>
+    
+    </div>
+  </div>
+
+</div>

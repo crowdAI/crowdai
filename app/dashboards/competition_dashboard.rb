@@ -9,15 +9,17 @@ class CompetitionDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     hosting_institution: Field::BelongsTo,
-    datasets: Field::HasMany,
+    dataset: Field::HasOne,
+    dataset_files: Field::HasMany,
     timelines: Field::HasMany,
     submissions: Field::HasMany,
     user_competitions: Field::HasMany,
     users: Field::HasMany,
+    leaderboards: Field::HasMany,
+    topics: Field::HasMany,
+    image: Field::HasOne,
     id: Field::Number,
     competition: Field::String,
-    start_date: Field::DateTime,
-    end_date: Field::DateTime,
     status_cd: Field::String,
     description: Field::Text,
     evaluation: Field::Text,
@@ -27,6 +29,8 @@ class CompetitionDashboard < Administrate::BaseDashboard
     resources: Field::Text,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    dataset_description: Field::Text,
+    submission_instructions: Field::Text,
   }
 
   # COLLECTION_ATTRIBUTES
@@ -36,24 +40,26 @@ class CompetitionDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :hosting_institution,
-    :datasets,
+    :dataset,
+    :dataset_files,
     :timelines,
-    :submissions,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :hosting_institution,
-    :datasets,
+    :dataset,
+    :dataset_files,
     :timelines,
     :submissions,
     :user_competitions,
     :users,
+    :leaderboards,
+    :topics,
+    :image,
     :id,
     :competition,
-    :start_date,
-    :end_date,
     :status_cd,
     :description,
     :evaluation,
@@ -63,6 +69,8 @@ class CompetitionDashboard < Administrate::BaseDashboard
     :resources,
     :created_at,
     :updated_at,
+    :dataset_description,
+    :submission_instructions,
   ]
 
   # FORM_ATTRIBUTES
@@ -70,14 +78,16 @@ class CompetitionDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :hosting_institution,
-    :datasets,
+    :dataset,
+    :dataset_files,
     :timelines,
     :submissions,
     :user_competitions,
     :users,
+    :leaderboards,
+    :topics,
+    :image,
     :competition,
-    :start_date,
-    :end_date,
     :status_cd,
     :description,
     :evaluation,
@@ -85,6 +95,8 @@ class CompetitionDashboard < Administrate::BaseDashboard
     :rules,
     :prizes,
     :resources,
+    :dataset_description,
+    :submission_instructions,
   ]
 
   # Overwrite this method to customize how competitions are displayed

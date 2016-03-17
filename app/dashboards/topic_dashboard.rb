@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class DatasetDashboard < Administrate::BaseDashboard
+class TopicDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -9,9 +9,13 @@ class DatasetDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     competition: Field::BelongsTo,
-    dataset_files: Field::HasMany,
+    user: Field::BelongsTo,
+    posts: Field::HasMany,
     id: Field::Number,
-    description: Field::Text,
+    topic: Field::String,
+    sticky: Field::Boolean,
+    views: Field::Number,
+    posts_count: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }
@@ -23,18 +27,22 @@ class DatasetDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :competition,
-    :dataset_files,
+    :user,
+    :posts,
     :id,
-    :description,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :competition,
-    :dataset_files,
+    :user,
+    :posts,
     :id,
-    :description,
+    :topic,
+    :sticky,
+    :views,
+    :posts_count,
     :created_at,
     :updated_at,
   ]
@@ -44,14 +52,18 @@ class DatasetDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :competition,
-    :dataset_files,
-    :description,
+    :user,
+    :posts,
+    :topic,
+    :sticky,
+    :views,
+    :posts_count,
   ]
 
-  # Overwrite this method to customize how datasets are displayed
+  # Overwrite this method to customize how topics are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(dataset)
-  #   "Dataset ##{dataset.id}"
+  # def display_resource(topic)
+  #   "Topic ##{topic.id}"
   # end
 end

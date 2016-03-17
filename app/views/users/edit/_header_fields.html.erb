@@ -6,11 +6,7 @@
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <% if current_user.admin? %>
-    <%= f.association :hosting_institution, :include_blank => false, :label_method => lambda { |host| "#{host.institution}" } %>
-  <% else %>
-    <% if f.hosting_institution.present? %>
-    <%= f.hosting_institution %>
-    <% end %>
+      <%= f.association :hosting_institution, :include_blank => false, :label_method => lambda { |host| "#{host.institution}" } %>
     <% end %>
   </div>
   <div class="col-md-4">

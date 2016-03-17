@@ -21,8 +21,6 @@ class Competition < ActiveRecord::Base
 
   as_enum :status, [:draft, :running, :completed, :cancelled], map: :string
   validates_presence_of :competition
-  validates_presence_of :start_date
-  validates_presence_of :end_date
   validates_presence_of :status
   validates_presence_of :hosting_institution
 

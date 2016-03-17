@@ -9,12 +9,14 @@ class HostingInstitutionDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     competitions: Field::HasMany,
+    users: Field::HasMany,
     id: Field::Number,
     institution: Field::String,
     address: Field::Text,
     description: Field::Text,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    approved: Field::Boolean,
   }
 
   # COLLECTION_ATTRIBUTES
@@ -24,24 +26,23 @@ class HostingInstitutionDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :competitions,
+    :users,
     :id,
     :institution,
-    :address,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :competitions,
+    :users,
     :id,
     :institution,
     :address,
     :description,
-    :contact_person,
-    :contact_phone,
-    :contact_email,
     :created_at,
     :updated_at,
+    :approved,
   ]
 
   # FORM_ATTRIBUTES
@@ -49,12 +50,11 @@ class HostingInstitutionDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :competitions,
+    :users,
     :institution,
     :address,
     :description,
-    :contact_person,
-    :contact_phone,
-    :contact_email,
+    :approved,
   ]
 
   # Overwrite this method to customize how hosting institutions are displayed

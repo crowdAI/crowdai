@@ -15,12 +15,10 @@ class SubmissionDashboard < Administrate::BaseDashboard
     id: Field::Number,
     evaluated: Field::Boolean,
     score: Field::Number.with_options(decimals: 2),
-    ranking: Field::Number.with_options(decimals: 2),
     submission_type_cd: Field::String,
-    withdrawn: Field::Boolean,
-    withdrawn_date: Field::DateTime,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    description: Field::Text,
   }
 
   # COLLECTION_ATTRIBUTES
@@ -45,12 +43,10 @@ class SubmissionDashboard < Administrate::BaseDashboard
     :id,
     :evaluated,
     :score,
-    :ranking,
     :submission_type_cd,
-    :withdrawn,
-    :withdrawn_date,
     :created_at,
     :updated_at,
+    :description,
   ]
 
   # FORM_ATTRIBUTES
@@ -63,10 +59,8 @@ class SubmissionDashboard < Administrate::BaseDashboard
     :submission_files,
     :evaluated,
     :score,
-    :ranking,
     :submission_type_cd,
-    :withdrawn,
-    :withdrawn_date,
+    :description,
   ]
 
   # Overwrite this method to customize how submissions are displayed

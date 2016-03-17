@@ -40,6 +40,7 @@ gem 'font-awesome-rails'
 
 # search / pagination
 gem 'ransack'
+#gem 'will_paginate'
 gem 'kaminari'
 
 # API

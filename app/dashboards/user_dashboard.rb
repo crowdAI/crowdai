@@ -13,6 +13,9 @@ class UserDashboard < Administrate::BaseDashboard
     submissions: Field::HasMany,
     team_users: Field::HasMany,
     teams: Field::HasMany,
+    posts: Field::HasMany,
+    hosting_institution: Field::BelongsTo,
+    image: Field::HasOne,
     id: Field::Number,
     email: Field::String,
     encrypted_password: Field::String,
@@ -31,7 +34,6 @@ class UserDashboard < Administrate::BaseDashboard
     unlock_token: Field::String,
     locked_at: Field::DateTime,
     admin: Field::Boolean,
-    phone_number: Field::String,
     verified: Field::Boolean,
     verification_date: Field::DateTime,
     username: Field::String,
@@ -41,6 +43,16 @@ class UserDashboard < Administrate::BaseDashboard
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     unconfirmed_email: Field::String,
+    hosting_institution_primary: Field::Boolean,
+    first_name: Field::String,
+    last_name: Field::String,
+    name: Field::String,
+    email_public: Field::Boolean,
+    bio: Field::Text,
+    website: Field::String,
+    github: Field::String,
+    linkedin: Field::String,
+    twitter: Field::String,
   }
 
   # COLLECTION_ATTRIBUTES
@@ -50,8 +62,10 @@ class UserDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :username,
-    :admin,
-    :confirmed_at
+    :competitions,
+    :submissions,
+    :hosting_institution,
+    :confirmed_at,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -62,6 +76,9 @@ class UserDashboard < Administrate::BaseDashboard
     :submissions,
     :team_users,
     :teams,
+    :posts,
+    :hosting_institution,
+    :image,
     :id,
     :email,
     :encrypted_password,
@@ -80,7 +97,6 @@ class UserDashboard < Administrate::BaseDashboard
     :unlock_token,
     :locked_at,
     :admin,
-    :phone_number,
     :verified,
     :verification_date,
     :username,
@@ -90,6 +106,16 @@ class UserDashboard < Administrate::BaseDashboard
     :created_at,
     :updated_at,
     :unconfirmed_email,
+    :hosting_institution_primary,
+    :first_name,
+    :last_name,
+    :name,
+    :email_public,
+    :bio,
+    :website,
+    :github,
+    :linkedin,
+    :twitter,
   ]
 
   # FORM_ATTRIBUTES
@@ -101,6 +127,9 @@ class UserDashboard < Administrate::BaseDashboard
     :submissions,
     :team_users,
     :teams,
+    :posts,
+    :hosting_institution,
+    :image,
     :email,
     :encrypted_password,
     :reset_password_token,
@@ -118,7 +147,6 @@ class UserDashboard < Administrate::BaseDashboard
     :unlock_token,
     :locked_at,
     :admin,
-    :phone_number,
     :verified,
     :verification_date,
     :username,
@@ -126,6 +154,16 @@ class UserDashboard < Administrate::BaseDashboard
     :city,
     :timezone,
     :unconfirmed_email,
+    :hosting_institution_primary,
+    :first_name,
+    :last_name,
+    :name,
+    :email_public,
+    :bio,
+    :website,
+    :github,
+    :linkedin,
+    :twitter,
   ]
 
   # Overwrite this method to customize how users are displayed

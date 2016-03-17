@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160317125602) do
+ActiveRecord::Schema.define(version: 20160317142150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 20160317125602) do
     t.integer  "competition_id"
     t.integer  "user_id"
     t.integer  "team_id"
-    t.boolean  "evaluated"
+    t.boolean  "evaluated",          default: false
     t.float    "score"
     t.string   "submission_type_cd"
     t.datetime "created_at",         null: false
@@ -126,7 +126,28 @@ ActiveRecord::Schema.define(version: 20160317125602) do
   add_index "submissions", ["team_id"], name: "index_submissions_on_team_id", using: :btree
   add_index "submissions", ["user_id"], name: "index_submissions_on_user_id", using: :btree
 
-
+  create_view "leaderboards", <<-'END_VIEW_LEADERBOARDS', :force => true
+SELECT s.id,
+    s.competition_id,
+    s.user_id,
+    u.username,
+    NULL::unknown AS team_id,
+    s.score,
+    cnt.entries,
+    s.created_at,
+    s.updated_at
+   FROM submissions s,
+    users u,
+    ( SELECT submissions.competition_id,
+            submissions.user_id,
+            submissions.team_id,
+            count(*) AS entries
+           FROM submissions
+          GROUP BY submissions.competition_id, submissions.user_id, submissions.team_id) cnt
+  WHERE ((u.id = s.user_id) AND (s.evaluated = true) AND (s.user_id = cnt.user_id) AND (s.competition_id = cnt.competition_id) AND (s.score = ( SELECT max(m.score) AS max
+           FROM submissions m
+          WHERE ((m.competition_id = s.competition_id) AND (m.user_id = s.user_id) AND (m.evaluated = true)))))
+  END_VIEW_LEADERBOARDS
 
   create_table "posts", force: :cascade do |t|
     t.integer  "topic_id"
@@ -249,30 +270,6 @@ ActiveRecord::Schema.define(version: 20160317125602) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
-
-
-  create_view "leaderboards", <<-'END_VIEW_LEADERBOARDS', :force => true
-SELECT s.id,
-    s.competition_id,
-    s.user_id,
-    u.username,
-    NULL::unknown AS team_id,
-    s.score,
-    cnt.entries,
-    s.created_at,
-    s.updated_at
-   FROM submissions s,
-    users u,
-    ( SELECT submissions.competition_id,
-            submissions.user_id,
-            submissions.team_id,
-            count(*) AS entries
-           FROM submissions
-          GROUP BY submissions.competition_id, submissions.user_id, submissions.team_id) cnt
-  WHERE ((u.id = s.user_id) AND (s.evaluated = true) AND (s.user_id = cnt.user_id) AND (s.competition_id = cnt.competition_id) AND (s.score = ( SELECT max(m.score) AS max
-           FROM submissions m
-          WHERE ((m.competition_id = s.competition_id) AND (m.user_id = s.user_id) AND (m.evaluated = true)))))
-  END_VIEW_LEADERBOARDS
 
   add_foreign_key "competitions", "hosting_institutions"
   add_foreign_key "posts", "topics"

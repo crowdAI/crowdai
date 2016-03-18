@@ -6,7 +6,6 @@
 @import "bootsy";
 
 /* config variables and mixins */
-@import "variables";
 @import "mixins";
 
 /* components */
@@ -15,6 +14,7 @@
 
 /* modules */
 @import "modules/authorisation";
+@import "modules/landing_page";
 
 
 

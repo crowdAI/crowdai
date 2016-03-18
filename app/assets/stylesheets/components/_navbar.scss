@@ -9,7 +9,7 @@
 }
 
 ul.nav a:hover {
-  color: black !important; 
+  color: black !important;
 }
 
 .navbar-nav > li > a {
@@ -25,4 +25,12 @@ ul.nav a:hover {
       left: 7px;
     }
   }
+}
+
+.navbar-profile-img 
+{
+    position: relative;
+    top: -5px;
+    float: left;
+    left: -5px;
 }

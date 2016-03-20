@@ -5,30 +5,20 @@
   <h5>unique perspectives on ideas large and small.</h5>
 </div>
 
-
 <div class="container competition_list">
   <% if current_user.hosting_institution_id.present? %>
-    <br/>
-    <div class="row">
-      <div class="col-md-2 col-md-offset-8">
-        <%= link_to '+ New Competition', new_competition_path, class: 'btn btn-primary' %>
-      </div>
+  <br/>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-8">
+      <%= link_to '+ New Competition', new_competition_path, class: 'btn btn-primary' %>
     </div>
+  </div>
   <% end %>
 
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-      <div class="pull-right">
-        <br/>
-
-      </div>
-      <br/>
-
-      <ul class="list-group">
-        <% @competitions.each do |competition| %>
-          <%= render competition %>
-        <% end %>
-      </ul>
-      <div class="col-md-2"></div>
-    </div>
+  <div class="competitions-container">
+    <ul class="competitions-list">
+      <% @competitions.each do |competition| %>
+        <%= render competition %>
+      <% end %>
+    </ul>
   </div>

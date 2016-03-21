@@ -4,6 +4,11 @@
   padding-left: 50px;
 }
 
-.sidebar-menu > ul > a:hover{
+
+ul.nav.nav-stacked.sidebar-menu {
+  padding-left: 60px;
+}
+
+ul.nav.nav-stacked.sidebar-menu > a:hover {
   color: red !important;
 }

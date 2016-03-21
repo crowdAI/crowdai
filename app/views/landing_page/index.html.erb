@@ -1,5 +1,18 @@
-<%= render partial: 'header' %>
+<div class="intro">
+  <div class="container"></div>
+  <h1>MOVE DATA FORWARD</h1>
+  <h5>CrowdAI is a community of samurai scientists offering</h5>
+  <h5>unique perspectives on ideas large and small.</h5>
+</div>
 
+<div class="container competition_list">
+  <div class="competitions-container">
+    <ul class="competitions-list">
+      <% @competitions.each do |competition| %>
+        <%= render competition %>
+      <% end %>
+    </ul>
+  </div>
 
 
 

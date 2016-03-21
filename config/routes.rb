@@ -42,6 +42,11 @@ Rails.application.routes.draw do
 
 
   # resources :teams
+
+  # different home for public / auth users
+  authenticated :user do
+    root to: 'competitions#index', as:'/'
+  end
   root to: 'landing_page#index', as: '/'
 
 end

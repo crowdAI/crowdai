@@ -1,9 +1,8 @@
 <%= render partial: 'sidebar' %>
 <%= render partial: 'header', competition: @competition %>
 
-<div data-spy="scroll" data-target=".navbar" data-offset="50">
-  <div class="panel panel-default">
-    <div class="panel-body">
+  <div data-spy="scroll" data-target=".navbar" data-offset="50">
+    <div>
       <%= render 'competitions/show/overview', competition: @competition %>
       <%= render 'competitions/show/evaluation', competition: @competition %>
       <%= render 'competitions/show/rules', competition: @competition %>
@@ -11,4 +10,3 @@
       <%= render 'competitions/show/resources', competition: @competition %>
     </div>
   </div>
-</div>

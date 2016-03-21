@@ -1,0 +1,14 @@
+.sidebar-container {
+  color: inherit;
+  background-color: #F4F4F4;
+  padding-left: 50px;
+}
+
+
+ul.nav.nav-stacked.sidebar-menu {
+  padding-left: 60px;
+}
+
+ul.nav.nav-stacked.sidebar-menu > a:hover {
+  color: red !important;
+}

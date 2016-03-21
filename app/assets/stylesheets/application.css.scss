@@ -6,15 +6,21 @@
 @import "bootsy";
 
 /* config variables and mixins */
-@import "variables";
-@import "mixins";
+//@import "mixins";
 
 /* components */
+@import "components/containers";
 @import "components/navbar";
 @import "components/buttons";
+@import "components/sidebar";
+@import "components/footer";
+@import "components/header";
+@import "components/page_content";
 
 /* modules */
 @import "modules/authorisation";
+//@import "modules/landing_page";
+@import "modules/competitions";
 
 
 

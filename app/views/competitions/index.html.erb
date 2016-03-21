@@ -1,12 +1,24 @@
+<div class="intro">
+  <div class="container"></div>
+  <h1>MOVE DATA FORWARD</h1>
+  <h5>CrowdAI is a community of samurai scientists offering</h5>
+  <h5>unique perspectives on ideas large and small.</h5>
+</div>
 
-<% if current_user.hosting_institution_id.present? %>
-  <%= link_to '+ New Competition', new_competition_path, class: 'btn btn-primary' %>
-<% end %>
-<br/>
-<br/>
-
-<ul class="list-group">
-  <% @competitions.each do |competition| %>
-    <%= render competition %>
+<div class="container competition_list">
+  <% if current_user.hosting_institution_id.present? %>
+  <br/>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-8">
+      <%= link_to '+ New Competition', new_competition_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
   <% end %>
-</ul>
+
+  <div class="competitions-container">
+    <ul class="competitions-list">
+      <% @competitions.each do |competition| %>
+        <%= render competition %>
+      <% end %>
+    </ul>
+  </div>

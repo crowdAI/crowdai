@@ -1,0 +1,30 @@
+.navbar-footer {
+  margin-bottom: 0;
+  min-height: 250px;
+  border-radius: 0px;
+  background-color: black;
+  color: white;
+  border-bottom: 1px solid rgba(230, 230, 230, 0.7);
+  padding: 0px 20px 0px 0px;
+  display: block;
+}
+
+.links-container {
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: white;
+  padding-top: 20px;
+  //margin-left: 70px;
+}
+
+
+
+.links-container > ul > li {
+  display: inline;
+  padding-left: 20px;
+}
+
+.links-container > ul > li > a {
+  text-decoration: none;
+  color: white;
+}

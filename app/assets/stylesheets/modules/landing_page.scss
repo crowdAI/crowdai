@@ -1,0 +1,31 @@
+.intro {
+      color: inherit;
+      background-color: #CCCCCC;
+      padding-top: 48px;
+      padding-bottom: 48px;
+      padding-left: 30px;
+      padding-right: 30px;
+      width: 100%;
+}
+
+.intro .container {
+  height: 300px;
+  width: 300px;
+  margin: 150px auto;
+  background: #eee url('move_data_forward') no-repeat center;
+}
+
+.intro h1 {
+    color: white;
+    text-align: center;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	  font-size: 32pt;
+    font-weight: bold;
+}
+
+.intro h5 {
+    color: white;
+    text-align: center;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 24pt;
+}

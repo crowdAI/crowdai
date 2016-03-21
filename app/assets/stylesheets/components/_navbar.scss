@@ -1,3 +1,4 @@
+
 .navbar {
   margin-bottom: 0;
   min-height: 60px;
@@ -8,8 +9,13 @@
   display: block;
 }
 
-ul.nav a:hover {
-  color: black !important; 
+
+.navbar-nav > li > a:hover {
+  color: black !important;
+  border-bottom: 3px solid;
+  border-bottom-color: #FF4E48;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 .navbar-nav > li > a {
@@ -18,11 +24,15 @@ ul.nav a:hover {
     padding-top: 9px;
     padding-bottom: 9px;
     font-weight: 600;
-
-    .badge {
-      position: absolute;
-      top: 5px;
-      left: 7px;
-    }
   }
+
+}
+
+
+.navbar-profile-img
+{
+    position: relative;
+    top: -5px;
+    float: left;
+    left: -5px;
 }

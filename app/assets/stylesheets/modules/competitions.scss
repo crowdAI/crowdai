@@ -2,14 +2,15 @@
   color: inherit;
   background-color: #CCCCCC;
   padding: 48px 30px;
-  width: 100%;
+  //width: 100%;
+  height: 30vw;
 }
 
 
 .intro .container {
-  height: 300px;
-  width: 700px;
-  margin: 150px auto;
+  height:  15vw;
+  //width: 700px;
+  //margin: 150px auto;
   background: #eee url('move_data_forward') no-repeat center;
   background-size: 100% 100%;
 }

@@ -1,25 +1,25 @@
 <% content_for(:header) do %>
 
-<div class="row">
-  <div class="col-md-2 col-md-offset-1">
-    <%#= link_to @competition.hosting_institution.institution, hosting_institution_path(@competition.hosting_institution) do %>
-    <img src="<%= image_medium_url(@competition) %>" class="img-thumbnail"/>
-    <%# end %>
-  </div>
-  <div class="col-md-8">
-    <h2><%= @competition.competition %></h2>
-
-    <div class="progress text-center">
-      <div class="progress-bar progress-bar-success" role="progressbar" style="width: <%= @competition.pct_passed %>%;">
-        <span><%= @competition.remaining_text %></span>
-      </div>
+<div class='header'>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-1">
+      <%#= link_to @competition.hosting_institution.institution, hosting_institution_path(@competition.hosting_institution) do %>
+      <img src="<%= image_medium_url(@competition) %>" class="img-thumbnail"/>
+      <%# end %>
     </div>
+    <div class="col-md-8">
+      <h2><%= @competition.competition %></h2>
 
-    <div class="pull-left"><%= @competition.start_date %></div>
-    <div class="pull-right"><%= @competition.end_date %></div>
+      <div class="progress text-center">
+        <div class="progress-bar progress-bar-success" role="progressbar" style="width: <%= @competition.pct_passed %>%;">
+          <span><%= @competition.remaining_text %></span>
+        </div>
+      </div>
+
+      <div class="pull-left"><%= @competition.start_date %></div>
+      <div class="pull-right"><%= @competition.end_date %></div>
+    </div>
+    <div class="col-md-1"></div>
   </div>
-  <div class="col-md-1"></div>
 </div>
-
-<% end %>
-<br/><br/>
+  <% end %>

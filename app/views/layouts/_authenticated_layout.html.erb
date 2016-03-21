@@ -7,20 +7,19 @@
     <%= yield(:header) %>
   <% end %>
 
-  <div class="row">
-    <% if content_for?(:sidebar) %>
-      <div class="col-md-2">
+  <% if content_for?(:sidebar) %>
+    <div class="row">
+      <div class="col-md-3 sidebar-container">
         <%= yield(:sidebar) %>
       </div>
-      <div class="col-md-10">
+      <div class="col-md-7 page-content-container">
         <%= yield %>
       </div>
-    <% else %>
-      <div class="col-md-12">
-        <%= yield %>
-      </div>
-    <% end %>
-  </div>
+      <div class="col-md-2"></div>
+    </div>
+  <% else %>
+    <%= yield %>
+  <% end %>
 
   <%= render 'layouts/footer' %>
 </div>

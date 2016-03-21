@@ -1,5 +1,4 @@
 <% content_for(:sidebar) do %>
-<div class='sidebar-container'>
     <ul class="nav nav-stacked">
       <li><%= link_to 'Overview', competition_path(@competition, anchor: 'overview') %></li>
       <li><%= link_to 'Rules', competition_path(@competition, anchor: 'rules') %></li>
@@ -10,11 +9,10 @@
       <li><%= link_to 'Discussion', competition_topics_path(@competition) %><li>
       <li><%= link_to 'Dataset', competition_dataset_files_path(@competition) %></li>
       <li><%= link_to 'Submit Entry', competition_submissions_path(@competition) %></li>
+      <hr/>
+      <% if current_user.hosting_institution_id == @competition.hosting_institution_id %>
+        <%= link_to 'Edit', edit_competition_path(@competition), class: 'btn btn-success' %>
+        <%= link_to 'Delete', @competition, method: :delete, data: { confirm: 'Permanently delete this competition from CrowdAI?' }, class: 'btn btn-danger' %>
+      <% end %>
     </ul>
-
-    <% if current_user.hosting_institution_id == @competition.hosting_institution_id %>
-      <%= link_to 'Edit', edit_competition_path(@competition), class: 'btn btn-success' %>
-      <%= link_to 'Delete', @competition, method: :delete, data: { confirm: 'Permanently delete this competition from CrowdAI?' }, class: 'btn btn-danger' %>
-    <% end %>
-</div>
 <% end %>

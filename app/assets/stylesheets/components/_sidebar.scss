@@ -2,5 +2,8 @@
   color: inherit;
   background-color: #F4F4F4;
   padding-left: 50px;
-  height: 60vw;
+}
+
+.sidebar-menu > ul > a:hover{
+  color: red !important;
 }

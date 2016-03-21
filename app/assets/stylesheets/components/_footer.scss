@@ -9,8 +9,22 @@
   display: block;
 }
 
-.header-line {
-  //margin-top: 5px;
-  //border-style: solid;
-  border-width: 0px 0px 0px 0px solid white;
+.links-container {
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: white;
+  padding-top: 20px;
+  //margin-left: 70px;
+}
+
+
+
+.links-container > ul > li {
+  display: inline;
+  padding-left: 20px;
+}
+
+.links-container > ul > li > a {
+  text-decoration: none;
+  color: white;
 }

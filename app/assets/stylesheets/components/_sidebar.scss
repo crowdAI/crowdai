@@ -6,9 +6,18 @@
 
 
 ul.nav.nav-stacked.sidebar-menu {
+  padding-top: 40px;
+  padding-bottom: 40px;
   padding-left: 60px;
 }
 
-ul.nav.nav-stacked.sidebar-menu > a:hover {
+ul.nav.nav-stacked.sidebar-menu > li > a {
+  color: #666666 !important;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+
+ul.nav.nav-stacked.sidebar-menu > li > a:hover {
   color: red !important;
 }

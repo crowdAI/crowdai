@@ -11,7 +11,7 @@
       <h2><%= @competition.competition %></h2>
 
       <div class="progress text-center">
-        <div class="progress-bar progress-bar-success" role="progressbar" style="width: <%= @competition.pct_passed %>%;">
+        <div class="progress-bar competition-progress" role="progressbar" style="width: <%= @competition.pct_passed %>%;">
           <span><%= @competition.remaining_text %></span>
         </div>
       </div>

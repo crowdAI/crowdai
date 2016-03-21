@@ -1,18 +1,20 @@
 <% content_for(:sidebar) do %>
     <ul class="nav nav-stacked sidebar-menu">
-      <li><%= link_to 'Overview', competition_path(@competition, anchor: 'overview') %></li>
-      <li><%= link_to 'Rules', competition_path(@competition, anchor: 'rules') %></li>
-      <li><%= link_to 'Prizes', competition_path(@competition, anchor: 'prizes') %></li>
-      <li><%= link_to 'Resources', competition_path(@competition, anchor: 'resources') %></li>
+      <li><%= link_to 'DASHBOARD', competition_path(@competition, anchor: 'overview') %></li>
+      <li><%= awesome_link 'fa-arrow-circle-o-up', 'Overview', competition_path(@competition, anchor: 'overview') %></li>
+      <li><%= awesome_link 'fa-arrow-circle-o-up', 'Rules', competition_path(@competition, anchor: 'rules') %></li>
+      <li><%= awesome_link 'fa-arrow-circle-o-up', 'Prizes', competition_path(@competition, anchor: 'prizes') %></li>
+      <li><%= awesome_link 'fa-arrow-circle-o-up', 'Resources', competition_path(@competition, anchor: 'resources') %></li>
       <hr/>
-      <li><%= link_to 'Leaderboard', competition_leaderboards_path(@competition) %></li>
-      <li><%= link_to 'Discussion', competition_topics_path(@competition) %><li>
-      <li><%= link_to 'Dataset', competition_dataset_files_path(@competition) %></li>
-      <li><%= link_to 'Submit Entry', competition_submissions_path(@competition) %></li>
+      <li><%= awesome_link 'fa-arrow-circle-o-up', 'Leaderboard', competition_leaderboards_path(@competition) %></li>
+      <li><%= awesome_link 'fa-arrow-circle-o-up', 'Discussion', competition_topics_path(@competition) %><li>
+      <li><%= awesome_link 'fa-arrow-circle-o-up', 'Dataset', competition_dataset_files_path(@competition) %></li>
+      <li><%= awesome_link 'fa-arrow-circle-o-up', 'Submit Entry', competition_submissions_path(@competition) %></li>
       <hr/>
       <% if current_user.hosting_institution_id == @competition.hosting_institution_id %>
-        <%= link_to 'Edit', edit_competition_path(@competition), class: 'btn btn-success' %>
-        <%= link_to 'Delete', @competition, method: :delete, data: { confirm: 'Permanently delete this competition from CrowdAI?' }, class: 'btn btn-danger' %>
+        <li><%= awesome_link 'fa-arrow-circle-o-up', 'Edit', edit_competition_path(@competition) %></li>
+        <li><%= awesome_link 'fa-arrow-circle-o-up', 'Delete', @competition, method: :delete,
+                              data: { confirm: 'Permanently delete this competition from crowdAI?' } %></li>
       <% end %>
     </ul>
 <% end %>

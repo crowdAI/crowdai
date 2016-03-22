@@ -1,28 +1,44 @@
 <br/>
 <div class="row">
-  <div class="col-md-2">
+  <div class="col-md-12 text-center">
     <img src="<%= avatar_medium_url(@user) %>" class="img-thumbnail" />
       <% if current_user == @user || current_user.admin? %><br/>
         <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-success pull-right" %>
       <% end %>
   </div>
-  <div class="col-md-10">
-    Last seen <%= time_ago_in_words(@user.last_sign_in_at) %> ago.<br/>
-    <%= @user.first_name %><br/>
-    <%= @user.last_name %><br/>
-    <%= @user.email %><br/>
+</div>
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1><%= "#{@user.first_name} #{@user.last_name}" %></h1>
+    <h2>Last login <%= time_ago_in_words(@user.last_sign_in_at) %> ago.</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 text-center">
     <%= simple_format(@user.bio) %><br/>
-    <% if @user.website.present? %>
-      Website: <%= @user.website %><br/>
-    <% end %>
-    <% if @user.github.present? %>
-      Github: <%= @user.github %><br/>
-    <% end %>
-    <% if @user.linkedin.present? %>
-      LinkedIn: <%= @user.linkedin %><br/>
-    <% end %>
-    <% if @user.twitter.present? %>
-      Twitter: <%= @user.twitter %>
-    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 text-center">
+    <ul>
+      <% if @user.website.present? %>
+        <li>Website: <%= @user.website %></li>
+      <% end %>
+      <% if @user.github.present? %>
+        <li>Github: <%= @user.github %></li>
+      <% end %>
+      <% if @user.linkedin.present? %>
+        <li>LinkedIn: <%= @user.linkedin %></li>
+      <% end %>
+      <% if @user.twitter.present? %>
+        <li>Twitter: <%= @user.twitter %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+    <%= @user.email %><br/>
+
   </div>
 </div>

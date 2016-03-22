@@ -13,11 +13,3 @@
       <% end %>
     </ul>
   </div>
-
-
-
-<% if user_signed_in? %>
-  <%= link_to 'Get Started', competitions_path, class: 'btn btn-default' %>
-<% else %>
-  <%= link_to "Get Started", new_user_session_path, :class => 'btn btn-default' %>
-<% end %>

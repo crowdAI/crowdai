@@ -1,14 +1,13 @@
 <nav class="navbar navbar-default navbar-inverse navbar-static-top">
+  <div class="brand-container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">
-        <i class="fa fa-bars"></i>
-      </a>
-
+      <a class="navbar-brand" href="/"></a>
     </div>
-    <div>
-      <ul class="nav navbar-nav pull-right">
-        <li><%= link_to "Join", new_user_registration_path, :class => "btn btn-primary" %></li>
-        <li><%= link_to "Sign In", new_user_session_path, :class => "btn btn-default" %></li>
-      </ul>
-    </div>
+  </div>
+  <div>
+    <ul class="nav navbar-nav pull-right">
+      <li><%= link_to "Join", new_user_registration_path %></li>
+      <li><%= link_to "Sign In", new_user_session_path %></li>
+    </ul>
+  </div>
 </nav>

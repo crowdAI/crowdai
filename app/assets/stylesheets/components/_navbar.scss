@@ -9,7 +9,6 @@
   display: block;
 }
 
-
 .navbar-nav > li > a:hover {
   color: black !important;
   border-bottom: 3px solid;
@@ -28,11 +27,23 @@
 
 }
 
-
 .navbar-profile-img
 {
     position: relative;
     top: -5px;
     float: left;
     left: -5px;
+}
+
+.brand-container {
+  padding-left: 30px;
+}
+
+.navbar-brand
+{
+  display: block;
+  width: 146px;
+  padding: 0;
+  padding-left: 15px;
+  background: url('crowdai_logo.svg') no-repeat left center;
 }

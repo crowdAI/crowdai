@@ -73,6 +73,7 @@ group :development do
   gem 'annotate'
   gem 'sdoc', '~> 0.4.0'
   gem 'web-console', '~> 2.0'
+  gem 'scss_lint', require: false
 end
 
 

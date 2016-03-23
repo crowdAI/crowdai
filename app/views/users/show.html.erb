@@ -2,33 +2,19 @@
   <%= render 'users/show/header' %>
   <div class="row">
     <div class="col-md-12">
-      <div class="panel">
-        <div class="panel-body">
 
-          <div class="tabs-left">
-            <ul class="nav nav-tabs">
-              <li class="active">
-                <a href="#competitions" data-toggle="tab">Competitions</a>
-              </li>
-              <li>
-                <a href="#notebooks" data-toggle="tab">Notebooks</a>
-              </li>
-              <li>
-                <a href="#activity" data-toggle="tab">Activity</a>
-              </li>
-            </ul>
-            <div class="tab-content">
-              <%= render 'users/show/competitions' %>
-              <%= render 'users/show/notebooks' %>
-              <%= render 'users/show/activity' %>
-            </div>
-            <!-- /tab-content -->
-          </div>
-          <!-- /tabbable -->
+      <div class="nav-center">
+        <ul class="nav nav-tabs">
+          <li role="presentation" class="active"><a href="#competitions" data-toggle="tab">Competitions</a></li>
+          <li role="presentation"><a href="#notebooks" data-toggle="tab">Notebooks</a></li>
+          <li role="presentation"><a href="#activity" data-toggle="tab">Activity</a></li>
+        </ul>
+        <div class="tab-content">
+          <%= render 'users/show/competitions' %>
+          <%= render 'users/show/notebooks' %>
+          <%= render 'users/show/activity' %>
         </div>
-        <!-- /col -->
       </div>
-      <!-- /row -->
     </div>
   </div>
 </div>

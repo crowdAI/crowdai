@@ -23,16 +23,16 @@
   <div class="col-md-12 text-center">
     <ul>
       <% if @user.website.present? %>
-        <li>Website: <%= @user.website %></li>
+        <%= glyphicon_link 'user', 'My website', @user.website, class: 'btn btn-info' %>
       <% end %>
       <% if @user.github.present? %>
-        <li>Github: <%= @user.github %></li>
+        <%= awesome_link 'fa-github', 'Github', @user.github, class: 'btn btn-info' %>
       <% end %>
       <% if @user.linkedin.present? %>
-        <li>LinkedIn: <%= @user.linkedin %></li>
+        <%= awesome_link 'fa-linkedin', 'LinkedIn', @user.linkedin, class: 'btn btn-info' %>
       <% end %>
       <% if @user.twitter.present? %>
-        <li>Twitter: <%= @user.twitter %></li>
+        <%= awesome_link 'fa-twitter', 'Twitter', @user.twitter, class: 'btn btn-info' %>
       <% end %>
     </ul>
   </div>

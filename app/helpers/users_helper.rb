@@ -4,7 +4,7 @@ module UsersHelper
     if user.avatar
       user.avatar.url(:medium)
     else
-      image_path 'PV_avatar_medium.png'
+      'http://www.gravatar.com/avatar/?d=mm&s=200'
     end
   end
 
@@ -17,7 +17,7 @@ module UsersHelper
         user.avatar.url(size)
       end
     else
-      image_path 'PV_avatar_medium.png'
+      'http://www.gravatar.com/avatar/?d=mm&s=200'
     end
   end
   # usage:  <%= image_tag avatar_url(user,'medium'), class: "img-responsive" %>

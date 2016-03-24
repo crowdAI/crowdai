@@ -1,47 +1,47 @@
-<br/><br/>
-<div class="row">
-  <div class="col-md-12 text-center">
+<div class="container-medium-grey">
+  <br/><br/>
+  <div class="row">
+    <div class="col-md-12 text-center">
       <%= image_tag avatar_url(current_user,'medium'), size: '100x100', class: "img-circle" %>
       <% if current_user == @user || current_user.admin? %><br/>
-        <div id="button-container">
-          <%= glyphicon_link 'pencil', nil, edit_user_path(@user), class: 'btn btn-primary btn-circle' %>
-        </div>
+      <div id="button-container">
+        <%= glyphicon_link 'pencil', nil, edit_user_path(@user), class: 'btn btn-primary btn-circle' %>
+      </div>
       <% end %>
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-md-12 text-center">
-    <h1><%= "#{@user.first_name} #{@user.last_name}" %></h1>
-    <h2>Last login <%= time_ago_in_words(@user.last_sign_in_at) %> ago.</h2>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h1><%= "#{@user.first_name} #{@user.last_name}" %></h1>
+      <h2>Last login
+        <%= time_ago_in_words(@user.last_sign_in_at) %>
+        ago.</h2>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-8 col-md-offset-2 text-center">
-    <%= simple_format(@user.bio) %><br/>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2   text-center">
+      <%= simple_format(@user.bio) %><br/>
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-md-12 text-center">
-    <ul>
-      <% if @user.website.present? %>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <ul>
+        <% if @user.website.present? %>
         <%= glyphicon_link 'user', 'My website', @user.website, class: 'btn btn-primary outline' %>
-      <% end %>
-      <% if @user.github.present? %>
+        <% end %>
+        <% if @user.github.present? %>
         <%= awesome_link 'fa-github', 'Github', @user.github, class: 'btn btn-info btn-primary outline' %>
-      <% end %>
-      <% if @user.linkedin.present? %>
+        <% end %>
+        <% if @user.linkedin.present? %>
         <%= awesome_link 'fa-linkedin', 'LinkedIn', @user.linkedin, class: 'btn btn-info btn-primary outline' %>
-      <% end %>
-      <% if @user.twitter.present? %>
+        <% end %>
+        <% if @user.twitter.present? %>
         <%= awesome_link 'fa-twitter', 'Twitter', @user.twitter, class: 'btn btn-info btn-primary outline' %>
-      <% end %>
-    </ul>
+        <% end %>
+      </ul>
+    </div>
   </div>
-</div>
 
-    <%= @user.email %><br/>
-
-  </div>
 </div>

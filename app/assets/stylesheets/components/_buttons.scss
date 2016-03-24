@@ -20,6 +20,7 @@
 
 
 /* outline buttons */
+
 .btn.outline {
     background: none;
     //padding: 12px 22px;
@@ -65,4 +66,10 @@
   font-size: 24px;
   line-height: 1.33;
   border-radius: 35px;
+}
+
+
+a {
+  color: $crowdai-text-dark;
+  text-decoration: none;
 }

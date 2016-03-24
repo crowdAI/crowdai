@@ -1,15 +1,26 @@
-<div class="container">
   <%= render 'users/show/header' %>
   <div class="row">
     <div class="col-md-12">
 
       <div class="nav-center">
-        <ul class="nav nav-tabs">
-          <li role="presentation" class="active"><a href="#competitions" data-toggle="tab">Competitions</a></li>
-          <li role="presentation"><a href="#notebooks" data-toggle="tab">Notebooks</a></li>
-          <li role="presentation"><a href="#activity" data-toggle="tab">Activity</a></li>
+        <ul id="profile-nav-tabs" class="nav nav-tabs">
+          <li role="presentation" class="active">
+            <a href="#competitions" data-toggle="tab">
+              <i class="glyphicon glyphicon-star"></i> Competitions
+            </a>
+          </li>
+          <li role="presentation">
+            <a href="#notebooks" data-toggle="tab">
+              <i class="glyphicon glyphicon-file"></i> Notebooks
+            </a>
+          </li>
+          <li role="presentation">
+            <a href="#activity" data-toggle="tab">
+              <i class="glyphicon glyphicon-file"></i> Activity
+            </a>
+          </li>
         </ul>
-        <div class="tab-content">
+        <div id="profile-tab-content" class="tab-content">
           <%= render 'users/show/competitions' %>
           <%= render 'users/show/notebooks' %>
           <%= render 'users/show/activity' %>
@@ -17,5 +28,3 @@
       </div>
     </div>
   </div>
-</div>
-<!-- /container -->

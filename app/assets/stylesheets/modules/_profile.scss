@@ -1,18 +1,42 @@
 .nav-center {
   text-align: center;
+  background-color: $crowdai-bg-medium-grey;
+  margin-bottom: 0px;
   ul.nav {
     display: inline-block;
     li {
-      display: inline
+      display: inline;
+      color: $crowdai-text-dark;
       a {
-        float: left
+        float: left;
       }
     }
   }
 }
 
 
+#profile-nav-tabs {
+  li a {
+    background-color: $crowdai-bg-medium-grey;
+    border-color: $crowdai-bg-dark-grey;
+    margin-left: 0px;
+    padding-top: 30px;
+    margin-bottom: 0px;
+    border-radius: 0px 0px 0px 0px;
+    margin-right: 0px;
+    width: 170px;
+    height: 80px;
+  }
+  li.active a {
+    background-color: $crowdai-bg-light-grey;
+    border-bottom: none;
+  }
+}
 
+
+#profile-tab-content {
+  background-color: $crowdai-bg-light-grey;
+}
 
 
 #button-container {

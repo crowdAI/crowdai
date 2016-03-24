@@ -1,39 +1,26 @@
-<div class="container">
-  <%= render 'users/edit/header' %>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="panel">
-        <div class="panel-body">
+<div class="container-medium-grey">
 
-          <div class="tabs-left">
-            <ul class="nav nav-tabs">
-              <li class="active">
-                <a href="#account" data-toggle="tab">Account</a>
-              </li>
-              <li>
-                <a href="#competitions" data-toggle="tab">Competitions</a>
-              </li>
-              <li>
-                <a href="#notebooks" data-toggle="tab">Notebooks</a>
-              </li>
-              <li>
-                <a href="#activity" data-toggle="tab">Activity</a>
-              </li>
-            </ul>
-            <div class="tab-content">
-              <%= render 'users/edit/account' %>
-              <%= render 'users/edit/competitions' %>
-              <%= render 'users/edit/notebooks' %>
-              <%= render 'users/edit/activity' %>
-            </div>
-            <!-- /tab-content -->
-          </div>
-          <!-- /tabbable -->
-        </div>
-        <!-- /col -->
-      </div>
-      <!-- /row -->
-    </div>
-  </div>
+<%= render 'users/edit/avatar' %>
+
+<%= simple_form_for(@user) do |f| %>
+<%= f.error_notification %>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <%= f.input :username, disabled: true, label: false %>
+    <%= f.input :first_name, required: true, placeholder: 'First name', label: false %>
+    <%= f.input :last_name, required: true, placeholder: 'Last name', label: false %>
+    <%= f.input :bio, placeholder: 'About me', input_html: { rows: 5 }, label: false %>
+    <% if current_user.admin? %>
+      <%= f.association :hosting_institution, :include_blank => false, :label_method => lambda { |host| "#{host.institution}" } %>
+    <% end %>
+    <%= f.input :email, placeholder: 'Email', required: true, label: false %>
+    <%= f.input :github, placeholder: 'Github', label: false %>
+    <%= f.input :linkedin, placeholder: 'LinkedIn', label: false  %>
+    <%= f.input :twitter, placeholder: 'Twitter', label: false  %>
+    <%= f.input :website, placeholder: 'Website', label: false  %>
+    <%= f.button :submit, "Save", class: "btn btn-primary btn-block" %>
 </div>
-<!-- /container -->
+
+<% end %>
+</div>
+<br/><br/>

@@ -1,3 +1,9 @@
+.btn {
+  border-radius: 2px;
+}
+
+
+/* file upload button */
 .btn-file {
     position: relative;
     overflow: hidden;
@@ -20,7 +26,6 @@
 
 
 /* outline buttons */
-
 .btn.outline {
     background: none;
     //padding: 12px 22px;

@@ -1,0 +1,56 @@
+.mini-calendar
+{
+  font-size: 1em;
+  display: block;
+  position: relative;
+  width: 4em;
+  height: 4em;
+  background-color: #fff;
+  border-radius: 0.3em;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: rotate(0deg) skewY(0deg);
+  -webkit-transform-origin: 50% 10%;
+  transform-origin: 50% 10%;
+}
+
+.mini-calendar span {
+  color: $crowdai-text-dark !important;
+}
+
+
+.mini-calendar *
+{
+  display: block;
+  width: 100%;
+  font-size: 1em;
+  font-weight: bold;
+  font-style: normal;
+  text-align: center;
+}
+
+.mini-calendar strong
+{
+  position: absolute;
+  top: 0;
+  padding: 0.1em 0;
+  color: #fff;
+  background-color: $brand-primary;
+  box-shadow: 0 2px 0 $brand-primary;
+}
+
+.mini-calendar em
+{
+  position: absolute;
+  bottom: 0.3em;
+  color: #fd9f1b;
+}
+
+.mini-calendar span
+{
+  width: 100%;
+  font-size: 1.8em;
+  letter-spacing: -0.05em;
+  padding-top: 0.8em;
+  color: #2f2f2f;
+}

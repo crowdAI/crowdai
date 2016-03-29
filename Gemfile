@@ -54,6 +54,13 @@ gem 'figaro'
 # email
 gem 'mandrill-api'
 
+# background processing
+gem 'sidekiq'
+
+# static pages, sitemap
+gem 'high_voltage', '~> 2.4.0'
+gem 'sitemap_generator'
+
 # images
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'carrierwave'
@@ -73,6 +80,7 @@ group :development do
   gem 'annotate'
   gem 'sdoc', '~> 0.4.0'
   gem 'web-console', '~> 2.0'
+  gem 'scss_lint', require: false
 end
 
 

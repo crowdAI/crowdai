@@ -2,21 +2,27 @@ class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
 
   devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable, :lockable,
-         :authentication_keys => [:login]
+         :recoverable, :rememberable, :trackable, :validatable, :lockable, authentication_keys: [:login]
 
   attr_accessor :login
 
-  validates :username, :presence => true, :uniqueness => { :case_sensitive => false }
-  validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
+  validates :username,
+    presence: true,
+    uniqueness: { case_sensitive: false }
+  validates_format_of :username,
+    with: /^[a-zA-Z0-9_\.]*$/,
+    multiline: true
   validate :validate_username
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
-                  uniqueness: { case_sensitive: false }
+  validates :email,
+    presence: true,
+    format: { with: VALID_EMAIL_REGEX },
+    uniqueness: { case_sensitive: false }
+
 
   has_many :user_competitions
-  has_many :competitions, :through => :user_competitions
+  has_many :competitions, through: :user_competitions
   has_many :submissions
   has_many :team_users
   has_many :teams, through: :team_users
@@ -27,13 +33,11 @@ class User < ActiveRecord::Base
 
 
   def admin?
-    self.admin
+    admin
   end
 
   def validate_username
-    if User.where(email: username).exists?
-      errors.add(:username, :invalid)
-    end
+    errors.add(:username, :invalid) if User.where(email: username).exists?
   end
 
   def self.find_first_by_auth_conditions(warden_conditions)
@@ -50,15 +54,14 @@ class User < ActiveRecord::Base
   end
 
   def avatar
-    self.image.try(:image)
+    image.try(:image)
   end
 
   def avatar_medium_url
-  if self.image.present?
-    self.image.image.url(:medium)
-  else
-    "//#{ENV['HOST']}/assets/PV_avatar_medium.png"
-  end
+    if image.present?
+      image.image.url(:medium)
+    else
+      "//#{ENV['HOST']}/assets/PV_avatar_medium.png"
+    end
 end
-
 end

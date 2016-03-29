@@ -1,5 +1,5 @@
 .mini-calendar {
-  width: 65px; height: 60px;
+  width: 55px; height: 40px;
 	background: #fcfcfc;
 	background: linear-gradient(top, #fcfcfc 0%,#dad8d8 100%);
 	background: -moz-linear-gradient(top, #fcfcfc 0%, #dad8d8 100%);
@@ -15,7 +15,7 @@
 
 .mini-calendar p {
 	font-family: Helvetica, sans-serif;
-	font-size: 25px; text-align: center; color: #9e9e9e;
+	font-size: 20px; text-align: center; color: #9e9e9e;
 }
 
 .mini-calendar p span {
@@ -23,7 +23,7 @@
 	background: linear-gradient(top, $brand-primary 0%, #7a0909 100%);
 	background: -moz-linear-gradient(top, $brand-primary 0%, #7a0909 100%);
 	background: -webkit-linear-gradient(top, $brand-primary 0%, #7a0909 100%);
-  font-size: 15px; font-weight: bold; color: #fff; text-transform: uppercase;
+  font-size: 10px; font-weight: bold; color: #fff; text-transform: uppercase;
   display: block;
   border-top: 3px solid $brand-primary;
 	border-radius: 0 10px 10px;

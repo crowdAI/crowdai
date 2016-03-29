@@ -1,8 +1,12 @@
 .progress {
-  height: 35px;
+  height: 45px;
 }
 
 .competition-progress {
     background-image: none;
     background-color: #FF4E48;
+}
+
+.competition-progress span {
+  vertical-align: -50%;
 }

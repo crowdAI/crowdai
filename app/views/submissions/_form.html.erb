@@ -4,7 +4,6 @@
   <div class="form-inputs">
     <%= f.association :competition, as: :hidden %>
     <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.input :description, placeholder: 'Optionally describe this submission.', label: false %>
     <%= f.hidden_field :submission_type, value: 'user' %>
 
 
@@ -20,6 +19,9 @@
         <%= file.input :submission_file, as: :file, label: false %>
       </div>
     <% end %>
+
+    <%= f.input :description, placeholder: 'Please describe your submission.', label: false, required: true %>
+
 
  </div>
 

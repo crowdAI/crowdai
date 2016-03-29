@@ -57,6 +57,10 @@ gem 'mandrill-api'
 # background processing
 gem 'sidekiq'
 
+# static pages, sitemap
+gem 'high_voltage', '~> 2.4.0'
+gem 'sitemap_generator'
+
 # images
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'carrierwave'

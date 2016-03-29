@@ -10,12 +10,14 @@
     <div class="col-md-8">
       <h2><%= @competition.competition %></h2>
     </div>
+    <div class="col-md-1"></div>
   </div>
-  <br/><br/>
+  <br/>
   <div class="row">
     <div class="col-md-1 col-md-offset-1">
       <div class="mini-calendar">
-        <p>25 <span>May</span></p>
+        <strong>May</strong>
+        <span>20</span>
       </div>
     </div>
     <div class="col-md-9">
@@ -26,15 +28,14 @@
       </div>
     </div>
     <div class="col-md-1">
-      <div class="mini-calendar">
-        <p>25 <span>May</span></p>
+        <div class="mini-calendar">
+        <strong>May</strong>
+        <span>20</span>
       </div>
     </div>
   </div>
 
     <%#= @competition.start_date %>
     <%#= @competition.end_date %>
-
-
 </div>
   <% end %>

@@ -1,33 +1,56 @@
-.mini-calendar {
-  width: 55px; height: 40px;
-	background: #fcfcfc;
-	background: linear-gradient(top, #fcfcfc 0%,#dad8d8 100%);
-	background: -moz-linear-gradient(top, #fcfcfc 0%, #dad8d8 100%);
-	background: -webkit-linear-gradient(top, #fcfcfc 0%,#dad8d8 100%);
-  border: 1px solid #d2d2d2;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-  box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
-  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
-  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
-}
-
-.mini-calendar p {
-	font-family: Helvetica, sans-serif;
-	font-size: 20px; text-align: center; color: #9e9e9e;
-}
-
-.mini-calendar p span {
-	background: #d10000;
-	background: linear-gradient(top, $brand-primary 0%, #7a0909 100%);
-	background: -moz-linear-gradient(top, $brand-primary 0%, #7a0909 100%);
-	background: -webkit-linear-gradient(top, $brand-primary 0%, #7a0909 100%);
-  font-size: 10px; font-weight: bold; color: #fff; text-transform: uppercase;
+.mini-calendar
+{
+  font-size: 1em;
   display: block;
-  border-top: 3px solid $brand-primary;
-	border-radius: 0 10px 10px;
-	-moz-border-radius: 0 0 10px 10px;
-	-webkit-border-radius: 0 0 10px 10px;
-	padding: 6px 0 6px 0;
+  position: relative;
+  width: 4em;
+  height: 4em;
+  background-color: #fff;
+  border-radius: 0.3em;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: rotate(0deg) skewY(0deg);
+  -webkit-transform-origin: 50% 10%;
+  transform-origin: 50% 10%;
+}
+
+.mini-calendar span {
+  color: $crowdai-text-dark !important;
+}
+
+
+.mini-calendar *
+{
+  display: block;
+  width: 100%;
+  font-size: 1em;
+  font-weight: bold;
+  font-style: normal;
+  text-align: center;
+}
+
+.mini-calendar strong
+{
+  position: absolute;
+  top: 0;
+  padding: 0.1em 0;
+  color: #fff;
+  background-color: $brand-primary;
+  box-shadow: 0 2px 0 $brand-primary;
+}
+
+.mini-calendar em
+{
+  position: absolute;
+  bottom: 0.3em;
+  color: #fd9f1b;
+}
+
+.mini-calendar span
+{
+  width: 100%;
+  font-size: 1.8em;
+  letter-spacing: -0.05em;
+  padding-top: 0.8em;
+  color: #2f2f2f;
 }

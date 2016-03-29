@@ -24,6 +24,7 @@ class SubmissionsController < ApplicationController
     @submission = Submission.new(submission_params)
 
     if @submission.save
+      SubmissionGraderJob.perform_later(submission_id: @submission.id)
       redirect_to competition_submissions_path(@competition)
     else
       @errors = @submission.errors

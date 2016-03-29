@@ -1,7 +1,7 @@
-class SubmissionGraderJob < BaseJobJob
+class SubmissionGraderJob < BaseJob
   queue_as :default
 
   def perform(*args)
-    # Do something later
+    @logger.info("grader running for: #{args.to_yaml}")
   end
 end

@@ -82,3 +82,4 @@ end
 
 
 #A user can upload their profile picture
+# A user can reset their password

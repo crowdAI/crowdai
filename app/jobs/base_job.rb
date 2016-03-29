@@ -1,4 +1,4 @@
-class BaseJobJob < ActiveJob::Base
+class BaseJob < ActiveJob::Base
   queue_as :default
 
   around_perform do |job, block|

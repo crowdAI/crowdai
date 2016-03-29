@@ -54,6 +54,9 @@ gem 'figaro'
 # email
 gem 'mandrill-api'
 
+# background processing
+gem 'sidekiq'
+
 # images
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'carrierwave'

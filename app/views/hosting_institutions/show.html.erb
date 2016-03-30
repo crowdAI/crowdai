@@ -1,52 +1,51 @@
-<h1><%= @hosting_institution.institution %></h1>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h1><%= @hosting_institution.institution %></h1>
 
-<span class="pull-right">
-  <%= link_to '+ New Competition', new_competition_path, class: 'btn btn-primary' %>
-  <%= link_to 'Edit Details', edit_hosting_institution_path(@hosting_institution), class: 'btn btn-info' %>
-</span>
+    <span class="pull-right">
+      <%= link_to '+ New Competition', new_competition_path, class: 'btn btn-primary' %>
+      <%= link_to 'Edit Details', edit_hosting_institution_path(@hosting_institution), class: 'btn btn-info' %>
+    </span>
 
-<p>
-  <strong>Address:</strong>
-  <%= @hosting_institution.address %>
-</p>
+    <p>
+      <strong>Address:</strong>
+      <%= @hosting_institution.address %>
+    </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @hosting_institution.description %>
-</p>
+    <p>
+      <strong>Description:</strong>
+      <%= @hosting_institution.description %>
+    </p>
 
+    <ul class="list-group">
+      <% @competitions.each do |competition| %>
+      <%= render competition %>
+      <% end %>
+    </ul>
 
+    <hr/>
+    <h1>Administrative users</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Username</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
 
+      <tbody>
+        <% @hosting_institution.users.each do |user| %>
+        <tr>
+          <td><%= user.hosting_institution_primary %></td>
+          <td><%= user.username %></td>
+          <td><%= user.email %></td>
+          <td><%#= link_to 'Remove', [@hosting_institution, user], method: :nullify, data: { confirm: 'Remove this user from the administration of your institution on CrowdAI?' } %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-
-<ul class="list-group">
-  <% @competitions.each do |competition| %>
-    <%= render competition %>
-  <% end %>
-</ul>
-
-
-
-
-<h1>Your administrative users</h1>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Username</th>
-      <th>Email</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @hosting_institution.users.each do |user| %>
-      <tr>
-        <td><%= user.hosting_institution_primary %></td>
-        <td><%= user.username %></td>
-        <td><%= user.email %></td>
-        <td><%#= link_to 'Remove', [@hosting_institution, user], method: :nullify, data: { confirm: 'Remove this user from the administration of your institution on CrowdAI?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  </div>
+</div>

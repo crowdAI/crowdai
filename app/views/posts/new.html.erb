@@ -2,6 +2,15 @@
 <%= render partial: 'competitions/header', competition: @competition %>
 
 
+<div class="row">
+  <div class="col-md-11">
+    <h3><%= @topic.topic %></h3>
+  </div>
+  <div class="col-md-1">
+    <%= link_to 'Back', competition_topics_path(@topic.competition), class: 'btn btn-primary' %>
+  </div>
+</div>
+
 <ul class="list-group">
   <% @posts.each do |post| %>
     <%= render post if !post.new_record? %>

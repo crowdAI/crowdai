@@ -412,6 +412,7 @@ GEM
       ffi (>= 0.5.0)
     rdoc (4.2.2)
       json (~> 1.4)
+    redcarpet (3.3.4)
     redis (3.2.2)
     ref (2.0.0)
     remotipart (1.2.1)
@@ -566,6 +567,7 @@ DEPENDENCIES
   rails-footnotes (>= 4.0.0, < 5)
   rails_12factor
   ransack
+  redcarpet
   rspec-rails
   sass-rails (~> 5.0)
   schema_plus_views

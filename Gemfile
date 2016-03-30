@@ -20,6 +20,7 @@ gem 'country_select'
 gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables-rails.git'
 gem "cocoon"
 gem 'bootsy'
+gem 'redcarpet'
 gem 'groupdate'
 gem 'active_median'
 gem "chartkick"
@@ -41,7 +42,6 @@ gem 'font-awesome-rails'
 
 # search / pagination
 gem 'ransack'
-#gem 'will_paginate'
 gem 'kaminari'
 
 # API

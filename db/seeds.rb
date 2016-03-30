@@ -13,7 +13,7 @@ Image.create!([
   {imageable_id: 1, imageable_type: "User", description: nil, image_file_name: "sean_profile_pic.jpg", image_content_type: "image/jpeg", image_file_size: 105845, image_updated_at: "2016-03-17 13:31:53"}
 ])
 Post.create!([
-  {topic_id: 1, user_id: 1, post: "Lorem ipsum dolor sit amet, no nec mediocrem maiestatis democritum, dolor voluptatum mediocritatem ea nam, mel ipsum alienum ex. Mundi tantas ut sea. Aeterno torquatos quo ad. Mel nusquam suscipit ad. Usu ut omnes appareat, et quo mazim facilis consequuntur.", votes: 0, flagged: false, notify: true},
+  {topic_id: 1, user_id: 1, post: "##### Lorem ipsum dolor sit amet, no nec mediocrem maiestatis democritum, dolor voluptatum mediocritatem ea nam, mel ipsum alienum ex. Mundi tantas ut sea. Aeterno torquatos quo ad. Mel nusquam suscipit ad. Usu ut omnes appareat, et quo mazim facilis consequuntur.", votes: 0, flagged: false, notify: true},
   {topic_id: 1, user_id: 1, post: "[quote]Lorem ipsum dolor sit amet, no nec mediocrem maiestatis democritum, dolor voluptatum mediocritatem ea nam, mel ipsum alienum ex. Mundi tantas ut sea. Aeterno torquatos quo ad. Mel nusquam suscipit ad. Usu ut omnes appareat, et quo mazim facilis consequuntur.[/quote]<br><br>Lorem ipsum dolor sit amet, no nec mediocrem maiestatis democritum, dolor voluptatum mediocritatem ea nam, mel ipsum alienum ex. Mundi tantas ut sea. Aeterno torquatos quo ad. Mel nusquam suscipit ad. Usu ut omnes appareat, et quo mazim facilis consequuntur.<br><br><br>", votes: 0, flagged: false, notify: true},
   {topic_id: 2, user_id: 1, post: "Lorem ipsum dolor sit amet, no nec mediocrem maiestatis democritum, dolor voluptatum mediocritatem ea nam, mel ipsum alienum ex. Mundi tantas ut sea. Aeterno torquatos quo ad. Mel nusquam suscipit ad. Usu ut omnes appareat, et quo mazim facilis consequuntur.", votes: 0, flagged: false, notify: true},
   {topic_id: 2, user_id: 1, post: "Such an interesting idea!<br><br>", votes: 0, flagged: false, notify: true},
@@ -48,8 +48,4 @@ Timeline.create!([
 Topic.create!([
   {competition_id: 2, user_id: 1, topic: "A sticky topic", sticky: true, views: 0, posts_count: 0},
   {competition_id: 2, user_id: 1, topic: "A regular topic", sticky: false, views: 0, posts_count: 0}
-])
-Leaderboard.create!([
-  {competition_id: 2, user_id: 1, username: "sean", team_id: nil, score: 0.9, entries: 3},
-  {competition_id: 2, user_id: 2, username: "competitor", team_id: nil, score: 0.91, entries: 3}
 ])

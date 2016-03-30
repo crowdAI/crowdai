@@ -17,6 +17,12 @@ RSpec.feature “submission”, type: :feature do
 
     scenario "a competitor may not make more then 5 submissions in a day" do
     end
+
+    scenario "a competitor must provide a submission message" do
+    end
+
+    scenario "exactly two files must be uploaded" do
+    end
   end
 
   describe "submission evaluations" do

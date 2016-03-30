@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
 
   def new
-    @posts = @topic.posts
+    @posts = @topic.posts("created_at DESC")
     @post = @topic.posts.new
     if params[:quote]
      quote_post = Post.find(params[:quote])
@@ -34,6 +34,7 @@ class PostsController < ApplicationController
       render :edit
     end
   end
+
 
   def destroy
     @post.destroy

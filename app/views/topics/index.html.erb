@@ -1,20 +1,32 @@
 <%= render partial: 'competitions/sidebar' %>
 <%= render partial: 'competitions/header', competition: @competition %>
 
-<% if @headline %>
-  <blockquote>
-    <p><%= link_to @headline_post.post, competition_topic_path(@competition, @headline_post.topic_id) %></p>
-    <footer>Posted by <%= @headline_post.username %> in <cite><%= @headline_post.topic_text %></cite></footer>
-  </blockquote>
-<% end %>
+<div class="row">
+  <div class="col-md-11">
+    <% if @headline_post %>
+      <blockquote>
+        <p><%= link_to @headline_post.post, new_topic_post_path(@headline_post.topic_id) %></p>
+        <footer>Posted by <%= @headline_post.username %> in <cite><%= @headline_post.topic_text %></cite></footer>
+      </blockquote>
+    <% end %>
+  </div>
+  <div class="col-md-1">
+    <%= link_to '+ New Topic', new_competition_topic_path(@competition), class: 'btn btn-primary' %>
+  </div>
+</div>
 
 
-<table class="table table-striped table-bordered table-hover">
+
+
+<table class="table table-striped table-hover topics-table">
   <thead>
+    <colgroup>
+      <col class="col-md-8">
+      <col class="col-md-2">
+      <col class="col-md-2">
+    </colgroup>
     <tr>
-      <th>Topic
-          <span class="pull-right"><%= link_to '+ New Topic', new_competition_topic_path(@competition), class: 'btn btn-primary' %></span>
-      </th>
+      <th>Topic</th>
       <th>Posts</th>
       <th>Activity</th>
     </tr>

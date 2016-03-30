@@ -49,6 +49,9 @@ SimpleForm.setup do |config|
     # use the component :full_error, like:
     #
     # b.use :full_error, wrap_with: { tag: :span, class: :error }
+
+    # remove '*' on required fields
+    config.label_text = lambda { |label, required, explicit_label| "#{label}" }
   end
 
   # The default wrapper to be used by the FormBuilder.

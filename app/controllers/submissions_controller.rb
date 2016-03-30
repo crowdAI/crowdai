@@ -13,6 +13,7 @@ class SubmissionsController < ApplicationController
     @submission = @competition.submissions.new
     # TODO for the first competition we are working with 2 files.
     # Make this competition config data in next release
+    @submissions_remaining = submissions_remaining
     @submission.submission_files.build(seq: 0)
     @submission.submission_files.build(seq: 1)
   end
@@ -43,6 +44,11 @@ class SubmissionsController < ApplicationController
   def destroy
     @submission.destroy
     redirect_to submissions_url, notice: 'Submission was successfully destroyed.'
+  end
+
+  def submissions_remaining
+    submissions_today = Submission.where("user_id = ? and created_at >= ?", current_user.id, Time.now - 24.hours).count
+    return 5 - submissions_today
   end
 
   private

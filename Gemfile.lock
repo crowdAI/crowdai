@@ -137,6 +137,7 @@ GEM
     country_select (2.5.2)
       countries (~> 1.2.0)
       sort_alphabetical (~> 1.0)
+    cross_validation (0.0.2)
     currencies (0.4.2)
     database_cleaner (1.5.1)
     datetime_picker_rails (0.0.7)
@@ -540,6 +541,7 @@ DEPENDENCIES
   chartkick
   cocoon
   country_select
+  cross_validation
   database_cleaner
   devise
   factory_girl_rails

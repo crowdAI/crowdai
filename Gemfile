@@ -70,6 +70,9 @@ gem 'net-ssh'
 gem 'aws-sdk', '~> 2.2'
 gem 'fog', '1.35.0'
 
+# machine learning 
+gem 'cross_validation'
+
 
 group :development do
   gem 'guard'

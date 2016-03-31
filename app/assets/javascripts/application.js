@@ -24,6 +24,7 @@
 
 // components / gems
 //= require components/twbs
+//= require components/containers
 //= require cocoon
 
 // modules

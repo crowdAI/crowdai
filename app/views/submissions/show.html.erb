@@ -10,8 +10,10 @@
         <h3>Submission</h3>
         <lead><%= @submission.created_at %></lead>
 
-        <h4>Score:
-          <%= score(@submission) %></h4>
+        <h4>Score: <%= score(@submission) %></h4>
+
+        <p><%= markdown(@submission.description) %></p>
+
 
         <div class="row">
           <div class="col-md-8">

@@ -4,7 +4,7 @@
   <div class="form-inputs">
     <%= f.association :topic, as: :hidden %>
     <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.input :post, as: :bootsy, input_html: { rows: 10 } %>
+    <%= f.input :post, input_html: { rows: 10 } %>
     <%= f.input :notify %>
   </div>
 

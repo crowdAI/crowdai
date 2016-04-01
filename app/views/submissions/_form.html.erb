@@ -20,7 +20,11 @@
       </div>
     <% end %>
 
-    <%= f.input :description, placeholder: 'Please describe your submission.', label: false, required: true %>
+    <%= f.input :description,
+                placeholder: 'Please describe your submission.',
+                label: false,
+                required: true,
+                input_html: { rows: 10 } %>
 
 
  </div>

@@ -7,4 +7,4 @@ $(document).ready(function(){
       sidebar.style.height = page_content.offsetHeight + 'px';
     }
   }
-})
+});

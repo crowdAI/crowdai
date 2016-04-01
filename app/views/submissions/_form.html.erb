@@ -20,7 +20,15 @@
       </div>
     <% end %>
 
-    <%= f.input :description,
+    <%= f.label :description %>
+    <%= render 'markdown/toolbar' %>
+    <%= f.text_area :description,
+                    id: 'markdown_textarea',
+                    class: 'form-control',
+                    placeholder: 'Please describe your submission.',
+                    required: true,
+                    rows: 10  %>
+    <%#= f.input :description,
                 placeholder: 'Please describe your submission.',
                 label: false,
                 required: true,

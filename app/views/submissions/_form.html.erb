@@ -1,44 +1,48 @@
 <%= simple_form_for([@competition, @submission]) do |f| %>
-  <%= f.error_notification %>
+<%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.association :competition, as: :hidden %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.hidden_field :submission_type, value: 'user' %>
+<div class="form-inputs">
+  <%= f.association :competition, as: :hidden %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :submission_type, value: 'user' %>
 
-
-    <%= f.simple_fields_for :submission_files do |file| %>
-      <div class="nested-fields">
-        <!-- TODO will make this config-driven in next release -->
-        <% if file.index == 0 %>
-          <b>Prediction file (CSV)</b>
-        <% else %>
-          <b>Archive (.zip or .tar) of model and script</b>
-        <% end %>
-        <%= file.hidden_field :seq %>
-        <%= file.input :submission_file, as: :file, label: false %>
-      </div>
+  <%= f.simple_fields_for :submission_files do |file| %>
+  <div class="nested-fields">
+    <!-- TODO will make this config-driven in next release -->
+    <% if file.index == 0 %>
+    <b>Prediction file (CSV)</b>
+  <% else %>
+    <b>Archive (.zip or .tar) of model and script</b>
     <% end %>
-
-    <%= f.label :description %>
-    <%= render 'markdown_editor/toolbar' %>
-    <%= f.text_area :description,
-                    id: 'markdown_textarea',
-                    class: 'form-control',
-                    placeholder: 'Please describe your submission.',
-                    required: true,
-                    rows: 10  %>
-    <div id="markdown-preview"></div>
-    <%#= f.input :description,
-                placeholder: 'Please describe your submission.',
-                label: false,
-                required: true,
-                input_html: { rows: 10 } %>
-
-
- </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
+    <%= file.hidden_field :seq %>
+    <%= file.input :submission_file, as: :file, label: false %>
   </div>
+  <% end %>
+
+  <div id="content">
+    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+      <li class="active">
+        <a href="#editor-pane" data-toggle="tab">Write</a>
+      </li>
+      <li>
+        <a href="#preview-pane" data-toggle="tab">Preview</a>
+      </li>
+    </ul>
+    <div id="my-tab-content" class="tab-content">
+      <div class="tab-pane active" id="editor-pane">
+        <%= f.label :description %>
+        <%= render 'markdown_editor/toolbar' %>
+        <%= f.text_area :description, id: 'markdown_textarea', class: 'form-control', placeholder: 'Please describe your submission.', required: true, rows: 10 %>
+      </div>
+      <div class="tab-pane" id="preview-pane">
+        <div id="markdown-preview"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="form-actions">
+  <%= f.button :submit %>
+</div>
 <% end %>

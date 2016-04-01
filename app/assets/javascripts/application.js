@@ -28,6 +28,7 @@
 //= require cocoon
 //= require components/rangy_inputs
 //= require components/markdown_editor
+//= require components/markdown_preview
 
 // modules
 //= require modules/users

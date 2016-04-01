@@ -7,4 +7,6 @@ class Submission < ActiveRecord::Base
 
   as_enum :submission_type, [:user, :team], map: :string
   validates_presence_of :submission_type
+
+
 end

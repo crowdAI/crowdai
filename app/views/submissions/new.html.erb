@@ -1,4 +1,9 @@
 <%= render partial: 'competitions/sidebar' %>
 <%= render partial: 'competitions/header', competition: @competition %>
 
-<%= render 'form' %>
+<% if @submissions_remaining < 1 %>
+  <h2>You may submit a maximum of five entries each 24 hours.</h2>
+<% else %>
+  <p>You have <%= @submissions_remaining %> submissions remaining today (in a 24 hour window). </p>
+  <%= render 'form' %>
+<% end %>

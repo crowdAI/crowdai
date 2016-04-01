@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'markdown_editor/create'
+
+  get 'markdown_editor/show'
+
   resources :posts
   resources :topics
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'

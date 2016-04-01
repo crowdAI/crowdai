@@ -1,5 +1,5 @@
   <li class="list-group-item post">
-    <%= simple_format(post.post) %>
+    <%= markdown(post.post) %>
     <%= link_to "Quote", new_topic_post_path(@topic, :quote => post) %>
     <% if current_user.admin? || current_user == post.user %>
       <%= link_to 'edit', edit_topic_post_path(@topic, post) %>

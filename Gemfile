@@ -71,6 +71,7 @@ gem 'aws-sdk', '~> 2.2'
 gem 'fog', '1.35.0'
 
 
+
 group :development do
   gem 'guard'
   gem 'seed_dump'

@@ -21,13 +21,14 @@
     <% end %>
 
     <%= f.label :description %>
-    <%= render 'markdown/toolbar' %>
+    <%= render 'markdown_editor/toolbar' %>
     <%= f.text_area :description,
                     id: 'markdown_textarea',
                     class: 'form-control',
                     placeholder: 'Please describe your submission.',
                     required: true,
                     rows: 10  %>
+    <div id="markdown-preview"></div>
     <%#= f.input :description,
                 placeholder: 'Please describe your submission.',
                 label: false,

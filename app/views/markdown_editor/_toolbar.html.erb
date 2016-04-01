@@ -47,6 +47,5 @@
     <button class="btn btn-default" id="add_fenced_code" title="Fenced Code Block">&#x3C;/.&#x3E;</button>
   </div>
 
-  <a href="#" class="btn btn-default" id="show_preview" title="Preview Content" data-toggle="modal" data-target="#previewModal">Preview</a>
-
+  <%= link_to 'Preview', markdown_editor_create_path(markdown_text: '###Test'), remote: true, class: 'btn btn-default' %>
 </div>

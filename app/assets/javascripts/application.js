@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery-ui
+//= require jquery-fileupload
 //= require bootsy
 
 //= require dataTables/jquery.dataTables

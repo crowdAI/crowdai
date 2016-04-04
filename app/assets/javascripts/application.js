@@ -31,6 +31,7 @@
 //= require components/rangy_inputs
 //= require components/markdown_editor
 //= require components/markdown_preview
+//= require components/s3_direct_upload
 
 // modules
 //= require modules/users

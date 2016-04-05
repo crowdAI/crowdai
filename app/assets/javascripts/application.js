@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery-ui
+//= require jquery-fileupload
 //= require bootsy
 
 //= require dataTables/jquery.dataTables
@@ -29,6 +31,7 @@
 //= require components/rangy_inputs
 //= require components/markdown_editor
 //= require components/markdown_preview
+//= require components/s3_direct_upload
 
 // modules
 //= require modules/users

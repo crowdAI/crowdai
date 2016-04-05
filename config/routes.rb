@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :downloads
   get 'markdown_editor/create'
 
   get 'markdown_editor/show'

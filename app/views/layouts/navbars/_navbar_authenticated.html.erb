@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-inverse navbar-static-top">
+<nav class="navbar navbar-default navbar-static-top">
   <div class="brand-container">
     <div class="navbar-header">
       <a class="navbar-brand" href="/"></a>
@@ -15,7 +15,7 @@
       <% end %>
 
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown">
+        <a href="#" id="avatar-menu" class="dropdown-toggle profile-image" data-toggle="dropdown">
           <%= image_tag avatar_url(current_user,'medium'), size: '30x30', class: "img-circle navbar-profile-img" %><%= current_user.username %><b class="caret"></b>
         </a>
         <ul class="dropdown-menu">

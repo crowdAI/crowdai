@@ -2,6 +2,7 @@
   color: inherit;
   background-color: $crowdai-bg-medium-grey;
   padding: 48px 30px;
+  padding-bottom: 5vw;
   height: 30vw;
 }
 
@@ -12,16 +13,16 @@
 }
 
 .intro h1 {
-  color: white;
+  color: $crowdai-text-dark;
   text-align: center;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 32pt;
+  font-size: 24pt;
   font-weight: bold;
 }
 
 .intro h5 {
-  color: white;
+  color: $crowdai-text-dark;
   text-align: center;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 24pt;
+  font-size: 18pt;
 }

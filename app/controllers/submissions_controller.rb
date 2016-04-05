@@ -1,6 +1,7 @@
 class SubmissionsController < ApplicationController
   before_action :set_submission, only: [:show, :edit, :update, :destroy]
   before_action :set_competition
+  before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
 
   def index
     @submissions = @competition.submissions.where(user_id: current_user)
@@ -63,5 +64,11 @@ class SubmissionsController < ApplicationController
     def submission_params
       params.require(:submission).permit(:competition_id, :user_id, :team_id, :description, :evaluated, :score, :submission_type,
                                   submission_files_attributes: [:id, :seq, :submission_file, :_delete])
+    end
+
+    def set_s3_direct_post
+      @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}",
+                                                 success_action_status: '201',
+                                                 acl: 'public-read')
     end
 end

@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   resources :downloads
   get 'markdown_editor/create'
-
   get 'markdown_editor/show'
 
   resources :posts
@@ -45,7 +44,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:new, :create, :edit, :update, :destroy]
   end
 
-
+get "/pages/*id" => 'pages#show', as: :page, format: false
   # resources :teams
 
   # different home for public / auth users

@@ -3,7 +3,7 @@
 
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-inputs">
-    <%= f.input :login, required: true, autofocus: true, hint: "Username or Email Address" %>
+    <%= f.input :email, required: true, autofocus: true %>
     <%= f.input :password, required: true %>
     <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
   </div>

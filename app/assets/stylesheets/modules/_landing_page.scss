@@ -1,16 +1,23 @@
 .intro {
   color: inherit;
   background-color: $crowdai-bg-medium-grey;
-  padding: 48px 30px;
-  padding-bottom: 5vw;
+  //padding: 30px 30px;
+  //padding-bottom: 5vw;
   height: 30vw;
+
 }
 
 .intro .container {
-  height:  15vw;
-  background: image-url('crowdai_definition') no-repeat center;
   background-size: 80%;
+  background: image-url('crowdai_definition') no-repeat center;
+  height:  15vw;
+  //background: image-url('crowdai_definition') no-repeat center;
+  background-size: 80%;
+  height: 30vw;
 }
+
+
+// mirial -
 
 .intro h1 {
   color: $crowdai-text-dark;

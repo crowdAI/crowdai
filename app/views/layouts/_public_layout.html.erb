@@ -1,7 +1,7 @@
 <%= render 'layouts/navbars/navbar_public' %>
+<%= render partial: "layouts/flash_messages", flash: flash %>
+
 <div class="container-fluid">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-    <%= yield %>
-    <%= render 'layouts/footer' %>
+  <%= yield %>
+  <%= render 'layouts/footer' %>
 </div>

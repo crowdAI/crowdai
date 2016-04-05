@@ -9,10 +9,30 @@
   display: block;
 }
 
+
 .navbar-nav > li > a:hover {
   color: black !important;
   border-bottom: 3px solid;
   border-bottom-color: #FF4E48;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+#avatar-menu {
+  color: black !important;
+  border-bottom: none;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  background-color: #fff;
+}
+
+
+
+.dropdown-menu {
+  min-width: 0;
+  padding: 0;
+  padding-top: 10px;
+  margin-top: 10px;
   margin-bottom: 10px;
   padding-bottom: 10px;
 }
@@ -23,9 +43,17 @@
     padding-top: 9px;
     padding-bottom: 9px;
     font-weight: 600;
+    background-color: #fff;
   }
-
 }
+
+/*
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  background-color: #fff;
+  color: #555;
+} */
+
+
 
 .navbar-profile-img
 {
@@ -38,6 +66,7 @@
 .brand-container {
   padding-left: 30px;
 }
+
 
 .navbar-brand
 {

@@ -25,6 +25,8 @@
 
     <br>
 
-    <%= link_to 'Add file', new_competition_dataset_file_path(@competition) %>
+    <% if current_user.admin? || current_user.hosting_institution_id = @competition.hosting_institution_id %>
+      <%= link_to 'Add file', new_competition_dataset_file_path(@competition), class: 'btn btn-primary' %>
+    <% end %>
   </div>
 </div>

@@ -6,9 +6,9 @@
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.input :first_name, hint: 'Used in email correspondence and on your profile. Defaults to Username if left blank.' %>
+      <%= f.input :first_name, hint: 'Used in email correspondence and on your profile. Defaults to name if left blank.' %>
       <%= f.input :last_name %>
-      <%= f.input :username, required: true, autofocus: true, hint: 'May be changed.' %>
+      <%= f.input :name, required: true, autofocus: true, hint: 'May be changed.' %>
       <%= f.input :email, required: true, hint: 'May be changed.' %>
       <%= f.input :email_public, label: 'Display your email address publically?' %>
       <%= f.input :bio, as: :bootsy, input_html: { rows: 20 }, hint: 'Tell us something about yourself.' %>

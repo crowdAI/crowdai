@@ -36,7 +36,7 @@ class UserDashboard < Administrate::BaseDashboard
     admin: Field::Boolean,
     verified: Field::Boolean,
     verification_date: Field::DateTime,
-    username: Field::String,
+    name: Field::String,
     country: Field::String,
     city: Field::String,
     timezone: Field::String,
@@ -61,7 +61,7 @@ class UserDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :username,
+    :name,
     :competitions,
     :submissions,
     :hosting_institution,
@@ -99,7 +99,7 @@ class UserDashboard < Administrate::BaseDashboard
     :admin,
     :verified,
     :verification_date,
-    :username,
+    :name,
     :country,
     :city,
     :timezone,
@@ -149,7 +149,7 @@ class UserDashboard < Administrate::BaseDashboard
     :admin,
     :verified,
     :verification_date,
-    :username,
+    :name,
     :country,
     :city,
     :timezone,

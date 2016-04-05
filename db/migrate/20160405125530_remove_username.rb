@@ -1,4 +1,4 @@
-class RemoveUsername < ActiveRecord::Migration
+class Removename < ActiveRecord::Migration
   def change
     drop_view :leaderboards;
     create_view :leaderboards, "

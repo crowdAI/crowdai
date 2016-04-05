@@ -6,7 +6,7 @@
     <% if @headline_post %>
       <blockquote>
         <p><%= link_to @headline_post.post, new_topic_post_path(@headline_post.topic_id) %></p>
-        <footer>Posted by <%= @headline_post.username %> in <cite><%= @headline_post.topic_text %></cite></footer>
+        <footer>Posted by <%= @headline_post.name %> in <cite><%= @headline_post.topic_text %></cite></footer>
       </blockquote>
     <% end %>
   </div>

@@ -35,7 +35,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :phone_number
       t.boolean :verified, default: false
       t.date :verification_date
-      t.string :username
+      t.string :name
       t.string :country
       t.string :city
       t.string :timezone 

@@ -1,6 +1,6 @@
 class DatasetFile < ActiveRecord::Base
   belongs_to :competition
-  
+
   has_attached_file :dataset_file
-  validates_attachment :dataset_file, presence: true, content_type: { content_type: ["text/csv","text/plain"] }
+  do_not_validate_attachment_file_type :dataset_file
 end

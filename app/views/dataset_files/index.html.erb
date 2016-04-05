@@ -17,13 +17,7 @@
         <tr>
           <td><%= file.seq %></td>
           <td><%= file.description %></td>
-          <td><%= link_to file_info(file), file.dataset_file.url %>
-            <% if current_user.admin? %>
-            <%= link_to content_tag(:i, nil, class: 'fa fa-trash-o'),
-                        [@competition,file],
-                        method: :delete, data: { confirm: 'Are you sure?' } %>
-            <% end %>
-          </td>
+          <td><%= download_url(file) %></td>
         </tr>
         <% end %>
       </tbody>

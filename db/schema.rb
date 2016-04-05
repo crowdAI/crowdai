@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160317142150) do
+ActiveRecord::Schema.define(version: 20160405133259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,7 +130,7 @@ ActiveRecord::Schema.define(version: 20160317142150) do
 SELECT s.id,
     s.competition_id,
     s.user_id,
-    u.username,
+    u.name,
     NULL::unknown AS team_id,
     s.score,
     cnt.entries,
@@ -245,7 +245,6 @@ SELECT s.id,
     t.boolean  "admin",                       :default=>false
     t.boolean  "verified",                    :default=>false
     t.date     "verification_date"
-    t.string   "username"
     t.string   "country"
     t.string   "city"
     t.string   "timezone"
@@ -254,8 +253,6 @@ SELECT s.id,
     t.string   "unconfirmed_email"
     t.integer  "hosting_institution_id"
     t.boolean  "hosting_institution_primary", :default=>false
-    t.string   "first_name"
-    t.string   "last_name"
     t.string   "name"
     t.boolean  "email_public",                :default=>false
     t.text     "bio"
@@ -269,7 +266,6 @@ SELECT s.id,
   add_index "users", ["hosting_institution_id"], :name=>"index_users_on_hosting_institution_id", :using=>:btree
   add_index "users", ["reset_password_token"], :name=>"index_users_on_reset_password_token", :unique=>true, :using=>:btree
   add_index "users", ["unlock_token"], :name=>"index_users_on_unlock_token", :unique=>true, :using=>:btree
-  add_index "users", ["username"], :name=>"index_users_on_username", :using=>:btree
 
   add_foreign_key "competitions", "hosting_institutions"
   add_foreign_key "posts", "topics"

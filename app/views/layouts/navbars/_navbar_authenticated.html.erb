@@ -16,7 +16,7 @@
 
       <li class="dropdown">
         <a href="#" id="avatar-menu" class="dropdown-toggle profile-image" data-toggle="dropdown">
-          <%= image_tag avatar_url(current_user,'medium'), size: '30x30', class: "img-circle navbar-profile-img" %><%= current_user.username %><b class="caret"></b>
+          <%= image_tag avatar_url(current_user,'medium'), size: '30x30', class: "img-circle navbar-profile-img" %><%= current_user.name %><b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
           <li><%= awesome_link('fa fa-cog', 'Profile', user_path(current_user)) %></li>

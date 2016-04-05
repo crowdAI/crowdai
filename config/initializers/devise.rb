@@ -26,7 +26,7 @@ Devise.setup do |config|
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
-  # just :email. You can configure it to use [:username, :subdomain], so for
+  # just :email. You can configure it to use [:name, :subdomain], so for
   # authenticating a user, both parameters are required. Remember that those
   # parameters are used only when authenticating and not when retrieving from
   # session. If you need permissions, you should implement that in a before filter.
@@ -188,8 +188,8 @@ Devise.setup do |config|
   # ==> Configuration for :recoverable
   #
   # Defines which key will be used when recovering the password for an account
-  #config.reset_password_keys = [ :username ]
-  #config.confirmation_keys = [ :username ]
+  #config.reset_password_keys = [ :name ]
+  #config.confirmation_keys = [ :name ]
 
   # Time interval you can reset your password with a reset password key.
   # Don't put a too small interval or your users won't have the time to

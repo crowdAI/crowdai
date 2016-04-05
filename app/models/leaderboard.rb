@@ -10,7 +10,7 @@ end
 SELECT s.id,
        s.competition_id,
        s.user_id,
-       u.username,
+       u.name,
        NULL :: unknown AS team_id,
        s.score,
        cnt.entries,

@@ -29,7 +29,7 @@
       <thead>
         <tr>
           <th></th>
-          <th>Username</th>
+          <th>name</th>
           <th>Email</th>
           <th></th>
         </tr>
@@ -39,7 +39,7 @@
         <% @hosting_institution.users.each do |user| %>
         <tr>
           <td><%= user.hosting_institution_primary %></td>
-          <td><%= user.username %></td>
+          <td><%= user.name %></td>
           <td><%= user.email %></td>
           <td><%#= link_to 'Remove', [@hosting_institution, user], method: :nullify, data: { confirm: 'Remove this user from the administration of your institution on CrowdAI?' } %></td>
         </tr>

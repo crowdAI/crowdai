@@ -56,7 +56,7 @@ class TopicsController < ApplicationController
 
     def headline_sql
       sql = %Q[
-        select p.id, substring(p.post from 0 for 40) as post, p.topic_id, u.username, t.topic as "topic_text"
+        select p.id, substring(p.post from 0 for 40) as post, p.topic_id, u.name, t.topic as "topic_text"
         from posts p, topics t, users u
         where p.flagged = false
         and p.topic_id = t.id

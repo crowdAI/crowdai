@@ -14,5 +14,5 @@ test:
 production:
   <<: *default
   database: crowdai_production
-  username: crowdai
+  name: crowdai
   password: <%= ENV['CROWDAI_DATABASE_PASSWORD'] %>

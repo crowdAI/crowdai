@@ -6,7 +6,7 @@
       <%= link_to 'delete', [@topic, post], method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
     <div class="pull-right">
-      Posted by <%= link_to post.user.username, user_path(post.user) %>,
+      Posted by <%= link_to post.user.name, user_path(post.user) %>,
                 <%= time_ago_in_words(post.created_at) %> ago.
     </div>
   </li>

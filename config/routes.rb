@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-
   resources :downloads
   get 'markdown_editor/create'
   get 'markdown_editor/show'
 
-  resources :posts
+  resources :posts, except: [:show]
   resources :topics
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   devise_for :users, except: [:update]
@@ -23,7 +22,7 @@ Rails.application.routes.draw do
     resources :timelines
     resources :user_competitions
     resources :topics
-    root to: "users#index"
+    root to: 'users#index'
   end
 
   get 'landing_page/index'
@@ -44,13 +43,12 @@ Rails.application.routes.draw do
     resources :posts, only: [:new, :create, :edit, :update, :destroy]
   end
 
-get "/pages/*id" => 'pages#show', as: :page, format: false
+  get '/pages/*id' => 'pages#show', as: :page, format: false
   # resources :teams
 
   # different home for public / auth users
   authenticated :user do
-    root to: 'competitions#index', as:'/'
+    root to: 'competitions#index', as: '/'
   end
   root to: 'landing_page#index', as: '/'
-
 end

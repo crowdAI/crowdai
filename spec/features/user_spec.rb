@@ -7,7 +7,7 @@ RSpec.feature "user", type: :feature do
       visit "/"
       click_link "Join"                # TODO convert to button
 
-      fill_in "Username",              with: 'test_user'
+      fill_in "name",              with: 'test_user'
       fill_in "Email",                 with: "test@example.com"
       fill_in 'user_password',         with: "crowdai123"
       fill_in "Password confirmation", with: "crowdai123"
@@ -42,7 +42,7 @@ RSpec.feature "user", type: :feature do
     end
 
     scenario "incorrect password confirmation" do
-      fill_in "Username", with: "test@example.com"
+      fill_in "name", with: "test@example.com"
       fill_in 'user_password', with: "crowdai123"
       fill_in "Password confirmation", with: "crowdai122"
       click_button "Sign up"

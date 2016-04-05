@@ -21,7 +21,7 @@ RSpec.describe User, type: :model do
   describe 'fields and associations' do
     subject { @user }
 
-    it { should respond_to(:username) }
+    it { should respond_to(:name) }
     it { should respond_to(:first_name) }
     it { should respond_to(:last_name) }
     it { should respond_to(:email) }
@@ -51,8 +51,8 @@ RSpec.describe User, type: :model do
       expect(@user.admin?).to be true
     end
 
-    describe 'when username is not present' do
-      before { @user.username = ' ' }
+    describe 'when name is not present' do
+      before { @user.name = ' ' }
       it { should_not be_valid }
     end
 

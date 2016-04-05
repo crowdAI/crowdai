@@ -88,7 +88,7 @@ Rails.application.configure do
     :address   => ENV["SMTP_ADDRESS"],
     :port      => ENV["SMTP_PORT"],
     :enable_starttls_auto => true, # detects and uses STARTTLS
-    :user_name => ENV["SMTP_name"],
+    :user_name => ENV["SMTP_USERNAME"],
     :password  => ENV["SMTP_PASSWORD"],
     :authentication => 'login', # Mandrill supports 'plain' or 'login'
     :domain => ENV["SMTP_DOMAIN"]

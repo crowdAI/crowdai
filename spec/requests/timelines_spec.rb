@@ -3,7 +3,7 @@
 # Table name: timelines
 #
 #  id             :integer          not null, primary key
-#  competition_id :integer
+#  challenge_id :integer
 #  seq            :integer
 #  event          :string
 #  event_time     :datetime

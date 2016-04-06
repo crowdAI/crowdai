@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "topics/show", type: :view do
   before(:each) do
     @topic = assign(:topic, Topic.create!(
-      :competition => nil,
+      :challenge => nil,
       :user => nil,
       :topic => "Topic",
       :sticky => false,

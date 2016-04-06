@@ -1,5 +1,5 @@
-<%= render partial: 'competitions/sidebar' %>
-<%= render partial: 'competitions/header', competition: @competition %>
+<%= render partial: 'challenges/sidebar' %>
+<%= render partial: 'challenges/header', challenge: @challenge %>
 
 <div class="row">
   <div class="col-md-10">
@@ -7,9 +7,9 @@
   <div class="panel-heading">Submissions</div>
   <div class="panel-body">
     <p style="text-align:center">
-        <%= link_to 'Submit Entry', new_competition_submission_path(@competition), class: 'btn btn-primary btn-lg' %>
+        <%= link_to 'Submit Entry', new_challenge_submission_path(@challenge), class: 'btn btn-primary btn-lg' %>
     </p>
-    <p><%= simple_format(@competition.submission_instructions) %></p>
+    <p><%= simple_format(@challenge.submission_instructions) %></p>
 
     <table class='table table-hover table-striped table-bordered'>
       <thead>
@@ -23,8 +23,8 @@
       <tbody>
         <% @submissions.each do |submission| %>
           <tr>
-            <td><%= link_to submission.created_at, competition_submission_path(@competition, submission) %></td>
-            <td><%= link_to score(submission), competition_submission_path(@competition, submission) %></td>
+            <td><%= link_to submission.created_at, challenge_submission_path(@challenge, submission) %></td>
+            <td><%= link_to score(submission), challenge_submission_path(@challenge, submission) %></td>
             <td><% submission.submission_files.each do |f| %>
                     <%= f.submission_file_file_name %><br/>
                 <% end %>

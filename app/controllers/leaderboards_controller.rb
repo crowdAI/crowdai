@@ -1,9 +1,9 @@
 class LeaderboardsController < ApplicationController
   before_action :set_leaderboard, only: [:show]
-  before_action :set_competition
+  before_action :set_challenge
 
   def index
-    @leaderboards = @competition.leaderboards
+    @leaderboards = @challenge.leaderboards
   end
 
   def show
@@ -14,7 +14,7 @@ class LeaderboardsController < ApplicationController
     @leaderboard = Leaderboard.find(params[:id])
   end
 
-  def set_competition
-    @competition = Competition.find(params[:competition_id])
+  def set_challenge
+    @challenge = Challenge.find(params[:challenge_id])
   end
 end

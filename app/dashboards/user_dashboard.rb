@@ -8,8 +8,8 @@ class UserDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    user_competitions: Field::HasMany,
-    competitions: Field::HasMany,
+    user_challenges: Field::HasMany,
+    challenges: Field::HasMany,
     submissions: Field::HasMany,
     team_users: Field::HasMany,
     teams: Field::HasMany,
@@ -62,7 +62,7 @@ class UserDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :name,
-    :competitions,
+    :challenges,
     :submissions,
     :hosting_institution,
     :confirmed_at,
@@ -71,8 +71,8 @@ class UserDashboard < Administrate::BaseDashboard
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :user_competitions,
-    :competitions,
+    :user_challenges,
+    :challenges,
     :submissions,
     :team_users,
     :teams,
@@ -122,8 +122,8 @@ class UserDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :user_competitions,
-    :competitions,
+    :user_challenges,
+    :challenges,
     :submissions,
     :team_users,
     :teams,

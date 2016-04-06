@@ -8,7 +8,7 @@ class DatasetFileDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    competition: Field::BelongsTo,
+    challenge: Field::BelongsTo,
     id: Field::Number,
     seq: Field::Number,
     created_at: Field::DateTime,
@@ -26,7 +26,7 @@ class DatasetFileDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :competition,
+    :challenge,
     :id,
     :seq,
     :created_at,
@@ -35,7 +35,7 @@ class DatasetFileDashboard < Administrate::BaseDashboard
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :competition,
+    :challenge,
     :id,
     :seq,
     :created_at,
@@ -51,7 +51,7 @@ class DatasetFileDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :competition,
+    :challenge,
     :seq,
     :description,
     :dataset_file_file_name,

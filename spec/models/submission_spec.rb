@@ -29,7 +29,7 @@ RSpec.describe Submission, type: :model do
   describe 'associations' do
     subject { @submission }
 
-    it { should respond_to(:competition) }
+    it { should respond_to(:challenge) }
     it { should respond_to(:user) }
     it { should respond_to(:team) }
     it { should respond_to(:submission_files) }

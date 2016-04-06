@@ -1,9 +1,9 @@
 class Topic < ActiveRecord::Base
   include ActionView::Helpers::DateHelper
-  belongs_to :competition
+  belongs_to :challenge
   belongs_to :user
   has_many :posts, dependent: :destroy
-  default_scope { order('sticky desc') } 
+  default_scope { order('sticky desc') }
 
   validates :topic, presence: true, length: { maximum: 255 }
 

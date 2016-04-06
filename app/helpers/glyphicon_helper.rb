@@ -9,6 +9,6 @@ module GlyphiconHelper
   end
 
 # usage:
-# <%= glyphicon_link 'equalizer', 'Resources', competition_path(@competition, anchor: 'resources') %>
+# <%= glyphicon_link 'equalizer', 'Resources', challenge_path(@challenge, anchor: 'resources') %>
 
 end

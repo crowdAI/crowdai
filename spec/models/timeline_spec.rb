@@ -17,7 +17,7 @@ RSpec.describe Timeline, type: :model do
       it { should respond_to(:event) }
       it { should respond_to(:event_time) }
 
-      it { should respond_to(:competition) }
+      it { should respond_to(:challenge) }
   end
 
   describe 'specific validations' do

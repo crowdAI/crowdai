@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class UserCompetitionDashboard < Administrate::BaseDashboard
+class UserChallengeDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -9,7 +9,7 @@ class UserCompetitionDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     user: Field::BelongsTo,
-    competition: Field::BelongsTo,
+    challenge: Field::BelongsTo,
     id: Field::Number,
     rules_accepted: Field::Boolean,
     created_at: Field::DateTime,
@@ -23,7 +23,7 @@ class UserCompetitionDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :user,
-    :competition,
+    :challenge,
     :id,
     :rules_accepted,
   ]
@@ -32,7 +32,7 @@ class UserCompetitionDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :user,
-    :competition,
+    :challenge,
     :id,
     :rules_accepted,
     :created_at,
@@ -44,14 +44,14 @@ class UserCompetitionDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :user,
-    :competition,
+    :challenge,
     :rules_accepted,
   ]
 
-  # Overwrite this method to customize how user competitions are displayed
+  # Overwrite this method to customize how user challenges are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(user_competition)
-  #   "UserCompetition ##{user_competition.id}"
+  # def display_resource(user_challenge)
+  #   "UserChallenge ##{user_challenge.id}"
   # end
 end

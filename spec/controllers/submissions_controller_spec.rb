@@ -3,7 +3,7 @@
 # Table name: submissions
 #
 #  id                 :integer          not null, primary key
-#  competition_id     :integer
+#  challenge_id     :integer
 #  user_id            :integer
 #  team_id            :integer
 #  evaluated          :boolean

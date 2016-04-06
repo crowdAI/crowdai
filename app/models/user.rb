@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
 
   devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable, :lockable 
+         :recoverable, :rememberable, :trackable, :validatable, :lockable
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :email,
@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
     uniqueness: { case_sensitive: false }
 
 
-  has_many :user_competitions
-  has_many :competitions, through: :user_competitions
+  has_many :user_challenges
+  has_many :challenges, through: :user_challenges
   has_many :submissions
   has_many :team_users
   has_many :teams, through: :team_users

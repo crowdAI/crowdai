@@ -19,7 +19,7 @@ RSpec.describe HostingInstitution, type: :model do
   describe 'associations' do
     subject { @hosting_institution }
     it { should respond_to(:users) }
-    it { should respond_to(:competitions) }
+    it { should respond_to(:challenges) }
   end
 
   describe 'specific validations' do

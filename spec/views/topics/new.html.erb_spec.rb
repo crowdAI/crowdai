@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "topics/new", type: :view do
   before(:each) do
     assign(:topic, Topic.new(
-      :competition => nil,
+      :challenge => nil,
       :user => nil,
       :topic => "MyString",
       :sticky => false,
@@ -17,7 +17,7 @@ RSpec.describe "topics/new", type: :view do
 
     assert_select "form[action=?][method=?]", topics_path, "post" do
 
-      assert_select "input#topic_competition_id[name=?]", "topic[competition_id]"
+      assert_select "input#topic_challenge_id[name=?]", "topic[challenge_id]"
 
       assert_select "input#topic_user_id[name=?]", "topic[user_id]"
 

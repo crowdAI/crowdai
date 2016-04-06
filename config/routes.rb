@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # Administrate
   namespace :admin do
     resources :users
-    resources :competitions
+    resources :challenges
     resources :dataset_files
     resources :hosting_institutions
     resources :submissions
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :teams
     resources :team_users
     resources :timelines
-    resources :user_competitions
+    resources :user_challenges
     resources :topics
     root to: 'users#index'
   end
@@ -28,10 +28,10 @@ Rails.application.routes.draw do
   get 'landing_page/index'
 
   resources :hosting_institutions do
-    resources :competitions
+    resources :challenges
   end
 
-  resources :competitions do
+  resources :challenges do
     resources :dataset_files
     resources :timelines
     resources :submissions
@@ -48,7 +48,7 @@ Rails.application.routes.draw do
 
   # different home for public / auth users
   authenticated :user do
-    root to: 'competitions#index', as: '/'
+    root to: 'challenges#index', as: '/'
   end
   root to: 'landing_page#index', as: '/'
 end

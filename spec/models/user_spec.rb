@@ -38,8 +38,8 @@ RSpec.describe User, type: :model do
     it { should respond_to(:twitter) }
     it { should respond_to(:hosting_institution) }
     it { should respond_to(:hosting_institution_primary) }
-    it { should respond_to(:user_competitions) }
-    it { should respond_to(:competitions) }
+    it { should respond_to(:user_challenges) }
+    it { should respond_to(:challenges) }
     it { should respond_to(:submissions) }
     it { should_not be_admin }
   end

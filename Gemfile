@@ -13,6 +13,7 @@ gem "administrate", "~> 0.1.4"
 # model
 gem 'simple_enum'
 gem "schema_plus_views"
+gem 'seed_dump'
 
 # forms / data manipulation / charts
 gem 'simple_form'
@@ -76,7 +77,6 @@ gem 'fog', '1.35.0'
 
 group :development do
   gem 'guard'
-  gem 'seed_dump'
   gem 'rails-footnotes', '>= 4.0.0', '<5'
   gem 'rails-erd'
   gem 'railroady'

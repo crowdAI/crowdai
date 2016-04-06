@@ -4,12 +4,12 @@ RSpec.describe "timelines/index", type: :view do
   before(:each) do
     assign(:timelines, [
       Timeline.create!(
-        :competition => nil,
+        :challenge => nil,
         :seq => 1,
         :event => "Event"
       ),
       Timeline.create!(
-        :competition => nil,
+        :challenge => nil,
         :seq => 1,
         :event => "Event"
       )

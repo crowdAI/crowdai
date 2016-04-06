@@ -1,5 +1,5 @@
-<%= render partial: 'competitions/sidebar' %>
-<%= render partial: 'competitions/header', competition: @competition %>
+<%= render partial: 'challenges/sidebar' %>
+<%= render partial: 'challenges/header', challenge: @challenge %>
 
 <div class="row">
   <div class="col-md-8">
@@ -13,7 +13,7 @@
       </thead>
 
       <tbody>
-        <% @competition.dataset_files.each do |file| %>
+        <% @challenge.dataset_files.each do |file| %>
         <tr>
           <td><%= file.seq %></td>
           <td><%= file.description %></td>
@@ -25,8 +25,8 @@
 
     <br>
 
-    <% if current_user.admin? || current_user.hosting_institution_id = @competition.hosting_institution_id %>
-      <%= link_to 'Add file', new_competition_dataset_file_path(@competition), class: 'btn btn-primary' %>
+    <% if current_user.admin? || current_user.hosting_institution_id = @challenge.hosting_institution_id %>
+      <%= link_to 'Add file', new_challenge_dataset_file_path(@challenge), class: 'btn btn-primary' %>
     <% end %>
   </div>
 </div>

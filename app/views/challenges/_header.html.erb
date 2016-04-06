@@ -1,0 +1,44 @@
+<% content_for(:header) do %>
+
+<div class='challenge-header'>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-1">
+      <div id="enclosure">
+          <div id="image-container">
+              <img src="<%= image_medium_url(@challenge) %>" />
+          </div>
+      </div>
+
+    </div>
+    <div class="col-md-8">
+      <h2><%= @challenge.challenge %></h2>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-md-1 col-md-offset-1">
+      <div class="mini-calendar">
+        <strong>May</strong>
+        <span>20</span>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="progress text-center">
+        <div class="progress-bar challenge-progress" role="progressbar" style="width: <%= @challenge.pct_passed %>%;">
+          <span><%= @challenge.remaining_text %></span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1">
+        <div class="mini-calendar">
+        <strong>May</strong>
+        <span>20</span>
+      </div>
+    </div>
+  </div>
+
+    <%#= @challenge.start_date %>
+    <%#= @challenge.end_date %>
+</div>
+  <% end %>

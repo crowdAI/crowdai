@@ -1,9 +1,9 @@
-<%= link_to competition_path(competition) do %>
+<%= link_to challenge_path(challenge) do %>
   <li class="list-group-item">
-    <%= competition.hosting_institution.institution %><br/>
-    <b><%= competition.competition %></b><br/>
-    <%= competition.start_date %>
-    <%= competition.end_date %>
-    <span class="badge"><%= competition.status_cd %></span>
+    <%= challenge.hosting_institution.institution %><br/>
+    <b><%= challenge.challenge %></b><br/>
+    <%= challenge.start_date %>
+    <%= challenge.end_date %>
+    <span class="badge"><%= challenge.status_cd %></span>
   </li>
 <% end %>

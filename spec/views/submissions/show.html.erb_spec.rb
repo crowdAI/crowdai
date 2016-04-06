@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "submissions/show", type: :view do
   before(:each) do
     @submission = assign(:submission, Submission.create!(
-      :competition => nil,
+      :challenge => nil,
       :user => nil,
       :team => nil,
       :evaluated => false,

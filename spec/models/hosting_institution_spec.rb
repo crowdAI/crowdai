@@ -24,4 +24,31 @@ RSpec.describe HostingInstitution, type: :model do
 
   describe 'specific validations' do
   end
+
+  # === Relations ===
+
+
+  it { is_expected.to have_many :challenges }
+  it { is_expected.to have_many :users }
+
+  # === Nested Attributes ===
+
+
+  # === Database (Columns) ===
+  it { is_expected.to have_db_column :id }
+  it { is_expected.to have_db_column :institution }
+  it { is_expected.to have_db_column :address }
+  it { is_expected.to have_db_column :description }
+  it { is_expected.to have_db_column :created_at }
+  it { is_expected.to have_db_column :updated_at }
+  it { is_expected.to have_db_column :approved }
+
+  # === Database (Indexes) ===
+
+
+  # === Validations (Length) ===
+
+
+  # === Validations (Presence) ===
+  it { is_expected.to validate_presence_of :institution }
 end

@@ -95,10 +95,10 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'simplecov', :require => false
   gem 'spring'
-  #gem 'shoulda'
+  gem 'shoulda'
   gem 'shoulda-matchers', require: false
   gem 'capybara'
   gem 'capybara-email'
   gem 'table_print'
-  gem 'regressor', git: 'https://github.com/ndea/regressor.git', branch: 'master'
+  #gem 'regressor', git: 'https://github.com/ndea/regressor.git', branch: 'master'
 end

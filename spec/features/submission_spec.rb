@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature “submission”, type: :feature do
+RSpec.feature "submissions", type: :feature do
 
   describe "competitor submissions" do
     scenario "a competitor can make a submission" do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405133259) do
+ActiveRecord::Schema.define(version: 20160406191054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20160405133259) do
     t.datetime "updated_at"
   end
 
-  create_table "competitions", force: :cascade do |t|
+  create_table "challenges", force: :cascade do |t|
     t.integer  "hosting_institution_id"
     t.string   "competition"
     t.string   "status_cd",               :default=>"draft"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20160405133259) do
     t.text     "dataset_description"
     t.text     "submission_instructions"
   end
-  add_index "competitions", ["hosting_institution_id"], :name=>"index_competitions_on_hosting_institution_id", :using=>:btree
+  add_index "challenges", ["hosting_institution_id"], :name=>"index_challenges_on_hosting_institution_id", :using=>:btree
 
   create_table "dataset_files", force: :cascade do |t|
     t.integer  "seq"
@@ -267,19 +267,19 @@ SELECT s.id,
   add_index "users", ["reset_password_token"], :name=>"index_users_on_reset_password_token", :unique=>true, :using=>:btree
   add_index "users", ["unlock_token"], :name=>"index_users_on_unlock_token", :unique=>true, :using=>:btree
 
-  add_foreign_key "competitions", "hosting_institutions"
+  add_foreign_key "challenges", "hosting_institutions"
   add_foreign_key "posts", "topics"
   add_foreign_key "posts", "users"
   add_foreign_key "submission_files", "submissions"
-  add_foreign_key "submissions", "competitions"
+  add_foreign_key "submissions", "challenges", column: "competition_id"
   add_foreign_key "submissions", "teams"
   add_foreign_key "submissions", "users"
   add_foreign_key "team_users", "teams"
   add_foreign_key "team_users", "users"
-  add_foreign_key "timelines", "competitions"
-  add_foreign_key "topics", "competitions"
+  add_foreign_key "timelines", "challenges", column: "competition_id"
+  add_foreign_key "topics", "challenges", column: "competition_id"
   add_foreign_key "topics", "users"
-  add_foreign_key "user_competitions", "competitions"
+  add_foreign_key "user_competitions", "challenges", column: "competition_id"
   add_foreign_key "user_competitions", "users"
   add_foreign_key "users", "hosting_institutions"
 end

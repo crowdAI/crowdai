@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.describe ChallengesController, type: :controller do
 
   let(:valid_attributes) {
-    FactoryGirl.attributes_for(:challenge)
+    FactoryGirl.build(:challenge).attributes
   }
 
   let(:invalid_attributes) {
-    FactoryGirl.attributes_for(:challenge, created_at: 'wrong')
+    FactoryGirl.build(:challenge, hosting_institution_id: nil).attributes
   }
 
   let(:valid_session) { {} }
@@ -83,14 +83,16 @@ RSpec.describe ChallengesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {description: "changed description", evaluation: 'changed evaluation'}
       }
 
       it "updates the requested challenge" do
         challenge = Challenge.create! valid_attributes
         put :update, {:id => challenge.to_param, :challenge => new_attributes}, valid_session
         challenge.reload
-        skip("Add assertions for updated state")
+        new_attributes.each_pair do |key, value|
+          expect(challenge[key]).to eq(value)
+        end
       end
 
       it "assigns the requested challenge as @challenge" do

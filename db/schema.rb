@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406194534) do
+ActiveRecord::Schema.define(version: 20160407074506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,44 @@ ActiveRecord::Schema.define(version: 20160406194534) do
   end
   add_index "images", ["imageable_type", "imageable_id"], :name=>"index_images_on_imageable_type_and_imageable_id", :using=>:btree
 
+  create_table "submissions", force: :cascade do |t|
+    t.integer  "challenge_id"
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.boolean  "evaluated",          :default=>false
+    t.float    "score"
+    t.string   "submission_type_cd"
+    t.datetime "created_at",         :null=>false
+    t.datetime "updated_at",         :null=>false
+    t.text     "description"
+  end
+  add_index "submissions", ["challenge_id"], :name=>"index_submissions_on_challenge_id", :using=>:btree
+  add_index "submissions", ["team_id"], :name=>"index_submissions_on_team_id", :using=>:btree
+  add_index "submissions", ["user_id"], :name=>"index_submissions_on_user_id", :using=>:btree
+
+  create_view "leaderboards", <<-'END_VIEW_LEADERBOARDS', :force => true
+SELECT s.id,
+    s.challenge_id,
+    s.user_id,
+    u.name,
+    NULL::integer AS team_id,
+    s.score,
+    cnt.entries,
+    s.created_at,
+    s.updated_at
+   FROM submissions s,
+    users u,
+    ( SELECT submissions.challenge_id,
+            submissions.user_id,
+            submissions.team_id,
+            count(*) AS entries
+           FROM submissions
+          GROUP BY submissions.challenge_id, submissions.user_id, submissions.team_id) cnt
+  WHERE ((u.id = s.user_id) AND (s.evaluated = true) AND (s.user_id = cnt.user_id) AND (s.challenge_id = cnt.challenge_id) AND (s.score = ( SELECT max(m.score) AS max
+           FROM submissions m
+          WHERE ((m.challenge_id = s.challenge_id) AND (m.user_id = s.user_id) AND (m.evaluated = true)))))
+  END_VIEW_LEADERBOARDS
+
   create_table "posts", force: :cascade do |t|
     t.integer  "topic_id"
     t.integer  "user_id"
@@ -135,21 +173,6 @@ ActiveRecord::Schema.define(version: 20160406194534) do
     t.datetime "submission_file_updated_at"
   end
   add_index "submission_files", ["submission_id"], :name=>"index_submission_files_on_submission_id", :using=>:btree
-
-  create_table "submissions", force: :cascade do |t|
-    t.integer  "challenge_id"
-    t.integer  "user_id"
-    t.integer  "team_id"
-    t.boolean  "evaluated",          :default=>false
-    t.float    "score"
-    t.string   "submission_type_cd"
-    t.datetime "created_at",         :null=>false
-    t.datetime "updated_at",         :null=>false
-    t.text     "description"
-  end
-  add_index "submissions", ["challenge_id"], :name=>"index_submissions_on_challenge_id", :using=>:btree
-  add_index "submissions", ["team_id"], :name=>"index_submissions_on_team_id", :using=>:btree
-  add_index "submissions", ["user_id"], :name=>"index_submissions_on_user_id", :using=>:btree
 
   create_table "team_users", force: :cascade do |t|
     t.integer  "team_id"

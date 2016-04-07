@@ -9,8 +9,10 @@
   display: block;
 }
 
+/*
+.navbar-nav > li > a:hover {  */
 
-.navbar-nav > li > a:hover {
+.navbar-underline:hover {
   color: black !important;
   border-bottom: 3px solid;
   border-bottom-color: #FF4E48;
@@ -36,6 +38,7 @@
   padding-bottom: 10px;
 }
 
+/*
 .navbar-nav > li > a {
   &.dropdown-avatar {
     position: relative;
@@ -44,7 +47,20 @@
     font-weight: 600;
     background-color: #fff;
   }
+} */
+
+.navbar-nav > li > a.btn {
+  margin-top: 35px;
+  margin-left: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  line-height: 30px;
 }
+
+.nav.navbar-nav.pull-right {
+  margin-right: 40px;
+}
+
 
 /*
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {

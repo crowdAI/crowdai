@@ -20,10 +20,7 @@ RSpec.describe Submission, type: :model do
 
     it { should respond_to(:evaluated) }
     it { should respond_to(:score) }
-    it { should respond_to(:ranking) }
     it { should respond_to(:submission_type) }
-    it { should respond_to(:withdrawn) }
-    it { should respond_to(:withdrawn_date) }
   end
 
   describe 'associations' do

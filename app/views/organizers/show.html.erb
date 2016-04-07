@@ -18,8 +18,8 @@
     </p>
 
     <ul class="list-group">
-      <% @competitions.each do |competition| %>
-      <%= render competition %>
+      <% @challenges.each do |challenge| %>
+      <%= render challenge %>
       <% end %>
     </ul>
 
@@ -36,11 +36,10 @@
       </thead>
 
       <tbody>
-        <% @organizer.users.each do |user| %>
+        <% @organizer.participants.each do |participant| %>
         <tr>
-          <td><%= user.organizer_primary %></td>
-          <td><%= user.name %></td>
-          <td><%= user.email %></td>
+          <td><%= participant.name %></td>
+          <td><%= participant.email %></td>
           <td><%#= link_to 'Remove', [@organizer, user], method: :nullify, data: { confirm: 'Remove this user from the administration of your organizer on CrowdAI?' } %></td>
         </tr>
         <% end %>

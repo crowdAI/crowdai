@@ -20,6 +20,7 @@
         </a>
         <ul class="dropdown-menu">
           <li><%= awesome_link('fa fa-cog', 'Profile', participant_path(current_participant)) %></li>
+          <li><%= awesome_link('fa fa-cog', 'Password', edit_participant_registration_path) %></li>
           <li><%= awesome_link('fa fa-sign-out', 'Sign out', destroy_participant_session_path, :method => :delete) %></li>
         </ul>
       </li>

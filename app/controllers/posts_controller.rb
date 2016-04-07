@@ -52,6 +52,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:topic_id, :user_id, :post, :votes, :flagged, :notify)
+      params.require(:post).permit(:topic_id, :participant_id, :post, :votes, :flagged, :notify)
     end
 end

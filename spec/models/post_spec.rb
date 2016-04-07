@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   # === Relations ===
   it { is_expected.to belong_to :topic }
-  it { is_expected.to belong_to :user }
+  it { is_expected.to belong_to :participant }
 
 
 
@@ -13,7 +13,7 @@ RSpec.describe Post, type: :model do
   # === Database (Columns) ===
   it { is_expected.to have_db_column :id }
   it { is_expected.to have_db_column :topic_id }
-  it { is_expected.to have_db_column :user_id }
+  it { is_expected.to have_db_column :participant_id }
   it { is_expected.to have_db_column :post }
   it { is_expected.to have_db_column :votes }
   it { is_expected.to have_db_column :flagged }
@@ -23,5 +23,5 @@ RSpec.describe Post, type: :model do
 
   # === Database (Indexes) ===
   it { is_expected.to have_db_index ["topic_id"] }
-  it { is_expected.to have_db_index ["user_id"] }
+  it { is_expected.to have_db_index ["participant_id"] }
 end

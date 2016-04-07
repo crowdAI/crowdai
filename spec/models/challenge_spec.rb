@@ -10,7 +10,7 @@ RSpec.describe Challenge, type: :model do
 
     it { should validate_presence_of(:challenge) }
     it { should validate_presence_of(:status) }
-    it { should validate_presence_of(:hosting_institution) }
+    it { should validate_presence_of(:organizer) }
 
     it "should allow valid values" do
       %w(draft running completed cancelled).each do |v|
@@ -40,8 +40,8 @@ RSpec.describe Challenge, type: :model do
 
     it { should respond_to(:timelines) }
     it { should respond_to(:submissions) }
-    it { should respond_to(:user_challenges) }
-    it { should respond_to(:users) }
+    it { should respond_to(:participant_challenges) }
+    it { should respond_to(:participants) }
   end
 
   describe 'specific validations' do
@@ -49,13 +49,13 @@ RSpec.describe Challenge, type: :model do
 
 
   # === Relations ===
-  it { is_expected.to belong_to :hosting_institution }
+  it { is_expected.to belong_to :organizer }
   it { is_expected.to have_one :image }
   it { is_expected.to have_many :dataset_files }
   it { is_expected.to have_many :timelines }
   it { is_expected.to have_many :submissions }
-  it { is_expected.to have_many :user_challenges }
-  it { is_expected.to have_many :users }
+  it { is_expected.to have_many :participant_challenges }
+  it { is_expected.to have_many :participants }
   it { is_expected.to have_many :leaderboards }
   it { is_expected.to have_many :topics }
 
@@ -66,7 +66,7 @@ RSpec.describe Challenge, type: :model do
 
   # === Database (Columns) ===
   it { is_expected.to have_db_column :id }
-  it { is_expected.to have_db_column :hosting_institution_id }
+  it { is_expected.to have_db_column :organizer_id }
   it { is_expected.to have_db_column :challenge }
   it { is_expected.to have_db_column :status_cd }
   it { is_expected.to have_db_column :description }
@@ -81,7 +81,7 @@ RSpec.describe Challenge, type: :model do
   it { is_expected.to have_db_column :submission_instructions }
 
   # === Database (Indexes) ===
-  it { is_expected.to have_db_index ["hosting_institution_id"] }
+  it { is_expected.to have_db_index ["organizer_id"] }
 
   # === Validations (Length) ===
 
@@ -89,5 +89,5 @@ RSpec.describe Challenge, type: :model do
   # === Validations (Presence) ===
   it { is_expected.to validate_presence_of :challenge }
   it { is_expected.to validate_presence_of :status }
-  it { is_expected.to validate_presence_of :hosting_institution }
+  it { is_expected.to validate_presence_of :organizer }
 end

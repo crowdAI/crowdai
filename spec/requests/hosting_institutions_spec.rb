@@ -1,9 +1,9 @@
 # == Schema Information
 #
-# Table name: hosting_institutions
+# Table name: organizers
 #
 #  id             :integer          not null, primary key
-#  institution    :string
+#  organizer    :string
 #  address        :text
 #  description    :text
 #  contact_person :string
@@ -15,10 +15,10 @@
 
 require 'rails_helper'
 
-RSpec.describe "HostingInstitutions", type: :request do
-  describe "GET /hosting_institutions" do
+RSpec.describe "Organizers", type: :request do
+  describe "GET /organizers" do
     it "works! (now write some real specs)" do
-      get hosting_institutions_path
+      get organizers_path
       expect(response).to have_http_status(200)
     end
   end

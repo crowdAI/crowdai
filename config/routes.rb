@@ -1,33 +1,32 @@
 Rails.application.routes.draw do
-  resources :downloads
   get 'markdown_editor/create'
   get 'markdown_editor/show'
 
   resources :posts, except: [:show]
   resources :topics
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
-  devise_for :users, except: [:update]
-  resources :users, only: [:show, :edit, :update, :destroy]
+  devise_for :participants, except: [:update]
+  resources :participants, only: [:show, :edit, :update, :destroy]
 
   # Administrate
   namespace :admin do
-    resources :users
+    resources :participants
     resources :challenges
     resources :dataset_files
-    resources :hosting_institutions
+    resources :organizers
     resources :submissions
     resources :submission_files
     resources :teams
-    resources :team_users
+    resources :team_participants
     resources :timelines
-    resources :user_challenges
+    resources :participant_challenges
     resources :topics
-    root to: 'users#index'
+    root to: 'participants#index'
   end
 
   get 'landing_page/index'
 
-  resources :hosting_institutions do
+  resources :organizers do
     resources :challenges
   end
 
@@ -47,7 +46,7 @@ Rails.application.routes.draw do
   # resources :teams
 
   # different home for public / auth users
-  authenticated :user do
+  authenticated :participant do
     root to: 'challenges#index', as: '/'
   end
   root to: 'landing_page#index', as: '/'

@@ -8,7 +8,7 @@ RSpec.describe Submission, type: :model do
   describe 'simple model pre-checks' do
 
     it "should allow valid values" do
-      %w(user team).each do |v|
+      %w(participant team).each do |v|
         should allow_value(v).for(:submission_type)
       end
     end
@@ -30,7 +30,7 @@ RSpec.describe Submission, type: :model do
     subject { @submission }
 
     it { should respond_to(:challenge) }
-    it { should respond_to(:user) }
+    it { should respond_to(:participant) }
     it { should respond_to(:team) }
     it { should respond_to(:submission_files) }
   end
@@ -40,7 +40,7 @@ RSpec.describe Submission, type: :model do
 
   # === Relations ===
   it { is_expected.to belong_to :challenge }
-  it { is_expected.to belong_to :user }
+  it { is_expected.to belong_to :participant }
   it { is_expected.to belong_to :team }
 
   it { is_expected.to have_many :submission_files }
@@ -51,7 +51,7 @@ RSpec.describe Submission, type: :model do
   # === Database (Columns) ===
   it { is_expected.to have_db_column :id }
   it { is_expected.to have_db_column :challenge_id }
-  it { is_expected.to have_db_column :user_id }
+  it { is_expected.to have_db_column :participant_id }
   it { is_expected.to have_db_column :team_id }
   it { is_expected.to have_db_column :evaluated }
   it { is_expected.to have_db_column :score }
@@ -63,7 +63,7 @@ RSpec.describe Submission, type: :model do
   # === Database (Indexes) ===
   it { is_expected.to have_db_index ["challenge_id"] }
   it { is_expected.to have_db_index ["team_id"] }
-  it { is_expected.to have_db_index ["user_id"] }
+  it { is_expected.to have_db_index ["participant_id"] }
 
   # === Validations (Length) ===
 

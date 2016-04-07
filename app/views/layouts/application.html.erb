@@ -17,7 +17,7 @@
    <% end %>
 </head>
 <body data-no-turbolink="false">
-  <% if user_signed_in? %>
+  <% if participant_signed_in? %>
     <%= render 'layouts/authenticated_layout' %>
   <% else %>
     <%= render 'layouts/public_layout' %>

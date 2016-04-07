@@ -1,0 +1,10 @@
+<div class="container-medium-grey">
+
+<% if @participant.pending_reconfirmation? %>
+  <%= render 'participants/edit/account_pending' %>
+<% else %>
+  <%= render 'participants/edit/header_fields' %>
+<% end %>
+
+</div>
+<br/><br/>

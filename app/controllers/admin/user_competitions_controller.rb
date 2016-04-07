@@ -1,16 +1,16 @@
 module Admin
-  class UserChallengesController < Admin::ApplicationController
+  class ParticipantChallengesController < Admin::ApplicationController
     # To customize the behavior of this controller,
     # simply overwrite any of the RESTful actions. For example:
     #
     # def index
     #   super
-    #   @resources = UserChallenge.all.paginate(10, params[:page])
+    #   @resources = ParticipantChallenge.all.paginate(10, params[:page])
     # end
 
     # Define a custom finder by overriding the `find_resource` method:
     # def find_resource(param)
-    #   UserChallenge.find_by!(slug: param)
+    #   ParticipantChallenge.find_by!(slug: param)
     # end
 
     # See https://administrate-docs.herokuapp.com/customizing_controller_actions

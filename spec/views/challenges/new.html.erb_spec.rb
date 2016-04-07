@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "challenges/new", type: :view do
   before(:each) do
     assign(:challenge, Challenge.new(
-      :hosting_institution => nil,
+      :organizer => nil,
       :challenge => "",
       :status_cd => "MyString",
       :description => "MyText",
@@ -20,7 +20,7 @@ RSpec.describe "challenges/new", type: :view do
 
     assert_select "form[action=?][method=?]", challenges_path, "post" do
 
-      assert_select "input#challenge_hosting_institution_id[name=?]", "challenge[hosting_institution_id]"
+      assert_select "input#challenge_organizer_id[name=?]", "challenge[organizer_id]"
 
       assert_select "input#challenge_challenge[name=?]", "challenge[challenge]"
 

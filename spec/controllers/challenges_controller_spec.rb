@@ -7,13 +7,13 @@ RSpec.describe ChallengesController, type: :controller do
   }
 
   let(:invalid_attributes) {
-    FactoryGirl.build(:challenge, hosting_institution_id: nil).attributes
+    FactoryGirl.build(:challenge, organizer_id: nil).attributes
   }
 
   let(:valid_session) { {} }
 
   before(:each) do
-    sign_in
+    double_sign_in
   end
 
   describe "GET #index" do
@@ -139,18 +139,18 @@ RSpec.describe ChallengesController, type: :controller do
   end
 
   # === Routes (REST) ===
-  it { should route(:get, '/hosting_institutions/1/challenges/new').to('challenges#new', {:hosting_institution_id=>"1"}) }
-  it { should route(:get, '/hosting_institutions/1/challenges').to('challenges#index', {:hosting_institution_id=>"1"}) }
-  it { should route(:patch, '/hosting_institutions/1/challenges/1').to('challenges#update', {:hosting_institution_id=>"1", :id=>"1"}) }
-  it { should route(:post, '/hosting_institutions/1/challenges').to('challenges#create', {:hosting_institution_id=>"1"}) }
-  it { should route(:get, '/hosting_institutions/1/challenges/1/edit').to('challenges#edit', {:hosting_institution_id=>"1", :id=>"1"}) }
-  it { should route(:delete, '/hosting_institutions/1/challenges/1').to('challenges#destroy', {:hosting_institution_id=>"1", :id=>"1"}) }
-  it { should route(:get, '/hosting_institutions/1/challenges/1').to('challenges#show', {:hosting_institution_id=>"1", :id=>"1"}) }
+  it { should route(:get, '/organizers/1/challenges/new').to('challenges#new', {:organizer_id=>"1"}) }
+  it { should route(:get, '/organizers/1/challenges').to('challenges#index', {:organizer_id=>"1"}) }
+  it { should route(:patch, '/organizers/1/challenges/1').to('challenges#update', {:organizer_id=>"1", :id=>"1"}) }
+  it { should route(:post, '/organizers/1/challenges').to('challenges#create', {:organizer_id=>"1"}) }
+  it { should route(:get, '/organizers/1/challenges/1/edit').to('challenges#edit', {:organizer_id=>"1", :id=>"1"}) }
+  it { should route(:delete, '/organizers/1/challenges/1').to('challenges#destroy', {:organizer_id=>"1", :id=>"1"}) }
+  it { should route(:get, '/organizers/1/challenges/1').to('challenges#show', {:organizer_id=>"1", :id=>"1"}) }
   # === Callbacks (Before) ===
   it { should use_before_filter(:verify_authenticity_token) }
   it { should use_before_filter(:set_xhr_redirected_to) }
   it { should use_before_filter(:set_request_method_cookie) }
-  it { should use_before_filter(:authenticate_user!) }
+  it { should use_before_filter(:authenticate_participant!) }
   it { should use_before_filter(:configure_permitted_parameters) }
   it { should use_before_filter(:set_challenge) }
   # === Callbacks (After) ===

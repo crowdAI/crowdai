@@ -4,7 +4,7 @@ RSpec.describe "challenges/index", type: :view do
   before(:each) do
     assign(:challenges, [
       Challenge.create!(
-        :hosting_institution => nil,
+        :organizer => nil,
         :challenge => "",
         :status_cd => "Status Cd",
         :description => "MyText",
@@ -15,7 +15,7 @@ RSpec.describe "challenges/index", type: :view do
         :resources => "MyText"
       ),
       Challenge.create!(
-        :hosting_institution => nil,
+        :organizer => nil,
         :challenge => "",
         :status_cd => "Status Cd",
         :description => "MyText",

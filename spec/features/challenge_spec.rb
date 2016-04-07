@@ -4,36 +4,36 @@ require 'pp'
 RSpec.feature "challenge", type: :feature do
   before do
     #@challenge = build(:challenge)
-    @hosting_institution = create(:hosting_institution)
-    @hosting_user = create(:user, hosting_institution: @hosting_institution)
-    #pp @hosting_user
+    @organizer = create(:organizer)
+    @hosting_participant = create(:participant, organizer: @organizer)
+    #pp @hosting_participant
   end
 
-  let(:hosting_institution){ create :hosting_institution }
+  let(:organizer){ create :organizer }
 
   describe "challenge creation authority" do
-    scenario "ordinary user cannot create a challenge" do
-      let(:user){ create :user }
+    scenario "ordinary participant cannot create a challenge" do
+      let(:participant){ create :participant }
 
-      visit hosting_institution_path(:hosting_institution)
+      visit organizer_path(:organizer)
       expect(page).to_not have_selector '.btn', text: '+ New Challenge'
     end
 
-    scenario "user cannot create a challenge for a different hosting institution" do
-      let(:user){ create :user }
+    scenario "participant cannot create a challenge for a different organizer" do
+      let(:participant){ create :participant }
 
-      visit hosting_institution_path(:hosting_institution)
+      visit organizer_path(:organizer)
       expect(page).to_not have_selector '.btn', text: '+ New Challenge'
     end
 
-    scenario "user associated with the hosting institution can create a challenge" do
-      let(:user){ create :user }
+    scenario "participant associated with the organizer can create a challenge" do
+      let(:participant){ create :participant }
 
-      visit hosting_institution_path(:hosting_institution)
+      visit organizer_path(:organizer)
       expect(page).to have_selector '.btn', text: '+ New Challenge'
     end
 
-    scenario "only hosting institutions in active status can create a challenge" do
+    scenario "only organizers in active status can create a challenge" do
     end
   end
 
@@ -57,26 +57,26 @@ RSpec.feature "challenge", type: :feature do
 
 
   describe 'challenge CRUD actions' do
-    scenario "any other user associated with the hosting institution can modify the challenge" do
+    scenario "any other participant associated with the organizer can modify the challenge" do
     end
 
   end
 
 
   describe "running a challenge" do
-    scenario "user can enter a running challenge" do
+    scenario "participant can enter a running challenge" do
     end
 
-    scenario "user can enter a running challenge twice" do
+    scenario "participant can enter a running challenge twice" do
     end
 
-    scenario "user can leave a running challenge" do
+    scenario "participant can leave a running challenge" do
     end
 
-    scenario "user cannot leave a completed challenge" do
+    scenario "participant cannot leave a completed challenge" do
     end
 
-    scenario "user cannot leave a cancelled challenge" do
+    scenario "participant cannot leave a cancelled challenge" do
     end
   end
 

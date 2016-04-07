@@ -10,17 +10,17 @@
 
       <%= render 'layouts/navbars/navbar_menu' %>
 
-      <% if current_user.admin? %>
+      <% if current_participant.admin? %>
       <li><%= link_to 'Admin', admin_root_path %></li>
       <% end %>
 
       <li class="dropdown">
         <a href="#" id="avatar-menu" class="dropdown-toggle profile-image" data-toggle="dropdown">
-          <%= image_tag avatar_url(current_user,'medium'), size: '30x30', class: "img-circle navbar-profile-img" %><%= current_user.name %><b class="caret"></b>
+          <%= image_tag avatar_url(current_participant,'medium'), size: '30x30', class: "img-circle navbar-profile-img" %><%= current_participant.name %><b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li><%= awesome_link('fa fa-cog', 'Profile', user_path(current_user)) %></li>
-          <li><%= awesome_link('fa fa-sign-out', 'Sign out', destroy_user_session_path, :method => :delete) %></li>
+          <li><%= awesome_link('fa fa-cog', 'Profile', participant_path(current_participant)) %></li>
+          <li><%= awesome_link('fa fa-sign-out', 'Sign out', destroy_participant_session_path, :method => :delete) %></li>
         </ul>
       </li>
     </ul>

@@ -4,7 +4,7 @@ class SubmissionsController < ApplicationController
   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
 
   def index
-    @submissions = @challenge.submissions.where(user_id: current_user)
+    @submissions = @challenge.submissions.where(participant_id: current_participant)
   end
 
   def show
@@ -48,7 +48,7 @@ class SubmissionsController < ApplicationController
   end
 
   def submissions_remaining
-    submissions_today = Submission.where("user_id = ? and created_at >= ?", current_user.id, Time.now - 24.hours).count
+    submissions_today = Submission.where("participant_id = ? and created_at >= ?", current_participant.id, Time.now - 24.hours).count
     return 5 - submissions_today
   end
 
@@ -62,7 +62,7 @@ class SubmissionsController < ApplicationController
     end
 
     def submission_params
-      params.require(:submission).permit(:challenge_id, :user_id, :team_id, :description, :evaluated, :score, :submission_type,
+      params.require(:submission).permit(:challenge_id, :participant_id, :team_id, :description, :evaluated, :score, :submission_type,
                                   submission_files_attributes: [:id, :seq, :submission_file, :_delete])
     end
 

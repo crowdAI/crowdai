@@ -4,7 +4,7 @@ RSpec.describe "topics/new", type: :view do
   before(:each) do
     assign(:topic, Topic.new(
       :challenge => nil,
-      :user => nil,
+      :participant => nil,
       :topic => "MyString",
       :sticky => false,
       :views => 1,
@@ -19,7 +19,7 @@ RSpec.describe "topics/new", type: :view do
 
       assert_select "input#topic_challenge_id[name=?]", "topic[challenge_id]"
 
-      assert_select "input#topic_user_id[name=?]", "topic[user_id]"
+      assert_select "input#topic_participant_id[name=?]", "topic[participant_id]"
 
       assert_select "input#topic_topic[name=?]", "topic[topic]"
 

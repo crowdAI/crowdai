@@ -1,0 +1,47 @@
+<div class="container-medium-grey">
+  <br/><br/>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <%= image_tag avatar_url(current_participant,'medium'), size: '100x100', class: "img-circle" %>
+      <% if current_participant == @participant || current_participant.admin? %><br/>
+      <div id="button-container">
+        <%= glyphicon_link 'pencil', nil, edit_participant_path(@participant), class: 'btn btn-primary btn-circle' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h1><%= @participant.name %></h1>
+      <h2>Last login
+        <%= time_ago_in_words(@participant.last_sign_in_at) %>
+        ago.</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 text-center">
+      <%= markdown(@participant.bio) %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <ul>
+        <% if @participant.website.present? %>
+        <%= glyphicon_link 'user', 'My website', @participant.website, class: 'btn btn-primary outline' %>
+        <% end %>
+        <% if @participant.github.present? %>
+        <%= awesome_link 'fa-github', 'Github', @participant.github, class: 'btn btn-info btn-primary outline' %>
+        <% end %>
+        <% if @participant.linkedin.present? %>
+        <%= awesome_link 'fa-linkedin', 'LinkedIn', @participant.linkedin, class: 'btn btn-info btn-primary outline' %>
+        <% end %>
+        <% if @participant.twitter.present? %>
+        <%= awesome_link 'fa-twitter', 'Twitter', @participant.twitter, class: 'btn btn-info btn-primary outline' %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+</div>

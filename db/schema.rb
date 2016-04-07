@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407074506) do
+ActiveRecord::Schema.define(version: 20160407112710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20160407074506) do
   end
 
   create_table "challenges", force: :cascade do |t|
-    t.integer  "hosting_institution_id"
+    t.integer  "organizer_id"
     t.string   "challenge"
     t.string   "status_cd",               :default=>"draft"
     t.text     "description"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20160407074506) do
     t.text     "dataset_description"
     t.text     "submission_instructions"
   end
-  add_index "challenges", ["hosting_institution_id"], :name=>"index_challenges_on_hosting_institution_id", :using=>:btree
+  add_index "challenges", ["organizer_id"], :name=>"index_challenges_on_organizer_id", :using=>:btree
 
   create_table "dataset_files", force: :cascade do |t|
     t.integer  "seq"
@@ -89,15 +89,6 @@ ActiveRecord::Schema.define(version: 20160407074506) do
   add_index "friendly_id_slugs", ["sluggable_id"], :name=>"index_friendly_id_slugs_on_sluggable_id", :using=>:btree
   add_index "friendly_id_slugs", ["sluggable_type"], :name=>"index_friendly_id_slugs_on_sluggable_type", :using=>:btree
 
-  create_table "hosting_institutions", force: :cascade do |t|
-    t.string   "institution"
-    t.text     "address"
-    t.text     "description"
-    t.datetime "created_at",  :null=>false
-    t.datetime "updated_at",  :null=>false
-    t.boolean  "approved",    :default=>false
-  end
-
   create_table "images", force: :cascade do |t|
     t.integer  "imageable_id"
     t.string   "imageable_type"
@@ -113,7 +104,7 @@ ActiveRecord::Schema.define(version: 20160407074506) do
 
   create_table "submissions", force: :cascade do |t|
     t.integer  "challenge_id"
-    t.integer  "user_id"
+    t.integer  "participant_id"
     t.integer  "team_id"
     t.boolean  "evaluated",          :default=>false
     t.float    "score"
@@ -123,44 +114,104 @@ ActiveRecord::Schema.define(version: 20160407074506) do
     t.text     "description"
   end
   add_index "submissions", ["challenge_id"], :name=>"index_submissions_on_challenge_id", :using=>:btree
+  add_index "submissions", ["participant_id"], :name=>"index_submissions_on_participant_id", :using=>:btree
   add_index "submissions", ["team_id"], :name=>"index_submissions_on_team_id", :using=>:btree
-  add_index "submissions", ["user_id"], :name=>"index_submissions_on_user_id", :using=>:btree
 
   create_view "leaderboards", <<-'END_VIEW_LEADERBOARDS', :force => true
 SELECT s.id,
     s.challenge_id,
-    s.user_id,
-    u.name,
+    s.participant_id,
+    p.name,
     NULL::integer AS team_id,
     s.score,
     cnt.entries,
     s.created_at,
     s.updated_at
    FROM submissions s,
-    users u,
+    participants p,
     ( SELECT submissions.challenge_id,
-            submissions.user_id,
+            submissions.participant_id,
             submissions.team_id,
             count(*) AS entries
            FROM submissions
-          GROUP BY submissions.challenge_id, submissions.user_id, submissions.team_id) cnt
-  WHERE ((u.id = s.user_id) AND (s.evaluated = true) AND (s.user_id = cnt.user_id) AND (s.challenge_id = cnt.challenge_id) AND (s.score = ( SELECT max(m.score) AS max
+          GROUP BY submissions.challenge_id, submissions.participant_id, submissions.team_id) cnt
+  WHERE ((p.id = s.participant_id) AND (s.evaluated = true) AND (s.participant_id = cnt.participant_id) AND (s.challenge_id = cnt.challenge_id) AND (s.score = ( SELECT max(m.score) AS max
            FROM submissions m
-          WHERE ((m.challenge_id = s.challenge_id) AND (m.user_id = s.user_id) AND (m.evaluated = true)))))
+          WHERE ((m.challenge_id = s.challenge_id) AND (m.participant_id = s.participant_id) AND (m.evaluated = true)))))
   END_VIEW_LEADERBOARDS
+
+  create_table "organizers", force: :cascade do |t|
+    t.string   "organizer"
+    t.text     "address"
+    t.text     "description"
+    t.datetime "created_at",  :null=>false
+    t.datetime "updated_at",  :null=>false
+    t.boolean  "approved",    :default=>false
+  end
+
+  create_table "participant_challenges", force: :cascade do |t|
+    t.integer  "participant_id"
+    t.integer  "challenge_id"
+    t.boolean  "rules_accepted"
+    t.datetime "created_at",     :null=>false
+    t.datetime "updated_at",     :null=>false
+  end
+  add_index "participant_challenges", ["challenge_id"], :name=>"index_participant_challenges_on_challenge_id", :using=>:btree
+  add_index "participant_challenges", ["participant_id"], :name=>"index_participant_challenges_on_participant_id", :using=>:btree
+
+  create_table "participants", force: :cascade do |t|
+    t.string   "email",                  :default=>"", :null=>false
+    t.string   "encrypted_password",     :default=>"", :null=>false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default=>0, :null=>false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.integer  "failed_attempts",        :default=>0, :null=>false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.boolean  "admin",                  :default=>false
+    t.boolean  "verified",               :default=>false
+    t.date     "verification_date"
+    t.string   "country"
+    t.string   "city"
+    t.string   "timezone"
+    t.datetime "created_at",             :null=>false
+    t.datetime "updated_at",             :null=>false
+    t.string   "unconfirmed_email"
+    t.integer  "organizer_id"
+    t.string   "name"
+    t.boolean  "email_public",           :default=>false
+    t.text     "bio"
+    t.string   "website"
+    t.string   "github"
+    t.string   "linkedin"
+    t.string   "twitter"
+  end
+  add_index "participants", ["confirmation_token"], :name=>"index_participants_on_confirmation_token", :unique=>true, :using=>:btree
+  add_index "participants", ["email"], :name=>"index_participants_on_email", :unique=>true, :using=>:btree
+  add_index "participants", ["organizer_id"], :name=>"index_participants_on_organizer_id", :using=>:btree
+  add_index "participants", ["reset_password_token"], :name=>"index_participants_on_reset_password_token", :unique=>true, :using=>:btree
+  add_index "participants", ["unlock_token"], :name=>"index_participants_on_unlock_token", :unique=>true, :using=>:btree
 
   create_table "posts", force: :cascade do |t|
     t.integer  "topic_id"
-    t.integer  "user_id"
+    t.integer  "participant_id"
     t.text     "post"
-    t.integer  "votes",      :default=>0
-    t.boolean  "flagged",    :default=>false
-    t.boolean  "notify",     :default=>true
-    t.datetime "created_at", :null=>false
-    t.datetime "updated_at", :null=>false
+    t.integer  "votes",          :default=>0
+    t.boolean  "flagged",        :default=>false
+    t.boolean  "notify",         :default=>true
+    t.datetime "created_at",     :null=>false
+    t.datetime "updated_at",     :null=>false
   end
+  add_index "posts", ["participant_id"], :name=>"index_posts_on_participant_id", :using=>:btree
   add_index "posts", ["topic_id"], :name=>"index_posts_on_topic_id", :using=>:btree
-  add_index "posts", ["user_id"], :name=>"index_posts_on_user_id", :using=>:btree
 
   create_table "submission_files", force: :cascade do |t|
     t.integer  "submission_id"
@@ -174,16 +225,16 @@ SELECT s.id,
   end
   add_index "submission_files", ["submission_id"], :name=>"index_submission_files_on_submission_id", :using=>:btree
 
-  create_table "team_users", force: :cascade do |t|
+  create_table "team_participants", force: :cascade do |t|
     t.integer  "team_id"
-    t.integer  "user_id"
+    t.integer  "participant_id"
     t.date     "from_date"
     t.date     "thru_date"
-    t.datetime "created_at", :null=>false
-    t.datetime "updated_at", :null=>false
+    t.datetime "created_at",     :null=>false
+    t.datetime "updated_at",     :null=>false
   end
-  add_index "team_users", ["team_id"], :name=>"index_team_users_on_team_id", :using=>:btree
-  add_index "team_users", ["user_id"], :name=>"index_team_users_on_user_id", :using=>:btree
+  add_index "team_participants", ["participant_id"], :name=>"index_team_participants_on_participant_id", :using=>:btree
+  add_index "team_participants", ["team_id"], :name=>"index_team_participants_on_team_id", :using=>:btree
 
   create_table "teams", force: :cascade do |t|
     t.string   "team"
@@ -204,82 +255,30 @@ SELECT s.id,
 
   create_table "topics", force: :cascade do |t|
     t.integer  "challenge_id"
-    t.integer  "user_id"
+    t.integer  "participant_id"
     t.string   "topic"
-    t.boolean  "sticky",       :default=>false
-    t.integer  "views",        :default=>0
-    t.integer  "posts_count",  :default=>0
-    t.datetime "created_at",   :null=>false
-    t.datetime "updated_at",   :null=>false
-  end
-  add_index "topics", ["challenge_id"], :name=>"index_topics_on_challenge_id", :using=>:btree
-  add_index "topics", ["user_id"], :name=>"index_topics_on_user_id", :using=>:btree
-
-  create_table "user_challenges", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "challenge_id"
-    t.boolean  "rules_accepted"
+    t.boolean  "sticky",         :default=>false
+    t.integer  "views",          :default=>0
+    t.integer  "posts_count",    :default=>0
     t.datetime "created_at",     :null=>false
     t.datetime "updated_at",     :null=>false
   end
-  add_index "user_challenges", ["challenge_id"], :name=>"index_user_challenges_on_challenge_id", :using=>:btree
-  add_index "user_challenges", ["user_id"], :name=>"index_user_challenges_on_user_id", :using=>:btree
+  add_index "topics", ["challenge_id"], :name=>"index_topics_on_challenge_id", :using=>:btree
+  add_index "topics", ["participant_id"], :name=>"index_topics_on_participant_id", :using=>:btree
 
-  create_table "users", force: :cascade do |t|
-    t.string   "email",                       :default=>"", :null=>false
-    t.string   "encrypted_password",          :default=>"", :null=>false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",               :default=>0, :null=>false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.integer  "failed_attempts",             :default=>0, :null=>false
-    t.string   "unlock_token"
-    t.datetime "locked_at"
-    t.boolean  "admin",                       :default=>false
-    t.boolean  "verified",                    :default=>false
-    t.date     "verification_date"
-    t.string   "country"
-    t.string   "city"
-    t.string   "timezone"
-    t.datetime "created_at",                  :null=>false
-    t.datetime "updated_at",                  :null=>false
-    t.string   "unconfirmed_email"
-    t.integer  "hosting_institution_id"
-    t.boolean  "hosting_institution_primary", :default=>false
-    t.string   "name"
-    t.boolean  "email_public",                :default=>false
-    t.text     "bio"
-    t.string   "website"
-    t.string   "github"
-    t.string   "linkedin"
-    t.string   "twitter"
-  end
-  add_index "users", ["confirmation_token"], :name=>"index_users_on_confirmation_token", :unique=>true, :using=>:btree
-  add_index "users", ["email"], :name=>"index_users_on_email", :unique=>true, :using=>:btree
-  add_index "users", ["hosting_institution_id"], :name=>"index_users_on_hosting_institution_id", :using=>:btree
-  add_index "users", ["reset_password_token"], :name=>"index_users_on_reset_password_token", :unique=>true, :using=>:btree
-  add_index "users", ["unlock_token"], :name=>"index_users_on_unlock_token", :unique=>true, :using=>:btree
-
-  add_foreign_key "challenges", "hosting_institutions"
+  add_foreign_key "challenges", "organizers"
+  add_foreign_key "participant_challenges", "challenges"
+  add_foreign_key "participant_challenges", "participants"
+  add_foreign_key "participants", "organizers"
+  add_foreign_key "posts", "participants"
   add_foreign_key "posts", "topics"
-  add_foreign_key "posts", "users"
   add_foreign_key "submission_files", "submissions"
   add_foreign_key "submissions", "challenges"
+  add_foreign_key "submissions", "participants"
   add_foreign_key "submissions", "teams"
-  add_foreign_key "submissions", "users"
-  add_foreign_key "team_users", "teams"
-  add_foreign_key "team_users", "users"
+  add_foreign_key "team_participants", "participants"
+  add_foreign_key "team_participants", "teams"
   add_foreign_key "timelines", "challenges"
   add_foreign_key "topics", "challenges"
-  add_foreign_key "topics", "users"
-  add_foreign_key "user_challenges", "challenges"
-  add_foreign_key "user_challenges", "users"
-  add_foreign_key "users", "hosting_institutions"
+  add_foreign_key "topics", "participants"
 end

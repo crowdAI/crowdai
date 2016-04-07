@@ -1,0 +1,14 @@
+<div class="tab-pane" id="challenges">
+
+  <% if @participant.challenges.any? %>
+    <ul class="list-group">
+      <% @participant.challenges.each do |comp| %>
+        <li class="list-group-item"><%= comp.challenge %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <br/>
+    <h3><%= @participant.name %> has not yet entered any challenges.</h3>
+  <% end %>
+
+</div>

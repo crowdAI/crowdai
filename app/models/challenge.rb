@@ -1,13 +1,13 @@
 class Challenge < ActiveRecord::Base
-  belongs_to :hosting_institution
+  belongs_to :organizer
   has_many :dataset_files, dependent: :destroy
   accepts_nested_attributes_for :dataset_files, reject_if: :all_blank, allow_destroy: true
 
 
   has_many :timelines, dependent: :destroy
   has_many :submissions, dependent: :destroy
-  has_many :user_challenges
-  has_many :users, :through => :user_challenges
+  has_many :participant_challenges
+  has_many :participants, :through => :participant_challenges
   has_many :leaderboards
   has_many :topics
 
@@ -20,7 +20,7 @@ class Challenge < ActiveRecord::Base
   as_enum :status, [:draft, :running, :completed, :cancelled], map: :string
   validates_presence_of :challenge
   validates_presence_of :status
-  validates_presence_of :hosting_institution
+  validates_presence_of :organizer
 
 
   def running?

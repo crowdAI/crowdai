@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "hosting_institutions/new", type: :view do
+RSpec.describe "organizers/new", type: :view do
   before(:each) do
-    assign(:hosting_institution, HostingInstitution.new(
-      :institution => "MyString",
+    assign(:organizer, Organizer.new(
+      :organizer => "MyString",
       :address => "MyText",
       :description => "MyText",
       :contact_person => "MyString",
@@ -12,22 +12,22 @@ RSpec.describe "hosting_institutions/new", type: :view do
     ))
   end
 
-  it "renders new hosting_institution form" do
+  it "renders new organizer form" do
     render
 
-    assert_select "form[action=?][method=?]", hosting_institutions_path, "post" do
+    assert_select "form[action=?][method=?]", organizers_path, "post" do
 
-      assert_select "input#hosting_institution_institution[name=?]", "hosting_institution[institution]"
+      assert_select "input#organizer_organizer[name=?]", "organizer[organizer]"
 
-      assert_select "textarea#hosting_institution_address[name=?]", "hosting_institution[address]"
+      assert_select "textarea#organizer_address[name=?]", "organizer[address]"
 
-      assert_select "textarea#hosting_institution_description[name=?]", "hosting_institution[description]"
+      assert_select "textarea#organizer_description[name=?]", "organizer[description]"
 
-      assert_select "input#hosting_institution_contact_person[name=?]", "hosting_institution[contact_person]"
+      assert_select "input#organizer_contact_person[name=?]", "organizer[contact_person]"
 
-      assert_select "input#hosting_institution_contact_phone[name=?]", "hosting_institution[contact_phone]"
+      assert_select "input#organizer_contact_phone[name=?]", "organizer[contact_phone]"
 
-      assert_select "input#hosting_institution_contact_email[name=?]", "hosting_institution[contact_email]"
+      assert_select "input#organizer_contact_email[name=?]", "organizer[contact_email]"
     end
   end
 end

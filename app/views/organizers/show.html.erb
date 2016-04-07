@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h1><%= @organizer.organizer %></h1>
+
+    <span class="pull-right">
+      <%= link_to '+ New Competition', new_challenge_path, class: 'btn btn-primary' %>
+      <%= link_to 'Edit Details', edit_organizer_path(@organizer), class: 'btn btn-info' %>
+    </span>
+
+    <p>
+      <strong>Address:</strong>
+      <%= @organizer.address %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @organizer.description %>
+    </p>
+
+    <ul class="list-group">
+      <% @competitions.each do |competition| %>
+      <%= render competition %>
+      <% end %>
+    </ul>
+
+    <hr/>
+    <h1>Administrative users</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th>name</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @organizer.users.each do |user| %>
+        <tr>
+          <td><%= user.organizer_primary %></td>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%#= link_to 'Remove', [@organizer, user], method: :nullify, data: { confirm: 'Remove this user from the administration of your organizer on CrowdAI?' } %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>

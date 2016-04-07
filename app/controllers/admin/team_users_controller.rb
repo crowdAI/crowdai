@@ -1,16 +1,16 @@
 module Admin
-  class TeamUsersController < Admin::ApplicationController
+  class TeamParticipantsController < Admin::ApplicationController
     # To customize the behavior of this controller,
     # simply overwrite any of the RESTful actions. For example:
     #
     # def index
     #   super
-    #   @resources = TeamUser.all.paginate(10, params[:page])
+    #   @resources = TeamParticipant.all.paginate(10, params[:page])
     # end
 
     # Define a custom finder by overriding the `find_resource` method:
     # def find_resource(param)
-    #   TeamUser.find_by!(slug: param)
+    #   TeamParticipant.find_by!(slug: param)
     # end
 
     # See https://administrate-docs.herokuapp.com/customizing_controller_actions

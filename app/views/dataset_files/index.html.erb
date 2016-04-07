@@ -25,7 +25,7 @@
 
     <br>
 
-    <% if current_user.admin? || current_user.hosting_institution_id = @challenge.hosting_institution_id %>
+    <% if current_participant.admin? || current_participant.organizer_id = @challenge.organizer_id %>
       <%= link_to 'Add file', new_challenge_dataset_file_path(@challenge), class: 'btn btn-primary' %>
     <% end %>
   </div>

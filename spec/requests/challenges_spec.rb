@@ -3,7 +3,7 @@
 # Table name: challenges
 #
 #  id                     :integer          not null, primary key
-#  hosting_institution_id :integer
+#  organizer_id :integer
 #  challenge            :string
 #  start_date             :date
 #  end_date               :date

@@ -36,7 +36,7 @@
     <div class="col-md-10 col-md-offset-1">
 
       <%= simple_form_for @challenge do |f| %>
-        <%= f.hidden_field :hosting_institution_id, value: current_user.hosting_institution_id %>
+        <%= f.hidden_field :organizer_id, value: current_participant.organizer_id %>
 
         <!-- Tab panes -->
         <div class="tab-content">

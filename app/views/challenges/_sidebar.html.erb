@@ -11,7 +11,7 @@
       <li><%= glyphicon_link 'signal', 'Dataset', challenge_dataset_files_path(@challenge) %></li>
       <li><%= glyphicon_link 'inbox', 'Submit Entry', challenge_submissions_path(@challenge) %></li>
       <hr/>
-      <% if current_user.hosting_institution_id == @challenge.hosting_institution_id %>
+      <% if current_participant.organizer_id == @challenge.organizer_id %>
         <li><%= glyphicon_link 'pencil', 'Edit', edit_challenge_path(@challenge) %></li>
         <li><%= glyphicon_link 'trash', 'Delete', @challenge, method: :delete,
                               data: { confirm: 'Permanently delete this challenge from crowdAI?' } %></li>

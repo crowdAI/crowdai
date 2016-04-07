@@ -1,0 +1,18 @@
+<div class="tab-pane" id="activity">
+  <br/>
+  <% if @participant.posts.any? %>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h3>Discussions</h3>
+        <ul class="list-group">
+          <% @participant.posts.each do |post| %>
+            <li class="list-group-item"><%= markdown(post.post) %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% else %>
+    <br/>
+    <h3><%= @participant.name %> has not yet made any posts.</h3>
+  <% end %>
+</div>

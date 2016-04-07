@@ -1,4 +1,4 @@
-class ChallengesController < ApplicationController
+  class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -45,12 +45,12 @@ class ChallengesController < ApplicationController
 
     def challenge_params
       params.require(:challenge)
-            .permit(:hosting_institution_id, :challenge, :start_date, :end_date,
+            .permit(:organizer_id, :challenge, :start_date, :end_date,
                     :status, :description, :evaluation, :evaluation_criteria,
                     :rules, :prizes, :resources, :submission_instructions,
                     dataset_attributes: [:id, :challenge_id, :description, :_destroy],
                     timelines_attributes: [:id, :challenge_id, :seq, :event, :event_time, :_destroy ],
-                    submissions_attributes: [:id, :challenge_id, :user_id, :team_id, :evaluated, :score,
+                    submissions_attributes: [:id, :challenge_id, :participant_id, :team_id, :evaluated, :score,
                                             :ranking, :submission_type, :withdrawn, :withdrawn_date, :_destroy ],
                     image_attributes: [:id, :image, :_destroy ]
                     )

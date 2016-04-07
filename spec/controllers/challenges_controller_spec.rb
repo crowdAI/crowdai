@@ -13,7 +13,7 @@ RSpec.describe ChallengesController, type: :controller do
   let(:valid_session) { {} }
 
   before(:each) do
-    sign_in
+    double_sign_in
   end
 
   describe "GET #index" do

@@ -13,11 +13,13 @@ RSpec.describe HostingInstitutionsController, type: :controller do
     FactoryGirl.build(:hosting_institution, institution: nil).attributes
   }
 
-  let(:valid_session) { {} }
-
   before(:each) do
-    sign_in
+    double_sign_in
   end
+
+  let(:valid_session) {{  }}
+
+
 
   describe "GET #index" do
     it "assigns all hosting_institutions as @hosting_institutions" do
@@ -86,14 +88,16 @@ RSpec.describe HostingInstitutionsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {description: "changed description", address: 'changed address'}
       }
 
       it "updates the requested hosting_institution" do
         hosting_institution = HostingInstitution.create! valid_attributes
         put :update, {:id => hosting_institution.to_param, :hosting_institution => new_attributes}, valid_session
         hosting_institution.reload
-        skip("Add assertions for updated state")
+        new_attributes.each_pair do |key, value|
+          expect(hosting_institution[key]).to eq(value)
+        end
       end
 
       it "assigns the requested hosting_institution as @hosting_institution" do

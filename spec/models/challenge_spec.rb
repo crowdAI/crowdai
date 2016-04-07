@@ -50,7 +50,6 @@ RSpec.describe Challenge, type: :model do
 
   # === Relations ===
   it { is_expected.to belong_to :hosting_institution }
-  it { is_expected.to have_one :dataset }
   it { is_expected.to have_one :image }
   it { is_expected.to have_many :dataset_files }
   it { is_expected.to have_many :timelines }
@@ -61,7 +60,6 @@ RSpec.describe Challenge, type: :model do
   it { is_expected.to have_many :topics }
 
   # === Nested Attributes ===
-  it { is_expected.to accept_nested_attributes_for :dataset }
   it { is_expected.to accept_nested_attributes_for :dataset_files }
   it { is_expected.to accept_nested_attributes_for :image }
   it { is_expected.to accept_nested_attributes_for :timelines }

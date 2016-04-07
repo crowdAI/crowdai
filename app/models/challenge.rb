@@ -1,7 +1,5 @@
 class Challenge < ActiveRecord::Base
   belongs_to :hosting_institution
-  has_one :dataset
-  accepts_nested_attributes_for :dataset, reject_if: :all_blank, allow_destroy: true
   has_many :dataset_files, dependent: :destroy
   accepts_nested_attributes_for :dataset_files, reject_if: :all_blank, allow_destroy: true
 

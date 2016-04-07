@@ -1,4 +1,4 @@
-class ChallengesController < ApplicationController
+  class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
 
   def index

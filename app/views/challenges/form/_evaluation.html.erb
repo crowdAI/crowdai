@@ -1,8 +1,20 @@
 <div role="tabpanel" class="tab-pane" id="evaluation">
   <h1>Evaluation</h1>
-  <%= f.input :evaluation, as: :bootsy, input_html: { rows: 30 } %>
-  <%= f.input :evaluation_criteria, as: :bootsy, input_html: { rows: 30 } %>
-
+  <div id="my-tab-content" class="tab-content">
+    <div class="tab-pane active" id="editor-pane">
+      <%= f.label :evaluation %>
+      <%= render 'markdown_editor/toolbar' %>
+      <%= f.text_area :evaluation,
+                      id: 'markdown_textarea',
+                      class: 'form-control',
+                      placeholder: 'Enter evaluation criteria.',
+                      required: true,
+                      rows: 30 %>
+    </div>
+    <div class="tab-pane" id="preview-pane">
+      <div id="markdown-preview"></div>
+    </div>
+  </div>
   <div class="form-actions">
     <%= f.button :submit %>
   </div>

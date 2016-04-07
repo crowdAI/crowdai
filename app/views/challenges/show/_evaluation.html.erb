@@ -1,8 +1,4 @@
 <div id="evaluation">
   <h2>Evaluation</h2>
-  <%= simple_format(challenge.evaluation) %>
-  <p>
-    <strong>Evaluation criteria:</strong>
-    <%= challenge.evaluation_criteria %>
-  </p>
+  <%= markdown(challenge.evaluation) %>
 </div>

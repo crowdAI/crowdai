@@ -3,7 +3,7 @@
 
   <div class="form-inputs">
     <%= f.association :topic, as: :hidden %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :user_id, value: current_participant.id %>
     <%= f.input :notify %>
 
     <div id="content">

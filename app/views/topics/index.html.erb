@@ -38,7 +38,7 @@
       <tr>
         <td><%= content_tag(:i, nil, class: 'fa fa-thumb-tack') if topic.sticky %>
             <%= link_to topic.topic, new_topic_post_path(topic) %>
-            <% if current_user.admin? %>
+            <% if current_participant.admin? %>
               <span class="pull-right">
                 <%= link_to 'Edit', edit_challenge_topic_path(@challenge,topic) %><br/>
                 <%= link_to 'Destroy', [@challenge,topic], method: :delete, data: { confirm: 'Are you sure?' } %>

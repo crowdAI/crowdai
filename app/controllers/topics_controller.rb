@@ -51,16 +51,16 @@ class TopicsController < ApplicationController
     end
 
     def topic_params
-      params.require(:topic).permit(:challenge_id, :user_id, :topic, :sticky, :views, :posts_count)
+      params.require(:topic).permit(:challenge_id, :participant_id, :topic, :sticky, :views, :posts_count)
     end
 
     def headline_sql
       sql = %Q[
         select p.id, substring(p.post from 0 for 40) as post, p.topic_id, u.name, t.topic as "topic_text"
-        from posts p, topics t, users u
+        from posts p, topics t, participants u
         where p.flagged = false
         and p.topic_id = t.id
-        and p.user_id = u.id
+        and p.participant_id = u.id
         and t.challenge_id = #{@challenge.id}
         order by p.created_at desc
         limit 1

@@ -4,7 +4,7 @@
 #
 #  id                 :integer          not null, primary key
 #  challenge_id     :integer
-#  user_id            :integer
+#  participant_id            :integer
 #  team_id            :integer
 #  evaluated          :boolean
 #  score              :float

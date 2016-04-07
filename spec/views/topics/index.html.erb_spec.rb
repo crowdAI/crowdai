@@ -5,7 +5,7 @@ RSpec.describe "topics/index", type: :view do
     assign(:topics, [
       Topic.create!(
         :challenge => nil,
-        :user => nil,
+        :participant => nil,
         :topic => "Topic",
         :sticky => false,
         :views => 1,
@@ -13,7 +13,7 @@ RSpec.describe "topics/index", type: :view do
       ),
       Topic.create!(
         :challenge => nil,
-        :user => nil,
+        :participant => nil,
         :topic => "Topic",
         :sticky => false,
         :views => 1,

@@ -1,6 +1,6 @@
-<% if current_user.organizer_id.present? %>
-  <li><%= link_to current_user.organizer.organizer,
-                  organizer_path(current_user.organizer) %></li>
+<% if current_participant.organizer_id.present? %>
+  <li><%= link_to current_participant.organizer.organizer,
+                  organizer_path(current_participant.organizer) %></li>
 <% else %>
   <li><%= link_to "Host", organizers_path %></li>
 <% end %>

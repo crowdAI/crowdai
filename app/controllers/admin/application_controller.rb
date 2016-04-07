@@ -6,11 +6,11 @@
 # you're free to overwrite the RESTful controller actions.
 module Admin
   class ApplicationController < Administrate::ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_participant!
     before_filter :authenticate_admin
 
     def authenticate_admin
-      redirect_to '/', alert: 'Not authorized.' unless current_user && current_user.admin?
+      redirect_to '/', alert: 'Not authorized.' unless current_participant && current_participant.admin?
     end
 
     # Override this value to specify the number of elements to display at a time

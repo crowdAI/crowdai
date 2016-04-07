@@ -1,7 +1,7 @@
 <div class="tab-pane" id="account">
   <div class="row">
     <div class="col-md-4 col-md-offset-2">
-      <%= simple_form_for(@user, url: password_path(@user), html: { method: :put }) do |f| %>
+      <%= simple_form_for(@participant, url: password_path(@participant), html: { method: :put }) do |f| %>
       <%= f.error_notification %>
 
       <%= f.input :reset_password_token, as: :hidden %>
@@ -23,7 +23,7 @@
       <br/>
       <br/>
 
-      <h3><%= link_to "Cancel my account", registration_path(@user), data: { confirm: "Are you sure?" }, method: :delete %></h3>
+      <h3><%= link_to "Cancel my account", registration_path(@participant), data: { confirm: "Are you sure?" }, method: :delete %></h3>
     </div>
   </div>
 

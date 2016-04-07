@@ -4,7 +4,7 @@ RSpec.describe "submissions/show", type: :view do
   before(:each) do
     @submission = assign(:submission, Submission.create!(
       :challenge => nil,
-      :user => nil,
+      :participant => nil,
       :team => nil,
       :evaluated => false,
       :score => 1.5,

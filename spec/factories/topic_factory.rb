@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :topic, class: Topic do
     challenge nil
-    user nil
+    participant nil
     topic 'MyString'
     sticky false
     views 1

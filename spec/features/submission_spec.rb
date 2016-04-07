@@ -26,7 +26,7 @@ RSpec.feature "submissions", type: :feature do
   end
 
   describe "submission evaluations" do
-    scenario "a submission is created by a user and is in ungraded status" do
+    scenario "a submission is created by a participant and is in ungraded status" do
     end
 
     scenario "when a submission is graded by an admin the leaderboard is updated" do

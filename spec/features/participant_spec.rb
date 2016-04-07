@@ -1,15 +1,15 @@
 require "rails_helper"
 require 'capybara/email/rspec'
 
-RSpec.feature "user", type: :feature do
-  describe "successful user registration" do
+RSpec.feature "participant", type: :feature do
+  describe "successful participant registration" do
     scenario "with valid details" do
       visit "/"
       click_link "Join"                # TODO convert to button
 
-      fill_in "name",              with: 'test_user'
+      fill_in "name",              with: 'test_participant'
       fill_in "Email",                 with: "test@example.com"
-      fill_in 'user_password',         with: "crowdai123"
+      fill_in 'participant_password',         with: "crowdai123"
       fill_in "Password confirmation", with: "crowdai123"
 
       click_button "Sign up"
@@ -29,9 +29,9 @@ RSpec.feature "user", type: :feature do
     end
   end
 
-  describe "unsuccessful user registration" do
+  describe "unsuccessful participant registration" do
     before do
-      visit new_user_registration_path
+      visit new_participant_registration_path
     end
 
     scenario "blank fields" do
@@ -43,7 +43,7 @@ RSpec.feature "user", type: :feature do
 
     scenario "incorrect password confirmation" do
       fill_in "name", with: "test@example.com"
-      fill_in 'user_password', with: "crowdai123"
+      fill_in 'participant_password', with: "crowdai123"
       fill_in "Password confirmation", with: "crowdai122"
       click_button "Sign up"
       expect(page).to have_content "doesn't match Password"
@@ -51,16 +51,16 @@ RSpec.feature "user", type: :feature do
 
     scenario "invalid email" do
       fill_in "Email", with: "invalid-email-for-testing"
-      fill_in 'user_password', with: "crowdai123"
+      fill_in 'participant_password', with: "crowdai123"
       fill_in "Password confirmation", with: "crowdai123"
       click_button "Sign up"
       expect(page).to have_content "is invalid"
     end
 
     scenario "already registered email" do
-      create(:user, email: "test@example.com")
+      create(:participant, email: "test@example.com")
       fill_in "Email", with: "test@example.com"
-      fill_in 'user_password', with: "password1234"
+      fill_in 'participant_password', with: "password1234"
       fill_in "Password confirmation", with: "password1234"
       click_button "Sign up"
       expect(page).to have_content "has already been taken"
@@ -68,7 +68,7 @@ RSpec.feature "user", type: :feature do
 
     scenario "password too short" do
       fill_in "Email", with: "test@example.com"
-      fill_in 'user_password', with: "123456"
+      fill_in 'participant_password', with: "123456"
       fill_in "Password confirmation", with: "123456"
       click_button "Sign up"
       expect(page).to have_content "is too short (minimum is 8 characters)"
@@ -81,5 +81,5 @@ end
 
 
 
-#A user can upload their profile picture
-# A user can reset their password
+#A participant can upload their profile picture
+# A participant can reset their password

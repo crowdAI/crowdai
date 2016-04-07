@@ -150,7 +150,7 @@ RSpec.describe DatasetFilesController, type: :controller do
   it { should use_before_filter(:verify_authenticity_token) }
   it { should use_before_filter(:set_xhr_redirected_to) }
   it { should use_before_filter(:set_request_method_cookie) }
-  it { should use_before_filter(:authenticate_user!) }
+  it { should use_before_filter(:authenticate_participant!) }
   it { should use_before_filter(:configure_permitted_parameters) }
   it { should use_before_filter(:set_dataset_file) }
   it { should use_before_filter(:set_challenge) }

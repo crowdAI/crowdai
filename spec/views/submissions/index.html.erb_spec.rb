@@ -5,7 +5,7 @@ RSpec.describe "submissions/index", type: :view do
     assign(:submissions, [
       Submission.create!(
         :challenge => nil,
-        :user => nil,
+        :participant => nil,
         :team => nil,
         :evaluated => false,
         :score => 1.5,
@@ -15,7 +15,7 @@ RSpec.describe "submissions/index", type: :view do
       ),
       Submission.create!(
         :challenge => nil,
-        :user => nil,
+        :participant => nil,
         :team => nil,
         :evaluated => false,
         :score => 1.5,

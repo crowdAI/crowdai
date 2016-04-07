@@ -1,20 +1,20 @@
-module UsersHelper
+module ParticipantsHelper
   # TODO refactor image attachments
-  def avatar_medium_url(user)
-    if user.avatar
-      user.avatar.url(:medium)
+  def avatar_medium_url(participant)
+    if participant.avatar
+      participant.avatar.url(:medium)
     else
       'http://www.gravatar.com/avatar/?d=mm&s=200'
     end
   end
 
 
-  def avatar_url(user, size)
-    if user.avatar
+  def avatar_url(participant, size)
+    if participant.avatar
       if size == 'profile'
-        user.avatar.url('thumbnail')
+        participant.avatar.url('thumbnail')
       else
-        user.avatar.url(size)
+        participant.avatar.url(size)
       end
     else
       'http://www.gravatar.com/avatar/?d=mm&s=200'

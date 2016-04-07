@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :user, class: User do
+  factory :participant, class: Participant do
     name { Faker::Name.first_name }
     email { Faker::Internet.email }
     password 'password12'
@@ -9,7 +9,7 @@ FactoryGirl.define do
       admin true
     end
 
-    trait :hosting_user do
+    trait :hosting_participant do
       organizer_primary true
     end
   end

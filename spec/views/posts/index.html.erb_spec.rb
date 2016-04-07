@@ -5,7 +5,7 @@ RSpec.describe "posts/index", type: :view do
     assign(:posts, [
       Post.create!(
         :topic => nil,
-        :user => nil,
+        :participant => nil,
         :post => "MyText",
         :votes => 1,
         :flagged => false,
@@ -13,7 +13,7 @@ RSpec.describe "posts/index", type: :view do
       ),
       Post.create!(
         :topic => nil,
-        :user => nil,
+        :participant => nil,
         :post => "MyText",
         :votes => 1,
         :flagged => false,

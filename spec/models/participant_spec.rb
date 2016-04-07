@@ -1,29 +1,32 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe Participant, type: :model do
   before do
-    @user = build(:user)
+    @participant = build(:participant)
   end
 
-  describe 'basic User model pre-checks' do
+  describe 'basic Participant model pre-checks' do
 
-    it 'has a valid admin user factory' do
-      admin_user = build(:user, :admin)
-      expect(admin_user).to be_valid
-      expect(admin_user.admin).to be true
+    it 'has a valid participant factory' do
+      participant = build(:participant)
+      expect(participant).to be_valid
+    end
+
+    it 'has a valid admin participant factory' do
+      admin_participant = build(:participant, :admin)
+      expect(admin_participant).to be_valid
+      expect(admin_participant.admin).to be true
     end
 
     it 'has enforces minimum password requirements' do |_variable|
-      expect(@user = build(:user, password: '1234', password_confirmation: '1234')).to be_invalid
+      expect(@participant = build(:participant, password: '1234', password_confirmation: '1234')).to be_invalid
     end
   end
 
   describe 'fields and associations' do
-    subject { @user }
+    subject { @participant }
 
     it { should respond_to(:name) }
-    it { should respond_to(:first_name) }
-    it { should respond_to(:last_name) }
     it { should respond_to(:email) }
     it { should respond_to(:email_public) }
     it { should respond_to(:password) }
@@ -37,8 +40,7 @@ RSpec.describe User, type: :model do
     it { should respond_to(:linkedin) }
     it { should respond_to(:twitter) }
     it { should respond_to(:organizer) }
-    it { should respond_to(:organizer_primary) }
-    it { should respond_to(:user_challenges) }
+    it { should respond_to(:participant_challenges) }
     it { should respond_to(:challenges) }
     it { should respond_to(:submissions) }
     it { should_not be_admin }
@@ -46,47 +48,47 @@ RSpec.describe User, type: :model do
 
   describe 'specific validations' do
     it "responds to admin? with admin attribute set to 'true'" do
-      @user.admin = true
-      @user.save!
-      expect(@user.admin?).to be true
+      @participant.admin = true
+      @participant.save!
+      expect(@participant.admin?).to be true
     end
 
     describe 'when name is not present' do
-      before { @user.name = ' ' }
+      before { @participant.name = ' ' }
       it { should_not be_valid }
     end
 
     describe 'when email is not present' do
-      before { @user.email = ' ' }
+      before { @participant.email = ' ' }
       it { should_not be_valid }
     end
 
     describe 'when email format is invalid' do
       it 'should be invalid' do
-        addresses = %w(user@foo,com user_at_foo.org example.user@foo.
+        addresses = %w(participant@foo,com participant_at_foo.org example.participant@foo.
                        foo@bar_baz.com foo@bar+baz.com foo@bar..com)
         addresses.each do |invalid_address|
-          @user.email = invalid_address
-          expect(@user).not_to be_valid
+          @participant.email = invalid_address
+          expect(@participant).not_to be_valid
         end
       end
     end
 
     describe 'when email format is valid' do
       it 'should be valid' do
-        addresses = %w(user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn)
+        addresses = %w(participant@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn)
         addresses.each do |valid_address|
-          @user.email = valid_address
-          expect(@user).to be_valid
+          @participant.email = valid_address
+          expect(@participant).to be_valid
         end
       end
     end
 
     describe 'when email address is already taken' do
       before do
-        user_with_same_email = @user.dup
-        user_with_same_email.email = @user.email.upcase
-        user_with_same_email.save
+        participant_with_same_email = @participant.dup
+        participant_with_same_email.email = @participant.email.upcase
+        participant_with_same_email.save
       end
 
       it { should_not be_valid }
@@ -96,10 +98,10 @@ RSpec.describe User, type: :model do
   # === Relations ===
   it { is_expected.to belong_to :organizer }
   it { is_expected.to have_one :image }
-  it { is_expected.to have_many :user_challenges }
+  it { is_expected.to have_many :participant_challenges }
   it { is_expected.to have_many :challenges }
   it { is_expected.to have_many :submissions }
-  it { is_expected.to have_many :team_users }
+  it { is_expected.to have_many :team_participants }
   it { is_expected.to have_many :teams }
   it { is_expected.to have_many :posts }
 
@@ -134,7 +136,6 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_db_column :updated_at }
   it { is_expected.to have_db_column :unconfirmed_email }
   it { is_expected.to have_db_column :organizer_id }
-  it { is_expected.to have_db_column :organizer_primary }
   it { is_expected.to have_db_column :name }
   it { is_expected.to have_db_column :email_public }
   it { is_expected.to have_db_column :bio }

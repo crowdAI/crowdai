@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Topic, type: :model do
   # === Relations ===
   it { is_expected.to belong_to :challenge }
-  it { is_expected.to belong_to :user }
+  it { is_expected.to belong_to :participant }
 
   it { is_expected.to have_many :posts }
 
@@ -13,7 +13,7 @@ RSpec.describe Topic, type: :model do
   # === Database (Columns) ===
   it { is_expected.to have_db_column :id }
   it { is_expected.to have_db_column :challenge_id }
-  it { is_expected.to have_db_column :user_id }
+  it { is_expected.to have_db_column :participant_id }
   it { is_expected.to have_db_column :topic }
   it { is_expected.to have_db_column :sticky }
   it { is_expected.to have_db_column :views }
@@ -23,7 +23,7 @@ RSpec.describe Topic, type: :model do
 
   # === Database (Indexes) ===
   it { is_expected.to have_db_index ["challenge_id"] }
-  it { is_expected.to have_db_index ["user_id"] }
+  it { is_expected.to have_db_index ["participant_id"] }
 
   # === Validations (Length) ===
   it { is_expected.to allow_value(Faker::Lorem.characters(255)).for :topic }

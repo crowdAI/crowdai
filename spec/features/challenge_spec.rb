@@ -5,29 +5,29 @@ RSpec.feature "challenge", type: :feature do
   before do
     #@challenge = build(:challenge)
     @organizer = create(:organizer)
-    @hosting_user = create(:user, organizer: @organizer)
-    #pp @hosting_user
+    @hosting_participant = create(:participant, organizer: @organizer)
+    #pp @hosting_participant
   end
 
   let(:organizer){ create :organizer }
 
   describe "challenge creation authority" do
-    scenario "ordinary user cannot create a challenge" do
-      let(:user){ create :user }
+    scenario "ordinary participant cannot create a challenge" do
+      let(:participant){ create :participant }
 
       visit organizer_path(:organizer)
       expect(page).to_not have_selector '.btn', text: '+ New Challenge'
     end
 
-    scenario "user cannot create a challenge for a different organizer" do
-      let(:user){ create :user }
+    scenario "participant cannot create a challenge for a different organizer" do
+      let(:participant){ create :participant }
 
       visit organizer_path(:organizer)
       expect(page).to_not have_selector '.btn', text: '+ New Challenge'
     end
 
-    scenario "user associated with the organizer can create a challenge" do
-      let(:user){ create :user }
+    scenario "participant associated with the organizer can create a challenge" do
+      let(:participant){ create :participant }
 
       visit organizer_path(:organizer)
       expect(page).to have_selector '.btn', text: '+ New Challenge'
@@ -57,26 +57,26 @@ RSpec.feature "challenge", type: :feature do
 
 
   describe 'challenge CRUD actions' do
-    scenario "any other user associated with the organizer can modify the challenge" do
+    scenario "any other participant associated with the organizer can modify the challenge" do
     end
 
   end
 
 
   describe "running a challenge" do
-    scenario "user can enter a running challenge" do
+    scenario "participant can enter a running challenge" do
     end
 
-    scenario "user can enter a running challenge twice" do
+    scenario "participant can enter a running challenge twice" do
     end
 
-    scenario "user can leave a running challenge" do
+    scenario "participant can leave a running challenge" do
     end
 
-    scenario "user cannot leave a completed challenge" do
+    scenario "participant cannot leave a completed challenge" do
     end
 
-    scenario "user cannot leave a cancelled challenge" do
+    scenario "participant cannot leave a cancelled challenge" do
     end
   end
 

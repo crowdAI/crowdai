@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class Participant < ActiveRecord::Base
   before_save { self.email = email.downcase }
 
   devise :database_authenticatable, :registerable, :confirmable,
@@ -11,11 +11,11 @@ class User < ActiveRecord::Base
     uniqueness: { case_sensitive: false }
 
 
-  has_many :user_challenges
-  has_many :challenges, through: :user_challenges
+  has_many :participant_challenges
+  has_many :challenges, through: :participant_challenges
   has_many :submissions
-  has_many :team_users
-  has_many :teams, through: :team_users
+  has_many :team_participants
+  has_many :teams, through: :team_participants
   has_many :posts
   belongs_to :organizer
   has_one :image, as: :imageable, dependent: :destroy

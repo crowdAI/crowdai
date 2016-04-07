@@ -1,6 +1,6 @@
 module DeviseHelper
   def devise_mapping
-    Devise.mappings[:user]
+    Devise.mappings[:participant]
   end
 
   def resource_name

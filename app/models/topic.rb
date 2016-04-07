@@ -1,7 +1,7 @@
 class Topic < ActiveRecord::Base
   include ActionView::Helpers::DateHelper
   belongs_to :challenge
-  belongs_to :user
+  belongs_to :participant
   has_many :posts, dependent: :destroy
   default_scope { order('sticky desc') }
 

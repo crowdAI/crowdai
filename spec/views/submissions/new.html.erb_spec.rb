@@ -4,7 +4,7 @@ RSpec.describe "submissions/new", type: :view do
   before(:each) do
     assign(:submission, Submission.new(
       :challenge => nil,
-      :user => nil,
+      :participant => nil,
       :team => nil,
       :evaluated => false,
       :score => 1.5,
@@ -21,7 +21,7 @@ RSpec.describe "submissions/new", type: :view do
 
       assert_select "input#submission_challenge_id[name=?]", "submission[challenge_id]"
 
-      assert_select "input#submission_user_id[name=?]", "submission[user_id]"
+      assert_select "input#submission_participant_id[name=?]", "submission[participant_id]"
 
       assert_select "input#submission_team_id[name=?]", "submission[team_id]"
 

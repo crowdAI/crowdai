@@ -1,7 +1,7 @@
   <li class="list-group-item post">
     <%= markdown(post.post) %>
     <%= link_to "Quote", new_topic_post_path(@topic, :quote => post) %>
-    <% if current_user.admin? || current_user == post.user %>
+    <% if current_participant.admin? || current_participant == post.user %>
       <%= link_to 'edit', edit_topic_post_path(@topic, post) %>
       <%= link_to 'delete', [@topic, post], method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>

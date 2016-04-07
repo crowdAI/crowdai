@@ -23,7 +23,7 @@ RSpec.describe Organizer, type: :model do
   describe 'associations' do
     subject { @organizer }
     it { is_expected.to have_many :challenges }
-    it { is_expected.to have_many :users }
+    it { is_expected.to have_many :participants }
   end
 
   describe 'specific validations' do

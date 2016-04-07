@@ -4,7 +4,7 @@ RSpec.describe "posts/show", type: :view do
   before(:each) do
     @post = assign(:post, Post.create!(
       :topic => nil,
-      :user => nil,
+      :participant => nil,
       :post => "MyText",
       :votes => 1,
       :flagged => false,

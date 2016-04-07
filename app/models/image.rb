@@ -21,7 +21,7 @@ class Image < ActiveRecord::Base
   end
 
   def freshly_uploaded_avatar?
-    self.imageable_type == "User" && crop_x.blank? && crop_y.blank? && crop_w.blank? && crop_h.blank?
+    self.imageable_type == "Participant" && crop_x.blank? && crop_y.blank? && crop_w.blank? && crop_h.blank?
   end
 
   def get_true_size

@@ -1,19 +1,14 @@
 require 'rails_helper'
 
-  RSpec.describe UserChallenge, type: :model do
+  RSpec.describe ParticipantChallenge, type: :model do
 
   # === Relations ===
-  it { is_expected.to belong_to :user }
+  it { is_expected.to belong_to :participant }
   it { is_expected.to belong_to :challenge }
-
-
-
-  # === Nested Attributes ===
-
 
   # === Database (Columns) ===
   it { is_expected.to have_db_column :id }
-  it { is_expected.to have_db_column :user_id }
+  it { is_expected.to have_db_column :participant_id }
   it { is_expected.to have_db_column :challenge_id }
   it { is_expected.to have_db_column :rules_accepted }
   it { is_expected.to have_db_column :created_at }
@@ -21,7 +16,7 @@ require 'rails_helper'
 
   # === Database (Indexes) ===
   it { is_expected.to have_db_index ["challenge_id"] }
-  it { is_expected.to have_db_index ["user_id"] }
+  it { is_expected.to have_db_index ["participant_id"] }
 
   # === Validations (Length) ===
 

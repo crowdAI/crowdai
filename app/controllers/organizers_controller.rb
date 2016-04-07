@@ -20,8 +20,8 @@ class OrganizersController < ApplicationController
     @organizer = Organizer.new(organizer_params)
 
     if @organizer.save
-      current_user.organizer = @organizer
-      current_user.save!
+      current_participant.organizer = @organizer
+      current_participant.save!
       redirect_to @organizer, notice: "The request to host challenges has been submitted. After review, you will be notified when #{@organizer.organizer} may begin to host challenges."
     else
       render :new

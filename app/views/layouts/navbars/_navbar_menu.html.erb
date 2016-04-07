@@ -1,12 +1,12 @@
 <% if current_participant.organizer_id.present? %>
   <li><%= link_to current_participant.organizer.organizer,
-                  organizer_path(current_participant.organizer) %></li>
+                  organizer_path(current_participant.organizer), class: 'navbar-underline' %></li>
 <% else %>
-  <li><%= link_to "Host", organizers_path %></li>
+  <li><%= link_to "Host", organizers_path, class: 'navbar-underline' %></li>
 <% end %>
 
-<li><%= link_to "Challenges", challenges_path %></li>
+<li><%= link_to "Challenges", challenges_path, class: 'navbar-underline' %></li>
 <!--
 <li><%= link_to "Datasets", '#' %></li>
 <li><%= link_to "Scripts", '#' %></li>  -->
-<li><%= link_to "Community", '#' %></li>
+<li><%= link_to "Community", '#', class: 'navbar-underline' %></li>

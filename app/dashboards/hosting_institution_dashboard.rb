@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class HostingInstitutionDashboard < Administrate::BaseDashboard
+class OrganizerDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -11,7 +11,7 @@ class HostingInstitutionDashboard < Administrate::BaseDashboard
     challenges: Field::HasMany,
     users: Field::HasMany,
     id: Field::Number,
-    institution: Field::String,
+    organizer: Field::String,
     address: Field::Text,
     description: Field::Text,
     created_at: Field::DateTime,
@@ -28,7 +28,7 @@ class HostingInstitutionDashboard < Administrate::BaseDashboard
     :challenges,
     :users,
     :id,
-    :institution,
+    :organizer,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -37,7 +37,7 @@ class HostingInstitutionDashboard < Administrate::BaseDashboard
     :challenges,
     :users,
     :id,
-    :institution,
+    :organizer,
     :address,
     :description,
     :created_at,
@@ -51,16 +51,16 @@ class HostingInstitutionDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :challenges,
     :users,
-    :institution,
+    :organizer,
     :address,
     :description,
     :approved,
   ]
 
-  # Overwrite this method to customize how hosting institutions are displayed
+  # Overwrite this method to customize how hosting organizers are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(hosting_institution)
-  #   "HostingInstitution ##{hosting_institution.id}"
+  # def display_resource(organizer)
+  #   "Organizer ##{organizer.id}"
   # end
 end

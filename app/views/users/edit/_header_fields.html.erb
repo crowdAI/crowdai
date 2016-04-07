@@ -29,7 +29,7 @@
     </div>
 
     <% if current_user.admin? %>
-      <%= f.association :hosting_institution, :include_blank => false, :label_method => lambda { |host| "#{host.institution}" } %>
+      <%= f.association :organizer, :include_blank => false, :label_method => lambda { |host| "#{host.organizer}" } %>
     <% end %>
     <%= f.input :email, placeholder: 'Email', required: true %>
     <%= f.input :github, placeholder: 'Github' %>

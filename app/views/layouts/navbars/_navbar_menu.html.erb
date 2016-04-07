@@ -1,8 +1,8 @@
-<% if current_user.hosting_institution_id.present? %>
-  <li><%= link_to current_user.hosting_institution.institution,
-                  hosting_institution_path(current_user.hosting_institution) %></li>
+<% if current_user.organizer_id.present? %>
+  <li><%= link_to current_user.organizer.organizer,
+                  organizer_path(current_user.organizer) %></li>
 <% else %>
-  <li><%= link_to "Host", hosting_institutions_path %></li>
+  <li><%= link_to "Host", organizers_path %></li>
 <% end %>
 
 <li><%= link_to "Challenges", challenges_path %></li>

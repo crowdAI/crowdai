@@ -36,8 +36,8 @@ RSpec.describe User, type: :model do
     it { should respond_to(:github) }
     it { should respond_to(:linkedin) }
     it { should respond_to(:twitter) }
-    it { should respond_to(:hosting_institution) }
-    it { should respond_to(:hosting_institution_primary) }
+    it { should respond_to(:organizer) }
+    it { should respond_to(:organizer_primary) }
     it { should respond_to(:user_challenges) }
     it { should respond_to(:challenges) }
     it { should respond_to(:submissions) }
@@ -94,7 +94,7 @@ RSpec.describe User, type: :model do
   end
 
   # === Relations ===
-  it { is_expected.to belong_to :hosting_institution }
+  it { is_expected.to belong_to :organizer }
   it { is_expected.to have_one :image }
   it { is_expected.to have_many :user_challenges }
   it { is_expected.to have_many :challenges }
@@ -133,8 +133,8 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_db_column :created_at }
   it { is_expected.to have_db_column :updated_at }
   it { is_expected.to have_db_column :unconfirmed_email }
-  it { is_expected.to have_db_column :hosting_institution_id }
-  it { is_expected.to have_db_column :hosting_institution_primary }
+  it { is_expected.to have_db_column :organizer_id }
+  it { is_expected.to have_db_column :organizer_primary }
   it { is_expected.to have_db_column :name }
   it { is_expected.to have_db_column :email_public }
   it { is_expected.to have_db_column :bio }
@@ -146,7 +146,7 @@ RSpec.describe User, type: :model do
   # === Database (Indexes) ===
   it { is_expected.to have_db_index ["confirmation_token"] }
   it { is_expected.to have_db_index ["email"] }
-  it { is_expected.to have_db_index ["hosting_institution_id"] }
+  it { is_expected.to have_db_index ["organizer_id"] }
   it { is_expected.to have_db_index ["reset_password_token"] }
   it { is_expected.to have_db_index ["unlock_token"] }
 

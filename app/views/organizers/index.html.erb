@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<div class="jumbotron">
+  <h2>Become a Hosting organizer on CrowdAI and draw on a global pool of researchers,
+    data scientists and machine learning experts.</h2>
+</div>
+
+
+
+<%= link_to 'Host Challenges', new_organizer_path, class: 'btn btn-primary' %>
+
+
+
+<h1>Already hosting on CrowdAI</h1>
+
+<% @organizers.each do |organizer| %>
+  <div class="jumbotron">
+    <h4><%= organizer.organizer %></h4>
+    <%= organizer.description %>
+  </div>
+
+<% end %>

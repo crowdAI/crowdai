@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-    <%= simple_form_for(@hosting_institution) do |f| %>
+    <%= simple_form_for(@organizer) do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.input :institution %>
+      <%= f.input :organizer %>
       <%= f.input :address %>
       <%= f.input :description %>
     </div>

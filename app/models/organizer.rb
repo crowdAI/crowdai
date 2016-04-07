@@ -1,6 +1,6 @@
-class HostingInstitution < ActiveRecord::Base
+class Organizer < ActiveRecord::Base
   has_many :challenges, dependent: :destroy
   has_many :users, dependent: :nullify
 
-  validates :institution, presence: true
+  validates :organizer, presence: true
 end

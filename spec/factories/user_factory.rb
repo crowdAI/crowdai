@@ -10,7 +10,7 @@ FactoryGirl.define do
     end
 
     trait :hosting_user do
-      hosting_institution_primary true
+      organizer_primary true
     end
   end
 end

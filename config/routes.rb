@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :users
     resources :challenges
     resources :dataset_files
-    resources :hosting_institutions
+    resources :organizers
     resources :submissions
     resources :submission_files
     resources :teams
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   get 'landing_page/index'
 
-  resources :hosting_institutions do
+  resources :organizers do
     resources :challenges
   end
 

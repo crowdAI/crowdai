@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "challenges/show", type: :view do
   before(:each) do
     @challenge = assign(:challenge, Challenge.create!(
-      :hosting_institution => nil,
+      :organizer => nil,
       :challenge => "",
       :status_cd => "Status Cd",
       :description => "MyText",

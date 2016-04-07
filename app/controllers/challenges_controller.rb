@@ -45,7 +45,7 @@
 
     def challenge_params
       params.require(:challenge)
-            .permit(:hosting_institution_id, :challenge, :start_date, :end_date,
+            .permit(:organizer_id, :challenge, :start_date, :end_date,
                     :status, :description, :evaluation, :evaluation_criteria,
                     :rules, :prizes, :resources, :submission_instructions,
                     dataset_attributes: [:id, :challenge_id, :description, :_destroy],

@@ -1,20 +1,20 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-    <h1><%= @hosting_institution.institution %></h1>
+    <h1><%= @organizer.organizer %></h1>
 
     <span class="pull-right">
-      <%= link_to '+ New Competition', new_competition_path, class: 'btn btn-primary' %>
-      <%= link_to 'Edit Details', edit_hosting_institution_path(@hosting_institution), class: 'btn btn-info' %>
+      <%= link_to '+ New Competition', new_challenge_path, class: 'btn btn-primary' %>
+      <%= link_to 'Edit Details', edit_organizer_path(@organizer), class: 'btn btn-info' %>
     </span>
 
     <p>
       <strong>Address:</strong>
-      <%= @hosting_institution.address %>
+      <%= @organizer.address %>
     </p>
 
     <p>
       <strong>Description:</strong>
-      <%= @hosting_institution.description %>
+      <%= @organizer.description %>
     </p>
 
     <ul class="list-group">
@@ -36,12 +36,12 @@
       </thead>
 
       <tbody>
-        <% @hosting_institution.users.each do |user| %>
+        <% @organizer.users.each do |user| %>
         <tr>
-          <td><%= user.hosting_institution_primary %></td>
+          <td><%= user.organizer_primary %></td>
           <td><%= user.name %></td>
           <td><%= user.email %></td>
-          <td><%#= link_to 'Remove', [@hosting_institution, user], method: :nullify, data: { confirm: 'Remove this user from the administration of your institution on CrowdAI?' } %></td>
+          <td><%#= link_to 'Remove', [@organizer, user], method: :nullify, data: { confirm: 'Remove this user from the administration of your organizer on CrowdAI?' } %></td>
         </tr>
         <% end %>
       </tbody>

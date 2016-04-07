@@ -1,0 +1,12 @@
+<%= render partial: 'sidebar' %>
+<%= render partial: 'header', challenge: @challenge %>
+
+  <div data-spy="scroll" data-target=".navbar" data-offset="50">
+    <div>
+      <%= render 'challenges/show/overview', challenge: @challenge %>
+      <%= render 'challenges/show/evaluation', challenge: @challenge %>
+      <%= render 'challenges/show/rules', challenge: @challenge %>
+      <%= render 'challenges/show/prizes', challenge: @challenge %>
+      <%= render 'challenges/show/resources', challenge: @challenge %>
+    </div>
+  </div>

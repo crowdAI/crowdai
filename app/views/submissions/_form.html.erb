@@ -1,4 +1,4 @@
-<%= simple_form_for([@competition, @submission],
+<%= simple_form_for([@challenge, @submission],
             html: { class: "directUpload" },
             data: { 'form-data' => (@s3_direct_post.fields),
                     'url' => @s3_direct_post.url,
@@ -7,7 +7,7 @@
 <%= f.error_notification %>
 
 <div class="form-inputs">
-  <%= f.association :competition, as: :hidden %>
+  <%= f.association :challenge, as: :hidden %>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :submission_type, value: 'user' %>
 

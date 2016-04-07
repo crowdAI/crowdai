@@ -1,5 +1,5 @@
-<%= render partial: 'competitions/sidebar' %>
-<%= render partial: 'competitions/header', competition: @competition %>
+<%= render partial: 'challenges/sidebar' %>
+<%= render partial: 'challenges/header', challenge: @challenge %>
 
 <div class="row">
   <div class="col-md-11">
@@ -11,7 +11,7 @@
     <% end %>
   </div>
   <div class="col-md-1">
-    <%= link_to '+ New Topic', new_competition_topic_path(@competition), class: 'btn btn-primary' %>
+    <%= link_to '+ New Topic', new_challenge_topic_path(@challenge), class: 'btn btn-primary' %>
   </div>
 </div>
 
@@ -40,8 +40,8 @@
             <%= link_to topic.topic, new_topic_post_path(topic) %>
             <% if current_user.admin? %>
               <span class="pull-right">
-                <%= link_to 'Edit', edit_competition_topic_path(@competition,topic) %><br/>
-                <%= link_to 'Destroy', [@competition,topic], method: :delete, data: { confirm: 'Are you sure?' } %>
+                <%= link_to 'Edit', edit_challenge_topic_path(@challenge,topic) %><br/>
+                <%= link_to 'Destroy', [@challenge,topic], method: :delete, data: { confirm: 'Are you sure?' } %>
               </span>
             <% end %>
           </td>

@@ -1,0 +1,20 @@
+<% content_for(:sidebar) do %>
+    <ul class="nav nav-stacked sidebar-menu">
+      <li><%= link_to 'DASHBOARD', challenge_path(@challenge, anchor: 'overview') %></li>
+      <li><%= glyphicon_link 'list-alt', 'Overview', challenge_path(@challenge, anchor: 'overview') %></li>
+      <li><%= glyphicon_link 'book', 'Rules', challenge_path(@challenge, anchor: 'rules') %></li>
+      <li><%= glyphicon_link 'star', 'Prizes', challenge_path(@challenge, anchor: 'prizes') %></li>
+      <li><%= glyphicon_link 'equalizer', 'Resources', challenge_path(@challenge, anchor: 'resources') %></li>
+      <hr/>
+      <li><%= awesome_link 'fa-arrow-circle-o-up', 'Leaderboard', challenge_leaderboards_path(@challenge) %></li>
+      <li><%= awesome_link 'fa-arrow-circle-o-up', 'Discussion', challenge_topics_path(@challenge) %><li>
+      <li><%= glyphicon_link 'signal', 'Dataset', challenge_dataset_files_path(@challenge) %></li>
+      <li><%= glyphicon_link 'inbox', 'Submit Entry', challenge_submissions_path(@challenge) %></li>
+      <hr/>
+      <% if current_user.hosting_institution_id == @challenge.hosting_institution_id %>
+        <li><%= glyphicon_link 'pencil', 'Edit', edit_challenge_path(@challenge) %></li>
+        <li><%= glyphicon_link 'trash', 'Delete', @challenge, method: :delete,
+                              data: { confirm: 'Permanently delete this challenge from crowdAI?' } %></li>
+      <% end %>
+    </ul>
+<% end %>

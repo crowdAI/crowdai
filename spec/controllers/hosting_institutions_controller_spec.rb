@@ -171,4 +171,24 @@ RSpec.describe HostingInstitutionsController, type: :controller do
     end
   end
 
+  # === Routes (REST) ===
+  it { should route(:get, '/hosting_institutions/new').to('hosting_institutions#new', {}) }
+  it { should route(:get, '/hosting_institutions').to('hosting_institutions#index', {}) }
+  it { should route(:patch, '/hosting_institutions/1').to('hosting_institutions#update', {:id=>"1"}) }
+  it { should route(:post, '/hosting_institutions').to('hosting_institutions#create', {}) }
+  it { should route(:get, '/hosting_institutions/1/edit').to('hosting_institutions#edit', {:id=>"1"}) }
+  it { should route(:delete, '/hosting_institutions/1').to('hosting_institutions#destroy', {:id=>"1"}) }
+  it { should route(:get, '/hosting_institutions/1').to('hosting_institutions#show', {:id=>"1"}) }
+  # === Callbacks (Before) ===
+  it { should use_before_filter(:verify_authenticity_token) }
+  it { should use_before_filter(:set_xhr_redirected_to) }
+  it { should use_before_filter(:set_request_method_cookie) }
+  it { should use_before_filter(:authenticate_user!) }
+  it { should use_before_filter(:configure_permitted_parameters) }
+  it { should use_before_filter(:set_hosting_institution) }
+  # === Callbacks (After) ===
+  it { should use_after_filter(:abort_xdomain_redirect) }
+  it { should use_after_filter(:verify_same_origin_request) }
+  # === Callbacks (Around) ===
+
 end

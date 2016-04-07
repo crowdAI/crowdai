@@ -6,7 +6,7 @@ class HostingInstitutionsController < ApplicationController
   end
 
   def show
-    @competitions = Competition.where(hosting_institution: @hosting_institution)
+    @challenges = Challenge.where(hosting_institution: @hosting_institution)
   end
 
   def new
@@ -22,7 +22,7 @@ class HostingInstitutionsController < ApplicationController
     if @hosting_institution.save
       current_user.hosting_institution = @hosting_institution
       current_user.save!
-      redirect_to @hosting_institution, notice: "The request to host competitions has been submitted. After review, you will be notified when #{@hosting_institution.institution} may begin to host competitions."
+      redirect_to @hosting_institution, notice: "The request to host challenges has been submitted. After review, you will be notified when #{@hosting_institution.institution} may begin to host challenges."
     else
       render :new
     end

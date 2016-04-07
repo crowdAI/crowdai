@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:edit, :update, :destroy]
-  before_action :set_topic_and_competition
+  before_action :set_topic_and_challenge
 
 
   def new
@@ -46,9 +46,9 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
-    def set_topic_and_competition
+    def set_topic_and_challenge
       @topic = Topic.find(params[:topic_id])
-      @competition = @topic.competition
+      @challenge = @topic.challenge
     end
 
     def post_params

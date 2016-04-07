@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "timelines/edit", type: :view do
   before(:each) do
     @timeline = assign(:timeline, Timeline.create!(
-      :competition => nil,
+      :challenge => nil,
       :seq => 1,
       :event => "MyString"
     ))
@@ -14,7 +14,7 @@ RSpec.describe "timelines/edit", type: :view do
 
     assert_select "form[action=?][method=?]", timeline_path(@timeline), "post" do
 
-      assert_select "input#timeline_competition_id[name=?]", "timeline[competition_id]"
+      assert_select "input#timeline_challenge_id[name=?]", "timeline[challenge_id]"
 
       assert_select "input#timeline_seq[name=?]", "timeline[seq]"
 

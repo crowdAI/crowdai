@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405133259) do
+ActiveRecord::Schema.define(version: 20160406194534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,9 +30,9 @@ ActiveRecord::Schema.define(version: 20160405133259) do
     t.datetime "updated_at"
   end
 
-  create_table "competitions", force: :cascade do |t|
+  create_table "challenges", force: :cascade do |t|
     t.integer  "hosting_institution_id"
-    t.string   "competition"
+    t.string   "challenge"
     t.string   "status_cd",               :default=>"draft"
     t.text     "description"
     t.text     "evaluation"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20160405133259) do
     t.text     "dataset_description"
     t.text     "submission_instructions"
   end
-  add_index "competitions", ["hosting_institution_id"], :name=>"index_competitions_on_hosting_institution_id", :using=>:btree
+  add_index "challenges", ["hosting_institution_id"], :name=>"index_challenges_on_hosting_institution_id", :using=>:btree
 
   create_table "dataset_files", force: :cascade do |t|
     t.integer  "seq"
@@ -56,9 +56,9 @@ ActiveRecord::Schema.define(version: 20160405133259) do
     t.string   "dataset_file_content_type"
     t.integer  "dataset_file_file_size"
     t.datetime "dataset_file_updated_at"
-    t.integer  "competition_id"
+    t.integer  "challenge_id"
   end
-  add_index "dataset_files", ["competition_id"], :name=>"index_dataset_files_on_competition_id", :using=>:btree
+  add_index "dataset_files", ["challenge_id"], :name=>"index_dataset_files_on_challenge_id", :using=>:btree
 
   create_table "file_attachments", force: :cascade do |t|
     t.integer  "attachable_id"
@@ -111,44 +111,6 @@ ActiveRecord::Schema.define(version: 20160405133259) do
   end
   add_index "images", ["imageable_type", "imageable_id"], :name=>"index_images_on_imageable_type_and_imageable_id", :using=>:btree
 
-  create_table "submissions", force: :cascade do |t|
-    t.integer  "competition_id"
-    t.integer  "user_id"
-    t.integer  "team_id"
-    t.boolean  "evaluated",          :default=>false
-    t.float    "score"
-    t.string   "submission_type_cd"
-    t.datetime "created_at",         :null=>false
-    t.datetime "updated_at",         :null=>false
-    t.text     "description"
-  end
-  add_index "submissions", ["competition_id"], :name=>"index_submissions_on_competition_id", :using=>:btree
-  add_index "submissions", ["team_id"], :name=>"index_submissions_on_team_id", :using=>:btree
-  add_index "submissions", ["user_id"], :name=>"index_submissions_on_user_id", :using=>:btree
-
-  create_view "leaderboards", <<-'END_VIEW_LEADERBOARDS', :force => true
-SELECT s.id,
-    s.competition_id,
-    s.user_id,
-    u.name,
-    NULL::unknown AS team_id,
-    s.score,
-    cnt.entries,
-    s.created_at,
-    s.updated_at
-   FROM submissions s,
-    users u,
-    ( SELECT submissions.competition_id,
-            submissions.user_id,
-            submissions.team_id,
-            count(*) AS entries
-           FROM submissions
-          GROUP BY submissions.competition_id, submissions.user_id, submissions.team_id) cnt
-  WHERE ((u.id = s.user_id) AND (s.evaluated = true) AND (s.user_id = cnt.user_id) AND (s.competition_id = cnt.competition_id) AND (s.score = ( SELECT max(m.score) AS max
-           FROM submissions m
-          WHERE ((m.competition_id = s.competition_id) AND (m.user_id = s.user_id) AND (m.evaluated = true)))))
-  END_VIEW_LEADERBOARDS
-
   create_table "posts", force: :cascade do |t|
     t.integer  "topic_id"
     t.integer  "user_id"
@@ -174,6 +136,21 @@ SELECT s.id,
   end
   add_index "submission_files", ["submission_id"], :name=>"index_submission_files_on_submission_id", :using=>:btree
 
+  create_table "submissions", force: :cascade do |t|
+    t.integer  "challenge_id"
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.boolean  "evaluated",          :default=>false
+    t.float    "score"
+    t.string   "submission_type_cd"
+    t.datetime "created_at",         :null=>false
+    t.datetime "updated_at",         :null=>false
+    t.text     "description"
+  end
+  add_index "submissions", ["challenge_id"], :name=>"index_submissions_on_challenge_id", :using=>:btree
+  add_index "submissions", ["team_id"], :name=>"index_submissions_on_team_id", :using=>:btree
+  add_index "submissions", ["user_id"], :name=>"index_submissions_on_user_id", :using=>:btree
+
   create_table "team_users", force: :cascade do |t|
     t.integer  "team_id"
     t.integer  "user_id"
@@ -193,37 +170,37 @@ SELECT s.id,
   end
 
   create_table "timelines", force: :cascade do |t|
-    t.integer  "competition_id"
+    t.integer  "challenge_id"
     t.integer  "seq"
     t.string   "event"
     t.datetime "event_time"
-    t.datetime "created_at",     :null=>false
-    t.datetime "updated_at",     :null=>false
+    t.datetime "created_at",   :null=>false
+    t.datetime "updated_at",   :null=>false
   end
-  add_index "timelines", ["competition_id"], :name=>"index_timelines_on_competition_id", :using=>:btree
+  add_index "timelines", ["challenge_id"], :name=>"index_timelines_on_challenge_id", :using=>:btree
 
   create_table "topics", force: :cascade do |t|
-    t.integer  "competition_id"
+    t.integer  "challenge_id"
     t.integer  "user_id"
     t.string   "topic"
-    t.boolean  "sticky",         :default=>false
-    t.integer  "views",          :default=>0
-    t.integer  "posts_count",    :default=>0
-    t.datetime "created_at",     :null=>false
-    t.datetime "updated_at",     :null=>false
+    t.boolean  "sticky",       :default=>false
+    t.integer  "views",        :default=>0
+    t.integer  "posts_count",  :default=>0
+    t.datetime "created_at",   :null=>false
+    t.datetime "updated_at",   :null=>false
   end
-  add_index "topics", ["competition_id"], :name=>"index_topics_on_competition_id", :using=>:btree
+  add_index "topics", ["challenge_id"], :name=>"index_topics_on_challenge_id", :using=>:btree
   add_index "topics", ["user_id"], :name=>"index_topics_on_user_id", :using=>:btree
 
-  create_table "user_competitions", force: :cascade do |t|
+  create_table "user_challenges", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "competition_id"
+    t.integer  "challenge_id"
     t.boolean  "rules_accepted"
     t.datetime "created_at",     :null=>false
     t.datetime "updated_at",     :null=>false
   end
-  add_index "user_competitions", ["competition_id"], :name=>"index_user_competitions_on_competition_id", :using=>:btree
-  add_index "user_competitions", ["user_id"], :name=>"index_user_competitions_on_user_id", :using=>:btree
+  add_index "user_challenges", ["challenge_id"], :name=>"index_user_challenges_on_challenge_id", :using=>:btree
+  add_index "user_challenges", ["user_id"], :name=>"index_user_challenges_on_user_id", :using=>:btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                       :default=>"", :null=>false
@@ -267,19 +244,19 @@ SELECT s.id,
   add_index "users", ["reset_password_token"], :name=>"index_users_on_reset_password_token", :unique=>true, :using=>:btree
   add_index "users", ["unlock_token"], :name=>"index_users_on_unlock_token", :unique=>true, :using=>:btree
 
-  add_foreign_key "competitions", "hosting_institutions"
+  add_foreign_key "challenges", "hosting_institutions"
   add_foreign_key "posts", "topics"
   add_foreign_key "posts", "users"
   add_foreign_key "submission_files", "submissions"
-  add_foreign_key "submissions", "competitions"
+  add_foreign_key "submissions", "challenges"
   add_foreign_key "submissions", "teams"
   add_foreign_key "submissions", "users"
   add_foreign_key "team_users", "teams"
   add_foreign_key "team_users", "users"
-  add_foreign_key "timelines", "competitions"
-  add_foreign_key "topics", "competitions"
+  add_foreign_key "timelines", "challenges"
+  add_foreign_key "topics", "challenges"
   add_foreign_key "topics", "users"
-  add_foreign_key "user_competitions", "competitions"
-  add_foreign_key "user_competitions", "users"
+  add_foreign_key "user_challenges", "challenges"
+  add_foreign_key "user_challenges", "users"
   add_foreign_key "users", "hosting_institutions"
 end

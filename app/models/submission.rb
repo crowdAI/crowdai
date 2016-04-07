@@ -1,5 +1,5 @@
 class Submission < ActiveRecord::Base
-  belongs_to :competition
+  belongs_to :challenge
   belongs_to :user
   belongs_to :team
   has_many :submission_files, dependent: :destroy

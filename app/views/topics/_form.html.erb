@@ -1,8 +1,8 @@
-<%= simple_form_for([@competition, @topic]) do |f| %>
+<%= simple_form_for([@challenge, @topic]) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :competition, as: :hidden %>
+    <%= f.association :challenge, as: :hidden %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.input :topic %>
     <% if current_user.admin? %>

@@ -169,4 +169,25 @@ RSpec.describe DatasetFilesController, type: :controller do
     end
   end
 
+  # === Routes (REST) ===
+  it { should route(:get, '/challenges/1/dataset_files/new').to('dataset_files#new', {:challenge_id=>"1"}) }
+  it { should route(:get, '/challenges/1/dataset_files').to('dataset_files#index', {:challenge_id=>"1"}) }
+  it { should route(:patch, '/challenges/1/dataset_files/1').to('dataset_files#update', {:challenge_id=>"1", :id=>"1"}) }
+  it { should route(:post, '/challenges/1/dataset_files').to('dataset_files#create', {:challenge_id=>"1"}) }
+  it { should route(:get, '/challenges/1/dataset_files/1/edit').to('dataset_files#edit', {:challenge_id=>"1", :id=>"1"}) }
+  it { should route(:delete, '/challenges/1/dataset_files/1').to('dataset_files#destroy', {:challenge_id=>"1", :id=>"1"}) }
+  it { should route(:get, '/challenges/1/dataset_files/1').to('dataset_files#show', {:challenge_id=>"1", :id=>"1"}) }
+  # === Callbacks (Before) ===
+  it { should use_before_filter(:verify_authenticity_token) }
+  it { should use_before_filter(:set_xhr_redirected_to) }
+  it { should use_before_filter(:set_request_method_cookie) }
+  it { should use_before_filter(:authenticate_user!) }
+  it { should use_before_filter(:configure_permitted_parameters) }
+  it { should use_before_filter(:set_dataset_file) }
+  it { should use_before_filter(:set_challenge) }
+  # === Callbacks (After) ===
+  it { should use_after_filter(:abort_xdomain_redirect) }
+  it { should use_after_filter(:verify_same_origin_request) }
+  # === Callbacks (Around) ===
+
 end

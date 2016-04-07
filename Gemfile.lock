@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: git://github.com/thoughtbot/paperclip.git
-  revision: 9bdc0a00bfb43c9afef7e992a0cf7f55d93a5c27
+  revision: 4ef27eb84fe283f5dbe62fd99d7359822e79db28
   specs:
     paperclip (5.0.0.beta1)
       activemodel (>= 4.2.0)
@@ -61,7 +61,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
-    administrate (0.1.4)
+    administrate (0.1.5)
       autoprefixer-rails (~> 6.0)
       datetime_picker_rails (~> 0.0.7)
       jquery-rails (~> 4.0)
@@ -76,14 +76,14 @@ GEM
       activerecord (>= 3.2, < 6.0)
       rake (~> 10.4)
     arel (6.0.3)
-    autoprefixer-rails (6.3.5)
+    autoprefixer-rails (6.3.6)
       execjs
-    aws-sdk (2.2.30)
-      aws-sdk-resources (= 2.2.30)
-    aws-sdk-core (2.2.30)
+    aws-sdk (2.2.32)
+      aws-sdk-resources (= 2.2.32)
+    aws-sdk-core (2.2.32)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.2.30)
-      aws-sdk-core (= 2.2.30)
+    aws-sdk-resources (2.2.32)
+      aws-sdk-core (= 2.2.32)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -109,7 +109,7 @@ GEM
     capybara-email (2.5.0)
       capybara (~> 2.4)
       mail
-    carrierwave (0.10.0)
+    carrierwave (0.11.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
@@ -209,7 +209,7 @@ GEM
       fog-core (~> 1.22)
       fog-json
       inflecto (~> 0.0.2)
-    fog-core (1.36.0)
+    fog-core (1.37.0)
       builder
       excon (~> 0.45)
       formatador (~> 0.2)
@@ -299,7 +299,8 @@ GEM
     inflecto (0.0.2)
     ipaddress (0.8.3)
     its-it (1.2.1)
-    jmespath (1.1.3)
+    jmespath (1.2.4)
+      json_pure (>= 1.8.1)
     jquery-fileupload-rails (0.4.6)
       actionpack (>= 3.1)
       railties (>= 3.1)
@@ -314,6 +315,7 @@ GEM
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (1.8.3)
+    json_pure (1.8.3)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -365,7 +367,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    puma (3.2.0)
+    puma (3.3.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -422,7 +424,7 @@ GEM
     redis (3.2.2)
     ref (2.0.0)
     remotipart (1.2.1)
-    request_store (1.3.0)
+    request_store (1.3.1)
     responders (2.1.2)
       railties (>= 4.2.0, < 5.1)
     rspec-core (3.4.4)
@@ -497,7 +499,7 @@ GEM
     sort_alphabetical (1.0.2)
       unicode_utils (>= 1.2.2)
     spring (1.6.4)
-    sprockets (3.5.2)
+    sprockets (3.6.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-rails (3.0.4)

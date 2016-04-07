@@ -1,10 +1,10 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
-  before_action :set_competition
+  before_action :set_challenge
 
 
   def index
-    @topics = @competition.topics
+    @topics = @challenge.topics
     @headline_post = Post.find_by_sql(headline_sql).first  # TODO move into model layer based on answers or views
   end
 
@@ -12,17 +12,17 @@ class TopicsController < ApplicationController
   end
 
   def new
-    @topic = @competition.topics.new
+    @topic = @challenge.topics.new
   end
 
   def edit
   end
 
   def create
-    @topic = @competition.topics.new(topic_params)
+    @topic = @challenge.topics.new(topic_params)
 
     if @topic.save
-      redirect_to competition_topics_path(@competition), notice: 'Topic was successfully created.'
+      redirect_to challenge_topics_path(@challenge), notice: 'Topic was successfully created.'
     else
       render :new
     end
@@ -30,7 +30,7 @@ class TopicsController < ApplicationController
 
   def update
     if @topic.update(topic_params)
-      redirect_to competition_topics_path(@competition), notice: 'Topic was successfully updated.'
+      redirect_to challenge_topics_path(@challenge), notice: 'Topic was successfully updated.'
     else
       render :edit
     end
@@ -38,7 +38,7 @@ class TopicsController < ApplicationController
 
   def destroy
     @topic.destroy
-    redirect_to competition_topics_path(@competition), notice: 'Topic was successfully destroyed.'
+    redirect_to challenge_topics_path(@challenge), notice: 'Topic was successfully destroyed.'
   end
 
   private
@@ -46,12 +46,12 @@ class TopicsController < ApplicationController
       @topic = Topic.find(params[:id])
     end
 
-    def set_competition
-      @competition = Competition.find(params[:competition_id])
+    def set_challenge
+      @challenge = Challenge.find(params[:challenge_id])
     end
 
     def topic_params
-      params.require(:topic).permit(:competition_id, :user_id, :topic, :sticky, :views, :posts_count)
+      params.require(:topic).permit(:challenge_id, :user_id, :topic, :sticky, :views, :posts_count)
     end
 
     def headline_sql
@@ -61,7 +61,7 @@ class TopicsController < ApplicationController
         where p.flagged = false
         and p.topic_id = t.id
         and p.user_id = u.id
-        and t.competition_id = #{@competition.id}
+        and t.challenge_id = #{@challenge.id}
         order by p.created_at desc
         limit 1
       ]

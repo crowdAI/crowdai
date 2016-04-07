@@ -1,14 +1,14 @@
-<div class="tab-pane" id="competitions">
+<div class="tab-pane" id="challenges">
 
-  <% if @user.competitions.any? %>
+  <% if @user.challenges.any? %>
     <ul class="list-group">
-      <% @user.competitions.each do |comp| %>
-        <li class="list-group-item"><%= comp.competition %></li>
+      <% @user.challenges.each do |comp| %>
+        <li class="list-group-item"><%= comp.challenge %></li>
       <% end %>
     </ul>
   <% else %>
     <br/>
-    <h3><%= @user.name %> has not yet entered any competitions.</h3>
+    <h3><%= @user.name %> has not yet entered any challenges.</h3>
   <% end %>
 
 </div>

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "timelines/show", type: :view do
   before(:each) do
     @timeline = assign(:timeline, Timeline.create!(
-      :competition => nil,
+      :challenge => nil,
       :seq => 1,
       :event => "Event"
     ))

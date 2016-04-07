@@ -29,7 +29,7 @@ RSpec.describe Submission, type: :model do
   describe 'associations' do
     subject { @submission }
 
-    it { should respond_to(:competition) }
+    it { should respond_to(:challenge) }
     it { should respond_to(:user) }
     it { should respond_to(:team) }
     it { should respond_to(:submission_files) }
@@ -37,4 +37,37 @@ RSpec.describe Submission, type: :model do
 
   describe 'specific validations' do
   end
+
+  # === Relations ===
+  it { is_expected.to belong_to :challenge }
+  it { is_expected.to belong_to :user }
+  it { is_expected.to belong_to :team }
+
+  it { is_expected.to have_many :submission_files }
+
+  # === Nested Attributes ===
+  it { is_expected.to accept_nested_attributes_for :submission_files }
+
+  # === Database (Columns) ===
+  it { is_expected.to have_db_column :id }
+  it { is_expected.to have_db_column :challenge_id }
+  it { is_expected.to have_db_column :user_id }
+  it { is_expected.to have_db_column :team_id }
+  it { is_expected.to have_db_column :evaluated }
+  it { is_expected.to have_db_column :score }
+  it { is_expected.to have_db_column :submission_type_cd }
+  it { is_expected.to have_db_column :created_at }
+  it { is_expected.to have_db_column :updated_at }
+  it { is_expected.to have_db_column :description }
+
+  # === Database (Indexes) ===
+  it { is_expected.to have_db_index ["challenge_id"] }
+  it { is_expected.to have_db_index ["team_id"] }
+  it { is_expected.to have_db_index ["user_id"] }
+
+  # === Validations (Length) ===
+
+
+  # === Validations (Presence) ===
+  it { is_expected.to validate_presence_of :submission_type }
 end

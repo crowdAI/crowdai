@@ -1,19 +1,19 @@
 class SubmissionsController < ApplicationController
   before_action :set_submission, only: [:show, :edit, :update, :destroy]
-  before_action :set_competition
+  before_action :set_challenge
   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
 
   def index
-    @submissions = @competition.submissions.where(user_id: current_user)
+    @submissions = @challenge.submissions.where(user_id: current_user)
   end
 
   def show
   end
 
   def new
-    @submission = @competition.submissions.new
-    # TODO for the first competition we are working with 2 files.
-    # Make this competition config data in next release
+    @submission = @challenge.submissions.new
+    # TODO for the first challenge we are working with 2 files.
+    # Make this challenge config data in next release
     @submissions_remaining = submissions_remaining
     @submission.submission_files.build(seq: 0)
     @submission.submission_files.build(seq: 1)
@@ -27,7 +27,7 @@ class SubmissionsController < ApplicationController
 
     if @submission.save
       SubmissionGraderJob.perform_later(submission_id: @submission.id)
-      redirect_to competition_submissions_path(@competition)
+      redirect_to challenge_submissions_path(@challenge)
     else
       @errors = @submission.errors
       render :new
@@ -36,7 +36,7 @@ class SubmissionsController < ApplicationController
 
   def update
     if @submission.update(submission_params)
-      redirect_to [@competition,@submission], notice: 'Submission was successfully updated.'
+      redirect_to [@challenge,@submission], notice: 'Submission was successfully updated.'
     else
       render :edit
     end
@@ -57,12 +57,12 @@ class SubmissionsController < ApplicationController
       @submission = Submission.find(params[:id])
     end
 
-    def set_competition
-      @competition = Competition.find(params[:competition_id])
+    def set_challenge
+      @challenge = Challenge.find(params[:challenge_id])
     end
 
     def submission_params
-      params.require(:submission).permit(:competition_id, :user_id, :team_id, :description, :evaluated, :score, :submission_type,
+      params.require(:submission).permit(:challenge_id, :user_id, :team_id, :description, :evaluated, :score, :submission_type,
                                   submission_files_attributes: [:id, :seq, :submission_file, :_delete])
     end
 

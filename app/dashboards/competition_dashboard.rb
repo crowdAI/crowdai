@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class CompetitionDashboard < Administrate::BaseDashboard
+class ChallengeDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -13,13 +13,13 @@ class CompetitionDashboard < Administrate::BaseDashboard
     dataset_files: Field::HasMany,
     timelines: Field::HasMany,
     submissions: Field::HasMany,
-    user_competitions: Field::HasMany,
+    user_challenges: Field::HasMany,
     users: Field::HasMany,
     leaderboards: Field::HasMany,
     topics: Field::HasMany,
     image: Field::HasOne,
     id: Field::Number,
-    competition: Field::String,
+    challenge: Field::String,
     status_cd: Field::String,
     description: Field::Text,
     evaluation: Field::Text,
@@ -53,13 +53,13 @@ class CompetitionDashboard < Administrate::BaseDashboard
     :dataset_files,
     :timelines,
     :submissions,
-    :user_competitions,
+    :user_challenges,
     :users,
     :leaderboards,
     :topics,
     :image,
     :id,
-    :competition,
+    :challenge,
     :status_cd,
     :description,
     :evaluation,
@@ -82,12 +82,12 @@ class CompetitionDashboard < Administrate::BaseDashboard
     :dataset_files,
     :timelines,
     :submissions,
-    :user_competitions,
+    :user_challenges,
     :users,
     :leaderboards,
     :topics,
     :image,
-    :competition,
+    :challenge,
     :status_cd,
     :description,
     :evaluation,
@@ -99,10 +99,10 @@ class CompetitionDashboard < Administrate::BaseDashboard
     :submission_instructions,
   ]
 
-  # Overwrite this method to customize how competitions are displayed
+  # Overwrite this method to customize how challenges are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(competition)
-  #   "Competition ##{competition.id}"
+  # def display_resource(challenge)
+  #   "Challenge ##{challenge.id}"
   # end
 end

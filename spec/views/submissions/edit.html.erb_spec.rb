@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "submissions/edit", type: :view do
   before(:each) do
     @submission = assign(:submission, Submission.create!(
-      :competition => nil,
+      :challenge => nil,
       :user => nil,
       :team => nil,
       :evaluated => false,
@@ -19,7 +19,7 @@ RSpec.describe "submissions/edit", type: :view do
 
     assert_select "form[action=?][method=?]", submission_path(@submission), "post" do
 
-      assert_select "input#submission_competition_id[name=?]", "submission[competition_id]"
+      assert_select "input#submission_challenge_id[name=?]", "submission[challenge_id]"
 
       assert_select "input#submission_user_id[name=?]", "submission[user_id]"
 

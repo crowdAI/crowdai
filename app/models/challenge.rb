@@ -29,12 +29,12 @@ class Challenge < ActiveRecord::Base
   end
 
   def start_date
-    return nil if self.timelines.empty?
+    return Date.yesterday if self.timelines.empty?
     self.timelines.first.event_time
   end
 
   def end_date
-    return nil if self.timelines.empty?
+    return Date.tomorrow if self.timelines.empty?
     self.timelines.last.event_time
   end
 

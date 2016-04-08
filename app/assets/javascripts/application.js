@@ -32,8 +32,8 @@
 //= require components/markdown_editor
 //= require components/markdown_preview
 //= require components/s3_direct_upload
+//= require components/upload_button
 
 // modules
-//= require modules/users
 
 //= require turbolinks

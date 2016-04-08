@@ -1,5 +1,5 @@
 
-
+<br/>
   <div class="row">
     <div class='col-md-12 text-center'>
       <%= simple_form_for(@participant) do |f| %>
@@ -11,15 +11,16 @@
           </div>
 
           <% if @participant.image.present? %>
-            <%= avatar_fields.check_box '_destroy' %> remove? or
+            <%#= avatar_fields.check_box '_destroy' %>
             <%= avatar_fields.label :image, "replace image?" %>
           <% else %>
             <%= avatar_fields.label :image, "Add your own image?" %>
           <% end %>
-
-          <%= avatar_fields.file_field :image %>
+          <%#= f.hidden_field :image, as: :file %>
+          <%= avatar_fields.file_field :image, class: 'upload-btn' %>
         <% end %>
-        <%=  f.button :submit, "Update Picture" %>
+        <br/>
+        <%=  f.button :submit, "Update Picture", class: 'btn btn-primary outline' %>
       <% end %>
     </div>
   </div>

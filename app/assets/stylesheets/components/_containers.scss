@@ -19,11 +19,19 @@
 
 .page-content-container {
   color: inherit;
-  padding: 20px 20px 20px 20px;
+  padding: 20px 20px 20px 40px;
 }
 
 .sidebar-container {
   color: inherit;
   background-color: $crowdai-bg-dark-grey;
   padding-left: 50px;
+}
+
+.calendar-container-left {
+  clear: left;
+}
+
+.calendar-container-right {
+  clear: right;
 }

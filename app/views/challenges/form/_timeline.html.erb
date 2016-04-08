@@ -4,7 +4,7 @@
   <%= f.simple_fields_for :timelines do |timeline| %>
     <%= render 'challenges/form/timeline_fields', f: timeline %>
   <% end %>
-  <%= link_to_add_association 'add milestone', f, :timelines,  html_options = { partial: 'challenges/form/timeline_fields', class: 'btn btn-default' } %>
+  <%= link_to_add_association 'add milestone', f, :timelines,  html_options = { partial: 'challenges/form/timeline_fields', class: 'btn btn-primary outline' } %>
 
   <div class="form-actions">
     <%= f.button :submit %>

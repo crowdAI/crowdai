@@ -5,7 +5,7 @@
         <div class="centered-text">
           <h2>Change your password</h2>
         </div>
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
           <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= f.error_notification %>
 
@@ -16,15 +16,14 @@
             <p>Currently waiting confirmation for:
               <%= resource.unconfirmed_email %></p>
             <% end %>
-            <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
-
+            <%= f.input :current_password, required: true %>
             <%= f.input :password, autocomplete: "off", label: 'New password', required: true %>
             <%= f.input :password_confirmation, required: false %>
           </div>
 
           <br/><br/>
           <div class="form-actions">
-            <%= f.button :submit, "Change password", class: "btn btn-primary btn-block" %>
+            <%= f.button :submit, "Change password", class: "btn btn-primary btn-block outline" %>
           </div>
           <% end %>
           <br/><br/>

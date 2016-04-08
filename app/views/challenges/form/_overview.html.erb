@@ -4,6 +4,7 @@
   <%= f.error_notification %>
 
     <%= f.input :challenge %>
+    <%= f.input :tagline %>
     <%= f.input :status, collection: enum_option_pairs(Challenge, :status) %>
     <%= f.input :description, as: :bootsy, input_html: { rows: 20 } %>
 

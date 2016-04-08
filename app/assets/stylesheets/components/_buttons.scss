@@ -25,25 +25,41 @@
 }
 
 
+// TODO get rid of all these !importants
 /* outline buttons */
-.btn.outline {
-    background: none;
-    //padding: 12px 22px;
+.outline {
+  background: none;
+  border: 2px solid $brand-primary;
+  color: $brand-primary !important;
 }
+
+.outline:hover {
+  color: #FFF !important;
+  border-color: $brand-primary !important;
+  background-color: $brand-primary !important;
+}
+
+
+
+/*
 .btn-primary.outline {
     border: 2px solid $brand-primary;
     color: $brand-primary;
-}
+}  */
+
+/*
 .btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
-    color: #FFF;
-    border-color: $brand-primary;
-    background-color: $brand-primary;
-}
+    color: #FFF !important;
+    border-color: $brand-primary !important;
+    background-color: $brand-primary !important;
+} */
+
+/*
 .btn-primary.outline:active, .btn-primary.outline.active {
     border-color: #007299;
     color: #007299;
     box-shadow: none;
-}
+} */
 
 
 /* circle buttons */

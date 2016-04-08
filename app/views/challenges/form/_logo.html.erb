@@ -15,14 +15,13 @@
             <%= image.check_box '_destroy' %> remove
           <% end %>
 
-          <span class="btn btn-default btn-file">
+          <span class="btn btn-primary outline">
               Browse <%= image.file_field :image %>
           </span>
 
 
         <% end %>
-        <%=  f.button :submit, "Update Logo" %>
-    
+        <%=  f.button :submit, "Update Logo", class: "btn btn-primary outline" %>
     </div>
   </div>
 

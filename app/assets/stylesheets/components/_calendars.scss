@@ -1,10 +1,9 @@
 .mini-calendar
 {
-  font-size: 1em;
   display: block;
   position: relative;
-  width: 4em;
-  height: 4em;
+  width: 45px;
+  height: 45px;
   background-color: #fff;
   border-radius: 0.3em;
   overflow: hidden;
@@ -16,6 +15,7 @@
 
 .mini-calendar span {
   color: $crowdai-text-dark !important;
+  font-weight: 200;
 }
 
 
@@ -32,8 +32,10 @@
 .mini-calendar strong
 {
   position: absolute;
+  font-size: 0.9em;
+  font-weight: 200;
   top: 0;
-  padding: 0.1em 0;
+  padding: 0.05em 0;
   color: #fff;
   background-color: $brand-primary;
   box-shadow: 0 2px 0 $brand-primary;
@@ -49,7 +51,7 @@
 .mini-calendar span
 {
   width: 100%;
-  font-size: 1.8em;
+  font-size: 1.4em;
   letter-spacing: -0.05em;
   padding-top: 0.8em;
   color: #2f2f2f;

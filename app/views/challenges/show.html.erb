@@ -1,6 +1,8 @@
 <%= render partial: 'sidebar' %>
 <%= render partial: 'header', challenge: @challenge %>
 
+<div class="page-content-container">
+  <h5>Competition Details</h5>
   <div data-spy="scroll" data-target=".navbar" data-offset="50">
     <div>
       <%= render 'challenges/show/overview', challenge: @challenge %>
@@ -10,3 +12,4 @@
       <%= render 'challenges/show/resources', challenge: @challenge %>
     </div>
   </div>
+</div>

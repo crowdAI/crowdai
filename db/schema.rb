@@ -117,28 +117,7 @@ ActiveRecord::Schema.define(version: 20160408131809) do
   add_index "submissions", ["participant_id"], :name=>"index_submissions_on_participant_id", :using=>:btree
   add_index "submissions", ["team_id"], :name=>"index_submissions_on_team_id", :using=>:btree
 
-  create_view "leaderboards", <<-'END_VIEW_LEADERBOARDS', :force => true
-SELECT s.id,
-    s.challenge_id,
-    s.participant_id,
-    p.name,
-    NULL::integer AS team_id,
-    s.score,
-    cnt.entries,
-    s.created_at,
-    s.updated_at
-   FROM submissions s,
-    participants p,
-    ( SELECT submissions.challenge_id,
-            submissions.participant_id,
-            submissions.team_id,
-            count(*) AS entries
-           FROM submissions
-          GROUP BY submissions.challenge_id, submissions.participant_id, submissions.team_id) cnt
-  WHERE ((p.id = s.participant_id) AND (s.evaluated = true) AND (s.participant_id = cnt.participant_id) AND (s.challenge_id = cnt.challenge_id) AND (s.score = ( SELECT max(m.score) AS max
-           FROM submissions m
-          WHERE ((m.challenge_id = s.challenge_id) AND (m.participant_id = s.participant_id) AND (m.evaluated = true)))))
-  END_VIEW_LEADERBOARDS
+
 
   create_table "organizers", force: :cascade do |t|
     t.string   "organizer"
@@ -281,4 +260,29 @@ SELECT s.id,
   add_foreign_key "timelines", "challenges"
   add_foreign_key "topics", "challenges"
   add_foreign_key "topics", "participants"
+
+
+  create_view "leaderboards", <<-'END_VIEW_LEADERBOARDS', :force => true
+  SELECT s.id,
+    s.challenge_id,
+    s.participant_id,
+    p.name,
+    NULL::integer AS team_id,
+    s.score,
+    cnt.entries,
+    s.created_at,
+    s.updated_at
+   FROM submissions s,
+    participants p,
+    ( SELECT submissions.challenge_id,
+            submissions.participant_id,
+            submissions.team_id,
+            count(*) AS entries
+           FROM submissions
+          GROUP BY submissions.challenge_id, submissions.participant_id, submissions.team_id) cnt
+  WHERE ((p.id = s.participant_id) AND (s.evaluated = true) AND (s.participant_id = cnt.participant_id) AND (s.challenge_id = cnt.challenge_id) AND (s.score = ( SELECT max(m.score) AS max
+           FROM submissions m
+          WHERE ((m.challenge_id = s.challenge_id) AND (m.participant_id = s.participant_id) AND (m.evaluated = true)))))
+  END_VIEW_LEADERBOARDS
+
 end

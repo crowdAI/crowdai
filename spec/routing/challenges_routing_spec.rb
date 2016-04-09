@@ -1,22 +1,4 @@
-# == Schema Information
-#
-# Table name: challenges
-#
-#  id                     :integer          not null, primary key
-#  organizer_id :integer
-#  challenge            :string
-#  start_date             :date
-#  end_date               :date
-#  status_cd              :string
-#  description            :text
-#  evaluation             :text
-#  evaluation_criteria    :text
-#  rules                  :text
-#  prizes                 :text
-#  resources              :text
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#
+
 
 require "rails_helper"
 

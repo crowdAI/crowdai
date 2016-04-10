@@ -1,6 +1,7 @@
 <% if current_participant.organizer_id.present? %>
   <li><%= link_to current_participant.organizer.organizer,
-                  organizer_path(current_participant.organizer), class: 'navbar-underline' %></li>
+                  organizer_path(current_participant.organizer),
+                  class: 'navbar-underline' %></li>
 <% else %>
   <li><%= link_to "Host", organizers_path, class: 'navbar-underline' %></li>
 <% end %>
@@ -10,3 +11,7 @@
 <li><%= link_to "Datasets", '#' %></li>
 <li><%= link_to "Scripts", '#' %></li>  -->
 <li><%= link_to "Community", '#', class: 'navbar-underline' %></li>
+
+<% if current_participant.admin? %>
+  <li><%= link_to 'Admin', admin_root_path %></li>
+<% end %>

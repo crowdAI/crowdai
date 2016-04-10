@@ -10,5 +10,7 @@ module GlyphiconHelper
 
 # usage:
 # <%= glyphicon_link 'equalizer', 'Resources', challenge_path(@challenge, anchor: 'resources') %>
+# <%= glyphicon_link 'user', 'Profile', participant_path(current_participant) %>
+
 
 end

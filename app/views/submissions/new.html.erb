@@ -1,14 +1,16 @@
 <%= render partial: 'challenges/sidebar' %>
 <%= render partial: 'challenges/header', challenge: @challenge %>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Atque ab isto capite fluere necesse est omnem rationem bonorum et malorum. Homines optimi non intellegunt totam rationem everti, si ita res se habeat. Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Igitur neque stultorum quisquam beatus neque sapientium non beatus. Duo Reges: constructio interrete. Aufert enim sensus actionemque tollit omnem. Inde igitur, inquit, ordiendum est. Nos quidem Virtutes sic natae sumus, ut tibi serviremus, aliud negotii nihil habemus.</p>
+<p class="lead">
+Please upload your submissions and include a detailed description of the methodology, techniques and insights leveraged with this submission. After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC).
+</p>
 
-<p>Non enim iam stirpis bonum quaeret, sed animalis. Quo modo autem optimum, si bonum praeterea nullum est? Sed in rebus apertissimis nimium longi sumus. Traditur, inquit, ab Epicuro ratio neglegendi doloris. Que Manilium, ab iisque M. Ad corpus diceres pertinere-, sed ea, quae dixi, ad corpusne refers? Quae cum magnifice primo dici viderentur, considerata minus probabantur. Qui non moveatur et offensione turpitudinis et comprobatione honestatis? Nam quibus rebus efficiuntur voluptates, eae non sunt in potestate sapientis.</p>
-
+<p class="lead"><b>
+  By making your submission you indicate your agreement with these terms.</b></p>
 
 <% if @submissions_remaining < 1 %>
   <h2>You may submit a maximum of five entries each 24 hours.</h2>
 <% else %>
-  <p>You have <%= @submissions_remaining %> submissions remaining today (in a 24 hour window). </p>
+  <p class="text-primary"><b>You have <%= @submissions_remaining %> submissions remaining today (in a 24 hour window). </b></p>
   <%= render 'form' %>
 <% end %>

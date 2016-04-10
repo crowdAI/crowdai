@@ -33,6 +33,7 @@
 //= require components/markdown_preview
 //= require components/s3_direct_upload
 //= require components/upload_button
+//= require components/flash_messages
 
 // modules
 

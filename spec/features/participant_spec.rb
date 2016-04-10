@@ -7,9 +7,9 @@ RSpec.feature "participant", type: :feature do
       visit "/"
       click_link "Join"                # TODO convert to button
 
-      fill_in "name",              with: 'test_participant'
+      fill_in "name",                  with: 'test_participant'
       fill_in "Email",                 with: "test@example.com"
-      fill_in 'participant_password',         with: "crowdai123"
+      fill_in 'participant_password',  with: "crowdai123"
       fill_in "Password confirmation", with: "crowdai123"
 
       click_button "Sign up"

@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   end
 
   get '/pages/*id' => 'pages#show', as: :page, format: false
-  # resources :teams
+  resources :teams
 
   # different home for public / auth users
   authenticated :participant do

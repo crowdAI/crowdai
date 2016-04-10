@@ -86,8 +86,8 @@
 .navbar-brand
 {
   display: block;
-  width: 146px;
-  padding: 0;
-  padding-left: 15px;
-  background: image-url('crowdai_logo.svg') no-repeat left center;
+  width: 160px;
+  //padding: 0;
+  margin-left: 25px !important;
+  background: image-url('crowdai_logo.svg') no-repeat right center;
 }

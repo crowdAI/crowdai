@@ -14,12 +14,13 @@ gem "administrate", "~> 0.1.4"
 gem 'simple_enum'
 gem "schema_plus_views"
 gem 'seed_dump'
+gem 'validate_url'
 
 # forms / data manipulation / charts
 gem 'simple_form'
 gem 'country_select'
 gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables-rails.git'
-gem "cocoon"
+gem 'cocoon'
 gem 'bootsy'
 gem 'redcarpet'
 gem 'groupdate'

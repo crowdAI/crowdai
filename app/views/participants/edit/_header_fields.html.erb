@@ -2,7 +2,6 @@
 <%= render 'participants/edit/avatar' %>
 
 <%= simple_form_for(@participant) do |f| %>
-<%= f.error_notification %>
 <div class="row">
   <div class="col-md-4 col-md-offset-4">
     <%= f.input :name, required: true, placeholder: 'Enter your name' %>

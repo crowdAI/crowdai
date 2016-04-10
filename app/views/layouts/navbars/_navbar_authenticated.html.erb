@@ -1,29 +1,35 @@
 <nav class="navbar navbar-default navbar-static-top">
-  <div class="brand-container">
+  <div class="container-fluid">
     <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#crowdai-navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
       <a class="navbar-brand" href="/"></a>
     </div>
-  </div>
 
-  <div class="pull-right">
-    <ul class="nav navbar-nav">
-
-      <%= render 'layouts/navbars/navbar_menu' %>
-
-      <% if current_participant.admin? %>
-      <li><%= link_to 'Admin', admin_root_path %></li>
-      <% end %>
-
-      <li class="dropdown">
-        <a href="#" id="avatar-menu" class="dropdown-toggle profile-image" data-toggle="dropdown">
-          <%= image_tag avatar_url(current_participant,'medium'), size: '30x30', class: "img-circle navbar-profile-img" %><%= current_participant.name %><b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
-          <li><%= awesome_link('fa fa-cog', 'Profile', participant_path(current_participant)) %></li>
-          <li><%= awesome_link('fa fa-cog', 'Password', edit_participant_registration_path) %></li>
-          <li><%= awesome_link('fa fa-sign-out', 'Sign out', destroy_participant_session_path, :method => :delete) %></li>
+    <div class="collapse navbar-collapse" id="crowdai-navbar-collapse">
+      <div class="navbar-right">
+        <ul class="nav navbar-nav">
+          <%= render 'layouts/navbars/navbar_menu' %>
         </ul>
-      </li>
-    </ul>
-  </div>
+
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" id="avatar-menu" class="dropdown-toggle profile-image" data-toggle="dropdown">
+              <%= image_tag avatar_url(current_participant,'medium'), size: '30x30', class: "img-circle navbar-profile-img" %><%= current_participant.name %>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= glyphicon_link 'user', 'Profile', participant_path(current_participant) %></li>
+              <li><%= glyphicon_link 'cog', 'Password', edit_participant_registration_path %></li>
+              <li><%= glyphicon_link 'log-out', 'Sign out', destroy_participant_session_path, :method => :delete %></li>
+            </ul>
+          </li><!-- dropdown -->
+        </ul><!-- nav navbar-nav navbar-right -->
+      </div><!-- navbar-right -->
+    </div><!-- #crowdai-navbar-collapse -->
+  </div><!-- container-fluid -->
 </nav>

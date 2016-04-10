@@ -1,17 +1,3 @@
-# == Schema Information
-#
-# Table name: organizers
-#
-#  id             :integer          not null, primary key
-#  organizer    :string
-#  address        :text
-#  description    :text
-#  contact_person :string
-#  contact_phone  :string
-#  contact_email  :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#
 
 require "rails_helper"
 

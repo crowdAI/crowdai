@@ -1,5 +1,5 @@
 $(document).ready(function() {
   setTimeout(function() {
-    $('.alert').slideUp(500);
+    $('.alert').filter('.alert-success, .alert-info').slideUp(500);
   }, 1000);
 });

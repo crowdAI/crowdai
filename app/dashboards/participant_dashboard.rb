@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class UserDashboard < Administrate::BaseDashboard
+class ParticipantDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,10 +8,10 @@ class UserDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    user_challenges: Field::HasMany,
+    participant_challenges: Field::HasMany,
     challenges: Field::HasMany,
     submissions: Field::HasMany,
-    team_users: Field::HasMany,
+    team_participants: Field::HasMany,
     teams: Field::HasMany,
     posts: Field::HasMany,
     organizer: Field::BelongsTo,
@@ -43,7 +43,6 @@ class UserDashboard < Administrate::BaseDashboard
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     unconfirmed_email: Field::String,
-    organizer_primary: Field::Boolean,
     email_public: Field::Boolean,
     bio: Field::Text,
     website: Field::String,
@@ -68,10 +67,10 @@ class UserDashboard < Administrate::BaseDashboard
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :user_challenges,
+    :participant_challenges,
     :challenges,
     :submissions,
-    :team_users,
+    :team_participants,
     :teams,
     :posts,
     :organizer,
@@ -103,7 +102,6 @@ class UserDashboard < Administrate::BaseDashboard
     :created_at,
     :updated_at,
     :unconfirmed_email,
-    :organizer_primary,
     :first_name,
     :last_name,
     :name,
@@ -119,10 +117,10 @@ class UserDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :user_challenges,
+    :participant_challenges,
     :challenges,
     :submissions,
-    :team_users,
+    :team_participants,
     :teams,
     :posts,
     :organizer,
@@ -151,9 +149,6 @@ class UserDashboard < Administrate::BaseDashboard
     :city,
     :timezone,
     :unconfirmed_email,
-    :organizer_primary,
-    :first_name,
-    :last_name,
     :name,
     :email_public,
     :bio,

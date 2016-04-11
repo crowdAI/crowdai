@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class TeamUserDashboard < Administrate::BaseDashboard
+class TeamParticipantDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -9,7 +9,7 @@ class TeamUserDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     team: Field::BelongsTo,
-    user: Field::BelongsTo,
+    participant: Field::BelongsTo,
     id: Field::Number,
     from_date: Field::DateTime,
     thru_date: Field::DateTime,
@@ -24,7 +24,7 @@ class TeamUserDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :team,
-    :user,
+    :participant,
     :id,
     :from_date,
   ]
@@ -33,7 +33,7 @@ class TeamUserDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :team,
-    :user,
+    :participant,
     :id,
     :from_date,
     :thru_date,
@@ -46,7 +46,7 @@ class TeamUserDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :team,
-    :user,
+    :participant,
     :from_date,
     :thru_date,
   ]

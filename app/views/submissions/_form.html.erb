@@ -20,7 +20,7 @@
     <b>Archive (.zip or .tar) of model and script</b>
     <% end %>
     <%= file.hidden_field :seq %>
-    <%= file.input :submission_file, as: :file, label: false %>
+    <%= file.input :submission_file_s3_key, as: :file, label: false, input_html: { class: 's3File'} %>
   </div>
   <% end %>
 

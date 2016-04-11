@@ -16,19 +16,15 @@
         <tr>
           <th>Submitted</th>
           <th>Score</th>
-          <th>Files</th>
         </tr>
       </thead>
+
 
       <tbody>
         <% @submissions.each do |submission| %>
           <tr>
             <td><%= link_to submission.created_at, challenge_submission_path(@challenge, submission) %></td>
             <td><%= link_to score(submission), challenge_submission_path(@challenge, submission) %></td>
-            <td><% submission.submission_files.each do |f| %>
-                    <%= f.submission_file_file_name %><br/>
-                <% end %>
-            </td>
           </tr>
         <% end %>
       </tbody>

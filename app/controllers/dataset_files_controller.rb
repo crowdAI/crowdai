@@ -1,6 +1,7 @@
 class DatasetFilesController < ApplicationController
   before_action :set_dataset_file, only: [:show, :edit, :update, :destroy]
   before_action :set_challenge
+  before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
 
   def index
     @dataset_files = DatasetFile.all
@@ -49,6 +50,12 @@ class DatasetFilesController < ApplicationController
     end
 
     def dataset_file_params
-      params.require(:dataset_file).permit(:dataset_id, :seq, :description, :dataset_file)
+      params.require(:dataset_file).permit(:dataset_id, :seq, :description, :dataset_file_s3_key)
+    end
+
+    def set_s3_direct_post
+      @s3_direct_post = S3_BUCKET.presigned_post(key: "dataset_files/#{SecureRandom.uuid}/${filename}",
+                                                 success_action_status: '201',
+                                                 acl: 'public-read')
     end
 end

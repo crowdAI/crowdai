@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408131809) do
+ActiveRecord::Schema.define(version: 20160411124048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,14 +49,11 @@ ActiveRecord::Schema.define(version: 20160408131809) do
 
   create_table "dataset_files", force: :cascade do |t|
     t.integer  "seq"
-    t.datetime "created_at",                :null=>false
-    t.datetime "updated_at",                :null=>false
+    t.datetime "created_at",          :null=>false
+    t.datetime "updated_at",          :null=>false
     t.string   "description"
-    t.string   "dataset_file_file_name"
-    t.string   "dataset_file_content_type"
-    t.integer  "dataset_file_file_size"
-    t.datetime "dataset_file_updated_at"
     t.integer  "challenge_id"
+    t.string   "dataset_file_s3_key"
   end
   add_index "dataset_files", ["challenge_id"], :name=>"index_dataset_files_on_challenge_id", :using=>:btree
 
@@ -117,7 +114,28 @@ ActiveRecord::Schema.define(version: 20160408131809) do
   add_index "submissions", ["participant_id"], :name=>"index_submissions_on_participant_id", :using=>:btree
   add_index "submissions", ["team_id"], :name=>"index_submissions_on_team_id", :using=>:btree
 
-
+  create_view "leaderboards", <<-'END_VIEW_LEADERBOARDS', :force => true
+SELECT s.id,
+    s.challenge_id,
+    s.participant_id,
+    p.name,
+    NULL::integer AS team_id,
+    s.score,
+    cnt.entries,
+    s.created_at,
+    s.updated_at
+   FROM submissions s,
+    participants p,
+    ( SELECT submissions.challenge_id,
+            submissions.participant_id,
+            submissions.team_id,
+            count(*) AS entries
+           FROM submissions
+          GROUP BY submissions.challenge_id, submissions.participant_id, submissions.team_id) cnt
+  WHERE ((p.id = s.participant_id) AND (s.evaluated = true) AND (s.participant_id = cnt.participant_id) AND (s.challenge_id = cnt.challenge_id) AND (s.score = ( SELECT max(m.score) AS max
+           FROM submissions m
+          WHERE ((m.challenge_id = s.challenge_id) AND (m.participant_id = s.participant_id) AND (m.evaluated = true)))))
+  END_VIEW_LEADERBOARDS
 
   create_table "organizers", force: :cascade do |t|
     t.string   "organizer"
@@ -260,29 +278,4 @@ ActiveRecord::Schema.define(version: 20160408131809) do
   add_foreign_key "timelines", "challenges"
   add_foreign_key "topics", "challenges"
   add_foreign_key "topics", "participants"
-
-
-  create_view "leaderboards", <<-'END_VIEW_LEADERBOARDS', :force => true
-  SELECT s.id,
-    s.challenge_id,
-    s.participant_id,
-    p.name,
-    NULL::integer AS team_id,
-    s.score,
-    cnt.entries,
-    s.created_at,
-    s.updated_at
-   FROM submissions s,
-    participants p,
-    ( SELECT submissions.challenge_id,
-            submissions.participant_id,
-            submissions.team_id,
-            count(*) AS entries
-           FROM submissions
-          GROUP BY submissions.challenge_id, submissions.participant_id, submissions.team_id) cnt
-  WHERE ((p.id = s.participant_id) AND (s.evaluated = true) AND (s.participant_id = cnt.participant_id) AND (s.challenge_id = cnt.challenge_id) AND (s.score = ( SELECT max(m.score) AS max
-           FROM submissions m
-          WHERE ((m.challenge_id = s.challenge_id) AND (m.participant_id = s.participant_id) AND (m.evaluated = true)))))
-  END_VIEW_LEADERBOARDS
-
 end

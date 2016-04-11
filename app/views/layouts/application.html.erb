@@ -4,7 +4,7 @@
   <title>Crowdai</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag "http://www.google.com/jsapi", "chartkick" %>
+  <%= javascript_include_tag "http://www.google.com/jsapi", "chartkick" %>
   <%= csrf_meta_tags %>
   <% if Rails.env.production? %>
      <script data-turbolinks-eval="false">
@@ -23,5 +23,6 @@
   <% else %>
     <%= render 'layouts/public_layout' %>
  <% end %>
+
 </body>
 </html>

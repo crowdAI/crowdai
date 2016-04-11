@@ -2,7 +2,7 @@ module DownloadsHelper
 
   def s3_filesize(s3_key)
     s3_file_obj = Aws::S3::Object.new(bucket_name: ENV['AWS_S3_BUCKET'], key: s3_key)
-    filesize = number_to_human_size(1024 * s3_file_obj.content_length)
+    filesize = number_to_human_size(s3_file_obj.content_length)
   end
 
   def s3_expiring_url(s3_key)

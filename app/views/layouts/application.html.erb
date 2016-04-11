@@ -24,5 +24,12 @@
     <%= render 'layouts/public_layout' %>
  <% end %>
 
+ <% if Rails.env.production? %>
+    <script>
+      ga('set', 'location', location.href.split('#')[0]);
+      ga('send', 'pageview', { "title": document.title });
+    </script>
+  <% end %>
+
 </body>
 </html>

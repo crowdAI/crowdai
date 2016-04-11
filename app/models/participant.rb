@@ -40,7 +40,7 @@ class Participant < ActiveRecord::Base
     if image.present?
       image.image.url(:medium)
     else
-      "//#{ENV['HOST']}/assets/PV_avatar_medium.png"
+      "//#{ENV['HOST']}/assets/not_found_iamge.png"
     end
   end
 

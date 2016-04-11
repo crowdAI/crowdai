@@ -1,9 +1,38 @@
 module DownloadsHelper
 
+  def s3_filesize(s3_key)
+    s3_file_obj = Aws::S3::Object.new(bucket_name: ENV['AWS_S3_BUCKET'], key: s3_key)
+    filesize = number_to_human_size(1024 * s3_file_obj.content_length)
+  end
+
+  def s3_expiring_url(s3_key)
+    s3_file_obj = Aws::S3::Object.new(bucket_name: ENV['AWS_S3_BUCKET'], key: s3_key)
+    url = s3_file_obj.presigned_url(:get, expires_in: 3600)
+  end
+
+  # TODO deletion links
+
+
+  def datasets_url(s3_key)
+    logger.debug("s3_key: #{s3_key}")
+    #s3 = Aws::S3::Client.new
+    #resp = s3.get_object(bucket: ENV['AWS_S3_BUCKET'], key: s3_key)
+    #file_size = resp.content_length
+    #expiring_url = resp.presigned_url(:get, expires_in: 3600)
+    #out = capture { link_to s3_file_info(s3_file_obj), expiring_url }
+    s3 = Aws::S3::Object.new(bucket_name: ENV['AWS_S3_BUCKET'], key: s3_key)
+  end
+
+
+
+  def s3_file_info(s3_file_obj)
+    "#{number_to_human_size(1024 * s3_file_obj.content_length)}"
+  end
+
   def download_url(file)
     challenge = Challenge.find(file.challenge_id)
 
-    if current_participant.admin? || current_participant.organizer_id = challenge.organizer_id
+    if current_participant.admin? || current_participant.organizer_id == challenge.organizer_id
       out = capture { link_to file_info(file), file.dataset_file.url }
       out << capture { link_to content_tag(:i, nil, class: 'fa fa-trash-o pull-right'),
                        [challenge,file],
@@ -14,5 +43,6 @@ module DownloadsHelper
     end
     out
   end
-  
+
+
 end

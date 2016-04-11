@@ -7,8 +7,8 @@
       <thead>
         <tr>
           <th></th>
-          <th>Content</th>
-          <th>Filename</th>
+          <th>Description</th>
+          <th>File Size</th>
         </tr>
       </thead>
 
@@ -16,8 +16,8 @@
         <% @challenge.dataset_files.each do |file| %>
         <tr>
           <td><%= file.seq %></td>
-          <td><%= file.description %></td>
-          <td><%= download_url(file) %></td>
+          <td><%= link_to file.description, s3_expiring_url(file.dataset_file_s3_key) %></td>
+          <td><%= s3_filesize(file.dataset_file_s3_key) %></td>
         </tr>
         <% end %>
       </tbody>

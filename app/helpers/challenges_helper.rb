@@ -5,7 +5,7 @@ module ChallengesHelper
     if challenge.image
       challenge.image.image.url(:medium)
     else
-      image_path 'PV_avatar_medium.png'
+      image_path 'not found'  # TODO
     end
   end
 

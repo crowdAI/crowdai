@@ -37,11 +37,11 @@ $(function() {
         progressBar.text("Uploading completed");
 
         var key   = $(data.jqXHR.responseXML).find("Key").text();
-        var url   = '//' + form.data('host') + '/' + key;
-
+        // var url   = '//' + form.data('host') + '/' + key;
         // create hidden field
         //var input = $("<input />", { type:'hidden', name: fileInput.attr('name'), value: url })
-        //form.append(input);
+        var input = $("<input />", { type:'hidden', name: fileInput.attr('name'), value: key })
+        form.append(input);
       },
 
       fail: function (e, data) {

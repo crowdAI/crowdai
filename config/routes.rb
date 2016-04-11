@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :posts, except: [:show]
   resources :topics
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
-  devise_for :participants, except: [:update]
+  devise_for :participants
   resources :participants, only: [:show, :edit, :update, :destroy]
 
   # Administrate

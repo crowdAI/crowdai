@@ -1,12 +1,12 @@
   <li class="list-group-item post">
     <%= markdown(post.post) %>
     <%= link_to "Quote", new_topic_post_path(@topic, :quote => post) %>
-    <% if current_participant.admin? || current_participant == post.user %>
+    <% if current_participant.admin? || current_participant == post.participant %>
       <%= link_to 'edit', edit_topic_post_path(@topic, post) %>
       <%= link_to 'delete', [@topic, post], method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
     <div class="pull-right">
-      Posted by <%= link_to post.user.name, user_path(post.user) %>,
+      Posted by <%= link_to post.participant.name, participant_path(post.participant) %>,
                 <%= time_ago_in_words(post.created_at) %> ago.
     </div>
   </li>

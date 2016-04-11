@@ -9,7 +9,7 @@ class SubmissionDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     challenge: Field::BelongsTo,
-    user: Field::BelongsTo,
+    participant: Field::BelongsTo,
     team: Field::BelongsTo,
     submission_files: Field::HasMany,
     id: Field::Number,
@@ -28,7 +28,7 @@ class SubmissionDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :challenge,
-    :user,
+    :participant,
     :team,
     :submission_files,
   ]
@@ -37,7 +37,7 @@ class SubmissionDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :challenge,
-    :user,
+    :participant,
     :team,
     :submission_files,
     :id,
@@ -54,7 +54,7 @@ class SubmissionDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :challenge,
-    :user,
+    :participant,
     :team,
     :submission_files,
     :evaluated,

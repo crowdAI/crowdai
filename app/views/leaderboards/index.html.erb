@@ -16,7 +16,7 @@
     <% @leaderboards.each_with_index do |leader,row| %>
       <tr>
         <td><%= row + 1 %></td>
-        <td><%= leader.user.name %></td>
+        <td><%= leader.participant.name %></td>
         <td><%= leader.score %></td>
         <td><%= leader.entries %></td>
         <td><%= leader.updated_at %></td>

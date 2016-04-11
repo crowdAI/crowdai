@@ -3,7 +3,7 @@
 
   <div class="form-inputs">
     <%= f.association :challenge, as: :hidden %>
-    <%= f.hidden_field :user_id, value: current_participant.id %>
+    <%= f.hidden_field :participant_id, value: current_participant.id %>
     <%= f.input :topic %>
     <% if current_participant.admin? %>
       <%= f.input :sticky %>

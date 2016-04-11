@@ -33,7 +33,7 @@
                   <% else %>
                     <b>Archive of model and script</b>
                     <% end %></td>
-                  <td><%= link_to sub_file_info(file), file.submission_file.url %></td>
+                  <td><%= link_to s3_filesize(file.submission_file_s3_key), s3_expiring_url(file.submission_file_s3_key) %></td>
                 </tr>
                 <% end %>
               </tbody>

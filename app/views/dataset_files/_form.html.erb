@@ -1,3 +1,4 @@
+
 <%= simple_form_for([@challenge,@dataset_file],
                   html: { class: "directUpload" },
                   data: { 'form-data' => (@s3_direct_post.fields),
@@ -9,10 +10,10 @@
   <div class="form-inputs">
     <%= f.input :seq %>
     <%= f.input :description %>
-    <%= f.input :dataset_file_s3_key, as: :file, id: 'file_upload' %>
+    <%= f.input :dataset_file_s3_key, as: :file, input_html: {class: 's3File' }%>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, id: 'submitS3' %>
   </div>
 <% end %>

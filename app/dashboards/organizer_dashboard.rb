@@ -9,7 +9,7 @@ class OrganizerDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     challenges: Field::HasMany,
-    users: Field::HasMany,
+    participants: Field::HasMany,
     id: Field::Number,
     organizer: Field::String,
     address: Field::Text,
@@ -26,7 +26,7 @@ class OrganizerDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :challenges,
-    :users,
+    :participants,
     :id,
     :organizer,
   ]
@@ -35,7 +35,7 @@ class OrganizerDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :challenges,
-    :users,
+    :participants,
     :id,
     :organizer,
     :address,
@@ -50,7 +50,7 @@ class OrganizerDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :challenges,
-    :users,
+    :participants,
     :organizer,
     :address,
     :description,

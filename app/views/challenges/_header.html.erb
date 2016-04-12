@@ -26,11 +26,21 @@
     </div>
 
     <div class="col-md-8">
-      <div class="progress text-center">
-        <div class="progress-bar challenge-progress" role="progressbar" style="width: <%= @challenge.pct_passed %>%;">
-          <span><%= @challenge.remaining_text %></span>
+      <% if @challenge.pct_passed < 50 %>
+
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: <%= @challenge.pct_passed %>%;">
+          </div>
+            <span class="challenge-progress"><%= @challenge.remaining_text %></span>
         </div>
-      </div>
+
+      <% else %>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: <%= @challenge.pct_passed %>%;">
+            <span class="challenge-progress"><%= @challenge.remaining_text %></span>
+          </div>
+        </div>
+      <% end %>
     </div>
 
     <div class="col-md-1">

@@ -1,13 +1,15 @@
 .progress {
   height: 45px;
+  background-color: $crowdai-bg-white;
+  font-size: 14px;
+  text-align: center;
+  color: $brand-primary;
+}
+
+.progress-bar {
+  font-size: 14px;
 }
 
 .challenge-progress {
-    background-image: none;
-    background-color: #FF4E48;
-    font-size: 14px;
-}
-
-.challenge-progress span {
   vertical-align: -50%;
 }

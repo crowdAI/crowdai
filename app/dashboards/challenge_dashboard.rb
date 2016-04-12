@@ -55,7 +55,6 @@ class ChallengeDashboard < Administrate::BaseDashboard
     :submissions,
     :participant_challenges,
     :participants,
-    :leaderboards,
     :topics,
     :image,
     :id,

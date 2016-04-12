@@ -18,9 +18,7 @@
         <%= time_ago_in_words(@participant.last_sign_in_at) %>
         ago.
       </h2>
-      <% if current_participant == @participant || current_participant.admin? %>
-        <%= @participant.email %>
-      <% end %>
+    
 
     </div>
   </div>

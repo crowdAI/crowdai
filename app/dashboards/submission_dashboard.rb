@@ -28,7 +28,6 @@ class SubmissionDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :challenge,
-    :participant,
     :team,
     :submission_files,
   ]

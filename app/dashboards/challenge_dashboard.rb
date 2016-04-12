@@ -39,10 +39,10 @@ class ChallengeDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
+    :challenge,
+    :status_cd,
     :organizer,
-    :dataset,
-    :dataset_files,
-    :timelines,
+    :dataset_files
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -55,7 +55,6 @@ class ChallengeDashboard < Administrate::BaseDashboard
     :submissions,
     :participant_challenges,
     :participants,
-    :leaderboards,
     :topics,
     :image,
     :id,

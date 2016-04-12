@@ -10,6 +10,9 @@ gem 'puma'
 gem 'devise'
 gem "administrate", "~> 0.1.4"
 
+# monitoring
+gem "rorvswild"
+
 # model
 gem 'simple_enum'
 gem "schema_plus_views"

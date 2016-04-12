@@ -58,10 +58,12 @@ class ParticipantDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :name,
+    :email,
     :challenges,
     :submissions,
     :organizer,
-    :confirmed_at,
+    :admin,
+    :last_sign_in_at,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -102,8 +104,6 @@ class ParticipantDashboard < Administrate::BaseDashboard
     :created_at,
     :updated_at,
     :unconfirmed_email,
-    :first_name,
-    :last_name,
     :name,
     :email_public,
     :bio,

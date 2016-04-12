@@ -2,7 +2,7 @@ class Participant < ActiveRecord::Base
   before_save { self.email = email.downcase }
   before_save :process_urls
 
-  devise :database_authenticatable, :registerable, #, :confirmable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i

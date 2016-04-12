@@ -12,6 +12,8 @@ gem "administrate", "~> 0.1.4"
 
 # monitoring
 gem "rorvswild"
+gem 'newrelic_rpm'
+gem 'rollbar', '~> 2.8.3'
 
 # model
 gem 'simple_enum'

@@ -12,6 +12,7 @@
 #
 
 class TimelinesController < ApplicationController
+  before_filter :authenticate_participant!
   before_action :set_timeline, only: [:show, :edit, :update, :destroy]
 
   # GET /timelines

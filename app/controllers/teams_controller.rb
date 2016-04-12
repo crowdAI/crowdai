@@ -10,6 +10,7 @@
 #
 
 class TeamsController < ApplicationController
+  before_filter :authenticate_participant!
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
   # GET /teams

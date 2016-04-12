@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_filter :authenticate_participant!
   before_action :set_post, only: [:edit, :update, :destroy]
   before_action :set_topic_and_challenge
 

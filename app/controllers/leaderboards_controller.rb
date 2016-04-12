@@ -1,4 +1,5 @@
 class LeaderboardsController < ApplicationController
+  before_filter :authenticate_participant!
   before_action :set_leaderboard, only: [:show]
   before_action :set_challenge
 

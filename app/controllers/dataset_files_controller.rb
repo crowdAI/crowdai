@@ -1,4 +1,5 @@
 class DatasetFilesController < ApplicationController
+  before_filter :authenticate_participant!
   before_action :set_dataset_file, only: [:show, :edit, :update, :destroy]
   before_action :set_challenge
   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]

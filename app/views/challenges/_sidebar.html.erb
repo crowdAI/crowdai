@@ -13,8 +13,6 @@
       <hr/>
       <% if current_participant.admin? || current_participant.organizer_id == @challenge.organizer_id %>
         <li><%= glyphicon_link 'pencil', 'Edit', edit_challenge_path(@challenge) %></li>
-        <li><%= glyphicon_link 'trash', 'Delete', @challenge, method: :delete,
-                              data: { confirm: 'Permanently delete this challenge from crowdAI?' } %></li>
       <% end %>
     </ul>
 <% end %>

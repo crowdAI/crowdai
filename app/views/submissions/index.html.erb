@@ -14,6 +14,7 @@
     <table class='table table-hover table-striped table-bordered'>
       <thead>
         <tr>
+          <th>Framework</th>
           <th>Submitted</th>
           <th>Score</th>
         </tr>
@@ -23,6 +24,7 @@
       <tbody>
         <% @submissions.each do |submission| %>
           <tr>
+            <td><%= Submission::FRAMEWORKS[submission.framework] %></td>
             <td><%= link_to submission.created_at, challenge_submission_path(@challenge, submission) %></td>
             <td><%= link_to score(submission), challenge_submission_path(@challenge, submission) %></td>
           </tr>

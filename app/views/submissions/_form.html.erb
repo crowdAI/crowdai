@@ -24,6 +24,8 @@
   </div>
   <% end %>
 
+  <%= f.input :framework, :collection => Submission::FRAMEWORKS.sort.map {|k,v| [v,k]} %>
+
   <div id="content">
     <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
       <li class="active">

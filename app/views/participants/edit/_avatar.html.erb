@@ -2,25 +2,20 @@
 <br/>
   <div class="row">
     <div class='col-md-12 text-center'>
-      <%= simple_form_for(@participant) do |f| %>
+      <%= simple_form_for @participant, html: { id: 'avatar-form' } do |f| %>
         <%= f.error_notification %>
         <%= f.simple_fields_for :image, @participant.image.presence || Image.new do |avatar_fields| %>
           <%= avatar_fields.error_notification %>
-          <div>
-            <img src="<%= avatar_medium_url(@participant) %>"/>
-          </div>
 
-          <% if @participant.image.present? %>
-            <%#= avatar_fields.check_box '_destroy' %>
-            <%= avatar_fields.label :image, "replace image?" %>
-          <% else %>
-            <%= avatar_fields.label :image, "Add your own image?" %>
+          <%= avatar_fields.label :image do %>
+            <img src="<%= avatar_medium_url(@participant) %>"/>
           <% end %>
-          <%#= f.hidden_field :image, as: :file %>
+
           <%= avatar_fields.file_field :image, class: 'upload-btn' %>
+          <br/>
+          <div id="loading-text"><b>.....loading</b></div>
         <% end %>
         <br/>
-        <%=  f.button :submit, "Update Picture", class: 'btn btn-primary outline' %>
       <% end %>
     </div>
   </div>

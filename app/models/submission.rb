@@ -8,5 +8,13 @@ class Submission < ActiveRecord::Base
   as_enum :submission_type, [:participant, :team], map: :string
   validates_presence_of :submission_type
 
+  FRAMEWORKS = {
+    'caffe' => "Caffe",
+    'tensorflow' => 'Tensorflow',
+    'torch7' => 'Torch7',
+    'scikit2' => 'Python-2 Scikit-Learn',
+    'scikit3' => 'Python-3 Scikit-Learn',
+    'octave' => 'Octave'
+  }
 
 end

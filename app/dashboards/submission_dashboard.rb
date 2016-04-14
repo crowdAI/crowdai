@@ -15,7 +15,7 @@ class SubmissionDashboard < Administrate::BaseDashboard
     id: Field::Number,
     evaluated: Field::Boolean,
     score: Field::Number.with_options(decimals: 6),
-    score: Field::Number.with_options(decimals: 6),
+    score_secondary: Field::Number.with_options(decimals: 6),
     submission_type_cd: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -34,7 +34,7 @@ class SubmissionDashboard < Administrate::BaseDashboard
     :submission_files,
     :evaluated,
     :score,
-    :secondary_score
+    :score_secondary
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -47,7 +47,7 @@ class SubmissionDashboard < Administrate::BaseDashboard
     :id,
     :evaluated,
     :score,
-    :secondary_score,
+    :score_secondary,
     :submission_type_cd,
     :created_at,
     :updated_at,
@@ -64,7 +64,7 @@ class SubmissionDashboard < Administrate::BaseDashboard
     :submission_files,
     :evaluated,
     :score,
-    :secondary_score,
+    :score_secondary,
     :submission_type_cd,
     :description,
   ]

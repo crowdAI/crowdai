@@ -16,7 +16,8 @@
         <tr>
           <th>Framework</th>
           <th>Submitted</th>
-          <th>Score</th>
+          <th>Mean F1 Score</th>
+          <th>Mean Log Loss</th>
         </tr>
       </thead>
 
@@ -26,7 +27,8 @@
           <tr>
             <td><%= Submission::FRAMEWORKS[submission.framework] %></td>
             <td><%= link_to submission.created_at, challenge_submission_path(@challenge, submission) %></td>
-            <td><%= link_to score(submission), challenge_submission_path(@challenge, submission) %></td>
+            <td><%= link_to submission.score, challenge_submission_path(@challenge, submission) %></td>
+            <td><%= link_to submission.score_secondary, challenge_submission_path(@challenge, submission) %></td>
           </tr>
         <% end %>
       </tbody>

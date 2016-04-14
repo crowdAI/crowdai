@@ -6,7 +6,8 @@
     <tr>
       <th>Ranking</th>
       <th>Participant</th>
-      <th>Best score</th>
+      <th>Mean F1</th>
+      <th>Mean Log Loss</th>
       <th>Entries</th>
       <th>Submitted</th>
     </tr>
@@ -18,6 +19,7 @@
         <td><%= row + 1 %></td>
         <td><%= leader.participant.name %></td>
         <td><%= leader.score %></td>
+        <td><%= leader.score_secondary %></td>
         <td><%= leader.entries %></td>
         <td><%= leader.updated_at %></td>
       </tr>

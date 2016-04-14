@@ -9,7 +9,7 @@
     <p style="text-align:center">
         <%= link_to 'Submit Entry', new_challenge_submission_path(@challenge), class: 'btn btn-primary btn-block outline' %>
     </p>
-    <p><%= simple_format(@challenge.submission_instructions) %></p>
+    <p><%= simple_format(@challenge.submission_instructions, class: 'bootsy-wrap') %></p>
 
     <table class='table table-hover table-striped table-bordered'>
       <thead>

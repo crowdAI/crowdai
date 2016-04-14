@@ -13,10 +13,7 @@ class SubmissionFileDashboard < Administrate::BaseDashboard
     seq: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    submission_file_file_name: Field::String,
-    submission_file_content_type: Field::String,
-    submission_file_file_size: Field::Number,
-    submission_file_updated_at: Field::DateTime,
+    submission_file_s3_key: Field::String
   }
 
   # COLLECTION_ATTRIBUTES
@@ -39,10 +36,7 @@ class SubmissionFileDashboard < Administrate::BaseDashboard
     :seq,
     :created_at,
     :updated_at,
-    :submission_file_file_name,
-    :submission_file_content_type,
-    :submission_file_file_size,
-    :submission_file_updated_at,
+    :submission_file_s3_key
   ]
 
   # FORM_ATTRIBUTES
@@ -51,10 +45,7 @@ class SubmissionFileDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :submission,
     :seq,
-    :submission_file_file_name,
-    :submission_file_content_type,
-    :submission_file_file_size,
-    :submission_file_updated_at,
+    :submission_file_s3_key
   ]
 
   # Overwrite this method to customize how submission files are displayed

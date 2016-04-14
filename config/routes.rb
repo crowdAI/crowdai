@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :submissions
     resources :submission_files
     resources :teams
+    resources :posts
     resources :team_participants
     resources :timelines
     resources :participant_challenges

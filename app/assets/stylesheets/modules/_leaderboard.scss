@@ -1,0 +1,14 @@
+.score {
+    color: $brand-primary;
+    font-weight: bold;
+}
+
+.leaderboard th, .leaderboard td {
+    padding: 20px !important;
+    text-align: center;
+}
+
+.leaderboard th {
+    text-align: center;
+    background-color: $crowdai-bg-medium-grey;
+}

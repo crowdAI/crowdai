@@ -1,15 +1,15 @@
 <%= render partial: 'challenges/sidebar' %>
 <%= render partial: 'challenges/header', challenge: @challenge %>
 
-<table class='table table-hover table-striped table-bordered'>
+<table class='table table-hover table-bordered leaderboard'>
   <thead>
     <tr>
-      <th>Ranking</th>
+      <th>#</th>
       <th>Participant</th>
       <th>Mean F1</th>
       <th>Mean Log Loss</th>
       <th>Entries</th>
-      <th>Submitted</th>
+      <th>Submitted UTC</th>
     </tr>
   </thead>
 
@@ -18,11 +18,13 @@
       <tr>
         <td><%= row + 1 %></td>
         <td><%= leader.participant.name %></td>
-        <td><%= leader.score %></td>
-        <td><%= leader.score_secondary %></td>
+        <td class="score"><%= leader.score %></td>
+        <td class="score"><%= leader.score_secondary %></td>
         <td><%= leader.entries %></td>
-        <td><%= leader.updated_at %></td>
+        <td><%= leader.created_at.strftime("%a, %e %b %Y %R") %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<p class="small">Entries column includes entries not yet graded which, when graded, may affect the contents of this leaderboard.</p>

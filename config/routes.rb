@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  get 'markdown_editor/create'
-  get 'markdown_editor/show'
 
-  resources :posts, except: [:show]
-  resources :topics
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   devise_for :participants
   resources :participants, only: [:show, :edit, :update, :destroy]
@@ -25,7 +21,20 @@ Rails.application.routes.draw do
     root to: 'participants#index'
   end
 
-  get 'landing_page/index'
+  # API
+  namespace :api do
+    namespace :v1 do
+      resources :submissions, only: [:update]
+    end
+  end
+
+  get 'markdown_editor/create'
+  get 'markdown_editor/show'
+
+  resources :posts, except: [:show]
+  resources :topics
+
+  get 'landing_page/index'  # TODO refactor
 
   resources :organizers do
     resources :challenges

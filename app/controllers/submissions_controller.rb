@@ -69,7 +69,7 @@ class SubmissionsController < ApplicationController
     end
 
     def require_permission
-      if @submission.id == current_participant.id || current_participant.admin? || current_participant.organizer_id == @challenge.organizer_id
+      if @submission.participant_id == current_participant.id || current_participant.admin? || current_participant.organizer_id == @challenge.organizer_id
         return true
      else
         redirect_to '/', notice: "You don't have permission for this action."

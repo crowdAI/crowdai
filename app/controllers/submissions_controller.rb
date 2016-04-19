@@ -80,7 +80,7 @@ class SubmissionsController < ApplicationController
       if current_participant.admin? || current_participant.organizer_id == @challenge.organizer_id
         return true
      else
-        redirect_to root_url, :notice=>"You don't have permission for this action."
+        redirect_to root_path, notice: "You don't have permission for this action."
       end
     end
 end

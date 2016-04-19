@@ -11,9 +11,9 @@ gem 'devise'
 gem "administrate", "~> 0.1.4"
 
 # monitoring
-gem "rorvswild"
-gem 'newrelic_rpm'
-gem 'rollbar', '~> 2.8.3'
+#gem "rorvswild"
+#gem 'newrelic_rpm'
+#gem 'rollbar', '~> 2.8.3'
 
 # model
 gem 'simple_enum'
@@ -24,13 +24,13 @@ gem 'validate_url'
 # forms / data manipulation / charts
 gem 'simple_form'
 gem 'country_select'
-gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables-rails.git'
+#gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables-rails.git'
 gem 'cocoon'
 gem 'bootsy'
 gem 'redcarpet'
 gem 'groupdate'
-gem 'active_median'
-gem "chartkick"
+#gem 'active_median'
+#gem "chartkick"
 
 
 # javascript
@@ -69,7 +69,7 @@ gem 'sinatra', :require => nil
 
 # static pages, sitemap
 gem 'high_voltage', '~> 2.4.0'
-gem 'sitemap_generator'
+#gem 'sitemap_generator'
 
 # images
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"

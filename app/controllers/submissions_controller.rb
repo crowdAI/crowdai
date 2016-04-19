@@ -4,10 +4,11 @@ class SubmissionsController < ApplicationController
   before_action :set_challenge
   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
   before_action :set_submissions_remaining
-  before_filter :require_permission
+  before_filter :require_permission, only: [:show]
 
   def index
-    @submissions = @challenge.submissions.where(participant_id: current_participant)
+    @submissions = current_participant.submissions.where(challenge_id: @challenge.id)
+    #@submissions = @challenge.submissions.where(participant_id: current_participant)
   end
 
   def show
@@ -21,8 +22,6 @@ class SubmissionsController < ApplicationController
     @submission.submission_files.build(seq: 1)
   end
 
-  def edit
-  end
 
   def create
     @submission = Submission.new(submission_params)
@@ -36,13 +35,6 @@ class SubmissionsController < ApplicationController
     end
   end
 
-  def update
-    if @submission.update(submission_params)
-      redirect_to [@challenge,@submission], notice: 'Submission was successfully updated.'
-    else
-      render :edit
-    end
-  end
 
   def destroy
     @submission.destroy
@@ -77,7 +69,7 @@ class SubmissionsController < ApplicationController
     end
 
     def require_permission
-      if current_participant.admin? || current_participant.organizer_id == @challenge.organizer_id
+      if @submission.id == current_participant.id || current_participant.admin? || current_participant.organizer_id == @challenge.organizer_id
         return true
      else
         redirect_to '/', notice: "You don't have permission for this action."

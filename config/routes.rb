@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   resources :challenges do
     resources :dataset_files
     resources :timelines
-    resources :submissions
+    resources :submissions, except: [ :edit, :update ]
     resources :leaderboards, only: [:index]
     resources :topics
   end

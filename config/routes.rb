@@ -1,4 +1,8 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  mount Sidekiq::Web => '/sidekiq'
+
   get 'markdown_editor/create'
   get 'markdown_editor/show'
 

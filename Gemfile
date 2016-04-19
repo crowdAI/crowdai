@@ -65,6 +65,7 @@ gem 'mandrill-api'
 
 # background processing
 gem 'sidekiq'
+gem 'sinatra', :require => nil
 
 # static pages, sitemap
 gem 'high_voltage', '~> 2.4.0'

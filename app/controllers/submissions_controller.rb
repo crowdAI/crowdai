@@ -4,7 +4,6 @@ class SubmissionsController < ApplicationController
   before_action :set_challenge
   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
   before_action :set_submissions_remaining
-  before_filter :require_permission, only: [:show]
 
   def index
     @submissions = current_participant.submissions.where(challenge_id: @challenge.id)
@@ -12,6 +11,11 @@ class SubmissionsController < ApplicationController
   end
 
   def show
+    if @submission.participant_id != current_participant.id && !current_participant.admin?
+      redirect_to '/', notice: "You don't have permission for this action."
+    else
+      render :show
+    end
   end
 
   def new
@@ -68,11 +72,4 @@ class SubmissionsController < ApplicationController
       @submissions_remaining = (5 - submissions_today)
     end
 
-    def require_permission
-      if @submission.participant_id == current_participant.id || current_participant.admin? || current_participant.organizer_id == @challenge.organizer_id
-        return true
-     else
-        redirect_to '/', notice: "You don't have permission for this action."
-      end
-    end
 end

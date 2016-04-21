@@ -473,6 +473,8 @@ GEM
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       redis (~> 3.2, >= 3.2.1)
+    sidekiq-statistic (1.2.0)
+      sidekiq (>= 3.3.4, < 5)
     simple_enum (2.3.0)
       activesupport (>= 4.0.0)
     simple_form (3.2.1)
@@ -580,6 +582,7 @@ DEPENDENCIES
   shoulda
   shoulda-matchers
   sidekiq
+  sidekiq-statistic
   simple_enum
   simple_form
   simplecov

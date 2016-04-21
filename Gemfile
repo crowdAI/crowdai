@@ -53,7 +53,7 @@ gem 'font-awesome-rails'
 gem 'ransack'
 gem 'kaminari'
 
-# API 
+# API
 # gem 'rack-attack'
 gem 'httparty'
 
@@ -66,6 +66,7 @@ gem 'mandrill-api'
 
 # background processing
 gem 'sidekiq'
+gem 'sidekiq-statistic'
 gem 'sinatra', :require => nil
 
 # static pages, sitemap

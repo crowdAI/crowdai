@@ -53,8 +53,9 @@ gem 'font-awesome-rails'
 gem 'ransack'
 gem 'kaminari'
 
-# API
+# API 
 # gem 'rack-attack'
+gem 'httparty'
 
 # heroku / production
 gem 'rails_12factor', group: :production

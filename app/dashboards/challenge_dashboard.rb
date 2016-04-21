@@ -101,7 +101,7 @@ class ChallengeDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how challenges are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(challenge)
-  #   "Challenge ##{challenge.id}"
-  # end
+  def display_resource(challenge)
+     "#{challenge.challenge}"
+  end
 end

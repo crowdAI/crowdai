@@ -11,7 +11,9 @@ class SubmissionsController < ApplicationController
   end
 
   def show
+      logger.info("logging")
     if @submission.participant_id != current_participant.id && !current_participant.admin?
+        logger.info("redirecting")
       redirect_to '/', notice: "You don't have permission for this action."
     else
       render :show
@@ -44,7 +46,6 @@ class SubmissionsController < ApplicationController
     @submission.destroy
     redirect_to submissions_url, notice: 'Submission was successfully destroyed.'
   end
-
 
 
   private

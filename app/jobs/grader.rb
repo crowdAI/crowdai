@@ -1,12 +1,14 @@
 class Grader
   include HTTParty
-  base_uri '54.184.7.125/api/v1/plantvillage_evaluation'
-
 
   def grade(submission_id)
     key = get_key(submission_id)
-    response = call_grader(submission_id,key)
-    evaluate_response(submission_id,response)
+    if key
+      response = call_grader(submission_id,key)
+      evaluate_response(submission_id,response)
+    else
+      raise "Grader called for submission #{submission_id} but key cannot be found"
+    end
   end
 
 
@@ -24,8 +26,7 @@ class Grader
   def evaluate_response(submission_id,response)
     r = response.parsed_response
 
-    case response.code
-    when 200
+    if response.code == 200
       if r["status"] == 'success'
         # update the submission
         Submission.update(submission_id, evaluated: true, score: r["mean_f1_score"], score_secondary: r["log-loss"])
@@ -33,10 +34,8 @@ class Grader
         Submission.update(submission_id, evaluated: true, grading_message: r["message"])
        # TODO email the participant
       end
-    when 500
-      # raise an exception to rollbar
     else
-      # do something
+      raise "API call to grader failed #{response.inspect}"
     end
   end
 

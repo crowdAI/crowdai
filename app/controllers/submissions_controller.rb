@@ -48,7 +48,6 @@ class SubmissionsController < ApplicationController
   end
 
 
-
   private
     def set_submission
       @submission = Submission.find(params[:id])

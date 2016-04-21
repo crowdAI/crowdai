@@ -72,7 +72,7 @@ class SubmissionDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how submissions are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(submission)
-  #   "Submission ##{submission.id}"
-  # end
+  def display_resource(submission)
+     "#{submission.participant.name}-#{submission.id}"
+  end
 end

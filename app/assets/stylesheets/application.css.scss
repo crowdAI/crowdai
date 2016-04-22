@@ -10,6 +10,7 @@
 /* components */
 @import "components/typography";
 @import "components/containers";
+@import "components/sections";
 @import "components/navbar";
 @import "components/buttons";
 @import "components/sidebar";
@@ -31,8 +32,17 @@
 @import "modules/leaderboard";
 
 
+/* site-wide overrides */
+body {
+    width: 100%;
+    height: 100%;
+}
 
-html, body { height: 100%; }
+html {
+    width: 100%;
+    height: 100%;
+}
+
 
 
 

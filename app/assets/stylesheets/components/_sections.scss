@@ -1,30 +1,91 @@
 // landing page, participant profile page
-.section-header-large {
-
-}
-
-
-.section-header-medium {
+.header-section {
   background-color: $crowdai-bg-medium-grey;
-  height: 350px;
+  @include media(">phone", "<=tablet") {
+    height: 150px;
+  }
+  @include media(">tablet") {
+    height: $crowdai-header-section-height;
+  }
+}
+
+.header-section .intro {
+  background: image-url('crowdai_definition') no-repeat center;
+  background-size: 80%;
+  @include media(">phone", "<=tablet") {
+    height: 150px;
+  }
+  @include media(">tablet") {
+    height: $crowdai-header-section-height;
+  }
+}
+
+.challenges-container {
+  //min-height: 150px;
+  @include media(">phone", "<=tablet") {
+    //width: 280px;
+    max-width: 320px;
+    margin: 10px auto;
+  }
+  @include media(">tablet") {
+    max-width: 700px;
+    margin: 20px auto;
+  }
+}
+
+ul.challenges-list {
+  margin: 0;
+  padding: 0;
 }
 
 
-.section-footer {
+ul.challenges-list li {
 
+  background: #F9F9F9;
+  //float: left;
+  //margin: 25px 0 0 25px;
+  display: inline-block;
+  text-align: left;
+  border-radius: 2px 2px 2px 2px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-box-shadow: 0 10px 6px -6px #000;
+  -moz-box-shadow: 0 10px 6px -6px #000;
+  box-shadow: 0 10px 6px -6px #a9a9a9;
+
+  @include media(">phone", "<=tablet") {
+    width: 200px;
+  }
+
+  @include media(">tablet") {
+    width: 675px;
+    padding: 20px;
+  }
 }
 
 
-.section-sidebar {
-
-}
 
 
-.intro {
-  color: inherit;
-  background-color: $crowdai-bg-medium-grey;
-  //padding: 30px 30px;
-  //padding-bottom: 5vw;
-  height: 30vw;
+/*
+.body-section {
+  min-height: 150px;
+}  */
+
+
+
+/*
+.body-section.challenges-container {
+  margin: 20px auto;
+  width: 700px;
+}  */
+
+
+
+
+.sidebar-section {
 
 }

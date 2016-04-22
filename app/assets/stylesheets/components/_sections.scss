@@ -1,7 +1,7 @@
 // landing page, participant profile page
 .header-section {
   background-color: $crowdai-bg-medium-grey;
-  @include media(">phone", "<=tablet") {
+  @include media(">=phone", "<=tablet") {
     height: 150px;
   }
   @include media(">tablet") {
@@ -12,7 +12,7 @@
 .header-section .intro {
   background: image-url('crowdai_definition') no-repeat center;
   background-size: 80%;
-  @include media(">phone", "<=tablet") {
+  @include media(">=phone", "<=tablet") {
     height: 150px;
   }
   @include media(">tablet") {
@@ -21,9 +21,7 @@
 }
 
 .challenges-container {
-  //min-height: 150px;
-  @include media(">phone", "<=tablet") {
-    //width: 280px;
+  @include media(">=phone", "<=tablet") {
     max-width: 320px;
     margin: 10px auto;
   }
@@ -41,11 +39,8 @@ ul.challenges-list {
 
 ul.challenges-list li {
 
-  background: #F9F9F9;
-  //float: left;
-  //margin: 25px 0 0 25px;
+  background: $crowdai-bg-medium-grey;
   display: inline-block;
-  text-align: left;
   border-radius: 2px 2px 2px 2px;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -56,32 +51,14 @@ ul.challenges-list li {
   -webkit-box-shadow: 0 10px 6px -6px #000;
   -moz-box-shadow: 0 10px 6px -6px #000;
   box-shadow: 0 10px 6px -6px #a9a9a9;
-
-  @include media(">phone", "<=tablet") {
-    width: 200px;
+  @include media(">=phone", "<=tablet") {
+    padding: 15px;
   }
-
   @include media(">tablet") {
     width: 675px;
     padding: 20px;
   }
 }
-
-
-
-
-/*
-.body-section {
-  min-height: 150px;
-}  */
-
-
-
-/*
-.body-section.challenges-container {
-  margin: 20px auto;
-  width: 700px;
-}  */
 
 
 

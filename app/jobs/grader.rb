@@ -19,6 +19,7 @@ class Grader
 
 
   def call_grader(submission_id,key)
+    logger.info("calling grading server, submission_id: #{submission_id} key: #{key}")
     response = HTTParty.get("http://54.184.7.125/api/v1/plantvillage_evaluation?submission_id=#{submission_id}&submission_key=#{key}")
   end
 

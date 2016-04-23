@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421131756) do
+ActiveRecord::Schema.define(version: 20160423121002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -148,7 +148,7 @@ SELECT l.row_num,
                     count(c.*) AS entries
                    FROM submissions c
                   GROUP BY c.challenge_id, c.participant_id) cnt
-          WHERE ((p.id = s.participant_id) AND (s.evaluated = true) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l
+          WHERE ((p.id = s.participant_id) AND (s.evaluated = true) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id) AND (s.score IS NOT NULL))) l
   WHERE (l.row_num = 1)
   ORDER BY l.score DESC, l.score_secondary
   END_VIEW_LEADERBOARDS

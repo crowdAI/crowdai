@@ -6,10 +6,18 @@ class SubmissionsController < ApplicationController
   before_action :set_submissions_remaining
 
   def index
-    @submissions = @challenge.submissions.where(participant_id: current_participant)
+    @submissions = current_participant.submissions.where(challenge_id: @challenge.id)
+    #@submissions = @challenge.submissions.where(participant_id: current_participant)
   end
 
   def show
+      logger.info("logging")
+    if @submission.participant_id != current_participant.id && !current_participant.admin?
+        logger.info("redirecting")
+      redirect_to '/', notice: "You don't have permission for this action."
+    else
+      render :show
+    end
   end
 
   def new
@@ -20,8 +28,6 @@ class SubmissionsController < ApplicationController
     @submission.submission_files.build(seq: 1)
   end
 
-  def edit
-  end
 
   def create
     @submission = Submission.new(submission_params)
@@ -35,19 +41,11 @@ class SubmissionsController < ApplicationController
     end
   end
 
-  def update
-    if @submission.update(submission_params)
-      redirect_to [@challenge,@submission], notice: 'Submission was successfully updated.'
-    else
-      render :edit
-    end
-  end
 
   def destroy
     @submission.destroy
     redirect_to submissions_url, notice: 'Submission was successfully destroyed.'
   end
-
 
 
   private
@@ -60,7 +58,7 @@ class SubmissionsController < ApplicationController
     end
 
     def submission_params
-      params.require(:submission).permit(:challenge_id, :participant_id, :team_id, :description, :evaluated, :score, :submission_type, :framework,
+      params.require(:submission).permit(:challenge_id, :participant_id, :team_id, :description, :evaluated, :score, :score_secondary, :grading_message, :submission_type, :framework,
                                   submission_files_attributes: [:id, :seq, :submission_file_s3_key, :_delete])
     end
 
@@ -74,4 +72,5 @@ class SubmissionsController < ApplicationController
       submissions_today = Submission.where("participant_id = ? and created_at >= ?", current_participant.id, Time.now - 24.hours).count
       @submissions_remaining = (5 - submissions_today)
     end
+
 end

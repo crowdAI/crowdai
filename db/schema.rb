@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160415111429) do
+ActiveRecord::Schema.define(version: 20160423121002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_stat_statements"
 
   create_table "bootsy_image_galleries", force: :cascade do |t|
     t.integer  "bootsy_resource_id"
@@ -111,6 +112,7 @@ ActiveRecord::Schema.define(version: 20160415111429) do
     t.text     "description"
     t.string   "framework"
     t.float    "score_secondary"
+    t.string   "grading_message"
   end
   add_index "submissions", ["challenge_id"], :name=>"index_submissions_on_challenge_id", :using=>:btree
   add_index "submissions", ["participant_id"], :name=>"index_submissions_on_participant_id", :using=>:btree
@@ -146,7 +148,7 @@ SELECT l.row_num,
                     count(c.*) AS entries
                    FROM submissions c
                   GROUP BY c.challenge_id, c.participant_id) cnt
-          WHERE ((p.id = s.participant_id) AND (s.evaluated = true) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l
+          WHERE ((p.id = s.participant_id) AND (s.evaluated = true) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id) AND (s.score IS NOT NULL))) l
   WHERE (l.row_num = 1)
   ORDER BY l.score DESC, l.score_secondary
   END_VIEW_LEADERBOARDS

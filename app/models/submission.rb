@@ -14,7 +14,8 @@ class Submission < ActiveRecord::Base
     'torch7' => 'Torch7',
     'scikit2' => 'Python-2 Scikit-Learn',
     'scikit3' => 'Python-3 Scikit-Learn',
-    'octave' => 'Octave'
+    'octave' => 'Octave',
+    'keras' => 'Keras'
   }
 
 end

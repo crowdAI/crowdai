@@ -17,9 +17,7 @@
 
 //= require bootsy
 
-//= require dataTables/jquery.dataTables
-//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
-//= require dataTables/jquery.dataTables
+
 //= require bootstrap-sprockets
 //= require lodash
 

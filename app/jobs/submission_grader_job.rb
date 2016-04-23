@@ -1,10 +1,9 @@
 class SubmissionGraderJob < BaseJob
   queue_as :default
 
-  def perform(submission_id)
-    @logger.info("grader running for: #{submission_id}")
-    submission_file = SubmissionFile.where({submission_id: submission_id, seq: 1 }).first
-    submission_file_url = s3_expiring_url(submission_file.submission_file_s3_key)
+  def perform(*args)
+    @logger.info("grader running for: #{args[0]}")
+    Grader.new.grade(args[0][:submission_id])
   end
 
 

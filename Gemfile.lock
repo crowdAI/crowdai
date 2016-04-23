@@ -1,14 +1,4 @@
 GIT
-  remote: git://github.com/rweng/jquery-datatables-rails.git
-  revision: b8e6b6fa51e0074ea44b4771a68b1817a14023fc
-  specs:
-    jquery-datatables-rails (3.4.0)
-      actionpack (>= 3.1)
-      jquery-rails
-      railties (>= 3.1)
-      sass-rails
-
-GIT
   remote: git://github.com/thoughtbot/paperclip.git
   revision: 4ef27eb84fe283f5dbe62fd99d7359822e79db28
   specs:
@@ -42,8 +32,6 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    active_median (0.1.3)
-      activerecord
     activejob (4.2.3)
       activesupport (= 4.2.3)
       globalid (>= 0.3.0)
@@ -114,7 +102,6 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
-    chartkick (1.4.2)
     choice (0.2.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -294,6 +281,9 @@ GEM
       shellany (~> 0.0)
       thor (>= 0.18.1)
     high_voltage (2.4.0)
+    httparty (0.13.3)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     i18n_data (0.7.0)
     inflecto (0.0.2)
@@ -344,12 +334,12 @@ GEM
     momentjs-rails (2.11.0)
       railties (>= 3.1)
     multi_json (1.11.2)
+    multi_xml (0.5.5)
     neat (1.7.4)
       bourbon (>= 4.0)
       sass (>= 3.3)
     nenv (0.3.0)
     net-ssh (3.1.1)
-    newrelic_rpm (3.15.1.316)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     normalize-rails (3.0.3)
@@ -366,6 +356,8 @@ GEM
       slop (~> 3.4)
     puma (3.3.0)
     rack (1.6.4)
+    rack-protection (1.5.3)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     railroady (1.4.2)
@@ -424,8 +416,6 @@ GEM
     request_store (1.3.1)
     responders (2.1.2)
       railties (>= 4.2.0, < 5.1)
-    rollbar (2.8.3)
-      multi_json
     rorvswild (0.3.5)
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
@@ -483,6 +473,8 @@ GEM
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       redis (~> 3.2, >= 3.2.1)
+    sidekiq-statistic (1.2.0)
+      sidekiq (>= 3.3.4, < 5)
     simple_enum (2.3.0)
       activesupport (>= 4.0.0)
     simple_form (3.2.1)
@@ -493,8 +485,10 @@ GEM
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
-    sitemap_generator (5.1.0)
-      builder
+    sinatra (1.4.6)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
     slop (3.6.0)
     sort_alphabetical (1.0.2)
       unicode_utils (>= 1.2.2)
@@ -538,7 +532,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_median
   administrate (~> 0.1.4)
   annotate
   aws-sdk (~> 2.2)
@@ -548,7 +541,6 @@ DEPENDENCIES
   capybara
   capybara-email
   carrierwave
-  chartkick
   cocoon
   country_select
   database_cleaner
@@ -562,7 +554,7 @@ DEPENDENCIES
   groupdate
   guard
   high_voltage (~> 2.4.0)
-  jquery-datatables-rails!
+  httparty
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
@@ -570,7 +562,6 @@ DEPENDENCIES
   lodash-rails
   mandrill-api
   net-ssh
-  newrelic_rpm
   paperclip!
   pg
   puma
@@ -581,7 +572,6 @@ DEPENDENCIES
   rails_12factor
   ransack
   redcarpet
-  rollbar (~> 2.8.3)
   rorvswild
   rspec-rails
   sass-rails (~> 5.0)
@@ -592,10 +582,11 @@ DEPENDENCIES
   shoulda
   shoulda-matchers
   sidekiq
+  sidekiq-statistic
   simple_enum
   simple_form
   simplecov
-  sitemap_generator
+  sinatra
   spring
   table_print
   therubyracer

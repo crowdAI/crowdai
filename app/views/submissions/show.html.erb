@@ -11,6 +11,9 @@
         <lead><%= @submission.created_at %></lead>
 
         <h4>Score: <%= score(@submission) %></h4>
+        <% if @submission.grading_message %>
+            <h3>Message: <%= @submission.grading_message %></h3>
+        <% end %>
 
         <p><%= markdown(@submission.description) %></p>
 

@@ -1,4 +1,13 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+<<<<<<< HEAD
+=======
+  mount Sidekiq::Web => '/sidekiq'
+
+  get 'markdown_editor/create'
+  get 'markdown_editor/show'
+>>>>>>> master
 
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   devise_for :participants
@@ -43,7 +52,7 @@ Rails.application.routes.draw do
   resources :challenges do
     resources :dataset_files
     resources :timelines
-    resources :submissions
+    resources :submissions, except: [ :edit, :update ]
     resources :leaderboards, only: [:index]
     resources :topics
   end

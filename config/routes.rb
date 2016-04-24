@@ -1,13 +1,11 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-<<<<<<< HEAD
-=======
+
   mount Sidekiq::Web => '/sidekiq'
 
   get 'markdown_editor/create'
   get 'markdown_editor/show'
->>>>>>> master
 
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   devise_for :participants

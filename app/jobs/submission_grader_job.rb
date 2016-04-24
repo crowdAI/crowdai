@@ -1,18 +1,38 @@
 class SubmissionGraderJob < BaseJob
   queue_as :default
+  SQS_QUEUE_NAME = 'crowdai-prd-grading-submissions'
 
   def perform(*args)
     @logger.info("grader running for: #{args[0]}")
-    Grader.new.grade(args[0][:submission_id])
+    #Grader.new.grade(args[0][:submission_id])
+    submission_id = args[0][:submission_id]
+    sqs = Aws::SQS::Client.new
+    queue_url = queue_url(sqs)
+    sqs_message = sqs_message(submission_id)
+    resp = send_message(sqs,queue_url,sqs_message)
+    if resp  # TODO need better validations
+      Submission.update(submission_id, grading_status: 'submitted')
+    end
+  end
+
+  def queue_url(sqs)
+    resp = sqs.get_queue_url({ queue_name: SQS_QUEUE_NAME })
+    resp.queue_url
   end
 
 
-  def s3_expiring_url(s3_key)
-    s3_file_obj = Aws::S3::Object.new(bucket_name: ENV['AWS_S3_BUCKET'], key: s3_key)
-    url = s3_file_obj.presigned_url(:get, expires_in: 3600)
+  def send_message(sqs,queue_url,sqs_message)
+    resp = sqs.send_message({
+        queue_url: queue_url,
+        message_body: sqs_message
+      })
   end
 
+
+  def sqs_message(submission_id)
+    s = Submission.find(submission_id)
+    key = s.submission_files.first.submission_file_s3_key
+    sqs_message = {challenge_id: s.challenge_id, submission_id: s.id, submission_file_s3_key: key, status: 'queued'}.to_json
+    return sqs_message
+  end
 end
-
-
-# /api/v1/plantvillage_evaluation?submission_id=234&user_submission_url=https://s3.eu-central-1.amazonaws.com/crowdai-prd/submission_files/d1aa84ea-8e18-4109-ad1a-e74c65b33d05/synthetic_submission.csv

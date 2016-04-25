@@ -1,19 +1,36 @@
 /* Bootstrap variable overrides */
-$navbar-height: 100px;
+$navbar-height:                 100px;
 
-$brand-primary:          #FF4E48;
-$brand-info:             #BCBEC0;
-$brand-success:          #5BE875;
+$brand-primary:                 #FF4E48;
+$brand-info:                    #BCBEC0;
+$brand-success:                 #5BE875;
 // $brand-warning:         #f0ad4e
 // $brand-danger:          #d9534f
 
 /* Application variables */
 
-$crowdai-bg-white:        #FFFFFF;
-$crowdai-bg-light-grey:   #FCFCFC;
-$crowdai-bg-medium-grey:  #F1F2F2;
-$crowdai-bg-dark-grey:    #E6E7E8;
+$crowdai-bg-white:              #FFFFFF;
+$crowdai-bg-light-grey:         #FCFCFC;
+$crowdai-bg-medium-grey:        #F1F2F2;
+$crowdai-bg-dark-grey:          #E6E7E8;
 
-$crowdai-text-darker:     #58595B;
-$crowdai-text-dark:       #666666;
-$crowdai-text-light:      #BCBEC0;
+$crowdai-text-darker:           #58595B;
+$crowdai-text-dark:             #666666;
+$crowdai-text-light:            #BCBEC0;
+
+
+$crowdai-header-section-height: 350px;
+
+
+
+/* media queries */
+$mobile-screen: 690px;
+$tablet-screen: 995px;
+$desktop-screen: 1440px;
+
+$screen: "only screen";
+$mobile: "only screen and (max-width:#{$mobile-screen})";
+$tablet: "only screen and (min-width:#{$mobile-screen}) and (max-width: #{$tablet-screen})";
+$desktop: "only screen and (min-width:#{$tablet-screen})";
+$landscape: "only screen and (orientation: landscape)";
+$portrait: "only screen and (orientation: portrait)";

@@ -4,38 +4,6 @@
   height: 370px;
 }
 
-div.challenges-container {
-  margin: 20px auto;
-  width: 700px;
-}
-
-ul.challenges-list {
-  float: left;
-  padding: 0;
-  list-style: none;
-  width: 675px;
-}
-
-ul.challenges-list li {
-  background: #F9F9F9;
-  float: left;
-  margin: 25px 0 0 25px;
-  display: block;
-  text-align: left;
-  width: 675px;
-  padding: 20px;
-  border-radius: 2px 2px 2px 2px;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-box-shadow: 0 10px 6px -6px #000;
-  -moz-box-shadow: 0 10px 6px -6px #000;
-  box-shadow: 0 10px 6px -6px #a9a9a9;
-}
-
 
 #enclosure {
     display: inline-block;

@@ -1,0 +1,12 @@
+<div class="hidden-md hidden-lg">
+<div class="collapse navbar-collapse" id="crowdai-navbar-collapse">
+  <div class="navbar-right">
+    <ul class="nav navbar-nav">
+      <%= render 'layouts/navbars/navbar_menu' %>
+      <li><%= link_to 'Profile', participant_path(current_participant) %></li>
+      <li><%= link_to 'Password', edit_participant_registration_path %></li>
+      <li><%= link_to 'Sign out', destroy_participant_session_path, :method => :delete %></li>
+    </ul>
+  </div><!-- navbar-right -->
+</div><!-- #crowdai-navbar-collapse -->
+</div>

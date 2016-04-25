@@ -48,6 +48,7 @@ gem 'lodash-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
+gem 'include_media_rails'
 
 # search / pagination
 gem 'ransack'

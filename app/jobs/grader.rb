@@ -41,5 +41,15 @@ class Grader
 
 end
 
+# TESTS
+# 1) Invalid header format
+# curl "http://54.184.7.125/api/v1/plantvillage_evaluation?submission_id=234&submission_key=submission_files/3da7e968-94b2-4ff5-a7a7-29eab1cffaf9/submission.csv"
 
-#http://54.184.7.125/api/v1/plantvillage_evaluation?submission_id=234&submission_key=submission_files/3da7e968-94b2-4ff5-a7a7-29eab1cffaf9/submission.csv
+
+# 2) Successful grading
+# curl "http://54.184.7.125/api/v1/plantvillage_evaluation?submission_id=234&submission_key=submission_files/2af25ed3-3bf2-4b7e-885d-f7f65755087a/classification.csv"
+
+
+
+#c
+# curl -X GET -G http://54.184.7.125/api/v1/plantvillage_evaluation -d "id=234" -d "submission_key=submission_files/3da7e968-94b2-4ff5-a7a7-29eab1cffaf9/submission.csv"

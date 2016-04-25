@@ -8,6 +8,10 @@ class Submission < ActiveRecord::Base
   as_enum :submission_type, [:participant, :team], map: :string
   validates_presence_of :submission_type
 
+  as_enum :grading_status, [:ready, :submitted, :graded, :failed], map: :string
+  validates_presence_of :grading_status
+
+
   FRAMEWORKS = {
     'caffe' => "Caffe",
     'tensorflow' => 'Tensorflow',

@@ -1,4 +1,5 @@
 // Ensure sidebar is the same height as the main container
+/*
 $(document).ready(function(){
   var sidebar = $(".sidebar-container")[0];
   if(sidebar) {
@@ -8,3 +9,4 @@ $(document).ready(function(){
     }
   }
 });
+*/

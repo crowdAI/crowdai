@@ -2,7 +2,6 @@
 <%= render partial: "layouts/flash_messages", flash: flash %>
 
 <div class="container-fluid">
-
   <% if content_for?(:header) %>
     <%= yield(:header) %>
   <% end %>
@@ -12,10 +11,9 @@
       <div class="col-md-3 sidebar-container">
         <%= yield(:sidebar) %>
       </div>
-      <div class="col-md-8 page-content-container">
+      <div class="col-md-9">
         <%= yield %>
       </div>
-      <div class="col-md-1"></div>
     </div>
   <% else %>
     <%= yield %>

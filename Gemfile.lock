@@ -262,7 +262,6 @@ GEM
     font-awesome-rails (4.5.0.1)
       railties (>= 3.2, < 5.1)
     formatador (0.2.5)
-    gli (2.13.4)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     gon (6.0.1)
@@ -382,10 +381,6 @@ GEM
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
-    rails-erb-lint (1.1.6)
-      actionpack (>= 4.0)
-      gli (~> 2.1)
-      rainbow (~> 2.0)
     rails-erd (1.4.6)
       activerecord (>= 3.2)
       activesupport (>= 3.2)
@@ -405,7 +400,6 @@ GEM
       activesupport (= 4.2.3)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rainbow (2.1.0)
     rake (10.5.0)
     ransack (1.7.0)
       actionpack (>= 3.0)
@@ -577,7 +571,6 @@ DEPENDENCIES
   puma
   railroady
   rails (= 4.2.3)
-  rails-erb-lint
   rails-erd
   rails-footnotes (>= 4.0.0, < 5)
   rails_12factor

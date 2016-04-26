@@ -2,7 +2,7 @@
 <%= render partial: 'challenges/header', challenge: @challenge %>
 
 <div class="row">
-  <div class="col-md-11">
+  <div class="col-xs-7 col-md-10">
     <% if @headline_post %>
     <blockquote>
       <p><%= link_to @headline_post.post, new_topic_post_path(@headline_post.topic_id) %></p>
@@ -14,7 +14,7 @@
     </blockquote>
     <% end %>
   </div>
-  <div class="col-md-1">
+  <div class="col-xs-1 col-md-1">
     <%= link_to '+ New Topic', new_challenge_topic_path(@challenge), class: 'btn btn-primary outline' %>
   </div>
 </div>

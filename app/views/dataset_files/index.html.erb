@@ -27,7 +27,7 @@
             <tr>
               <td><%= file.seq %></td>
               <td><%= link_to file.description, s3_expiring_url(file.dataset_file_s3_key) %></td>
-              <td><%= s3_filesize(file.dataset_file_s3_key) %>fffffffffff fffffff fffffffff fffffff</td>
+              <td><%= s3_filesize(file.dataset_file_s3_key) %></td>
             </tr>
             <% end %>
           </tbody>

@@ -95,6 +95,7 @@ group :development do
   gem 'sdoc', '~> 0.4.0'
   gem 'web-console', '~> 2.0'
   gem 'scss_lint', require: false
+  gem 'rails-erb-lint'
 end
 
 

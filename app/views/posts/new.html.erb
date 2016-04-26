@@ -1,20 +1,21 @@
 <%= render partial: 'challenges/sidebar' %>
 <%= render partial: 'challenges/header', challenge: @challenge %>
 
-
-<div class="row">
-  <div class="col-md-11">
-    <h3><%= @topic.topic %></h3>
+<div class="page-content-container">
+  <div class="row">
+    <div class="col-md-11">
+      <h3><%= @topic.topic %></h3>
+    </div>
+    <div class="col-md-1">
+      <%= link_to 'Back', challenge_topics_path(@topic.challenge), class: 'btn btn-primary outline' %>
+    </div>
   </div>
-  <div class="col-md-1">
-    <%= link_to 'Back', challenge_topics_path(@topic.challenge), class: 'btn btn-primary outline' %>
-  </div>
-</div>
 
-<ul class="list-group">
-  <% @posts.each do |post| %>
+  <ul class="list-group">
+    <% @posts.each do |post| %>
     <%= render post if !post.new_record? %>
-  <% end %>
-</ul>
+    <% end %>
+  </ul>
 
-<%= render 'form' %>
+  <%= render 'form' %>
+</div>

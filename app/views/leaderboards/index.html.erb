@@ -1,33 +1,34 @@
 <%= render partial: 'challenges/sidebar' %>
 <%= render partial: 'challenges/header', challenge: @challenge %>
 
-<br/>
-<div class='table-responsive'>
-<table class='table table-hover table-bordered leaderboard'>
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Participant</th>
-      <th>Mean F1</th>
-      <th>Mean Log Loss</th>
-      <th>Entries</th>
-      <th>Submitted UTC</th>
-    </tr>
-  </thead>
+<div class="page-content-container">
+  <div class='table-responsive'>
+    <table class='table table-hover table-bordered leaderboard'>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Participant</th>
+          <th>Mean F1</th>
+          <th>Mean Log Loss</th>
+          <th>Entries</th>
+          <th>Submitted UTC</th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @leaderboards.each_with_index do |leader,row| %>
-      <tr>
-        <td><%= row + 1 %></td>
-        <td><%= leader.participant.name %></td>
-        <td class="score"><%= leader.score %></td>
-        <td class="score"><%= leader.score_secondary %></td>
-        <td><%= leader.entries %></td>
-        <td><%= leader.created_at.strftime("%a, %e %b %Y %R") %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @leaderboards.each_with_index do |leader,row| %>
+        <tr>
+          <td><%= row + 1 %></td>
+          <td><%= leader.participant.name %></td>
+          <td class="score"><%= leader.score %></td>
+          <td class="score"><%= leader.score_secondary %></td>
+          <td><%= leader.entries %></td>
+          <td><%= leader.created_at.strftime("%a, %e %b %Y %R") %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-<p class="small">Entries column includes entries not yet graded which, when graded, may affect the contents of this leaderboard.</p>
+    <p class="small">Entries column includes entries not yet graded which, when graded, may affect the contents of this leaderboard.</p>
+  </div>
 </div>

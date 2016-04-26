@@ -1,45 +1,42 @@
 <%= render partial: 'challenges/sidebar' %>
 <%= render partial: 'challenges/header', challenge: @challenge %>
 
-<div class="row">
-  <div class="col-md-10">
-    <div class="panel panel-default">
-      <div class="panel-heading">Submissions</div>
-      <div class="panel-body">
-        <p style="text-align:center">
-          <%= link_to 'Submit Entry', new_challenge_submission_path(@challenge), class: 'btn btn-primary btn-block outline' %>
-        </p>
-        <p><%= simple_format(@challenge.submission_instructions, class: 'bootsy-wrap') %></p>
+<div class="page-content-container">
+  <div class="row">
+    <div class="col-md-10">
 
-        <div class='table-responsive'>
-          <table class='table table-hover table-striped table-bordered'>
-            <thead>
-              <tr>
-                <th>Framework</th>
-                <th>Submitted</th>
-                <th>Mean F1 Score</th>
-                <th>Mean Log Loss</th>
-              </tr>
-            </thead>
+      <p style="text-align:center">
+        <%= link_to 'Submit Entry', new_challenge_submission_path(@challenge), class: 'btn btn-primary btn-block outline' %>
+      </p>
+      <p><%= simple_format(@challenge.submission_instructions, class: 'bootsy-wrap') %></p>
 
-            <tbody>
-              <% @submissions.each do |submission| %>
-              <tr>
-                <td><%= Submission::FRAMEWORKS[submission.framework] %></td>
-                <td><%= link_to submission.created_at, challenge_submission_path(@challenge, submission) %></td>
-                <% if submission.grading_message %>
-                <td colspan="2"><%= submission.grading_message %></td>
-              <% else %>
-                <td><%= link_to submission.score, challenge_submission_path(@challenge, submission) %></td>
-                <td><%= link_to submission.score_secondary, challenge_submission_path(@challenge, submission) %></td>
-                <% end %>
-              </tr>
+      <div class='table-responsive'>
+        <table class='table table-hover table-striped table-bordered'>
+          <thead>
+            <tr>
+              <th>Framework</th>
+              <th>Submitted</th>
+              <th>Mean F1 Score</th>
+              <th>Mean Log Loss</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @submissions.each do |submission| %>
+            <tr>
+              <td><%= Submission::FRAMEWORKS[submission.framework] %></td>
+              <td><%= link_to submission.created_at, challenge_submission_path(@challenge, submission) %></td>
+              <% if submission.grading_message %>
+              <td colspan="2"><%= submission.grading_message %></td>
+            <% else %>
+              <td><%= link_to submission.score, challenge_submission_path(@challenge, submission) %></td>
+              <td><%= link_to submission.score_secondary, challenge_submission_path(@challenge, submission) %></td>
               <% end %>
-            </tbody>
-          </table>
-        </div>
-        <!-- table-responsive -->
-      </div>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div><!-- table-responsive -->
     </div>
   </div>
 </div>

@@ -1,42 +1,44 @@
 <%= render partial: 'challenges/sidebar' %>
 <%= render partial: 'challenges/header', challenge: @challenge %>
 
-<div class="row">
-  <div class="col-md-12">
-    <p class="lead">
-      All images are released under the Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0), with the clarification that algorithms trained on the data fall under the same license.
-    </p>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-8">
-    <div class="table-responsive">
-    <table class="table table-condensed table-bordered leaderboard">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Description</th>
-          <th>File Size</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @challenge.dataset_files.each do |file| %>
-        <tr>
-          <td><%= file.seq %></td>
-          <td><%= link_to file.description, s3_expiring_url(file.dataset_file_s3_key) %></td>
-          <td><%= s3_filesize(file.dataset_file_s3_key) %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+<div class="page-content-container">
+  <div class="row">
+    <div class="col-xs-11">
+      <p class="lead">
+        All images are released under the Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0), with the clarification that algorithms trained on the data fall under the same license.
+      </p>
+    </div>
   </div>
 
-    <br>
+  <div class="row">
+    <div class="col-xs-11">
+      <div class="table-responsive">
+        <table class="table table-condensed table-bordered leaderboard">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Description</th>
+              <th>File Size</th>
+            </tr>
+          </thead>
 
-    <% if current_participant.admin? || current_participant.organizer_id = @challenge.organizer_id %>
+          <tbody>
+            <% @challenge.dataset_files.each do |file| %>
+            <tr>
+              <td><%= file.seq %></td>
+              <td><%= link_to file.description, s3_expiring_url(file.dataset_file_s3_key) %></td>
+              <td><%= s3_filesize(file.dataset_file_s3_key) %>fffffffffff fffffff fffffffff fffffff</td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <br>
+
+      <% if current_participant.admin? || current_participant.organizer_id = @challenge.organizer_id %>
       <%= link_to 'Add file', new_challenge_dataset_file_path(@challenge), class: 'btn btn-primary outline' %>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>

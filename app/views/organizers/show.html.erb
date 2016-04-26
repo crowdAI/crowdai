@@ -25,26 +25,28 @@
 
     <hr/>
     <h1>Administrative users</h1>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th></th>
-          <th>name</th>
-          <th>Email</th>
-          <th></th>
-        </tr>
-      </thead>
+    <div class='table-responsive'>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th>name</th>
+            <th>Email</th>
+            <th></th>
+          </tr>
+        </thead>
 
-      <tbody>
-        <% @organizer.participants.each do |participant| %>
-        <tr>
-          <td><%= participant.name %></td>
-          <td><%= participant.email %></td>
-          <td><%#= link_to 'Remove', [@organizer, user], method: :nullify, data: { confirm: 'Remove this user from the administration of your organizer on CrowdAI?' } %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+        <tbody>
+          <% @organizer.participants.each do |participant| %>
+          <tr>
+            <td><%= participant.name %></td>
+            <td><%= participant.email %></td>
+            <td><%#= link_to 'Remove', [@organizer, user], method: :nullify, data: { confirm: 'Remove this user from the administration of your organizer on CrowdAI?' } %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
 
   </div>
 </div>

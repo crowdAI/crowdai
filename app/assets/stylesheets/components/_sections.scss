@@ -3,9 +3,11 @@
   background-color: $crowdai-bg-medium-grey;
   @include media(">=phone", "<=tablet") {
     min-height: 150px;
+    padding: 20px 20px 5px 20px;
   }
   @include media(">tablet") {
     min-height: $crowdai-header-section-height;
+    padding-top: 40px;
   }
 }
 

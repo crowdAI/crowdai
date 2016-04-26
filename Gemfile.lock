@@ -358,6 +358,8 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     puma (3.3.0)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -569,6 +571,7 @@ DEPENDENCIES
   paperclip!
   pg
   puma
+  pundit
   railroady
   rails (= 4.2.3)
   rails-erd

@@ -9,6 +9,7 @@ gem 'puma'
 # user accounts / admin
 gem 'devise'
 gem "administrate", "~> 0.1.4"
+gem 'pundit'
 
 # monitoring
 gem "rorvswild"

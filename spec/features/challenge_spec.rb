@@ -80,4 +80,9 @@ RSpec.feature "challenge", type: :feature do
     end
   end
 
+  describe "viewing challenge information" do
+    scenario "participant cannot see a challenge while it is in draft" do
+    end
+  end
+
 end

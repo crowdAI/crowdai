@@ -1,16 +1,13 @@
-
 .navbar {
   margin-bottom: 0;
   min-height: 60px;
   border-radius: 0px;
   background-color: #fff;
   border-bottom: 1px solid rgba(230, 230, 230, 0.7);
-  padding: 0px 20px 0px 0px;
+  padding: 0px 20px 0px 20px;
   display: block;
 }
 
-/*
-.navbar-nav > li > a:hover {  */
 
 .navbar-underline:hover {
   color: black !important;
@@ -19,6 +16,7 @@
   margin-bottom: 10px;
   padding-bottom: 10px;
 }
+
 
 #avatar-menu {
   color: black !important;
@@ -38,16 +36,6 @@
   padding-bottom: 10px;
 }
 
-/*
-.navbar-nav > li > a {
-  &.dropdown-avatar {
-    position: relative;
-    padding-top: 9px;
-    padding-bottom: 9px;
-    font-weight: 600;
-    background-color: #fff;
-  }
-} */
 
 .navbar-nav > li > a.btn {
   margin-top: 35px;
@@ -57,26 +45,19 @@
   line-height: 30px;
 }
 
+
 .nav.navbar-nav.pull-right {
   margin-right: 40px;
 }
 
 
-/*
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-  background-color: #fff;
-  color: #555;
-} */
-
-
-
-.navbar-profile-img
-{
+.navbar-profile-img {
     position: relative;
     top: -5px;
     float: left;
     left: -5px;
 }
+
 
 .brand-container {
   padding-left: 30px;
@@ -87,7 +68,6 @@
 {
   display: block;
   width: 160px;
-  //padding: 0;
   margin-left: 25px !important;
   background: image-url('crowdai_logo.svg') no-repeat right center;
 }

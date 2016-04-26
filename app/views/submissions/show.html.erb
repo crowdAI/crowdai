@@ -10,40 +10,43 @@
         <h3>Submission</h3>
         <lead><%= @submission.created_at %></lead>
 
-        <h4>Score: <%= score(@submission) %></h4>
+        <h4>Score:
+          <%= score(@submission) %></h4>
         <% if @submission.grading_message %>
-            <h3>Message: <%= @submission.grading_message %></h3>
+        <h3>Message:
+          <%= @submission.grading_message %></h3>
         <% end %>
 
         <p><%= markdown(@submission.description) %></p>
 
-
         <div class="row">
           <div class="col-md-8">
-            <table class="table table-condensed table-bordered">
-              <thead>
-                <tr>
-                  <th>File</th>
-                  <th>Filename</th>
-                </tr>
-              </thead>
+            <div class='table-responsive'>
+              <table class="table table-condensed table-bordered">
+                <thead>
+                  <tr>
+                    <th>File</th>
+                    <th>Filename</th>
+                  </tr>
+                </thead>
 
-              <tbody>
-                <% @submission.submission_files.each do |file| %>
-                <tr>
-                  <td><% if file.seq == 0 %>
-                    <b>Prediction file</b>
-                  <% else %>
-                    <b>Archive of model and script</b>
-                    <% end %></td>
-                  <td><%= link_to s3_filesize(file.submission_file_s3_key), s3_expiring_url(file.submission_file_s3_key) %></td>
-                </tr>
-                <% end %>
-              </tbody>
-            </table>
+                <tbody>
+                  <% @submission.submission_files.each do |file| %>
+                  <tr>
+                    <td><% if file.seq == 0 %>
+                      <b>Prediction file</b>
+                    <% else %>
+                      <b>Archive of model and script</b>
+                      <% end %></td>
+                    <td><%= link_to s3_filesize(file.submission_file_s3_key), s3_expiring_url(file.submission_file_s3_key) %></td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div><!-- table-responsive -->
           </div>
-        </div>
+        </div><!-- row -->
       </div>
-    </div>
+    </div><!-- panel -->
   </div>
-</div>
+</div><!-- row -->

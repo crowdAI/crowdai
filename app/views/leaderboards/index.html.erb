@@ -1,7 +1,8 @@
 <%= render partial: 'challenges/sidebar' %>
 <%= render partial: 'challenges/header', challenge: @challenge %>
 
-<table class='table table-hover table-bordered leaderboard'>
+<div class='table-responsive'>
+<table class='table table-hover table-bordered'>
   <thead>
     <tr>
       <th>#</th>
@@ -28,3 +29,4 @@
 </table>
 
 <p class="small">Entries column includes entries not yet graded which, when graded, may affect the contents of this leaderboard.</p>
+</div>

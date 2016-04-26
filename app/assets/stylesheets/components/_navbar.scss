@@ -5,12 +5,16 @@
   border-radius: 0px;
   background-color: #fff;
   border-bottom: 1px solid rgba(230, 230, 230, 0.7);
-  padding: 0px 20px 0px 0px;
+  padding: 0px 20px 0px 20px;
   display: block;
 }
 
-/*
-.navbar-nav > li > a:hover {  */
+//.navbar .nav { margin: 0 }
+
+
+ul.nav.navbar-nav {
+  //padding-left: 10px;
+}
 
 .navbar-underline:hover {
   color: black !important;
@@ -55,6 +59,7 @@
   padding-top: 0px;
   padding-bottom: 0px;
   line-height: 30px;
+
 }
 
 .nav.navbar-nav.pull-right {

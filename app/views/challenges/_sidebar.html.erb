@@ -1,6 +1,6 @@
 <% content_for(:sidebar) do %>
     <ul class="nav nav-stacked sidebar-menu">
-      <li><%= link_to 'DASHBOARD', challenge_path(@challenge, anchor: 'overview'), class: 'sidebar-heading' %></li>
+      <li class="hidden-xs hidden-sm"><%= link_to 'DASHBOARD', challenge_path(@challenge, anchor: 'overview'), class: 'sidebar-heading' %></li>
       <li><%= glyphicon_link 'list-alt', 'Overview', challenge_path(@challenge, anchor: 'overview') %></li>
       <li><%= glyphicon_link 'book', 'Rules', challenge_path(@challenge, anchor: 'rules') %></li>
       <li><%= glyphicon_link 'star', 'Prizes', challenge_path(@challenge, anchor: 'prizes') %></li>

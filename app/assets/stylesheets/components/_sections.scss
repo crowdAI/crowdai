@@ -2,10 +2,10 @@
 .header-section {
   background-color: $crowdai-bg-medium-grey;
   @include media(">=phone", "<=tablet") {
-    height: 150px;
+    min-height: 150px;
   }
   @include media(">tablet") {
-    height: $crowdai-header-section-height;
+    min-height: $crowdai-header-section-height;
   }
 }
 

@@ -13,6 +13,7 @@ gem 'pundit'
 
 # monitoring
 gem "rorvswild"
+gem "skylight"
 #gem 'newrelic_rpm'
 #gem 'rollbar', '~> 2.8.3'
 
@@ -33,6 +34,9 @@ gem 'groupdate'
 #gem 'active_median'
 #gem "chartkick"
 
+
+# performance
+gem 'fast_blank'
 
 # javascript
 gem 'uglifier', '>= 1.3.0'

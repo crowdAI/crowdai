@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160424093652) do
+ActiveRecord::Schema.define(version: 20160426153101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,35 +58,6 @@ ActiveRecord::Schema.define(version: 20160424093652) do
   end
   add_index "dataset_files", ["challenge_id"], :name=>"index_dataset_files_on_challenge_id", :using=>:btree
 
-  create_table "file_attachments", force: :cascade do |t|
-    t.integer  "attachable_id"
-    t.string   "attachable_type"
-    t.string   "description"
-    t.datetime "created_at",                   :null=>false
-    t.datetime "updated_at",                   :null=>false
-    t.string   "file_file_name"
-    t.string   "file_content_type"
-    t.integer  "file_file_size"
-    t.datetime "file_updated_at"
-    t.string   "file_attachment_file_name"
-    t.string   "file_attachment_content_type"
-    t.integer  "file_attachment_file_size"
-    t.datetime "file_attachment_updated_at"
-  end
-  add_index "file_attachments", ["attachable_type", "attachable_id"], :name=>"index_file_attachments_on_attachable_type_and_attachable_id", :using=>:btree
-
-  create_table "friendly_id_slugs", force: :cascade do |t|
-    t.string   "slug",           :null=>false
-    t.integer  "sluggable_id",   :null=>false
-    t.string   "sluggable_type", :limit=>50
-    t.string   "scope"
-    t.datetime "created_at"
-  end
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], :name=>"index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", :unique=>true, :using=>:btree
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name=>"index_friendly_id_slugs_on_slug_and_sluggable_type", :using=>:btree
-  add_index "friendly_id_slugs", ["sluggable_id"], :name=>"index_friendly_id_slugs_on_sluggable_id", :using=>:btree
-  add_index "friendly_id_slugs", ["sluggable_type"], :name=>"index_friendly_id_slugs_on_sluggable_type", :using=>:btree
-
   create_table "images", force: :cascade do |t|
     t.integer  "imageable_id"
     t.string   "imageable_type"
@@ -118,6 +89,7 @@ ActiveRecord::Schema.define(version: 20160424093652) do
   add_index "submissions", ["challenge_id"], :name=>"index_submissions_on_challenge_id", :using=>:btree
   add_index "submissions", ["participant_id"], :name=>"index_submissions_on_participant_id", :using=>:btree
   add_index "submissions", ["team_id"], :name=>"index_submissions_on_team_id", :using=>:btree
+
 
 
   create_table "organizers", force: :cascade do |t|
@@ -259,39 +231,40 @@ ActiveRecord::Schema.define(version: 20160424093652) do
   add_foreign_key "topics", "challenges"
   add_foreign_key "topics", "participants"
 
+  create_view "leaderboards", <<-'END_VIEW_LEADERBOARDS', :force => true
+SELECT l.row_num,
+    l.id,
+    l.challenge_id,
+    l.participant_id,
+    l.name,
+    l.entries,
+    l.team_id,
+    l.score,
+    l.score_secondary,
+    l.created_at,
+    l.updated_at
+   FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS row_num,
+            s.id,
+            s.challenge_id,
+            s.participant_id,
+            p.name,
+            cnt.entries,
+            NULL::integer AS team_id,
+            s.score,
+            s.score_secondary,
+            s.created_at,
+            s.updated_at
+           FROM submissions s,
+            participants p,
+            ( SELECT c.challenge_id,
+                    c.participant_id,
+                    count(c.*) AS entries
+                   FROM submissions c
+                  GROUP BY c.challenge_id, c.participant_id) cnt
+          WHERE ((p.id = s.participant_id) AND (s.evaluated = true) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id) AND (s.score IS NOT NULL))) l
+  WHERE (l.row_num = 1)
+  ORDER BY l.score DESC, l.score_secondary
+  END_VIEW_LEADERBOARDS
 
-    create_view "leaderboards", <<-'END_VIEW_LEADERBOARDS', :force => true
-  SELECT l.row_num,
-      l.id,
-      l.challenge_id,
-      l.participant_id,
-      l.name,
-      l.entries,
-      l.team_id,
-      l.score,
-      l.score_secondary,
-      l.created_at,
-      l.updated_at
-     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS row_num,
-              s.id,
-              s.challenge_id,
-              s.participant_id,
-              p.name,
-              cnt.entries,
-              NULL::integer AS team_id,
-              s.score,
-              s.score_secondary,
-              s.created_at,
-              s.updated_at
-             FROM submissions s,
-              participants p,
-              ( SELECT c.challenge_id,
-                      c.participant_id,
-                      count(c.*) AS entries
-                     FROM submissions c
-                    GROUP BY c.challenge_id, c.participant_id) cnt
-            WHERE ((p.id = s.participant_id) AND (s.evaluated = true) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id) AND (s.score IS NOT NULL))) l
-    WHERE (l.row_num = 1)
-    ORDER BY l.score DESC, l.score_secondary
-    END_VIEW_LEADERBOARDS
+  
 end

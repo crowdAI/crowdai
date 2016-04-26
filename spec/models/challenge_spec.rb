@@ -36,6 +36,7 @@ RSpec.describe Challenge, type: :model do
     it { is_expected.to have_db_column :updated_at }
     it { is_expected.to have_db_column :dataset_description }
     it { is_expected.to have_db_column :submission_instructions }
+    it { is_expected.to have_db_column :tagline }
   end
 
   describe 'associations' do

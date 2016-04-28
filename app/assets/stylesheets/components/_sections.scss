@@ -34,8 +34,8 @@
 }
 
 ul.challenges-list {
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
 }
 
 
@@ -55,10 +55,12 @@ ul.challenges-list li {
   box-shadow: 0 10px 6px -6px #a9a9a9;
   @include media(">=phone", "<=tablet") {
     padding: 15px;
+    margin: 5px;
   }
   @include media(">tablet") {
     width: 675px;
     padding: 20px;
+    margin: 10px;
   }
 }
 

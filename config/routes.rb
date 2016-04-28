@@ -23,7 +23,6 @@ Rails.application.routes.draw do
     resources :posts
     resources :team_participants
     resources :timelines
-    resources :participant_challenges
     resources :topics
     root to: 'participants#index'
   end
@@ -37,9 +36,6 @@ Rails.application.routes.draw do
 
   get 'markdown_editor/create'
   get 'markdown_editor/show'
-
-  resources :posts, except: [:show]
-  resources :topics
 
   get 'landing_page/index'  # TODO refactor
 

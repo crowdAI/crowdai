@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428091347) do
+ActiveRecord::Schema.define(version: 20160428153217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,16 +135,6 @@ SELECT l.row_num,
     t.boolean  "approved",    :default=>false
   end
 
-  create_table "participant_challenges", force: :cascade do |t|
-    t.integer  "participant_id"
-    t.integer  "challenge_id"
-    t.boolean  "rules_accepted"
-    t.datetime "created_at",     :null=>false
-    t.datetime "updated_at",     :null=>false
-  end
-  add_index "participant_challenges", ["challenge_id"], :name=>"index_participant_challenges_on_challenge_id", :using=>:btree
-  add_index "participant_challenges", ["participant_id"], :name=>"index_participant_challenges_on_participant_id", :using=>:btree
-
   create_table "participants", force: :cascade do |t|
     t.string   "email",                  :default=>"", :null=>false
     t.string   "encrypted_password",     :default=>"", :null=>false
@@ -250,8 +240,6 @@ SELECT l.row_num,
   add_index "topics", ["participant_id"], :name=>"index_topics_on_participant_id", :using=>:btree
 
   add_foreign_key "challenges", "organizers"
-  add_foreign_key "participant_challenges", "challenges"
-  add_foreign_key "participant_challenges", "participants"
   add_foreign_key "participants", "organizers"
   add_foreign_key "posts", "participants"
   add_foreign_key "posts", "topics"

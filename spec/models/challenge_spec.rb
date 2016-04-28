@@ -47,7 +47,6 @@ RSpec.describe Challenge, type: :model do
     it { is_expected.to have_many :dataset_files }
     it { is_expected.to have_many :timelines }
     it { is_expected.to have_many :submissions }
-    it { is_expected.to have_many :participant_challenges }
     it { is_expected.to have_many :participants }
     it { is_expected.to have_many :leaderboards }
     it { is_expected.to have_many :topics }

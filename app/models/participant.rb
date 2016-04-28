@@ -17,10 +17,8 @@ class Participant < ActiveRecord::Base
   validates :github, :url => { allow_blank: true }
   validates :linkedin, :url => { allow_blank: true }
   validates :twitter, :url => { allow_blank: true }
-  validates :name, length: { minimum: 2 }, allow_blank: false 
+  validates :name, length: { minimum: 2 }, allow_blank: false
 
-  has_many :participant_challenges
-  has_many :challenges, through: :participant_challenges
   has_many :submissions
   has_many :team_participants
   has_many :teams, through: :team_participants

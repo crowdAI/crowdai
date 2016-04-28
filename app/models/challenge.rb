@@ -7,8 +7,6 @@ class Challenge < ActiveRecord::Base
 
   has_many :timelines, dependent: :destroy
   has_many :submissions, dependent: :destroy
-  has_many :participant_challenges
-  has_many :participants, through: :participant_challenges
   has_many :leaderboards
   has_many :topics
 

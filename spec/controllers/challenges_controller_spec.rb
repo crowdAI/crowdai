@@ -138,24 +138,9 @@ RSpec.describe ChallengesController, type: :controller do
     end
   end
 
-  # === Routes (REST) ===
-  it { should route(:get, '/organizers/1/challenges/new').to('challenges#new', {:organizer_id=>"1"}) }
-  it { should route(:get, '/organizers/1/challenges').to('challenges#index', {:organizer_id=>"1"}) }
-  it { should route(:patch, '/organizers/1/challenges/1').to('challenges#update', {:organizer_id=>"1", :id=>"1"}) }
-  it { should route(:post, '/organizers/1/challenges').to('challenges#create', {:organizer_id=>"1"}) }
-  it { should route(:get, '/organizers/1/challenges/1/edit').to('challenges#edit', {:organizer_id=>"1", :id=>"1"}) }
-  it { should route(:delete, '/organizers/1/challenges/1').to('challenges#destroy', {:organizer_id=>"1", :id=>"1"}) }
-  it { should route(:get, '/organizers/1/challenges/1').to('challenges#show', {:organizer_id=>"1", :id=>"1"}) }
-  # === Callbacks (Before) ===
-  it { should use_before_filter(:verify_authenticity_token) }
-  it { should use_before_filter(:set_xhr_redirected_to) }
-  it { should use_before_filter(:set_request_method_cookie) }
+  # callbacks and filters
   it { should use_before_filter(:authenticate_participant!) }
   it { should use_before_filter(:configure_permitted_parameters) }
   it { should use_before_filter(:set_challenge) }
-  # === Callbacks (After) ===
-  it { should use_after_filter(:abort_xdomain_redirect) }
-  it { should use_after_filter(:verify_same_origin_request) }
-  # === Callbacks (Around) ===
 
 end

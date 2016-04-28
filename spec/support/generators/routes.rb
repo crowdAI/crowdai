@@ -52,5 +52,5 @@ def main(route)
 end
 
 #routes = ['challenge','dataset_file','organizer','post','submission','submission_file','team','timeline','topic']
-routes = ['challenge']
+routes = ['dataset_file']
 routes.each {|r| main(r)}

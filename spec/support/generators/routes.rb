@@ -12,6 +12,7 @@ require 'pp'
 
 def main(route)
   puts "ROUTE: #{route}"
+  all_routes = []
   #os_call = bundle exec rake routes | grep #{route}"
   #puts os_call
   tmp = (`bundle exec rake routes | grep #{route}`).split(/\n/)
@@ -30,6 +31,7 @@ def main(route)
     if ":#{route}_id" == params.first
       next
     end
+    all_routes << r[3]
     append_text = nil
     if params.any?
       append_text = ', '
@@ -44,6 +46,9 @@ def main(route)
     puts "\n"
   end
   puts "\n\n\n"
+  all_routes.each do |r|
+    puts "'#{r}',"
+  end
 end
 
 #routes = ['challenge','dataset_file','organizer','post','submission','submission_file','team','timeline','topic']

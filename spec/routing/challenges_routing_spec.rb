@@ -1,9 +1,7 @@
-
-
 require 'rails_helper'
 
 RSpec.describe ChallengesController, type: :routing do
-  describe 'valid routes' do
+  describe 'valid admin routes' do
     it 'routes to admin/challenges#index' do
       expect(get: '/admin/challenges').to route_to('admin/challenges#index')
     end
@@ -35,9 +33,9 @@ RSpec.describe ChallengesController, type: :routing do
     it 'routes to admin/challenges#destroy' do
       expect(delete: '/admin/challenges/1').to route_to('admin/challenges#destroy', id: '1')
     end
+  end
 
-
-
+  describe 'valid organizer subroutes' do
     it 'routes to challenges#index' do
       expect(get: '/organizers/1/challenges').to route_to('challenges#index', organizer_id: '1')
     end
@@ -69,7 +67,9 @@ RSpec.describe ChallengesController, type: :routing do
     it 'routes to challenges#destroy' do
       expect(delete: '/organizers/1/challenges/1').to route_to('challenges#destroy', organizer_id: '1', id: '1')
     end
+  end
 
+  describe 'valid routes' do
     it 'routes to challenges#index' do
       expect(get: '/challenges').to route_to('challenges#index')
     end
@@ -101,9 +101,40 @@ RSpec.describe ChallengesController, type: :routing do
     it 'routes to challenges#destroy' do
       expect(delete: '/challenges/1').to route_to('challenges#destroy', id: '1')
     end
+  end
 
-    it 'routes to challenges#index' do
-      expect(get: '/').to route_to('challenges#index')
+  describe 'invalid routing' do
+    it 'does not route to other paths' do
+      valid_routes = [
+        'admin/challenges#index',
+        'admin/challenges#create',
+        'admin/challenges#new',
+        'admin/challenges#edit',
+        'admin/challenges#show',
+        'admin/challenges#update',
+        'admin/challenges#update',
+        'admin/challenges#destroy',
+        'challenges#index',
+        'challenges#create',
+        'challenges#new',
+        'challenges#edit',
+        'challenges#show',
+        'challenges#update',
+        'challenges#update',
+        'challenges#destroy',
+        'challenges#index',
+        'challenges#create',
+        'challenges#new',
+        'challenges#edit',
+        'challenges#show',
+        'challenges#update',
+        'challenges#update',
+        'challenges#destroy',
+        'challenges#index',
+      ]
+      routes = (`rake routes | grep submission | awk '$4{print $4}'`).split(/\n+/)
+      untested_routes = routes - valid_routes
+      expect(untested_routes).to be_empty
     end
   end
 end

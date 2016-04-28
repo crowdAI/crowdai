@@ -47,7 +47,7 @@ class ChallengesController < ApplicationController
     def challenge_params
       params.require(:challenge)
             .permit(:organizer_id, :challenge, :tagline,
-                    :status, :description, :evaluation, :evaluation_criteria,
+                    :status, :description, :evaluation_markdown, :evaluation_criteria,
                     :rules, :prizes, :resources, :submission_instructions,
                     dataset_attributes: [:id, :challenge_id, :description, :_destroy],
                     timelines_attributes: [:id, :challenge_id, :seq, :event, :event_time, :_destroy ],

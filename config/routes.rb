@@ -64,7 +64,9 @@ Rails.application.routes.draw do
 
   # different home for public / auth users
   authenticated :participant do
-    root to: 'challenges#index', as: '/'
+    root 'challenges#index', as: :authenticated_root
   end
-  root to: 'landing_page#index', as: '/'
+  unauthenticated :participant do
+    root 'landing_page#index', as: :unauthenticated_root
+  end
 end

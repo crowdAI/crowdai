@@ -4,7 +4,7 @@
     <div class="tab-pane active" id="editor-pane">
       <%= f.label :evaluation %>
       <%= render 'markdown_editor/toolbar' %>
-      <%= f.text_area :evaluation,
+      <%= f.text_area :evaluation_markdown,
                       id: 'markdown_textarea',
                       class: 'form-control',
                       placeholder: 'Enter evaluation criteria.',

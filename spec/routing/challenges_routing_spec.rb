@@ -131,8 +131,12 @@ RSpec.describe ChallengesController, type: :routing do
         'challenges#update',
         'challenges#destroy',
         'challenges#index',
+        "dataset_files#index", "dataset_files#new", "dataset_files#edit", "dataset_files#show",
+        "timelines#index", "timelines#new", "timelines#edit", "timelines#show",
+        "submissions#index", "submissions#new", "submissions#show",
+        "leaderboards#index", "topics#index", "topics#new", "topics#edit", "topics#show"
       ]
-      routes = (`rake routes | grep submission | awk '$4{print $4}'`).split(/\n+/)
+      routes = (`rake routes | grep challenge | awk '$4{print $4}'`).split(/\n+/)
       untested_routes = routes - valid_routes
       expect(untested_routes).to be_empty
     end

@@ -88,7 +88,10 @@ RSpec.describe OrganizersController, type: :routing do
         'organizers#update',
         'organizers#update',
         'organizers#destroy',
-        "challenges#index", "challenges#new", "challenges#edit", "challenges#show"
+        "challenges#index",
+        "challenges#new",
+        "challenges#edit",
+        "challenges#show"
       ]
       routes = `rake routes | grep organizer | awk '$4{print $4}'`.split(/\n+/)
       untested_routes = routes - valid_routes

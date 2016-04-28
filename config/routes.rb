@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :team_participants
     resources :timelines
     resources :topics
+    resources :leaderboards, only: :index
     root to: 'participants#index'
   end
 

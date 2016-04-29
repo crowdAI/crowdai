@@ -10,5 +10,28 @@ FactoryGirl.define do
     submission_instructions 'text'
     evaluation_markdown = 'markdown'
     evaluation_rendered = 'rendered'
+
+    trait :with_event do
+      events { [ build(:event) ] }
+    end
+
+    trait :with_events do
+      events { [ build(:event, event_time: 2.days.ago), build(:event, event_time: 2.days.since) ] }
+    end
+
+    trait :with_milestone do
+      events { [ build(:event, event_time: 2.days.ago),
+                 build(:event, event_time: 1.day.ago),
+                 build(:event, event_time: 2.days.since) ] }
+    end
+
+    trait :with_milestones do
+      events { [ build(:event, event_time: 2.days.ago),
+                 build(:event, event_time: 1.day.ago),
+                 build(:event, event_time: 1.day.since),
+                 build(:event, event_time: 2.days.since) ] }
+    end
+
+
   end
 end

@@ -121,3 +121,7 @@ group :development, :test do
   gem 'table_print'
   #gem 'regressor', git: 'https://github.com/ndea/regressor.git', branch: 'master'
 end
+
+group :test do
+  gem 'timecop'
+end

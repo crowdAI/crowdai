@@ -18,31 +18,35 @@
   <div class="hidden-xs hidden-sm">
   <br/>
 
+  <% if @timeline.present? %>
+
   <div class="row">
     <div class="col-md-1 col-md-offset-1">
       <div class="mini-calendar pull-left">
-        <strong><%= @challenge.start_date.strftime("%^b") %></strong>
-        <span><%= @challenge.start_date.strftime("%-d") %></span>
+        <strong><%= @timeline.start_date.strftime("%^b") %></strong>
+        <span><%= @timeline.start_date.strftime("%-d") %></span>
       </div>
     </div>
 
     <div class="col-md-8">
-      <% if @challenge.pct_passed < 50 %>
+      <% if @timeline.pct_passed < 50 %>
 
         <div class="progress">
-          <div class="progress-bar" role="progressbar" style="width: <%= @challenge.pct_passed %>%;">
+          <div class="progress-bar" role="progressbar" style="width: <%= @timeline.pct_passed %>%;">
           </div>
-            <span class="challenge-progress"><%= @challenge.remaining_text %></span>
+            <span class="challenge-progress"><%= @timeline.remaining_text %></span>
         </div>
 
       <% else %>
         <div class="progress">
-          <div class="progress-bar" role="progressbar" style="width: <%= @challenge.pct_passed %>%;">
-            <span class="challenge-progress"><%= @challenge.remaining_text %></span>
+          <div class="progress-bar" role="progressbar" style="width: <%= @timeline.pct_passed %>%;">
+            <span class="challenge-progress"><%= @timeline.remaining_text %></span>
           </div>
         </div>
       <% end %>
     </div>
+
+    <% end %>
 
     <div class="col-md-1">
       <div class="mini-calendar pull-right">

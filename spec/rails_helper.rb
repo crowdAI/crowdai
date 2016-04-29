@@ -13,6 +13,8 @@ require 'support/controller_helpers'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+
+  #config.filter_run :focus => true
   config.include FactoryGirl::Syntax::Methods
   config.include Devise::TestHelpers, type: :controller
   config.use_transactional_fixtures = true

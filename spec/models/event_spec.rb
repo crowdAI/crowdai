@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Timeline, type: :model do
+RSpec.describe Event, type: :model do
   before do
-    @timeline = build(:timeline)
+    @event = build(:event)
   end
 
   describe 'simple model pre-checks' do
@@ -12,7 +12,7 @@ RSpec.describe Timeline, type: :model do
   end
 
   describe 'fields and associations' do
-    subject { @timeline }
+    subject { @event }
       it { should respond_to(:seq) }
       it { should respond_to(:event) }
       it { should respond_to(:event_time) }

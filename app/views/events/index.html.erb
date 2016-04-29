@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Event</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Challenge</th>
+      <th>Seq</th>
+      <th>Event</th>
+      <th>Event time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.challenge %></td>
+        <td><%= event.seq %></td>
+        <td><%= event.event %></td>
+        <td><%= event.event_time %></td>
+        <td><%= link_to 'Show', event %></td>
+        <td><%= link_to 'Edit', edit_event_path(event) %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New event', new_event_path %>

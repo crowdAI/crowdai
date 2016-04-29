@@ -50,7 +50,7 @@ class ChallengesController < ApplicationController
                     :status, :description, :evaluation_markdown, :evaluation_criteria,
                     :rules, :prizes, :resources, :submission_instructions,
                     dataset_attributes: [:id, :challenge_id, :description, :_destroy],
-                    timelines_attributes: [:id, :challenge_id, :seq, :event, :event_time, :_destroy ],
+                    events_attributes: [:id, :challenge_id, :seq, :event, :event_time, :_destroy ],
                     submissions_attributes: [:id, :challenge_id, :participant_id, :team_id, :evaluated, :score,
                                             :ranking, :submission_type, :withdrawn, :withdrawn_date, :_destroy ],
                     image_attributes: [:id, :image, :_destroy ]

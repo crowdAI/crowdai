@@ -23,6 +23,10 @@ class Challenge < ActiveRecord::Base
   validates_presence_of :status
   validates_presence_of :organizer
 
+  def current_timeline
+    timelines
+  end
+
   def running?
     return true if status_cd == 'running'
     false
@@ -30,12 +34,12 @@ class Challenge < ActiveRecord::Base
 
   def start_date
     return Date.yesterday if timelines.empty?
-    timelines.first.event_time
+    current_timeline.first.event_time
   end
 
   def end_date
     return Date.tomorrow if timelines.empty?
-    timelines.last.event_time
+    current_timeline.last.event_time
   end
 
   def remaining_text

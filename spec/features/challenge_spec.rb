@@ -2,25 +2,24 @@ require "rails_helper"
 require 'pp'
 
 RSpec.feature "challenge", type: :feature do
-  before do
+  #before do
     #@challenge = build(:challenge)
-    @organizer = create(:organizer)
-    @hosting_participant = create(:participant, organizer: @organizer)
+    #@organizer = create(:organizer)
+    #@hosting_participant = create(:participant, organizer: @organizer)
     #pp @hosting_participant
-  end
+  #end
 
   let(:organizer){ create :organizer }
 
   describe "challenge creation authority" do
-    scenario "ordinary participant cannot create a challenge" do
-      let(:participant){ create :participant }
+    let(:participant) { create :participant }
 
+    scenario "ordinary participant cannot create a challenge" do
       visit organizer_path(:organizer)
       expect(page).to_not have_selector '.btn', text: '+ New Challenge'
     end
 
     scenario "participant cannot create a challenge for a different organizer" do
-      let(:participant){ create :participant }
 
       visit organizer_path(:organizer)
       expect(page).to_not have_selector '.btn', text: '+ New Challenge'
@@ -40,24 +39,30 @@ RSpec.feature "challenge", type: :feature do
 
   describe "challenge status actions" do
     scenario "challenge can move from draft to running" do
+      skip("spec to be coded")
     end
 
     scenario "challenge can move from running to cancelled" do
+      skip("spec to be coded")      
     end
 
     scenario "challenge can move from running to completed" do
+      skip("spec to be coded")
     end
 
     scenario "a challenge can be deleted if it is in draft" do
+      skip("spec to be coded")
     end
 
     scenario "challenge cannot move from draft to running without datasets present" do
+      skip("spec to be coded")
     end
   end
 
 
   describe 'challenge CRUD actions' do
     scenario "any other participant associated with the organizer can modify the challenge" do
+      skip("spec to be coded")
     end
 
   end
@@ -65,23 +70,29 @@ RSpec.feature "challenge", type: :feature do
 
   describe "running a challenge" do
     scenario "participant can enter a running challenge" do
+      skip("spec to be coded")
     end
 
     scenario "participant can enter a running challenge twice" do
+      skip("spec to be coded")
     end
 
     scenario "participant can leave a running challenge" do
+      skip("spec to be coded")
     end
 
     scenario "participant cannot leave a completed challenge" do
+      skip("spec to be coded")
     end
 
     scenario "participant cannot leave a cancelled challenge" do
+      skip("spec to be coded")
     end
   end
 
   describe "viewing challenge information" do
     scenario "participant cannot see a challenge while it is in draft" do
+      skip("spec to be coded")
     end
   end
 

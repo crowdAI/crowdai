@@ -4,6 +4,7 @@ ruby "2.3.0"
 gem 'rails', '4.2.3'
 gem 'pg'
 gem 'puma'
+gem 'puma_worker_killer'
 
 
 # user accounts / admin

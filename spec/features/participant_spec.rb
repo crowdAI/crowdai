@@ -46,6 +46,7 @@ RSpec.feature "participant", type: :feature do
 
     scenario "incorrect password confirmation" do
       click_link "Sign up"
+      fill_in "Display name", with: "Joe Bloggs"
       fill_in "name", with: "test@example.com"
       fill_in 'participant_password', with: "crowdai123"
       fill_in "Password confirmation", with: "crowdai122"
@@ -55,6 +56,7 @@ RSpec.feature "participant", type: :feature do
 
     scenario "invalid email" do
       click_link "Sign up"
+      fill_in "Display name", with: "Joe Bloggs"
       fill_in "Email", with: "invalid-email-for-testing"
       fill_in 'participant_password', with: "crowdai123"
       fill_in "Password confirmation", with: "crowdai123"
@@ -65,6 +67,7 @@ RSpec.feature "participant", type: :feature do
     scenario "already registered email" do
       create(:participant, email: "test@example.com")
       click_link "Sign up"
+      fill_in "Display name", with: "Joe Bloggs"
       fill_in "Email", with: "test@example.com"
       fill_in 'participant_password', with: "password1234"
       fill_in "Password confirmation", with: "password1234"
@@ -74,6 +77,7 @@ RSpec.feature "participant", type: :feature do
 
     scenario "password too short" do
       click_link "Sign up"
+      fill_in "Display name", with: "Joe Bloggs"
       fill_in "Email", with: "test@example.com"
       fill_in 'participant_password', with: "123456"
       fill_in "Password confirmation", with: "123456"
@@ -82,11 +86,25 @@ RSpec.feature "participant", type: :feature do
     end
 
     scenario "participant's name must be at least 2 characters" do
-      pending("spec to be coded")
+      click_link "Sign up"
+      fill_in "Display name", with: "J"
+      fill_in "Email", with: "test@example.com"
+      fill_in 'participant_password', with: "123456"
+      fill_in "Password confirmation", with: "123456"
+      click_button "Get started"
+      expect(page).to have_content "is too short (minimum is 2 characters)"
     end
 
     scenario "participant's name can be non-unique" do
-      pending("spec to be coded")
+      FactoryGirl.create(:participant, name: 'Bill Hayden')
+      participant = FactoryGirl.build(:participant, name: 'Bill Hayden')
+      click_link "Sign up"
+      fill_in "Display name", with: participant.name
+      fill_in "Email", with: participant.email
+      fill_in 'participant_password', with: participant.password
+      fill_in "Password confirmation", with: participant.password_confirmation
+      click_button "Get started"
+      expect(page).to have_content "A message with a confirmation link has been sent to your email address"
     end
 
   end

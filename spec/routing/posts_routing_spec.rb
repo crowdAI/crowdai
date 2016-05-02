@@ -13,8 +13,6 @@ RSpec.describe PostsController, type: :routing do
 
 
   describe "routing with topics" do
-
-
     it "routes to #new" do
       expect(:get => "/topics/5/posts/new").to route_to("posts#new", topic_id: "5")
     end

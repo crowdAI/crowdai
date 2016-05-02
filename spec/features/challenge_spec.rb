@@ -20,7 +20,6 @@ RSpec.feature "challenge", type: :feature do
     end
 
     scenario "participant cannot create a challenge for a different organizer" do
-
       visit organizer_path(:organizer)
       expect(page).to_not have_selector '.btn', text: '+ New Challenge'
     end
@@ -43,7 +42,7 @@ RSpec.feature "challenge", type: :feature do
     end
 
     scenario "challenge can move from running to cancelled" do
-      skip("spec to be coded")      
+      skip("spec to be coded")
     end
 
     scenario "challenge can move from running to completed" do

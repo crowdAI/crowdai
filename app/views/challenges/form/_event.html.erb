@@ -4,7 +4,9 @@
   <%= f.simple_fields_for :events do |event| %>
     <%= render 'challenges/form/event_fields', f: event %>
   <% end %>
-  <%= link_to_add_association 'add milestone', f, :events,  html_options = { partial: 'challenges/form/event_fields', class: 'btn btn-primary outline' } %>
+  <%= link_to_add_association 'add milestone', f, :events,
+                              html_options = { partial: 'challenges/form/event_fields',
+                                               class: 'btn btn-primary outline' } %>
 
   <div class="form-actions">
     <%= f.button :submit %>

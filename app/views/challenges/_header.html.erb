@@ -23,8 +23,8 @@
   <div class="row">
     <div class="col-md-1 col-md-offset-1">
       <div class="mini-calendar pull-left">
-        <strong><%= @timeline.start_date.strftime("%^b") %></strong>
-        <span><%= @timeline.start_date.strftime("%-d") %></span>
+        <strong><%= @timeline.start_month %></strong>
+        <span><%= @timeline.start_day %></span>
       </div>
     </div>
 
@@ -50,8 +50,8 @@
 
     <div class="col-md-1">
       <div class="mini-calendar pull-right">
-        <strong><%= @timeline.end_date.strftime("%^b") %></strong>
-        <span><%= @timeline.start_date.strftime("%-d") %></span>
+        <strong><%= @timeline.end_month %></strong>
+        <span><%= @timeline.end_day %></span>
       </div>
     </div>
     <div class="col-md-1"></div>
@@ -60,10 +60,10 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <div class="pull-left">
-        <h6><%= @timeline.start_date.strftime("%a %-d %b %Y") %></h6>
+        <h6><%= @timeline.start_date %></h6>
       </div>
       <div class="pull-right">
-        <h6><%= @timeline.end_date.strftime("%a %-d %b %Y") %></h6>
+        <h6><%= @timeline.end_date %></h6>
       </div>
     </div>
   </div>

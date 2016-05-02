@@ -18,7 +18,8 @@ FactoryGirl.define do
     end
 
     trait :with_events do
-      events { [ build(:event, event_time: 2.days.ago), build(:event, event_time: 2.days.since) ] }
+      events { [ build(:event, event_time: 2.days.ago), 
+                build(:event, event_time: 2.days.since) ] }
     end
 
     trait :with_milestone do

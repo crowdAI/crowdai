@@ -4,7 +4,7 @@ module ParticipantsHelper
     if participant.avatar
       participant.avatar.url(:medium)
     else
-      'http://www.gravatar.com/avatar/?d=mm&s=200'
+      'https://www.gravatar.com/avatar/?d=mm&s=200'
     end
   end
 
@@ -17,7 +17,7 @@ module ParticipantsHelper
         participant.avatar.url(size)
       end
     else
-      'http://www.gravatar.com/avatar/?d=mm&s=200'
+      'https://www.gravatar.com/avatar/?d=mm&s=200'
     end
   end
   # usage:  <%= image_tag avatar_url(user,'medium'), class: "img-responsive" %>

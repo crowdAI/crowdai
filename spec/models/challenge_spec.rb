@@ -68,18 +68,4 @@ RSpec.describe Challenge, type: :model do
     it { is_expected.to validate_presence_of :organizer }
   end
 
-  describe "#timeline empty" do
-    let(:challenge) { build :challenge, events: []}
-    it { expect(challenge.timeline).to be nil }
-  end
-
-  describe "#timeline with 1 event" do
-    let(:challenge) { build :challenge, :with_event}
-    it { expect(challenge.timeline).to be nil }
-  end
-
-  describe "#timeline with events" do
-    let(:challenge) { build :challenge, :with_events}
-    it { expect(challenge.timeline).to be_a Timeline }
-  end
 end

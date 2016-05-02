@@ -8,8 +8,10 @@ FactoryGirl.define do
     resources 'MyText'
     dataset_description 'text'
     submission_instructions 'text'
-    evaluation_markdown = 'markdown'
-    evaluation_rendered = 'rendered'
+    evaluation_markdown 'markdown'
+    evaluation_rendered 'rendered'
+    score_sort_cd 'ascending'
+    score_secondary_sort_cd 'descending'
 
     trait :with_event do
       events { [ build(:event) ] }

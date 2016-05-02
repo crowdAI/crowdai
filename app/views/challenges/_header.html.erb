@@ -50,8 +50,8 @@
 
     <div class="col-md-1">
       <div class="mini-calendar pull-right">
-        <strong><%= @challenge.end_date.strftime("%^b") %></strong>
-        <span><%= @challenge.start_date.strftime("%-d") %></span>
+        <strong><%= @timeline.end_date.strftime("%^b") %></strong>
+        <span><%= @timeline.start_date.strftime("%-d") %></span>
       </div>
     </div>
     <div class="col-md-1"></div>
@@ -60,10 +60,10 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <div class="pull-left">
-        <h6><%= @challenge.start_date.strftime("%a %-d %b %Y") %></h6>
+        <h6><%= @timeline.start_date.strftime("%a %-d %b %Y") %></h6>
       </div>
       <div class="pull-right">
-        <h6><%= @challenge.end_date.strftime("%a %-d %b %Y") %></h6>
+        <h6><%= @timeline.end_date.strftime("%a %-d %b %Y") %></h6>
       </div>
     </div>
   </div>

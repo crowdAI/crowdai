@@ -1,5 +1,14 @@
 <div role="tabpanel" class="tab-pane" id="evaluation">
   <h1>Evaluation</h1>
+  <div class="row">
+    <div class="col-md-3">
+      <%= f.input :score_sort, collection: enum_option_pairs(Challenge, :score_sort) %>
+    </div>
+    <div class="col-md-3">
+      <%= f.input :score_secondary_sort, collection: enum_option_pairs(Challenge, :score_secondary_sort), input_html: { class: 'col-md-3' } %>
+    </div>
+  </div>
+
   <div id="my-tab-content" class="tab-content">
     <div class="tab-pane active" id="editor-pane">
       <%= f.label :evaluation %>

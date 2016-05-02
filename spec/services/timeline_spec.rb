@@ -6,7 +6,7 @@ RSpec.describe Timeline do
   it { is_expected.to respond_to :start_date }
   it { is_expected.to respond_to :end_date }
   it { is_expected.to respond_to :pct_passed }
-  it { is_expected.to respond_to :pct_left }
+  it { is_expected.to respond_to :pct_remaining }
   it { is_expected.to respond_to :remaining_text }
 
   describe "#valid?" do
@@ -70,8 +70,5 @@ RSpec.describe Timeline do
       it { expect(timeline.pct_remaining).to eq(50) }
     end
   end
-
-
-
 
 end

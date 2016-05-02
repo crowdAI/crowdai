@@ -2,8 +2,8 @@
   <%= link_to challenge_path(challenge) do %>
     <%= challenge.organizer.organizer %><br/>
     <b><%= challenge.challenge %></b><br/>
-    <%= challenge.start_date %>
-    <%= challenge.end_date %>
+    <%#= challenge.timeline.start_date %>
+    <%#= challenge.timelime.end_date %>
     <span class="badge"><%= challenge.status_cd %></span>
   <% end %>
 </li>

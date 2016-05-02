@@ -19,15 +19,15 @@ class Timeline
   end
 
   def remaining_text
-    time_remaining[0]
+    'TBD'
   end
 
   def pct_passed
-    time_remaining[1]
+    49  # TODO
   end
 
   def pct_remaining
-    time_remaining[2]
+    51  # TODO
   end
 
   def valid?

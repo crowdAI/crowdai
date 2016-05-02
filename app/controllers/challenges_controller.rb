@@ -49,7 +49,7 @@ class ChallengesController < ApplicationController
       params.require(:challenge)
             .permit(:organizer_id, :challenge, :tagline,
                     :status, :description, :evaluation_markdown, :evaluation_criteria,
-                    :rules, :prizes, :resources, :submission_instructions,
+                    :rules, :prizes, :resources, :submission_instructions, :score_sort, :score_secondary_sort,
                     dataset_attributes: [:id, :challenge_id, :description, :_destroy],
                     events_attributes: [:id, :challenge_id, :seq, :event, :event_time, :_destroy ],
                     submissions_attributes: [:id, :challenge_id, :participant_id, :team_id, :evaluated, :score,

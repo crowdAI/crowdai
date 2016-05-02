@@ -67,29 +67,6 @@ RSpec.feature "challenge", type: :feature do
 
   end
 
-
-  describe "running a challenge" do
-    scenario "participant can enter a running challenge" do
-      skip("spec to be coded")
-    end
-
-    scenario "participant can enter a running challenge twice" do
-      skip("spec to be coded")
-    end
-
-    scenario "participant can leave a running challenge" do
-      skip("spec to be coded")
-    end
-
-    scenario "participant cannot leave a completed challenge" do
-      skip("spec to be coded")
-    end
-
-    scenario "participant cannot leave a cancelled challenge" do
-      skip("spec to be coded")
-    end
-  end
-
   describe "viewing challenge information" do
     scenario "participant cannot see a challenge while it is in draft" do
       skip("spec to be coded")

@@ -30,6 +30,18 @@ RSpec.feature "participant", type: :feature do
       expect(current_path).to eq "/"
       expect(page).to have_content "Welcome to CrowdAI"
     end
+
+    scenario "participant's name can be non-unique" do
+      FactoryGirl.create(:participant, name: 'Bill Hayden')
+      participant = FactoryGirl.build(:participant, name: 'Bill Hayden')
+      click_link "Sign up"
+      fill_in "Display name", with: participant.name
+      fill_in "Email", with: participant.email
+      fill_in 'participant_password', with: participant.password
+      fill_in "Password confirmation", with: participant.password_confirmation
+      click_button "Get started"
+      expect(page).to have_content "A message with a confirmation link has been sent to your email address"
+    end
   end
 
   describe "unsuccessful participant registration" do
@@ -94,25 +106,27 @@ RSpec.feature "participant", type: :feature do
       click_button "Get started"
       expect(page).to have_content "is too short (minimum is 2 characters)"
     end
+  end
 
-    scenario "participant's name can be non-unique" do
-      FactoryGirl.create(:participant, name: 'Bill Hayden')
-      participant = FactoryGirl.build(:participant, name: 'Bill Hayden')
-      click_link "Sign up"
-      fill_in "Display name", with: participant.name
-      fill_in "Email", with: participant.email
-      fill_in 'participant_password', with: participant.password
-      fill_in "Password confirmation", with: participant.password_confirmation
-      click_button "Get started"
-      expect(page).to have_content "A message with a confirmation link has been sent to your email address"
+  describe "participant profile" do
+    scenario "a participant can upload their profile picture" do
+      skip("spec to be coded")
     end
 
+    scenario "a participant can reset their password" do
+      skip("spec to be coded")
+    end
+
+    scenario "a participant can link their github id" do
+      skip("spec to be coded")
+    end
+
+    scenario "a participant can link their Twitter id" do
+      skip("spec to be coded")
+    end
+
+    scenario "a participant can link their LinkedIn Id" do
+      skip("spec to be coded")
+    end
   end
 end
-
-
-
-
-
-#A participant can upload their profile picture
-# A participant can reset their password

@@ -7,7 +7,7 @@ class ChallengesController < ApplicationController
   end
 
   def show
-    @timeline = @challenge.timeline 
+    @timeline = @challenge.timeline
   end
 
   def new
@@ -53,7 +53,7 @@ class ChallengesController < ApplicationController
                     dataset_attributes: [:id, :challenge_id, :description, :_destroy],
                     events_attributes: [:id, :challenge_id, :seq, :event, :event_time, :_destroy ],
                     submissions_attributes: [:id, :challenge_id, :participant_id, :team_id, :evaluated, :score,
-                                            :ranking, :submission_type, :withdrawn, :withdrawn_date, :_destroy ],
+                                            :ranking, :withdrawn, :withdrawn_date, :_destroy ],
                     image_attributes: [:id, :image, :_destroy ]
                     )
     end

@@ -16,7 +16,6 @@ class SubmissionDashboard < Administrate::BaseDashboard
     evaluated: Field::Boolean,
     score: Field::Number.with_options(decimals: 6),
     score_secondary: Field::Number.with_options(decimals: 6),
-    submission_type_cd: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     description: Field::Text,
@@ -51,7 +50,6 @@ class SubmissionDashboard < Administrate::BaseDashboard
     :score,
     :score_secondary,
     :grading_message,
-    :submission_type_cd,
     :created_at,
     :updated_at,
     :description,
@@ -69,7 +67,6 @@ class SubmissionDashboard < Administrate::BaseDashboard
     :score,
     :score_secondary,
     :grading_message,
-    :submission_type_cd,
     :description,
   ]
 

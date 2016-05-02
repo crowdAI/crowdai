@@ -5,7 +5,7 @@ end
 
 
 # note that the count includes ungraded entries
-# TODO team_id is as a placeholder only 
+# TODO team_id is as a placeholder only
 
 =begin
 SELECT * FROM (
@@ -17,7 +17,6 @@ SELECT * FROM (
             s.participant_id,
             p.name,
             cnt.entries,
-            NULL::INTEGER AS team_id,
             s.score,
             s.score_secondary,
             s.created_at,

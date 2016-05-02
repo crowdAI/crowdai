@@ -20,8 +20,6 @@ class Participant < ActiveRecord::Base
   validates :name, length: { minimum: 2 }, allow_blank: false
 
   has_many :submissions
-  has_many :team_participants
-  has_many :teams, through: :team_participants
   has_many :posts
   belongs_to :organizer
   has_one :image, as: :imageable, dependent: :destroy

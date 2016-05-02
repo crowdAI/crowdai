@@ -23,19 +23,19 @@ Post.create!([
   {topic_id: 2, user_id: 1, post: "WOW this is cool\r\n# wow\r\n", votes: 0, flagged: false, notify: true}
 ])
 Submission.create!([
-  {challenge_id: 2, user_id: 1, team_id: nil, evaluated: true, score: 0.9, submission_type_cd: "user", description: "Submission 1"},
-  {challenge_id: 2, user_id: 1, team_id: nil, evaluated: true, score: 0.75, submission_type_cd: "user", description: "Attempt 2"},
-  {challenge_id: 2, user_id: 1, team_id: nil, evaluated: false, score: nil, submission_type_cd: "user", description: "Submission 3"},
-  {challenge_id: 2, user_id: 2, team_id: nil, evaluated: false, score: nil, submission_type_cd: "user", description: "My first try"},
-  {challenge_id: 2, user_id: 2, team_id: nil, evaluated: true, score: 0.91, submission_type_cd: "user", description: "My second try"},
-  {challenge_id: 2, user_id: 2, team_id: nil, evaluated: false, score: nil, submission_type_cd: "user", description: "Submission 3"},
-  {challenge_id: 2, user_id: 1, team_id: nil, evaluated: false, score: nil, submission_type_cd: "user", description: "Here is my submission"},
-  {challenge_id: 2, user_id: 1, team_id: nil, evaluated: false, score: nil, submission_type_cd: "user", description: "Submission"},
-  {challenge_id: 2, user_id: 1, team_id: nil, evaluated: false, score: nil, submission_type_cd: "user", description: "zsfszf"},
-  {challenge_id: 2, user_id: 1, team_id: nil, evaluated: false, score: nil, submission_type_cd: "user", description: "asdasdasd\r\n### asdasddas\r\n"},
-  {challenge_id: 2, user_id: 1, team_id: nil, evaluated: false, score: nil, submission_type_cd: "user", description: "\r\n# Submission\r\n\r\n\r\n##### My details\r\n\r\n"},
-  {challenge_id: 2, user_id: 1, team_id: nil, evaluated: false, score: nil, submission_type_cd: "user", description: "\r\n# A description\r\n"},
-  {challenge_id: 2, user_id: 1, team_id: nil, evaluated: false, score: nil, submission_type_cd: "user", description: "axaxaaa"}
+  {challenge_id: 2, user_id: 1, team_id: nil, evaluated: true, score: 0.9, description: "Submission 1"},
+  {challenge_id: 2, user_id: 1, team_id: nil, evaluated: true, score: 0.75,  description: "Attempt 2"},
+  {challenge_id: 2, user_id: 1, team_id: nil, evaluated: false, score: nil,  description: "Submission 3"},
+  {challenge_id: 2, user_id: 2, team_id: nil, evaluated: false, score: nil,  description: "My first try"},
+  {challenge_id: 2, user_id: 2, team_id: nil, evaluated: true, score: 0.91,  description: "My second try"},
+  {challenge_id: 2, user_id: 2, team_id: nil, evaluated: false, score: nil,  description: "Submission 3"},
+  {challenge_id: 2, user_id: 1, team_id: nil, evaluated: false, score: nil,  description: "Here is my submission"},
+  {challenge_id: 2, user_id: 1, team_id: nil, evaluated: false, score: nil,  description: "Submission"},
+  {challenge_id: 2, user_id: 1, team_id: nil, evaluated: false, score: nil,  description: "zsfszf"},
+  {challenge_id: 2, user_id: 1, team_id: nil, evaluated: false, score: nil,  description: "asdasdasd\r\n### asdasddas\r\n"},
+  {challenge_id: 2, user_id: 1, team_id: nil, evaluated: false, score: nil,  description: "\r\n# Submission\r\n\r\n\r\n##### My details\r\n\r\n"},
+  {challenge_id: 2, user_id: 1, team_id: nil, evaluated: false, score: nil,  description: "\r\n# A description\r\n"},
+  {challenge_id: 2, user_id: 1, team_id: nil, evaluated: false, score: nil,  description: "axaxaaa"}
 ])
 SubmissionFile.create!([
   {submission_id: 1, seq: 0, submission_file_file_name: "test_csv_file.csv", submission_file_content_type: "text/csv", submission_file_file_size: 37, submission_file_updated_at: "2016-03-17 13:51:35"},

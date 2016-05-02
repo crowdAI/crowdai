@@ -20,13 +20,14 @@ RSpec.feature "challenge", type: :feature do
     end
 
     scenario "participant cannot create a challenge for a different organizer" do
+      participant_organizer = FactoryGirl.create(:organizer)
       visit organizer_path(:organizer)
+      participant.update!(organizer_id: participant_organizer.id)
       expect(page).to_not have_selector '.btn', text: '+ New Challenge'
     end
 
     scenario "participant associated with the organizer can create a challenge" do
-      let(:participant){ create :participant }
-
+      participant.update!(organizer_id: organizer.id)
       visit organizer_path(:organizer)
       expect(page).to have_selector '.btn', text: '+ New Challenge'
     end

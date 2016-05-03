@@ -18,17 +18,20 @@ FactoryGirl.define do
     end
 
     trait :with_events do
+      status_cd 'running'
       events { [ build(:event, event_time: 2.days.ago),
                 build(:event, event_time: 2.days.since) ] }
     end
 
     trait :with_milestone do
+      status_cd 'running'
       events { [ build(:event, event_time: 2.days.ago),
                  build(:event, event_time: 1.day.ago),
                  build(:event, event_time: 2.days.since) ] }
     end
 
     trait :with_milestones do
+      status_cd 'running'
       events { [ build(:event, event_time: 2.days.ago),
                  build(:event, event_time: 1.day.ago),
                  build(:event, event_time: 1.day.since),

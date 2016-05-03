@@ -1,7 +1,7 @@
 class LandingPage
   include Capybara::DSL
 
-  def visit_page
+  def index
     visit '/'
     self
   end

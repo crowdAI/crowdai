@@ -37,8 +37,8 @@ class Challenge < ActiveRecord::Base
     Timeline.new(self)
   end
 
-  private
 
+  private
   def cache_rendered_markdown
     if evaluation_markdown_changed?
       self.evaluation_rendered = RenderMarkdown.new.render(evaluation_markdown)

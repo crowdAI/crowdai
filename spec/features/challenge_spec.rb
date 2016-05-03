@@ -1,7 +1,7 @@
 require "rails_helper"
 require 'pp'
 require 'views/devise/devise_sessions_new'
-require 'views/landing_pages/landing_page_index'
+require 'views/landing_page'
 
 
 RSpec.feature "challenge", type: :feature do
@@ -63,7 +63,7 @@ RSpec.feature "challenge", type: :feature do
 
     scenario "participant cannot see a draft challenge" do
       @login_page.visit_page.login(@participant)
-      LandingPage.new.visit_page
+      LandingPage.new.index
       expect(page).to have_content(@running_challenge.challenge)
       expect(page).to_not have_content(@draft_challenge.challenge)
     end

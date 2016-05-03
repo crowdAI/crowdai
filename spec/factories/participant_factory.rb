@@ -4,13 +4,11 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     password 'password12'
     password_confirmation 'password12'
+    confirmed_at Time.now
 
     trait :admin do
       admin true
     end
 
-    trait :hosting_participant do
-      organizer_primary true
-    end
   end
 end

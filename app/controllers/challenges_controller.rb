@@ -3,7 +3,11 @@ class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
 
   def index
-    @challenges = Challenge.all
+    if current_participant.admin?
+      @challenges = Challenge.all
+    else
+      @challenges = Challenge.where(status_cd: 'running')
+    end
   end
 
   def show

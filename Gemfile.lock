@@ -311,6 +311,8 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     key_struct (0.4.2)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     libv8 (3.16.14.13)
     listen (3.0.6)
       rb-fsevent (>= 0.9.3)
@@ -574,6 +576,7 @@ DEPENDENCIES
   jquery-turbolinks
   jquery-ui-rails
   kaminari
+  launchy
   lodash-rails
   mandrill-api
   net-ssh

@@ -3,8 +3,17 @@
     <h1><%= @organizer.organizer %></h1>
 
     <span class="pull-right">
-      <%= link_to '+ New Challenge', new_challenge_path, class: 'btn btn-primary outline' %>
-      <%= link_to 'Edit Details', edit_organizer_path(@organizer), class: 'btn btn-primary outline' %>
+      <% if current_participant.admin? || current_participant.organizer_id == @organizer.id %>
+        <%= link_to '+ New Challenge', new_challenge_path, class: 'btn btn-primary outline' %>
+        <%= link_to 'Edit Challenge', edit_organizer_path(@organizer), class: 'btn btn-primary outline' %>
+      <% end %>
+      <% if current_participant.admin? %>
+        <%= link_to 'Delete Organizer',
+                    @organizer,
+                    method: :delete,
+                    data: { confirm: 'Remove this user from the administration of your organizer on CrowdAI?' },
+                    class: 'btn btn-small btn-danger outline' %>
+      <% end %>
     </span>
 
     <p>
@@ -41,7 +50,13 @@
           <tr>
             <td><%= participant.name %></td>
             <td><%= participant.email %></td>
-            <td><%#= link_to 'Remove', [@organizer, user], method: :nullify, data: { confirm: 'Remove this user from the administration of your organizer on CrowdAI?' } %></td>
+            <td><%# if current_participant.admin? %>
+                  <%#= link_to 'Remove', [@organizer, participant],
+                                        method: :nullify,
+                                        data: { confirm: 'Remove this user from the administration of your organizer on CrowdAI?' },
+                                        class: 'btn btn-small btn-danger outline' %>
+                <%# end %>
+            </td>
           </tr>
           <% end %>
         </tbody>

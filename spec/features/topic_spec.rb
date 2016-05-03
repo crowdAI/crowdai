@@ -14,7 +14,6 @@ RSpec.feature "topic", type: :feature do
     scenario "a non-admin cannot update a topic to 'sticky'" do
       skip("spec to be coded")
     end
-
-
   end
+  
 end

@@ -1,38 +1,71 @@
 require "rails_helper"
 require 'pp'
+require 'views/devise/devise_sessions_new'
+require 'views/landing_pages/landing_page_index'
+
 
 RSpec.feature "challenge", type: :feature do
-  #before do
-    #@challenge = build(:challenge)
-    #@organizer = create(:organizer)
-    #@hosting_participant = create(:participant, organizer: @organizer)
-    #pp @hosting_participant
-  #end
+  before(:each) do
+    @participant = create :participant
+    @admin_participant = create :participant, :admin
+    @organizer =  create :organizer
+    @second_organizer = create :organizer, :second_organizer
+    @organizer_participant = create :participant, organizer_id: @organizer.id
+    @draft_challenge = create :challenge
+    @running_challenge = create :challenge, :running
+    @login_page = DeviseSessionsNew.new
+  end
 
-  let(:organizer){ create :organizer }
-
-  describe "challenge creation authority" do
-    let(:participant) { create :participant }
-
-    scenario "ordinary participant cannot create a challenge" do
-      visit organizer_path(:organizer)
+  describe "CRUD authority" do
+    scenario "ordinary participant cannot create, edit or delete a challenge" do
+      @login_page.visit_page.login(@participant)
+      visit organizer_path(@organizer)
+      expect(page).to have_content(@organizer.organizer)
       expect(page).to_not have_selector '.btn', text: '+ New Challenge'
+      expect(page).to_not have_selector '.btn', text: 'Edit Challenge'
+      expect(page).to_not have_selector '.btn', text: 'Delete Organizer'
+    end
+
+    scenario "participant associated with an approved organizer can create or edit a challenge" do
+      @login_page.visit_page.login(@organizer_participant)
+      visit organizer_path(@organizer)
+      expect(page).to have_content(@organizer.organizer)
+      expect(page).to have_selector '.btn', text: '+ New Challenge'
+      expect(page).to have_selector '.btn', text: 'Edit Challenge'
+      expect(page).to_not have_selector '.btn', text: 'Delete Organizer'
     end
 
     scenario "participant cannot create a challenge for a different organizer" do
-      participant_organizer = FactoryGirl.create(:organizer)
-      visit organizer_path(:organizer)
-      participant.update!(organizer_id: participant_organizer.id)
+      @login_page.visit_page.login(@participant)
+      visit organizer_path(@second_organizer)
+      expect(page).to have_content(@second_organizer.organizer)
       expect(page).to_not have_selector '.btn', text: '+ New Challenge'
+      expect(page).to_not have_selector '.btn', text: 'Edit Challenge'
+      expect(page).to_not have_selector '.btn', text: 'Delete Organizer'
     end
 
-    scenario "participant associated with the organizer can create a challenge" do
-      participant.update!(organizer_id: organizer.id)
-      visit organizer_path(:organizer)
+    scenario "only approved organizers can create a challenge" do
+      @organizer.approved = false
+      @login_page.visit_page.login(@organizer_participant)
+      visit organizer_path(@organizer)
       expect(page).to have_selector '.btn', text: '+ New Challenge'
+      expect(page).to have_selector '.btn', text: 'Edit Challenge'
+      expect(page).to_not have_selector '.btn', text: 'Delete Organizer'
     end
 
-    scenario "only organizers in active status can create a challenge" do
+    scenario "admins can perform all CRUD actions" do
+      @login_page.visit_page.login(@admin_participant)
+      visit organizer_path(@organizer)
+      expect(page).to have_selector '.btn', text: '+ New Challenge'
+      expect(page).to have_selector '.btn', text: 'Edit Challenge'
+      expect(page).to have_selector '.btn', text: 'Delete Organizer'
+    end
+
+    scenario "participant cannot see a draft challenge" do
+      @login_page.visit_page.login(@participant)
+      LandingPage.new.visit_page
+      expect(page).to have_content(@running_challenge.challenge)
+      expect(page).to_not have_content(@draft_challenge.challenge)
     end
   end
 
@@ -59,18 +92,5 @@ RSpec.feature "challenge", type: :feature do
     end
   end
 
-
-  describe 'challenge CRUD actions' do
-    scenario "any other participant associated with the organizer can modify the challenge" do
-      skip("spec to be coded")
-    end
-
-  end
-
-  describe "viewing challenge information" do
-    scenario "participant cannot see a challenge while it is in draft" do
-      skip("spec to be coded")
-    end
-  end
 
 end

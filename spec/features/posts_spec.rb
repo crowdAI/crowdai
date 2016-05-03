@@ -29,7 +29,22 @@ RSpec.feature "topic", type: :feature do
       expect(page).to have_content("Post was successfully created.")
     end
 
-    
+
+    scenario "a participant can respond to a post" do
+      @login_page.visit_page.login(@participant)
+      topics = TopicsPages.new
+      topics.index(@challenge)
+      click_link "+ New Topic"
+      fill_in "Topic", with: "Post test"
+      click_button "Create Topic"
+      expect(page).to have_content("Topic was successfully created.")
+      click_link "Post test"
+      expect(page).to have_content("Post test")
+      find('#markdown_textarea').set('### Markdown Heading')
+      click_button "Create Post"
+      expect(page).to have_selector("h3", text: "Markdown Heading")
+      expect(page).to_not have_content("Post was successfully created.")
+    end
   end
 
 end

@@ -12,6 +12,10 @@ class TopicsPages
   def edit(challenge_id,topic_id)
   end
 
+  def create(challenge_id,topic_id,params)
+    
+  end
+
   def destroy(challenge_id,topic_id)
   end
 

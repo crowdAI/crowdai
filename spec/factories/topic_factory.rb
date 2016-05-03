@@ -6,5 +6,9 @@ FactoryGirl.define do
     sticky false
     views 1
     posts_count 1
+
+    trait :with_posts do
+TBD
+    end
   end
 end

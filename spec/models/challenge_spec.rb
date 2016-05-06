@@ -28,7 +28,8 @@ RSpec.describe Challenge, type: :model do
     it { is_expected.to have_db_column :challenge }
     it { is_expected.to have_db_column :status_cd }
     it { is_expected.to have_db_column :description }
-    it { is_expected.to have_db_column :evaluation }
+    it { is_expected.to have_db_column :evaluation_markdown }
+    it { is_expected.to have_db_column :evaluation_rendered }
     it { is_expected.to have_db_column :rules }
     it { is_expected.to have_db_column :prizes }
     it { is_expected.to have_db_column :resources }
@@ -45,10 +46,8 @@ RSpec.describe Challenge, type: :model do
     it { is_expected.to belong_to :organizer }
     it { is_expected.to have_one :image }
     it { is_expected.to have_many :dataset_files }
-    it { is_expected.to have_many :timelines }
+    it { is_expected.to have_many :events }
     it { is_expected.to have_many :submissions }
-    it { is_expected.to have_many :participant_challenges }
-    it { is_expected.to have_many :participants }
     it { is_expected.to have_many :leaderboards }
     it { is_expected.to have_many :topics }
   end
@@ -56,7 +55,7 @@ RSpec.describe Challenge, type: :model do
   describe 'nested attributes' do
     it { is_expected.to accept_nested_attributes_for :dataset_files }
     it { is_expected.to accept_nested_attributes_for :image }
-    it { is_expected.to accept_nested_attributes_for :timelines }
+    it { is_expected.to accept_nested_attributes_for :events }
   end
 
   describe 'database indexes' do
@@ -68,6 +67,5 @@ RSpec.describe Challenge, type: :model do
     it { is_expected.to validate_presence_of :status }
     it { is_expected.to validate_presence_of :organizer }
   end
-
 
 end

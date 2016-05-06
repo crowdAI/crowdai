@@ -44,7 +44,7 @@
             <% if current_participant.admin? %>
             <span class="pull-right">
               <%= link_to 'Edit', edit_challenge_topic_path(@challenge,topic) %><br/>
-              <%= link_to 'Destroy', [@challenge,topic], method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to 'Delete', [@challenge,topic], method: :delete, data: { confirm: 'Are you sure?' } %>
             </span>
             <% end %>
           </td>

@@ -58,7 +58,7 @@ class SubmissionsController < ApplicationController
     end
 
     def submission_params
-      params.require(:submission).permit(:challenge_id, :participant_id, :team_id, :description, :evaluated, :score, :score_secondary, :grading_message, :submission_type, :framework,
+      params.require(:submission).permit(:challenge_id, :participant_id, :team_id, :description, :evaluated, :score, :score_secondary, :grading_message, :framework,
                                   submission_files_attributes: [:id, :seq, :submission_file_s3_key, :_delete])
     end
 

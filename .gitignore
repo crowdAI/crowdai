@@ -15,3 +15,4 @@
 /config/application.yml
 /config/services.yml
 .DS_Store
+public/assets_test/*

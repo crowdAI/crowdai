@@ -8,7 +8,6 @@ class ParticipantDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    participant_challenges: Field::HasMany,
     challenges: Field::HasMany,
     submissions: Field::HasMany,
     team_participants: Field::HasMany,
@@ -73,7 +72,6 @@ class ParticipantDashboard < Administrate::BaseDashboard
     :name,
     :email,
     :last_sign_in_at,
-    :participant_challenges,
     :challenges,
     :submissions,
     :team_participants,
@@ -116,7 +114,6 @@ class ParticipantDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :participant_challenges,
     :challenges,
     :submissions,
     :team_participants,

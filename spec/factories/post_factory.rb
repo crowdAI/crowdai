@@ -1,10 +1,10 @@
 FactoryGirl.define do
   factory :post, class: Post do
-    topic nil
-    participant nil
     post 'MyText'
-    votes 1
     flagged false
+    topic { FactoryGirl.build :topic }
+    votes 1
     notify false
+    participant { FactoryGirl.build :participant}
   end
 end

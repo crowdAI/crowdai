@@ -108,16 +108,21 @@ end
 
 group :development, :test do
   gem 'byebug'
-  gem "rspec-rails"
-  gem "factory_girl_rails"
   gem 'faker'
-  gem 'database_cleaner'
-  gem 'simplecov', :require => false
   gem 'spring'
-  gem 'shoulda'
-  gem 'shoulda-matchers', require: false
-  gem 'capybara'
   gem 'capybara-email'
   gem 'table_print'
   #gem 'regressor', git: 'https://github.com/ndea/regressor.git', branch: 'master'
+end
+
+group :test do
+  gem "rspec-rails"
+  gem "factory_girl_rails"
+  gem 'timecop'
+  gem 'database_cleaner'
+  gem 'simplecov', :require => false
+  gem 'shoulda'
+  gem 'shoulda-matchers', require: false
+  gem 'capybara'
+  gem "launchy"
 end

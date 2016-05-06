@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428091347) do
+ActiveRecord::Schema.define(version: 20160502085313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 20160428091347) do
     t.text     "submission_instructions"
     t.string   "tagline"
     t.text     "evaluation_rendered"
+    t.string   "score_sort_cd"
+    t.string   "score_secondary_sort_cd"
   end
   add_index "challenges", ["organizer_id"], :name=>"index_challenges_on_organizer_id", :using=>:btree
 
@@ -58,6 +60,16 @@ ActiveRecord::Schema.define(version: 20160428091347) do
     t.string   "dataset_file_s3_key"
   end
   add_index "dataset_files", ["challenge_id"], :name=>"index_dataset_files_on_challenge_id", :using=>:btree
+
+  create_table "events", force: :cascade do |t|
+    t.integer  "challenge_id"
+    t.integer  "seq"
+    t.string   "event"
+    t.datetime "event_time"
+    t.datetime "created_at",   :null=>false
+    t.datetime "updated_at",   :null=>false
+  end
+  add_index "events", ["challenge_id"], :name=>"index_events_on_challenge_id", :using=>:btree
 
   create_table "images", force: :cascade do |t|
     t.integer  "imageable_id"
@@ -75,56 +87,20 @@ ActiveRecord::Schema.define(version: 20160428091347) do
   create_table "submissions", force: :cascade do |t|
     t.integer  "challenge_id"
     t.integer  "participant_id"
-    t.integer  "team_id"
-    t.boolean  "evaluated",          :default=>false
+    t.boolean  "evaluated",         :default=>false
     t.float    "score"
-    t.string   "submission_type_cd"
-    t.datetime "created_at",         :null=>false
-    t.datetime "updated_at",         :null=>false
+    t.datetime "created_at",        :null=>false
+    t.datetime "updated_at",        :null=>false
     t.text     "description"
     t.string   "framework"
     t.float    "score_secondary"
     t.string   "grading_message"
-    t.string   "grading_status_cd",  :default=>"ready"
+    t.string   "grading_status_cd", :default=>"ready"
   end
   add_index "submissions", ["challenge_id"], :name=>"index_submissions_on_challenge_id", :using=>:btree
   add_index "submissions", ["participant_id"], :name=>"index_submissions_on_participant_id", :using=>:btree
-  add_index "submissions", ["team_id"], :name=>"index_submissions_on_team_id", :using=>:btree
 
-  create_view "leaderboards", <<-'END_VIEW_LEADERBOARDS', :force => true
-SELECT l.row_num,
-    l.id,
-    l.challenge_id,
-    l.participant_id,
-    l.name,
-    l.entries,
-    l.team_id,
-    l.score,
-    l.score_secondary,
-    l.created_at,
-    l.updated_at
-   FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS row_num,
-            s.id,
-            s.challenge_id,
-            s.participant_id,
-            p.name,
-            cnt.entries,
-            NULL::integer AS team_id,
-            s.score,
-            s.score_secondary,
-            s.created_at,
-            s.updated_at
-           FROM submissions s,
-            participants p,
-            ( SELECT c.challenge_id,
-                    c.participant_id,
-                    count(c.*) AS entries
-                   FROM submissions c
-                  GROUP BY c.challenge_id, c.participant_id) cnt
-          WHERE ((p.id = s.participant_id) AND (s.evaluated = true) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id) AND (s.score IS NOT NULL))) l
-  WHERE (l.row_num = 1)
-  ORDER BY l.score DESC, l.score_secondary
-  END_VIEW_LEADERBOARDS
+
 
   create_table "organizers", force: :cascade do |t|
     t.string   "organizer"
@@ -134,16 +110,6 @@ SELECT l.row_num,
     t.datetime "updated_at",  :null=>false
     t.boolean  "approved",    :default=>false
   end
-
-  create_table "participant_challenges", force: :cascade do |t|
-    t.integer  "participant_id"
-    t.integer  "challenge_id"
-    t.boolean  "rules_accepted"
-    t.datetime "created_at",     :null=>false
-    t.datetime "updated_at",     :null=>false
-  end
-  add_index "participant_challenges", ["challenge_id"], :name=>"index_participant_challenges_on_challenge_id", :using=>:btree
-  add_index "participant_challenges", ["participant_id"], :name=>"index_participant_challenges_on_participant_id", :using=>:btree
 
   create_table "participants", force: :cascade do |t|
     t.string   "email",                  :default=>"", :null=>false
@@ -208,34 +174,6 @@ SELECT l.row_num,
   end
   add_index "submission_files", ["submission_id"], :name=>"index_submission_files_on_submission_id", :using=>:btree
 
-  create_table "team_participants", force: :cascade do |t|
-    t.integer  "team_id"
-    t.integer  "participant_id"
-    t.date     "from_date"
-    t.date     "thru_date"
-    t.datetime "created_at",     :null=>false
-    t.datetime "updated_at",     :null=>false
-  end
-  add_index "team_participants", ["participant_id"], :name=>"index_team_participants_on_participant_id", :using=>:btree
-  add_index "team_participants", ["team_id"], :name=>"index_team_participants_on_team_id", :using=>:btree
-
-  create_table "teams", force: :cascade do |t|
-    t.string   "team"
-    t.text     "description"
-    t.datetime "created_at",  :null=>false
-    t.datetime "updated_at",  :null=>false
-  end
-
-  create_table "timelines", force: :cascade do |t|
-    t.integer  "challenge_id"
-    t.integer  "seq"
-    t.string   "event"
-    t.datetime "event_time"
-    t.datetime "created_at",   :null=>false
-    t.datetime "updated_at",   :null=>false
-  end
-  add_index "timelines", ["challenge_id"], :name=>"index_timelines_on_challenge_id", :using=>:btree
-
   create_table "topics", force: :cascade do |t|
     t.integer  "challenge_id"
     t.integer  "participant_id"
@@ -250,18 +188,46 @@ SELECT l.row_num,
   add_index "topics", ["participant_id"], :name=>"index_topics_on_participant_id", :using=>:btree
 
   add_foreign_key "challenges", "organizers"
-  add_foreign_key "participant_challenges", "challenges"
-  add_foreign_key "participant_challenges", "participants"
+  add_foreign_key "events", "challenges"
   add_foreign_key "participants", "organizers"
   add_foreign_key "posts", "participants"
   add_foreign_key "posts", "topics"
   add_foreign_key "submission_files", "submissions"
   add_foreign_key "submissions", "challenges"
   add_foreign_key "submissions", "participants"
-  add_foreign_key "submissions", "teams"
-  add_foreign_key "team_participants", "participants"
-  add_foreign_key "team_participants", "teams"
-  add_foreign_key "timelines", "challenges"
   add_foreign_key "topics", "challenges"
   add_foreign_key "topics", "participants"
+
+  create_view "leaderboards", <<-'END_VIEW_LEADERBOARDS', :force => true
+SELECT l.row_num,
+    l.id,
+    l.challenge_id,
+    l.participant_id,
+    l.name,
+    l.entries,
+    l.score,
+    l.score_secondary,
+    l.created_at,
+    l.updated_at
+   FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS row_num,
+            s.id,
+            s.challenge_id,
+            s.participant_id,
+            p.name,
+            cnt.entries,
+            s.score,
+            s.score_secondary,
+            s.created_at,
+            s.updated_at
+           FROM submissions s,
+            participants p,
+            ( SELECT c.challenge_id,
+                    c.participant_id,
+                    count(c.*) AS entries
+                   FROM submissions c
+                  GROUP BY c.challenge_id, c.participant_id) cnt
+          WHERE ((p.id = s.participant_id) AND (s.evaluated = true) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l
+  WHERE (l.row_num = 1)
+  ORDER BY l.score DESC, l.score_secondary
+  END_VIEW_LEADERBOARDS
 end

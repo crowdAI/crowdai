@@ -311,6 +311,8 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     key_struct (0.4.2)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     libv8 (3.16.14.13)
     listen (3.0.6)
       rb-fsevent (>= 0.9.3)
@@ -519,6 +521,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.2)
+    timecop (0.8.1)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -573,6 +576,7 @@ DEPENDENCIES
   jquery-turbolinks
   jquery-ui-rails
   kaminari
+  launchy
   lodash-rails
   mandrill-api
   net-ssh
@@ -607,6 +611,7 @@ DEPENDENCIES
   spring
   table_print
   therubyracer
+  timecop
   turbolinks
   uglifier (>= 1.3.0)
   validate_url

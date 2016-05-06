@@ -3,10 +3,15 @@ class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
 
   def index
-    @challenges = Challenge.all
+    if current_participant.admin?
+      @challenges = Challenge.all
+    else
+      @challenges = Challenge.where(status_cd: 'running')
+    end
   end
 
   def show
+    @timeline = @challenge.timeline
   end
 
   def new
@@ -46,13 +51,13 @@ class ChallengesController < ApplicationController
 
     def challenge_params
       params.require(:challenge)
-            .permit(:organizer_id, :challenge, :tagline,
+            .permit(:id,:organizer_id, :challenge, :tagline,
                     :status, :description, :evaluation_markdown, :evaluation_criteria,
-                    :rules, :prizes, :resources, :submission_instructions,
+                    :rules, :prizes, :resources, :submission_instructions, :score_sort, :score_secondary_sort,
                     dataset_attributes: [:id, :challenge_id, :description, :_destroy],
-                    timelines_attributes: [:id, :challenge_id, :seq, :event, :event_time, :_destroy ],
+                    events_attributes: [:id, :challenge_id, :seq, :event, :event_time, :_destroy ],
                     submissions_attributes: [:id, :challenge_id, :participant_id, :team_id, :evaluated, :score,
-                                            :ranking, :submission_type, :withdrawn, :withdrawn_date, :_destroy ],
+                                            :ranking, :withdrawn, :withdrawn_date, :_destroy ],
                     image_attributes: [:id, :image, :_destroy ]
                     )
     end

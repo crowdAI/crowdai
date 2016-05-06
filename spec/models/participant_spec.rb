@@ -40,8 +40,6 @@ RSpec.describe Participant, type: :model do
     it { should respond_to(:linkedin) }
     it { should respond_to(:twitter) }
     it { should respond_to(:organizer) }
-    it { should respond_to(:participant_challenges) }
-    it { should respond_to(:challenges) }
     it { should respond_to(:submissions) }
     it { should_not be_admin }
   end
@@ -98,11 +96,7 @@ RSpec.describe Participant, type: :model do
   # === Relations ===
   it { is_expected.to belong_to :organizer }
   it { is_expected.to have_one :image }
-  it { is_expected.to have_many :participant_challenges }
-  it { is_expected.to have_many :challenges }
   it { is_expected.to have_many :submissions }
-  it { is_expected.to have_many :team_participants }
-  it { is_expected.to have_many :teams }
   it { is_expected.to have_many :posts }
 
   # === Nested Attributes ===

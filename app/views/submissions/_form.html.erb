@@ -9,7 +9,6 @@
 <div class="form-inputs">
   <%= f.association :challenge, as: :hidden %>
   <%= f.hidden_field :participant_id, value: current_participant.id %>
-  <%= f.hidden_field :submission_type, value: 'participant' %>
 
   <%= f.simple_fields_for :submission_files do |file| %>
   <div class="nested-fields">

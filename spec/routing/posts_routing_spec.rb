@@ -1,38 +1,40 @@
 require "rails_helper"
 
 RSpec.describe PostsController, type: :routing do
-  describe "routing" do
+  describe "invalid routing" do
+    it "#show" do
+      expect(:get => "/topics/5/posts/1").not_to be_routable
+    end
 
     it "routes to #index" do
-      expect(:get => "/posts").to route_to("posts#index")
+      expect(:get => "/topics/5/posts").not_to be_routable
     end
+  end
 
+
+  describe "routing with topics" do
     it "routes to #new" do
-      expect(:get => "/posts/new").to route_to("posts#new")
-    end
-
-    it "routes to #show" do
-      expect(:get => "/posts/1").not_to be_routable
+      expect(:get => "/topics/5/posts/new").to route_to("posts#new", topic_id: "5")
     end
 
     it "routes to #edit" do
-      expect(:get => "/posts/1/edit").to route_to("posts#edit", :id => "1")
+      expect(:get => "/topics/5/posts/1/edit").to route_to("posts#edit", topic_id: "5", :id => "1")
     end
 
     it "routes to #create" do
-      expect(:post => "/posts").to route_to("posts#create")
+      expect(:post => "/topics/5/posts").to route_to("posts#create", topic_id: "5")
     end
 
     it "routes to #update via PUT" do
-      expect(:put => "/posts/1").to route_to("posts#update", :id => "1")
+      expect(:put => "/topics/5/posts/1").to route_to("posts#update", topic_id: "5", :id => "1")
     end
 
     it "routes to #update via PATCH" do
-      expect(:patch => "/posts/1").to route_to("posts#update", :id => "1")
+      expect(:patch => "/topics/5/posts/1").to route_to("posts#update", topic_id: "5", :id => "1")
     end
 
     it "routes to #destroy" do
-      expect(:delete => "/posts/1").to route_to("posts#destroy", :id => "1")
+      expect(:delete => "/topics/5/posts/1").to route_to("posts#destroy", topic_id: "5", :id => "1")
     end
 
   end

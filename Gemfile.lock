@@ -82,7 +82,7 @@ GEM
       carrierwave (~> 0.10)
       mini_magick (~> 4.3)
       remotipart (~> 1.2)
-    bourbon (4.2.6)
+    bourbon (4.2.7)
       sass (~> 3.4)
       thor (~> 0.19)
     builder (3.2.2)
@@ -116,7 +116,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
-    concurrent-ruby (1.0.1)
+    concurrent-ruby (1.0.2)
     connection_pool (2.2.0)
     countries (1.2.5)
       currencies (~> 0.4.2)
@@ -338,7 +338,7 @@ GEM
     modware (0.1.2)
       its-it
       key_struct (~> 0.4)
-    momentjs-rails (2.11.0)
+    momentjs-rails (2.11.1)
       railties (>= 3.1)
     multi_json (1.11.2)
     multi_xml (0.5.5)

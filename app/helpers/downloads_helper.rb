@@ -2,11 +2,13 @@ module DownloadsHelper
 
   def s3_filesize(s3_key)
     s3_file_obj = Aws::S3::Object.new(bucket_name: ENV['AWS_S3_BUCKET'], key: s3_key)
+    return 0 if !s3_file_obj.exists?
     filesize = number_to_human_size(s3_file_obj.content_length)
   end
 
   def s3_expiring_url(s3_key)
     s3_file_obj = Aws::S3::Object.new(bucket_name: ENV['AWS_S3_BUCKET'], key: s3_key)
+    return nil if !s3_file_obj.exists?
     url = s3_file_obj.presigned_url(:get, expires_in: 3600)
   end
 

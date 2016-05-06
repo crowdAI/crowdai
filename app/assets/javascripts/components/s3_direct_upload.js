@@ -1,16 +1,3 @@
-/*
-$(function() {
-  $('#submitS3').on('click', function() {
-    $('.s3File').each(function(){
-      var self = this;
-      alert("processing: " + self.value );
-    });
-    debugger;
-  });
-})
-*/
-
-
 $(function() {
   $('.directUpload').find('.s3File').each(function(i, elem) {
     var fileInput     = $(elem);
@@ -19,6 +6,13 @@ $(function() {
     var progressBar   = $("<div class='bar'></div>");
     var barContainer  = $("<div class='upload-progress'></div>").append(progressBar);
     fileInput.after(barContainer);
+
+
+    function checkFile(file) {
+      debugger;
+    }
+
+
     fileInput.fileupload({
       fileInput:        fileInput,
       url:              form.data('url'),
@@ -28,6 +22,21 @@ $(function() {
       paramName:        'file',
       dataType:         'XML',
       replaceFileInput: false,
+      maxFileSize:      20,
+
+      add: function(e, data) {
+        var modelFile = $('.s3File')[0].files[0];
+        if (modelFile.size > 681574400 ) {
+          console.log("file type " + modelFile.type)
+          console.log("file is too big " + modelFile.size);
+          submitButton.prop('disabled', false);
+          progressBar
+            .css("background", "red")
+            .text("Upload failed: please limit your archive to 650MB.");
+        } else {
+          data.submit();
+        }
+      },
 
       progressall: function (e, data) {
         var progress = parseInt(data.loaded / data.total * 100, 10);

@@ -14,12 +14,17 @@
   <div class="nested-fields">
     <!-- TODO will make this config-driven in next release -->
     <% if file.index == 0 %>
-    <b>Prediction file (CSV)</b>
-  <% else %>
-    <b>Archive (.zip or .tar) of model and script</b>
+      <b>Prediction file (.csv)</b>
+      <%= file.hidden_field :seq %>
+      <%= file.input :submission_file_s3_key, as: :file, label: false, input_html: { class: 's3File', accept: 'text/csv'} %>
+    <% else %>
+      <b>Archive (.zip or .tar) of model and script. Maximum size of 650MB.</b>
+      <%= file.hidden_field :seq %>
+      <%= file.input :submission_file_s3_key,
+                      as: :file,
+                      label: false,
+                      input_html: { class: 's3File modelFile' } %>
     <% end %>
-    <%= file.hidden_field :seq %>
-    <%= file.input :submission_file_s3_key, as: :file, label: false, input_html: { class: 's3File'} %>
   </div>
   <% end %>
 

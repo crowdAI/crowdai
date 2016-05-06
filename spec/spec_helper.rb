@@ -15,6 +15,6 @@ RSpec.configure do |config|
     %x[bundle exec rake assets:precompile]
   end
 
-  config.fail_fast = true
+  #config.fail_fast = true
 
 end

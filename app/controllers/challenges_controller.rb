@@ -51,7 +51,7 @@ class ChallengesController < ApplicationController
 
     def challenge_params
       params.require(:challenge)
-            .permit(:organizer_id, :challenge, :tagline,
+            .permit(:id,:organizer_id, :challenge, :tagline,
                     :status, :description, :evaluation_markdown, :evaluation_criteria,
                     :rules, :prizes, :resources, :submission_instructions, :score_sort, :score_secondary_sort,
                     dataset_attributes: [:id, :challenge_id, :description, :_destroy],

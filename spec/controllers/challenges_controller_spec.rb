@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe ChallengesController, type: :controller do
 
   let(:valid_attributes) {
-    FactoryGirl.build(:challenge).attributes
+    FactoryGirl.build(:challenge, :with_events).attributes
   }
 
   let(:invalid_attributes) {

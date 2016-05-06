@@ -14,7 +14,6 @@ RSpec.describe Leaderboard, type: :model do
     it { is_expected.to have_db_column :participant_id }
     it { is_expected.to have_db_column :name }
     it { is_expected.to have_db_column :entries }
-    it { is_expected.to have_db_column :team_id }
     it { is_expected.to have_db_column :score }
     it { is_expected.to have_db_column :score_secondary }
     it { is_expected.to have_db_column :created_at }

@@ -8,13 +8,11 @@ class ParticipantDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    challenges: Field::HasMany,
     submissions: Field::HasMany,
-    team_participants: Field::HasMany,
-    teams: Field::HasMany,
     posts: Field::HasMany,
     organizer: Field::BelongsTo,
     image: Field::HasOne,
+    challenge_downloads: Field::HasMany,
     id: Field::Number,
     email: Field::String,
     encrypted_password: Field::String,
@@ -35,13 +33,13 @@ class ParticipantDashboard < Administrate::BaseDashboard
     admin: Field::Boolean,
     verified: Field::Boolean,
     verification_date: Field::DateTime,
-    name: Field::String,
     country: Field::String,
     city: Field::String,
     timezone: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     unconfirmed_email: Field::String,
+    name: Field::String,
     email_public: Field::Boolean,
     bio: Field::Text,
     website: Field::String,
@@ -56,35 +54,29 @@ class ParticipantDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :name,
-    :email,
-    :last_sign_in_at,
-    :challenges,
     :submissions,
+    :posts,
     :organizer,
-    :admin,
-    :last_sign_in_at,
+    :image,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :name,
-    :email,
-    :last_sign_in_at,
-    :challenges,
     :submissions,
-    :team_participants,
-    :teams,
     :posts,
     :organizer,
+    :image,
+    :challenge_downloads,
     :id,
+    :email,
     :encrypted_password,
     :reset_password_token,
     :reset_password_sent_at,
     :remember_created_at,
     :sign_in_count,
     :current_sign_in_at,
+    :last_sign_in_at,
     :current_sign_in_ip,
     :last_sign_in_ip,
     :confirmation_token,
@@ -102,6 +94,7 @@ class ParticipantDashboard < Administrate::BaseDashboard
     :created_at,
     :updated_at,
     :unconfirmed_email,
+    :name,
     :email_public,
     :bio,
     :website,
@@ -114,13 +107,11 @@ class ParticipantDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :challenges,
     :submissions,
-    :team_participants,
-    :teams,
     :posts,
     :organizer,
     :image,
+    :challenge_downloads,
     :email,
     :encrypted_password,
     :reset_password_token,
@@ -140,7 +131,6 @@ class ParticipantDashboard < Administrate::BaseDashboard
     :admin,
     :verified,
     :verification_date,
-    :name,
     :country,
     :city,
     :timezone,
@@ -154,10 +144,10 @@ class ParticipantDashboard < Administrate::BaseDashboard
     :twitter,
   ]
 
-  # Overwrite this method to customize how users are displayed
+  # Overwrite this method to customize how participants are displayed
   # across all pages of the admin dashboard.
   #
-  def display_resource(participant)
-     "#{participant.name}"
-  end
+  # def display_resource(participant)
+  #   "Participant ##{participant.id}"
+  # end
 end

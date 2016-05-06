@@ -15,15 +15,13 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :participants
     resources :challenges
+    resources :images
     resources :dataset_files
     resources :organizers
     resources :submissions
     resources :submission_files
-    resources :teams
     resources :posts
-    resources :team_participants
     resources :events
-    resources :participant_challenges
     resources :topics
     resources :dataset_file_downloads
     resources :leaderboards, only: :index
@@ -63,7 +61,6 @@ Rails.application.routes.draw do
   end
 
   get '/pages/*id' => 'pages#show', as: :page, format: false
-  resources :teams
 
   # different home for public / auth users
   authenticated :participant do

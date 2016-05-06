@@ -14,7 +14,6 @@ class LeaderboardDashboard < Administrate::BaseDashboard
     id: Field::Number,
     name: Field::String,
     entries: Field::Number,
-    team_id: Field::Number,
     score: Field::Number.with_options(decimals: 2),
     score_secondary: Field::Number.with_options(decimals: 2),
     created_at: Field::DateTime,
@@ -42,7 +41,6 @@ class LeaderboardDashboard < Administrate::BaseDashboard
     :id,
     :name,
     :entries,
-    :team_id,
     :score,
     :score_secondary,
     :created_at,
@@ -58,7 +56,6 @@ class LeaderboardDashboard < Administrate::BaseDashboard
     :row_num,
     :name,
     :entries,
-    :team_id,
     :score,
     :score_secondary,
   ]

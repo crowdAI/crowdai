@@ -9,15 +9,13 @@ class DatasetFileDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     challenge: Field::BelongsTo,
+    dataset_file_downloads: Field::HasMany,
     id: Field::Number,
     seq: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     description: Field::String,
-    dataset_file_file_name: Field::String,
-    dataset_file_content_type: Field::String,
-    dataset_file_file_size: Field::Number,
-    dataset_file_updated_at: Field::DateTime,
+    dataset_file_s3_key: Field::String,
   }
 
   # COLLECTION_ATTRIBUTES
@@ -27,24 +25,22 @@ class DatasetFileDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :challenge,
+    :dataset_file_downloads,
     :id,
     :seq,
-    :created_at,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :challenge,
+    :dataset_file_downloads,
     :id,
     :seq,
     :created_at,
     :updated_at,
     :description,
-    :dataset_file_file_name,
-    :dataset_file_content_type,
-    :dataset_file_file_size,
-    :dataset_file_updated_at,
+    :dataset_file_s3_key,
   ]
 
   # FORM_ATTRIBUTES
@@ -52,12 +48,10 @@ class DatasetFileDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :challenge,
+    :dataset_file_downloads,
     :seq,
     :description,
-    :dataset_file_file_name,
-    :dataset_file_content_type,
-    :dataset_file_file_size,
-    :dataset_file_updated_at,
+    :dataset_file_s3_key,
   ]
 
   # Overwrite this method to customize how dataset files are displayed

@@ -57,7 +57,7 @@ class OrganizerDashboard < Administrate::BaseDashboard
     :approved,
   ]
 
-  # Overwrite this method to customize how hosting organizers are displayed
+  # Overwrite this method to customize how organizers are displayed
   # across all pages of the admin dashboard.
   #
   # def display_resource(organizer)

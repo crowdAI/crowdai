@@ -7,7 +7,7 @@ class SubmissionsController < ApplicationController
 
   def index
     @submissions = current_participant.submissions.where(challenge_id: @challenge.id)
-    #@submissions = @challenge.submissions.where(participant_id: current_participant)
+    @timeline = @challenge.timeline
   end
 
   def show
@@ -21,6 +21,7 @@ class SubmissionsController < ApplicationController
   end
 
   def new
+    @timeline = @challenge.timeline
     @submission = @challenge.submissions.new
     # TODO for the first challenge we are working with 2 files.
     # Make this challenge config data in next release

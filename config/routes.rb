@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :events
     resources :participant_challenges
     resources :topics
+    resources :dataset_file_downloads
     resources :leaderboards, only: :index
     root to: 'participants#index'
   end
@@ -46,11 +47,15 @@ Rails.application.routes.draw do
   end
 
   resources :challenges do
-    resources :dataset_files
+    resources :dataset_files, except: [:show]
     resources :events
     resources :submissions, except: [ :edit, :update ]
     resources :leaderboards, only: [:index]
     resources :topics
+  end
+
+  resources :dataset_files, except: [:show] do
+    resources :dataset_file_downloads, only: [:create]
   end
 
   resources :topics do

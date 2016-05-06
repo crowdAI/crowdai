@@ -34,6 +34,7 @@
 //= require components/flash_messages
 
 // modules
+//= require modules/dataset_file_downloads
 
 //= require z.jquery.fileupload
 

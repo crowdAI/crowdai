@@ -21,12 +21,14 @@
               <th>File Size</th>
             </tr>
           </thead>
-
           <tbody>
             <% @challenge.dataset_files.each do |file| %>
             <tr>
               <td><%= file.seq %></td>
-              <td><%= link_to file.description, s3_expiring_url(file.dataset_file_s3_key) %></td>
+              <td><%= link_to file.description,
+                              s3_expiring_url(file.dataset_file_s3_key),
+                              class: 'expiring-url',
+                              data: { 'dataset-file-id': file.id } %></td>
               <td><%= s3_filesize(file.dataset_file_s3_key) %></td>
             </tr>
             <% end %>

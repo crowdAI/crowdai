@@ -47,10 +47,13 @@ Rails.application.routes.draw do
   resources :challenges do
     resources :dataset_files, except: [:show]
     resources :events
-    resources :submissions, except: [ :edit, :update ]
+    resources :submissions, except: [ :edit, :update ] do
+      get :grade
+    end
     resources :leaderboards, only: [:index]
     resources :topics
   end
+
 
   resources :dataset_files, except: [:show] do
     resources :dataset_file_downloads, only: [:create]

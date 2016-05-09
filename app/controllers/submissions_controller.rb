@@ -1,6 +1,6 @@
 class SubmissionsController < ApplicationController
   before_filter :authenticate_participant!
-  before_action :set_submission, only: [:show, :edit, :update, :destroy]
+  before_action :set_submission, only: [:show, :edit, :update, :destroy, :grade]
   before_action :set_challenge
   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
   before_action :set_submissions_remaining
@@ -34,7 +34,8 @@ class SubmissionsController < ApplicationController
     @submission = Submission.new(submission_params)
 
     if @submission.save
-      SubmissionGraderJob.perform_later(submission_id: @submission.id)
+      grade
+      #SubmissionGraderJob.perform_later(submission_id: @submission.id)
       redirect_to challenge_submissions_path(@challenge)
     else
       @errors = @submission.errors
@@ -48,10 +49,19 @@ class SubmissionsController < ApplicationController
     redirect_to submissions_url, notice: 'Submission was successfully destroyed.'
   end
 
+  def grade
+    SubmissionGraderJob.perform_later(submission_id: @submission.id)
+    head :no_content
+  end
+
 
   private
     def set_submission
-      @submission = Submission.find(params[:id])
+      if params.include?(:submission_id)
+        @submission = Submission.find(params[:submission_id])
+      else
+        @submission = Submission.find(params[:id])
+      end
     end
 
     def set_challenge

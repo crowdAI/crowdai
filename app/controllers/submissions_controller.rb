@@ -34,8 +34,7 @@ class SubmissionsController < ApplicationController
     @submission = Submission.new(submission_params)
 
     if @submission.save
-      grade
-      #SubmissionGraderJob.perform_later(submission_id: @submission.id)
+      SubmissionGraderJob.perform_later(submission_id: @submission.id)
       redirect_to challenge_submissions_path(@challenge)
     else
       @errors = @submission.errors
@@ -50,8 +49,8 @@ class SubmissionsController < ApplicationController
   end
 
   def grade
-    SubmissionGraderJob.perform_later(submission_id: @submission.id)
-    head :no_content
+    @job = SubmissionGraderJob.perform_later(submission_id: @submission.id)
+    render 'admin/submissions/refresh_submission_job'
   end
 
 
@@ -83,5 +82,6 @@ class SubmissionsController < ApplicationController
       submissions_today = Submission.where("participant_id = ? and created_at >= ?", current_participant.id, Time.now - 24.hours).count
       @submissions_remaining = (5 - submissions_today)
     end
+
 
 end

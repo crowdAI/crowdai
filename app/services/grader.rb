@@ -22,8 +22,9 @@ class Grader
   def call_grader(submission_id,key)
     begin
       response = HTTParty.get("http://54.184.7.125/api/v1/plantvillage_evaluation?submission_id=#{submission_id}&submission_key=#{key}", timeout: 1200)
-    rescue
+    rescue => e
       Submission.update(submission_id, grading_status: 'failed', grading_message: 'Grading process system error.')
+      raise e
     end
   end
 

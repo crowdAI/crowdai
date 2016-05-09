@@ -29,7 +29,6 @@ class SubmissionsController < ApplicationController
     @submission.submission_files.build(seq: 1)
   end
 
-
   def create
     @submission = Submission.new(submission_params)
 
@@ -41,7 +40,6 @@ class SubmissionsController < ApplicationController
       render :new
     end
   end
-
 
   def destroy
     @submission.destroy

@@ -5,6 +5,7 @@ class LeaderboardsController < ApplicationController
 
   def index
     @leaderboards = @challenge.leaderboards
+    @timeline = @challenge.timeline
   end
 
   def show

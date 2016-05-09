@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby "2.3.0"
-gem 'rails', '4.2.3'
+gem 'rails', '4.2.6'
 gem 'pg'
 gem 'puma'
 gem 'puma_worker_killer'
@@ -15,8 +15,8 @@ gem 'pundit'
 # monitoring
 gem "rorvswild"
 gem "skylight"
-#gem 'newrelic_rpm'
-#gem 'rollbar', '~> 2.8.3'
+gem "brakeman", :require => false
+
 
 # model
 gem 'simple_enum'

@@ -1,7 +1,7 @@
 module SubmissionsHelper
 
   def score(submission)
-    if submission.evaluated == true
+    if submission.grading_status == 'graded'
       return submission.score
     else
       return "Pending"

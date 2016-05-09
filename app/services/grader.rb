@@ -7,6 +7,7 @@ class Grader
       response = call_grader(submission_id,key)
       evaluate_response(submission_id,response)
     else
+      Submission.update(submission_id, grading_status: 'failed', grading_message: 'Files were not received by server.')
       raise "Grader called for submission #{submission_id} but key cannot be found"
     end
   end
@@ -19,7 +20,11 @@ class Grader
 
 
   def call_grader(submission_id,key)
-    response = HTTParty.get("http://54.184.7.125/api/v1/plantvillage_evaluation?submission_id=#{submission_id}&submission_key=#{key}")
+    begin
+      response = HTTParty.get("http://54.184.7.125/api/v1/plantvillage_evaluation?submission_id=#{submission_id}&submission_key=#{key}", timeout: 1200)
+    rescue
+      Submission.update(submission_id, grading_status: 'failed', grading_message: 'Grading process system error.')
+    end
   end
 
 
@@ -35,6 +40,7 @@ class Grader
        # TODO email the participant
       end
     else
+      Submission.update(submission_id, grading_status: 'failed', grading_message: 'Grading process system error.')
       raise "API call to grader failed #{response.inspect}"
     end
   end

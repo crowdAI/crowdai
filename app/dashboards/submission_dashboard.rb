@@ -12,7 +12,6 @@ class SubmissionDashboard < Administrate::BaseDashboard
     participant: Field::BelongsTo,
     submission_files: Field::HasMany,
     id: Field::Number,
-    evaluated: Field::Boolean,
     score: Field::Number.with_options(decimals: 6),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -20,7 +19,7 @@ class SubmissionDashboard < Administrate::BaseDashboard
     framework: Field::String,
     score_secondary: Field::Number.with_options(decimals: 6),
     grading_message: Field::String,
-    grading_status_cd: Field::String,
+    grading_status: Field::String,
   }
 
   # COLLECTION_ATTRIBUTES
@@ -31,27 +30,26 @@ class SubmissionDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :challenge,
     :participant,
+    :grading_status,
     :score,
-    :score_secondary,
-    :evaluated
+    :score_secondary
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
+    :id,
     :challenge,
     :participant,
     :submission_files,
-    :id,
-    :evaluated,
+    :grading_status,
+    :grading_message,
     :score,
+    :score_secondary,
     :created_at,
     :updated_at,
     :description,
-    :framework,
-    :score_secondary,
-    :grading_message,
-    :grading_status_cd,
+    :framework
   ]
 
   # FORM_ATTRIBUTES
@@ -61,13 +59,12 @@ class SubmissionDashboard < Administrate::BaseDashboard
     :challenge,
     :participant,
     :submission_files,
-    :evaluated,
     :score,
     :description,
     :framework,
     :score_secondary,
     :grading_message,
-    :grading_status_cd,
+    :grading_status
   ]
 
   # Overwrite this method to customize how submissions are displayed

@@ -29,9 +29,9 @@ class Grader
     if response.code == 200
       if r["status"] == 'success'
         # update the submission
-        Submission.update(submission_id, evaluated: true, score: r["f1-score"], score_secondary: r["log-loss"])
+        Submission.update(submission_id, grading_status: 'graded', score: r["f1-score"], score_secondary: r["log-loss"])
       else
-        Submission.update(submission_id, evaluated: true, grading_message: r["message"])
+        Submission.update(submission_id, grading_status: 'failed', grading_message: r["message"])
        # TODO email the participant
       end
     else

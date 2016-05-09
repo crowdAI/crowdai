@@ -14,8 +14,8 @@ class LeaderboardDashboard < Administrate::BaseDashboard
     id: Field::Number,
     name: Field::String,
     entries: Field::Number,
-    score: Field::Number.with_options(decimals: 2),
-    score_secondary: Field::Number.with_options(decimals: 2),
+    score: Field::Number.with_options(decimals: 6),
+    score_secondary: Field::Number.with_options(decimals: 6),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }
@@ -28,42 +28,17 @@ class LeaderboardDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :challenge,
     :participant,
-    :row_num,
-    :id,
-  ]
-
-  # SHOW_PAGE_ATTRIBUTES
-  # an array of attributes that will be displayed on the model's show page.
-  SHOW_PAGE_ATTRIBUTES = [
-    :challenge,
-    :participant,
-    :row_num,
-    :id,
-    :name,
-    :entries,
     :score,
     :score_secondary,
-    :created_at,
-    :updated_at,
+    :row_num
   ]
 
-  # FORM_ATTRIBUTES
-  # an array of attributes that will be displayed
-  # on the model's form (`new` and `edit`) pages.
-  FORM_ATTRIBUTES = [
-    :challenge,
-    :participant,
-    :row_num,
-    :name,
-    :entries,
-    :score,
-    :score_secondary,
-  ]
+
 
   # Overwrite this method to customize how leaderboards are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(leaderboard)
-  #   "Leaderboard ##{leaderboard.id}"
-  # end
+  def display_resource(leaderboard)
+     "Leaderboard: #{leaderboard.challenge.challenge}"
+  end
 end

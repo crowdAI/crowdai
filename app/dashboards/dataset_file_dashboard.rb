@@ -24,18 +24,18 @@ class DatasetFileDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
+    :id,
     :challenge,
     :dataset_file_downloads,
-    :id,
-    :seq,
+    :seq
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
+    :id,
     :challenge,
     :dataset_file_downloads,
-    :id,
     :seq,
     :created_at,
     :updated_at,
@@ -57,7 +57,7 @@ class DatasetFileDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how dataset files are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(dataset_file)
-  #   "DatasetFile ##{dataset_file.id}"
-  # end
+  def display_resource(dataset_file)
+     "#{dataset_file.description}"
+  end
 end

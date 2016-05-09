@@ -26,10 +26,11 @@ class TopicDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :challenge,
-    :participant,
-    :posts,
     :id,
+    :challenge,
+    :topic,
+    :participant,
+    :posts
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -63,7 +64,7 @@ class TopicDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how topics are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(topic)
-  #   "Topic ##{topic.id}"
-  # end
+  def display_resource(topic)
+     "#{topic.topic}"
+  end
 end

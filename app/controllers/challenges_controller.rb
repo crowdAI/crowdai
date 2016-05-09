@@ -56,8 +56,7 @@ class ChallengesController < ApplicationController
                     :rules, :prizes, :resources, :submission_instructions, :score_sort, :score_secondary_sort,
                     dataset_attributes: [:id, :challenge_id, :description, :_destroy],
                     events_attributes: [:id, :challenge_id, :seq, :event, :event_time, :_destroy ],
-                    submissions_attributes: [:id, :challenge_id, :participant_id, :evaluated, :score,
-                                            :ranking, :withdrawn, :withdrawn_date, :_destroy ],
+                    submissions_attributes: [:id, :challenge_id, :participant_id, :_destroy ],
                     image_attributes: [:id, :image, :_destroy ]
                     )
     end

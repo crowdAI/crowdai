@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506110541) do
+ActiveRecord::Schema.define(version: 20160509194714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,7 +97,6 @@ ActiveRecord::Schema.define(version: 20160506110541) do
   create_table "submissions", force: :cascade do |t|
     t.integer  "challenge_id"
     t.integer  "participant_id"
-    t.boolean  "evaluated",         :default=>false
     t.float    "score"
     t.datetime "created_at",        :null=>false
     t.datetime "updated_at",        :null=>false
@@ -138,7 +137,7 @@ SELECT l.row_num,
                     count(c.*) AS entries
                    FROM submissions c
                   GROUP BY c.challenge_id, c.participant_id) cnt
-          WHERE ((p.id = s.participant_id) AND (s.evaluated = true) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l
+          WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l
   WHERE (l.row_num = 1)
   ORDER BY l.score DESC, l.score_secondary
   END_VIEW_LEADERBOARDS

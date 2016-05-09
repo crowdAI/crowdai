@@ -46,6 +46,7 @@ class ParticipantDashboard < Administrate::BaseDashboard
     github: Field::String,
     linkedin: Field::String,
     twitter: Field::String,
+    test: Field::String
   }
 
   # COLLECTION_ATTRIBUTES
@@ -54,10 +55,12 @@ class ParticipantDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
+    :id,
+    :name,
+    :email,
     :submissions,
     :posts,
-    :organizer,
-    :image,
+    :last_sign_in_at
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -147,7 +150,8 @@ class ParticipantDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how participants are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(participant)
-  #   "Participant ##{participant.id}"
-  # end
+
+  def display_resource(participant)
+    "#{participant.name}"
+  end
 end

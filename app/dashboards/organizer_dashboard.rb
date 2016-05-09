@@ -25,18 +25,18 @@ class OrganizerDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
+    :id,
     :challenges,
     :participants,
-    :id,
-    :organizer,
+    :organizer
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
+    :id,
     :challenges,
     :participants,
-    :id,
     :organizer,
     :address,
     :description,
@@ -60,7 +60,7 @@ class OrganizerDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how organizers are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(organizer)
-  #   "Organizer ##{organizer.id}"
-  # end
+  def display_resource(organizer)
+     "#{organizer.organizer}"
+  end
 end

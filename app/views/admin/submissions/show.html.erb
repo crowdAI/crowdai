@@ -26,7 +26,8 @@ as well as a link to its edit page.
       [:edit, namespace, page.resource],
       class: "button",
     ) %>
-    <%= link_to("Grade",challenge_submission_grade_path(page.resource.challenge_id, page.resource.id ), class: 'button') %>
+    <%= link_to("Grade",challenge_submission_grade_path(page.resource.challenge_id, page.resource.id ), class: 'button', remote: true) %>
+    <div id="submission-job-id"></div>
   </div>
 </header>
 

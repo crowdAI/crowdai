@@ -13,12 +13,12 @@ class SubmissionDashboard < Administrate::BaseDashboard
     submission_files: Field::HasMany,
     id: Field::Number,
     evaluated: Field::Boolean,
-    score: Field::Number.with_options(decimals: 2),
+    score: Field::Number.with_options(decimals: 6),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     description: Field::Text,
     framework: Field::String,
-    score_secondary: Field::Number.with_options(decimals: 2),
+    score_secondary: Field::Number.with_options(decimals: 6),
     grading_message: Field::String,
     grading_status_cd: Field::String,
   }
@@ -31,8 +31,9 @@ class SubmissionDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :challenge,
     :participant,
-    :submission_files,
-    :id,
+    :score,
+    :score_secondary,
+    :evaluated
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -72,7 +73,7 @@ class SubmissionDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how submissions are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(submission)
-  #   "Submission ##{submission.id}"
-  # end
+  def display_resource(submission)
+     "#{submission.participant.name}"
+  end
 end

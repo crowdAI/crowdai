@@ -39,9 +39,10 @@ class ChallengeDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
+    :id,
+    :challenge,
     :organizer,
     :dataset_files,
-    :events,
     :submissions,
   ]
 
@@ -102,7 +103,7 @@ class ChallengeDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how challenges are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(challenge)
-  #   "Challenge ##{challenge.id}"
-  # end
+  def display_resource(challenge)
+     "#{challenge.challenge}"
+  end
 end

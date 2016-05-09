@@ -3,6 +3,7 @@ class Timeline
   attr_reader :events
 
   def initialize(challenge)
+    @challenge = challenge
     @events = challenge.events
   end
 
@@ -51,7 +52,15 @@ class Timeline
   end
 
   def remaining_text
-    'TBD'
+    if @challenge.running?
+      if remaining_time_in_hours > 0
+        "#{remaining_time_in_days} days remaining"
+      else
+        "#{remaining_time_in_hours} hours remaining"
+      end
+    else
+      "completed"
+    end
   end
 
   def duration_in_seconds
@@ -60,6 +69,14 @@ class Timeline
 
   def remaining_time_in_seconds
     end_date_unformatted - Time.now
+  end
+
+  def remaining_time_in_hours
+    (remaining_time_in_seconds / (60 * 60)).floor
+  end
+
+  def remaining_time_in_days
+    (remaining_time_in_seconds / (60 * 60 * 24)).floor
   end
 
   def pct_passed
@@ -88,28 +105,5 @@ class Timeline
     return events.last.event_time if self.valid?
     return nil
   end
-
-
-
-  # def time_remaining
-  #   if running?
-  #     first_milestone = timelines.first
-  #     last_milestone = timelines.last
-  #     challenge_duration = end_date - start_date
-  #     days_left = end_date - Time.now
-  #
-  #     pct_left = ((days_left / challenge_duration) * 100).floor
-  #     pct_passed = 100 - pct_left
-  #     remaining_text = if days_left < 1
-  #                        "#{(days_left / 1.day * 24).floor} hours remaining"
-  #                      else
-  #                        "#{(days_left / 1.day).floor} days remaining"
-  #                      end
-  #     return remaining_text, pct_passed, pct_left
-  #   else
-  #     return 'completed', 100, 0
-  #   end
-  # end
-
 
 end

@@ -21,7 +21,7 @@
           <td><%= row + 1 %></td>
           <td><%= link_to participant_path(leader.participant) do %>
                 <%= image_tag avatar_url(leader.participant,'medium'), size: '30x30', class: "img-circle navbar-profile-img" %>
-                <%= link_to leader.participant.name %>
+                <%= leader.participant.name %>
               <% end %>
             </td>
           <td class="score"><%= leader.score %></td>

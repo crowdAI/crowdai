@@ -22,6 +22,7 @@ class Participant < ActiveRecord::Base
 
   has_many :submissions
   has_many :posts
+  has_many :participant_challenges
   belongs_to :organizer
   has_one :image, as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :image, allow_destroy: true
@@ -57,5 +58,6 @@ class Participant < ActiveRecord::Base
       end
     end
   end
+
 
 end

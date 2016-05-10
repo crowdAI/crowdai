@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509194714) do
+ActiveRecord::Schema.define(version: 20160510081234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -151,6 +151,67 @@ SELECT l.row_num,
     t.boolean  "approved",    :default=>false
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.integer  "topic_id"
+    t.integer  "participant_id"
+    t.text     "post"
+    t.integer  "votes",          :default=>0
+    t.boolean  "flagged",        :default=>false
+    t.boolean  "notify",         :default=>true
+    t.datetime "created_at",     :null=>false
+    t.datetime "updated_at",     :null=>false
+  end
+  add_index "posts", ["participant_id"], :name=>"index_posts_on_participant_id", :using=>:btree
+  add_index "posts", ["topic_id"], :name=>"index_posts_on_topic_id", :using=>:btree
+
+  create_view "participant_challenges", <<-'END_VIEW_PARTICIPANT_CHALLENGES', :force => true
+SELECT c.id,
+    c.id AS challenge_id,
+    p.id AS participant_id,
+    c.organizer_id,
+    c.challenge,
+    c.description,
+    c.rules,
+    c.prizes,
+    c.resources,
+    c.tagline,
+    p.name,
+    p.email,
+    p.last_sign_in_at,
+    p.bio,
+    p.github,
+    p.linkedin,
+    p.twitter
+   FROM challenges c,
+    participants p,
+    submissions s
+  WHERE ((s.challenge_id = c.id) AND (s.participant_id = p.id))
+UNION
+ SELECT c.id,
+    c.id AS challenge_id,
+    p.id AS participant_id,
+    c.organizer_id,
+    c.challenge,
+    c.description,
+    c.rules,
+    c.prizes,
+    c.resources,
+    c.tagline,
+    p.name,
+    p.email,
+    p.last_sign_in_at,
+    p.bio,
+    p.github,
+    p.linkedin,
+    p.twitter
+   FROM challenges c,
+    participants p,
+    topics t
+  WHERE ((t.challenge_id = c.id) AND ((t.participant_id = p.id) OR (EXISTS ( SELECT 'X'
+           FROM posts ps
+          WHERE ((ps.topic_id = t.id) AND (ps.participant_id = p.id))))))
+  END_VIEW_PARTICIPANT_CHALLENGES
+
   create_table "participants", force: :cascade do |t|
     t.string   "email",                  :default=>"", :null=>false
     t.string   "encrypted_password",     :default=>"", :null=>false
@@ -191,19 +252,6 @@ SELECT l.row_num,
   add_index "participants", ["organizer_id"], :name=>"index_participants_on_organizer_id", :using=>:btree
   add_index "participants", ["reset_password_token"], :name=>"index_participants_on_reset_password_token", :unique=>true, :using=>:btree
   add_index "participants", ["unlock_token"], :name=>"index_participants_on_unlock_token", :unique=>true, :using=>:btree
-
-  create_table "posts", force: :cascade do |t|
-    t.integer  "topic_id"
-    t.integer  "participant_id"
-    t.text     "post"
-    t.integer  "votes",          :default=>0
-    t.boolean  "flagged",        :default=>false
-    t.boolean  "notify",         :default=>true
-    t.datetime "created_at",     :null=>false
-    t.datetime "updated_at",     :null=>false
-  end
-  add_index "posts", ["participant_id"], :name=>"index_posts_on_participant_id", :using=>:btree
-  add_index "posts", ["topic_id"], :name=>"index_posts_on_topic_id", :using=>:btree
 
   create_table "submission_files", force: :cascade do |t|
     t.integer  "submission_id"

@@ -6,11 +6,9 @@ class DatasetFilesController < ApplicationController
 
   def index
     @dataset_files = DatasetFile.all
-    @timeline = @challenge.timeline
   end
 
   def show
-    @timeline = @challenge.timeline
   end
 
   def new
@@ -21,10 +19,7 @@ class DatasetFilesController < ApplicationController
   end
 
   def create
-
-
     @dataset_file = @challenge.dataset_files.new(dataset_file_params)
-
     if @dataset_file.save
       redirect_to challenge_dataset_files_path([@challenge,@dataset_file]),
                   notice: 'Dataset file was successfully created.'

@@ -5,7 +5,6 @@ class PostsController < ApplicationController
 
 
   def new
-    @timeline = @challenge.timeline
     @posts = @topic.posts("created_at DESC")
     @post = @topic.posts.new
     if params[:quote]

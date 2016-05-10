@@ -5,17 +5,14 @@ class TopicsController < ApplicationController
 
 
   def index
-    @timeline = @challenge.timeline
     @topics = @challenge.topics
     @headline_post = Post.find_by_sql(headline_sql).first  # TODO move into model layer based on answers or views
   end
 
   def show
-    @timeline = @challenge.timeline
   end
 
   def new
-    @timeline = @challenge.timeline
     @topic = @challenge.topics.new
   end
 
@@ -24,7 +21,6 @@ class TopicsController < ApplicationController
 
   def create
     @topic = @challenge.topics.new(topic_params)
-
     if @topic.save
       redirect_to challenge_topics_path(@challenge), notice: 'Topic was successfully created.'
     else

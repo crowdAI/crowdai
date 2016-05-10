@@ -8,7 +8,6 @@ RSpec.feature "submissions", type: :feature do
     @admin_participant = create :participant, :admin
     @challenge = create :challenge, :with_events
     @login_page = DeviseSessionsNew.new.visit_page.login(@participant)
-    @timeline = @challenge.timeline
   end
 
   describe "competitor submissions" do

@@ -11,7 +11,6 @@ class ChallengesController < ApplicationController
   end
 
   def show
-    @timeline = @challenge.timeline
   end
 
   def new

@@ -18,4 +18,21 @@ class Submission < ActiveRecord::Base
     'keras' => 'Keras'
   }
 
+
+  def ready?
+    self.grading_status == :ready
+  end
+
+  def submitted?
+    self.grading_status == :submitted
+  end
+
+  def graded?
+    self.grading_status == :graded
+  end
+
+  def failed?
+    self.grading_status == :failed
+  end
+
 end

@@ -26,11 +26,11 @@
             <tr>
               <td><%= Submission::FRAMEWORKS[submission.framework] %></td>
               <td><%= link_to submission.created_at, challenge_submission_path(@challenge, submission) %></td>
-              <% if submission.grading_message %>
-              <td colspan="2"><%= submission.grading_message %></td>
-            <% else %>
-              <td><%= link_to submission.score, challenge_submission_path(@challenge, submission) %></td>
-              <td><%= link_to submission.score_secondary, challenge_submission_path(@challenge, submission) %></td>
+              <% if submission.failed? %>
+                <td colspan="2"><%= submission.grading_message %></td>
+              <% else %>
+                <td><%= link_to submission.score, challenge_submission_path(@challenge, submission) %></td>
+                <td><%= link_to submission.score_secondary, challenge_submission_path(@challenge, submission) %></td>
               <% end %>
             </tr>
             <% end %>

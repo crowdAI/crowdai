@@ -7,6 +7,9 @@ class Submission < ActiveRecord::Base
   as_enum :grading_status, [:ready, :submitted, :graded, :failed], map: :string
   validates_presence_of :grading_status
 
+  validates_presence_of :framework
+  validates_presence_of :description
+
 
   FRAMEWORKS = {
     'caffe' => "Caffe",

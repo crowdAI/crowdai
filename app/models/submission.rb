@@ -20,19 +20,19 @@ class Submission < ActiveRecord::Base
 
 
   def ready?
-    self.grading_status == 'ready'
+    self.grading_status == :ready
   end
 
   def submitted?
-    self.grading_status == 'submitted'
+    self.grading_status == :submitted
   end
 
   def graded?
-    self.grading_status == 'graded'
+    self.grading_status == :graded
   end
 
   def failed?
-    self.grading_status == 'failed'  
+    self.grading_status == :failed
   end
 
 end

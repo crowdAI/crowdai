@@ -13,7 +13,6 @@ class SubmissionsController < ApplicationController
   def show
     @timeline = @challenge.timeline
     if @submission.participant_id != current_participant.id && !current_participant.admin?
-        logger.info("redirecting")
       redirect_to '/', notice: "You don't have permission for this action."
     else
       render :show

@@ -26,10 +26,12 @@
   @include media(">=phone", "<=tablet") {
     max-width: 320px;
     margin: 10px auto;
+    min-height: 30vh;
   }
   @include media(">tablet") {
     max-width: 700px;
     margin: 20px auto;
+    min-height: 40vh;
   }
 }
 
@@ -62,11 +64,4 @@ ul.challenges-list li {
     padding: 20px;
     margin: 10px;
   }
-}
-
-
-
-
-.sidebar-section {
-
 }

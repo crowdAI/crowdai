@@ -7,11 +7,9 @@ class SubmissionsController < ApplicationController
 
   def index
     @submissions = current_participant.submissions.where(challenge_id: @challenge.id)
-    @timeline = @challenge.timeline
   end
 
   def show
-    @timeline = @challenge.timeline
     if @submission.participant_id != current_participant.id && !current_participant.admin?
       redirect_to '/', notice: "You don't have permission for this action."
     else
@@ -20,7 +18,6 @@ class SubmissionsController < ApplicationController
   end
 
   def new
-    @timeline = @challenge.timeline
     @submission = @challenge.submissions.new
     # TODO for the first challenge we are working with 2 files.
     # Make this challenge config data in next release
@@ -30,7 +27,6 @@ class SubmissionsController < ApplicationController
 
   def create
     @submission = Submission.new(submission_params)
-
     if @submission.save
       SubmissionGraderJob.perform_later(submission_id: @submission.id)
       redirect_to challenge_submissions_path(@challenge)

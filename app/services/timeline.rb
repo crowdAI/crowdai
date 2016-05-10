@@ -97,12 +97,12 @@ class Timeline
 
   private
   def start_date_unformatted
-    return events.first.event_time if self.valid?
+    return @events.first.event_time if self.valid?
     return nil
   end
 
   def end_date_unformatted
-    return events.last.event_time if self.valid?
+    return @events.last.event_time if self.valid?
     return nil
   end
 

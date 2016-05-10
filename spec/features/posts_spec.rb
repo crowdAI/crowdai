@@ -42,7 +42,6 @@ RSpec.feature "topic", type: :feature do
       click_button "Create Post"
       expect(page).to have_selector("h2", text: "Post Reply Test")
       expect(page).to have_content("Post was successfully created.")
-
     end
   end
 

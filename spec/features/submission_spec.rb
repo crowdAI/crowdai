@@ -11,12 +11,6 @@ RSpec.feature "submissions", type: :feature do
   end
 
   describe "competitor submissions" do
-    scenario "a competitor can make a submission" do
-      visit challenge_path(@challenge)
-      click_link "Submit Entry"
-      page.find('.btn-block', text: 'Submit Entry').click
-      expect(page).to have_text('By making your submission you indicate your agreement with these terms.')
-    end
 
     scenario "a competitor must choose a framework" do
       visit challenge_path(@challenge)

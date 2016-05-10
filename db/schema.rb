@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509194714) do
+ActiveRecord::Schema.define(version: 20160510081234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,38 +109,6 @@ ActiveRecord::Schema.define(version: 20160509194714) do
   add_index "submissions", ["challenge_id"], :name=>"index_submissions_on_challenge_id", :using=>:btree
   add_index "submissions", ["participant_id"], :name=>"index_submissions_on_participant_id", :using=>:btree
 
-  create_view "leaderboards", <<-'END_VIEW_LEADERBOARDS', :force => true
-SELECT l.row_num,
-    l.id,
-    l.challenge_id,
-    l.participant_id,
-    l.name,
-    l.entries,
-    l.score,
-    l.score_secondary,
-    l.created_at,
-    l.updated_at
-   FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS row_num,
-            s.id,
-            s.challenge_id,
-            s.participant_id,
-            p.name,
-            cnt.entries,
-            s.score,
-            s.score_secondary,
-            s.created_at,
-            s.updated_at
-           FROM submissions s,
-            participants p,
-            ( SELECT c.challenge_id,
-                    c.participant_id,
-                    count(c.*) AS entries
-                   FROM submissions c
-                  GROUP BY c.challenge_id, c.participant_id) cnt
-          WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l
-  WHERE (l.row_num = 1)
-  ORDER BY l.score DESC, l.score_secondary
-  END_VIEW_LEADERBOARDS
 
   create_table "organizers", force: :cascade do |t|
     t.string   "organizer"
@@ -150,6 +118,20 @@ SELECT l.row_num,
     t.datetime "updated_at",  :null=>false
     t.boolean  "approved",    :default=>false
   end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer  "topic_id"
+    t.integer  "participant_id"
+    t.text     "post"
+    t.integer  "votes",          :default=>0
+    t.boolean  "flagged",        :default=>false
+    t.boolean  "notify",         :default=>true
+    t.datetime "created_at",     :null=>false
+    t.datetime "updated_at",     :null=>false
+  end
+  add_index "posts", ["participant_id"], :name=>"index_posts_on_participant_id", :using=>:btree
+  add_index "posts", ["topic_id"], :name=>"index_posts_on_topic_id", :using=>:btree
+
 
   create_table "participants", force: :cascade do |t|
     t.string   "email",                  :default=>"", :null=>false
@@ -192,19 +174,6 @@ SELECT l.row_num,
   add_index "participants", ["reset_password_token"], :name=>"index_participants_on_reset_password_token", :unique=>true, :using=>:btree
   add_index "participants", ["unlock_token"], :name=>"index_participants_on_unlock_token", :unique=>true, :using=>:btree
 
-  create_table "posts", force: :cascade do |t|
-    t.integer  "topic_id"
-    t.integer  "participant_id"
-    t.text     "post"
-    t.integer  "votes",          :default=>0
-    t.boolean  "flagged",        :default=>false
-    t.boolean  "notify",         :default=>true
-    t.datetime "created_at",     :null=>false
-    t.datetime "updated_at",     :null=>false
-  end
-  add_index "posts", ["participant_id"], :name=>"index_posts_on_participant_id", :using=>:btree
-  add_index "posts", ["topic_id"], :name=>"index_posts_on_topic_id", :using=>:btree
-
   create_table "submission_files", force: :cascade do |t|
     t.integer  "submission_id"
     t.integer  "seq"
@@ -239,4 +208,89 @@ SELECT l.row_num,
   add_foreign_key "submissions", "participants"
   add_foreign_key "topics", "challenges"
   add_foreign_key "topics", "participants"
+
+
+
+    create_view "leaderboards", <<-'END_VIEW_LEADERBOARDS', :force => true
+  SELECT l.row_num,
+      l.id,
+      l.challenge_id,
+      l.participant_id,
+      l.name,
+      l.entries,
+      l.score,
+      l.score_secondary,
+      l.created_at,
+      l.updated_at
+     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS row_num,
+              s.id,
+              s.challenge_id,
+              s.participant_id,
+              p.name,
+              cnt.entries,
+              s.score,
+              s.score_secondary,
+              s.created_at,
+              s.updated_at
+             FROM submissions s,
+              participants p,
+              ( SELECT c.challenge_id,
+                      c.participant_id,
+                      count(c.*) AS entries
+                     FROM submissions c
+                    GROUP BY c.challenge_id, c.participant_id) cnt
+            WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l
+    WHERE (l.row_num = 1)
+    ORDER BY l.score DESC, l.score_secondary
+    END_VIEW_LEADERBOARDS
+
+
+      create_view "participant_challenges", <<-'END_VIEW_PARTICIPANT_CHALLENGES', :force => true
+    SELECT c.id,
+        c.id AS challenge_id,
+        p.id AS participant_id,
+        c.organizer_id,
+        c.challenge,
+        c.description,
+        c.rules,
+        c.prizes,
+        c.resources,
+        c.tagline,
+        p.name,
+        p.email,
+        p.last_sign_in_at,
+        p.bio,
+        p.github,
+        p.linkedin,
+        p.twitter
+       FROM challenges c,
+        participants p,
+        submissions s
+      WHERE ((s.challenge_id = c.id) AND (s.participant_id = p.id))
+    UNION
+     SELECT c.id,
+        c.id AS challenge_id,
+        p.id AS participant_id,
+        c.organizer_id,
+        c.challenge,
+        c.description,
+        c.rules,
+        c.prizes,
+        c.resources,
+        c.tagline,
+        p.name,
+        p.email,
+        p.last_sign_in_at,
+        p.bio,
+        p.github,
+        p.linkedin,
+        p.twitter
+       FROM challenges c,
+        participants p,
+        topics t
+      WHERE ((t.challenge_id = c.id) AND ((t.participant_id = p.id) OR (EXISTS ( SELECT 'X'
+               FROM posts ps
+              WHERE ((ps.topic_id = t.id) AND (ps.participant_id = p.id))))))
+      END_VIEW_PARTICIPANT_CHALLENGES
+
 end

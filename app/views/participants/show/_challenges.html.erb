@@ -1,9 +1,11 @@
 <div class="tab-pane active" id="challenges">
 
-  <% if @participant.challenges.any? %>
+  <% if @participant.participant_challenges.any? %>
     <ul class="list-group">
-      <% @participant.challenges.each do |comp| %>
-        <li class="list-group-item"><%= comp.challenge %></li>
+      <% @participant.participant_challenges.each do |pc| %>
+        <li class="list-group-item">
+          <%= link_to pc.challenge.challenge, challenge_path(pc.challenge_id) %>
+        </li>
       <% end %>
     </ul>
   <% else %>

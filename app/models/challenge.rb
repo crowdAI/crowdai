@@ -8,6 +8,7 @@ class Challenge < ActiveRecord::Base
   has_many :events, dependent: :destroy
   has_many :submissions, dependent: :destroy
   has_many :leaderboards
+  has_many :participant_challenges
   has_many :topics
 
   has_one :image, as: :imageable, dependent: :destroy

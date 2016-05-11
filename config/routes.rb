@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   # Administrate
   namespace :admin do
     resources :participants
-    resources :challenges
+    resources :challenges, except: [:edit]
     resources :images
     resources :dataset_files
     resources :organizers

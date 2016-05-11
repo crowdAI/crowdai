@@ -49,7 +49,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
-    administrate (0.1.5)
+    administrate (0.2.0)
       autoprefixer-rails (~> 6.0)
       datetime_picker_rails (~> 0.0.7)
       jquery-rails (~> 4.0)
@@ -60,6 +60,9 @@ GEM
       rails (~> 4.2)
       sass-rails (~> 5.0)
       selectize-rails (~> 0.6)
+    administrate-field-image (0.0.2)
+      administrate (>= 0.2.0.rc1, < 0.3.0)
+      rails (~> 4.2)
     annotate (2.7.0)
       activerecord (>= 3.2, < 6.0)
       rake (~> 10.4)
@@ -548,7 +551,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  administrate (~> 0.1.4)
+  administrate
+  administrate-field-image
   annotate
   aws-sdk (~> 2.2)
   bootstrap-sass

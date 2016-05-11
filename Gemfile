@@ -9,7 +9,8 @@ gem 'puma_worker_killer'
 
 # user accounts / admin
 gem 'devise'
-gem "administrate", "~> 0.1.4"
+gem "administrate"
+gem "administrate-field-image"
 gem 'pundit'
 
 # monitoring

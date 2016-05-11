@@ -8,14 +8,13 @@ class ChallengeDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    id: Field::Number,
     organizer: Field::BelongsTo,
     dataset_files: Field::HasMany,
     events: Field::HasMany,
     submissions: Field::HasMany,
-    leaderboards: Field::HasMany,
     topics: Field::HasMany,
     image: Field::HasOne,
-    id: Field::Number,
     challenge: Field::String,
     status_cd: Field::String,
     description: Field::Text,
@@ -30,7 +29,7 @@ class ChallengeDashboard < Administrate::BaseDashboard
     tagline: Field::String,
     evaluation_rendered: Field::Text,
     score_sort_cd: Field::String,
-    score_secondary_sort_cd: Field::String,
+    score_secondary_sort_cd: Field::String
   }
 
   # COLLECTION_ATTRIBUTES
@@ -53,7 +52,6 @@ class ChallengeDashboard < Administrate::BaseDashboard
     :dataset_files,
     :events,
     :submissions,
-    :leaderboards,
     :topics,
     :image,
     :id,
@@ -82,7 +80,6 @@ class ChallengeDashboard < Administrate::BaseDashboard
     :dataset_files,
     :events,
     :submissions,
-    :leaderboards,
     :topics,
     :image,
     :challenge,

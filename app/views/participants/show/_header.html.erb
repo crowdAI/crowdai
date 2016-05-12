@@ -15,7 +15,7 @@
     <div class="col-md-12 text-center">
       <h1><%= @participant.name %></h1>
       <h2>Last login
-        <%= time_ago_in_words(@participant.last_sign_in_at) %>
+        <%= time_ago_in_words(@participant.current_sign_in_at) %>
         ago.
       </h2>
 

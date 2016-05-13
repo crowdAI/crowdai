@@ -73,7 +73,7 @@ gem 'figaro'
 
 # email
 gem 'mandrill-api'
-gem 'mailchimp-api'
+gem 'gibbon'
 gem 'mandrill_mailer'
 
 # background processing

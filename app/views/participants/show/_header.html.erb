@@ -14,12 +14,11 @@
   <div class="row">
     <div class="col-md-12 text-center">
       <h1><%= @participant.name %></h1>
-      <h2>Last login
-        <%= time_ago_in_words(@participant.last_sign_in_at) %>
-        ago.
-      </h2>
-
-
+      <% if @participant.online? %>
+          <h2><i class="fa fa-circle-o-notch fa-spin" style="color:green"></i> <span style="color:green"><b>online now</b></span><h2>
+      <% else %>
+          <h2>Last seen <%= time_ago_in_words(@participant.updated_at) %> ago.</h2>
+      <% end %>
     </div>
   </div>
   <div class="row">

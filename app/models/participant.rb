@@ -33,6 +33,10 @@ class Participant < ActiveRecord::Base
     admin
   end
 
+  def online?
+    updated_at > 10.minutes.ago
+  end
+
   def avatar
     image.try(:image)
   end

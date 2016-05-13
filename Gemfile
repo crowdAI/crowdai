@@ -73,6 +73,8 @@ gem 'figaro'
 
 # email
 gem 'mandrill-api'
+gem 'mailchimp-api'
+gem 'mandrill_mailer'
 
 # background processing
 gem 'sidekiq'
@@ -88,6 +90,7 @@ gem 'high_voltage', '~> 2.4.0'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'carrierwave'
 gem 'net-ssh'
+gem 'inline_svg'
 
 # Amazon
 gem 'aws-sdk', '~> 2.2'

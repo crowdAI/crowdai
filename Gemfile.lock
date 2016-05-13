@@ -296,6 +296,10 @@ GEM
       railties (>= 3.1, < 5)
       sass (>= 3.3, < 4)
     inflecto (0.0.2)
+    inline_svg (0.7.0)
+      activesupport (>= 4.0.4)
+      loofah (>= 2.0)
+      nokogiri (~> 1.6)
     ipaddress (0.8.3)
     its-it (1.2.1)
     jmespath (1.2.4)
@@ -328,9 +332,17 @@ GEM
     lumberjack (1.0.10)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    mailchimp-api (2.0.6)
+      excon (>= 0.16.0)
+      json (>= 1.7.7)
     mandrill-api (1.0.53)
       excon (>= 0.16.0, < 1.0)
       json (>= 1.7.7, < 2.0)
+    mandrill_mailer (1.4.0)
+      actionpack
+      activejob
+      activesupport
+      mandrill-api (~> 1.0.9)
     method_source (0.8.2)
     mime-types (3.0)
       mime-types-data (~> 3.2015)
@@ -578,13 +590,16 @@ DEPENDENCIES
   high_voltage (~> 2.4.0)
   httparty
   include_media_rails
+  inline_svg
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
   kaminari
   launchy
   lodash-rails
+  mailchimp-api
   mandrill-api
+  mandrill_mailer
   net-ssh
   paperclip!
   pg

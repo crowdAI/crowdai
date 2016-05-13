@@ -63,5 +63,10 @@ class Participant < ActiveRecord::Base
     end
   end
 
+  def after_confirmation
+    super
+    AddToMailChimpListJob.perform_later(self.id)
+  end
+
 
 end

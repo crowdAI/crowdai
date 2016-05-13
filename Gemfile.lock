@@ -152,6 +152,8 @@ GEM
       railties (>= 3.0.0)
     faker (1.6.3)
       i18n (~> 0.5)
+    faraday (0.9.2)
+      multipart-post (>= 1.2, < 3)
     fast_blank (1.0.0)
     ffi (1.9.10)
     figaro (1.1.1)
@@ -268,6 +270,9 @@ GEM
       railties (>= 3.2, < 5.1)
     formatador (0.2.5)
     get_process_mem (0.2.0)
+    gibbon (2.2.3)
+      faraday (>= 0.9.1)
+      multi_json (>= 1.11.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     gon (6.0.1)
@@ -296,6 +301,10 @@ GEM
       railties (>= 3.1, < 5)
       sass (>= 3.3, < 4)
     inflecto (0.0.2)
+    inline_svg (0.7.0)
+      activesupport (>= 4.0.4)
+      loofah (>= 2.0)
+      nokogiri (~> 1.6)
     ipaddress (0.8.3)
     its-it (1.2.1)
     jmespath (1.2.4)
@@ -331,6 +340,11 @@ GEM
     mandrill-api (1.0.53)
       excon (>= 0.16.0, < 1.0)
       json (>= 1.7.7, < 2.0)
+    mandrill_mailer (1.4.0)
+      actionpack
+      activejob
+      activesupport
+      mandrill-api (~> 1.0.9)
     method_source (0.8.2)
     mime-types (3.0)
       mime-types-data (~> 3.2015)
@@ -346,6 +360,7 @@ GEM
       railties (>= 3.1)
     multi_json (1.11.2)
     multi_xml (0.5.5)
+    multipart-post (2.0.0)
     neat (1.7.4)
       bourbon (>= 4.0)
       sass (>= 3.3)
@@ -572,12 +587,14 @@ DEPENDENCIES
   figaro
   fog (= 1.35.0)
   font-awesome-rails
+  gibbon
   gon
   groupdate
   guard
   high_voltage (~> 2.4.0)
   httparty
   include_media_rails
+  inline_svg
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
@@ -585,6 +602,7 @@ DEPENDENCIES
   launchy
   lodash-rails
   mandrill-api
+  mandrill_mailer
   net-ssh
   paperclip!
   pg

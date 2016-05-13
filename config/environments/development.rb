@@ -26,6 +26,7 @@ Rails.application.configure do
 
   config.eager_load = true
 
+
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.

@@ -12,8 +12,8 @@
           <%= f.error_notification %>
 
           <% resource.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-        <% end %>
+            <li><%= msg %></li>
+          <% end %>
 
         <div class="form-inputs">
           <%= f.input :email, required: true, autofocus: true, label: 'Email address' %>

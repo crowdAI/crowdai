@@ -35,6 +35,7 @@
 
 // modules
 //= require modules/dataset_file_downloads
+//= require modules/devise
 
 //= require z.jquery.fileupload
 

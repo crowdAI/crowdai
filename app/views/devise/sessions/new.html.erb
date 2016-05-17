@@ -6,6 +6,7 @@
           <div class="centered-text">
             <h2>Log In</h2>
           </div>
+          <br/>
           <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="form-inputs">
             <%= f.input :email, required: true, autofocus: true, label: 'Email address' %>
@@ -19,8 +20,13 @@
           <% end %>
 
           <br/>
-          <div class="centered-text">
-              <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+          <div class="account-help centered-text">
+            <div class='show-help-link'>Can't sign in?</div>
+            <div class="account-help-links centered-text">
+              <%= link_to "Forgot your password?", new_password_path(resource_name) %><br/>
+              <%= link_to "Account locked?", new_unlock_path(resource_name) %><br/>
+              <%= link_to "Resend account confirmation", new_confirmation_path(resource_name) %><br/>
+            </div>
           </div>
           <br/><br/>
 

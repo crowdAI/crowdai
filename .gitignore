@@ -15,4 +15,5 @@
 /config/application.yml
 /config/services.yml
 .DS_Store
+*.swp
 public/assets_test/*

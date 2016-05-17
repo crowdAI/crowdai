@@ -8,7 +8,6 @@ class AddToMailChimpListJob < ActiveJob::Base
       gibbon.lists(ENV['MAILCHIMP_LIST_ID']).members.create(body: {email_address: participant.email,
                                                                     status: 'subscribed',
                                                                     merge_fields: {FNAME: participant.name }})
-      end
     end
   end
 end

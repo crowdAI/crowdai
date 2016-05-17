@@ -7,34 +7,34 @@ class DeviseMandrillMailer < Devise::Mailer
       email:            record.email,
       global_merge_vars:  [
         {
-          name:         "EMAIL",
-          content:      record.email
+          name:         "NAME",
+          content:      record.name
         },
         {
           name:         "RESET_PASSWORD_URL",
           content:      edit_password_url(record, reset_password_token: token)
         }
       ],
-      template:         "reset password instructions"
+      template:         "crowdAI Devise reset_password_instructions"
     }
     mandrill_send options
   end
 
   def confirmation_instructions(record, token, opts={})
     options = {
-      subject:          "crowdAI Sign Up Confirmation Instructions",
+      subject:          "crowdAI Confirmation Instructions",
       email:            record.email,
       global_merge_vars:  [
         {
-          name:         "EMAIL",
-          content:      record.email
+          name:         "NAME",
+          content:      record.name
         },
         {
           name:         "CONFIRMATION_URL",
           content:      confirmation_url(record, confirmation_token: token)
         }
       ],
-      template:         "confirmation instructions"
+      template:         "crowdAI Devise confirmation_instructions"
     }
     mandrill_send options
   end
@@ -45,15 +45,15 @@ class DeviseMandrillMailer < Devise::Mailer
       email:            record.email,
       global_merge_vars:  [
         {
-          name:         "EMAIL",
-          content:      record.email
+          name:         "NAME",
+          content:      record.name
         },
         {
           name:         "UNLOCK_URL",
           content:      unlock_url(record, unlock_token: token)
         }
       ],
-      template:         "unlock instructions"
+      template:         "crowdAI Devise unlock_instructions"
     }
     mandrill_send options
   end

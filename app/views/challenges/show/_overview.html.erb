@@ -1,4 +1,7 @@
 <div id="overview">
   <h2>Overview</h2>
-  <%= simple_format(challenge.description, class: 'bootsy-wrap') %>
+  <%#= simple_format(challenge.description, class: 'bootsy-wrap') %>
+  <div class='bootsy-wrap'>
+    <%= simple_format(challenge.description_rendered, class: 'bootsy-wrap') %>
+  </div>
 </div>

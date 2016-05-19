@@ -26,6 +26,7 @@ var ready = (function () {
 
   theButtons.forEach( function (button) {
     $(button.id).on('click', function (e) {
+      debugger;
       e.preventDefault();
       insertText(button.before, button.after);
     });
@@ -46,6 +47,7 @@ var ready = (function () {
 });
 
 function insertText(before_text, after_text) {
+    debugger;
     $textBox.focus();
     if(typeof $textBox.data('lastSelection') == "undefined") {
       $textBox.data("lastSelection", $textBox.getSelection());

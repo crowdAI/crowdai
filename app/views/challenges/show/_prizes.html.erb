@@ -1,4 +1,7 @@
 <div id="prizes">
   <h2>Prizes</h2>
   <%= simple_format(challenge.prizes, class: 'bootsy-wrap') %>
+  <div class='bootsy-wrap'>
+    <%= simple_format(challenge.prizes_rendered, class: 'bootsy-wrap') %>
+  </div>
 </div>

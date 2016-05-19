@@ -2,6 +2,32 @@
   <h1>Submission Instructions</h1>
   <%= f.input :submission_instructions, as: :bootsy, input_html: { rows: 10 }, label: false %>
 
+  <div id="content">
+    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+      <li class="active">
+        <a href="#editor-pane" data-toggle="tab">Write</a>
+      </li>
+      <li>
+        <a href="#preview-pane" data-toggle="tab">Preview</a>
+      </li>
+    </ul>
+    <div id="my-tab-content" class="tab-content">
+      <div class="tab-pane active" id="editor-pane">
+        <%= f.label 'Rules' %>
+        <%= render 'markdown_editor/toolbar' %>
+        <%= f.text_area :submission_instructions_markdown,
+                        id: 'markdown_textarea',
+                        class: 'form-control',
+                        placeholder: 'Describe the submission instructions for this challenge.',
+                        required: true,
+                        rows: 10 %>
+      </div>
+      <div class="tab-pane" id="preview-pane">
+        <div id="markdown-preview"></div>
+      </div>
+    </div>
+  </div>
+
   <div class="form-actions">
     <%= f.button :submit %>
   </div>

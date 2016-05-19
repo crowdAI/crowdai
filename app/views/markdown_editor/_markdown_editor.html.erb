@@ -1,0 +1,24 @@
+<div class="markdown-editor">
+  <ul class="nav nav-tabs" data-tabs="tabs">
+    <li class="active">
+      <a href="#editor-pane-submission-instructions" data-toggle="tab">Write</a>
+    </li>
+    <li>
+      <a href="#preview-pane-submission-instructions" data-toggle="tab">Preview</a>
+    </li>
+  </ul>
+  <div id="my-tab-content" class="tab-content">
+    <div class="tab-pane active" id="editor-pane-submission-instructions">
+      <%= f.label 'Submission Instructions' %>
+      <%= render 'markdown_editor/toolbar' %>
+      <%= f.text_area eval(markdownx).to_sym,
+                      class: 'form-control markdown-textarea',
+                      placeholder: 'Describe the submission instructions for this challenge.',
+                      required: true,
+                      rows: 10 %>
+    </div>
+    <div class="tab-pane" id="preview-pane-submission-instructions">
+      <div id="markdown-preview-submission-instructions" class: "markdown-preview-pane"></div>
+    </div>
+  </div>
+</div>

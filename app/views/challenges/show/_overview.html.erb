@@ -1,6 +1,6 @@
 <div id="overview">
   <h2>Overview</h2>
   <div class='bootsy-wrap'>
-    <%= challenge.description_rendered.html_safe %>
+    <%= challenge.description_rendered.html_safe if challenge.description_rendered %>
   </div>
 </div>

@@ -1,6 +1,6 @@
 <div id="evaluation">
   <h2>Evaluation</h2>
   <div class='bootsy-wrap'>
-    <%= challenge.evaluation_rendered.html_safe %>
+    <%= challenge.evaluation_rendered.html_safe if challenge.evaluation_rendered %>
   </div>
 </div>

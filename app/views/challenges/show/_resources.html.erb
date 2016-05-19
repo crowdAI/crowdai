@@ -1,7 +1,6 @@
 <div id="resources">
   <h2>Resources</h2>
-  <%= simple_format(challenge.resources, class: 'bootsy-wrap') %>
   <div class='bootsy-wrap'>
-    <%= simple_format(challenge.resources_rendered, class: 'bootsy-wrap') %>
+    <%= challenge.resources_rendered.html_safe %>
   </div>
 </div>

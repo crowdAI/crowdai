@@ -1,8 +1,6 @@
 <div id="rules">
   <h2>Rules</h2>
-  <%= simple_format(challenge.rules, class: 'bootsy-wrap') %>
   <div class='bootsy-wrap'>
-    <%= simple_format(challenge.rules_rendered, class: 'bootsy-wrap') %>
+    <%= challenge.rules_rendered.html_safe %>
   </div>
-</p>
 </div>

@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'markdown_editor/create'
+  #get 'markdown_editor/create'
   get 'markdown_editor/show'
 
   get 'landing_page/index'  # TODO refactor

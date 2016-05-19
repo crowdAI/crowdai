@@ -1,28 +1,26 @@
 <div role="tabpanel" class="tab-pane" id="resources">
   <h1>Resources</h1>
-  <%= f.input :resources, as: :bootsy, input_html: { rows: 20 } %>
 
-  <div id="content">
-    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+  <div class="markdown-editor">
+    <ul class="nav nav-tabs" data-tabs="tabs">
       <li class="active">
-        <a href="#editor-pane" data-toggle="tab">Write</a>
+        <a href="#editor-pane-resources" data-toggle="tab">Write</a>
       </li>
       <li>
-        <a href="#preview-pane" data-toggle="tab">Preview</a>
+        <a href="#preview-pane-resources" class="preview-pane-link" data-toggle="tab">Preview</a>
       </li>
     </ul>
-    <div id="my-tab-content" class="tab-content">
-      <div class="tab-pane active" id="editor-pane">
+    <div class="tab-content">
+      <div class="tab-pane active" id="editor-pane-resources">
         <%= f.label 'Resources' %>
         <%= render 'markdown_editor/toolbar' %>
         <%= f.text_area :resources_markdown,
-                        id: 'markdown_textarea',
-                        class: 'form-control',
+                        class: 'form-control markdown-textarea',
                         placeholder: 'Describe the resources available to this challenge.',
                         required: true,
-                        rows: 10 %>
+                        rows: 20 %>
       </div>
-      <div class="tab-pane" id="preview-pane">
+      <div class="tab-pane markdown-preview-pane" id="preview-pane-resources">
         <div id="markdown-preview"></div>
       </div>
     </div>

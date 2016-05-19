@@ -7,30 +7,28 @@
     <%= f.input :tagline %>
     <%= f.association :organizer, collection: Organizer.all, value_method: :id, label_method: :organizer, priority: @challenge.organizer, include_blank: false %>
     <%= f.input :status, collection: enum_option_pairs(Challenge, :status) %>
-    <%= f.input :description, as: :bootsy, input_html: { rows: 20 } %>
 
-    <div id="content">
-      <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+    <div class="markdown-editor">
+      <ul class="nav nav-tabs" data-tabs="tabs">
         <li class="active">
-          <a href="#editor-pane" data-toggle="tab">Write</a>
+          <a href="#editor-pane-description" data-toggle="tab">Write</a>
         </li>
         <li>
-          <a href="#preview-pane" data-toggle="tab">Preview</a>
+          <a href="#preview-pane-description" class="preview-pane-link" data-toggle="tab">Preview</a>
         </li>
       </ul>
-      <div id="my-tab-content" class="tab-content">
-        <div class="tab-pane active" id="editor-pane">
+      <div class="tab-content">
+        <div class="tab-pane active" id="editor-pane-description">
           <%= f.label 'Description' %>
           <%= render 'markdown_editor/toolbar' %>
           <%= f.text_area :description_markdown,
-                          id: 'markdown_textarea',
-                          class: 'form-control',
+                          class: 'form-control markdown-textarea',
                           placeholder: 'Describe this challenge.',
                           required: true,
-                          rows: 10 %>
+                          rows: 30 %>
         </div>
-        <div class="tab-pane" id="preview-pane">
-          <div id="markdown-preview"></div>
+        <div class="tab-pane markdown-preview-pane" id="preview-pane-description">
+          <div class="markdown-preview"></div>
         </div>
       </div>
     </div>

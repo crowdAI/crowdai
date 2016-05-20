@@ -3,13 +3,13 @@ FactoryGirl.define do
     organizer { FactoryGirl.create :organizer }
     challenge 'Draft Challenge'
     status_cd 'draft'
-    description "We all have a heart. Although we often take it for granted, it's our heart that gives us the moments in life to imagine, create, and discover. "
-    prizes 'MyText'
-    resources 'MyText'
-    dataset_description 'text'
-    submission_instructions 'text'
-    evaluation_markdown 'markdown'
-    evaluation_rendered 'rendered'
+    description_markdown "### The description"
+    evaluation_markdown "# An evaluation"
+    rules_markdown "Some *rules*"
+    prizes_markdown "# Prizes are described here."
+    resources_markdown "# Helpful resources"
+    dataset_description_markdown " # Dataset description"
+    submission_instructions_markdown "## Submission instructions"
     score_sort_cd 'ascending'
     score_secondary_sort_cd 'descending'
 

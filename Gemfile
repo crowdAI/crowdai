@@ -26,6 +26,7 @@ gem 'seed_dump'
 gem 'validate_url'
 
 # forms / data manipulation / charts
+gem 'browser'
 gem 'simple_form'
 gem 'country_select'
 #gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables-rails.git'

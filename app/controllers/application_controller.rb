@@ -20,4 +20,14 @@ class ApplicationController < ActionController::Base
   def participant_activity
     current_participant.try :touch
   end
+
+  def load_gon(vars = {})
+  rails = {controller: controller_name, action: action_name}
+  gon.rails = rails
+  if vars.any?
+    vars.each do |k,v|
+      gon.send("#{k}=", v)
+    end
+  end
+end
 end

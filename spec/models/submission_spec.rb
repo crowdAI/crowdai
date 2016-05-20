@@ -7,8 +7,6 @@ RSpec.describe Submission, type: :model do
 
   describe 'fields' do
     subject { @submission }
-
-    it { should respond_to(:evaluated) }
     it { should respond_to(:score) }
   end
 
@@ -36,7 +34,6 @@ RSpec.describe Submission, type: :model do
   it { is_expected.to have_db_column :id }
   it { is_expected.to have_db_column :challenge_id }
   it { is_expected.to have_db_column :participant_id }
-  it { is_expected.to have_db_column :evaluated }
   it { is_expected.to have_db_column :score }
   it { is_expected.to have_db_column :created_at }
   it { is_expected.to have_db_column :updated_at }

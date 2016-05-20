@@ -1,6 +1,30 @@
 <div role="tabpanel" class="tab-pane" id="submission-instructions">
   <h1>Submission Instructions</h1>
-  <%= f.input :submission_instructions, as: :bootsy, input_html: { rows: 10 }, label: false %>
+
+  <div class="markdown-editor">
+    <ul class="nav nav-tabs" data-tabs="tabs">
+      <li class="active">
+        <a href="#editor-pane-submission-instructions" data-toggle="tab">Write</a>
+      </li>
+      <li>
+        <a href="#preview-pane-submission-instructions" class="preview-pane-link" data-toggle="tab">Preview</a>
+      </li>
+    </ul>
+    <div id="my-tab-content" class="tab-content">
+      <div class="tab-pane active" id="editor-pane-submission-instructions">
+        <%= f.label 'Submission Instructions' %>
+        <%= render 'markdown_editor/toolbar' %>
+        <%= f.text_area :submission_instructions_markdown,
+                        class: 'form-control markdown-textarea',
+                        placeholder: 'Describe the submission instructions for this challenge.',
+                        required: true,
+                        rows: 10 %>
+      </div>
+      <div class="tab-pane markdown-preview-pane" id="preview-pane-submission-instructions">
+        <div id="markdown-preview-submission-instructions"></div>
+      </div>
+    </div>
+  </div>
 
   <div class="form-actions">
     <%= f.button :submit %>

@@ -1,5 +1,6 @@
 <div id="rules">
   <h2>Rules</h2>
-  <%= simple_format(challenge.rules, class: 'bootsy-wrap') %>
-</p>
+  <div class='markdown-wrap'>
+    <%= challenge.rules.html_safe if challenge.rules %>
+  </div>
 </div>

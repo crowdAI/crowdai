@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   get 'markdown_editor/create'
   get 'markdown_editor/show'
 
-  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   devise_for :participants
   resources :participants, only: [:show, :edit, :update, :destroy]
 
@@ -35,7 +34,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'markdown_editor/create'
   get 'markdown_editor/show'
 
   get 'landing_page/index'  # TODO refactor

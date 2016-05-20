@@ -9,21 +9,31 @@
     </div>
   </div>
 
-  <div id="my-tab-content" class="tab-content">
-    <div class="tab-pane active" id="editor-pane">
-      <%= f.label :evaluation %>
-      <%= render 'markdown_editor/toolbar' %>
-      <%= f.text_area :evaluation_markdown,
-                      id: 'markdown_textarea',
-                      class: 'form-control',
-                      placeholder: 'Enter evaluation criteria.',
-                      required: true,
-                      rows: 30 %>
-    </div>
-    <div class="tab-pane" id="preview-pane">
-      <div id="markdown-preview"></div>
+  <div class="markdown-editor">
+    <ul class="nav nav-tabs" data-tabs="tabs">
+      <li class="active">
+        <a href="#editor-pane-evaluation" data-toggle="tab">Write</a>
+      </li>
+      <li>
+        <a href="#preview-pane-evaluation" class="preview-pane-link" data-toggle="tab">Preview</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="editor-pane-evaluation">
+        <%= f.label 'Evaluation' %>
+        <%= render 'markdown_editor/toolbar' %>
+        <%= f.text_area :evaluation_markdown,
+                        class: 'form-control markdown-textarea',
+                        placeholder: 'Enter evaluation criteria.',
+                        required: true,
+                        rows: 30 %>
+      </div>
+      <div class="tab-pane markdown-preview-pane" id="preview-pane-evaluation">
+        <div id="markdown-preview"></div>
+      </div>
     </div>
   </div>
+
   <div class="form-actions">
     <%= f.button :submit %>
   </div>

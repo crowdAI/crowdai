@@ -62,7 +62,7 @@ RSpec.feature "participant challenges", type: :feature do
 
     scenario "twitter link" do
       find(".fa-twitter").click
-      expect(page).to have_text("@crowd_ai")
+      expect(page).to have_link(nil, href: "https://twitter.com/crowd_ai")
     end
 
   end

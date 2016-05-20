@@ -9,7 +9,7 @@ $(function() {
 
 
     function checkFile(file) {
-      debugger;
+      //debugger;
     }
 
 

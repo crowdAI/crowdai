@@ -42,7 +42,25 @@ class Challenge < ActiveRecord::Base
   private
   def cache_rendered_markdown
     if evaluation_markdown_changed?
-      self.evaluation_rendered = RenderMarkdown.new.render(evaluation_markdown)
+      self.evaluation = RenderMarkdown.new.render(evaluation_markdown)
+    end
+    if description_markdown_changed?
+      self.description = RenderMarkdown.new.render(description_markdown)
+    end
+    if rules_markdown_changed?
+      self.rules = RenderMarkdown.new.render(rules_markdown)
+    end
+    if prizes_markdown_changed?
+      self.prizes = RenderMarkdown.new.render(prizes_markdown)
+    end
+    if resources_markdown_changed?
+      self.resources = RenderMarkdown.new.render(resources_markdown)
+    end
+    if dataset_description_markdown_changed?
+      self.dataset_description = RenderMarkdown.new.render(dataset_description_markdown)
+    end
+    if submission_instructions_markdown_changed?
+      self.submission_instructions = RenderMarkdown.new.render(submission_instructions_markdown)
     end
   end
 end

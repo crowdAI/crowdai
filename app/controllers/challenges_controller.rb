@@ -53,6 +53,8 @@ class ChallengesController < ApplicationController
             .permit(:id,:organizer_id, :challenge, :tagline,
                     :status, :description, :evaluation_markdown, :evaluation_criteria,
                     :rules, :prizes, :resources, :submission_instructions, :score_sort, :score_secondary_sort,
+                    :description_markdown, :rules_markdown, :prizes_markdown, :resources_markdown,
+                    :dataset_description_markdown, :submission_instructions_markdown,
                     dataset_attributes: [:id, :challenge_id, :description, :_destroy],
                     events_attributes: [:id, :challenge_id, :seq, :event, :event_time, :_destroy ],
                     submissions_attributes: [:id, :challenge_id, :participant_id, :_destroy ],

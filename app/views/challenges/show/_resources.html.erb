@@ -1,4 +1,6 @@
 <div id="resources">
   <h2>Resources</h2>
-  <%= simple_format(challenge.resources, class: 'bootsy-wrap') %>
+  <div class='markdown-wrap'>
+    <%= challenge.resources.html_safe if challenge.resources %>
+  </div>
 </div>

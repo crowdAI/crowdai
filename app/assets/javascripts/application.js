@@ -15,8 +15,6 @@
 //= require jquery_ujs
 //= require jquery-ui
 
-//= require bootsy
-
 
 //= require bootstrap-sprockets
 //= require lodash

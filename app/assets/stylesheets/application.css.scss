@@ -2,7 +2,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
-@import "bootsy";
 @import "jquery-ui";
 @import "include_media";
 /* config variables and mixins */
@@ -23,7 +22,7 @@
 @import "components/forms";
 @import "components/calendars";
 @import "components/labels";
-@import "components/bootsy_styles";
+@import "components/markdown_editor";
 
 
 /* modules */

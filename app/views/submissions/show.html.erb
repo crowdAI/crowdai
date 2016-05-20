@@ -17,7 +17,9 @@
           <%= @submission.grading_message %></h3>
         <% end %>
 
-        <p><%= markdown(@submission.description) %></p>
+        <div class='markdown-wrap'>
+          <%= @submission.description.html_safe if @submission.description %>
+        </div>
 
         <div class="row">
           <div class="col-md-8">

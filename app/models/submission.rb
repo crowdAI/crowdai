@@ -1,4 +1,6 @@
 class Submission < ActiveRecord::Base
+  before_validation :cache_rendered_markdown
+
   belongs_to :challenge
   belongs_to :participant
   has_many :submission_files, dependent: :destroy
@@ -8,7 +10,7 @@ class Submission < ActiveRecord::Base
   validates_presence_of :grading_status
 
   validates_presence_of :framework
-  validates_presence_of :description
+  validates_presence_of :description_markdown
 
 
   FRAMEWORKS = {
@@ -36,6 +38,13 @@ class Submission < ActiveRecord::Base
 
   def failed?
     self.grading_status == :failed
+  end
+
+  private
+  def cache_rendered_markdown
+    if description_markdown_changed?
+      self.description = RenderMarkdown.new.render(description_markdown)
+    end
   end
 
 end

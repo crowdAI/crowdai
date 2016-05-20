@@ -10,6 +10,6 @@ class MarkdownEditorController < ApplicationController
 
   private
   def markdown_params
-    params.require(:data).permit(:markdown_text)
+    params.require(:markdown).permit(:markdown_text)
   end
 end

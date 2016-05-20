@@ -8,7 +8,9 @@
       <p style="text-align:center">
         <%= link_to 'Submit Entry', new_challenge_submission_path(@challenge), class: 'btn btn-primary btn-block outline' %>
       </p>
-      <p><%= simple_format(@challenge.submission_instructions, class: 'markdown-wrap') %></p>
+      <div class='markdown-wrap'>
+        <%= @challenge.submission_instructions.html_safe if @challenge.submission_instructions %>
+      </div>
 
       <div class='table-responsive'>
         <table class='table table-hover table-striped table-bordered'>

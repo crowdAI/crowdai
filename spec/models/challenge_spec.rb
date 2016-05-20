@@ -29,7 +29,7 @@ RSpec.describe Challenge, type: :model do
     it { is_expected.to have_db_column :status_cd }
     it { is_expected.to have_db_column :description }
     it { is_expected.to have_db_column :evaluation_markdown }
-    it { is_expected.to have_db_column :evaluation_rendered }
+    it { is_expected.to have_db_column :evaluation }
     it { is_expected.to have_db_column :rules }
     it { is_expected.to have_db_column :prizes }
     it { is_expected.to have_db_column :resources }
@@ -77,13 +77,13 @@ RSpec.describe Challenge, type: :model do
 
   describe 'validate markdown fields' do
     let(:challenge) { create :challenge, :with_events }
-    it { expect(challenge.description_rendered).to eq("<h3>The description</h3>\n")}
-    it { expect(challenge.evaluation_rendered).to eq("<h1>An evaluation</h1>\n")}
-    it { expect(challenge.rules_rendered).to eq("<p>Some <em>rules</em></p>\n")}
-    it { expect(challenge.prizes_rendered).to eq("<h1>Prizes are described here.</h1>\n")}
-    it { expect(challenge.resources_rendered).to eq("<h1>Helpful resources</h1>\n")}
-    it { expect(challenge.dataset_description_rendered).to eq("<p># Dataset description</p>\n")}
-    it { expect(challenge.submission_instructions_rendered).to eq("<h2>Submission instructions</h2>\n")}
+    it { expect(challenge.description).to eq("<h3>The description</h3>\n")}
+    it { expect(challenge.evaluation).to eq("<h1>An evaluation</h1>\n")}
+    it { expect(challenge.rules).to eq("<p>Some <em>rules</em></p>\n")}
+    it { expect(challenge.prizes).to eq("<h1>Prizes are described here.</h1>\n")}
+    it { expect(challenge.resources).to eq("<h1>Helpful resources</h1>\n")}
+    it { expect(challenge.dataset_description).to eq("<p># Dataset description</p>\n")}
+    it { expect(challenge.submission_instructions).to eq("<h2>Submission instructions</h2>\n")}
   end
 
 end

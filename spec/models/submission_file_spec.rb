@@ -20,11 +20,6 @@ RSpec.describe SubmissionFile, type: :model do
   # === Relations ===
   it { is_expected.to belong_to :submission }
 
-
-
-  # === Nested Attributes ===
-
-
   # === Database (Columns) ===
   it { is_expected.to have_db_column :id }
   it { is_expected.to have_db_column :submission_id }

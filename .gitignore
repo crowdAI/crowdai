@@ -17,3 +17,4 @@
 .DS_Store
 *.swp
 public/assets_test/*
+public/assets/*

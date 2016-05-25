@@ -10,28 +10,29 @@ module NavigationHelpers
     click_link(challenge.challenge)
   end
 
+  def open_menu
+    visit_landing_page
 
+  end
 
   def open_menu
     visit_landing_page
-    find("#mobile-menu").click
+    find("#avatar-menu").click
   end
 
-  def visit_decks_index
+  def visit_own_profile
     open_menu
-    click_link 'Cards'
+    click_link 'Profile'
   end
 
-  def visit_articles_index
+  def visit_password_page
     open_menu
-    click_link 'Articles'
+    click_link 'Password'
   end
 
-  def visit_sentences_index
+  def sign_out
     open_menu
-    click_link 'Sentences'
+    click_link 'Sign out'
   end
-
-
 
 end

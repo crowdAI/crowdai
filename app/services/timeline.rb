@@ -84,7 +84,7 @@ class Timeline
   end
 
   def pct_remaining
-    if remaining_time_in_seconds > 0
+    if remaining_time_in_seconds > 0 && duration_in_seconds > 0
       ((remaining_time_in_seconds / duration_in_seconds) * 100).floor
     else
       0

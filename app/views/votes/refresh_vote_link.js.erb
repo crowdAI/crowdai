@@ -1,0 +1,2 @@
+$('#vote-<%= @votable.id %>')
+    .replaceWith('<%= j render partial: 'votes/vote_link', locals: { votable: @votable } %>');

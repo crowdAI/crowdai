@@ -8,6 +8,7 @@
     <div class="pull-right">
       Posted by <%= link_to post.participant.name, participant_path(post.participant) %>,
                 <%= time_ago_in_words(post.created_at) %> ago.
+      <%= render partial: 'votes/vote_link', locals: { votable: post } %>
     </div>
   </li>
   <hr/>

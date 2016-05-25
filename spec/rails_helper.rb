@@ -1,25 +1,39 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 
-abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
 require 'devise'
-require 'support/factory_girl'
-require 'shoulda/matchers'
+require 'capybara/rails'
+require 'capybara/rspec'
+require 'capybara-screenshot/rspec'
+#require 'support/factory_girl'
+#require 'shoulda/matchers'
 require 'support/controller_helpers'
+require 'support/login_helper'
+require 'support/navigation_helpers'
 
 ActiveRecord::Migration.maintain_test_schema!
 
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+Capybara.current_driver = :selenium
+Capybara.javascript_driver = :chrome
+puts Capybara.current_driver
+
 RSpec.configure do |config|
+  #Capybara.reset_sessions!
 
   #config.filter_run :focus => true
   config.include FactoryGirl::Syntax::Methods
-  config.include Devise::TestHelpers, type: :controller
   config.infer_spec_type_from_file_location!
 
   config.include Devise::TestHelpers, type: :controller
   config.include ControllerHelpers, type: :controller
+
+  config.include LoginHelper, type: :feature
+  config.include NavigationHelpers, type: :feature
 
   config.use_transactional_fixtures = false
 

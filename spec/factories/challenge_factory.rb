@@ -18,6 +18,7 @@ FactoryGirl.define do
     end
 
     trait :with_events do
+      challenge "Running Challenge"
       status_cd 'running'
       events { [ build(:event, event_time: 2.days.ago),
                 build(:event, event_time: 2.days.since) ] }
@@ -31,6 +32,7 @@ FactoryGirl.define do
     end
 
     trait :with_milestones do
+      challenge "Running Challenge"
       status_cd 'running'
       events { [ build(:event, event_time: 2.days.ago),
                  build(:event, event_time: 1.day.ago),

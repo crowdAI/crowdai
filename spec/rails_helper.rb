@@ -20,7 +20,6 @@ Capybara.register_driver :chrome do |app|
 end
 Capybara.current_driver = :selenium
 Capybara.javascript_driver = :chrome
-puts Capybara.current_driver
 
 RSpec.configure do |config|
   #Capybara.reset_sessions!

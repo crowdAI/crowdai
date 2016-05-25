@@ -118,4 +118,31 @@ feature "site navigation for signed in participant", js: true do
     end
   end
 
+
+    describe "page footer links" do
+      scenario "contact us link" do
+        visit_challenge(challenge)
+        click_link "Contact us"
+        expect(page).to have_text("At crowdAI we would love to hear from you.")
+      end
+
+      scenario "privacy link" do
+        visit_challenge(challenge)
+        click_link "Privacy"
+        expect(page).to have_text("In order to receive information about your Personal Data, the purposes and the parties the Data is shared with, contact the Owner.")
+      end
+
+      scenario "terms of service" do
+        visit_challenge(challenge)
+        click_link "Terms of Service"
+        expect(page).to have_text("The following terms and conditions govern all use of the crowdAI.org website and all content, services, and products available at or through the website")
+      end
+
+      scenario "twitter link" do
+        visit_challenge(challenge)
+        find(".fa-twitter").click
+        expect(page).to have_content "@crowd_ai"
+      end
+    end
+
 end

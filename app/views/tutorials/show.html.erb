@@ -1,68 +1,18 @@
-<div id="wrapper" class="toggled">
-  <div id="sidebar-menu-wrapper">
-    <ul class="sidebar-menu-nav">
-      <a href='#menu-toggle' class='btn btn-default' id="menu-toggle">T</a>
-      <li class="sidebar-brand">
-        <a href="#">Knowledge Base</a>
-        <button class="btn btn-default outline pull-right">
-          <%= image_tag("crowdAI icon.png", size: "20x20") %>
-        </button>
-      </li>
-      <li><a href="#">Getting Started</a>
-        <button class="btn btn-default outline pull-right">
-          <%= image_tag("crowdAI icon.png", size: "20x20") %>
-        </button>
-      </li>
-      <li><%= link_to 'Caffe', tutorial_path(1) %></a>
-        <button class="btn btn-default outline pull-right">
-          <%= image_tag("crowdAI icon.png", size: "20x20") %>
-        </button>
-      </li>
-      <li><%= link_to 'Tensor Flow', tutorial_path(2) %>
-        <button class="btn btn-default outline pull-right">
-          <%= image_tag("crowdAI icon.png", size: "20x20") %>
-        </button>
-      </li>
-      <li><a href="#">Torch</a>
-        <button class="btn btn-default outline pull-right">
-          <%= image_tag("crowdAI icon.png", size: "20x20") %>
-        </button>
-      </li>
-      <li><a href="#">Scikit-Learn</a>
-        <button class="btn btn-default outline pull-right">
-          <%= image_tag("crowdAI icon.png", size: "20x20") %>
-        </button>
-      </li>
-      <li><a href="#">Octave</a>
-        <button class="btn btn-default outline pull-right">
-          <%= image_tag("crowdAI icon.png", size: "20x20") %>
-        </button>
-      </li>
-      <li><a href="#">Keras</a>
-        <button class="btn btn-default outline pull-right">
-          <%= image_tag("crowdAI icon.png", size: "20x20") %>
-        </button>
-      </li>
-    </ul>
-  </div>
-  <div id="page-content-wrapper">
+<%= render partial: 'sidebar' %>
+
+<div class="page-content-container">
+  <div class="article-header">
     <div class="row">
-      <div class="col-md-1">
+      <div class="col-md-3">
         <%= render partial: 'votes/vote_link', locals: { votable: @tutorial } %>
-        Created by <%= link_to @tutorial.participant.name, participant_path(@tutorial.participant) %>
+        Created by
+        <%= link_to @tutorial.participant.name, participant_path(@tutorial.participant) %>
       </div>
-      <div class="col-md-1 col-md-offset-10">
+      <div class="col-md-1 col-md-offset-7">
         <%= link_to 'New Tutorial', new_tutorial_path, class: 'btn btn-primary outline' %>
       </div>
     </div>
-
-    <iframe src='<%= @tutorial.url %>' width="100%" height="1000" frameborder=0 id="rails_iframe">error!</iframe>
   </div>
-</div>
 
-<script>
-  $("#menu-toggle").click(function(e){
-    e.preventDefault();
-    $('#wrapper').toggleClass("toggled");
-  });
-</script>
+  <iframe src='<%= @tutorial.url %>' width="100%" height="1000" frameborder=0 id="rails_iframe">error!</iframe>
+</div>

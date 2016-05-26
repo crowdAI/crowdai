@@ -1,0 +1,12 @@
+<% content_for(:sidebar) do %>
+    <ul class="nav nav-stacked sidebar-menu">
+      <li><%= link_to 'Knowledge Base', tutorials_path, class: 'sidebar-heading' %></li>
+      <li><%= link_to 'Getting Started', tutorials_path %></li>
+      <li><%= link_to 'Caffe', tutorial_path(1) %></li>
+      <li><%= link_to 'Tensor Flow', tutorial_path(2) %></li>
+      <li><%= link_to 'Torch', tutorial_path(2) %></li>
+      <li><%= link_to 'Scikit-Learn', tutorial_path(2) %></li>
+      <li><%= link_to 'Octave', tutorial_path(2) %></li>
+      <li><%= link_to 'Keras', tutorial_path(2) %></li>
+    </ul>
+<% end %>

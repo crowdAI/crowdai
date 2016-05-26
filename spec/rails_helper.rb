@@ -12,6 +12,9 @@ require 'capybara-screenshot/rspec'
 require 'support/controller_helpers'
 require 'support/login_helper'
 require 'features/support/navigation_helpers'
+require 'features/support/challenge_helpers'
+
+
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -33,6 +36,8 @@ RSpec.configure do |config|
 
   config.include LoginHelper, type: :feature
   config.include NavigationHelpers, type: :feature
+  config.include ChallengeHelpers, type: :feature
+
 
   config.use_transactional_fixtures = false
 

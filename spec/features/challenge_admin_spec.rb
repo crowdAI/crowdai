@@ -1,19 +1,30 @@
 require "rails_helper"
-#require 'pp'
-#require 'views/devise/devise_sessions_new'
-#require 'views/landing_page'
 
 feature 'Challenge CRUD for admin user', js: true do
   let!(:admin) { create(:participant, :admin) }
-  let!(:running_challenge) { create(:challenge, :with_events) }
+  let!(:organizer) { create(:organizer) }
+  let!(:challenge_data) { build(:challenge) }
 
-  describe "create new organizer" do
+  describe "create new challenge page" do
     before(:example) do
-      visit_organizers_index
+      visit_organizer(admin,organizer)
+      click_link '+ New Challenge'
     end
-    specify { expect(page).to have_link 'Add Organizer' }
 
+    scenario 'Overview page' do
+      click_link 'Overview'
+      fill_in 'Challenge',          with: challenge_data.challenge
+      fill_in 'Tagline',            with: challenge_data.tagline
+      select organizer.organizer,   from: 'Organizer'
+      select 'Draft',               from: 'Status'
+      click_button 'Create Challenge'
+      expect(page)
+    end
   end
+
+
+
+
 end
 
 

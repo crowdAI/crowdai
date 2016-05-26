@@ -11,7 +11,7 @@ require 'capybara-screenshot/rspec'
 #require 'shoulda/matchers'
 require 'support/controller_helpers'
 require 'support/login_helper'
-require 'support/navigation_helpers'
+require 'features/support/navigation_helpers'
 
 ActiveRecord::Migration.maintain_test_schema!
 

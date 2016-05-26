@@ -4,12 +4,12 @@
                   class: 'navbar-underline' %></li>
 <% end %>
 
-
 <%#= link_to "Tutorials", tutorials_path, class: 'navbar-underline' %>
 <li><%= link_to "Knowledge Base", 'http://crowdai.github.io/Knowledge-Base/', class: 'navbar-underline' %></li>
 <li><%= link_to "Challenges", challenges_path, class: 'navbar-underline' %></li>
 
 
 <% if current_participant.admin? %>
+  <li><%= link_to "Organizers", organizers_path, class: 'navbar-underline' %></li>
   <li><%= link_to 'Admin', admin_root_path, class: 'navbar-underline' %></li>
 <% end %>

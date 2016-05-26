@@ -1,5 +1,5 @@
 require "rails_helper"
-require 'capybara/email/rspec'
+#require 'capybara/email/rspec'
 
 RSpec.feature "participant", type: :feature do
   describe "successful participant registration" do

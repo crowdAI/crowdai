@@ -1,8 +1,23 @@
 require "rails_helper"
-require 'pp'
-require 'views/devise/devise_sessions_new'
-require 'views/landing_page'
+#require 'pp'
+#require 'views/devise/devise_sessions_new'
+#require 'views/landing_page'
 
+feature 'Challenge CRUD for admin user', js: true do
+  let!(:admin) { create(:participant, :admin) }
+  let!(:running_challenge) { create(:challenge, :with_events) }
+
+  describe "create new organizer" do
+    before(:example) do
+      visit_organizers_index
+    end
+    specify { expect(page).to have_link 'Add Organizer' }
+
+  end
+end
+
+
+=begin
 
 RSpec.feature "challenge", type: :feature do
   before(:each) do
@@ -35,3 +50,4 @@ RSpec.feature "challenge", type: :feature do
   end
 
 end
+=end

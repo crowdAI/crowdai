@@ -29,7 +29,7 @@
     </div>
 
     <div class="col-md-8">
-      <% if @challenge.timeline.pct_passed < 50 %>
+      <% if @challenge.timeline.pct_passed && @challenge.timeline.pct_passed < 50 %>
 
         <div class="progress">
           <div class="progress-bar" role="progressbar" style="width: <%= @challenge.timeline.pct_passed %>%;">

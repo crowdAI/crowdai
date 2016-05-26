@@ -1,0 +1,15 @@
+<%= simple_form_for(@tutorial) do |f| %>
+
+  <div class="form-inputs">
+    <%= f.input :article %>
+    <%= f.input :url %>
+    <%= f.hidden_field :participant_id, value: current_participant.id %>
+    <% if current_participant.admin? %>
+      <%= f.input :public_tutorial %>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

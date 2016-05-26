@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525084054) do
+ActiveRecord::Schema.define(version: 20160526075046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -284,6 +284,17 @@ UNION
   add_index "topics", ["challenge_id"], :name=>"index_topics_on_challenge_id", :using=>:btree
   add_index "topics", ["participant_id"], :name=>"index_topics_on_participant_id", :using=>:btree
 
+  create_table "tutorials", force: :cascade do |t|
+    t.string   "article"
+    t.string   "url"
+    t.integer  "participant_id"
+    t.integer  "vote_count"
+    t.datetime "created_at",      :null=>false
+    t.datetime "updated_at",      :null=>false
+    t.boolean  "public_tutorial", :default=>false
+  end
+  add_index "tutorials", ["participant_id"], :name=>"index_tutorials_on_participant_id", :using=>:btree
+
   create_table "votes", force: :cascade do |t|
     t.integer  "votable_id",     :null=>false
     t.string   "votable_type",   :null=>false
@@ -305,5 +316,6 @@ UNION
   add_foreign_key "submissions", "participants"
   add_foreign_key "topics", "challenges"
   add_foreign_key "topics", "participants"
+  add_foreign_key "tutorials", "participants"
   add_foreign_key "votes", "participants"
 end

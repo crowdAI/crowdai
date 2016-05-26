@@ -2,6 +2,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
 
+  resources :tutorials
   mount Sidekiq::Web => '/sidekiq'
 
   get 'markdown_editor/create'

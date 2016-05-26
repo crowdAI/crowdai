@@ -65,6 +65,10 @@ Rails.application.routes.draw do
     resources :votes, only: [:create, :destroy]
   end
 
+  resources :tutorials do
+    resources :votes, only: [:create, :destroy]
+  end
+
   get '/pages/*id' => 'pages#show', as: :page, format: false
 
   # different home for public / auth users

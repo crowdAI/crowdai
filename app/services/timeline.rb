@@ -54,13 +54,13 @@ class Timeline
   def remaining_text
     return nil if !self.valid?
     if @challenge.running?
-      if remaining_time_in_hours > 0
+      if remaining_time_in_days > 0
         "#{remaining_time_in_days} days remaining"
       else
         "#{remaining_time_in_hours} hours remaining"
       end
     else
-      "completed"
+      @challenge.status
     end
   end
 

@@ -15,26 +15,25 @@
     </div>
   </div>
 
+  <% if !@challenge.perpetual_challenge %>
   <div class="hidden-xs hidden-sm">
-  <br/>
+    <br/>
 
-  <% if @challenge.timeline.present? %>
 
-  <div class="row">
-    <div class="col-md-1 col-md-offset-1">
-      <div class="mini-calendar pull-left">
-        <strong><%= @challenge.timeline.start_month %></strong>
-        <span><%= @challenge.timeline.start_day %></span>
+    <div class="row">
+      <div class="col-md-1 col-md-offset-1">
+        <div class="mini-calendar pull-left">
+          <strong><%= @challenge.timeline.start_month %></strong>
+          <span><%= @challenge.timeline.start_day %></span>
+        </div>
       </div>
-    </div>
 
-    <div class="col-md-8">
-      <% if @challenge.timeline.pct_passed && @challenge.timeline.pct_passed < 50 %>
+      <div class="col-md-8">
+        <% if @challenge.timeline.pct_passed && @challenge.timeline.pct_passed < 50 %>
 
         <div class="progress">
-          <div class="progress-bar" role="progressbar" style="width: <%= @challenge.timeline.pct_passed %>%;">
-          </div>
-            <span class="challenge-progress"><%= @challenge.timeline.remaining_text %></span>
+          <div class="progress-bar" role="progressbar" style="width: <%= @challenge.timeline.pct_passed %>%;"></div>
+          <span class="challenge-progress"><%= @challenge.timeline.remaining_text %></span>
         </div>
 
       <% else %>
@@ -43,31 +42,33 @@
             <span class="challenge-progress"><%= @challenge.timeline.remaining_text %></span>
           </div>
         </div>
-      <% end %>
+        <% end %>
+      </div>
+
+
+      <div class="col-md-1">
+        <div class="mini-calendar pull-right">
+          <strong><%= @challenge.timeline.end_month %></strong>
+          <span><%= @challenge.timeline.end_day %></span>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
     </div>
+    <!-- row -->
 
-    <% end %>
-
-    <div class="col-md-1">
-      <div class="mini-calendar pull-right">
-        <strong><%= @challenge.timeline.end_month %></strong>
-        <span><%= @challenge.timeline.end_day %></span>
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="pull-left">
+          <h6><%= @challenge.timeline.start_date %></h6>
+        </div>
+        <div class="pull-right">
+          <h6><%= @challenge.timeline.end_date %></h6>
+        </div>
       </div>
     </div>
-    <div class="col-md-1"></div>
-  </div><!-- row -->
-
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <div class="pull-left">
-        <h6><%= @challenge.timeline.start_date %></h6>
-      </div>
-      <div class="pull-right">
-        <h6><%= @challenge.timeline.end_date %></h6>
-      </div>
-    </div>
-  </div>
+  </div><!-- hidden xs -->
+  <% end %>
 </div>
-</div><!-- challenge-header -->
+<!-- challenge-header -->
 
 <% end %>

@@ -18,6 +18,10 @@ class Challenge < ActiveRecord::Base
   # accepts_nested_attributes_for :submissions, reject_if: :all_blank, allow_destroy: true TODO cleanup controller
 
   as_enum :status, [:draft, :running, :completed, :cancelled], map: :string
+  as_enum :primary_grader, [:f1, :logloss ], map: :string
+  as_enum :secondary_grader, [:f1, :logloss, :not_used], map: :string
+
+
   validates_presence_of :status
 
   validates_presence_of :challenge

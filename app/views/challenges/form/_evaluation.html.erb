@@ -2,10 +2,15 @@
   <h1>Evaluation</h1>
   <div class="row">
     <div class="col-md-3">
-      <%= f.input :score_sort, collection: enum_option_pairs(Challenge, :score_sort) %>
+      <%= f.input :primary_grader, collection: enum_option_pairs(Challenge, :primary_grader) %>
+      <%= f.input :primary_sort_order, label: "Primary sort", collection: enum_option_pairs(Challenge, :primary_sort_order) %>
     </div>
     <div class="col-md-3">
-      <%= f.input :score_secondary_sort, collection: enum_option_pairs(Challenge, :score_secondary_sort) %>
+      <%= f.input :secondary_grader, collection: enum_option_pairs(Challenge, :secondary_grader) %>
+      <%= f.input :secondary_sort_order, label: "Secondary sort", collection: enum_option_pairs(Challenge, :secondary_sort_order) %>
+    </div>
+    <div class="col-md-3">
+      <%= f.input :grading_factor %>
     </div>
   </div>
 
@@ -35,6 +40,6 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: 'btn btn-primary outline' %>
   </div>
 </div>

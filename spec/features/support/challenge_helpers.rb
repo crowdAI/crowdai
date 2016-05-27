@@ -21,8 +21,10 @@ module ChallengeHelpers
     find('#challenge_description_markdown').set(challenge_data.description_markdown)
 
     find('#evaluation-tab').click
-    select 'Ascending',           from: 'Score sort'
-    select 'Not used',            from: 'Score secondary sort'
+    select 'F1',                  from: 'Primary grader'
+    select 'Ascending',           from: 'Primary sort'
+    select 'Logloss',             from: 'Secondary grader'
+    select 'Descending',          from: 'Secondary sort'
     find('#challenge_evaluation_markdown').set(challenge_data.evaluation_markdown)
 
     find('#rules-tab').click

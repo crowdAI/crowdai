@@ -1,29 +1,34 @@
 class Grader
   include HTTParty
+  debug_output $stdout
+  #base_uri "#{ENV["GRADER"]}/api/v1/"
+  base_uri "http://54.184.7.125/api/v1"
 
-  def grade(submission_id)
-    key = get_key(submission_id)
-    if key
-      response = call_grader(submission_id,key)
+  def initialize(submission_id)
+    @submission = Submission.find(submission_id)
+  end
+
+
+  def grade
+    @body = api_body
+    if @body
+      response = call_grader
       evaluate_response(submission_id,response)
     else
-      Submission.update(submission_id, grading_status: 'failed', grading_message: 'Files were not received by server.')
-      raise "Grader called for submission #{submission_id} but key cannot be found"
+      Submission.update(@submission_id, grading_status: 'failed', grading_message: 'Files were not received by server.')
+      raise "Grader called for submission #{@submission_id} but key cannot be found"
     end
   end
 
 
-  def get_key(submission_id)
-    s = Submission.find(submission_id)
-    key = s.submission_files.first.submission_file_s3_key
-  end
 
-
-  def call_grader(submission_id,key)
+  def call_grader
     begin
-      response = HTTParty.get("http://54.184.7.125/api/v1/plantvillage_evaluation?submission_id=#{submission_id}&submission_key=#{key}", timeout: 1200)
+      response = self.class.post('/grade',@body)
+      puts response
+      #response = HTTParty.get("http://54.184.7.125/api/v1/plantvillage_evaluation?submission_id=#{submission_id}&submission_key=#{key}", timeout: 1200)
     rescue => e
-      Submission.update(submission_id, grading_status: 'failed', grading_message: 'Grading process system error.')
+      Submission.update(@submission_id, grading_status: 'failed', grading_message: 'Grading process system error.')
       raise e
     end
   end
@@ -44,6 +49,29 @@ class Grader
       Submission.update(submission_id, grading_status: 'failed', grading_message: 'Grading process system error.')
       raise "API call to grader failed #{response.inspect}"
     end
+  end
+
+  private
+
+  def api_body
+    c = @submission.challenge
+    body = { body: { primary_grader: c.primary_grader,
+                         secondary_grader: c.secondary_grader,
+                         primary_sort_order: c.primary_sort_order_cd,
+                         secondary_sort_order: c.secondary_sort_order_cd,
+                         grading_factor: c.grading_factor,
+                         reference_key: get_reference_key,
+                         participant_key: get_participant_key }}
+  end
+
+
+  def get_participant_key
+    key = @submission.submission_files.first.submission_file_s3_key
+  end
+
+
+  def get_reference_key
+    'abcd'
   end
 
 end

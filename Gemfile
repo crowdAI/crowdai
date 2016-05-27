@@ -15,7 +15,7 @@ gem 'pundit'
 
 # monitoring
 gem "rorvswild"
-#gem "skylight"
+gem "skylight"
 #gem "brakeman", :require => false
 
 
@@ -112,7 +112,7 @@ end
 group :development, :test do
   gem 'byebug'
   gem 'faker'
-  #gem 'spring'
+  gem 'spring'
   #gem 'capybara-email'
   gem 'table_print'
   #gem 'regressor', git: 'https://github.com/ndea/regressor.git', branch: 'master'

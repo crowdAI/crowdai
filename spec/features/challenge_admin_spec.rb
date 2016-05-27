@@ -30,8 +30,12 @@ feature 'Challenge CRUD for admin user', js: true do
       fill_in 'Event',        with: 'Start of event'
 
       click_link 'Add Milestone'
-      fill_in 'Seq',          with: '1'
-      fill_in 'Event',        with: 'End of event'
+      seq_fields = page.all('input[id^="challenge_events_attributes_"][id$="_seq"]')
+      seq_fields[1].set('1')
+
+      event_fields = page.all('input[id^="challenge_events_attributes_"][id$="_event"]')
+      event_fields[1].set('End of event')
+      #sleep(5)
 
       click_button 'Create Challenge'
       expect(page).to have_content "Challenge was successfully created."
@@ -44,48 +48,33 @@ feature 'Challenge CRUD for admin user', js: true do
       expect(page).to have_content 'Editing Challenge'
     end
 
-
     scenario 'create challenge with dataset' do
-      skip("spec to be coded")
+      create_perpetual_challenge(challenge_data)
+      click_link 'Dataset'
+      click_link 'Add file'
+      fill_in 'Seq',                with: '1'
+      fill_in 'Description',        with: 'Test Filename'
+      #find('#dataset_file_dataset_file_s3_key').click
+      attach_file('dataset_file_dataset_file_s3_key', Rails.root + 'spec/support/files/test_text_file.txt')
+      expect(page).not_to have_content "failed"
+      click_button "Create File"  # TODO
     end
 
+      scenario "challenge admin must choose primary grading method and sort" do
+        skip("spec to be coded")
+      end
+
+      scenario "challenge admin can choose secondary grading method and sort" do
+        skip("spec to be coded")
+      end
+
+      scenario "challenge admin can choose percentage for grading method" do
+        skip("spec to be coded")
+      end
+
+      scenario "challenge admin can modify percentage for grading method" do
+        skip("spec to be coded")
+      end
+
   end
-
-
 end
-
-
-=begin
-
-RSpec.feature "challenge", type: :feature do
-  before(:each) do
-    @participant = create :participant
-    @admin_participant = create :participant, :admin
-    @organizer =  create :organizer
-    @second_organizer = create :organizer, :second_organizer
-    @organizer_participant = create :participant, organizer_id: @organizer.id
-    @draft_challenge = create :challenge
-    @running_challenge = create :challenge, :running
-    @login_page = DeviseSessionsNew.new
-  end
-
-  describe "grading parameters" do
-    scenario "challenge admin must choose primary grading method and sort"
-      skip("spec to be coded")
-    end
-
-    scenario "challenge admin can choose secondary grading method and sort"
-      skip("spec to be coded")
-    end
-
-    scenario "challenge admin can choose percentage for grading method"
-      skip("spec to be coded")
-    end
-
-    scenario "challenge admin can modify percentage for grading method"
-      skip("spec to be coded")
-    end
-  end
-
-end
-=end

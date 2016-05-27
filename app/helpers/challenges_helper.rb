@@ -5,7 +5,7 @@ module ChallengesHelper
     if challenge.image
       challenge.image.image.url(:medium)
     else
-      image_path 'not found'  # TODO
+      image_path 'image_not_found'
     end
   end
 

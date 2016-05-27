@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  article: MyString
+  url: MyString
+  participant_id: 
+  status_cd: MyString
+  vote_count: 1
+
+two:
+  article: MyString
+  url: MyString
+  participant_id: 
+  status_cd: MyString
+  vote_count: 1

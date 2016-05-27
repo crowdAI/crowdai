@@ -15,8 +15,8 @@ gem 'pundit'
 
 # monitoring
 gem "rorvswild"
-gem "skylight"
-gem "brakeman", :require => false
+#gem "skylight"
+#gem "brakeman", :require => false
 
 
 # model
@@ -26,7 +26,6 @@ gem 'seed_dump'
 gem 'validate_url'
 
 # forms / data manipulation / charts
-gem 'browser'
 gem 'simple_form'
 gem 'country_select'
 #gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables-rails.git'
@@ -45,10 +44,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem "gon"
 #gem "jquery-fileupload-rails"
 gem 'turbolinks'
 gem 'jquery-turbolinks'
-gem 'gon'
 gem 'lodash-rails'
 
 # css
@@ -113,8 +112,8 @@ end
 group :development, :test do
   gem 'byebug'
   gem 'faker'
-  gem 'spring'
-  gem 'capybara-email'
+  #gem 'spring'
+  #gem 'capybara-email'
   gem 'table_print'
   #gem 'regressor', git: 'https://github.com/ndea/regressor.git', branch: 'master'
 end
@@ -122,11 +121,13 @@ end
 group :test do
   gem "rspec-rails"
   gem "factory_girl_rails"
-  gem 'timecop'
-  gem 'database_cleaner'
   gem 'simplecov', :require => false
-  gem 'shoulda'
-  gem 'shoulda-matchers', require: false
   gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'capybara-screenshot'
+  gem 'database_cleaner'
   gem "launchy"
+  gem 'shoulda'
+  gem 'timecop'
+  gem 'shoulda-matchers', require: false
 end

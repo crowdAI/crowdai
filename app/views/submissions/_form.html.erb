@@ -30,29 +30,33 @@
 
   <%= f.input :framework, :collection => Submission::FRAMEWORKS.sort.map {|k,v| [v,k]} %>
 
-  <div id="content">
-    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+  <div class="markdown-editor">
+    <ul class="nav nav-tabs" data-tabs="tabs">
       <li class="active">
-        <a href="#editor-pane" data-toggle="tab">Write</a>
+        <a href="#editor-pane-description" data-toggle="tab">Write</a>
       </li>
       <li>
-        <a href="#preview-pane" data-toggle="tab">Preview</a>
+        <a href="#preview-pane-description" class="preview-pane-link" data-toggle="tab">Preview</a>
       </li>
     </ul>
-    <div id="my-tab-content" class="tab-content">
-      <div class="tab-pane active" id="editor-pane">
-        <%= f.label ' ' %>
+    <div class="tab-content">
+      <div class="tab-pane active" id="editor-pane-description">
         <%= render 'markdown_editor/toolbar' %>
-        <%= f.text_area :description, id: 'markdown_textarea', class: 'form-control', placeholder: 'Please describe your submission.', rows: 10 %>
+        <%= f.text_area :description_markdown,
+                        class: 'form-control markdown-textarea',
+                        placeholder: 'Please describe your submission.',
+                        required: true,
+                        rows: 20 %>
       </div>
-      <div class="tab-pane" id="preview-pane">
+      <div class="tab-pane markdown-preview-pane" id="preview-pane-description">
         <div id="markdown-preview"></div>
-      </div>
-      <div class="has-error">
-        <%= f.error :description %>
       </div>
     </div>
   </div>
+  <p>
+    <%= @submission.errors[:description_markdown].first if @submission.errors[:description_markdown] %>
+  </p>
+
 
 </div>
 <br/>

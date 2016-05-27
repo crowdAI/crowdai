@@ -5,7 +5,7 @@ module FontAwesomeHelper
   end
 
   def awesome_icon_tag(icon_class)
-    "<i class='fa #{ icon_class }'></i>"
+    "<i class='fa fa-#{ icon_class }'></i>"
   end
 
 # usage:

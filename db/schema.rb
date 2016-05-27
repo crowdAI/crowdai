@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160520125308) do
+ActiveRecord::Schema.define(version: 20160526075046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20160520125308) do
     t.text     "resources_markdown"
     t.text     "dataset_description_markdown"
     t.text     "submission_instructions_markdown"
+    t.boolean  "perpetual_challenge",              :default=>false
   end
   add_index "challenges", ["organizer_id"], :name=>"index_challenges_on_organizer_id", :using=>:btree
 
@@ -104,13 +105,14 @@ ActiveRecord::Schema.define(version: 20160520125308) do
     t.integer  "challenge_id"
     t.integer  "participant_id"
     t.float    "score"
-    t.datetime "created_at",        :null=>false
-    t.datetime "updated_at",        :null=>false
+    t.datetime "created_at",           :null=>false
+    t.datetime "updated_at",           :null=>false
     t.text     "description"
     t.string   "framework"
     t.float    "score_secondary"
     t.string   "grading_message"
-    t.string   "grading_status_cd", :default=>"ready"
+    t.string   "grading_status_cd",    :default=>"ready"
+    t.text     "description_markdown"
   end
   add_index "submissions", ["challenge_id"], :name=>"index_submissions_on_challenge_id", :using=>:btree
   add_index "submissions", ["participant_id"], :name=>"index_submissions_on_participant_id", :using=>:btree
@@ -134,10 +136,10 @@ ActiveRecord::Schema.define(version: 20160520125308) do
     t.boolean  "notify",         :default=>true
     t.datetime "created_at",     :null=>false
     t.datetime "updated_at",     :null=>false
+    t.integer  "vote_count",     :default=>0
   end
   add_index "posts", ["participant_id"], :name=>"index_posts_on_participant_id", :using=>:btree
   add_index "posts", ["topic_id"], :name=>"index_posts_on_topic_id", :using=>:btree
-
 
 
   create_table "participants", force: :cascade do |t|
@@ -203,6 +205,26 @@ ActiveRecord::Schema.define(version: 20160520125308) do
   add_index "topics", ["challenge_id"], :name=>"index_topics_on_challenge_id", :using=>:btree
   add_index "topics", ["participant_id"], :name=>"index_topics_on_participant_id", :using=>:btree
 
+  create_table "tutorials", force: :cascade do |t|
+    t.string   "article"
+    t.string   "url"
+    t.integer  "participant_id"
+    t.integer  "vote_count"
+    t.datetime "created_at",      :null=>false
+    t.datetime "updated_at",      :null=>false
+    t.boolean  "public_tutorial", :default=>false
+  end
+  add_index "tutorials", ["participant_id"], :name=>"index_tutorials_on_participant_id", :using=>:btree
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "votable_id",     :null=>false
+    t.string   "votable_type",   :null=>false
+    t.integer  "participant_id"
+    t.datetime "created_at",     :null=>false
+    t.datetime "updated_at",     :null=>false
+  end
+  add_index "votes", ["participant_id"], :name=>"index_votes_on_participant_id", :using=>:btree
+
   add_foreign_key "challenges", "organizers"
   add_foreign_key "dataset_file_downloads", "dataset_files"
   add_foreign_key "dataset_file_downloads", "participants"
@@ -215,6 +237,8 @@ ActiveRecord::Schema.define(version: 20160520125308) do
   add_foreign_key "submissions", "participants"
   add_foreign_key "topics", "challenges"
   add_foreign_key "topics", "participants"
+  add_foreign_key "tutorials", "participants"
+  add_foreign_key "votes", "participants"
 
 
     create_view "leaderboards", <<-'END_VIEW_LEADERBOARDS', :force => true
@@ -250,51 +274,53 @@ ActiveRecord::Schema.define(version: 20160520125308) do
     ORDER BY l.score DESC, l.score_secondary
     END_VIEW_LEADERBOARDS
 
-    create_view "participant_challenges", <<-'END_VIEW_PARTICIPANT_CHALLENGES', :force => true
-  SELECT c.id,
-      c.id AS challenge_id,
-      p.id AS participant_id,
-      c.organizer_id,
-      c.challenge,
-      c.description,
-      c.rules,
-      c.prizes,
-      c.resources,
-      c.tagline,
-      p.name,
-      p.email,
-      p.last_sign_in_at,
-      p.bio,
-      p.github,
-      p.linkedin,
-      p.twitter
-     FROM challenges c,
-      participants p,
-      submissions s
-    WHERE ((s.challenge_id = c.id) AND (s.participant_id = p.id))
-  UNION
-   SELECT c.id,
-      c.id AS challenge_id,
-      p.id AS participant_id,
-      c.organizer_id,
-      c.challenge,
-      c.description,
-      c.rules,
-      c.prizes,
-      c.resources,
-      c.tagline,
-      p.name,
-      p.email,
-      p.last_sign_in_at,
-      p.bio,
-      p.github,
-      p.linkedin,
-      p.twitter
-     FROM challenges c,
-      participants p,
-      topics t
-    WHERE ((t.challenge_id = c.id) AND ((t.participant_id = p.id) OR (EXISTS ( SELECT 'X'
-             FROM posts ps
-            WHERE ((ps.topic_id = t.id) AND (ps.participant_id = p.id))))))
-    END_VIEW_PARTICIPANT_CHALLENGES
+
+      create_view "participant_challenges", <<-'END_VIEW_PARTICIPANT_CHALLENGES', :force => true
+    SELECT c.id,
+        c.id AS challenge_id,
+        p.id AS participant_id,
+        c.organizer_id,
+        c.challenge,
+        c.description,
+        c.rules,
+        c.prizes,
+        c.resources,
+        c.tagline,
+        p.name,
+        p.email,
+        p.last_sign_in_at,
+        p.bio,
+        p.github,
+        p.linkedin,
+        p.twitter
+       FROM challenges c,
+        participants p,
+        submissions s
+      WHERE ((s.challenge_id = c.id) AND (s.participant_id = p.id))
+    UNION
+     SELECT c.id,
+        c.id AS challenge_id,
+        p.id AS participant_id,
+        c.organizer_id,
+        c.challenge,
+        c.description,
+        c.rules,
+        c.prizes,
+        c.resources,
+        c.tagline,
+        p.name,
+        p.email,
+        p.last_sign_in_at,
+        p.bio,
+        p.github,
+        p.linkedin,
+        p.twitter
+       FROM challenges c,
+        participants p,
+        topics t
+      WHERE ((t.challenge_id = c.id) AND ((t.participant_id = p.id) OR (EXISTS ( SELECT 'X'
+               FROM posts ps
+              WHERE ((ps.topic_id = t.id) AND (ps.participant_id = p.id))))))
+      END_VIEW_PARTICIPANT_CHALLENGES
+
 end

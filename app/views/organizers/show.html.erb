@@ -1,67 +1,62 @@
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <h1><%= @organizer.organizer %></h1>
+<div class="container-medium-grey">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <h1><%= @organizer.organizer %></h1>
 
-    <span class="pull-right">
-      <% if current_participant.admin? || current_participant.organizer_id == @organizer.id %>
+      <span class="pull-right">
+        <% if current_participant.admin? || current_participant.organizer_id == @organizer.id %>
         <%= link_to '+ New Challenge', new_challenge_path, class: 'btn btn-primary outline' %>
-        <%= link_to 'Edit Challenge', edit_organizer_path(@organizer), class: 'btn btn-primary outline' %>
-      <% end %>
-      <% if current_participant.admin? %>
-        <%= link_to 'Delete Organizer',
-                    @organizer,
-                    method: :delete,
-                    data: { confirm: 'Remove this user from the administration of your organizer on CrowdAI?' },
-                    class: 'btn btn-small btn-danger outline' %>
-      <% end %>
-    </span>
+        <%= link_to 'Edit Organizer', edit_organizer_path(@organizer), class: 'btn btn-primary outline' %>
+        <% end %>
+        <% if current_participant.admin? %>
+        <%= link_to 'Delete Organizer', @organizer, method: :delete, data: { confirm: 'Remove this user from the administration of your organizer on CrowdAI?' }, class: 'btn btn-small btn-danger outline' %>
+        <% end %>
+      </span>
 
-    <p>
-      <strong>Address:</strong>
-      <%= @organizer.address %>
-    </p>
+      <p>
+        <strong>Address:</strong>
+        <%= @organizer.address %>
+      </p>
 
-    <p>
-      <strong>Description:</strong>
-      <%= @organizer.description %>
-    </p>
+      <p>
+        <strong>Description:</strong>
+        <%= @organizer.description %>
+      </p>
 
-    <ul class="list-group">
-      <% @challenges.each do |challenge| %>
-      <%= render challenge %>
-      <% end %>
-    </ul>
+      <ul class="list-group">
+        <% @challenges.each do |challenge| %>
+        <%= render challenge %>
+        <% end %>
+      </ul>
 
-    <hr/>
-    <h1>Administrative users</h1>
-    <div class='table-responsive'>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th></th>
-            <th>name</th>
-            <th>Email</th>
-            <th></th>
-          </tr>
-        </thead>
+      <hr/>
+      <h1>Administrative users</h1>
+      <div class='table-responsive'>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th></th>
+              <th>name</th>
+              <th>Email</th>
+              <th></th>
+            </tr>
+          </thead>
 
-        <tbody>
-          <% @organizer.participants.each do |participant| %>
-          <tr>
-            <td><%= participant.name %></td>
-            <td><%= participant.email %></td>
-            <td><%# if current_participant.admin? %>
-                  <%#= link_to 'Remove', [@organizer, participant],
-                                        method: :nullify,
-                                        data: { confirm: 'Remove this user from the administration of your organizer on CrowdAI?' },
-                                        class: 'btn btn-small btn-danger outline' %>
+          <tbody>
+            <% @organizer.participants.each do |participant| %>
+            <tr>
+              <td><%= participant.name %></td>
+              <td><%= participant.email %></td>
+              <td><%# if current_participant.admin? %>
+                <%#= link_to 'Remove', [@organizer, participant], method: :nullify, data: { confirm: 'Remove this user from the administration of your organizer on CrowdAI?' }, class: 'btn btn-small btn-danger outline' %>
                 <%# end %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
 
+    </div>
   </div>
 </div>

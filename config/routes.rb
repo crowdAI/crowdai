@@ -2,6 +2,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
 
+  resources :tutorials
   mount Sidekiq::Web => '/sidekiq'
 
   get 'markdown_editor/create'
@@ -52,13 +53,20 @@ Rails.application.routes.draw do
     resources :topics
   end
 
-
   resources :dataset_files, except: [:show] do
     resources :dataset_file_downloads, only: [:create]
   end
 
   resources :topics do
     resources :posts, only: [:new, :create, :edit, :update, :destroy]
+  end
+
+  resources :posts do
+    resources :votes, only: [:create, :destroy]
+  end
+
+  resources :tutorials do
+    resources :votes, only: [:create, :destroy]
   end
 
   get '/pages/*id' => 'pages#show', as: :page, format: false

@@ -18,7 +18,7 @@ RSpec.feature "submissions", type: :feature do
       page.find('.btn-block', text: 'Submit Entry').click
       page.attach_file('predictionsFile', Rails.root + 'spec/support/files/test_csv_file.csv')
       page.attach_file('modelFile', Rails.root + 'spec/support/files/test_text_file.txt.zip')
-      fill_in 'markdown_textarea', with: 'Submission message'
+      fill_in 'submission_description_markdown', with: 'Submission message'
       click_button 'Create Submission'
       expect(page).to have_text("can't be blank")
     end
@@ -33,6 +33,20 @@ RSpec.feature "submissions", type: :feature do
       click_button 'Create Submission'
       expect(page).to have_text("can't be blank")
     end
+
+    scenario "submission notes are correctly marked up" do
+      visit challenge_path(@challenge)
+      click_link "Submit Entry"
+      page.find('.btn-block', text: 'Submit Entry').click
+      page.attach_file('predictionsFile', Rails.root + 'spec/support/files/test_csv_file.csv')
+      page.attach_file('modelFile', Rails.root + 'spec/support/files/test_text_file.txt.zip')
+      select 'Python-3 Scikit-Learn', from: 'Framework'
+      fill_in 'submission_description_markdown', with: '#Submission message'
+      click_button 'Create Submission'
+      expect(page).to have_text("can't be blank")
+    end
+
+
 
 
     scenario "a competitor must provide be a .csv file as file 1" do

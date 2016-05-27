@@ -9,7 +9,7 @@ $(document).on('ready page:load', function() {
         type: 'GET',
         url: '/markdown_editor/show',
         data: {
-          markdown_text: markdown_text
+          markdown: { markdown_text: markdown_text }
         },
         dataType: 'json',
         success: function(resp){
@@ -20,7 +20,7 @@ $(document).on('ready page:load', function() {
           console.log("markdown could not be rendered due to server error: " + msg);
         }
       }); // ajax
-      
+
     } // if
   });
 });

@@ -35,6 +35,9 @@
 //= require modules/dataset_file_downloads
 //= require modules/devise
 
+// controllers
+//= require controllers/challenges_controller
+
 //= require z.jquery.fileupload
 
 //= require turbolinks

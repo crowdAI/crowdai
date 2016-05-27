@@ -15,7 +15,7 @@
     <div class="col-md-12 text-center">
       <h1><%= @participant.name %></h1>
       <% if @participant.online? %>
-          <h2><i class="fa fa-circle-o-notch fa-spin" style="color:green"></i> <span style="color:green"><b>online now</b></span><h2>
+          <h3><i class="fa fa-circle-o" style="color:green"></i> <span style="color:green"><b>online now</b></span><h3>
       <% else %>
           <h2>Last seen <%= time_ago_in_words(@participant.updated_at) %> ago.</h2>
       <% end %>

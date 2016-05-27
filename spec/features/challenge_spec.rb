@@ -67,6 +67,10 @@ RSpec.feature "challenge", type: :feature do
       expect(page).to have_content(@running_challenge.challenge)
       expect(page).to_not have_content(@draft_challenge.challenge)
     end
+
+    scenario "a challenge can be configured without a timeline" do
+      skip("spec to be coded")
+    end
   end
 
 

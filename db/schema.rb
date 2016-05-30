@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160527122616) do
+ActiveRecord::Schema.define(version: 20160528072650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,9 +55,8 @@ ActiveRecord::Schema.define(version: 20160527122616) do
     t.text     "dataset_description_markdown"
     t.text     "submission_instructions_markdown"
     t.boolean  "perpetual_challenge",              :default=>false
-    t.string   "primary_grader_cd"
-    t.string   "secondary_grader_cd"
     t.float    "grading_factor"
+    t.string   "grader_cd"
   end
   add_index "challenges", ["organizer_id"], :name=>"index_challenges_on_organizer_id", :using=>:btree
 

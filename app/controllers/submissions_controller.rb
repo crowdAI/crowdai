@@ -28,7 +28,7 @@ class SubmissionsController < ApplicationController
   def create
     @submission = Submission.new(submission_params)
     if @submission.save
-      SubmissionGraderJob.perform_later(submission_id: @submission.id)
+      SubmissionGraderJob.perform_later(@submission.id)
       redirect_to challenge_submissions_path(@challenge)
     else
       @errors = @submission.errors
@@ -42,7 +42,7 @@ class SubmissionsController < ApplicationController
   end
 
   def grade
-    @job = SubmissionGraderJob.perform_later(submission_id: @submission.id)
+    @job = SubmissionGraderJob.perform_later(@submission.id)
     render 'admin/submissions/refresh_submission_job'
   end
 

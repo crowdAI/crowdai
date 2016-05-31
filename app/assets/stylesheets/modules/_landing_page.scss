@@ -1,36 +1,36 @@
-/*
-.intro {
-  color: inherit;
-  background-color: $crowdai-bg-medium-grey;
-  //padding: 30px 30px;
-  //padding-bottom: 5vw;
-  height: 30vw;
-
-}
-
-.intro .container {
-  background-size: 80%;
-  background: image-url('crowdai_definition') no-repeat center;
-  height:  15vw;
-  //background: image-url('crowdai_definition') no-repeat center;
-  background-size: 80%;
-  height: 30vw;
-}
-*/
-
-// mirial -
-/*
-.intro h1 {
-  color: $crowdai-text-dark;
-  text-align: center;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 24pt;
+.challenge-badge {
+  padding: .2em .6em .3em;
+  border-radius: .2em;
+  width: 85px;
+  display: inline-block;
   font-weight: bold;
+  text-align: center;
+  color: $crowdai-bg-white;
 }
 
-.intro h5 {
-  color: $crowdai-text-dark;
-  text-align: center;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 18pt;
-}  */
+.challenge-badge.draft {
+  background-color: $brand-info;
+}
+
+.challenge-badge.running {
+  background-color: $brand-primary;
+}
+
+.challenge-badge.completed {
+  background-color: $brand-success;
+}
+
+.challenge-badge.perpetual {
+  background-color: $brand-warning;
+}
+
+
+.challenge-list-detail {
+  margin-bottom: 20px;
+}
+
+.challenge-list-image {
+  min-width: 75px;
+  min-height: 75px;
+  margin: 10px;
+}

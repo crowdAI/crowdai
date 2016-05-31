@@ -1,9 +1,22 @@
 <li>
   <%= link_to challenge_path(challenge) do %>
-    <%= challenge.organizer.organizer %><br/>
-    <b><%= challenge.challenge %></b><br/>
-    <%= challenge.timeline.start_date %> -  
-    <%= challenge.timeline.end_date %>
-    <span class="badge"><%= challenge.status_cd %></span>
+    <div class="row">
+      <div class="col-xs-3 col-md-2">
+        <div class="challenge-list-image">
+          <%= image_tag image_medium_url(challenge),  class: "img-circle" %>
+        </div>
+      </div>
+      <div class="col-xs-7 col-md-10">
+        <h3><%= challenge.challenge %></h3>
+
+        <div class="challenge-list-detail">
+          <span class="challenge-badge <%= challenge.status_cd %>"><%= challenge.status_cd %></span>
+          <span>&ensp;</span>
+          <span class="glyphicon glyphicon-eye-open"></span> 131 views |
+          <span class="glyphicon glyphicon-user"></span> 127 participants |
+          <span class="glyphicon glyphicon-list-alt"></span> 37 submissions
+        </div>
+      </div>
+    </div>
   <% end %>
 </li>

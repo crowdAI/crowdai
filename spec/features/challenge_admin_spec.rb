@@ -45,7 +45,7 @@ feature 'Challenge CRUD for admin user', js: true do
     scenario 'edit challenge after creation' do
       create_perpetual_challenge(challenge_data)
       click_link 'Edit'
-      expect(page).to have_content 'Editing Challenge'
+      expect(page).to have_button 'Update Challenge'
     end
 
     scenario 'create challenge with dataset' do

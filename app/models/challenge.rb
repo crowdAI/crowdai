@@ -18,15 +18,15 @@ class Challenge < ActiveRecord::Base
   # accepts_nested_attributes_for :submissions, reject_if: :all_blank, allow_destroy: true TODO cleanup controller
 
   as_enum :status, [:draft, :running, :completed, :cancelled], map: :string
+  as_enum :grader, [:f1_logloss ], map: :string
+
   validates_presence_of :status
 
   validates_presence_of :challenge
   validates_presence_of :organizer
 
-  as_enum :score_sort, [:ascending, :descending], map: :string
-  validates :score_sort, presence: true
-  as_enum :score_secondary_sort, [:ascending, :descending, :not_used], map: :string
-  validates :score_secondary_sort, presence: true
+  as_enum :primary_sort_order, [:ascending, :descending], map: :string
+  as_enum :secondary_sort_order, [:ascending, :descending, :not_used], map: :string
 
 
   def running?

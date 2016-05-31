@@ -1,3 +1,13 @@
 .markdown-wrap {
     word-wrap: break-word;
 }
+
+.markdown-wrap a {
+  color: $crowdai-red-dark;
+  text-decoration: none;
+}
+
+.markdown-wrap a:hover {
+  color: $crowdai-red-dark;
+  text-decoration: underline;
+}

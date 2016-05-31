@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160528072650) do
+ActiveRecord::Schema.define(version: 20160531063857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20160528072650) do
     t.boolean  "perpetual_challenge",              :default=>false
     t.float    "grading_factor"
     t.string   "grader_cd"
+    t.string   "answer_file_s3_key"
   end
   add_index "challenges", ["organizer_id"], :name=>"index_challenges_on_organizer_id", :using=>:btree
 

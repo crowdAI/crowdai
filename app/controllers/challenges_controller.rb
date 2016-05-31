@@ -56,7 +56,7 @@ class ChallengesController < ApplicationController
                     :rules, :prizes, :resources, :submission_instructions, :primary_sort_order, :secondary_sort_order,
                     :description_markdown, :rules_markdown, :prizes_markdown, :resources_markdown,
                     :dataset_description_markdown, :submission_instructions_markdown, :perpetual_challenge,
-                    :primary_grader, :secondary_grader, :grading_factor,
+                    :primary_grader, :secondary_grader, :grading_factor, :answer_file_s3_key,
                     dataset_attributes: [:id, :challenge_id, :description, :_destroy],
                     events_attributes: [:id, :challenge_id, :seq, :event, :event_time, :_destroy ],
                     submissions_attributes: [:id, :challenge_id, :participant_id, :_destroy ],

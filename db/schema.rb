@@ -11,25 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160531063857) do
+ActiveRecord::Schema.define(version: 20160531083247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_stat_statements"
-
-  create_table "bootsy_image_galleries", force: :cascade do |t|
-    t.integer  "bootsy_resource_id"
-    t.string   "bootsy_resource_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "bootsy_images", force: :cascade do |t|
-    t.string   "image_file"
-    t.integer  "image_gallery_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "challenges", force: :cascade do |t|
     t.integer  "organizer_id"
@@ -274,6 +260,18 @@ UNION
   end
   add_index "submission_files", ["submission_id"], :name=>"index_submission_files_on_submission_id", :using=>:btree
 
+  create_table "submission_grades", force: :cascade do |t|
+    t.integer  "submission_id"
+    t.string   "grading_status_cd"
+    t.string   "grading_message"
+    t.float    "grading_factor"
+    t.float    "score"
+    t.float    "score_secondary"
+    t.datetime "created_at",        :null=>false
+    t.datetime "updated_at",        :null=>false
+  end
+  add_index "submission_grades", ["submission_id"], :name=>"index_submission_grades_on_submission_id", :using=>:btree
+
   create_table "topics", force: :cascade do |t|
     t.integer  "challenge_id"
     t.integer  "participant_id"
@@ -315,6 +313,7 @@ UNION
   add_foreign_key "posts", "participants"
   add_foreign_key "posts", "topics"
   add_foreign_key "submission_files", "submissions"
+  add_foreign_key "submission_grades", "submissions"
   add_foreign_key "submissions", "challenges"
   add_foreign_key "submissions", "participants"
   add_foreign_key "topics", "challenges"

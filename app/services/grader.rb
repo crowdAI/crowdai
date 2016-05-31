@@ -1,8 +1,7 @@
 class Grader
   include HTTParty
   debug_output $stdout
-  #base_uri "#{ENV["GRADER"]}/api/v1/"
-  base_uri "http://localhost:5000/api/v1"
+  base_uri "#{ENV["GRADER"]}/api/v1/"
 
   def initialize(submission_id)
     @submission = Submission.find(submission_id)

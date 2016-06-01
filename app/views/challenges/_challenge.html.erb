@@ -12,9 +12,9 @@
         <div class="challenge-list-detail">
           <span class="challenge-badge <%= challenge.status_cd %>"><%= challenge.status_cd %></span>
           <span>&ensp;</span>
-          <span class="glyphicon glyphicon-eye-open"></span> 131 views &ensp; | &ensp;
-          <span class="glyphicon glyphicon-user"></span> 127 participants &ensp; | &ensp;
-          <span class="glyphicon glyphicon-list-alt"></span> 37 submissions
+          <span class="glyphicon glyphicon-eye-open"></span> <%= challenge.page_views %> views &ensp; | &ensp;
+          <span class="glyphicon glyphicon-user"></span> <%= challenge.participant_count %> participants &ensp; | &ensp;
+          <span class="glyphicon glyphicon-list-alt"></span> <%= challenge.submission_count %> submissions
         </div>
       </div>
     </div>

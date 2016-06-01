@@ -39,6 +39,13 @@ class Challenge < ActiveRecord::Base
   end
 
 
+  def record_page_view
+    self.page_views ||= 0
+    self.page_views += 1
+    self.save
+  end
+
+
   private
   def cache_rendered_markdown
     if evaluation_markdown_changed?

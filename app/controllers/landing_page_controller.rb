@@ -2,6 +2,6 @@ class LandingPageController < ApplicationController
   skip_filter :authenticate_participant!
 
   def index
-    @challenges = Challenge.all
+    @challenges = ChallengeView.where(status_cd: 'running')
   end
 end

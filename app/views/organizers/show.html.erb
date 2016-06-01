@@ -23,11 +23,13 @@
         <%= @organizer.description %>
       </p>
 
-      <ul class="list-group">
-        <% @challenges.each do |challenge| %>
-        <%= render challenge %>
-        <% end %>
-      </ul>
+      <div class="challenges-container">
+        <ul class="challenges-list">
+          <% @challenges.each do |challenge| %>
+            <%= render partial: 'challenges/challenge', locals: { challenge: challenge } %>
+          <% end %>
+        </ul>
+      </div>
 
       <hr/>
       <h1>Administrative users</h1>

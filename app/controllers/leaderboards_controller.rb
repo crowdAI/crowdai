@@ -5,6 +5,7 @@ class LeaderboardsController < ApplicationController
 
   def index
     @leaderboards = @challenge.leaderboards
+    @challenge_view = ChallengeView.find(params[:challenge_id])
   end
 
   def show

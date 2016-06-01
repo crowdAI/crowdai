@@ -30,6 +30,7 @@
 //= require components/s3_direct_upload
 //= require components/upload_button
 //= require components/flash_messages
+//= require ahoy
 
 // modules
 //= require modules/dataset_file_downloads

@@ -11,11 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160601063815) do
+ActiveRecord::Schema.define(version: 20160601071808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_stat_statements"
+
+  create_table "ahoy_events", force: :cascade do |t|
+    t.integer  "visit_id"
+    t.integer  "user_id"
+    t.string   "name"
+    t.jsonb    "properties"
+    t.datetime "time"
+  end
+  add_index "ahoy_events", ["name", "time"], :name=>"index_ahoy_events_on_name_and_time", :using=>:btree
+  add_index "ahoy_events", ["user_id", "name"], :name=>"index_ahoy_events_on_user_id_and_name", :using=>:btree
+  add_index "ahoy_events", ["visit_id", "name"], :name=>"index_ahoy_events_on_visit_id_and_name", :using=>:btree
 
   create_table "challenges", force: :cascade do |t|
     t.integer  "organizer_id"
@@ -78,7 +89,58 @@ ActiveRecord::Schema.define(version: 20160601063815) do
   add_index "submissions", ["challenge_id"], :name=>"index_submissions_on_challenge_id", :using=>:btree
   add_index "submissions", ["participant_id"], :name=>"index_submissions_on_participant_id", :using=>:btree
 
-
+  create_view "challenge_views", <<-'END_VIEW_CHALLENGE_VIEWS', :force => true
+SELECT c.id,
+    c.organizer_id,
+    c.challenge,
+    c.status_cd,
+    c.description,
+    c.evaluation_markdown,
+    c.rules,
+    c.prizes,
+    c.resources,
+    c.created_at,
+    c.updated_at,
+    c.dataset_description,
+    c.submission_instructions,
+    c.tagline,
+    c.evaluation,
+    c.primary_sort_order_cd,
+    c.secondary_sort_order_cd,
+    c.description_markdown,
+    c.rules_markdown,
+    c.prizes_markdown,
+    c.resources_markdown,
+    c.dataset_description_markdown,
+    c.submission_instructions_markdown,
+    c.perpetual_challenge,
+    c.grading_factor,
+    c.grader_cd,
+    c.answer_file_s3_key,
+    c.page_views,
+    ((count(s.*) / 2))::integer AS submission_count,
+    count(cp.*) AS participant_count
+   FROM ((challenges c
+     LEFT JOIN submissions s ON ((s.challenge_id = c.id)))
+     LEFT JOIN ( SELECT c_1.id,
+            c_1.id AS challenge_id,
+            p.id AS participant_id
+           FROM challenges c_1,
+            participants p,
+            submissions s_1
+          WHERE ((s_1.challenge_id = c_1.id) AND (s_1.participant_id = p.id))
+        UNION
+         SELECT c_1.id,
+            c_1.id AS challenge_id,
+            p.id AS participant_id
+           FROM challenges c_1,
+            participants p,
+            topics t
+          WHERE ((t.challenge_id = c_1.id) AND ((t.participant_id = p.id) OR (EXISTS ( SELECT 'X'
+                   FROM posts ps
+                  WHERE ((ps.topic_id = t.id) AND (ps.participant_id = p.id))))))) cp ON ((cp.id = c.id)))
+  GROUP BY c.id, c.page_views
+  END_VIEW_CHALLENGE_VIEWS
 
   create_table "dataset_file_downloads", force: :cascade do |t|
     t.integer  "participant_id"
@@ -123,9 +185,95 @@ ActiveRecord::Schema.define(version: 20160601063815) do
   end
   add_index "images", ["imageable_type", "imageable_id"], :name=>"index_images_on_imageable_type_and_imageable_id", :using=>:btree
 
+  create_view "leaderboards", <<-'END_VIEW_LEADERBOARDS', :force => true
+SELECT l.row_num,
+    l.id,
+    l.challenge_id,
+    l.participant_id,
+    l.name,
+    l.entries,
+    l.score,
+    l.score_secondary,
+    l.created_at,
+    l.updated_at
+   FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS row_num,
+            s.id,
+            s.challenge_id,
+            s.participant_id,
+            p.name,
+            cnt.entries,
+            s.score,
+            s.score_secondary,
+            s.created_at,
+            s.updated_at
+           FROM submissions s,
+            participants p,
+            ( SELECT c.challenge_id,
+                    c.participant_id,
+                    count(c.*) AS entries
+                   FROM submissions c
+                  GROUP BY c.challenge_id, c.participant_id) cnt
+          WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l
+  WHERE (l.row_num = 1)
+  ORDER BY l.score DESC, l.score_secondary
+  END_VIEW_LEADERBOARDS
 
+  create_table "organizers", force: :cascade do |t|
+    t.string   "organizer"
+    t.text     "address"
+    t.text     "description"
+    t.datetime "created_at",  :null=>false
+    t.datetime "updated_at",  :null=>false
+    t.boolean  "approved",    :default=>false
+  end
 
-
+  create_view "participant_challenges", <<-'END_VIEW_PARTICIPANT_CHALLENGES', :force => true
+SELECT c.id,
+    c.id AS challenge_id,
+    p.id AS participant_id,
+    c.organizer_id,
+    c.challenge,
+    c.description,
+    c.rules,
+    c.prizes,
+    c.resources,
+    c.tagline,
+    p.name,
+    p.email,
+    p.last_sign_in_at,
+    p.bio,
+    p.github,
+    p.linkedin,
+    p.twitter
+   FROM challenges c,
+    participants p,
+    submissions s
+  WHERE ((s.challenge_id = c.id) AND (s.participant_id = p.id))
+UNION
+ SELECT c.id,
+    c.id AS challenge_id,
+    p.id AS participant_id,
+    c.organizer_id,
+    c.challenge,
+    c.description,
+    c.rules,
+    c.prizes,
+    c.resources,
+    c.tagline,
+    p.name,
+    p.email,
+    p.last_sign_in_at,
+    p.bio,
+    p.github,
+    p.linkedin,
+    p.twitter
+   FROM challenges c,
+    participants p,
+    topics t
+  WHERE ((t.challenge_id = c.id) AND ((t.participant_id = p.id) OR (EXISTS ( SELECT 'X'
+           FROM posts ps
+          WHERE ((ps.topic_id = t.id) AND (ps.participant_id = p.id))))))
+  END_VIEW_PARTICIPANT_CHALLENGES
 
   create_table "participants", force: :cascade do |t|
     t.string   "email",                  :default=>"", :null=>false
@@ -189,6 +337,32 @@ ActiveRecord::Schema.define(version: 20160601063815) do
   end
   add_index "submission_grades", ["submission_id"], :name=>"index_submission_grades_on_submission_id", :using=>:btree
 
+  create_view "test", <<-'END_VIEW_TEST', :force => true
+SELECT c.id,
+    c.page_views,
+    ((count(s.*) / 2))::integer AS submissions,
+    count(cp.*) AS participant_count
+   FROM ((challenges c
+     LEFT JOIN submissions s ON ((s.challenge_id = c.id)))
+     LEFT JOIN ( SELECT c_1.id,
+            c_1.id AS challenge_id,
+            p.id AS participant_id
+           FROM challenges c_1,
+            participants p,
+            submissions s_1
+          WHERE ((s_1.challenge_id = c_1.id) AND (s_1.participant_id = p.id))
+        UNION
+         SELECT c_1.id,
+            c_1.id AS challenge_id,
+            p.id AS participant_id
+           FROM challenges c_1,
+            participants p,
+            topics t
+          WHERE ((t.challenge_id = c_1.id) AND ((t.participant_id = p.id) OR (EXISTS ( SELECT 'X'
+                   FROM posts ps
+                  WHERE ((ps.topic_id = t.id) AND (ps.participant_id = p.id))))))) cp ON ((cp.id = c.id)))
+  GROUP BY c.id, c.page_views
+  END_VIEW_TEST
 
   create_table "topics", force: :cascade do |t|
     t.integer  "challenge_id"
@@ -214,6 +388,37 @@ ActiveRecord::Schema.define(version: 20160601063815) do
   end
   add_index "tutorials", ["participant_id"], :name=>"index_tutorials_on_participant_id", :using=>:btree
 
+  create_table "visits", force: :cascade do |t|
+    t.string   "visit_token"
+    t.string   "visitor_token"
+    t.string   "ip"
+    t.text     "user_agent"
+    t.text     "referrer"
+    t.text     "landing_page"
+    t.integer  "user_id"
+    t.string   "referring_domain"
+    t.string   "search_keyword"
+    t.string   "browser"
+    t.string   "os"
+    t.string   "device_type"
+    t.integer  "screen_height"
+    t.integer  "screen_width"
+    t.string   "country"
+    t.string   "region"
+    t.string   "city"
+    t.string   "postal_code"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.string   "utm_source"
+    t.string   "utm_medium"
+    t.string   "utm_term"
+    t.string   "utm_content"
+    t.string   "utm_campaign"
+    t.datetime "started_at"
+  end
+  add_index "visits", ["user_id"], :name=>"index_visits_on_user_id", :using=>:btree
+  add_index "visits", ["visit_token"], :name=>"index_visits_on_visit_token", :unique=>true, :using=>:btree
+
   create_table "votes", force: :cascade do |t|
     t.integer  "votable_id",     :null=>false
     t.string   "votable_type",   :null=>false
@@ -222,15 +427,6 @@ ActiveRecord::Schema.define(version: 20160601063815) do
     t.datetime "updated_at",     :null=>false
   end
   add_index "votes", ["participant_id"], :name=>"index_votes_on_participant_id", :using=>:btree
-
-  create_table "organizers", force: :cascade do |t|
-    t.string   "organizer"
-    t.text     "address"
-    t.text     "description"
-    t.datetime "created_at",  :null=>false
-    t.datetime "updated_at",  :null=>false
-    t.boolean  "approved",    :default=>false
-  end
 
   add_foreign_key "challenges", "organizers"
   add_foreign_key "dataset_file_downloads", "dataset_files"
@@ -247,176 +443,4 @@ ActiveRecord::Schema.define(version: 20160601063815) do
   add_foreign_key "topics", "participants"
   add_foreign_key "tutorials", "participants"
   add_foreign_key "votes", "participants"
-
-  create_view "challenge_views", <<-'END_VIEW_CHALLENGE_VIEWS', :force => true
-SELECT c.id,
-    c.organizer_id,
-    c.challenge,
-    c.status_cd,
-    c.description,
-    c.evaluation_markdown,
-    c.rules,
-    c.prizes,
-    c.resources,
-    c.created_at,
-    c.updated_at,
-    c.dataset_description,
-    c.submission_instructions,
-    c.tagline,
-    c.evaluation,
-    c.primary_sort_order_cd,
-    c.secondary_sort_order_cd,
-    c.description_markdown,
-    c.rules_markdown,
-    c.prizes_markdown,
-    c.resources_markdown,
-    c.dataset_description_markdown,
-    c.submission_instructions_markdown,
-    c.perpetual_challenge,
-    c.grading_factor,
-    c.grader_cd,
-    c.answer_file_s3_key,
-    c.page_views,
-    ((count(s.*) / 2))::integer AS submission_count,
-    count(cp.*) AS participant_count
-   FROM ((challenges c
-     LEFT JOIN submissions s ON ((s.challenge_id = c.id)))
-     LEFT JOIN ( SELECT c_1.id,
-            c_1.id AS challenge_id,
-            p.id AS participant_id
-           FROM challenges c_1,
-            participants p,
-            submissions s_1
-          WHERE ((s_1.challenge_id = c_1.id) AND (s_1.participant_id = p.id))
-        UNION
-         SELECT c_1.id,
-            c_1.id AS challenge_id,
-            p.id AS participant_id
-           FROM challenges c_1,
-            participants p,
-            topics t
-          WHERE ((t.challenge_id = c_1.id) AND ((t.participant_id = p.id) OR (EXISTS ( SELECT 'X'
-                   FROM posts ps
-                  WHERE ((ps.topic_id = t.id) AND (ps.participant_id = p.id))))))) cp ON ((cp.id = c.id)))
-  GROUP BY c.id, c.page_views
-  END_VIEW_CHALLENGE_VIEWS
-
-  create_view "participant_challenges", <<-'END_VIEW_PARTICIPANT_CHALLENGES', :force => true
-SELECT c.id,
-    c.id AS challenge_id,
-    p.id AS participant_id,
-    c.organizer_id,
-    c.challenge,
-    c.description,
-    c.rules,
-    c.prizes,
-    c.resources,
-    c.tagline,
-    p.name,
-    p.email,
-    p.last_sign_in_at,
-    p.bio,
-    p.github,
-    p.linkedin,
-    p.twitter
-   FROM challenges c,
-    participants p,
-    submissions s
-  WHERE ((s.challenge_id = c.id) AND (s.participant_id = p.id))
-UNION
- SELECT c.id,
-    c.id AS challenge_id,
-    p.id AS participant_id,
-    c.organizer_id,
-    c.challenge,
-    c.description,
-    c.rules,
-    c.prizes,
-    c.resources,
-    c.tagline,
-    p.name,
-    p.email,
-    p.last_sign_in_at,
-    p.bio,
-    p.github,
-    p.linkedin,
-    p.twitter
-   FROM challenges c,
-    participants p,
-    topics t
-  WHERE ((t.challenge_id = c.id) AND ((t.participant_id = p.id) OR (EXISTS ( SELECT 'X'
-           FROM posts ps
-          WHERE ((ps.topic_id = t.id) AND (ps.participant_id = p.id))))))
-  END_VIEW_PARTICIPANT_CHALLENGES
-
-  create_view "leaderboards", <<-'END_VIEW_LEADERBOARDS', :force => true
-SELECT l.row_num,
-    l.id,
-    l.challenge_id,
-    l.participant_id,
-    l.name,
-    l.entries,
-    l.score,
-    l.score_secondary,
-    l.created_at,
-    l.updated_at
-   FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS row_num,
-            s.id,
-            s.challenge_id,
-            s.participant_id,
-            p.name,
-            cnt.entries,
-            s.score,
-            s.score_secondary,
-            s.created_at,
-            s.updated_at
-           FROM submissions s,
-            participants p,
-            ( SELECT c.challenge_id,
-                    c.participant_id,
-                    count(c.*) AS entries
-                   FROM submissions c
-                  GROUP BY c.challenge_id, c.participant_id) cnt
-          WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l
-  WHERE (l.row_num = 1)
-  ORDER BY l.score DESC, l.score_secondary
-  END_VIEW_LEADERBOARDS
-
-
-
-  execute "
-  CREATE rule update_challenge_views AS
-  ON UPDATE TO challenge_views
-  DO instead (UPDATE challenges
-  SET
-  organizer_id = new.organizer_id,
-  challenge = new.challenge,
-  status_cd = new.status_cd,
-  description = new.description,
-  evaluation_markdown = new.evaluation_markdown,
-  rules = new.rules,
-  prizes = new.prizes,
-  resources = new.resources,
-  created_at = new.created_at,
-  updated_at = new.updated_at,
-  dataset_description = new.dataset_description,
-  submission_instructions = new.submission_instructions,
-  tagline = new.tagline,
-  evaluation = new.evaluation,
-  primary_sort_order_cd = new.primary_sort_order_cd,
-  secondary_sort_order_cd = new.secondary_sort_order_cd,
-  description_markdown = new.description_markdown,
-  rules_markdown = new.rules_markdown,
-  prizes_markdown = new.prizes_markdown,
-  resources_markdown = new.resources_markdown,
-  dataset_description_markdown = new.dataset_description_markdown,
-  submission_instructions_markdown = new.submission_instructions_markdown,
-  perpetual_challenge = new.perpetual_challenge,
-  grading_factor = new.grading_factor,
-  grader_cd = new.grader_cd,
-  answer_file_s3_key = new.answer_file_s3_key,
-  page_views = new.page_views
-  WHERE challenges.id = new.id);
-  "
-
 end

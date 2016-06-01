@@ -50,6 +50,7 @@ class DatasetFilesController < ApplicationController
 
     def set_challenge
       @challenge = Challenge.find(params[:challenge_id])
+      @challenge_view = ChallengeView.find(params[:challenge_id])
     end
 
     def dataset_file_params

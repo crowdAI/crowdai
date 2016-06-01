@@ -58,6 +58,7 @@ class SubmissionsController < ApplicationController
 
     def set_challenge
       @challenge = Challenge.find(params[:challenge_id])
+      @challenge_view = ChallengeView.find(params[:challenge_id])
     end
 
     def submission_params

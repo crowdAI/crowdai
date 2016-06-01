@@ -4,13 +4,15 @@ class ChallengesController < ApplicationController
 
   def index
     if current_participant.admin?
-      @challenges = Challenge.all
+      @challenges = ChallengeView.all
     else
-      @challenges = Challenge.where(status_cd: 'running')
+      @challenges = ChallengeView.where(status_cd: 'running')
     end
   end
 
-  def show
+  def show    
+    @challenge_view = ChallengeView.find(params[:id])
+    @challenge.record_page_view
   end
 
   def new

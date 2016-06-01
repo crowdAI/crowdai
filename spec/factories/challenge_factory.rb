@@ -11,8 +11,8 @@ FactoryGirl.define do
     resources_markdown "# Helpful resources"
     dataset_description_markdown " # Dataset description"
     submission_instructions_markdown "## Submission instructions"
-    score_sort_cd 'ascending'
-    score_secondary_sort_cd 'descending'
+    primary_sort_order_cd 'ascending'
+    secondary_sort_order_cd 'descending'
 
     trait :with_event do
       events { [ build(:event) ] }

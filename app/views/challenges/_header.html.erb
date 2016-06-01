@@ -9,9 +9,18 @@
         </div>
       </div>
     </div>
-    <div class="col-md-8">
+
+    <div class="col-md-6">
       <h2><%= @challenge.challenge.upcase %></h2>
       <p><%= @challenge.tagline %></p>
+    </div>
+    <div class="col-md-2 col-md-offset-1">
+      <div class="challenge-list-detail">
+        <br/>
+        <span class="glyphicon glyphicon-eye-open"></span> <%= @challenge_view.page_views %> views <br/>
+        <span class="glyphicon glyphicon-user"></span> <%= @challenge_view.participant_count %> participants <br/>
+        <span class="glyphicon glyphicon-list-alt"></span> <%= @challenge_view.submission_count %> submissions
+      </div>
     </div>
   </div>
 

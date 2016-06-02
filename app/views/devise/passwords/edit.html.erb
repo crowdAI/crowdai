@@ -8,8 +8,8 @@
           <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
           <%= f.error_notification %>
           <% resource.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-        <% end %>
+            <li><%= msg %></li>
+          <% end %>
         <%= f.hidden_field :reset_password_token %>
 
         <div class="form-inputs">

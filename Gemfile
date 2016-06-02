@@ -12,7 +12,6 @@ gem 'devise'
 gem "administrate"
 gem "administrate-field-image"
 gem 'pundit'
-gem 'ahoy_matey'
 
 # monitoring
 gem "rorvswild"

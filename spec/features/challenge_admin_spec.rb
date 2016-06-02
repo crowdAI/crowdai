@@ -76,5 +76,26 @@ feature 'Challenge CRUD for admin user', js: true do
         skip("spec to be coded")
       end
 
+        scenario "challenge can move from draft to running" do
+          skip("spec to be coded")
+        end
+
+        scenario "challenge can move from running to cancelled" do
+          skip("spec to be coded")
+        end
+
+        scenario "challenge can move from running to completed" do
+          skip("spec to be coded")
+        end
+
+        scenario "a challenge can be deleted if it is in draft" do
+          skip("spec to be coded")
+        end
+
+        scenario "challenge cannot move from draft to running without datasets present" do
+          skip("spec to be coded")
+        end
+      
+
   end
 end

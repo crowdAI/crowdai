@@ -10,7 +10,6 @@ module NavigationHelpers
     click_link(challenge.challenge)
   end
 
-
   def open_menu(participant)
     visit_landing_page(participant)
     find("#avatar-menu").click

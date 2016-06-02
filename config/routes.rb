@@ -71,11 +71,5 @@ Rails.application.routes.draw do
 
   get '/pages/*id' => 'pages#show', as: :page, format: false
 
-  # different home for public / auth users
-  authenticated :participant do
-    root 'challenges#index', as: :authenticated_root
-  end
-  unauthenticated :participant do
-    root 'landing_page#index', as: :unauthenticated_root
-  end
+  root 'challenges#index', as: :authenticated_root
 end

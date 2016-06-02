@@ -3,7 +3,7 @@ class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
 
   def index
-    if current_participant.admin?
+    if current_participant && current_participant.admin?
       @challenges = ChallengeView.all
     else
       @challenges = ChallengeView.where(status_cd: 'running')

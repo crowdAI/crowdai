@@ -46,6 +46,11 @@ FactoryGirl.define do
       challenge 'Running Challenge'
     end
 
+    trait :draft do
+      status_cd 'draft'
+      challenge 'Draft Challenge'
+    end
+
 
   end
 end

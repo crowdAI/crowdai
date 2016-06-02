@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature "participant accesses challenge", js: true do
   let!(:challenge) { create(:challenge, :with_events) }
+  let!(:draft_challenge) { create(:challenge, :draft) }
   let!(:participant) { create(:participant) }
 
   describe "anonymous participant can view challenges list" do
@@ -84,6 +85,32 @@ feature "participant accesses challenge", js: true do
     end
   end
 
+  describe "anonymous participant cannot access restricted pages via url manipulation" do
+    before(:example) do
+      visit '/'
+    end
+
+    scenario "show for draft challenge" do
+      visit "/challenges/#{draft_challenge.id}"
+      expect(current_path).to eq('/challenges')
+    end
+
+    scenario "show for running challenge" do
+      visit "/challenges/#{challenge.id}"
+      expect(current_path).to eq("/challenges/#{challenge.id}")
+    end
+
+    scenario "edit challenge" do
+      visit "/challenges/#{draft_challenge.id}/edit"
+      expect(current_path).to eq('/challenges')
+    end
+
+    scenario "new challenge" do
+      visit "/challenges/new"
+      expect(current_path).to eq('/challenges')
+    end
+
+  end
 
   describe "participant is taken to the resource after logging in" do
     before(:example) do

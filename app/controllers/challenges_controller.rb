@@ -1,6 +1,7 @@
 class ChallengesController < ApplicationController
   #before_filter :authenticate_participant!
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
+  before_action :disallow_anonymous, except: [:index, :show]
 
   def index
     if current_participant && current_participant.admin?
@@ -47,13 +48,18 @@ class ChallengesController < ApplicationController
   end
 
   private
-    def set_challenge
-      @challenge = Challenge.find(params[:id])
-    end
+  def set_challenge
+    @challenge = Challenge.find(params[:id])
+    redirect_to challenges_url if (!current_participant && @challenge.draft?)
+  end
 
-    def challenge_params
-      params.require(:challenge)
-            .permit(:id,:organizer_id, :challenge, :tagline,
+  def disallow_anonymous
+    redirect_to challenges_url if !current_participant
+  end
+
+  def challenge_params
+    params.require(:challenge)
+          .permit(:id,:organizer_id, :challenge, :tagline,
                     :status, :description, :evaluation_markdown, :evaluation_criteria,
                     :rules, :prizes, :resources, :submission_instructions, :primary_sort_order, :secondary_sort_order,
                     :description_markdown, :rules_markdown, :prizes_markdown, :resources_markdown,

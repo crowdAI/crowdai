@@ -11,6 +11,9 @@
 
           <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
           <%= f.error_notification %>
+          <% resource.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
 
           <div class="form-inputs">
             <%= f.input :email, required: true, autofocus: true %>

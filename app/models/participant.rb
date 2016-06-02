@@ -29,7 +29,7 @@ class Participant < ActiveRecord::Base
   belongs_to :organizer
   has_one :image, as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :image, allow_destroy: true
-  has_many :dataset_file_downloads
+  has_many :dataset_file_downloads, dependent: :destroy
 
 
   def admin?

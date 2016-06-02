@@ -13,6 +13,7 @@ require 'support/controller_helpers'
 require 'support/login_helper'
 require 'features/support/navigation_helpers'
 require 'features/support/challenge_helpers'
+require 'support/feature_helpers'
 
 
 
@@ -37,6 +38,7 @@ RSpec.configure do |config|
   config.include LoginHelper, type: :feature
   config.include NavigationHelpers, type: :feature
   config.include ChallengeHelpers, type: :feature
+  config.include FeatureHelpers, type: :feature
 
 
   config.use_transactional_fixtures = false

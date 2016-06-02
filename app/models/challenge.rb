@@ -34,6 +34,11 @@ class Challenge < ActiveRecord::Base
     false
   end
 
+  def draft?
+    return true if status_cd == 'draft'
+    false
+  end
+
   def timeline
     Timeline.new(self)
   end

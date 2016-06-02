@@ -1,16 +1,16 @@
 class ChallengesController < ApplicationController
-  before_filter :authenticate_participant!
+  #before_filter :authenticate_participant!
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
 
   def index
-    if current_participant.admin?
+    if current_participant && current_participant.admin?
       @challenges = ChallengeView.all
     else
       @challenges = ChallengeView.where(status_cd: 'running')
     end
   end
 
-  def show    
+  def show
     @challenge_view = ChallengeView.find(params[:id])
     @challenge.record_page_view
   end

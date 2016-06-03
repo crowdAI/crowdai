@@ -1,3 +1,5 @@
+
+/* show / edit page */
 .challenge-header {
   padding-top: 60px;
   background-color: $crowdai-bg-medium-grey;
@@ -21,9 +23,100 @@
     background-color: white;
 }
 
+
 #image-container img {
   position:absolute;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
+}
+
+
+/* index page */
+.challenges-container {
+  @include media(">=phone", "<=tablet") {
+    margin: 10px auto;
+  }
+  @include media(">tablet") {
+    max-width: 750px;
+    margin: 20px auto;
+  }
+}
+
+ul.challenges-list {
+  margin: 0px;
+  padding: 0px;
+}
+
+
+ul.challenges-list li {
+  background: $crowdai-bg-medium-grey;
+  display: inline-block;
+  border-radius: 2px 2px 2px 2px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-box-shadow: 0 10px 6px -6px #000;
+  -moz-box-shadow: 0 10px 6px -6px #000;
+  box-shadow: 0 10px 6px -6px #a9a9a9;
+  @include media(">=phone", "<=tablet") {
+    padding: 5px;
+    margin: 5px;
+  }
+  @include media(">tablet") {
+    width: 675px;
+    padding: 20px;
+    margin: 10px;
+  }
+}
+
+
+
+
+.challenge-badge {
+  padding: .2em .6em .3em;
+  border-radius: .2em;
+  display: inline-block;
+  font-weight: bold;
+  text-align: center;
+  color: $crowdai-bg-white;
+  @include media(">=phone", "<=tablet") {
+    font-size: 70%;
+    width: 50px;
+  }
+  @include media(">tablet") {
+    font-size: 100%;
+    width: 85px;
+  }
+
+}
+
+.challenge-badge.draft {
+  background-color: $brand-info;
+}
+
+.challenge-badge.running {
+  background-color: $brand-primary;
+}
+
+.challenge-badge.completed {
+  background-color: $brand-success;
+}
+
+.challenge-badge.perpetual {
+  background-color: $brand-warning;
+}
+
+
+.challenge-list-detail {
+  margin-bottom: 20px;
+}
+
+.challenge-list-image {
+  min-width: 75px;
+  min-height: 75px;
+  margin: 10px;
 }

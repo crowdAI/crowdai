@@ -49,6 +49,8 @@ gem "gon"
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'lodash-rails'
+gem 'browser'
+
 
 # css
 gem 'sass-rails', '~> 5.0'

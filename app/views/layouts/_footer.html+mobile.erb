@@ -1,13 +1,17 @@
-<div class="hidden-md hidden-lg">
-  <nav class="navbar navbar-footer navbar-static-bottom" role="navigation">
-    <div class="links-container">
-      <ul>
-        <li><%= link_to 'Contact us', page_path('contact') %></li>
-        <li><%= link_to 'Privacy', page_path('privacy') %></li>
-        <li><%= link_to 'Terms of Service', page_path('terms') %></li>
-        <li><%= awesome_link('fa-twitter', nil, 'https://twitter.com/crowd_ai') %></li>
-        <li><%= link_to image_tag("epfl_2x", height: '60'), 'http://epfl.ch/' %></li>
-      </ul>
+  <nav class="navbar navbar-footer navbar-fixed-bottom" role="navigation">
+    <br/>
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+          <div class="links-container">
+          <ul>
+            <li>
+                <%= link_to 'Contact', page_path('contact') %> ·
+                <%= link_to 'Privacy', page_path('privacy') %> ·
+                <%= link_to 'Terms', page_path('terms') %> ·
+                <%= awesome_link('twitter', nil, 'https://twitter.com/crowd_ai') %>
+            <li><%= link_to image_tag("epfl_2x", height: '60'), 'http://epfl.ch/' %></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </nav>
-</div>

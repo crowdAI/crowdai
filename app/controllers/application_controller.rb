@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include Pundit
   protect_from_forgery with: :exception
   after_filter :participant_activity
-  #before_action :detect_device_variant
+  before_action :detect_device_variant
 
 
 

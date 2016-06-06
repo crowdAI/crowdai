@@ -8,6 +8,26 @@
     </button>
     <a class="navbar-brand" href="/"></a>
   </div>
-  <%= render 'layouts/navbars/navbar_user_mobile' %>
-  <%= render 'layouts/navbars/navbar_user_desktop' %>
+
+  <div class="collapse navbar-collapse" id="crowdai-navbar-collapse">
+    <div class="navbar-right">
+      <ul class="nav navbar-nav">
+        <%= render 'layouts/navbars/navbar_menu' %>
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" id="avatar-menu" class="dropdown-toggle profile-image" data-toggle="dropdown">
+            <%= image_tag avatar_url(current_participant,'medium'), size: '30x30', class: "img-circle navbar-profile-img" %><%= current_participant.name %>
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= glyphicon_link 'user', 'Profile', participant_path(current_participant) %></li>
+            <li><%= glyphicon_link 'cog', 'Password', edit_participant_registration_path %></li>
+            <li><%= glyphicon_link 'log-out', 'Sign out', destroy_participant_session_path, :method => :delete %></li>
+          </ul>
+        </li><!-- dropdown -->
+      </ul><!-- nav navbar-nav navbar-right -->
+    </div><!-- navbar-right -->
+  </div><!-- #crowdai-navbar-collapse -->
 </nav>

@@ -89,20 +89,21 @@ ul.challenges-list li {
 }
 
 .challenge-badge.draft {
-  background-color: $brand-info;
+  background-color: #40D2FF;
 }
 
 .challenge-badge.running {
-  background-color: $brand-primary;
+  background-color: $brand-success;
 }
 
 .challenge-badge.completed {
-  background-color: $brand-success;
+  background-color: $brand-primary
 }
 
 .challenge-badge.perpetual {
   background-color: $brand-warning;
 }
+
 
 
 .challenge-list-detail {

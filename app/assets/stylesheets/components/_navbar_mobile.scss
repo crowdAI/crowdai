@@ -1,0 +1,21 @@
+
+.nav-mobile-pills {
+  text-align: center;
+  ul.nav {
+    display: inline-block;
+    li {
+      display: inline;
+      margin-right: 20px;
+      margin-left: 20px;
+      a {
+        float: left;
+        padding: 5px;
+      }
+    }
+  }
+}
+
+
+.nav-mobile-tab-content .navbar-nav {
+  margin: 0px;
+}

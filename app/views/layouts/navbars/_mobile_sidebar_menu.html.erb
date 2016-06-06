@@ -1,23 +1,25 @@
 <!-- embedded tabs in mobile collapse -->
-  <ul class="nav nav-tabs" id="myTab">
-   <li class="active"><a data-target="#menu" data-toggle="tab">Home</a></li>
-   <li><a data-target="#sidebar" data-toggle="tab">Sidebar</a></li>
- </ul>
+<div class="nav-mobile-pills">
+  <ul class="nav nav-pills">
+    <li class="active"><a data-target="#menu" data-toggle="tab">Home</a></li>
+    <li><a data-target="#sidebar" data-toggle="tab">Sidebar</a></li>
+  </ul>
+</div>
 
- <div class="tab-content">
-    <div class="tab-pane active" id="menu">
-      <div class="navbar-right">
-        <ul class="nav navbar-nav">
-          <%= render 'layouts/navbars/navbar_menu' %>
-          <li><%= link_to 'Profile', participant_path(current_participant) %></li>
-          <li><%= link_to 'Password', edit_participant_registration_path %></li>
-          <li><%= link_to 'Sign out', destroy_participant_session_path, :method => :delete %></li>
-        </ul>
-      </div>
-    </div>
-    <div class="tab-pane" id="sidebar">
-      <% if content_for?(:sidebar) %>
-        <%= yield(:sidebar) %>
-      <% end %>
+<div class="tab-content nav-mobile-tab-content">
+  <div class="tab-pane active" id="menu">
+    <div class="navbar-right">
+      <ul class="nav navbar-nav">
+        <%= render 'layouts/navbars/navbar_menu' %>
+        <li><%= link_to 'Profile', participant_path(current_participant) %></li>
+        <li><%= link_to 'Password', edit_participant_registration_path %></li>
+        <li><%= link_to 'Sign out', destroy_participant_session_path, :method => :delete %></li>
+      </ul>
     </div>
   </div>
+  <div class="tab-pane" id="sidebar">
+    <% if content_for?(:sidebar) %>
+    <%= yield(:sidebar) %>
+    <% end %>
+  </div>
+</div>

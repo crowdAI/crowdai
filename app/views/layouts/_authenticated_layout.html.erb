@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <%= render 'layouts/navbars/navbar_authenticated' %>
+  <%= render partial: "layouts/flash_messages", flash: flash %>
+
+  <% if content_for?(:header) %>
+    <%= yield(:header) %>
+  <% end %>
+
+  <% if content_for?(:sidebar) %>
+    <div class="row">
+      <div class="col-md-3 sidebar-container">
+        <%= yield(:sidebar) %>
+      </div>
+      <div class="col-md-9">
+        <%= yield %>
+      </div>
+    </div>
+  <% else %>
+    <%= yield %>
+  <% end %>
+
+  <%= render 'layouts/footer' %>
+</div>

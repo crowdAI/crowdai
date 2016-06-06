@@ -1,0 +1,7 @@
+<div class="container-fluid">
+  <%= render 'layouts/navbars/navbar_public' %>
+  <%= render partial: "layouts/flash_messages", flash: flash %>
+
+  <%= yield %>
+  <%= render 'layouts/footer' %>
+</div>

@@ -22,7 +22,6 @@
 
 // components / gems
 //= require components/twbs
-//= require components/containers
 //= require cocoon
 //= require components/rangy_inputs
 //= require components/markdown_editor

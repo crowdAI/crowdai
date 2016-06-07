@@ -8,6 +8,7 @@ class ChallengesController < ApplicationController
     else
       @challenges = ChallengeView.where(status_cd: 'running')
     end
+    load_gon
   end
 
 

@@ -7,6 +7,7 @@ class SubmissionsController < ApplicationController
 
   def index
     @submissions = current_participant.submissions.where(challenge_id: @challenge.id)
+    load_gon({percent_progress: @challenge.timeline.pct_passed})
   end
 
   def show

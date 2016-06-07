@@ -37,6 +37,13 @@
 // controllers
 //= require controllers/_controller_functions
 //= require controllers/challenges_controller
+//= require controllers/leaderboards_controller
+//= require controllers/topics_controller
+//= require controllers/posts_controller
+//= require controllers/dataset_files_controller
+//= require controllers/submissions_controller
+
+
 
 //= require z.jquery.fileupload
 

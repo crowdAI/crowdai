@@ -7,6 +7,7 @@ class TopicsController < ApplicationController
   def index
     @topics = @challenge.topics
     @headline_post = Post.find_by_sql(headline_sql).first  # TODO move into model layer based on answers or views
+    load_gon({percent_progress: @challenge.timeline.pct_passed})
   end
 
   def show

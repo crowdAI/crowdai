@@ -6,9 +6,11 @@ class LeaderboardsController < ApplicationController
   def index
     @leaderboards = @challenge.leaderboards
     @challenge_view = ChallengeView.find(params[:challenge_id])
+    load_gon({percent_progress: @challenge.timeline.pct_passed})
   end
 
   def show
+    load_gon({percent_progress: @challenge.timeline.pct_passed})
   end
 
   private

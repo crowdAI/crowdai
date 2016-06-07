@@ -14,6 +14,7 @@ class PostsController < ApplicationController
        @post.post = "[quote]#{quote_post.post}[/quote]"
      end
    end
+   load_gon({percent_progress: @challenge.timeline.pct_passed})
   end
 
   def edit

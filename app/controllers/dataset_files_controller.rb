@@ -6,6 +6,7 @@ class DatasetFilesController < ApplicationController
 
   def index
     @dataset_files = DatasetFile.all
+    load_gon({percent_progress: @challenge.timeline.pct_passed})
   end
 
   def show

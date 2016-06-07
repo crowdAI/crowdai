@@ -15,6 +15,7 @@
       <h2><%= @challenge.challenge.upcase %></h2>
       <p><%= @challenge.tagline %></p>
     </div>
+
     <div class="col-md-2 col-md-offset-1">
       <div class="challenge-list-detail">
         <br/>
@@ -23,12 +24,11 @@
         <span class="glyphicon glyphicon-list-alt"></span> <%= @challenge_view.submission_count %> submissions
       </div>
     </div>
-  </div>
+  </div><!-- row -->
   <br/><br/>
-
 
   <% if !@challenge.perpetual_challenge %>
     <%= render partial: 'challenges/show/calendar' %>
   <% end %>
-
+</div><!-- header-section -->
 <% end %>

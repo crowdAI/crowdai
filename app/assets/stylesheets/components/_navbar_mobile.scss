@@ -1,3 +1,33 @@
+.nav-pills > li.active > a {
+  color: black;
+  background-color: transparent;;
+}
+
+.nav-pills > li.active > a:hover,
+.nav-pills a:hover,
+.nav-pills a:focus
+ {
+  background-color: transparent;;
+  color: $brand-primary;
+  font-weight: 600;
+}
+
+
+
+/*
+.nav-pills > li.active > a,
+ {
+  color: $crowdai-text-darker;
+  background-color: transparent;
+}
+
+.nav-pills a:hover,
+.nav-pills a:focus {
+  color: $brand-primary;
+  background-color: transparent;
+  text-decoration: underline;
+} */
+
 
 .nav-mobile-pills {
   text-align: center;

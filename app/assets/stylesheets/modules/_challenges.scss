@@ -68,8 +68,6 @@ ul.challenges-list li {
 }
 
 
-
-
 .challenge-badge {
   padding: .2em .6em .3em;
   border-radius: .2em;
@@ -85,7 +83,6 @@ ul.challenges-list li {
     font-size: 100%;
     width: 85px;
   }
-
 }
 
 .challenge-badge.draft {
@@ -103,7 +100,6 @@ ul.challenges-list li {
 .challenge-badge.perpetual {
   background-color: $brand-warning;
 }
-
 
 
 .challenge-list-detail {

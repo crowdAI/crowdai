@@ -35,6 +35,7 @@
 //= require modules/devise
 
 // controllers
+//= require controllers/_controller_functions
 //= require controllers/challenges_controller
 
 //= require z.jquery.fileupload

@@ -1,5 +1,4 @@
 class ChallengesController < ApplicationController
-  #before_filter :authenticate_participant!
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
   before_action :disallow_anonymous, except: [:index, :show]
 
@@ -11,28 +10,33 @@ class ChallengesController < ApplicationController
     end
   end
 
+
   def show
     @challenge_view = ChallengeView.find(params[:id])
     @challenge.record_page_view
+    load_gon({percent_progress: @challenge.timeline.pct_passed})
   end
+
 
   def new
     @challenge = Challenge.new
   end
 
+
   def edit
     load_gon
   end
 
+
   def create
     @challenge = Challenge.new(challenge_params)
-
     if @challenge.save
       redirect_to @challenge, notice: 'Challenge was successfully created.'
     else
       render :new
     end
   end
+
 
   def update
     if @challenge.update(challenge_params)
@@ -42,10 +46,12 @@ class ChallengesController < ApplicationController
     end
   end
 
+
   def destroy
     @challenge.destroy
     redirect_to challenges_url, notice: 'Challenge was successfully destroyed.'
   end
+
 
   private
   def set_challenge
@@ -53,9 +59,11 @@ class ChallengesController < ApplicationController
     redirect_to challenges_url if (!current_participant && @challenge.draft?)
   end
 
+
   def disallow_anonymous
     redirect_to challenges_url if !current_participant
   end
+
 
   def challenge_params
     params.require(:challenge)

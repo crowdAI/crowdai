@@ -1,0 +1,42 @@
+
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="calendar-table">
+        <div class="calendar-row">
+          <div class="calendar-left">
+            <span class="mini-calendar">
+              <strong><%= @challenge.timeline.start_month %></strong>
+              <span><%= @challenge.timeline.start_day %></span>
+            </span>
+          </div>
+          <div class="calendar-middle">
+            <div class="ai-progress-container">
+              <span class="ai-progress-text"><%= @challenge.timeline.remaining_text %></span>
+              <div class="ai-progressbar"></div>
+            </div>
+          </div>
+          <div class="calendar-right">
+            <span class="mini-calendar">
+              <strong><%= @challenge.timeline.end_month %></strong>
+              <span><%= @challenge.timeline.end_day %></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class='pull-left calendar-date'>
+        <%= @challenge.timeline.start_date %>
+      </div>
+      <div class='pull-right calendar-date'>
+        <%= @challenge.timeline.end_date %>
+      </div>
+    </div>
+  </div>
+
+  <br/><br/><br/>

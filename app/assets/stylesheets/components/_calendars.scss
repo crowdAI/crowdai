@@ -1,6 +1,5 @@
-.mini-calendar
-{
-  display: block;
+.mini-calendar {
+  display: inline-block;
   position: relative;
   width: 45px;
   height: 45px;
@@ -18,10 +17,8 @@
   font-weight: 200;
 }
 
-
-.mini-calendar *
-{
-  display: block;
+.mini-calendar * {
+  display: inline-block;
   width: 100%;
   font-size: 1em;
   font-weight: bold;
@@ -29,8 +26,7 @@
   text-align: center;
 }
 
-.mini-calendar strong
-{
+.mini-calendar strong {
   position: absolute;
   font-size: 0.9em;
   font-weight: 200;
@@ -41,18 +37,74 @@
   box-shadow: 0 2px 0 $brand-primary;
 }
 
-.mini-calendar em
-{
+.mini-calendar em {
   position: absolute;
   bottom: 0.3em;
   color: #fd9f1b;
 }
 
-.mini-calendar span
-{
+.mini-calendar span {
   width: 100%;
   font-size: 1.4em;
   letter-spacing: -0.05em;
   padding-top: 0.8em;
   color: #2f2f2f;
+}
+
+div.calendar-container {
+  width: auto;
+}
+
+.ai-progress-container {
+  width: 100%;
+  background-color: $crowdai-bg-white;
+  height: 45px;
+  border-radius: 0.3em;
+}
+
+.ai-progress-text {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  color: $crowdai-bg-white;
+}
+
+.ai-progressbar {
+  height: 45px;
+  background-color: $brand-primary;
+  width: 70%;
+  border-top-left-radius: 0.3em;
+  border-bottom-left-radius: 0.3em;
+}
+
+.calendar-table {
+  display: table;
+  width: 100%;
+}
+
+.calendar-row {
+  display: table-row;
+}
+
+.calendar-row > div {
+  display: table-cell;
+}
+
+.calendar-left {
+  width: 45px;
+  padding-right: 20px;
+}
+
+.calendar-middle {
+  height: 45px;
+}
+
+.calendar-right {
+  width: 45px;
+  padding-left: 20px;
+}
+
+.calendar-date {
+  padding-top: 10px;
+  color: $crowdai-text-light;
 }

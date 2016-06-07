@@ -3,19 +3,14 @@
 <div class='header-section'>
   <br/>
   <div class="row">
-    <div class="col-md-1 col-md-offset-1">
+    <div class="col-xs-1 col-xs-offset-1">
       <div class="enclosure">
         <div class="image-container">
           <img src="<%= image_medium_url(@challenge) %>"/>
         </div>
       </div>
     </div>
-
-    <div class="col-md-6">
-      <h2><%= @challenge.challenge.upcase %></h2>
-      <p><%= @challenge.tagline %></p>
-    </div>
-    <div class="col-md-2 col-md-offset-1">
+    <div class="col-xs-7 col-xs-offset-3">
       <div class="challenge-list-detail">
         <br/>
         <span class="glyphicon glyphicon-eye-open"></span> <%= @challenge_view.page_views %> views <br/>
@@ -24,7 +19,16 @@
       </div>
     </div>
   </div>
-  <br/><br/>
+
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h2><%= @challenge.challenge.upcase %></h2>
+      <p><%= @challenge.tagline %></p>
+    </div>
+  </div>
+
+  <br/><br/><br/>
 
 
   <% if !@challenge.perpetual_challenge %>

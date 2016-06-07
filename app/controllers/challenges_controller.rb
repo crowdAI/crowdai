@@ -16,6 +16,9 @@ class ChallengesController < ApplicationController
     @challenge_view = ChallengeView.find(params[:id])
     @challenge.record_page_view
     load_gon({percent_progress: @challenge.timeline.pct_passed})
+    if @challenge.draft?
+      redirect_to '/' unless current_participant && current_participant.admin?
+    end
   end
 
 

@@ -16,20 +16,26 @@ class ChallengeDashboard < Administrate::BaseDashboard
     topics: Field::HasMany,
     image: Field::HasOne,
     challenge: Field::String,
+    tagline: Field::String,
     status_cd: Field::String,
     description: Field::Text,
+    description_markdown: Field::Text,
+    evaluation: Field::Text,
     evaluation_markdown: Field::Text,
     rules: Field::Text,
+    rules_markdown: Field::Text,
     prizes: Field::Text,
+    prizes_markdown: Field::Text,
     resources: Field::Text,
-    created_at: Field::DateTime,
-    updated_at: Field::DateTime,
-    dataset_description: Field::Text,
+    resources_markdown: Field::Text,
     submission_instructions: Field::Text,
-    tagline: Field::String,
-    evaluation_rendered: Field::Text,
-    score_sort_cd: Field::String,
-    score_secondary_sort_cd: Field::String
+    submission_instructions_markdown: Field::Text,
+    dataset_description: Field::Text,
+    dataset_description_markdown: Field::Text,
+    primary_sort_order_cd: Field::String,
+    secondary_sort_order_cd: Field::String,
+    created_at: Field::DateTime,
+    updated_at: Field::DateTime
   }
 
   # COLLECTION_ATTRIBUTES
@@ -40,36 +46,43 @@ class ChallengeDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :id,
     :challenge,
+    :status_cd,
     :organizer,
     :dataset_files,
-    :submissions,
+    :submissions
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
+    :id,
     :organizer,
     :dataset_files,
     :events,
     :submissions,
     :topics,
     :image,
-    :id,
     :challenge,
+    :tagline,
     :status_cd,
     :description,
+    :description_markdown,
+    :evaluation,
     :evaluation_markdown,
     :rules,
+    :rules_markdown,
     :prizes,
+    :prizes_markdown,
     :resources,
-    :created_at,
-    :updated_at,
-    :dataset_description,
+    :resources_markdown,
     :submission_instructions,
-    :tagline,
-    :evaluation_rendered,
-    :score_sort_cd,
-    :score_secondary_sort_cd,
+    :submission_instructions_markdown,
+    :dataset_description,
+    :dataset_description_markdown,
+    :primary_sort_order_cd,
+    :secondary_sort_order_cd,
+    :created_at,
+    :updated_at
   ]
 
   # FORM_ATTRIBUTES
@@ -83,18 +96,17 @@ class ChallengeDashboard < Administrate::BaseDashboard
     :topics,
     :image,
     :challenge,
+    :tagline,
     :status_cd,
     :description,
-    :evaluation_markdown,
+    :evaluation,
     :rules,
     :prizes,
     :resources,
-    :dataset_description,
     :submission_instructions,
-    :tagline,
-    :evaluation_rendered,
-    :score_sort_cd,
-    :score_secondary_sort_cd,
+    :dataset_description,
+    :primary_sort_order_cd,
+    :secondary_sort_order_cd
   ]
 
   # Overwrite this method to customize how challenges are displayed

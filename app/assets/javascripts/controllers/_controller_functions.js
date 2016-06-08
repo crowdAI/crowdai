@@ -20,10 +20,13 @@ function adjustText(percent) {
   if(screen_width < 690) {
     $('.ai-progress-text').css('visibility','hidden');
   } else {
-    if(percent < 60) {
-      $('.ai-progress-text').css({'color': ai_red, 'width': percent + '%', 'left': percent + 5 + '%'});
+    if(percent < 30) {
+      $('.ai-progress-text').css({'color': ai_red, 'width': '10%', 'left': '50%'});
     }
-    if(percent >= 60) {
+    if(percent >= 30 && percent < 65) {
+      $('.ai-progress-text').css({'color': ai_red, 'width': '10%', 'left': percent + 5 + '%'});
+    }
+    if(percent >= 65) {
       $('.ai-progress-text').css({'color': ai_white, 'width': percent + '%'});
     }
   }

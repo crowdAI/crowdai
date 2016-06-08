@@ -26,6 +26,9 @@
     <li role="presentation">
       <a href="#submission-instructions" id="submission-instructions-tab" aria-controls="submission-instructions" role="tab" data-toggle="tab">Submission</a>
     </li>
+    <li role="presentation">
+      <a href="#dataset-configuration" id="dataset-configuration-tab" aria-controls="dataset-configuration" role="tab" data-toggle="tab">Dataset</a>
+    </li>
   </ul>
 
   <!-- content -->
@@ -45,6 +48,7 @@
           <%= render 'challenges/form/resources', f: f %>
           <%= render 'challenges/form/event', f: f %>
           <%= render 'challenges/form/submission_instructions', f: f %>
+          <%= render 'challenges/form/dataset_configuration', f: f %>
         </div>
       <% end %>
 

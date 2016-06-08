@@ -74,5 +74,8 @@ class Challenge < ActiveRecord::Base
     if submission_instructions_markdown_changed?
       self.submission_instructions = RenderMarkdown.new.render(submission_instructions_markdown)
     end
+    if license_markdown_changed?
+      self.license = RenderMarkdown.new.render(license_markdown)
+    end
   end
 end

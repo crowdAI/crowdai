@@ -3,6 +3,7 @@ class DatasetFilesController < ApplicationController
   before_action :set_dataset_file, only: [:show, :edit, :update, :destroy]
   before_action :set_challenge
   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
+  before_filter :authenticate_admin, except: [:show, :index]
 
   def index
     @dataset_files = DatasetFile.all
@@ -62,5 +63,9 @@ class DatasetFilesController < ApplicationController
       @s3_direct_post = S3_BUCKET.presigned_post(key: "dataset_files/#{SecureRandom.uuid}/${filename}",
                                                  success_action_status: '201',
                                                  acl: 'public-read')
+    end
+
+    def authenticate_admin
+      redirect_to '/' unless current_participant && current_participant.admin?
     end
 end

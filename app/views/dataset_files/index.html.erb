@@ -4,9 +4,9 @@
 <div class="page-content-container">
   <div class="row">
     <div class="col-xs-11">
-      <p class="lead">
-        All images are released under the Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0), with the clarification that algorithms trained on the data fall under the same license.
-      </p>
+      <div class='markdown-wrap'>
+        <%= @challenge.license.html_safe if @challenge.license %>
+      </div>
     </div>
   </div>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160602130102) do
+ActiveRecord::Schema.define(version: 20160608120142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 20160602130102) do
     t.string   "grader_cd"
     t.string   "answer_file_s3_key"
     t.integer  "page_views",                       :default=>0
+    t.text     "license"
+    t.text     "license_markdown"
   end
   add_index "challenges", ["organizer_id"], :name=>"index_challenges_on_organizer_id", :using=>:btree
 

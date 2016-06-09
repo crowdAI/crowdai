@@ -12,6 +12,7 @@ gem 'devise'
 gem "administrate"
 gem "administrate-field-image"
 gem 'pundit'
+#gem 'blazer'
 
 # monitoring
 gem "rorvswild"
@@ -80,6 +81,7 @@ gem 'mandrill_mailer'
 # background processing
 gem 'sidekiq'
 gem 'sidekiq-statistic'
+gem 'sidetiq'
 gem 'sinatra', :require => nil
 
 
@@ -117,7 +119,6 @@ group :development, :test do
   gem 'spring'
   #gem 'capybara-email'
   gem 'table_print'
-  #gem 'regressor', git: 'https://github.com/ndea/regressor.git', branch: 'master'
 end
 
 group :test do

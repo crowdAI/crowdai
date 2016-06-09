@@ -31,6 +31,15 @@ class Participant < ActiveRecord::Base
   accepts_nested_attributes_for :image, allow_destroy: true
   has_many :dataset_file_downloads, dependent: :destroy
 
+  def active_for_authentication?
+    super && self.account_disabled == false
+  end
+
+  def inactive_message
+    if account_disabled
+      "Your account has been disabled. Please contact us at info@crowdai.org."
+    end
+  end
 
   def admin?
     admin
@@ -70,6 +79,8 @@ class Participant < ActiveRecord::Base
     super
     AddToMailChimpListJob.perform_later(self.id)
   end
+
+
 
 
 end

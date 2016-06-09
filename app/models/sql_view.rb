@@ -1,7 +1,11 @@
-class SqlView < ActiveRecord::Base
-  self.abstract_class = true
-  self.primary_key = :id
-  after_initialize :readonly!
+module SqlView
+  def included(base)
+    base.module_eval do
+      self.abstract_class = true
+      self.primary_key = :id
+      after_initialize :readonly!
+    end
+  end
 end
 
 

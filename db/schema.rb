@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160609135532) do
+ActiveRecord::Schema.define(version: 20160609145519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -245,9 +245,14 @@ SELECT p.id,
            FROM challenges c_1,
             participants p_1,
             topics t
-          WHERE (((t.challenge_id = c_1.id) AND (t.participant_id = p_1.id)) OR (EXISTS ( SELECT 'X'
-                   FROM posts ps
-                  WHERE ((ps.topic_id = t.id) AND (ps.participant_id = p_1.id)))))
+          WHERE ((t.challenge_id = c_1.id) AND (t.participant_id = p_1.id))
+        UNION
+         SELECT t.challenge_id AS id,
+            t.challenge_id,
+            ps.id AS participant_id
+           FROM posts ps,
+            topics t
+          WHERE (t.id = ps.topic_id)
         UNION
          SELECT df.challenge_id AS id,
             df.challenge_id,

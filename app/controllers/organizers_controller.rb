@@ -7,7 +7,7 @@ class OrganizersController < ApplicationController
   end
 
   def show
-    @challenges = ChallengeView.where(organizer: @organizer)
+    @challenges = Challenge.where(organizer: @organizer)
   end
 
   def new

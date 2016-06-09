@@ -5,7 +5,6 @@ class PostsController < ApplicationController
 
 
   def new
-    @challenge_view = ChallengeView.find(@challenge.id)
     @posts = @topic.posts("created_at DESC")
     @post = @topic.posts.new
     if params[:quote]

@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   get 'markdown_editor/show'
 
   devise_for :participants
-  resources :participants, only: [:show, :edit, :update, :destroy]
+  resources :participants, only: [:show, :edit, :update, :destroy] do
+    get :sync_mailchimp
+  end
 
   # Administrate
   namespace :admin do

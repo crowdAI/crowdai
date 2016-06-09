@@ -15,6 +15,11 @@ class ParticipantsController < ApplicationController
     end
   end
 
+  def sync_mailchimp
+    @job = AddToMailChimpListJob.perform_later(params[:participant_id])
+    render 'admin/participants/refresh_sync_mailchimp_job_status'
+  end
+
   private
     def set_participant
       @participant = Participant.find(params[:id])

@@ -81,6 +81,4 @@ class Participant < ActiveRecord::Base
   end
 
 
-
-
 end

@@ -4,16 +4,15 @@ class ChallengesController < ApplicationController
 
   def index
     if current_participant && current_participant.admin?
-      @challenges = ChallengeView.all
+      @challenges = Challenge.all
     else
-      @challenges = ChallengeView.where(status_cd: 'running')
+      @challenges = Challenge.where(status_cd: 'running')
     end
     load_gon
   end
 
 
   def show
-    @challenge_view = ChallengeView.find(params[:id])
     @challenge.record_page_view
     load_gon({percent_progress: @challenge.timeline.pct_passed})
     if @challenge.draft?

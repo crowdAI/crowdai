@@ -49,7 +49,6 @@ class TopicsController < ApplicationController
 
     def set_challenge
       @challenge = Challenge.find(params[:challenge_id])
-      @challenge_view = ChallengeView.find(params[:challenge_id])
     end
 
     def topic_params

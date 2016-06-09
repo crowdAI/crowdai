@@ -103,6 +103,23 @@ GEM
       json (>= 1.7)
       mime-types (>= 1.16)
       mimemagic (>= 0.3.0)
+    celluloid (0.17.3)
+      celluloid-essentials
+      celluloid-extras
+      celluloid-fsm
+      celluloid-pool
+      celluloid-supervision
+      timers (>= 4.1.1)
+    celluloid-essentials (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-extras (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-fsm (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-pool (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-supervision (0.20.5)
+      timers (>= 4.1.1)
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     choice (0.2.0)
@@ -290,11 +307,13 @@ GEM
       shellany (~> 0.0)
       thor (>= 0.18.1)
     high_voltage (2.4.0)
+    hitimes (1.2.4)
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
     i18n_data (0.7.0)
+    ice_cube (0.13.3)
     include_media_rails (1.4.2.1)
       railties (>= 3.1, < 5)
       sass (>= 3.3, < 4)
@@ -509,6 +528,10 @@ GEM
       redis (~> 3.2, >= 3.2.1)
     sidekiq-statistic (1.2.0)
       sidekiq (>= 3.3.4, < 5)
+    sidetiq (0.7.0)
+      celluloid (>= 0.17.3)
+      ice_cube (~> 0.13.2)
+      sidekiq (>= 4.0.0)
     simple_enum (2.3.0)
       activesupport (>= 4.0.0)
     simple_form (3.2.1)
@@ -544,6 +567,8 @@ GEM
     thread_safe (0.3.5)
     tilt (2.0.4)
     timecop (0.8.1)
+    timers (4.1.1)
+      hitimes
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -631,6 +656,7 @@ DEPENDENCIES
   shoulda-matchers
   sidekiq
   sidekiq-statistic
+  sidetiq
   simple_enum
   simple_form
   simplecov

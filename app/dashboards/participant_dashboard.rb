@@ -46,7 +46,9 @@ class ParticipantDashboard < Administrate::BaseDashboard
     github: Field::String,
     linkedin: Field::String,
     twitter: Field::String,
-    test: Field::String
+    account_disabled: Field::String,
+    account_disabled_reason: Field::Text,
+    account_disabled_dttm: Field::DateTime
   }
 
   # COLLECTION_ATTRIBUTES
@@ -60,7 +62,8 @@ class ParticipantDashboard < Administrate::BaseDashboard
     :email,
     :submissions,
     :posts,
-    :last_sign_in_at
+    :last_sign_in_at,
+    :account_disabled
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -104,6 +107,9 @@ class ParticipantDashboard < Administrate::BaseDashboard
     :github,
     :linkedin,
     :twitter,
+    :account_disabled,
+    :account_disabled_reason,
+    :account_disabled_dttm
   ]
 
   # FORM_ATTRIBUTES
@@ -145,6 +151,9 @@ class ParticipantDashboard < Administrate::BaseDashboard
     :github,
     :linkedin,
     :twitter,
+    :account_disabled,
+    :account_disabled_reason,
+    :account_disabled_dttm
   ]
 
   # Overwrite this method to customize how participants are displayed

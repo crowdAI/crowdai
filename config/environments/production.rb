@@ -10,7 +10,7 @@ Rails.application.configure do
   config.assets.compile = true
   config.assets.digest = true
   config.force_ssl = true
-  config.log_level = :debug
+  config.log_level = :info
   config.i18n.fallbacks = true
 
   config.active_support.deprecation = :notify

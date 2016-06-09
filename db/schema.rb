@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608120142) do
+ActiveRecord::Schema.define(version: 20160608154727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -153,15 +153,35 @@ SELECT c.id,
   end
   add_index "dataset_files", ["challenge_id"], :name=>"index_dataset_files_on_challenge_id", :using=>:btree
 
-  create_table "events", force: :cascade do |t|
+  create_table "events2", id: false, force: :cascade do |t|
+    t.integer  "id"
     t.integer  "challenge_id"
-    t.integer  "seq"
     t.string   "event"
+    t.integer  "seq"
     t.datetime "event_time"
-    t.datetime "created_at",   :null=>false
-    t.datetime "updated_at",   :null=>false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
-  add_index "events", ["challenge_id"], :name=>"index_events_on_challenge_id", :using=>:btree
+
+  create_table "events_tmp", id: false, force: :cascade do |t|
+    t.integer  "id"
+    t.integer  "challenge_id"
+    t.string   "event"
+    t.integer  "seq"
+    t.datetime "event_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events_tmp2", id: false, force: :cascade do |t|
+    t.integer  "id"
+    t.integer  "challenge_id"
+    t.string   "event"
+    t.integer  "seq"
+    t.datetime "event_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "images", force: :cascade do |t|
     t.integer  "imageable_id"
@@ -364,7 +384,6 @@ UNION
   add_foreign_key "challenges", "organizers"
   add_foreign_key "dataset_file_downloads", "dataset_files"
   add_foreign_key "dataset_file_downloads", "participants"
-  add_foreign_key "events", "challenges"
   add_foreign_key "participants", "organizers"
   add_foreign_key "posts", "participants"
   add_foreign_key "posts", "topics"

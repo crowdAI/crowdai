@@ -23,9 +23,11 @@ Rails.application.routes.draw do
     resources :organizers
     resources :submissions
     resources :submission_files
+    resources :submission_grades
     resources :posts
     resources :events
     resources :topics
+    resources :votes
     resources :dataset_file_downloads
     resources :leaderboards, only: :index
     root to: 'participants#index'

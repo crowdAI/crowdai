@@ -14,10 +14,10 @@
           <span>&ensp;</span>
           <span class="glyphicon glyphicon-eye-open"></span> <%= challenge.page_views %> views &ensp; | &ensp;
           <span class="glyphicon glyphicon-user"></span>
-          <% if @challenge.id == 1 %><!-- PlantVillage -->
+          <% if challenge.id == 1 %><!-- PlantVillage -->
             248 participants
           <% else %>
-            <%= @challenge.participant_count %>
+            <%= challenge.participant_count %>
           <% end %>
           &ensp; | &ensp;
           <span class="glyphicon glyphicon-list-alt"></span> <%= challenge.submission_count %> submissions

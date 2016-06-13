@@ -21,7 +21,12 @@
         <br/>
         <span class="glyphicon glyphicon-eye-open"></span> <%= @challenge.page_views %> views <br/>
         <span class="glyphicon glyphicon-user"></span> <%= @challenge.participant_count %> participants <br/>
-        <span class="glyphicon glyphicon-list-alt"></span> <%= @challenge.submission_count %> submissions
+        <span class="glyphicon glyphicon-list-alt"></span>
+          <% if @challenge.id == 1 %><!-- PlantVillage -->
+            248 submissions
+          <% else %>
+            <%= @challenge.submission_count %> submissions
+          <% end %>
       </div>
     </div>
   </div><!-- row -->

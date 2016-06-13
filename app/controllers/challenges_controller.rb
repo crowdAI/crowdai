@@ -6,7 +6,7 @@ class ChallengesController < ApplicationController
     if current_participant && current_participant.admin?
       @challenges = Challenge.all
     else
-      @challenges = Challenge.where(status_cd: 'running')
+      @challenges = Challenge.where(status_cd: ['running','completed','perpetual'])
     end
     load_gon
   end

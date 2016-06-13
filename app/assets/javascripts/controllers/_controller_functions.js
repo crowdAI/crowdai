@@ -29,5 +29,8 @@ function adjustText(percent) {
     if(percent >= 65) {
       $('.ai-progress-text').css({'color': ai_white, 'width': percent + '%'});
     }
+    if(percent === 100) {
+      $('.ai-progressbar').css({'border-radius': '0.3em'});
+    }
   }
 }

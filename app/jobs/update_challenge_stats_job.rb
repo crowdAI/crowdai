@@ -2,7 +2,7 @@ class UpdateChallengeStatsJob
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
-  recurrence { secondly }
+  recurrence { hourly }
 
   def perform
     update_submissions

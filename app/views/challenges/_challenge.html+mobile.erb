@@ -12,7 +12,13 @@
 
         <div class="challenge-list-detail">
           <span class="glyphicon glyphicon-eye-open"></span> <%= challenge.page_views %>&ensp; | &ensp;
-          <span class="glyphicon glyphicon-user"></span> <%= challenge.participant_count %>&ensp; | &ensp;
+          <span class="glyphicon glyphicon-user"></span>
+            <% if @challenge.id == 1 %><!-- PlantVillage -->
+              248 participants
+            <% else %>
+              <%= @challenge.participant_count %>
+            <% end %>
+            &ensp; | &ensp;
           <span class="glyphicon glyphicon-list-alt"></span> <%= challenge.submission_count %>
         </div>
       </div>

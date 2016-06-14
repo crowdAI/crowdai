@@ -1,6 +1,5 @@
-require 'event'
 FactoryGirl.define do
-  factory :event, class: ::Event do
+  factory :event, class: Event do
     challenge { FactoryGirl.create :challenge }
     seq 1
     event 'Final submission deadline.'

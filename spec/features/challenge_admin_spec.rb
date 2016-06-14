@@ -47,7 +47,7 @@ feature 'Challenge CRUD for admin user', js: true do
 
     scenario 'create challenge with dataset' do
       create_perpetual_challenge(challenge_data)
-      click_link 'Dataset'
+      find('#dataset-tab').click
       click_link 'Add file'
       fill_in 'Seq',                with: '1'
       fill_in 'Description',        with: 'Test Filename'
@@ -57,14 +57,14 @@ feature 'Challenge CRUD for admin user', js: true do
       click_button "Create File"  # TODO
     end
 
-    scenario "challenge admin must configer a grading method" do
+    scenario "challenge admin must configure a grading method" do
       click_link 'Evaluation'
-      fill_in 'Grader',                 with: 'F1 logloss'
+      select 'F1 logloss',              from: 'Grader'
       fill_in 'Grading factor',         with: '0.3'
       fill_in 'Answer file s3 key',     with: 'answer_files/plant_village_answers.csv'
       fill_in 'Primary score title',    with: 'Mean F1'
       fill_in 'Secondary score title',  with: 'Mean Log loss'
-      click_button 'Update Challenge'
+      click_button 'Create Challenge'
       expect(page).to have_content "Challenge was successfully updated."
     end
   end
@@ -92,35 +92,44 @@ feature 'Challenge CRUD for admin user', js: true do
       expect(page).to have_content "Challenge was successfully updated."
     end
 
+    scenario "a challenge cannot move from draft to cancelled" do
+      find('#overview-tab').click
+      select 'Cancelled', from: 'Status'
+      click_button 'Update Challenge'
+      expect(page).to have_content("Only a running challenge may be cancelled.")
+    end
+
     scenario "a draft challenge can have datasets added" do
-      click_link 'Dataset'
+      find('#glyphicon-link-dataset').click
+      click_link 'Add file'
+      fill_in 'Seq', with: '0'
+      fill_in 'Description', with: "test file"
+      page.attach_file('s3File', Rails.root + 'spec/support/files/test_csv_file.csv')
+      expect(page).to have_content("File uploaded")
+      click_button 'Create File'
+      expect(page).to have_content("Dataset file was successfully created.")
+    end
+
+    scenario "a challenge with datasets can move from draft to running" do
+      find('#glyphicon-link-edit').click
+      find('#overview-tab').click
       select 'Running', from: 'Status'
-      click_button 'Create Challenge'
-      expect(page).to have_content "Challenge cannot start until dataset files are added."
+      click_button 'Update Challenge'
+      expect(page).to have_content "Challenge was successfully updated."
     end
 
     scenario "challenge can move from running to cancelled" do
-      click_link 'Overview'
+      find('#overview-tab').click
       select 'Cancelled', from: 'Status'
       click_button 'Update Challenge'
       expect(page).to have_content "Challenge was successfully updated."
     end
 
     scenario "challenge can move from running to completed" do
-      click_link 'Overview'
+      find('#overview-tab').click
       select 'Completed', from: 'Status'
       click_button 'Update Challenge'
       expect(page).to have_content "Challenge was successfully updated."
-    end
-
-
-    if self.status == 'running'
-      if self.dataset_files.none?
-        errors.add("Challenge cannot start until dataset files are added.")
-      end
-    end
-    if self.status == 'cancelled' and self.status_was != 'running'
-      errors.add("Only a running challenge may be cancelled.")
     end
 
   end

@@ -3,16 +3,20 @@
   <div class="row">
     <div class="col-md-3">
       <%= f.input :grader, collection: enum_option_pairs(Challenge, :grader) %>
-      <%= f.input :primary_sort_order, label: "Primary sort", collection: enum_option_pairs(Challenge, :primary_sort_order) %>
+      <%= f.input :score_title, label: "Primary score title" %>
+      <%= f.input :score_secondary_title, label: "Secondary score title" %>
     </div>
     <div class="col-md-3">
       <%= f.input :grading_factor %>
-      <%= f.input :secondary_sort_order, label: "Secondary sort", collection: enum_option_pairs(Challenge, :secondary_sort_order) %>
+      <%= f.input :primary_sort_order, label: "Sort order", collection: enum_option_pairs(Challenge, :primary_sort_order) %>
+      <%= f.input :secondary_sort_order, label: "Sort order", collection: enum_option_pairs(Challenge, :secondary_sort_order) %>
     </div>
     <div class="col-md-3">
       <%= f.input :answer_file_s3_key %>
     </div>
   </div>
+
+  <hr/>
 
   <div class="markdown-editor">
     <ul class="nav nav-tabs" data-tabs="tabs">

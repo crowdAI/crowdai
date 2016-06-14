@@ -19,15 +19,16 @@ class Challenge < ActiveRecord::Base
 
   as_enum :status, [:draft, :running, :completed, :perpetual, :cancelled], map: :string
   as_enum :grader, [:f1_logloss ], map: :string
-
-  validates_presence_of :status
-
-  validates_presence_of :challenge
-  validates_presence_of :organizer
-
   as_enum :primary_sort_order, [:ascending, :descending], map: :string
   as_enum :secondary_sort_order, [:ascending, :descending, :not_used], map: :string
 
+  validates_presence_of :status
+  validates_presence_of :challenge
+  validates_presence_of :organizer
+  validates_presence_of :grader
+  validates_presence_of :primary_sort_order
+  validates_presence_of :grading_factor
+  
 
   def running?
     return true if status_cd == 'running'

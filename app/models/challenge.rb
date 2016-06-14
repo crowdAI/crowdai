@@ -3,16 +3,17 @@ class Challenge < ActiveRecord::Base
   validate :valid_status
 
   belongs_to :organizer
-  has_many :dataset_files, dependent: :destroy
+  has_many :dataset_files,            dependent: :destroy
   accepts_nested_attributes_for :dataset_files, reject_if: :all_blank, allow_destroy: true
 
-  has_many :events, dependent: :destroy
-  has_many :submissions, dependent: :destroy
-  has_many :leaderboards
-  has_many :participant_challenges
+  has_many :events,                   dependent: :destroy
+  has_many :submissions,              dependent: :destroy
+  has_many :leaderboards,             class_name: 'SqlViews::Leaderboard'
+  has_many :ongoing_leaderboards,     class_name: 'SqlViews::OngoingLeaderboard'
+  has_many :participant_challenges,   class_name: 'SqlViews::ParticipantChallenge'
   has_many :topics
 
-  has_one :image, as: :imageable, dependent: :destroy
+  has_one :image,                     as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :image, allow_destroy: true
 
   accepts_nested_attributes_for :events, reject_if: :all_blank, allow_destroy: true

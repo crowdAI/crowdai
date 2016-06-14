@@ -73,6 +73,7 @@ class ChallengesController < ApplicationController
           .permit(:id,:organizer_id, :challenge, :tagline,
                     :status, :description, :evaluation_markdown, :evaluation_criteria,
                     :rules, :prizes, :resources, :submission_instructions, :primary_sort_order, :secondary_sort_order,
+                    :score_title, :score_secondary_title,
                     :description_markdown, :rules_markdown, :prizes_markdown, :resources_markdown,
                     :dataset_description_markdown, :submission_instructions_markdown,
                     :license, :license_markdown,

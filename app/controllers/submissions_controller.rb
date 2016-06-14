@@ -6,14 +6,32 @@ class SubmissionsController < ApplicationController
   before_action :set_submissions_remaining
 
   def index
-    @submissions = current_participant.submissions.where(challenge_id: @challenge.id)
+    if params[:participant_id] && @challenge.completed?
+      @participant = Participant.find(params[:participant_id])
+      @submissions = Submission.where(challenge_id: @challenge.id, participant_id: params[:participant_id], grading_status_cd: 'graded')
+    else
+      @submissions = current_participant.submissions.where(challenge_id: @challenge.id)
+    end
     load_gon({percent_progress: @challenge.timeline.pct_passed})
   end
 
+
+  def leaderboard
+    if !@challenge.completed?
+      redirect_to '/'
+    else
+      participant_id = params[:participant_id]
+      @submissions = Submission.where(challenge_id: @challenge.id, participant_id: participant_id)
+      load_gon({percent_progress: @challenge.timeline.pct_passed})
+    end
+  end
+
+
   def show
-    if @submission.participant_id != current_participant.id && !current_participant.admin?
+    if !@challenge.completed? && (@submission.participant_id != current_participant.id && !current_participant.admin?)
       redirect_to '/', notice: "You don't have permission for this action."
     else
+      @participant = @submission.participant
       render :show
     end
   end

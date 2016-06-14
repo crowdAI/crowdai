@@ -74,6 +74,10 @@ Rails.application.routes.draw do
     resources :votes, only: [:create, :destroy]
   end
 
+  resources :submissions do
+    resources :votes, only: [:create, :destroy]
+  end
+
   get '/pages/*id' => 'pages#show', as: :page, format: false
 
   root 'challenges#index', as: :authenticated_root

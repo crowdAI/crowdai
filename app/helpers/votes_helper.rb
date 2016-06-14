@@ -9,11 +9,11 @@ module VotesHelper
   end
 
   def upvote_link(votable)
-    link_to "#{awesome_icon_tag('star-o fa-3x')} #{votable.vote_count}".html_safe, eval(create_vote_path(votable)), method: :post, remote: true
+    link_to "#{awesome_icon_tag('star-o fa-2x')} #{votable.vote_count}".html_safe, eval(create_vote_path(votable)), method: :post, remote: true
   end
 
   def downvote_link(votable, vote_id)
-    link_to "#{awesome_icon_tag('star fa-3x')} #{votable.vote_count}".html_safe, eval(destroy_vote_path(votable, vote_id)), method: :delete, remote: true
+    link_to "#{awesome_icon_tag('star fa-2x')} #{votable.vote_count}".html_safe, eval(destroy_vote_path(votable, vote_id)), method: :delete, remote: true
   end
 
   def participant_vote_id(votable)

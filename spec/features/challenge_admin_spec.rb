@@ -14,12 +14,10 @@ feature 'Challenge CRUD for admin user', js: true do
       click_link '+ New Challenge'
     end
 
-
     scenario 'create perpetual challenge' do
       create_perpetual_challenge(challenge_data)
       expect(page).to have_content "Challenge was successfully created."
     end
-
 
     scenario 'create challenge with start and finish dates' do
       enter_challenge_without_timeline(challenge_data)
@@ -41,7 +39,6 @@ feature 'Challenge CRUD for admin user', js: true do
       expect(page).to have_content "Challenge was successfully created."
     end
 
-
     scenario 'edit challenge after creation' do
       create_perpetual_challenge(challenge_data)
       click_link 'Edit'
@@ -50,7 +47,7 @@ feature 'Challenge CRUD for admin user', js: true do
 
     scenario 'create challenge with dataset' do
       create_perpetual_challenge(challenge_data)
-      click_link 'Dataset'
+      find('#dataset-tab').click
       click_link 'Add file'
       fill_in 'Seq',                with: '1'
       fill_in 'Description',        with: 'Test Filename'
@@ -60,42 +57,80 @@ feature 'Challenge CRUD for admin user', js: true do
       click_button "Create File"  # TODO
     end
 
-      scenario "challenge admin must choose primary grading method and sort" do
-        skip("spec to be coded")
-      end
+    scenario "challenge admin must configure a grading method" do
+      click_link 'Evaluation'
+      select 'F1 logloss',              from: 'Grader'
+      fill_in 'Grading factor',         with: '0.3'
+      fill_in 'Answer file s3 key',     with: 'answer_files/plant_village_answers.csv'
+      fill_in 'Primary score title',    with: 'Mean F1'
+      fill_in 'Secondary score title',  with: 'Mean Log loss'
+      click_button 'Create Challenge'
+      expect(page).to have_content "Challenge was successfully updated."
+    end
+  end
 
-      scenario "challenge admin can choose secondary grading method and sort" do
-        skip("spec to be coded")
-      end
 
-      scenario "challenge admin can choose percentage for grading method" do
-        skip("spec to be coded")
-      end
+  describe "validate challenge statuses" do
+    before(:example) do
+      visit_landing_page(admin  )
+      visit organizer_path(organizer)
+      click_link '+ New Challenge'
+      enter_challenge_with_timeline(challenge_data)
+    end
 
-      scenario "challenge admin can modify percentage for grading method" do
-        skip("spec to be coded")
-      end
+    scenario "challenge cannot move from draft to running without datasets present" do
+      click_link 'Overview'
+      select 'Running', from: 'Status'
+      click_button 'Create Challenge'
+      expect(page).to have_content "Challenge cannot start until dataset files are added."
+    end
 
-        scenario "challenge can move from draft to running" do
-          skip("spec to be coded")
-        end
+    scenario "challenge can be saved in draft to running without datasets present" do
+      click_link 'Overview'
+      select 'Draft', from: 'Status'
+      click_button 'Create Challenge'
+      expect(page).to have_content "Challenge was successfully updated."
+    end
 
-        scenario "challenge can move from running to cancelled" do
-          skip("spec to be coded")
-        end
+    scenario "a challenge cannot move from draft to cancelled" do
+      find('#overview-tab').click
+      select 'Cancelled', from: 'Status'
+      click_button 'Update Challenge'
+      expect(page).to have_content("Only a running challenge may be cancelled.")
+    end
 
-        scenario "challenge can move from running to completed" do
-          skip("spec to be coded")
-        end
+    scenario "a draft challenge can have datasets added" do
+      find('#glyphicon-link-dataset').click
+      click_link 'Add file'
+      fill_in 'Seq', with: '0'
+      fill_in 'Description', with: "test file"
+      page.attach_file('s3File', Rails.root + 'spec/support/files/test_csv_file.csv')
+      expect(page).to have_content("File uploaded")
+      click_button 'Create File'
+      expect(page).to have_content("Dataset file was successfully created.")
+    end
 
-        scenario "a challenge can be deleted if it is in draft" do
-          skip("spec to be coded")
-        end
+    scenario "a challenge with datasets can move from draft to running" do
+      find('#glyphicon-link-edit').click
+      find('#overview-tab').click
+      select 'Running', from: 'Status'
+      click_button 'Update Challenge'
+      expect(page).to have_content "Challenge was successfully updated."
+    end
 
-        scenario "challenge cannot move from draft to running without datasets present" do
-          skip("spec to be coded")
-        end
-      
+    scenario "challenge can move from running to cancelled" do
+      find('#overview-tab').click
+      select 'Cancelled', from: 'Status'
+      click_button 'Update Challenge'
+      expect(page).to have_content "Challenge was successfully updated."
+    end
+
+    scenario "challenge can move from running to completed" do
+      find('#overview-tab').click
+      select 'Completed', from: 'Status'
+      click_button 'Update Challenge'
+      expect(page).to have_content "Challenge was successfully updated."
+    end
 
   end
 end

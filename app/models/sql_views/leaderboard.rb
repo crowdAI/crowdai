@@ -1,5 +1,5 @@
-class Leaderboard < ActiveRecord::Base
-  include SqlView
+class SqlViews::Leaderboard < ActiveRecord::Base
+  include SqlViews::SqlView
 
   belongs_to :challenge
   belongs_to :participant

@@ -22,10 +22,12 @@ class Participant < ActiveRecord::Base
 
   has_many :submissions
   has_many :posts
-  has_many :votes, dependent: :destroy
-  has_many :tutorials, dependent: :nullify
+  has_many :votes,                      dependent: :destroy
+  has_many :tutorials,                  dependent: :nullify
+  has_many :leaderboards,               class_name: 'SqlViews::Leaderboard'
+  has_many :ongoing_leaderboards,       class_name: 'SqlViews::OngoingLeaderboard'
 
-  has_many :participant_challenges
+  has_many :participant_challenges,     class_name: 'SqlViews::ParticipantChallenge'
   belongs_to :organizer
   has_one :image, as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :image, allow_destroy: true
@@ -57,7 +59,7 @@ class Participant < ActiveRecord::Base
     if image.present?
       image.image.url(:medium)
     else
-      "//#{ENV['HOST']}/assets/not_found_iamge.png"
+      "//#{ENV['HOST']}/assets/image_not_found.png"
     end
   end
 

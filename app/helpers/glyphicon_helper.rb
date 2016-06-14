@@ -1,6 +1,9 @@
 module GlyphiconHelper
 
-  def glyphicon_link(glyphicon_name = nil, link_name = nil, url_options = nil, html_options = nil, &block)
+  def glyphicon_link(glyphicon_name = nil, link_name = nil, url_options = nil, html_options = {}, &block)
+    if html_options['id'].nil? && !link_name.nil?
+      html_options['id'] = "glyphicon-link-#{link_name.downcase}"
+    end
     link_to("#{ glyphicon_icon_tag(glyphicon_name) } #{link_name}".html_safe, url_options, html_options, &block)
   end
 

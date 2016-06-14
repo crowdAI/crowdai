@@ -1,5 +1,6 @@
 class Submission < ActiveRecord::Base
   before_validation :cache_rendered_markdown
+  before_save :set_post_challenge
 
   belongs_to :challenge
   belongs_to :participant
@@ -48,5 +49,13 @@ class Submission < ActiveRecord::Base
       self.description = RenderMarkdown.new.render(description_markdown)
     end
   end
+
+  def set_post_challenge
+    challenge_end = self.challenge.events.last.event_time
+    if Time.now > challenge_end
+      self.post_challenge = true
+    end
+  end
+
 
 end

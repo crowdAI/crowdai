@@ -20,6 +20,7 @@ class SubmissionDashboard < Administrate::BaseDashboard
     score_secondary: Field::Number.with_options(decimals: 6),
     grading_message: Field::String,
     grading_status: Field::String,
+    post_challenge: Field::Boolean
   }
 
   # COLLECTION_ATTRIBUTES
@@ -33,7 +34,8 @@ class SubmissionDashboard < Administrate::BaseDashboard
     :participant,
     :grading_status,
     :score,
-    :score_secondary
+    :score_secondary,
+    :post_challenge
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -47,6 +49,7 @@ class SubmissionDashboard < Administrate::BaseDashboard
     :grading_message,
     :score,
     :score_secondary,
+    :post_challenge,
     :created_at,
     :updated_at,
     :description,
@@ -64,6 +67,7 @@ class SubmissionDashboard < Administrate::BaseDashboard
     :description,
     :framework,
     :score_secondary,
+    :post_challenge,
     :grading_message,
     :grading_status
   ]

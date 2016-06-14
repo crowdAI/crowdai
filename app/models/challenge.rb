@@ -1,17 +1,19 @@
 class Challenge < ActiveRecord::Base
   before_validation :cache_rendered_markdown
+  validate :valid_status
 
   belongs_to :organizer
-  has_many :dataset_files, dependent: :destroy
+  has_many :dataset_files,            dependent: :destroy
   accepts_nested_attributes_for :dataset_files, reject_if: :all_blank, allow_destroy: true
 
-  has_many :events, dependent: :destroy
-  has_many :submissions, dependent: :destroy
-  has_many :leaderboards
-  has_many :participant_challenges
+  has_many :events,                   dependent: :destroy
+  has_many :submissions,              dependent: :destroy
+  has_many :leaderboards,             class_name: 'SqlViews::Leaderboard'
+  has_many :ongoing_leaderboards,     class_name: 'SqlViews::OngoingLeaderboard'
+  has_many :participant_challenges,   class_name: 'SqlViews::ParticipantChallenge'
   has_many :topics
 
-  has_one :image, as: :imageable, dependent: :destroy
+  has_one :image,                     as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :image, allow_destroy: true
 
   accepts_nested_attributes_for :events, reject_if: :all_blank, allow_destroy: true
@@ -19,25 +21,17 @@ class Challenge < ActiveRecord::Base
 
   as_enum :status, [:draft, :running, :completed, :perpetual, :cancelled], map: :string
   as_enum :grader, [:f1_logloss ], map: :string
-
-  validates_presence_of :status
-
-  validates_presence_of :challenge
-  validates_presence_of :organizer
-
   as_enum :primary_sort_order, [:ascending, :descending], map: :string
   as_enum :secondary_sort_order, [:ascending, :descending, :not_used], map: :string
 
+  validates_presence_of :status
+  validates_presence_of :challenge
+  validates_presence_of :organizer
+  validates_presence_of :grader
+  validates_presence_of :primary_sort_order
+  validates_presence_of :grading_factor
 
-  def running?
-    return true if status_cd == 'running'
-    false
-  end
 
-  def draft?
-    return true if status_cd == 'draft'
-    false
-  end
 
   def timeline
     Timeline.new(self)
@@ -76,6 +70,17 @@ class Challenge < ActiveRecord::Base
     end
     if license_markdown_changed?
       self.license = RenderMarkdown.new.render(license_markdown)
+    end
+  end
+
+  def valid_status
+    if self.status == 'running'
+      if self.dataset_files.none?
+        errors.add("Challenge cannot start until dataset files are added.")
+      end
+    end
+    if self.status == 'cancelled' and self.status_was != 'running'
+      errors.add("Only a running challenge may be cancelled.")
     end
   end
 end

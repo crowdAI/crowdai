@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160609145519) do
+ActiveRecord::Schema.define(version: 20160614084436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 20160609145519) do
     t.text     "license_markdown"
     t.integer  "participant_count",                :default=>0
     t.integer  "submission_count",                 :default=>0
+    t.string   "score_title"
+    t.string   "score_secondary_title"
   end
   add_index "challenges", ["organizer_id"], :name=>"index_challenges_on_organizer_id", :using=>:btree
 
@@ -107,6 +109,7 @@ ActiveRecord::Schema.define(version: 20160609145519) do
     t.string   "grading_message"
     t.string   "grading_status_cd",    :default=>"ready"
     t.text     "description_markdown"
+    t.integer  "vote_count",           :default=>0
   end
   add_index "submissions", ["challenge_id"], :name=>"index_submissions_on_challenge_id", :using=>:btree
   add_index "submissions", ["participant_id"], :name=>"index_submissions_on_participant_id", :using=>:btree
@@ -201,7 +204,6 @@ SELECT l.row_num,
     t.integer  "topic_id"
     t.integer  "participant_id"
     t.text     "post"
-    t.integer  "votes",          :default=>0
     t.boolean  "flagged",        :default=>false
     t.boolean  "notify",         :default=>true
     t.datetime "created_at",     :null=>false
@@ -283,6 +285,33 @@ SELECT p.id,
     t.datetime "updated_at",        :null=>false
   end
   add_index "submission_grades", ["submission_id"], :name=>"index_submission_grades_on_submission_id", :using=>:btree
+
+  create_table "submissions__grades_backup", id: false, force: :cascade do |t|
+    t.integer  "id"
+    t.integer  "submission_id"
+    t.string   "grading_status_cd"
+    t.string   "grading_message"
+    t.float    "grading_factor"
+    t.float    "score"
+    t.float    "score_secondary"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "submissions_backup", id: false, force: :cascade do |t|
+    t.integer  "id"
+    t.integer  "challenge_id"
+    t.integer  "participant_id"
+    t.float    "score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "description"
+    t.string   "framework"
+    t.float    "score_secondary"
+    t.string   "grading_message"
+    t.string   "grading_status_cd"
+    t.text     "description_markdown"
+  end
 
   create_table "topics", force: :cascade do |t|
     t.integer  "challenge_id"

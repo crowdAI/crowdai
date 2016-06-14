@@ -6,6 +6,7 @@ class Submission < ActiveRecord::Base
   has_many :submission_files, dependent: :destroy
   has_many :submission_grades, dependent: :destroy
   accepts_nested_attributes_for :submission_files, reject_if: :all_blank, allow_destroy: true
+  has_many :votes, as: :votable
 
   as_enum :grading_status, [:ready, :submitted, :graded, :failed], map: :string
   validates_presence_of :grading_status

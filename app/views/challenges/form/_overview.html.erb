@@ -6,7 +6,7 @@
     <%= f.input :challenge %>
     <%= f.input :tagline %>
     <%= f.association :organizer, collection: Organizer.all, value_method: :id, label_method: :organizer, priority: @challenge.organizer, include_blank: false %>
-    <%= f.input :status, collection: enum_option_pairs(Challenge, :status) %>
+    <%= f.input :status, collection: enum_option_pairs(Challenge, :status), include_blank: false %>
 
     <div class="markdown-editor">
       <ul class="nav nav-tabs" data-tabs="tabs">

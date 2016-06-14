@@ -2,14 +2,14 @@
   <h1>Evaluation</h1>
   <div class="row">
     <div class="col-md-3">
-      <%= f.input :grader, collection: enum_option_pairs(Challenge, :grader) %>
+      <%= f.input :grader, collection: enum_option_pairs(Challenge, :grader), include_blank: false %>
       <%= f.input :score_title, label: "Primary score title" %>
       <%= f.input :score_secondary_title, label: "Secondary score title" %>
     </div>
     <div class="col-md-3">
       <%= f.input :grading_factor %>
-      <%= f.input :primary_sort_order, label: "Sort order", collection: enum_option_pairs(Challenge, :primary_sort_order) %>
-      <%= f.input :secondary_sort_order, label: "Sort order", collection: enum_option_pairs(Challenge, :secondary_sort_order) %>
+      <%= f.input :primary_sort_order, label: "Sort order", collection: enum_option_pairs(Challenge, :primary_sort_order), include_blank: false %>
+      <%= f.input :secondary_sort_order, label: "Sort order", collection: enum_option_pairs(Challenge, :secondary_sort_order), include_blank: false %>
     </div>
     <div class="col-md-3">
       <%= f.input :answer_file_s3_key %>

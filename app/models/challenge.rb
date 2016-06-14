@@ -1,5 +1,6 @@
 class Challenge < ActiveRecord::Base
   before_validation :cache_rendered_markdown
+  validate :valid_status
 
   belongs_to :organizer
   has_many :dataset_files, dependent: :destroy
@@ -28,17 +29,8 @@ class Challenge < ActiveRecord::Base
   validates_presence_of :grader
   validates_presence_of :primary_sort_order
   validates_presence_of :grading_factor
-  
 
-  def running?
-    return true if status_cd == 'running'
-    false
-  end
 
-  def draft?
-    return true if status_cd == 'draft'
-    false
-  end
 
   def timeline
     Timeline.new(self)
@@ -77,6 +69,17 @@ class Challenge < ActiveRecord::Base
     end
     if license_markdown_changed?
       self.license = RenderMarkdown.new.render(license_markdown)
+    end
+  end
+
+  def valid_status
+    if self.status == 'running'
+      if self.dataset_files.none?
+        errors.add("Challenge cannot start until dataset files are added.")
+      end
+    end
+    if self.status == 'cancelled' and self.status_was != 'running'
+      errors.add("Only a running challenge may be cancelled.")
     end
   end
 end

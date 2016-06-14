@@ -5,6 +5,9 @@ class LeaderboardsController < ApplicationController
 
   def index
     @leaderboards = @challenge.leaderboards
+    if @challenge.completed?
+      @ongoing_leaderboards = @challenge.ongoing_leaderboards
+    end
     load_gon({percent_progress: @challenge.timeline.pct_passed})
   end
 

@@ -1,5 +1,5 @@
-class SqlViews::Leaderboard < ActiveRecord::Base
-  include SqlView
+class SqlViews::OngoingLeaderboard < ActiveRecord::Base
+  include SqlViews::SqlView
 
   belongs_to :challenge
   belongs_to :participant

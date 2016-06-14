@@ -1,7 +1,6 @@
-module SqlView
+module SqlViews::SqlView
   def included(base)
     base.module_eval do
-      self.abstract_class = true
       self.primary_key = :id
       after_initialize :readonly!
     end

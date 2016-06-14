@@ -1,0 +1,49 @@
+<div class='table-responsive'>
+  <table class='table table-hover table-bordered leaderboard sortable'>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Participant</th>
+        <% if challenge.secondary_sort_order == 'not_used' %>
+          <th><%= challenge.score_title %></th>
+        <% else %>
+          <th><%= challenge.score_title %></th>
+          <th><%= challenge.score_secondary_title %></th>
+        <% end %>
+        <th>Entries</th>
+        <th>Submitted UTC</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% leaderboards.each_with_index do |leader,row| %>
+      <tr>
+        <td><%= row + 1 %></td>
+        <td><%= link_to participant_path(leader.participant) do %>
+              <%= image_tag avatar_url(leader.participant,'medium'), size: '30x30', class: "img-circle navbar-profile-img" %>
+              <%= leader.participant.name %>
+            <% end %>
+          </td>
+        <% if challenge.completed? %>
+          <% if challenge.secondary_sort_order == 'not_used' %>
+            <td class="score"><%= link_to leader.score, challenge_submissions_path(leader.challenge_id, participant_id: leader.participant_id) %></td>
+          <% else %>
+            <td class="score"><%= link_to leader.score, challenge_submissions_path(leader.challenge_id, participant_id: leader.participant_id) %></td>
+            <td class="score"><%= link_to leader.score_secondary, challenge_submissions_path(leader.challenge_id, participant_id: leader.participant_id) %></td>
+          <% end %>
+          <td><%= link_to leader.entries, challenge_submissions_path(leader.challenge_id, participant_id: leader.participant_id) %></td>
+        <% else %>
+          <% if challenge.secondary_sort_order == 'not_used' %>
+            <td class="score"><%= leader.score %></td>
+          <% else %>
+            <td class="score"><%= leader.score %></td>
+            <td class="score"><%= leader.score_secondary %></td>
+          <% end %>
+          <td><%= leader.entries %></td>
+        <% end %>
+        <td><%= leader.created_at.strftime("%a, %e %b %Y %R") %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

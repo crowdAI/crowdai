@@ -133,4 +133,5 @@ group :test do
   gem 'shoulda'
   gem 'timecop'
   gem 'shoulda-matchers', require: false
+  gem 'sanitize'
 end

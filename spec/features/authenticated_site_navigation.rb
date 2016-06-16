@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'sanitize'
 
 feature "site navigation for signed in participant", js: true do
 
@@ -77,7 +78,8 @@ feature "site navigation for signed in participant", js: true do
     scenario "follow Dataset link" do
       visit_challenge(participant,challenge)
       click_link "Dataset"
-      expect(page).to have_text 'All images are released under the Creative Commons'
+      puts challenge.license
+      expect(page).to have_content Sanitize.clean(challenge.license)
     end
 
     scenario "follow Submit Entry link" do

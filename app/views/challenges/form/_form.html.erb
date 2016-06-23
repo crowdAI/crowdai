@@ -36,6 +36,12 @@
     <div class="col-md-10 col-md-offset-1">
 
       <%= simple_form_for @challenge do |f| %>
+      <br/>
+      <%= f.error_notification %>
+      <div class="has-error">
+        <%= f.error :base %>
+      </div>
+
         <%= f.hidden_field :organizer_id, value: current_participant.organizer_id %>
 
         <!-- Tab panes -->

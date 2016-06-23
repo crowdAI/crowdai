@@ -8,9 +8,9 @@ class Challenge < ActiveRecord::Base
 
   has_many :events,                   dependent: :destroy
   has_many :submissions,              dependent: :destroy
-  has_many :leaderboards,             class_name: 'SqlViews::Leaderboard'
-  has_many :ongoing_leaderboards,     class_name: 'SqlViews::OngoingLeaderboard'
-  has_many :participant_challenges,   class_name: 'SqlViews::ParticipantChallenge'
+  has_many :leaderboards,             class_name: 'Leaderboard'
+  has_many :ongoing_leaderboards,     class_name: 'OngoingLeaderboard'
+  has_many :participant_challenges,   class_name: 'ParticipantChallenge'
   has_many :topics
 
   has_one :image,                     as: :imageable, dependent: :destroy
@@ -74,13 +74,13 @@ class Challenge < ActiveRecord::Base
   end
 
   def valid_status
-    if self.status == 'running'
+    if self.status == :running
       if self.dataset_files.none?
-        errors.add("Challenge cannot start until dataset files are added.")
+        errors.add(:base, "Challenge cannot start until dataset files are added.")
       end
     end
-    if self.status == 'cancelled' and self.status_was != 'running'
-      errors.add("Only a running challenge may be cancelled.")
+    if self.status == :cancelled and self.status_was != 'running'
+      errors.add(:base, "Only a running challenge may be cancelled.")
     end
   end
 end

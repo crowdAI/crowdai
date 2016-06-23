@@ -9,10 +9,14 @@ FactoryGirl.define do
     rules_markdown "Some *rules*"
     prizes_markdown "# Prizes are described here."
     resources_markdown "# Helpful resources"
-    dataset_description_markdown " # Dataset description"
+    dataset_description_markdown "# Dataset description"
     submission_instructions_markdown "## Submission instructions"
     primary_sort_order_cd 'ascending'
     secondary_sort_order_cd 'descending'
+    grader 'f1_logloss'
+    grading_factor 0.3
+    license_markdown '## This is a license'
+
 
     trait :with_event do
       events { [ build(:event) ] }

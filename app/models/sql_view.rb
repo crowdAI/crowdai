@@ -1,4 +1,4 @@
-module SqlViews::SqlView
+module SqlView
   def included(base)
     base.module_eval do
       self.primary_key = :id

@@ -610,7 +610,7 @@ DEPENDENCIES
   browser
   byebug
   capybara
-  capybara-screenshot
+  capybara-screenshot (= 1.0.12)
   carrierwave
   cocoon
   country_select

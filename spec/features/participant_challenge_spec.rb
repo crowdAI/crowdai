@@ -139,7 +139,7 @@ feature "participant accesses challenge", js: true do
       fill_in 'Email address', with: participant.email
       fill_in 'Password', with: participant.password
       click_button 'Log in'
-      expect(page).to have_text 'All images are released under the Creative Commons'
+      expect(page).to have_text Sanitize.clean(challenge.license)
     end
 
     scenario "follow Submit Entry link" do

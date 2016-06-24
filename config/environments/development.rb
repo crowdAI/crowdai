@@ -1,4 +1,8 @@
+require 'sidekiq/testing'
+
 Rails.application.configure do
+  Sidekiq::Testing.inline!
+
   config.cache_classes = false
 
   # Do not eager load code on boot.

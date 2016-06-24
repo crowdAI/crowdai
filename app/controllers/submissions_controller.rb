@@ -1,6 +1,6 @@
 class SubmissionsController < ApplicationController
   before_filter :authenticate_participant!
-  before_action :set_submission, only: [:show, :edit, :update, :destroy, :grade]
+  before_action :set_submission, only: [:show, :edit, :update, :destroy, :grade, :execute]
   before_action :set_challenge
   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
   before_action :set_submissions_remaining
@@ -62,6 +62,11 @@ class SubmissionsController < ApplicationController
 
   def grade
     @job = SubmissionGraderJob.perform_later(@submission.id)
+    render 'admin/submissions/refresh_submission_job'
+  end
+
+  def execute
+    @job = SubmissionExecutionJob.perform_later(@submission.id)
     render 'admin/submissions/refresh_submission_job'
   end
 

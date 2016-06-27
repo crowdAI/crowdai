@@ -71,6 +71,7 @@ $(function() {
         progressBar
           .css("background", "red")
           .text("Upload failed");
+          debugger;
       }
     });
   });

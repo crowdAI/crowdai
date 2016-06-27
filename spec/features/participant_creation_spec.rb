@@ -1,7 +1,7 @@
 require "rails_helper"
 #require 'capybara/email/rspec'
 
-RSpec.feature "participant", type: :feature do
+feature "participant creation", js: true do
   describe "successful participant registration" do
     scenario "with valid details" do
       visit "/"
@@ -31,7 +31,7 @@ RSpec.feature "participant", type: :feature do
       expect(page).to have_content "Welcome to CrowdAI"
     end
 
-    scenario "participant's name can be non-unique" do
+    scenario "participant's name must be unique" do
       FactoryGirl.create(:participant, name: 'Bill Hayden')
       participant = FactoryGirl.build(:participant, name: 'Bill Hayden')
       click_link "Sign up"
@@ -40,7 +40,7 @@ RSpec.feature "participant", type: :feature do
       fill_in 'participant_password', with: participant.password
       fill_in "Password confirmation", with: participant.password_confirmation
       click_button "Get started"
-      expect(page).to have_content "A message with a confirmation link has been sent to your email address"
+      expect(page).to have_content "has already been taken"
     end
   end
 
@@ -105,28 +105,6 @@ RSpec.feature "participant", type: :feature do
       fill_in "Password confirmation", with: "123456"
       click_button "Get started"
       expect(page).to have_content "is too short (minimum is 2 characters)"
-    end
-  end
-
-  describe "participant profile" do
-    scenario "a participant can upload their profile picture" do
-      skip("spec to be coded")
-    end
-
-    scenario "a participant can reset their password" do
-      skip("spec to be coded")
-    end
-
-    scenario "a participant can link their github id" do
-      skip("spec to be coded")
-    end
-
-    scenario "a participant can link their Twitter id" do
-      skip("spec to be coded")
-    end
-
-    scenario "a participant can link their LinkedIn Id" do
-      skip("spec to be coded")
     end
   end
 end

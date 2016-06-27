@@ -22,16 +22,17 @@ ActiveRecord::Migration.maintain_test_schema!
 Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
-Capybara.current_driver = :selenium
+#Capybara.current_driver = :selenium
+Capybara.current_driver = :chrome
 Capybara.javascript_driver = :chrome
-Capybara.server_port = 52508
+#Capybara.server_port = 52508
 Capybara::Screenshot.register_driver(:chrome) do |driver, path|
   filename = File.basename(path)
   driver.browser.save_screenshot("#{Rails.root}/tmp/capybara/#{filename}")
 end
 
 RSpec.configure do |config|
-  #Capybara.reset_sessions!
+  Capybara.reset_sessions!
 
   #config.filter_run :focus => true
   config.include FactoryGirl::Syntax::Methods

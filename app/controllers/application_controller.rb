@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   before_action :detect_device_variant
 
 
-
   before_action :configure_permitted_parameters, if: :devise_controller?
   protected
   def configure_permitted_parameters
@@ -21,6 +20,7 @@ class ApplicationController < ActionController::Base
   def participant_activity
     current_participant.try :touch
   end
+
 
   def load_gon(vars = {})
   rails = {controller: controller_name, action: action_name}

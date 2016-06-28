@@ -1,19 +1,12 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: 'sidebar' %>
 
-<p>
-  <strong>Article:</strong>
-  <%= @article.article %>
-</p>
+<div class="page-content-container">
 
-<p>
-  <strong>User:</strong>
-  <%= @article.user %>
-</p>
+  <% @article.article_sections.each do |section| %>
+    <h1><%= section.section %></h1>
+    <div class='markdown-wrap'>
+      <%= section.description.html_safe if section.description %>
+    </div>
+  <% end %>
 
-<p>
-  <strong>Status cd:</strong>
-  <%= @article.status_cd %>
-</p>
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+</div>

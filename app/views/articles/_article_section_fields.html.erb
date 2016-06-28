@@ -1,0 +1,15 @@
+<div class="nested-fields">
+  <hr/>
+  <div class="row">
+    <div class="col-xs-6">
+      <%= f.input :section %>
+    </div>
+    <div class="col-xs-3">
+      <%= f.input :seq %>
+    </div>
+    <div class="col-xs-9">
+      <%= f.input :icon %>
+    </div>
+  </div>
+  <%= f.input :description_markdown, input_html: { rows: 10 }, hint: 'Use markdown formatting for this field.' %>
+</div>

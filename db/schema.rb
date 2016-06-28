@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160628121311) do
+ActiveRecord::Schema.define(version: 20160628142053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20160628121311) do
     t.text     "description"
     t.datetime "created_at",           :null=>false
     t.datetime "updated_at",           :null=>false
+    t.string   "icon"
+    t.string   "section"
   end
   add_index "article_sections", ["article_id"], :name=>"index_article_sections_on_article_id", :using=>:btree
 
@@ -34,6 +36,10 @@ ActiveRecord::Schema.define(version: 20160628121311) do
     t.integer  "vote_count",     :default=>0
     t.datetime "created_at",     :null=>false
     t.datetime "updated_at",     :null=>false
+    t.string   "category"
+    t.integer  "view_count",     :default=>0
+    t.integer  "comment_count",  :default=>0
+    t.string   "summary"
   end
   add_index "articles", ["participant_id"], :name=>"index_articles_on_participant_id", :using=>:btree
 

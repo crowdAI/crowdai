@@ -1,0 +1,16 @@
+.category-badge {
+  padding: .1em .3em .1em;
+  border-radius: .2em;
+  display: inline-block;
+  text-align: center;
+  background-color: $brand-primary;
+  color: $crowdai-bg-white;
+  @include media(">=phone", "<=tablet") {
+    font-size: 70%;
+    width: 50px;
+  }
+  @include media(">tablet") {
+    font-size: 100%;
+    width: 85px;
+  }
+}

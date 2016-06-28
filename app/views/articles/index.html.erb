@@ -1,31 +1,23 @@
-<p id="notice"><%= notice %></p>
+<section class="header-section">
+  <div class="intro"></div>
+</section>
 
-<h1>Listing Articles</h1>
+<div>
+  <% if current_participant && current_participant.admin? %>
+  <br/>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-8">
+      <%= link_to '+ New Article', new_article_path, class: 'btn btn-primary outline' %>
+    </div>
+  </div>
+  <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Article</th>
-      <th>User</th>
-      <th>Status cd</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="challenges-container">
+    <ul class="challenges-list">
+      <% @articles.each do |article| %>
+        <%= render partial: 'article', locals: { article: article } %>
+      <% end %>
+    </ul>
+  </div>
 
-  <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><%= article.article %></td>
-        <td><%= article.user %></td>
-        <td><%= article.status_cd %></td>
-        <td><%= link_to 'Show', article %></td>
-        <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Article', new_article_path %>
+</div>

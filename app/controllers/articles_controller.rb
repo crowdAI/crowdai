@@ -3,7 +3,11 @@ class ArticlesController < ApplicationController
   before_action :disallow_anonymous, except: [:index, :show]
 
   def index
-    @articles = Article.all
+    if current_participant && current_participant.admin?
+      @articles = Article.all
+    else
+      @articles = Article.where(published: true)
+    end
   end
 
 
@@ -21,7 +25,7 @@ class ArticlesController < ApplicationController
 
 
   def create
-    @article = Article.new(article_params)
+    @article = current_participant.articles.new(article_params)
 
     if @article.save
       redirect_to @article, notice: 'Article was successfully created.'
@@ -53,7 +57,8 @@ class ArticlesController < ApplicationController
 
 
     def article_params
-      params.require(:article).permit(:article, :user_id, :status_cd)
+      params.require(:article).permit(:article, :user_id, :published, :category,
+                    article_sections_attributes: [:id, :article_id, :seq, :icon, :section, :description_markdown ])
     end
 
 

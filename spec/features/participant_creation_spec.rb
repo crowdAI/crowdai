@@ -1,9 +1,9 @@
 require "rails_helper"
-#require 'capybara/email/rspec'
 
 feature "participant creation", js: true do
   describe "successful participant registration" do
     scenario "with valid details" do
+
       visit "/"
       click_link "Sign up"
 
@@ -15,32 +15,41 @@ feature "participant creation", js: true do
       click_button "Get started"
 
       expect(page).to have_content("A message with a confirmation link has been sent to your email address.")
+      puts "emails: #{MandrillMailer::deliveries}"
+
     end
 
+
     scenario "confirm email" do
-      open_email "test@example.com"
+
+      visit "/"
+      click_link "Sign up"
+
+      fill_in "name",                  with: 'test_participant'
+      fill_in "Email",                 with: "test@example.com"
+      fill_in 'participant_password',  with: "crowdai123"
+      fill_in "Password confirmation", with: "crowdai123"
+
+      click_button "Get started"
+      puts "emails: #{MandrillMailer::deliveries}"
+
       current_email.click_link "Confirm my account"
 
       expect(page).to have_content("Your email address has been successfully confirmed.")
-
-      fill_in "Login",      with: "test@example.com"
-      fill_in "Password",   with: "crowdai123"
-      click_link "Log in"
-
-      expect(current_path).to eq "/"
-      expect(page).to have_content "Welcome to CrowdAI"
     end
 
-    scenario "participant's name must be unique" do
+
+    scenario "participant's name may be non-unique" do
       FactoryGirl.create(:participant, name: 'Bill Hayden')
       participant = FactoryGirl.build(:participant, name: 'Bill Hayden')
+      visit '/'
       click_link "Sign up"
       fill_in "Display name", with: participant.name
       fill_in "Email", with: participant.email
       fill_in 'participant_password', with: participant.password
       fill_in "Password confirmation", with: participant.password_confirmation
       click_button "Get started"
-      expect(page).to have_content "has already been taken"
+      expect(page).to have_content "A message with a confirmation link has been sent to your email address"
     end
   end
 

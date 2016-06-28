@@ -99,19 +99,11 @@ RSpec.describe ParticipantsController, type: :controller do
   end
 =end
 
-  # === Routes (REST) ===
   it { should route(:patch, '/participants/1').to('participants#update', {:id=>"1"}) }
   it { should route(:get, '/participants/1').to('participants#show', {:id=>"1"}) }
-  # === Callbacks (Before) ===
-  it { should use_before_filter(:verify_authenticity_token) }
-  it { should use_before_filter(:set_xhr_redirected_to) }
-  it { should use_before_filter(:set_request_method_cookie) }
+
   it { should use_before_filter(:authenticate_participant!) }
-  it { should use_before_filter(:configure_permitted_parameters) }
   it { should use_before_filter(:set_participant) }
-  # === Callbacks (After) ===
-  it { should use_after_filter(:abort_xdomain_redirect) }
-  it { should use_after_filter(:verify_same_origin_request) }
-  # === Callbacks (Around) ===
+
 
 end

@@ -38,6 +38,14 @@ FactoryGirl.define do
       dataset_files {[ build(:dataset_file) ]}
     end
 
+    trait :draft_with_milestone do
+      status_cd 'draft'
+      events { [ build(:event, event_time: 2.days.ago),
+                 build(:event, event_time: 1.day.ago),
+                 build(:event, event_time: 2.days.since) ] }
+      dataset_files {[ build(:dataset_file) ]}
+    end
+
     trait :with_milestones do
       challenge "Running Challenge"
       status_cd 'running'

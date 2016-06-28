@@ -10,6 +10,5 @@ module ControllerHelpers
     allow(participant).to receive(:organizer=).and_return nil
     allow(participant).to receive(:admin?).and_return true
     allow(participant).to receive(:save!).and_return true
-
   end
 end

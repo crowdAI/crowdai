@@ -15,7 +15,7 @@ RSpec.describe Post, type: :model do
   it { is_expected.to have_db_column :topic_id }
   it { is_expected.to have_db_column :participant_id }
   it { is_expected.to have_db_column :post }
-  it { is_expected.to have_db_column :votes }
+  it { is_expected.to have_db_column :vote_count }
   it { is_expected.to have_db_column :flagged }
   it { is_expected.to have_db_column :notify }
   it { is_expected.to have_db_column :created_at }

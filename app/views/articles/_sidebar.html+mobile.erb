@@ -1,29 +1,14 @@
 <% content_for(:sidebar) do %>
-    <ul class="nav navbar-nav">
-      <li><%= link_to 'Introduction', article_path(@article, anchor: 'introduction') %></li>
-      <li><%= link_to 'Approach', article_path(@article, anchor: 'approach') %></li>
-      <li><%= link_to 'Setup', article_path(@article, anchor: 'setup') %></li>
-      <li><%= link_to 'Code', article_path(@article, anchor: 'code') %></li>
-      <li><%= link_to 'Comments', article_path(@article, anchor: 'comments') %></li>
-      <hr/>
-      <% if current_participant && (current_participant.admin? || current_participant.id == @article.participant_id) %>
-        <li><%= link_to 'Edit', edit_article_path(@article) %></li>
-      <% end %>
-    </ul>
-<% end %>
-
-
-<% content_for(:sidebar) do %>
   <ul class="nav nav-stacked sidebar-menu">
     <% if @article %>
       <% @article.article_sections.each do |section| %>
         <li><%= link_to section.section, article_path(@article, anchor: section.section.parameterize) %></li>
       <% end %>
-    <% end %>
-    <li><%= link_to 'Comments', article_path(@article, anchor: 'comments') %></li>
-    <% if current_participant && (current_participant.admin? || current_participant.id == @article.participant_id) %>
-      <hr/>
-      <li><%= link_to 'Edit', edit_article_path(@article) %></li>
+      <li><%= link_to 'Comments', article_path(@article, anchor: 'comments') %></li>
+      <% if current_participant && (current_participant.admin? || current_participant.id == @article.participant_id) %>
+        <hr/>
+        <li><%= link_to 'Edit', edit_article_path(@article) %></li>
+      <% end %>
     <% end %>
   </ul>
 <% end %>

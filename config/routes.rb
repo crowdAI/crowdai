@@ -76,6 +76,7 @@ Rails.application.routes.draw do
   resources :articles do
     resources :article_sections
     resources :votes, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
   end
 
 

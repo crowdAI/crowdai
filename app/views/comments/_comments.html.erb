@@ -1,0 +1,26 @@
+<div id='comments'>
+  <h2>Comments</h2>
+  <% comments.each do |comment| %>
+    <div>
+      <%= comment.comment %>
+      <br/>
+      <span class="pull-right">
+        <% if current_participant.admin? %>
+          <%= link_to [commentable, comment], :confirm => 'Are you sure?', :method => :delete, remote: true do %>
+            &nbsp;<i class="glyphicon glyphicon-trash"></i>
+          <% end %>
+        <% end %>
+      </span>
+      <small class="pull-right"><%= link_to "@#{comment.participant.name}",
+                            participant_path(comment.participant_id),
+                            class: 'participant-mention' %> <%= comment.created_at.strftime("%-d %B '%y") %></small>
+      <hr/>
+    </div>
+  <% end %>
+
+  <%= simple_form_for [commentable, commentable.comments.build], remote: true do |f| %>
+    <%= f.input :comment %>
+
+    <%= f.button :submit, class: 'btn btn-xs btn-primary outline'  %>
+  <% end %>
+</div>

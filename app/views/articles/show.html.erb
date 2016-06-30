@@ -1,6 +1,7 @@
 <%= render partial: 'sidebar' %>
 
 <div class="page-content-container">
+  <%= render partial: 'votes/vote_link', locals: { votable: @article } %>
 
   <% @article.article_sections.each do |section| %>
     <h1><%= section.section %></h1>

@@ -11,6 +11,7 @@ gem 'puma_worker_killer'
 gem 'devise'
 gem "administrate"
 gem "administrate-field-image"
+gem "bourbon"
 gem 'pundit'
 #gem 'blazer'
 
@@ -33,6 +34,7 @@ gem 'country_select'
 gem 'cocoon'
 gem 'redcarpet'
 gem 'groupdate'
+gem 'rouge'
 #gem 'active_median'
 #gem "chartkick"
 

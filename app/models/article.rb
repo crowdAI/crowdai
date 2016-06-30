@@ -24,4 +24,6 @@ class Article < ActiveRecord::Base
     'deep_learning' => 'Deep Learning'
   }
 
+
+
 end

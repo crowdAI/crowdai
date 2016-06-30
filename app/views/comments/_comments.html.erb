@@ -24,6 +24,6 @@
       <%= f.button :submit, class: 'btn btn-xs btn-primary outline'  %>
     <% end %>
   <% else %>
-    <lead>Sign in to make a comment.</lead>
+    <lead><%= link_to 'Sign in', participant_session_path %> to make a comment.</lead>
   <% end %>
 </div>

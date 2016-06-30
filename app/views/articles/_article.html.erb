@@ -15,11 +15,9 @@
             <span class="category-badge"><%= article.category %></span>
             <span>&ensp;</span>
             <span class="glyphicon glyphicon-eye-open"></span> <%= article.view_count %> views &ensp; | &ensp;
-            <span class="glyphicon glyphicon-user"></span>
+          <span class="glyphicon glyphicon-user"></span> <%= article.vote_count %> votes
           &ensp; | &ensp;
-          <span class="glyphicon glyphicon-list-alt"></span> <%= article.vote_count %> votes
-          &ensp; | &ensp;
-          <span class="glyphicon glyphicon-list-alt"></span> <%= article.comment_count %> comment
+          <span class="glyphicon glyphicon-list-alt"></span> <%= article.comment_count %> comments
         </div>
       </div>
     </div>

@@ -109,7 +109,7 @@ feature 'Challenge CRUD for admin user', js: true do
       click_link 'Add file'
       fill_in 'Seq', with: '0'
       fill_in 'Description', with: "test file"
-      page.attach_file('Dataset file s3 key', Rails.root + 'spec/support/files/test_csv_file.csv')
+      attach_file('Dataset file s3 key', Rails.root + 'spec/support/files/test_csv_file.csv')
       expect(page).to have_content("File uploaded")
       click_button 'Create File'
       expect(page).to have_content("Dataset file was successfully created.")

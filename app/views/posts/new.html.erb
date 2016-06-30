@@ -13,7 +13,7 @@
 
   <ul class="list-group">
     <% @posts.each do |post| %>
-    <%= render post if !post.new_record? %>
+      <%= render post if !post.new_record? %>
     <% end %>
   </ul>
 

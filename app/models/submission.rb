@@ -43,6 +43,10 @@ class Submission < ActiveRecord::Base
     self.grading_status == :failed
   end
 
+
+
+
+
   private
   def cache_rendered_markdown
     if description_markdown_changed?

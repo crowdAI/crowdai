@@ -1,4 +1,11 @@
 Rails.application.configure do
+
+  # load env variables
+  figaro_file = File.join(Rails.root, 'config', 'application.yml')
+  YAML::load_file(figaro_file).symbolize_keys[:development].each do |key,value|
+    ENV[key.to_s] = value
+  end
+
   config.cache_classes = false
 
   # Do not eager load code on boot.

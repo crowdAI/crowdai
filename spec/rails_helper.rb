@@ -7,13 +7,13 @@ require 'devise'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'capybara-screenshot/rspec'
-#require 'support/factory_girl'
-#require 'shoulda/matchers'
 require 'support/controller_helpers'
 require 'support/login_helper'
 require 'features/support/navigation_helpers'
 require 'features/support/challenge_helpers'
 require 'support/feature_helpers'
+require 'mandrill_mailer/offline'
+
 
 
 
@@ -22,15 +22,16 @@ ActiveRecord::Migration.maintain_test_schema!
 Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
-Capybara.current_driver = :selenium
+Capybara.current_driver = :chrome
 Capybara.javascript_driver = :chrome
+#Capybara.server_port = 52508
 Capybara::Screenshot.register_driver(:chrome) do |driver, path|
   filename = File.basename(path)
   driver.browser.save_screenshot("#{Rails.root}/tmp/capybara/#{filename}")
 end
 
 RSpec.configure do |config|
-  #Capybara.reset_sessions!
+  Capybara.reset_sessions!
 
   #config.filter_run :focus => true
   config.include FactoryGirl::Syntax::Methods
@@ -43,7 +44,6 @@ RSpec.configure do |config|
   config.include NavigationHelpers, type: :feature
   config.include ChallengeHelpers, type: :feature
   config.include FeatureHelpers, type: :feature
-
 
   config.use_transactional_fixtures = false
 

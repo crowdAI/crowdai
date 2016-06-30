@@ -82,7 +82,7 @@ RSpec.describe Challenge, type: :model do
     it { expect(challenge.rules).to eq("<p>Some <em>rules</em></p>\n")}
     it { expect(challenge.prizes).to eq("<h1>Prizes are described here.</h1>\n")}
     it { expect(challenge.resources).to eq("<h1>Helpful resources</h1>\n")}
-    it { expect(challenge.dataset_description).to eq("<p># Dataset description</p>\n")}
+    it { expect(challenge.dataset_description).to eq("<h1>Dataset description</h1>\n")}
     it { expect(challenge.submission_instructions).to eq("<h2>Submission instructions</h2>\n")}
   end
 

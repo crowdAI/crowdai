@@ -1,0 +1,23 @@
+<section class="header-section">
+  <div class="intro"></div>
+</section>
+
+<div>
+  <% if current_participant && current_participant.admin? %>
+  <br/>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-8">
+      <%= link_to '+ New Article', new_article_path, class: 'btn btn-primary outline' %>
+    </div>
+  </div>
+  <% end %>
+
+  <div class="challenges-container">
+    <ul class="challenges-list">
+      <% @articles.each do |article| %>
+        <%= render partial: 'article', locals: { article: article } %>
+      <% end %>
+    </ul>
+  </div>
+
+</div>

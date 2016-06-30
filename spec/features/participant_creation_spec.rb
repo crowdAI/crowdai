@@ -1,9 +1,9 @@
 require "rails_helper"
-#require 'capybara/email/rspec'
 
-RSpec.feature "participant", type: :feature do
+feature "participant creation", js: true do
   describe "successful participant registration" do
     scenario "with valid details" do
+
       visit "/"
       click_link "Sign up"
 
@@ -15,25 +15,34 @@ RSpec.feature "participant", type: :feature do
       click_button "Get started"
 
       expect(page).to have_content("A message with a confirmation link has been sent to your email address.")
+      puts "emails: #{MandrillMailer::deliveries}"
+
     end
 
+
     scenario "confirm email" do
-      open_email "test@example.com"
+
+      visit "/"
+      click_link "Sign up"
+
+      fill_in "name",                  with: 'test_participant'
+      fill_in "Email",                 with: "test@example.com"
+      fill_in 'participant_password',  with: "crowdai123"
+      fill_in "Password confirmation", with: "crowdai123"
+
+      click_button "Get started"
+      puts "emails: #{MandrillMailer::deliveries}"
+
       current_email.click_link "Confirm my account"
 
       expect(page).to have_content("Your email address has been successfully confirmed.")
-
-      fill_in "Login",      with: "test@example.com"
-      fill_in "Password",   with: "crowdai123"
-      click_link "Log in"
-
-      expect(current_path).to eq "/"
-      expect(page).to have_content "Welcome to CrowdAI"
     end
 
-    scenario "participant's name can be non-unique" do
+
+    scenario "participant's name may be non-unique" do
       FactoryGirl.create(:participant, name: 'Bill Hayden')
       participant = FactoryGirl.build(:participant, name: 'Bill Hayden')
+      visit '/'
       click_link "Sign up"
       fill_in "Display name", with: participant.name
       fill_in "Email", with: participant.email
@@ -105,28 +114,6 @@ RSpec.feature "participant", type: :feature do
       fill_in "Password confirmation", with: "123456"
       click_button "Get started"
       expect(page).to have_content "is too short (minimum is 2 characters)"
-    end
-  end
-
-  describe "participant profile" do
-    scenario "a participant can upload their profile picture" do
-      skip("spec to be coded")
-    end
-
-    scenario "a participant can reset their password" do
-      skip("spec to be coded")
-    end
-
-    scenario "a participant can link their github id" do
-      skip("spec to be coded")
-    end
-
-    scenario "a participant can link their Twitter id" do
-      skip("spec to be coded")
-    end
-
-    scenario "a participant can link their LinkedIn Id" do
-      skip("spec to be coded")
     end
   end
 end

@@ -11,11 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160616075346) do
+ActiveRecord::Schema.define(version: 20160630124416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_stat_statements"
+
+  create_table "article_sections", force: :cascade do |t|
+    t.integer  "article_id"
+    t.integer  "seq",                  :default=>1
+    t.text     "description_markdown"
+    t.text     "description"
+    t.datetime "created_at",           :null=>false
+    t.datetime "updated_at",           :null=>false
+    t.string   "icon"
+    t.string   "section"
+  end
+  add_index "article_sections", ["article_id"], :name=>"index_article_sections_on_article_id", :using=>:btree
+
+  create_table "articles", force: :cascade do |t|
+    t.string   "article"
+    t.integer  "participant_id"
+    t.boolean  "published",      :default=>false
+    t.integer  "vote_count",     :default=>0
+    t.datetime "created_at",     :null=>false
+    t.datetime "updated_at",     :null=>false
+    t.string   "category"
+    t.integer  "view_count",     :default=>0
+    t.integer  "comment_count",  :default=>0
+    t.string   "summary"
+  end
+  add_index "articles", ["participant_id"], :name=>"index_articles_on_participant_id", :using=>:btree
 
   create_table "challenges", force: :cascade do |t|
     t.integer  "organizer_id"
@@ -53,6 +79,16 @@ ActiveRecord::Schema.define(version: 20160616075346) do
     t.string   "score_secondary_title"
   end
   add_index "challenges", ["organizer_id"], :name=>"index_challenges_on_organizer_id", :using=>:btree
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.text     "comment"
+    t.integer  "participant_id"
+    t.datetime "created_at",       :null=>false
+    t.datetime "updated_at",       :null=>false
+  end
+  add_index "comments", ["participant_id"], :name=>"index_comments_on_participant_id", :using=>:btree
 
   create_table "dataset_file_downloads", force: :cascade do |t|
     t.integer  "participant_id"
@@ -363,17 +399,6 @@ SELECT p.id,
   add_index "topics", ["challenge_id"], :name=>"index_topics_on_challenge_id", :using=>:btree
   add_index "topics", ["participant_id"], :name=>"index_topics_on_participant_id", :using=>:btree
 
-  create_table "tutorials", force: :cascade do |t|
-    t.string   "article"
-    t.string   "url"
-    t.integer  "participant_id"
-    t.integer  "vote_count"
-    t.datetime "created_at",      :null=>false
-    t.datetime "updated_at",      :null=>false
-    t.boolean  "public_tutorial", :default=>false
-  end
-  add_index "tutorials", ["participant_id"], :name=>"index_tutorials_on_participant_id", :using=>:btree
-
   create_table "votes", force: :cascade do |t|
     t.integer  "votable_id",     :null=>false
     t.string   "votable_type",   :null=>false
@@ -383,7 +408,10 @@ SELECT p.id,
   end
   add_index "votes", ["participant_id"], :name=>"index_votes_on_participant_id", :using=>:btree
 
+  add_foreign_key "article_sections", "articles"
+  add_foreign_key "articles", "participants"
   add_foreign_key "challenges", "organizers"
+  add_foreign_key "comments", "participants"
   add_foreign_key "dataset_file_downloads", "dataset_files"
   add_foreign_key "dataset_file_downloads", "participants"
   add_foreign_key "events", "challenges"
@@ -396,6 +424,5 @@ SELECT p.id,
   add_foreign_key "submissions", "participants"
   add_foreign_key "topics", "challenges"
   add_foreign_key "topics", "participants"
-  add_foreign_key "tutorials", "participants"
   add_foreign_key "votes", "participants"
 end

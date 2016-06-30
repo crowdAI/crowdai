@@ -5,7 +5,7 @@
       <%= comment.comment %>
       <br/>
       <span class="pull-right">
-        <% if current_participant.admin? %>
+        <% if current_participant && current_participant.admin? %>
           <%= link_to [commentable, comment], :confirm => 'Are you sure?', :method => :delete, remote: true do %>
             &nbsp;<i class="glyphicon glyphicon-trash"></i>
           <% end %>
@@ -18,9 +18,12 @@
     </div>
   <% end %>
 
-  <%= simple_form_for [commentable, commentable.comments.build], remote: true do |f| %>
-    <%= f.input :comment %>
-
-    <%= f.button :submit, class: 'btn btn-xs btn-primary outline'  %>
+  <% if current_participant %>
+    <%= simple_form_for [commentable, commentable.comments.build], remote: true do |f| %>
+      <%= f.input :comment %>
+      <%= f.button :submit, class: 'btn btn-xs btn-primary outline'  %>
+    <% end %>
+  <% else %>
+    <lead>Sign in to make a comment.</lead>
   <% end %>
 </div>

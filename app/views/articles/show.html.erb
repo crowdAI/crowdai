@@ -1,12 +1,16 @@
 <%= render partial: 'sidebar' %>
 
 <div class="page-content-container">
-  <%= render partial: 'votes/vote_link', locals: { votable: @article } %>
+  <% if current_participant %>
+    <%= render partial: 'votes/vote_link', locals: { votable: @article } %>
+  <% end %>
 
   <% @article.article_sections.each do |section| %>
-    <h1><%= section.section %></h1>
-    <div class='markdown-wrap'>
-      <%= section.description.html_safe if section.description %>
+    <div id='<%= section.section.parameterize %>'>
+      <h1><%= section.section %></h1>
+      <div class='markdown-wrap'>
+        <%= section.description.html_safe if section.description %>
+      </div>
     </div>
   <% end %>
 

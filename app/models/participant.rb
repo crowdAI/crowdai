@@ -23,7 +23,8 @@ class Participant < ActiveRecord::Base
   has_many :submissions
   has_many :posts
   has_many :votes,                      dependent: :destroy
-  has_many :tutorials,                  dependent: :nullify
+  has_many :comments,                   dependent: :nullify
+  has_many :articles,                   dependent: :nullify
   has_many :leaderboards,               class_name: 'Leaderboard'
   has_many :ongoing_leaderboards,       class_name: 'OngoingLeaderboard'
 

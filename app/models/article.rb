@@ -9,7 +9,7 @@ class Article < ActiveRecord::Base
 
   validates_presence_of :category
   validates_presence_of :summary
-  validates_length_of :summary, maximum: 20, allow_blank: false
+  validates_length_of :summary, maximum: 30, allow_blank: false
 
 
   CATEGORIES = {

@@ -9,7 +9,6 @@ class Article < ActiveRecord::Base
 
   validates_presence_of :category
   validates_presence_of :summary
-  validates_length_of :summary, maximum: 30, allow_blank: false
 
 
   CATEGORIES = {
@@ -20,10 +19,19 @@ class Article < ActiveRecord::Base
     'scikit3' => 'Python-3 Scikit-Learn',
     'octave' => 'Octave',
     'keras' => 'Keras',
-    'machine_learning' => 'Machine Learning',
-    'data_mining' => 'Data Mining',
-    'deep_learning' => 'Deep Learning'
+    'machine_learning' => 'Machine learning',
+    'data_mining' => 'Data mining',
+    'deep_learning' => 'Deep learning'
   }
+
+
+  def image_medium_url
+    if image.present?
+      image.image.url(:medium)
+    else
+      "//#{ENV['HOST']}/assets/image_not_found.png"
+    end
+  end
 
 
 end

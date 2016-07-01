@@ -7,10 +7,20 @@
   color: $crowdai-bg-white;
   @include media(">=phone", "<=tablet") {
     font-size: 70%;
-    width: 50px;
+    //width: 50px;
   }
   @include media(">tablet") {
     font-size: 100%;
-    width: 85px;
+    font-weight: 300;
+    //width: 85px;
   }
+}
+
+
+.article-header-subheading {
+  padding-top: 10px;
+  color: $brand-primary;
+  font-size: 100%;
+  text-transform: uppercase;
+  font-weight: 500;
 }

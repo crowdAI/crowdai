@@ -1,23 +1,33 @@
-<section class="header-section">
-  <div class="intro"></div>
+<section class="knowledge-header-section">
+  <div class='text-center'>
+    <h1><%= image_tag('crowdai_head_no_background', size: '60x60', class: 'crowdai-head') %>Knowledge Base</h1>
+    <div class="header-text">The place to build and find high quality resources to help data scientists at all<br/>
+    levels of expertise, from beginners to experts.</div>
+    <div>
+      <% if current_participant && current_participant.admin? %>
+        <%= link_to 'Create a tutorial', new_article_path, class: "btn btn-white-outline" %>
+      <% else %>
+        <%= link_to 'Create a tutorial', '#', class: "btn btn-white-outline" %>
+      <% end %>
+    </div>
+  </div>
 </section>
 
 <div>
-  <% if current_participant && current_participant.admin? %>
-  <br/>
-  <div class="row">
-    <div class="col-md-2 col-md-offset-8">
-      <%= link_to '+ New Article', new_article_path, class: 'btn btn-primary outline' %>
-    </div>
-  </div>
-  <% end %>
-
   <div class="challenges-container">
+
+    <div class="topics-container">
+      <div class="row">
+        <div class="col-md-3">
+          <%#= collection_select(:category, Article::CATEGORIES.sort.map {|k,v| [v,k]}) %>
+        </div>
+      </div>
+    </div>
+
     <ul class="challenges-list">
       <% @articles.each do |article| %>
         <%= render partial: 'article', locals: { article: article } %>
       <% end %>
     </ul>
   </div>
-
 </div>

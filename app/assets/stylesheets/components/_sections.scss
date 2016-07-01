@@ -21,3 +21,27 @@
     height: $crowdai-header-section-height;
   }
 }
+
+.knowledge-header-section {
+  background-color: $crowdai-knowledge-header;
+  color: $crowdai-text-white;
+  @include media(">=phone", "<=tablet") {
+    min-height: 150px;
+    padding: 20px 20px 5px 20px;
+  }
+  @include media(">tablet") {
+    min-height: $crowdai-header-section-height;
+    padding-top: 70px;
+  }
+}
+
+.knowledge-header-section .crowdai-head {
+  padding-bottom: 5px;
+}
+
+.knowledge-header-section .header-text {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: 150;
+  line-height: 1.4;
+}

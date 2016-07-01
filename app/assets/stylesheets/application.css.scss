@@ -4,8 +4,6 @@
 @import "font-awesome";
 @import "jquery-ui";
 @import "include_media";
-/* config variables and mixins */
-//@import "mixins";
 
 
 /* components */
@@ -24,6 +22,7 @@
 @import "components/calendars";
 @import "components/labels";
 @import "components/markdown_editor";
+@import "components/images";
 
 
 /* modules */
@@ -45,8 +44,6 @@ html {
     width: 100%;
     height: 100%;
 }
-
-
 
 
 /* constrain images to Bootstrap columns */

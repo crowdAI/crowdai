@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :disallow_anonymous, except: [:index, :show]
+  before_action :admin_only, only: [:new, :edit, :delete]
 
   def index
     if current_participant && current_participant.admin?
@@ -13,6 +14,7 @@ class ArticlesController < ApplicationController
 
   def show
     @comments = @article.comments
+    load_gon
   end
 
 
@@ -22,6 +24,7 @@ class ArticlesController < ApplicationController
 
 
   def edit
+    load_gon
   end
 
 
@@ -59,11 +62,16 @@ class ArticlesController < ApplicationController
 
     def article_params
       params.require(:article).permit(:article, :user_id, :published, :category, :summary,
-                    article_sections_attributes: [:id, :article_id, :seq, :icon, :section, :description_markdown ])
+                    article_sections_attributes: [:id, :article_id, :seq, :icon, :section, :description_markdown ],
+                    image_attributes: [:id, :image, :_destroy ])
     end
 
 
     def disallow_anonymous
       redirect_to articles_url if !current_participant
+    end
+
+    def admin_only
+      redirect_to articles_url if !current_participant.admin?
     end
 end

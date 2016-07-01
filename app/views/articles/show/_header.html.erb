@@ -8,11 +8,11 @@
         </div>
       </div>
       <div class="col-md-8">
-        <div class='article-header-subheading'><%= "#{@article.category} tutorial" %></div>
+        <div class='article-header-subheading'><%= "#{Article::CATEGORIES[@article.category]} tutorial" %></div>
         <h1><%= @article.article %></h1>
         <div class="header-text"><%= @article.summary %></div>
-        <div>by <%= link_to "@#{@article.participant.name}", participant_path(@article.participant_id), class: 'participant-mention' %></div>
-        <div> <%= @article.created_at.strftime("%-d %B '%y") %></div>
+        <div class='header-date-text'>by <%= link_to "@#{@article.participant.name}", participant_path(@article.participant_id), class: 'participant-mention' %></div>
+        <div class='header-date-text'> <%= @article.created_at.strftime("%-d %B '%y") %></div>
       </div>
   </section>
 <% end %>

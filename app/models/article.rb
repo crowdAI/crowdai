@@ -33,5 +33,11 @@ class Article < ActiveRecord::Base
     end
   end
 
+  def record_page_view
+    self.view_count ||= 0
+    self.view_count += 1
+    self.save
+  end
+
 
 end

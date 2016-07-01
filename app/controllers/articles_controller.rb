@@ -13,6 +13,7 @@ class ArticlesController < ApplicationController
 
 
   def show
+    @article.record_page_view
     @comments = @article.comments
     load_gon
   end

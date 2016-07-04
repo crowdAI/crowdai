@@ -19,17 +19,17 @@
             </div>
           </div>
 
-          <%= f.simple_fields_for :article_sections do |section| %>
-            <%= render 'articles/article_section_fields', f: section %>
-          <% end %>
-          <%= link_to_add_association 'Add Section', f, :article_sections,
+          <div class="article-sections">
+            <%= f.simple_fields_for :article_sections do |section| %>
+              <%= render 'articles/article_section_fields', f: section %>
+            <% end %>
+            <%= link_to_add_association 'Add Section', f, :article_sections,
                                 html_options = { partial: 'articles/article_section_fields',
                                                  class: 'btn btn-primary outline' } %>
 
-          <div class="form-actions">
             <hr/>
-            <%= f.button :submit, class: 'btn btn-primary outline'  %>
           </div>
+          <%= f.button :submit, class: 'btn btn-primary outline'  %>
         <% end %>
       </div><!-- col-md-4 col-md-offset-2 -->
     </div><!-- row -->

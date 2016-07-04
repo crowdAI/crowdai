@@ -15,6 +15,9 @@ Rails.application.routes.draw do
 
   # Administrate
   namespace :admin do
+    resources :articles
+    resources :article_sections
+    resources :comments
     resources :participants
     resources :challenges, except: [:edit]
     resources :images

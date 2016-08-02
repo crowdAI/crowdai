@@ -1,30 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Submission, type: :model do
-  before do
-    @submission = build(:submission)
-  end
 
-  describe 'fields' do
-    subject { @submission }
-    it { should respond_to(:score) }
-  end
+  subject { build(:submission) }
 
-  describe 'associations' do
-    subject { @submission }
-
-    it { should respond_to(:challenge) }
-    it { should respond_to(:participant) }
-    it { should respond_to(:submission_files) }
-  end
-
-  describe 'submission_files assocations' do
-    it 'is ordered by seq' do
-      s = create(:submission)
-      create(:submission_file, submission: submission)
-      expect(submission_file).to be_valid
-    end
-  end
+  it { should respond_to(:score) }
+  it { should respond_to(:challenge) }
+  it { should respond_to(:participant) }
+  it { should respond_to(:submission_files) }
 
   # === Relations ===
   it { is_expected.to belong_to :challenge }
@@ -48,5 +31,21 @@ RSpec.describe Submission, type: :model do
   it { is_expected.to have_db_index ["challenge_id"] }
   it { is_expected.to have_db_index ["participant_id"] }
 
+
+  describe 'submission_files assocations' do
+    it 'is ordered by seq when seq 0 is created first' do
+      s = create(:submission)
+      create(:submission_file, submission: s, seq: 1)
+      create(:submission_file, submission: s, seq: 0)
+      expect(s.submission_files.first.seq).to eq(0)
+    end
+
+    it 'is ordered by seq when seq 1 is created first' do
+      s = create(:submission)
+      create(:submission_file, submission: s, seq: 0)
+      create(:submission_file, submission: s, seq: 1)
+      expect(s.submission_files.first.seq).to eq(0)
+    end
+  end
 
 end

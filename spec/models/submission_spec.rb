@@ -18,7 +18,12 @@ RSpec.describe Submission, type: :model do
     it { should respond_to(:submission_files) }
   end
 
-  describe 'specific validations' do
+  describe 'submission_files assocations' do
+    it 'is ordered by seq' do
+      s = create(:submission)
+      create(:submission_file, submission: submission)
+      expect(submission_file).to be_valid
+    end
   end
 
   # === Relations ===

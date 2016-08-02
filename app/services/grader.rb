@@ -46,7 +46,7 @@ class Grader
   def api_query
     c = @submission.challenge
     submission_key = get_submission_key
-    return False if submission_key.blank? || c.answer_file_s3_key.blank?
+    return false if submission_key.blank? || c.answer_file_s3_key.blank?
     query = { query: { submission_id: @submission.id,
                        grader: c.grader,
                        grading_factor: c.grading_factor,

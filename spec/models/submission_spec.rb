@@ -38,13 +38,34 @@ RSpec.describe Submission, type: :model do
       create(:submission_file, submission: s, seq: 1)
       create(:submission_file, submission: s, seq: 0)
       expect(s.submission_files.first.seq).to eq(0)
+      expect(s.submission_files.last.seq).to eq(1)
     end
 
-    it 'is ordered by seq when seq 1 is created first' do
+    it 'is ordered by seq when seq 0 is created second' do
       s = create(:submission)
       create(:submission_file, submission: s, seq: 0)
       create(:submission_file, submission: s, seq: 1)
       expect(s.submission_files.first.seq).to eq(0)
+      expect(s.submission_files.last.seq).to eq(1)
+    end
+  end
+
+#http://jakegoulding.com/presentations/rspec-structure/#slide-35
+
+  describe 'post_challenge flag' do
+    context 'no events are assigned' do
+      let(:submission) { create(:submission) }
+      it { expect(submission.post_challenge).to be false }
+    end
+
+    context 'events are assigned and before start of challenge' do
+      let(:submission) { create(:submission) }
+      it { expect(submission.post_challenge).to be false }
+    end
+
+    context 'events are assigned and after end of challenge' do
+      let(:submission) { create(:submission) }
+      it { expect(submission.post_challenge).to be true }
     end
   end
 

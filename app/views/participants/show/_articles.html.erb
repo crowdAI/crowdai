@@ -1,0 +1,16 @@
+<div class="tab-pane" id="articles">
+
+  <% if @participant.articles.published.any? %>
+    <ul class="list-group">
+      <% @participant.articles.each do |article| %>
+        <li class="list-group-item">
+          <%= link_to article.article, article_path(article) %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <br/>
+    <h3><%= @participant.name %> has not yet published any articles.</h3>
+  <% end %>
+
+</div>

@@ -39,7 +39,7 @@ class ArticlesController < ApplicationController
 
 
   def update
-    authorize(current_participant,@article)
+    authorize @article
     if @article.update(article_params)
       redirect_to @article, notice: 'Article was successfully updated.'
     else

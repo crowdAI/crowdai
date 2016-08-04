@@ -519,7 +519,7 @@ GEM
     seed_dump (3.2.4)
       activerecord (>= 4)
       activesupport (>= 4)
-    selectize-rails (0.12.1)
+    selectize-rails (0.12.2)
     selenium-webdriver (2.53.3)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)

@@ -46,7 +46,7 @@ class ParticipantDashboard < Administrate::BaseDashboard
     github: Field::String,
     linkedin: Field::String,
     twitter: Field::String,
-    account_disabled: Field::String,
+    account_disabled: Field::Boolean,
     account_disabled_reason: Field::Text,
     account_disabled_dttm: Field::DateTime
   }

@@ -1,7 +1,5 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  #before_action :disallow_anonymous, except: [:index, :show]
-  #before_action :admin_only, only: [:new, :edit, :delete]
   after_action :verify_authorized, except: [:index, :show]
 
   def index
@@ -24,7 +22,7 @@ class ArticlesController < ApplicationController
 
 
   def edit
-    #authorize @article
+    authorize @article
     load_gon
   end
 
@@ -51,7 +49,7 @@ class ArticlesController < ApplicationController
 
 
   def destroy
-    #authorize @article
+    authorize @article
     @article.destroy
     redirect_to articles_url, notice: 'Article was successfully destroyed.'
   end
@@ -68,14 +66,5 @@ class ArticlesController < ApplicationController
       params.require(:article).permit(:article, :user_id, :published, :category, :summary,
                     article_sections_attributes: [:id, :article_id, :seq, :icon, :section, :description_markdown ],
                     image_attributes: [:id, :image, :_destroy ])
-    end
-
-
-    def disallow_anonymous
-      redirect_to articles_url if !current_participant
-    end
-
-    def admin_only
-      redirect_to articles_url if !current_participant.admin?
     end
 end

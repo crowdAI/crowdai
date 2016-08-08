@@ -103,6 +103,7 @@ gem 'fog', '1.35.0'
 
 
 
+
 group :development do
   gem 'guard'
   gem 'rails-footnotes', '>= 4.0.0', '<5'

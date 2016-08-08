@@ -10,6 +10,11 @@
             </a>
           </li>
           <li role="presentation">
+            <a href="#articles" data-toggle="tab">
+              <i class="glyphicon glyphicon-star"></i> Articles
+            </a>
+          </li>
+          <li role="presentation">
             <a href="#notebooks" data-toggle="tab">
               <i class="glyphicon glyphicon-file"></i> Notebooks
             </a>
@@ -27,6 +32,7 @@
         </ul>
         <div id="profile-tab-content" class="tab-content">
           <%= render 'participants/show/challenges' %>
+          <%= render 'participants/show/articles' %>
           <%= render 'participants/show/notebooks' %>
           <%= render 'participants/show/activity' %>
           <%= render 'participants/show/reputation' %>

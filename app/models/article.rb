@@ -7,6 +7,8 @@ class Article < ActiveRecord::Base
   has_one :image, as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :image, allow_destroy: true
 
+  scope :published, -> () { where published: true }
+
   validates_presence_of :category
   validates_presence_of :summary
 

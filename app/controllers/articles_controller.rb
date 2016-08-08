@@ -1,18 +1,14 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :disallow_anonymous, except: [:index, :show]
-  before_action :admin_only, only: [:new, :edit, :delete]
+  after_action :verify_authorized, except: [:index, :show]
 
   def index
-    if current_participant && current_participant.admin?
-      @articles = Article.all
-    else
-      @articles = Article.where(published: true)
-    end
+    @articles = policy_scope(Article)
   end
 
 
   def show
+    authorize @article
     @article.record_page_view
     @comments = @article.comments
     load_gon
@@ -21,10 +17,12 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    authorize @article
   end
 
 
   def edit
+    authorize @article
     load_gon
   end
 
@@ -41,6 +39,7 @@ class ArticlesController < ApplicationController
 
 
   def update
+    authorize @article
     if @article.update(article_params)
       redirect_to @article, notice: 'Article was successfully updated.'
     else
@@ -50,6 +49,7 @@ class ArticlesController < ApplicationController
 
 
   def destroy
+    authorize @article
     @article.destroy
     redirect_to articles_url, notice: 'Article was successfully destroyed.'
   end
@@ -58,6 +58,7 @@ class ArticlesController < ApplicationController
   private
     def set_article
       @article = Article.find(params[:id])
+      authorize @article
     end
 
 
@@ -65,14 +66,5 @@ class ArticlesController < ApplicationController
       params.require(:article).permit(:article, :user_id, :published, :category, :summary,
                     article_sections_attributes: [:id, :article_id, :seq, :icon, :section, :description_markdown ],
                     image_attributes: [:id, :image, :_destroy ])
-    end
-
-
-    def disallow_anonymous
-      redirect_to articles_url if !current_participant
-    end
-
-    def admin_only
-      redirect_to articles_url if !current_participant.admin?
     end
 end

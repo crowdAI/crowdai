@@ -3,14 +3,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   after_filter :participant_activity
   before_action :detect_device_variant
-
-
-
   before_action :configure_permitted_parameters, if: :devise_controller?
+  rescue_from Pundit::NotAuthorizedError, with: :not_authorized
+
+
   protected
   def configure_permitted_parameters
    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(
      :name, :email, :password, :password_confirmation, :remember_me) }
+  end
+
+  def pundit_user
+    current_participant
   end
 
   private
@@ -22,13 +26,19 @@ class ApplicationController < ActionController::Base
     current_participant.try :touch
   end
 
+
   def load_gon(vars = {})
-  rails = {controller: controller_name, action: action_name}
-  gon.rails = rails
-  if vars.any?
-    vars.each do |k,v|
-      gon.send("#{k}=", v)
+    rails = {controller: controller_name, action: action_name}
+    gon.rails = rails
+    if vars.any?
+      vars.each do |k,v|
+        gon.send("#{k}=", v)
+      end
     end
   end
-end
+
+  def not_authorized
+    flash[:error] = "You are not authorised for this action"
+    redirect_to '/'
+  end
 end

@@ -1,7 +1,16 @@
 require 'sidekiq/testing'
 
 Rails.application.configure do
+<<<<<<< HEAD
   Sidekiq::Testing.inline!
+=======
+
+  # load env variables
+  figaro_file = File.join(Rails.root, 'config', 'application.yml')
+  YAML::load_file(figaro_file).symbolize_keys[:development].each do |key,value|
+    ENV[key.to_s] = value
+  end
+>>>>>>> master
 
   config.cache_classes = false
 

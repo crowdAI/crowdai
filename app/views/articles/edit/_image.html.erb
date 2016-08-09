@@ -1,0 +1,19 @@
+  <div class="row">
+    <div class='col-md-2 col-md-offset-4 text-center'>
+      <%= simple_form_for @article, html: { id: 'avatar-form' } do |f| %>
+        <%= f.error_notification %>
+        <%= f.simple_fields_for :image, @article.image.presence || Image.new do |image| %>
+          <%= image.error_notification %>
+
+          <%= image.label :image do %>
+            <%= image_tag image_medium_url(@article),  class: "img-white-circle", size: '125x125' %>
+          <% end %>
+
+          <%= image.file_field :image, class: 'upload-btn' %>
+          <br/>
+          <div id="loading-text"><b>.....loading</b></div>
+        <% end %>
+        <br/>
+      <% end %>
+    </div>
+  </div>

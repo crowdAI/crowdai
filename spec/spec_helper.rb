@@ -11,10 +11,5 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-  #config.before (scope = :suite) do
-  #  %x[bundle exec rake assets:precompile]
-  #end
-
-  #config.fail_fast = true
 
 end

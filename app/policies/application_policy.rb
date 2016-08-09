@@ -1,8 +1,8 @@
 class ApplicationPolicy
-  attr_reader :user, :record
+  attr_reader :participant, :record
 
-  def initialize(user, record)
-    @user = user
+  def initialize(participant, record)
+    @participant = participant
     @record = record
   end
 
@@ -35,14 +35,14 @@ class ApplicationPolicy
   end
 
   def scope
-    Pundit.policy_scope!(user, record.class)
+    Pundit.policy_scope!(participant, record.class)
   end
 
   class Scope
-    attr_reader :user, :scope
+    attr_reader :participant, :scope
 
-    def initialize(user, scope)
-      @user = user
+    def initialize(participant, scope)
+      @participant = participant
       @scope = scope
     end
 

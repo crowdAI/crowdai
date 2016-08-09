@@ -1,7 +1,6 @@
 .btn {
-  border-radius: 2px;
+  border-radius: 3px;
 }
-
 
 /* file upload button */
 .btn-file {
@@ -65,4 +64,20 @@
   font-size: 24px;
   line-height: 1.33;
   border-radius: 35px;
+}
+
+.btn-white-outline {
+  margin-top: 20px;
+  background: none;
+  border: 1px solid $crowdai-text-white;
+  color: $crowdai-text-white;
+  font-size: 125%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.btn-white-outline:hover {
+  color: $crowdai-knowledge-header;
+  border-color: $crowdai-text-white;
+  background-color: $crowdai-text-white;
 }

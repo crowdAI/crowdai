@@ -1,4 +1,6 @@
 Rails.application.configure do
+
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # The test environment is used exclusively to run your application's
@@ -44,4 +46,5 @@ Rails.application.configure do
   #config.assets.prefix = "assets_test"    # place test assets in public/assets_test directory
   #config.action_controller.asset_host = "file://#{::Rails.root}/public"
   #config.assets.compile = true
+  
 end

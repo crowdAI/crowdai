@@ -3,7 +3,6 @@ require 'sidetiq/web'
 
 Rails.application.routes.draw do
 
-  resources :tutorials
   mount Sidekiq::Web => '/sidekiq'
 
   get 'markdown_editor/create'
@@ -16,6 +15,9 @@ Rails.application.routes.draw do
 
   # Administrate
   namespace :admin do
+    resources :articles
+    resources :article_sections
+    resources :comments
     resources :participants
     resources :challenges, except: [:edit]
     resources :images
@@ -71,13 +73,16 @@ Rails.application.routes.draw do
     resources :votes, only: [:create, :destroy]
   end
 
-  resources :tutorials do
-    resources :votes, only: [:create, :destroy]
-  end
-
   resources :submissions do
     resources :votes, only: [:create, :destroy]
   end
+
+  resources :articles do
+    resources :article_sections
+    resources :votes, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
+  end
+
 
   get '/pages/*id' => 'pages#show', as: :page, format: false
 

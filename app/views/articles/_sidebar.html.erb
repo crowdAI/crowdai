@@ -1,0 +1,14 @@
+<% content_for(:sidebar) do %>
+  <ul class="nav nav-stacked sidebar-menu">
+    <% if @article %>
+      <% @article.article_sections.each do |section| %>
+        <li><%= glyphicon_link section.icon, section.section, article_path(@article, anchor: section.section.parameterize) %></li>
+      <% end %>
+      <%#= glyphicon_link 'comment', 'Comments', article_path(@article, anchor: 'comments') %>
+      <% if current_participant && (current_participant.admin? || current_participant.id == @article.participant_id) %>
+        <hr/>
+        <li><%= glyphicon_link 'pencil', 'Edit', edit_article_path(@article) %></li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>

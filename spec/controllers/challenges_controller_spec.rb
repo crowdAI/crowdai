@@ -3,8 +3,9 @@ require 'rails_helper'
 RSpec.describe ChallengesController, type: :controller do
 
   let(:valid_attributes) {
-    FactoryGirl.build(:challenge, :with_events).attributes
+    FactoryGirl.build(:challenge, :draft_with_milestone).attributes
   }
+
 
   let(:invalid_attributes) {
     FactoryGirl.build(:challenge, organizer_id: nil).attributes
@@ -16,13 +17,7 @@ RSpec.describe ChallengesController, type: :controller do
     double_sign_in
   end
 
-  describe "GET #index" do
-    it "assigns all challenges as @challenges" do
-      challenge = Challenge.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:challenges)).to eq([challenge])
-    end
-  end
+
 
   describe "GET #show" do
     it "assigns the requested challenge as @challenge" do
@@ -139,8 +134,7 @@ RSpec.describe ChallengesController, type: :controller do
   end
 
   # callbacks and filters
-  it { should use_before_filter(:authenticate_participant!) }
-  it { should use_before_filter(:configure_permitted_parameters) }
+  it { should use_before_filter(:disallow_anonymous) }
   it { should use_before_filter(:set_challenge) }
 
 end

@@ -1,0 +1,36 @@
+<%= render 'articles/edit/image' %>
+
+<div class="page-content-container">
+  <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <%= simple_form_for(@article) do |f| %>
+          <%= f.error_notification %>
+
+          <div class="form-inputs">
+            <%= f.input :article %>
+            <%= f.input :summary %>
+            <div class="row">
+              <div class="col-md-3">
+                <%= f.input :category, :collection => Article::CATEGORIES.sort.map {|k,v| [v,k]} %>
+              </div>
+              <div class="col-md-3 col-md-offset-6">
+                <%= f.input :published %>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-sections">
+            <%= f.simple_fields_for :article_sections do |section| %>
+              <%= render 'articles/article_section_fields', f: section %>
+            <% end %>
+            <%= link_to_add_association 'Add Section', f, :article_sections,
+                                html_options = { partial: 'articles/article_section_fields',
+                                                 class: 'btn btn-primary outline' } %>
+
+            <hr/>
+          </div>
+          <%= f.button :submit, class: 'btn btn-primary outline'  %>
+        <% end %>
+      </div><!-- col-md-4 col-md-offset-2 -->
+    </div><!-- row -->
+</div>

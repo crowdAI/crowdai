@@ -43,6 +43,8 @@
 //= require controllers/posts_controller
 //= require controllers/dataset_files_controller
 //= require controllers/submissions_controller
+//= require controllers/articles_controller
+
 
 
 

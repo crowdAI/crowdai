@@ -11,6 +11,7 @@ gem 'puma_worker_killer'
 gem 'devise'
 gem "administrate"
 gem "administrate-field-image"
+gem "bourbon"
 gem 'pundit'
 #gem 'blazer'
 
@@ -33,6 +34,7 @@ gem 'country_select'
 gem 'cocoon'
 gem 'redcarpet'
 gem 'groupdate'
+gem 'rouge'
 #gem 'active_median'
 #gem "chartkick"
 
@@ -101,6 +103,7 @@ gem 'fog', '1.35.0'
 
 
 
+
 group :development do
   gem 'guard'
   gem 'rails-footnotes', '>= 4.0.0', '<5'
@@ -117,7 +120,6 @@ group :development, :test do
   gem 'byebug'
   gem 'faker'
   gem 'spring'
-  #gem 'capybara-email'
   gem 'table_print'
 end
 
@@ -127,7 +129,7 @@ group :test do
   gem 'simplecov', :require => false
   gem 'capybara'
   gem 'selenium-webdriver'
-  gem 'capybara-screenshot', '= 1.0.12'
+  gem 'capybara-screenshot', '1.0.13'
   gem 'database_cleaner'
   gem "launchy"
   gem 'shoulda'

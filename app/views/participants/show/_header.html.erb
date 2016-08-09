@@ -5,7 +5,7 @@
       <%= image_tag avatar_url(@participant,'medium'), size: '100x100', class: "img-circle" %>
       <% if current_participant == @participant || current_participant.admin? %><br/>
       <div id="button-container">
-        <%= glyphicon_link 'pencil', nil, edit_participant_path(@participant), class: 'btn btn-primary btn-circle' %>
+        <%= glyphicon_link 'pencil', nil, edit_participant_path(@participant), id: 'edit-participant-button', class: 'btn btn-primary btn-circle' %>
       </div>
       <% end %>
     </div>

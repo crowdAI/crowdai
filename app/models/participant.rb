@@ -23,11 +23,12 @@ class Participant < ActiveRecord::Base
   has_many :submissions
   has_many :posts
   has_many :votes,                      dependent: :destroy
-  has_many :tutorials,                  dependent: :nullify
-  has_many :leaderboards,               class_name: 'SqlViews::Leaderboard'
-  has_many :ongoing_leaderboards,       class_name: 'SqlViews::OngoingLeaderboard'
-
-  has_many :participant_challenges,     class_name: 'SqlViews::ParticipantChallenge'
+  has_many :comments,                   dependent: :nullify
+  has_many :articles,                   dependent: :nullify
+  has_many :leaderboards,               class_name: 'Leaderboard'
+  has_many :ongoing_leaderboards,       class_name: 'OngoingLeaderboard'
+  has_many :participant_challenges,     class_name: 'ParticipantChallenge'
+  
   belongs_to :organizer
   has_one :image, as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :image, allow_destroy: true

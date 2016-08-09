@@ -1,0 +1,23 @@
+<li>
+  <%= link_to article_path(article) do %>
+    <div class="row">
+      <div class="col-xs-3 col-md-2">
+        <div class="challenge-list-image">
+          <%= image_tag image_medium_url(Article.find(article.id)),  class: "img-circle" %>
+        </div>
+      </div>
+      <div class="col-xs-7 col-md-10">
+        <h2><%= article.article %></h2>
+
+        <div class="challenge-list-detail">
+          <div>by <%= link_to "@#{article.participant.name}", participant_path(article.participant_id), class: 'participant-mention' %> <%= article.created_at.strftime("%-d %B '%y") %></div>
+          <div>
+            <span class="category-badge"><%= Article::CATEGORIES[article.category] %></span>
+            <span>&ensp;</span>
+            <span class="glyphicon glyphicon-eye-open"></span> <%= article.view_count %> views &ensp; | &ensp;
+            <span class="glyphicon glyphicon-user"></span> <%= article.vote_count %> votes
+        </div>
+      </div>
+    </div>
+  <% end %>
+</li>

@@ -15,10 +15,7 @@ RSpec.describe ArticlesController, type: :controller do
       before { get :show, id: article.id }
       it { expect(response).to render_template 'show'}
     end
-    describe 'articles#show for unpublished article' do
-      before { get :show, id: article.id }
-      it { expect(response).to redirect_to '/'}
-    end
+  
   end
 
   context 'the article author' do

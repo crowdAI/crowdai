@@ -9,14 +9,6 @@ feature 'update participant data', js: true do
       participant = FactoryGirl.build(:participant)
     end
 
-    scenario "a participant can upload their profile picture" do
-      skip("spec to be coded")
-    end
-
-    scenario "a participant can reset their password" do
-      skip("spec to be coded")
-    end
-
     scenario "a participant can link their github id" do
       visit_own_profile(participant)
       find('#edit-participant-button').click

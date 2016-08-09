@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Article, type: :model do
-  let!(:article) { create(:article) }
+  let!(:article) { create(:article, :with_sections) }
 
   describe 'validations' do
     it { should validate_presence_of(:category) }

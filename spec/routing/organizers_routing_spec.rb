@@ -70,36 +70,5 @@ RSpec.describe OrganizersController, type: :routing do
   end
 
 
-=begin
-  describe 'invalid routing' do
-    it 'does not route to other paths' do
-      valid_routes = [
-        'admin/organizers#index',
-        'admin/organizers#create',
-        'admin/organizers#new',
-        'admin/organizers#edit',
-        'admin/organizers#show',
-        'admin/organizers#update',
-        'admin/organizers#update',
-        'admin/organizers#destroy',
-        'organizers#index',
-        'organizers#create',
-        'organizers#new',
-        'organizers#edit',
-        'organizers#show',
-        'organizers#update',
-        'organizers#update',
-        'organizers#destroy',
-        "challenges#index",
-        "challenges#new",
-        "challenges#edit",
-        "challenges#show"
-      ]
-      routes = `rake routes | grep organizer | awk '$4{print $4}'`.split(/\n+/)
-      untested_routes = routes - valid_routes
-      expect(untested_routes).to be_empty
-    end
-  end
-=end
 
 end

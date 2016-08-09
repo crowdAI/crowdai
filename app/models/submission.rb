@@ -45,8 +45,6 @@ class Submission < ActiveRecord::Base
 
 
 
-
-
   private
   def cache_rendered_markdown
     if description_markdown_changed?
@@ -54,10 +52,13 @@ class Submission < ActiveRecord::Base
     end
   end
 
+  # set flag if challenge has completed
   def set_post_challenge
-    challenge_end = self.challenge.events.last.event_time
-    if Time.now > challenge_end
-      self.post_challenge = true
+    if self.challenge.events.any?
+      challenge_end = self.challenge.events.last.event_time
+      if Time.now > challenge_end
+        self.post_challenge = true
+      end
     end
   end
 

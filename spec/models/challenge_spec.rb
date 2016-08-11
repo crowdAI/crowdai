@@ -1,13 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Challenge, type: :model do
-  before do
-    @challenge = build(:challenge)
-  end
+  let!(:challenge) { create(:challenge) }
 
-  describe 'simple model pre-checks' do
-    subject { @challenge }
-
+  describe 'validations' do
     it { should validate_presence_of(:challenge) }
     it { should validate_presence_of(:status) }
     it { should validate_presence_of(:organizer) }
@@ -21,35 +17,31 @@ RSpec.describe Challenge, type: :model do
   end
 
   describe 'fields' do
-    subject { @challenge }
-
-    it { is_expected.to have_db_column :id }
-    it { is_expected.to have_db_column :organizer_id }
-    it { is_expected.to have_db_column :challenge }
-    it { is_expected.to have_db_column :status_cd }
-    it { is_expected.to have_db_column :description }
-    it { is_expected.to have_db_column :evaluation_markdown }
-    it { is_expected.to have_db_column :evaluation }
-    it { is_expected.to have_db_column :rules }
-    it { is_expected.to have_db_column :prizes }
-    it { is_expected.to have_db_column :resources }
-    it { is_expected.to have_db_column :created_at }
-    it { is_expected.to have_db_column :updated_at }
-    it { is_expected.to have_db_column :dataset_description }
-    it { is_expected.to have_db_column :submission_instructions }
-    it { is_expected.to have_db_column :tagline }
-    it { is_expected.to have_db_column :description_markdown }
-    it { is_expected.to have_db_column :evaluation_markdown }
-    it { is_expected.to have_db_column :rules_markdown }
-    it { is_expected.to have_db_column :prizes_markdown }
-    it { is_expected.to have_db_column :resources_markdown }
-    it { is_expected.to have_db_column :dataset_description_markdown }
-    it { is_expected.to have_db_column :submission_instructions_markdown }
+    it { is_expected.to respond_to :id }
+    it { is_expected.to respond_to :organizer_id }
+    it { is_expected.to respond_to :challenge }
+    it { is_expected.to respond_to :status_cd }
+    it { is_expected.to respond_to :description }
+    it { is_expected.to respond_to :evaluation_markdown }
+    it { is_expected.to respond_to :evaluation }
+    it { is_expected.to respond_to :rules }
+    it { is_expected.to respond_to :prizes }
+    it { is_expected.to respond_to :resources }
+    it { is_expected.to respond_to :created_at }
+    it { is_expected.to respond_to :updated_at }
+    it { is_expected.to respond_to :dataset_description }
+    it { is_expected.to respond_to :submission_instructions }
+    it { is_expected.to respond_to :tagline }
+    it { is_expected.to respond_to :description_markdown }
+    it { is_expected.to respond_to :evaluation_markdown }
+    it { is_expected.to respond_to :rules_markdown }
+    it { is_expected.to respond_to :prizes_markdown }
+    it { is_expected.to respond_to :resources_markdown }
+    it { is_expected.to respond_to :dataset_description_markdown }
+    it { is_expected.to respond_to :submission_instructions_markdown }
   end
 
   describe 'associations' do
-    subject { @challenge }
-
     it { is_expected.to belong_to :organizer }
     it { is_expected.to have_one :image }
     it { is_expected.to have_many :dataset_files }
@@ -67,12 +59,6 @@ RSpec.describe Challenge, type: :model do
 
   describe 'database indexes' do
     it { is_expected.to have_db_index ["organizer_id"] }
-  end
-
-  describe 'specific validations' do
-    it { is_expected.to validate_presence_of :challenge }
-    it { is_expected.to validate_presence_of :status }
-    it { is_expected.to validate_presence_of :organizer }
   end
 
   describe 'validate markdown fields' do

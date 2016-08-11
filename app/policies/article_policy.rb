@@ -24,7 +24,7 @@ class ArticlePolicy < ApplicationPolicy
     new?
   end
 
-  def destroy
+  def destroy?
     new?
   end
 

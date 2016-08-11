@@ -46,11 +46,5 @@ feature 'Organizer CRUD for admin user', js: true do
     specify { expect(page).to have_link 'Organizers' }
   end
 
-  describe "organizer edit functions" do
-    skip("spec to be coded")
-  end
 
-  describe "delete organizer" do
-    skip("spec to be coded")
-  end
 end

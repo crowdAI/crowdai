@@ -13,15 +13,5 @@ RSpec.describe LeaderboardsController, type: :routing do
     end
   end
 
-=begin
-  describe 'invalid routing' do
-    it 'does not route to other leaderboard paths' do
-      valid_routes = ['admin/leaderboards#index','leaderboards#index']
-      routes = (`rake routes | grep leaderboard | awk '$4{print $4}'`).split(/\n+/)
-      untested_routes = routes - valid_routes
-      expect(untested_routes).to be_empty
-    end
-  end
-=end
 
 end

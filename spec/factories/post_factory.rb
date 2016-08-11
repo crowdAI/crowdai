@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :post, class: Post do
-    post 'MyText'
+    post { Faker::Lorem.words(4) }
     flagged false
     topic { FactoryGirl.build :topic }
-    votes 1
+    vote_count 1
     notify false
     participant { FactoryGirl.build :participant}
   end

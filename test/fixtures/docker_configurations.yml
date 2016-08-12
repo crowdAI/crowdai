@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  challenge_id: 
+  container: MyString
+  mount_point: MyString
+  existing_mount_point: false
+  destroy_after_success: false
+  execute_command: MyString
+
+two:
+  challenge_id: 
+  container: MyString
+  mount_point: MyString
+  existing_mount_point: false
+  destroy_after_success: false
+  execute_command: MyString

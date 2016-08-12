@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     resources :votes
     resources :dataset_file_downloads
     resources :leaderboards, only: :index
+    resources :docker_configurations
     root to: 'participants#index'
   end
 
@@ -39,6 +40,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :submissions, only: [:update]
+      resources :docker_callbacks, only: [:callback]
     end
   end
 

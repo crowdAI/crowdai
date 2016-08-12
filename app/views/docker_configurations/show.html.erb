@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Challenge:</strong>
+  <%= @docker_configuration.challenge %>
+</p>
+
+<p>
+  <strong>Container:</strong>
+  <%= @docker_configuration.container %>
+</p>
+
+<p>
+  <strong>Mount point:</strong>
+  <%= @docker_configuration.mount_point %>
+</p>
+
+<p>
+  <strong>Existing mount point:</strong>
+  <%= @docker_configuration.existing_mount_point %>
+</p>
+
+<p>
+  <strong>Destroy after success:</strong>
+  <%= @docker_configuration.destroy_after_success %>
+</p>
+
+<p>
+  <strong>Execute command:</strong>
+  <%= @docker_configuration.execute_command %>
+</p>
+
+<%= link_to 'Edit', edit_docker_configuration_path(@docker_configuration) %> |
+<%= link_to 'Back', docker_configurations_path %>

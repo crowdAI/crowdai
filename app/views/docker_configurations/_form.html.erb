@@ -1,0 +1,16 @@
+<%= simple_form_for(@docker_configuration) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :challenge %>
+    <%= f.input :container %>
+    <%= f.input :mount_point %>
+    <%= f.input :existing_mount_point %>
+    <%= f.input :destroy_after_success %>
+    <%= f.input :execute_command %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

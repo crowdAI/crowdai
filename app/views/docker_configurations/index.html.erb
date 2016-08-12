@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Docker Configurations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Challenge</th>
+      <th>Container</th>
+      <th>Mount point</th>
+      <th>Existing mount point</th>
+      <th>Destroy after success</th>
+      <th>Execute command</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @docker_configurations.each do |docker_configuration| %>
+      <tr>
+        <td><%= docker_configuration.challenge %></td>
+        <td><%= docker_configuration.container %></td>
+        <td><%= docker_configuration.mount_point %></td>
+        <td><%= docker_configuration.existing_mount_point %></td>
+        <td><%= docker_configuration.destroy_after_success %></td>
+        <td><%= docker_configuration.execute_command %></td>
+        <td><%= link_to 'Show', docker_configuration %></td>
+        <td><%= link_to 'Edit', edit_docker_configuration_path(docker_configuration) %></td>
+        <td><%= link_to 'Destroy', docker_configuration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Docker configuration', new_docker_configuration_path %>

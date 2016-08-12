@@ -61,10 +61,10 @@
     </div>
 
     <% if Rails.env.production? %>
-    <script>
-      ga('set', 'location', location.href.split('#')[0]);
-      ga('send', 'pageview', {"title": document.title});
-    </script>
+      <script>
+        ga('set', 'location', location.href.split('#')[0]);
+        ga('send', 'pageview', {"title": document.title});
+      </script>
     <% end %>
 
   </body>

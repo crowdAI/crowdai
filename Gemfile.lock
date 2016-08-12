@@ -158,8 +158,11 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
+    docker-api (1.31.0)
+      excon (>= 0.38.0)
+      json
     erubis (2.7.0)
-    excon (0.50.1)
+    excon (0.51.0)
     execjs (2.7.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
@@ -619,6 +622,8 @@ DEPENDENCIES
   country_select
   database_cleaner
   devise
+  docker-api
+  excon
   factory_girl_rails
   faker
   fast_blank

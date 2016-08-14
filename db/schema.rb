@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160812161404) do
+ActiveRecord::Schema.define(version: 20160814093409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,11 +114,12 @@ ActiveRecord::Schema.define(version: 20160812161404) do
     t.integer  "challenge_id"
     t.string   "container"
     t.string   "mount_point"
-    t.boolean  "existing_mount_point"
     t.boolean  "destroy_after_success"
     t.string   "execute_command"
     t.datetime "created_at",            :null=>false
     t.datetime "updated_at",            :null=>false
+    t.string   "name"
+    t.boolean  "execute_on_submission", :default=>false
   end
   add_index "docker_configurations", ["challenge_id"], :name=>"index_docker_configurations_on_challenge_id", :using=>:btree
 
@@ -419,14 +420,6 @@ SELECT p.id,
   end
   add_index "topics", ["challenge_id"], :name=>"index_topics_on_challenge_id", :using=>:btree
   add_index "topics", ["participant_id"], :name=>"index_topics_on_participant_id", :using=>:btree
-
-  create_table "turks", force: :cascade do |t|
-    t.string   "test_name"
-    t.string   "assignment_id"
-    t.string   "hit_id"
-    t.datetime "created_at",    :null=>false
-    t.datetime "updated_at",    :null=>false
-  end
 
   create_table "votes", force: :cascade do |t|
     t.integer  "votable_id",     :null=>false

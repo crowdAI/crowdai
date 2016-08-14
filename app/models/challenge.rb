@@ -5,7 +5,8 @@ class Challenge < ActiveRecord::Base
   belongs_to :organizer
   has_many :dataset_files,            dependent: :destroy
   accepts_nested_attributes_for :dataset_files, reject_if: :all_blank, allow_destroy: true
-
+  # TODO I think this can go
+  
   has_many :events,                   dependent: :destroy
   has_many :submissions,              dependent: :destroy
   has_many :leaderboards,             class_name: 'Leaderboard'

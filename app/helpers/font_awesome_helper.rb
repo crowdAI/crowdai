@@ -8,6 +8,8 @@ module FontAwesomeHelper
     "<i class='fa fa-#{ icon_class }'></i>"
   end
 
+
+
 # usage:
 #  <%= awesome_link 'fa-arrow-circle-o-up', 'wikipedia', 'www.wikipedia.com' %>
 #  <%= awesome_link('fa-minus-circle', travel_path(current_island.name, travel) %>

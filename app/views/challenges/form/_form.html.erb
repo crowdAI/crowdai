@@ -30,7 +30,7 @@
       <a href="#dataset-configuration" id="dataset-configuration-tab" aria-controls="dataset-configuration" role="tab" data-toggle="tab">Dataset</a>
     </li>
     <li role="presentation">
-      <a href="#docker" id="docker-tab" aria-controls="docker" role="tab" data-toggle="tab">Docker</a>
+      <%= link_to 'Docker', challenge_docker_configurations_path(@challenge) %>
     </li>
   </ul>
 
@@ -57,8 +57,7 @@
           <%= render 'challenges/form/resources', f: f %>
           <%= render 'challenges/form/event', f: f %>
           <%= render 'challenges/form/submission_instructions', f: f %>
-          <%= render 'challenges/form/dataset_configuration', f: f %>
-          <%= render 'challenges/form/docker', f: f %>
+        </div>
       <% end %>
 
     </div>

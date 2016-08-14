@@ -61,6 +61,7 @@ Rails.application.routes.draw do
     end
     resources :leaderboards, only: [:index]
     resources :topics
+    resources :docker_configurations
   end
 
   resources :dataset_files, except: [:show] do

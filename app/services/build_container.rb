@@ -2,7 +2,7 @@ class BuildContainer
 
   def run(configuration_id)
     config = DockerConfiguration.find(configuration_id)
-    image = Docker::Image.create('fromImage' => configuration.container)
+    image = Docker::Image.create('fromImage' => config.container)
     puts "created image #{image.inspect}"
     image.insert_local('localPath' => 'scripts/docker/callback.sh', 'outputPath' => config.mount_point)
     puts "inserted files"

@@ -6,62 +6,74 @@
   <% @docker_configurations.each do |docker_configuration| %>
   <div class="panel panel-default">
     <div class="panel-body">
-      <span class="pull-right">
+      <div class="pull-right">
         <%= link_to 'x', challenge_docker_configuration_path(@challenge,docker_configuration),
                   method: :delete, remote: true %>
-      </span>
+      </div>
 
+      <br/>
       <div class="row">
-        <div class="col-md-8">
-          <strong>Name:</strong>
-          <%= docker_configuration.name %><br/>
+        <div class="col-md-2 text-right">
+          <strong>Name</strong>
         </div>
+        <div class="col-md-9"><%= docker_configuration.name %></div>
       </div>
 
       <div class="row">
-        <div class="col-md-8">
-          <strong>Image:</strong>
-          <%= docker_configuration.container %><br/>
+        <div class="col-md-2 text-right">
+          <strong>Image</strong>
         </div>
+        <div class="col-md-9"><%= docker_configuration.container %></div>
       </div>
 
       <div class="row">
-        <div class="col-md-8">
-          <strong>Mount point:</strong>
-          <%= docker_configuration.mount_point %>
+        <div class="col-md-2 text-right">
+          <strong>Mount point</strong>
         </div>
+        <div class="col-md-9"><%= docker_configuration.mount_point %></div>
       </div>
 
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-9 col-md-offset-2">
           <%= display_checkbox(docker_configuration.execute_on_submission,"Execute on submission?") %>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-9 col-md-offset-2">
           <%= display_checkbox(docker_configuration.destroy_after_success,"Destroy container after success?") %>
         </div>
       </div>
 
-      <% docker_configuration.docker_files.each do |docker_file| %>
       <div class="row">
-        <div class="col-md-6">
-          <%= docker_file.configuration_file_s3_key %>
-        </div>
-        <div class="col-md-6">
-          <%= docker_file.directory %>
+        <div class="col-md-9 col-md-offset-2">
+          <table class="table table-condensed table-hover">
+            <thead>
+              <tr>
+                <th>File</th>
+                <th>Directory</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% docker_configuration.docker_files.each do |docker_file| %>
+              <tr>
+                <td><%= docker_file.configuration_file_s3_key %></td>
+                <td><%= docker_file.directory %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
         </div>
       </div>
-      <% end %>
 
+      <hr/>
       <div class="row">
         <div class="col-md-12">
           <span class="pull-left">
-            <%= link_to 'Container Instances', docker_configuration_docker_containers_path(docker_configuration) %>
+            <%= link_to 'Container Instances', docker_configuration_docker_containers_path(docker_configuration)  %>
           </span>
           <span class="pull-right">
             <%= link_to 'Edit', edit_challenge_docker_configuration_path(@challenge,docker_configuration), class: 'btn btn-primary outline' %>
-            <%= link_to 'Delete', [@challenge,docker_configuration], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary outline' %>
           </span>
         </div>
       </div>

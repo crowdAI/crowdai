@@ -8,6 +8,7 @@
     <%= favicon_link_tag 'crowdai_favicon.ico' %>
     <%= Gon::Base.render_data %>
     <% if Rails.env.production? %>
+      <!-- https://github.com/mmontossi/analytics-rails -->
     <script data-turbolinks-eval="false">
       (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;

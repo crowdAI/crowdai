@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  docker_container_id: 
+  log_level_cd: MyString
+  message: MyString
+
+two:
+  docker_container_id: 
+  log_level_cd: MyString
+  message: MyString

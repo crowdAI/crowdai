@@ -1,0 +1,33 @@
+<%= render partial: 'challenges/sidebar' %>
+<%= render partial: 'challenges/header', challenge: @challenge %>
+
+<div class="page-content-container">
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Docker configuration</th>
+            <th>Status cd</th>
+            <th>Message</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @docker_containers.each do |docker_container| %>
+          <tr>
+            <td><%= link_to docker_container.docker_configuration, docker_container  %></td>
+            <td><%= link_to docker_container.status_cd, docker_container %></td>
+            <td><%= link_to docker_container.message, docker_container %></td>
+            <td><%= link_to 'Destroy', docker_container, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

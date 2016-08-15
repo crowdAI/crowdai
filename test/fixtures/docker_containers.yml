@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  docker_configuration_id: 
+  status_cd: MyString
+  message: MyString
+
+two:
+  docker_configuration_id: 
+  status_cd: MyString
+  message: MyString

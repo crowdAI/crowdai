@@ -6,7 +6,7 @@
       <div class="form-inputs">
         <%= f.input :challenge_id, as: :hidden %>
         <%= f.input :name, hint:  'Name of container as presented to users' %>
-        <%= f.input :container, label: 'Image', hint: 'Docker image stored on Docker Hub' %>
+        <%= f.input :image, hint: 'Docker image stored on Docker Hub' %>
         <%= f.input :mount_point, hint: 'Full path, including trailing "/"' %>
         <%= f.input :destroy_after_success %>
         <%= f.input :execute_command %>

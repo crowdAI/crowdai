@@ -65,13 +65,12 @@ Rails.application.routes.draw do
   end
 
   resources :docker_configurations do
-    resources :docker_containers
+    resources :container_instances
   end
 
-  resources :docker_containers do
+  resources :container_instances do
     resources :container_logs
   end
-
 
   resources :dataset_files, except: [:show] do
     resources :dataset_file_downloads, only: [:create]

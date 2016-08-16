@@ -123,10 +123,10 @@ group :development, :test do
   gem 'faker'
   gem 'spring'
   gem 'table_print'
+  gem 'rspec-rails'
 end
 
 group :test do
-  gem "rspec-rails"
   gem "factory_girl_rails"
   gem 'simplecov', :require => false
   gem 'capybara'

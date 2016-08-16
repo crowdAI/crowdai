@@ -1,4 +1,3 @@
-
 header = 'product_id,nutrition_id,per_hundred,per_portion,percent\n'
 
 File.open('testfile.csv', 'w') do |f|

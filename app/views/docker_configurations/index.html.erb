@@ -16,14 +16,20 @@
         <div class="col-md-2 text-right">
           <strong>Name</strong>
         </div>
-        <div class="col-md-9"><%= docker_configuration.name %></div>
+        <div class="col-md-5"><%= docker_configuration.name %></div>
+        <div class="col-md-4">
+          <%= display_checkbox(docker_configuration.execute_on_submission,"Execute on submission?") %>
+        </div>
       </div>
 
       <div class="row">
         <div class="col-md-2 text-right">
           <strong>Image</strong>
         </div>
-        <div class="col-md-9"><%= docker_configuration.container %></div>
+        <div class="col-md-5"><%= docker_configuration.container %></div>
+        <div class="col-md-4">
+          <%= display_checkbox(docker_configuration.destroy_after_success,"Destroy after success?") %>
+        </div>
       </div>
 
       <div class="row">
@@ -34,15 +40,12 @@
       </div>
 
       <div class="row">
-        <div class="col-md-9 col-md-offset-2">
-          <%= display_checkbox(docker_configuration.execute_on_submission,"Execute on submission?") %>
+        <div class="col-md-2 text-right">
+          <strong>Command</strong>
         </div>
+        <div class="col-md-9"><%= docker_configuration.execute_command %></div>
       </div>
-      <div class="row">
-        <div class="col-md-9 col-md-offset-2">
-          <%= display_checkbox(docker_configuration.destroy_after_success,"Destroy container after success?") %>
-        </div>
-      </div>
+
 
       <div class="row">
         <div class="col-md-9 col-md-offset-2">
@@ -82,6 +85,7 @@
     <!-- panel body -->
   </div>
   <!-- panel -->
+
   <% end %>
 
   <%= link_to 'New Docker configuration', new_challenge_docker_configuration_path(@challenge), class: 'btn btn-primary outline'  %>

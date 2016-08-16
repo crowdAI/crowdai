@@ -1,6 +1,6 @@
 class Api::V1::DockerCallbacksController < Api::V1::BaseController
 
-  def callback
+  def create
     puts 'Docker callback'
     puts params
     render json: { message: 'API call recieved by server'}, status: :success

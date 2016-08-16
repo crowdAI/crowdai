@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :submissions, only: [:update]
-      resources :docker_callbacks, only: [:callback]
+      resources :docker_callbacks, only: [:create]
     end
   end
 

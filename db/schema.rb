@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160815122715) do
+ActiveRecord::Schema.define(version: 20160816082925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,14 +90,25 @@ ActiveRecord::Schema.define(version: 20160815122715) do
   end
   add_index "comments", ["participant_id"], :name=>"index_comments_on_participant_id", :using=>:btree
 
+  create_table "container_instances", force: :cascade do |t|
+    t.integer  "docker_configuration_id"
+    t.string   "status_cd"
+    t.string   "message"
+    t.datetime "created_at",              :null=>false
+    t.datetime "updated_at",              :null=>false
+    t.string   "image_id"
+    t.string   "container_id"
+  end
+  add_index "container_instances", ["docker_configuration_id"], :name=>"index_container_instances_on_docker_configuration_id", :using=>:btree
+
   create_table "container_logs", force: :cascade do |t|
-    t.integer  "docker_container_id"
+    t.integer  "container_instance_id"
     t.string   "log_level_cd"
     t.string   "message"
-    t.datetime "created_at",          :null=>false
-    t.datetime "updated_at",          :null=>false
+    t.datetime "created_at",            :null=>false
+    t.datetime "updated_at",            :null=>false
   end
-  add_index "container_logs", ["docker_container_id"], :name=>"index_container_logs_on_docker_container_id", :using=>:btree
+  add_index "container_logs", ["container_instance_id"], :name=>"index_container_logs_on_container_instance_id", :using=>:btree
 
   create_table "dataset_file_downloads", force: :cascade do |t|
     t.integer  "participant_id"
@@ -131,17 +142,6 @@ ActiveRecord::Schema.define(version: 20160815122715) do
     t.boolean  "execute_on_submission", :default=>false
   end
   add_index "docker_configurations", ["challenge_id"], :name=>"index_docker_configurations_on_challenge_id", :using=>:btree
-
-  create_table "docker_containers", force: :cascade do |t|
-    t.integer  "docker_configuration_id"
-    t.string   "status_cd"
-    t.string   "message"
-    t.datetime "created_at",              :null=>false
-    t.datetime "updated_at",              :null=>false
-    t.string   "image_id"
-    t.string   "container_id"
-  end
-  add_index "docker_containers", ["docker_configuration_id"], :name=>"index_docker_containers_on_docker_configuration_id", :using=>:btree
 
   create_table "docker_files", force: :cascade do |t|
     t.integer  "docker_configuration_id"
@@ -454,11 +454,11 @@ SELECT p.id,
   add_foreign_key "articles", "participants"
   add_foreign_key "challenges", "organizers"
   add_foreign_key "comments", "participants"
-  add_foreign_key "container_logs", "docker_containers"
+  add_foreign_key "container_instances", "docker_configurations"
+  add_foreign_key "container_logs", "container_instances"
   add_foreign_key "dataset_file_downloads", "dataset_files"
   add_foreign_key "dataset_file_downloads", "participants"
   add_foreign_key "docker_configurations", "challenges"
-  add_foreign_key "docker_containers", "docker_configurations"
   add_foreign_key "docker_files", "docker_configurations"
   add_foreign_key "events", "challenges"
   add_foreign_key "participants", "organizers"

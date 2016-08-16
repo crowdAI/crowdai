@@ -5,9 +5,7 @@ require 'rails_helper'
 RSpec.describe OrganizersController, type: :controller do
 
 
-  let(:valid_attributes) {
-    FactoryGirl.build(:organizer).attributes
-  }
+  let(:valid_attributes) { FactoryGirl.attributes_for(:organizer) }
 
   let(:invalid_attributes) {
     FactoryGirl.build(:organizer, organizer: nil).attributes

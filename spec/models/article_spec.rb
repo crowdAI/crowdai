@@ -32,4 +32,24 @@ RSpec.describe Article, type: :model do
   end
 
 
+
+  
+  describe '#image_medium_url' do
+    it 'works' do
+      article = Article.new
+      result = article.image_medium_url
+      expect(result).not_to be_nil
+    end
+  end
+
+  
+  describe '#record_page_view' do
+    it 'works' do
+      article = Article.new
+      result = article.record_page_view
+      expect(result).not_to be_nil
+    end
+  end
+
+
 end

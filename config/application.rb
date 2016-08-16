@@ -25,6 +25,6 @@ module Crowdai
     config.active_record.raise_in_transactional_callbacks = true
     config.active_job.queue_adapter = :sidekiq
     #config.autoload_paths += Dir[Rails.root.join('app', 'models', '{*/}')]
-
+  
   end
 end

@@ -72,4 +72,24 @@ RSpec.describe Challenge, type: :model do
     it { expect(challenge.submission_instructions).to eq("<h2>Submission instructions</h2>\n")}
   end
 
+
+  
+  describe '#timeline' do
+    it 'works' do
+      challenge = Challenge.new
+      result = challenge.timeline
+      expect(result).not_to be_nil
+    end
+  end
+
+  
+  describe '#record_page_view' do
+    it 'works' do
+      challenge = Challenge.new
+      result = challenge.record_page_view
+      expect(result).not_to be_nil
+    end
+  end
+
+
 end

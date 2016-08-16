@@ -69,4 +69,42 @@ RSpec.describe Submission, type: :model do
     end
   end
 
+
+  
+  describe '#ready?' do
+    it 'works' do
+      submission = Submission.new
+      result = submission.ready?
+      expect(result).not_to be_nil
+    end
+  end
+
+  
+  describe '#submitted?' do
+    it 'works' do
+      submission = Submission.new
+      result = submission.submitted?
+      expect(result).not_to be_nil
+    end
+  end
+
+  
+  describe '#graded?' do
+    it 'works' do
+      submission = Submission.new
+      result = submission.graded?
+      expect(result).not_to be_nil
+    end
+  end
+
+  
+  describe '#failed?' do
+    it 'works' do
+      submission = Submission.new
+      result = submission.failed?
+      expect(result).not_to be_nil
+    end
+  end
+
+
 end

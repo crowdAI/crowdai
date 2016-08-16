@@ -2,13 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ParticipantsController, type: :controller do
 
-  let(:valid_attributes) {
-    { name: 'William',
-      email: 'will@example.com',
-      password: 'password12',
-      password_confirmation: 'password12'
-    }
-  }
+  let(:valid_attributes) { FactoryGirl.attributes_for(:participant) }
 
   let(:invalid_attributes) {
     FactoryGirl.build(:participant, organizer_id: 'abcd').attributes
@@ -104,6 +98,16 @@ RSpec.describe ParticipantsController, type: :controller do
 
   it { should use_before_filter(:authenticate_participant!) }
   it { should use_before_filter(:set_participant) }
+
+
+
+
+  describe 'GET sync_mailchimp' do
+    it 'works' do
+      get :sync_mailchimp, {}, {}
+      expect(response.status).to eq(200)
+    end
+  end
 
 
 end

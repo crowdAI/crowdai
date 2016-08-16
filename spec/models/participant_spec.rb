@@ -168,4 +168,79 @@ RSpec.describe Participant, type: :model do
 
     it { is_expected.to validate_presence_of :password }
   end
+
+  
+  describe '#active_for_authentication?' do
+    it 'works' do
+      participant = Participant.new
+      result = participant.active_for_authentication?
+      expect(result).not_to be_nil
+    end
+  end
+
+  
+  describe '#inactive_message' do
+    it 'works' do
+      participant = Participant.new
+      result = participant.inactive_message
+      expect(result).not_to be_nil
+    end
+  end
+
+  
+  describe '#online?' do
+    it 'works' do
+      participant = Participant.new
+      result = participant.online?
+      expect(result).not_to be_nil
+    end
+  end
+
+  
+  describe '#avatar' do
+    it 'works' do
+      participant = Participant.new
+      result = participant.avatar
+      expect(result).not_to be_nil
+    end
+  end
+
+  
+  describe '#avatar_medium_url' do
+    it 'works' do
+      participant = Participant.new
+      result = participant.avatar_medium_url
+      expect(result).not_to be_nil
+    end
+  end
+
+  
+  describe '#process_urls' do
+    it 'works' do
+      participant = Participant.new
+      result = participant.process_urls
+      expect(result).not_to be_nil
+    end
+  end
+
+  
+  describe '#format_url' do
+    it 'works' do
+      participant = Participant.new
+      url_field = double('url_field')
+      result = participant.format_url(url_field)
+      expect(result).not_to be_nil
+    end
+  end
+
+  
+  describe '#after_confirmation' do
+    it 'works' do
+      participant = Participant.new
+      result = participant.after_confirmation
+      expect(result).not_to be_nil
+    end
+  end
+
+
 end

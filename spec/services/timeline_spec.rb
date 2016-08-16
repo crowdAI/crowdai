@@ -69,4 +69,26 @@ RSpec.describe Timeline do
     end
   end
 
+
+  
+  describe '#remaining_time_in_hours' do
+    it 'works' do
+      challenge = double('challenge')
+      timeline = Timeline.new(challenge)
+      result = timeline.remaining_time_in_hours
+      expect(result).not_to be_nil
+    end
+  end
+
+  
+  describe '#remaining_time_in_days' do
+    it 'works' do
+      challenge = double('challenge')
+      timeline = Timeline.new(challenge)
+      result = timeline.remaining_time_in_days
+      expect(result).not_to be_nil
+    end
+  end
+
+
 end

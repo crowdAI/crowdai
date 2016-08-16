@@ -31,4 +31,15 @@ RSpec.describe Topic, type: :model do
 
   # === Validations (Presence) ===
   it { is_expected.to validate_presence_of :topic }
+
+  
+  describe '#last_activity' do
+    it 'works' do
+      topic = Topic.new
+      result = topic.last_activity
+      expect(result).not_to be_nil
+    end
+  end
+
+
 end

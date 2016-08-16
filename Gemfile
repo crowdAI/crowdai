@@ -124,6 +124,8 @@ group :development, :test do
   gem 'spring'
   gem 'table_print'
   gem 'rspec-rails'
+  gem 'rspec-kickstarter'
+  gem 'to_factory'
 end
 
 group :test do

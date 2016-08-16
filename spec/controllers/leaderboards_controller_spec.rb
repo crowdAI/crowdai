@@ -9,4 +9,14 @@ RSpec.describe LeaderboardsController, type: :controller do
   it { should use_before_filter(:set_leaderboard) }
   it { should use_before_filter(:set_challenge) }
 
+
+  
+  describe 'GET show' do
+    it 'works' do
+      get :show, {}, {}
+      expect(response.status).to eq(200)
+    end
+  end
+
+
 end

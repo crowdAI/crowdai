@@ -23,4 +23,38 @@ RSpec.describe ArticlesController, type: :controller do
 
   context "an admin user" do
   end
+
+  
+  describe 'GET new' do
+    it 'works' do
+      get :new, {}, {}
+      expect(response.status).to eq(200)
+    end
+  end
+
+  
+  describe 'GET edit' do
+    it 'works' do
+      get :edit, {}, {}
+      expect(response.status).to eq(200)
+    end
+  end
+
+  
+  describe 'PUT update' do
+    it 'works' do
+      put :update, {}, {}
+      expect(response.status).to eq(200)
+    end
+  end
+
+  
+  describe 'DELETE destroy' do
+    it 'works' do
+      delete :destroy, {}, {}
+      expect(response.status).to eq(200)
+    end
+  end
+
+
 end

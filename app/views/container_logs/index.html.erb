@@ -1,0 +1,75 @@
+<%= render partial: 'challenges/sidebar' %>
+<%= render partial: 'challenges/header', challenge: @challenge %>
+
+<div class="page-content-container">
+  <div class="panel panel-default">
+    <div class="panel-body">
+
+      <div class="row">
+        <div class="col-md-2 text-right">
+          <strong>Name</strong>
+        </div>
+        <div class="col-md-5"><%= link_to @docker_configuration.name, challenge_docker_configurations_path(@challenge) %></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">
+          <strong>Image</strong>
+        </div>
+        <div class="col-md-5"><%= @docker_configuration.image %></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">
+          <strong>Status</strong>
+        </div>
+        <div class="col-md-5"><%= @container_instance.status %></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">
+          <strong>Image</strong>
+        </div>
+        <div class="col-md-5"><%= @container_instance.image_sha %></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">
+          <strong>Container</strong>
+        </div>
+        <div class="col-md-5"><%= @container_instance.container_sha %></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9 col-md-offset-2">
+          <table class="table table-condensed table-hover">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Level</th>
+                <th>Source</th>
+                <th>Message</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @container_logs.each do |log| %>
+              <tr>
+                <td><%= log.created_at %></td>
+                <td><%= log.log_level %></td>
+                <td><%= log.log_source %></td>
+                <td><%= log.message %></td>
+                <td><%= link_to 'Details', container_instances_container_log_path(@container_instance,log) %></td>
+                <td><%= link_to 'Delete', container_instances_container_log_path(@container_instance,log), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

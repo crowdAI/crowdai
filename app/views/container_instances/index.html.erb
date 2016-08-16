@@ -1,0 +1,50 @@
+<%= render partial: 'challenges/sidebar' %>
+<%= render partial: 'challenges/header', challenge: @challenge %>
+
+<div class="page-content-container">
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-2 text-right"><strong>Name</strong></div>
+        <div class="col-md-5"><%= link_to @docker_configuration.name, challenge_docker_configurations_path(@challenge) %></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right"><strong>Image</strong></div>
+        <div class="col-md-5"><%= @docker_configuration.image %></div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-9 col-md-offset-2">
+          <table class="table table-condensed table-hover">
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Image</th>
+                <th>Container</th>
+                <th>Logs</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @container_instances.each do |instance| %>
+              <tr>
+                <td><%= instance.status %></td>
+                <td><%= instance.image_sha %></td>
+                <td><%= instance.container_sha %></td>
+                <td><%= link_to "#{instance.container_logs.count} logs", container_instance_container_logs_path(instance) %></td
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <% @container_instances.each do |instance| %>
+
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,2 @@
+module ContainerLogsHelper
+end

@@ -69,7 +69,7 @@ Rails.application.routes.draw do
   end
 
   resources :container_instances do
-    resources :container_logs
+    resources :container_logs, only: [:index, :show, :destroy]
   end
 
   resources :dataset_files, except: [:show] do

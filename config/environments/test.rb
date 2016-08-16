@@ -1,5 +1,13 @@
-Rails.application.configure do
+require 'sidekiq/testing'
 
+Rails.application.configure do
+  Sidekiq::Testing.inline!
+
+  # load env variables
+  figaro_file = File.join(Rails.root, 'config', 'application.yml')
+  YAML::load_file(figaro_file).symbolize_keys[:test].each do |key,value|
+    ENV[key.to_s] = value
+  end
 
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -46,5 +54,5 @@ Rails.application.configure do
   #config.assets.prefix = "assets_test"    # place test assets in public/assets_test directory
   #config.action_controller.asset_host = "file://#{::Rails.root}/public"
   #config.assets.compile = true
-  
+
 end

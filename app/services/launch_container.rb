@@ -15,16 +15,16 @@ def LaunchContainer
   end
 
 
+  private
+  def validate!
+    raise ArgumentError.new("DockerConfiguration could not be found") if @config.nil?
+  end
+
+
   def build
     base_image = Docker::Image.create('fromImage' => @config.container)
     files_array = @config.docker_files.map(&:configuration_file_s3_key)
     image = base_image.insert_local('localPath' => files_array, 'outputPath' => @config.mount_point)
     container = Docker::Container.create('Cmd' => @config.execute_command, 'Image' => image.id)
-  end
-
-
-  private
-  def validate!
-    raise ArgumentError.new("DockerConfiguration could not be found") if @config.nil?
   end
 end

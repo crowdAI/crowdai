@@ -20,13 +20,13 @@ class GradeSubmission < LaunchContainer
 
 
   def callback_script(id)
-    curl -X PUT -G https://crowdai-stg.herokuapp.com/api/v1/docker_callbacks/create -d "score=999999" -d "score_secondary=123456" -H 'Authorization: Token token="***REMOVED***"'
+    #curl -X PUT -G https://crowdai-stg.herokuapp.com/api/v1/docker_callbacks/create -d "score=999999" -d "score_secondary=123456" -H 'Authorization: Token token="***REMOVED***"'
   end
 
   private
   def validate!
-    raise ArgumentError.new("DockerConfiguration could not be found") if @config.nil?
     raise ArgumentError.new("Submission could not be found") if @submission.nil?
+    super
   end
 
 

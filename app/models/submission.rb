@@ -12,8 +12,17 @@ class Submission < ActiveRecord::Base
   as_enum :grading_status, [:ready, :submitted, :graded, :failed], map: :string
   validates_presence_of :grading_status
 
-  validates_presence_of :framework
+  validates_presence_of :framework, if: :not_openfood?
+  validates_presence_of :api, if: :openfood?
   validates_presence_of :description_markdown
+
+  def openfood?
+    self.challenge.id == 3
+  end
+
+  def not_openfood?
+    self.challenge.id != 3
+  end
 
 
   FRAMEWORKS = {
@@ -24,6 +33,14 @@ class Submission < ActiveRecord::Base
     'scikit3' => 'Python-3 Scikit-Learn',
     'octave' => 'Octave',
     'keras' => 'Keras'
+  }
+
+  APIS = {
+    'google' => "Google Vision",
+    'microsoft' => 'Microsoft Computer Vision',
+    'clarifai' => 'Clarifai',
+    'watson' => 'Watson',
+    'none' => 'No external API used'
   }
 
 

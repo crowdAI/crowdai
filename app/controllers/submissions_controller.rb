@@ -47,7 +47,9 @@ class SubmissionsController < ApplicationController
   def create
     @submission = Submission.new(submission_params)
     if @submission.save
-      SubmissionGraderJob.perform_later(@submission.id)
+      if @challenge.automatic_grading
+        SubmissionGraderJob.perform_later(@submission.id)
+      end
       redirect_to challenge_submissions_path(@challenge)
     else
       @errors = @submission.errors
@@ -85,7 +87,7 @@ class SubmissionsController < ApplicationController
     end
 
     def submission_params
-      params.require(:submission).permit(:challenge_id, :participant_id, :description_markdown, :score, :score_secondary, :grading_status, :grading_message, :framework,
+      params.require(:submission).permit(:challenge_id, :participant_id, :description_markdown, :score, :score_secondary, :grading_status, :grading_message, :framework, :api,
                                   submission_files_attributes: [:id, :seq, :submission_file_s3_key, :_delete])
     end
 

@@ -14,7 +14,11 @@
         <table class='table table-hover table-striped table-bordered leaderboard sortable'>
           <thead>
             <tr>
-              <th>Framework</th>
+              <% if @challenge.id != 3 %>
+                <th>Framework</th>
+              <% else %>
+                <th>API</th>
+              <% end %>
               <% if @challenge.secondary_sort_order == 'not_used' %>
                 <th><%= @challenge.score_title %></th>
               <% else %>
@@ -28,7 +32,12 @@
           <tbody>
             <% @submissions.each do |submission| %>
             <tr>
-              <td><%= Submission::FRAMEWORKS[submission.framework] %></td>
+              <% if @challenge.id != 3 %>
+                <td><%= Submission::FRAMEWORKS[submission.framework] %></td>
+              <% else %>
+                <td><%= Submission::APIS[submission.api] %></td>
+              <% end %>
+
               <% if @challenge.secondary_sort_order == 'not_used' %>
                 <% if submission.failed? %>
                   <td><%= submission.grading_message %></td>

@@ -6,7 +6,7 @@ class Challenge < ActiveRecord::Base
   has_many :dataset_files,            dependent: :destroy
   accepts_nested_attributes_for :dataset_files, reject_if: :all_blank, allow_destroy: true
   # TODO I think this can go
-  
+
   has_many :events,                   dependent: :destroy
   has_many :submissions,              dependent: :destroy
   has_many :leaderboards,             class_name: 'Leaderboard'
@@ -21,7 +21,7 @@ class Challenge < ActiveRecord::Base
   # accepts_nested_attributes_for :submissions, reject_if: :all_blank, allow_destroy: true TODO cleanup controller
 
   as_enum :status, [:draft, :running, :completed, :perpetual, :cancelled], map: :string
-  as_enum :grader, [:f1_logloss ], map: :string
+  as_enum :grader, [:f1_logloss, :docker_container], map: :string
   as_enum :primary_sort_order, [:ascending, :descending], map: :string
   as_enum :secondary_sort_order, [:ascending, :descending, :not_used], map: :string
 

@@ -19,11 +19,11 @@
         <% end %>
         <%= link_to_add_association 'Add File', f, :docker_files,
                                   html_options = { partial: 'docker_configurations/docker_file_fields',
-                                                   class: 'btn btn-primary outline' } %>
+                                                   class: 'btn btn-primary outline pull-right' } %>
       </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, 'Update', class: 'btn btn-primary outline' %>
   </div>
 <% end %>
 </div></div>

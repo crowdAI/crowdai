@@ -1,10 +1,13 @@
 <% content_for(:header) do %>
   <section class="knowledge-header-section">
-
     <div class="row">
       <div class="col-md-2">
         <div class="pull-right">
-          <%= image_tag image_medium_url(@article),  class: "img-white-circle", size: '125x125' %>
+          <% if policy(@article).update? %>
+            <%= render 'articles/form/image' %>
+          <% else %>
+            <%= image_tag image_medium_url(@article),  class: "img-white-circle", size: '125x125' %>
+          <% end %>
         </div>
       </div>
       <div class="col-md-8">
@@ -13,6 +16,12 @@
         <div class="header-text"><%= @article.summary %></div>
         <div class='header-date-text'>by <%= link_to "@#{@article.participant.name}", participant_path(@article.participant_id), class: 'participant-mention' %></div>
         <div class='header-date-text'> <%= @article.created_at.strftime("%-d %B '%y") %></div>
+        <% if policy(@article).update? %>
+          <div class="pull-right">
+            <%= link_to 'Edit Header', edit_article_path(@article), class: 'btn btn-primary outline' %>
+          </div>
+        <% end %>
       </div>
+
   </section>
 <% end %>

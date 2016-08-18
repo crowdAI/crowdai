@@ -1,0 +1,41 @@
+<% content_for(:header) do %>
+  <section class="knowledge-header-section">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="pull-right">
+          <%= render 'articles/form/image' %>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <%= simple_form_for(@article) do |f| %>
+          <%= f.error_notification %>
+          <div class="form-inputs">
+            <%= f.input :article %>
+            <%= f.input :summary %>
+            <div class="row">
+              <div class="col-md-3">
+                <%= f.input :category, :collection => Article::CATEGORIES.sort.map {|k,v| [v,k]} %>
+              </div>
+              <div class="col-md-3">
+                <% if current_participant.admin? %>
+                  <%= f.input :participant_id, :collection => Participant.all.map{ |l| [l.name, l.id] }, selected: @article.participant_id ||= current_participant.id %>
+                <% end %>
+              </div>
+              <div class="col-md-3 col-md-offset-3">
+                <%= f.input :published %>
+              </div>
+            </div>
+          </div>
+          <div class="pull-right">
+            <% if @article.persisted? %>
+              <%= link_to 'Cancel', article_path(@article), class: 'btn btn-primary outline' %>
+              <%= f.submit 'Update header', class: 'btn btn-primary outline' %>
+            <% else %>
+              <%= link_to 'Cancel', articles_path, class: 'btn btn-primary outline' %>
+              <%= f.submit 'Create article', class: 'btn btn-primary outline' %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+  </section>
+<% end %>

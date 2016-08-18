@@ -1,11 +1,19 @@
 module VotesHelper
   def vote_link(votable)
-    vote_id = participant_vote_id(votable)
-    if vote_id.nil?
-      upvote_link(votable)
+    if current_participant
+      vote_id = participant_vote_id(votable) if current_participant
+      if vote_id.nil?
+        upvote_link(votable)
+      else
+        downvote_link(votable, vote_id)
+      end
     else
-      downvote_link(votable, vote_id)
+      guest_link(votable)
     end
+  end
+
+  def guest_link(votable)
+    link_to "#{awesome_icon_tag('star-o fa-2x')} #{votable.vote_count}".html_safe, new_participant_session_path
   end
 
   def upvote_link(votable)
@@ -31,4 +39,6 @@ module VotesHelper
     classname = votable.class.to_s
     "#{classname.downcase}_vote_path(#{votable.id},#{vote_id})"
   end
+
+
 end

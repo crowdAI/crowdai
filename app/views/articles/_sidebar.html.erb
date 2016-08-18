@@ -3,12 +3,13 @@
     <% if @article %>
       <% @article.article_sections.each do |section| %>
         <li><%= glyphicon_link section.icon, section.section, article_path(@article, anchor: section.section.parameterize) %></li>
-      <% end %>
+      <% end %><%# each...do %>
       <%#= glyphicon_link 'comment', 'Comments', article_path(@article, anchor: 'comments') %>
-      <% if current_participant && (current_participant.admin? || current_participant.id == @article.participant_id) %>
+      <% if policy(@article).update? %>
         <hr/>
-        <li><%= glyphicon_link 'pencil', 'Edit', edit_article_path(@article) %></li>
-      <% end %>
-    <% end %>
+        <li><%= link_to 'Add Section', new_article_article_section_path(@article), remote: true %></li>
+        <li><%= link_to 'Delete Article', @article, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+      <% end %><%# if %>
+    <% end %><%# if %>
   </ul>
 <% end %>

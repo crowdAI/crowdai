@@ -23,7 +23,13 @@ class ArticleSection < ActiveRecord::Base
     'signal' => 'Signal',
     'inbox' => 'Inbox',
     'pencil' => 'Pencil',
-    'cog' => 'Cog'
+    'cog' => 'Cog',
+    'dashboard' => 'Dashboard',
+    'retweet' => 'Cycle',
+    'pause' => 'Pause',
+    'wrench' => 'Wrench',
+    'tasks' => 'Tasks',
+    'filter' => 'Filter'
   }
 
 

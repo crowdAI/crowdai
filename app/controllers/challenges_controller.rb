@@ -77,7 +77,7 @@ class ChallengesController < ApplicationController
                     :description_markdown, :rules_markdown, :prizes_markdown, :resources_markdown,
                     :dataset_description_markdown, :submission_instructions_markdown,
                     :license, :license_markdown,
-                    :perpetual_challenge,
+                    :perpetual_challenge, :automatic_grading,
                     :grader, :grading_factor, :answer_file_s3_key,
                     dataset_attributes: [:id, :challenge_id, :description, :_destroy],
                     events_attributes: [:id, :challenge_id, :seq, :event, :event_time, :_destroy ],

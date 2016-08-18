@@ -29,9 +29,11 @@ class ArticlesController < ApplicationController
 
   def create
     @article = current_participant.articles.new(article_params)
+    authorize @article
 
     if @article.save
-      redirect_to @article, notice: 'Article was successfully created.'
+      @article.article_sections.create!(section: 'Introduction', icon: 'home', seq: 1)
+      redirect_to @article
     else
       render :new
     end
@@ -41,7 +43,7 @@ class ArticlesController < ApplicationController
   def update
     authorize @article
     if @article.update(article_params)
-      redirect_to @article, notice: 'Article was successfully updated.'
+      redirect_to @article
     else
       render :edit
     end
@@ -51,7 +53,7 @@ class ArticlesController < ApplicationController
   def destroy
     authorize @article
     @article.destroy
-    redirect_to articles_url, notice: 'Article was successfully destroyed.'
+    redirect_to articles_url, notice: 'Article was successfully deleted.'
   end
 
 
@@ -63,7 +65,7 @@ class ArticlesController < ApplicationController
 
 
     def article_params
-      params.require(:article).permit(:article, :user_id, :published, :category, :summary,
+      params.require(:article).permit(:article, :user_id, :published, :category, :summary, :participant_id,
                     article_sections_attributes: [:id, :article_id, :seq, :icon, :section, :description_markdown ],
                     image_attributes: [:id, :image, :_destroy ])
     end

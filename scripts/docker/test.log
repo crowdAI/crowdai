@@ -1,0 +1,37 @@
+
+sql = "
+SELECT i.id, i.data, i.imageable_id AS product_id
+FROM images i,
+     categorisations c
+WHERE c.categorisable_id = i.id
+AND c.category_id = 1
+AND EXISTS (SELECT 'x' FROM products p WHERE status = 'complete' AND i.imageable_id = p.id)
+AND EXISTS (SELECT 'x' FROM transformations t WHERE t.image_id = i.id)
+"
+
+results = Image.find_by_sql(query)
+
+
+results.each do |image|
+  puts "wget --output-document image-#{image.product_id} #{image.data.url(:xlarge)} "
+end
+Usage: rails runner [options] [<'Some.ruby(code)'> | <filename.rb>]
+
+    -e, --environment=name           Specifies the environment for the runner to operate under (test/development/production).
+                                     Default: development
+
+    -h, --help                       Show this help message.
+
+Examples: 
+    rails runner 'puts Rails.env'
+        This runs the code `puts Rails.env` after loading the app
+
+    rails runner path/to/filename.rb
+        This runs the Ruby file located at `path/to/filename.rb` after loading the app
+
+You can also use runner as a shebang line for your executables:
+    -------------------------------------------------------------
+    #!/usr/bin/env /app/bin/rails runner
+
+    Product.all.each { |p| p.price *= 2 ; p.save! }
+    -------------------------------------------------------------

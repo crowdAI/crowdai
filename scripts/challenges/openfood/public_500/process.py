@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 
-training = open("training.csv", "r")
+training = open("training.csv", "r") 
 
 count = 0
 correct = 0

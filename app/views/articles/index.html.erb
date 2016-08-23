@@ -17,8 +17,11 @@
     <div class="topics-container">
       <div class="row">
         <div class="col-md-3">
-        
-            <%#= select_tag :category, Article::CATEGORIES.sort.map {|k,v| [v,k]} %>
+          <%= search_form_for @query do |f| %>
+            <%= f.select :category_eq, options_for_select(Article::CATEGORIES.sort.map {|k,v| [v,k]}), {include_blank: true},  { onchange: 'this.form.submit();' } %>
+
+            <%#= f.submit  %>
+          <% end %>
 
 
         </div>

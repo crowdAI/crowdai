@@ -30,11 +30,11 @@ gem 'validate_url'
 # forms / data manipulation / charts
 gem 'simple_form'
 gem 'country_select'
-#gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables-rails.git'
 gem 'cocoon'
 gem 'redcarpet'
 gem 'groupdate'
 gem 'rouge'
+gem 'ransack'
 #gem 'active_median'
 #gem "chartkick"
 

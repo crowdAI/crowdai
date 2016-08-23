@@ -2,8 +2,10 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized, except: [:index, :show]
 
+
   def index
-    @articles = policy_scope(Article)
+    @query = Article.ransack(params[:q])
+    @articles = policy_scope(@query.result)
   end
 
 

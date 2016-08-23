@@ -9,3 +9,11 @@ File.open('testfile.csv', 'w') do |f|
     end
   end
 end
+
+
+p = Product.find([6999,1779])
+
+
+SELECT product_id, nutrient_id, per_hundred, per_portion, per_day FROM product_nutrients WHERE product_id = 6999
+UNION ALL
+SELECT 6999, id, -1, -1, -1 FROM nutrients WHERE id NOT IN (SELECT nutrient_id FROM product_nutrients WHERE product_id = 6999)

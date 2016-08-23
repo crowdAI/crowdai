@@ -1,0 +1,7 @@
+<section class="challenges-container">
+  <ul class="challenges-list">
+    <% @challenges.each do |challenge| %>
+      <%= render partial: 'challenges/challenge', locals: { challenge: challenge } %>
+    <% end %>
+  </ul>
+</section>

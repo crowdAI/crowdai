@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   belongs_to :challenge
+  has_paper_trail
 
   validates :seq, presence: true
   validates :event, presence: true

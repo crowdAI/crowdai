@@ -1,4 +1,4 @@
-class ArticlePolicy < ApplicationPolicy
+class ChallengePolicy < ApplicationPolicy
 
   def index?
     true
@@ -9,7 +9,7 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def edit?
-    participant && (participant.admin? || @record.participant == participant)
+    participant && (participant.admin? || @record.organizer_id == participant.organizer_id)
   end
 
   def update?
@@ -40,10 +40,10 @@ class ArticlePolicy < ApplicationPolicy
       if participant && participant.admin?
         scope.all
       else
-        if participant
-          scope.where("published = true OR (published = false and participant_id = ?)", participant.id)
+        if participant && participant.organizer_id
+          scope.where("status_cd IN ('running','completed') OR organizer_id = ?", participant.organizer_id)
         else
-          scope.where(published: true)
+          scope.where("status_cd IN ('running','completed')")
         end
       end
     end

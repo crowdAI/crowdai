@@ -92,22 +92,22 @@ feature "participant accesses challenge", js: true do
 
     scenario "show for draft challenge" do
       visit "/challenges/#{draft_challenge.id}"
-      expect(current_path).to eq('/challenges')
+      expect(current_path).to eq('/')
     end
 
     scenario "show for running challenge" do
       visit "/challenges/#{challenge.id}"
-      expect(current_path).to eq("/challenges/#{challenge.id}")
+      expect(current_path).to eq("/")
     end
 
     scenario "edit challenge" do
       visit "/challenges/#{draft_challenge.id}/edit"
-      expect(current_path).to eq('/challenges')
+      expect(current_path).to eq('/')
     end
 
     scenario "new challenge" do
       visit "/challenges/new"
-      expect(current_path).to eq('/challenges')
+      expect(current_path).to eq('/')
     end
 
   end

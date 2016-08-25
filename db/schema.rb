@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160825064944) do
+ActiveRecord::Schema.define(version: 20160825143800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,10 +26,8 @@ ActiveRecord::Schema.define(version: 20160825064944) do
     t.datetime "updated_at",           :null=>false
     t.string   "icon"
     t.string   "section"
-    t.string   "slug"
   end
   add_index "article_sections", ["article_id"], :name=>"index_article_sections_on_article_id", :using=>:btree
-  add_index "article_sections", ["slug"], :name=>"index_article_sections_on_slug", :unique=>true, :using=>:btree
 
   create_table "articles", force: :cascade do |t|
     t.string   "article"
@@ -42,10 +40,8 @@ ActiveRecord::Schema.define(version: 20160825064944) do
     t.integer  "view_count",     :default=>0
     t.integer  "comment_count",  :default=>0
     t.string   "summary"
-    t.string   "slug"
   end
   add_index "articles", ["participant_id"], :name=>"index_articles_on_participant_id", :using=>:btree
-  add_index "articles", ["slug"], :name=>"index_articles_on_slug", :unique=>true, :using=>:btree
 
   create_table "challenges", force: :cascade do |t|
     t.integer  "organizer_id"
@@ -82,10 +78,8 @@ ActiveRecord::Schema.define(version: 20160825064944) do
     t.string   "score_title"
     t.string   "score_secondary_title"
     t.boolean  "automatic_grading",                :default=>false
-    t.string   "slug"
   end
   add_index "challenges", ["organizer_id"], :name=>"index_challenges_on_organizer_id", :using=>:btree
-  add_index "challenges", ["slug"], :name=>"index_challenges_on_slug", :unique=>true, :using=>:btree
 
   create_table "comments", force: :cascade do |t|
     t.integer  "commentable_id"
@@ -94,10 +88,8 @@ ActiveRecord::Schema.define(version: 20160825064944) do
     t.integer  "participant_id"
     t.datetime "created_at",       :null=>false
     t.datetime "updated_at",       :null=>false
-    t.string   "slug"
   end
   add_index "comments", ["participant_id"], :name=>"index_comments_on_participant_id", :using=>:btree
-  add_index "comments", ["slug"], :name=>"index_comments_on_slug", :unique=>true, :using=>:btree
 
   create_table "container_instances", force: :cascade do |t|
     t.integer  "docker_configuration_id"
@@ -107,10 +99,8 @@ ActiveRecord::Schema.define(version: 20160825064944) do
     t.datetime "updated_at",              :null=>false
     t.string   "image_sha"
     t.string   "container_sha"
-    t.string   "slug"
   end
   add_index "container_instances", ["docker_configuration_id"], :name=>"index_container_instances_on_docker_configuration_id", :using=>:btree
-  add_index "container_instances", ["slug"], :name=>"index_container_instances_on_slug", :unique=>true, :using=>:btree
 
   create_table "container_logs", force: :cascade do |t|
     t.integer  "container_instance_id"
@@ -119,10 +109,8 @@ ActiveRecord::Schema.define(version: 20160825064944) do
     t.datetime "created_at",            :null=>false
     t.datetime "updated_at",            :null=>false
     t.string   "log_source_cd"
-    t.string   "slug"
   end
   add_index "container_logs", ["container_instance_id"], :name=>"index_container_logs_on_container_instance_id", :using=>:btree
-  add_index "container_logs", ["slug"], :name=>"index_container_logs_on_slug", :unique=>true, :using=>:btree
 
   create_table "dataset_file_downloads", force: :cascade do |t|
     t.integer  "participant_id"
@@ -130,11 +118,9 @@ ActiveRecord::Schema.define(version: 20160825064944) do
     t.string   "ip_address"
     t.datetime "created_at",      :null=>false
     t.datetime "updated_at",      :null=>false
-    t.string   "slug"
   end
   add_index "dataset_file_downloads", ["dataset_file_id"], :name=>"index_dataset_file_downloads_on_dataset_file_id", :using=>:btree
   add_index "dataset_file_downloads", ["participant_id"], :name=>"index_dataset_file_downloads_on_participant_id", :using=>:btree
-  add_index "dataset_file_downloads", ["slug"], :name=>"index_dataset_file_downloads_on_slug", :unique=>true, :using=>:btree
 
   create_table "dataset_files", force: :cascade do |t|
     t.integer  "seq"
@@ -143,10 +129,8 @@ ActiveRecord::Schema.define(version: 20160825064944) do
     t.string   "description"
     t.integer  "challenge_id"
     t.string   "dataset_file_s3_key"
-    t.string   "slug"
   end
   add_index "dataset_files", ["challenge_id"], :name=>"index_dataset_files_on_challenge_id", :using=>:btree
-  add_index "dataset_files", ["slug"], :name=>"index_dataset_files_on_slug", :unique=>true, :using=>:btree
 
   create_table "docker_configurations", force: :cascade do |t|
     t.integer  "challenge_id"
@@ -158,10 +142,8 @@ ActiveRecord::Schema.define(version: 20160825064944) do
     t.datetime "updated_at",            :null=>false
     t.string   "name"
     t.boolean  "execute_on_submission", :default=>false
-    t.string   "slug"
   end
   add_index "docker_configurations", ["challenge_id"], :name=>"index_docker_configurations_on_challenge_id", :using=>:btree
-  add_index "docker_configurations", ["slug"], :name=>"index_docker_configurations_on_slug", :unique=>true, :using=>:btree
 
   create_table "docker_files", force: :cascade do |t|
     t.integer  "docker_configuration_id"
@@ -169,10 +151,8 @@ ActiveRecord::Schema.define(version: 20160825064944) do
     t.string   "directory"
     t.datetime "created_at",                :null=>false
     t.datetime "updated_at",                :null=>false
-    t.string   "slug"
   end
   add_index "docker_files", ["docker_configuration_id"], :name=>"index_docker_files_on_docker_configuration_id", :using=>:btree
-  add_index "docker_files", ["slug"], :name=>"index_docker_files_on_slug", :unique=>true, :using=>:btree
 
   create_table "events", force: :cascade do |t|
     t.integer  "challenge_id"
@@ -181,22 +161,8 @@ ActiveRecord::Schema.define(version: 20160825064944) do
     t.datetime "event_time"
     t.datetime "created_at",   :null=>false
     t.datetime "updated_at",   :null=>false
-    t.string   "slug"
   end
   add_index "events", ["challenge_id"], :name=>"index_events_on_challenge_id", :using=>:btree
-  add_index "events", ["slug"], :name=>"index_events_on_slug", :unique=>true, :using=>:btree
-
-  create_table "friendly_id_slugs", force: :cascade do |t|
-    t.string   "slug",           :null=>false
-    t.integer  "sluggable_id",   :null=>false
-    t.string   "sluggable_type", :limit=>50
-    t.string   "scope"
-    t.datetime "created_at"
-  end
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], :name=>"index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", :unique=>true, :using=>:btree
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name=>"index_friendly_id_slugs_on_slug_and_sluggable_type", :using=>:btree
-  add_index "friendly_id_slugs", ["sluggable_id"], :name=>"index_friendly_id_slugs_on_sluggable_id", :using=>:btree
-  add_index "friendly_id_slugs", ["sluggable_type"], :name=>"index_friendly_id_slugs_on_sluggable_type", :using=>:btree
 
   create_table "images", force: :cascade do |t|
     t.integer  "imageable_id"
@@ -208,10 +174,8 @@ ActiveRecord::Schema.define(version: 20160825064944) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.string   "slug"
   end
   add_index "images", ["imageable_type", "imageable_id"], :name=>"index_images_on_imageable_type_and_imageable_id", :using=>:btree
-  add_index "images", ["slug"], :name=>"index_images_on_slug", :unique=>true, :using=>:btree
 
   create_table "submissions", force: :cascade do |t|
     t.integer  "challenge_id"
@@ -228,11 +192,9 @@ ActiveRecord::Schema.define(version: 20160825064944) do
     t.integer  "vote_count",           :default=>0
     t.boolean  "post_challenge",       :default=>false
     t.string   "api"
-    t.string   "slug"
   end
   add_index "submissions", ["challenge_id"], :name=>"index_submissions_on_challenge_id", :using=>:btree
   add_index "submissions", ["participant_id"], :name=>"index_submissions_on_participant_id", :using=>:btree
-  add_index "submissions", ["slug"], :name=>"index_submissions_on_slug", :unique=>true, :using=>:btree
 
   create_view "leaderboards", <<-'END_VIEW_LEADERBOARDS', :force => true
 SELECT l.row_num,
@@ -310,9 +272,7 @@ SELECT l.row_num,
     t.datetime "created_at",  :null=>false
     t.datetime "updated_at",  :null=>false
     t.boolean  "approved",    :default=>false
-    t.string   "slug"
   end
-  add_index "organizers", ["slug"], :name=>"index_organizers_on_slug", :unique=>true, :using=>:btree
 
   create_table "participants", force: :cascade do |t|
     t.string   "email",                   :default=>"", :null=>false
@@ -351,13 +311,11 @@ SELECT l.row_num,
     t.boolean  "account_disabled",        :default=>false
     t.text     "account_disabled_reason"
     t.datetime "account_disabled_dttm"
-    t.string   "slug"
   end
   add_index "participants", ["confirmation_token"], :name=>"index_participants_on_confirmation_token", :unique=>true, :using=>:btree
   add_index "participants", ["email"], :name=>"index_participants_on_email", :unique=>true, :using=>:btree
   add_index "participants", ["organizer_id"], :name=>"index_participants_on_organizer_id", :using=>:btree
   add_index "participants", ["reset_password_token"], :name=>"index_participants_on_reset_password_token", :unique=>true, :using=>:btree
-  add_index "participants", ["slug"], :name=>"index_participants_on_slug", :unique=>true, :using=>:btree
   add_index "participants", ["unlock_token"], :name=>"index_participants_on_unlock_token", :unique=>true, :using=>:btree
 
   create_table "posts", force: :cascade do |t|
@@ -369,10 +327,8 @@ SELECT l.row_num,
     t.datetime "created_at",     :null=>false
     t.datetime "updated_at",     :null=>false
     t.integer  "vote_count",     :default=>0
-    t.string   "slug"
   end
   add_index "posts", ["participant_id"], :name=>"index_posts_on_participant_id", :using=>:btree
-  add_index "posts", ["slug"], :name=>"index_posts_on_slug", :unique=>true, :using=>:btree
   add_index "posts", ["topic_id"], :name=>"index_posts_on_topic_id", :using=>:btree
 
   create_view "participant_challenges", <<-'END_VIEW_PARTICIPANT_CHALLENGES', :force => true
@@ -433,9 +389,7 @@ SELECT p.id,
     t.datetime "created_at",             :null=>false
     t.datetime "updated_at",             :null=>false
     t.string   "submission_file_s3_key"
-    t.string   "slug"
   end
-  add_index "submission_files", ["slug"], :name=>"index_submission_files_on_slug", :unique=>true, :using=>:btree
   add_index "submission_files", ["submission_id"], :name=>"index_submission_files_on_submission_id", :using=>:btree
 
   create_table "submission_grades", force: :cascade do |t|
@@ -447,9 +401,7 @@ SELECT p.id,
     t.float    "score_secondary"
     t.datetime "created_at",        :null=>false
     t.datetime "updated_at",        :null=>false
-    t.string   "slug"
   end
-  add_index "submission_grades", ["slug"], :name=>"index_submission_grades_on_slug", :unique=>true, :using=>:btree
   add_index "submission_grades", ["submission_id"], :name=>"index_submission_grades_on_submission_id", :using=>:btree
 
   create_table "submissions__grades_backup", id: false, force: :cascade do |t|
@@ -488,11 +440,19 @@ SELECT p.id,
     t.integer  "posts_count",    :default=>0
     t.datetime "created_at",     :null=>false
     t.datetime "updated_at",     :null=>false
-    t.string   "slug"
   end
   add_index "topics", ["challenge_id"], :name=>"index_topics_on_challenge_id", :using=>:btree
   add_index "topics", ["participant_id"], :name=>"index_topics_on_participant_id", :using=>:btree
-  add_index "topics", ["slug"], :name=>"index_topics_on_slug", :unique=>true, :using=>:btree
+
+  create_table "versions", force: :cascade do |t|
+    t.string   "item_type",  :null=>false
+    t.integer  "item_id",    :null=>false
+    t.string   "event",      :null=>false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+  end
+  add_index "versions", ["item_type", "item_id"], :name=>"index_versions_on_item_type_and_item_id", :using=>:btree
 
   create_table "votes", force: :cascade do |t|
     t.integer  "votable_id",     :null=>false
@@ -500,10 +460,8 @@ SELECT p.id,
     t.integer  "participant_id"
     t.datetime "created_at",     :null=>false
     t.datetime "updated_at",     :null=>false
-    t.string   "slug"
   end
   add_index "votes", ["participant_id"], :name=>"index_votes_on_participant_id", :using=>:btree
-  add_index "votes", ["slug"], :name=>"index_votes_on_slug", :unique=>true, :using=>:btree
 
   add_foreign_key "article_sections", "articles"
   add_foreign_key "articles", "participants"

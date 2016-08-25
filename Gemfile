@@ -26,6 +26,7 @@ gem 'simple_enum'
 gem "schema_plus_views"
 gem 'seed_dump'
 gem 'validate_url'
+gem 'paper_trail'
 
 # forms / data manipulation / charts
 gem 'simple_form'
@@ -116,6 +117,7 @@ group :development do
   gem 'sdoc', '~> 0.4.0'
   gem 'web-console', '~> 2.0'
   gem 'scss_lint', require: false
+  gem 'quiet_assets', github: 'seanfcarroll/quiet_assets', branch: 'master'
 end
 
 

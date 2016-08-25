@@ -1,38 +1,36 @@
 class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
-  before_action :disallow_anonymous, except: [:index, :show]
+  after_action :verify_authorized, except: [:index, :show]
 
   def index
-    if current_participant && current_participant.admin?
-      @challenges = Challenge.all
-    else
-      @challenges = Challenge.where(status_cd: ['running','completed','perpetual'])
-    end
+    @challenges = policy_scope(Challenge)
     load_gon
   end
 
 
   def show
+    authorize @challenge
     @challenge.record_page_view
     load_gon({percent_progress: @challenge.timeline.pct_passed})
-    if @challenge.draft?
-      redirect_to '/' unless current_participant && current_participant.admin?
-    end
   end
 
 
   def new
     @challenge = Challenge.new
+    authorize @challenge
   end
 
 
   def edit
+    authorize @challenge
     load_gon
   end
 
 
   def create
     @challenge = Challenge.new(challenge_params)
+    authorize @challenge
+
     if @challenge.save
       redirect_to @challenge, notice: 'Challenge was successfully created.'
     else
@@ -42,6 +40,7 @@ class ChallengesController < ApplicationController
 
 
   def update
+    authorize @challenge
     if @challenge.update(challenge_params)
       redirect_to @challenge, notice: 'Challenge was successfully updated.'
     else
@@ -51,6 +50,7 @@ class ChallengesController < ApplicationController
 
 
   def destroy
+    authorize @challenge
     @challenge.destroy
     redirect_to challenges_url, notice: 'Challenge was successfully destroyed.'
   end
@@ -59,12 +59,7 @@ class ChallengesController < ApplicationController
   private
   def set_challenge
     @challenge = Challenge.find(params[:id])
-    redirect_to challenges_url if (!current_participant && @challenge.draft?)
-  end
-
-
-  def disallow_anonymous
-    redirect_to challenges_url if !current_participant
+    authorize @challenge
   end
 
 

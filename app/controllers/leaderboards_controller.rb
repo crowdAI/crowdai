@@ -21,6 +21,6 @@ class LeaderboardsController < ApplicationController
   end
 
   def set_challenge
-    @challenge = Challenge.find(params[:challenge_id])
+    @challenge = Challenge.friendly.find(params[:challenge_id])
   end
 end

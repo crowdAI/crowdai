@@ -58,7 +58,7 @@ class ChallengesController < ApplicationController
 
   private
   def set_challenge
-    @challenge = Challenge.find(params[:id])
+    @challenge = Challenge.friendly.find(params[:id])
     authorize @challenge
   end
 

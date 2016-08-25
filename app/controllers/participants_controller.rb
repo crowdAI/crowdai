@@ -6,7 +6,7 @@ class ParticipantsController < ApplicationController
   end
 
   def update
-    @participant = Participant.find(params[:id])
+    @participant = Participant.friendly.find(params[:id])
     if @participant.update_attributes(participant_params)
       flash[:success] = "Profile updated"
       redirect_to @participant
@@ -22,7 +22,7 @@ class ParticipantsController < ApplicationController
 
   private
     def set_participant
-      @participant = Participant.find(params[:id])
+      @participant = Participant.friendly.find(params[:id])
     end
 
     def participant_params

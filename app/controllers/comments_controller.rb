@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
   def set_commentable
     params.each do |key,val|
       if key =~ /(.+)_id$/
-        @commentable = $1.classify.constantize.find(val)
+        @commentable = $1.classify.constantize.friendly.find(val)
         break
       end
     end

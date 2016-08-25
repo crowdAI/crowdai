@@ -48,7 +48,7 @@ class OrganizersController < ApplicationController
 
   private
     def set_organizer
-      @organizer = Organizer.find(params[:id])
+      @organizer = Organizer.friendly.find(params[:id])
     end
 
     def organizer_params

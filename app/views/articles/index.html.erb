@@ -19,11 +19,7 @@
         <div class="col-md-3">
           <%= search_form_for @query do |f| %>
             <%= f.select :category_eq, options_for_select(Article::CATEGORIES.sort.map {|k,v| [v,k]}), {include_blank: true},  { onchange: 'this.form.submit();' } %>
-
-            <%#= f.submit  %>
           <% end %>
-
-
         </div>
       </div>
     </div>

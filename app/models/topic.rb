@@ -1,4 +1,6 @@
 class Topic < ActiveRecord::Base
+  include FriendlyId
+  friendly_id :topic, use: :slugged
   include ActionView::Helpers::DateHelper
   belongs_to :challenge
   belongs_to :participant

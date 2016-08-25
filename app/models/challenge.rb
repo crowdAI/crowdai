@@ -1,4 +1,6 @@
 class Challenge < ActiveRecord::Base
+  include FriendlyId
+  friendly_id :challenge, use: :slugged
   before_validation :cache_rendered_markdown
   validate :valid_status
 

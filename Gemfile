@@ -35,6 +35,7 @@ gem 'redcarpet'
 gem 'groupdate'
 gem 'rouge'
 gem 'ransack'
+gem 'friendly_id', '~> 5.1.0'
 #gem 'active_median'
 #gem "chartkick"
 

@@ -1,4 +1,6 @@
 class Article < ActiveRecord::Base
+  include FriendlyId
+  friendly_id :article, use: :slugged
   belongs_to :participant
   has_many :votes, as: :votable
   has_many :comments, as: :commentable

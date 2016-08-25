@@ -1,4 +1,6 @@
 class Participant < ActiveRecord::Base
+  include FriendlyId
+  friendly_id :name, use: :slugged
   before_save { self.email = email.downcase }
   before_save :process_urls
 
@@ -18,7 +20,7 @@ class Participant < ActiveRecord::Base
   validates :linkedin, :url => { allow_blank: true }
   validates :twitter, :url => { allow_blank: true }
   validates_presence_of :name
-  validates :name, length: { minimum: 2 }, allow_blank: false
+  validates :name, length: { minimum: 2 }, allow_blank: false, uniqueness: { case_sensitive: false }
 
   has_many :submissions
   has_many :posts
@@ -28,7 +30,7 @@ class Participant < ActiveRecord::Base
   has_many :leaderboards,               class_name: 'Leaderboard'
   has_many :ongoing_leaderboards,       class_name: 'OngoingLeaderboard'
   has_many :participant_challenges,     class_name: 'ParticipantChallenge'
-  
+
   belongs_to :organizer
   has_one :image, as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :image, allow_destroy: true

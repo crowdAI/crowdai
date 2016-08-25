@@ -288,6 +288,8 @@ GEM
     font-awesome-rails (4.6.3.1)
       railties (>= 3.2, < 5.1)
     formatador (0.2.5)
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     get_process_mem (0.2.1)
     gibbon (2.2.4)
       faraday (>= 0.9.1)
@@ -641,6 +643,7 @@ DEPENDENCIES
   figaro
   fog (= 1.35.0)
   font-awesome-rails
+  friendly_id (~> 5.1.0)
   gibbon
   gon
   groupdate

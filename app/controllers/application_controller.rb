@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
   include Pundit
+  rescue_from Pundit::NotAuthorizedError, with: :not_authorized
   protect_from_forgery with: :exception
   after_filter :participant_activity
   before_action :detect_device_variant
   before_action :configure_permitted_parameters, if: :devise_controller?
-  rescue_from Pundit::NotAuthorizedError, with: :not_authorized
   before_filter :set_paper_trail_whodunnit
 
   protected

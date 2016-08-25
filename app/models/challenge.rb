@@ -1,7 +1,7 @@
 class Challenge < ActiveRecord::Base
   before_validation :cache_rendered_markdown
   validate :valid_status
-  has_paper_trail
+  has_paper_trail :ignore => :page_views
 
   belongs_to :organizer
   has_many :dataset_files,            dependent: :destroy

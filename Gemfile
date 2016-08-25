@@ -115,6 +115,7 @@ group :development do
   gem 'sdoc', '~> 0.4.0'
   gem 'web-console', '~> 2.0'
   gem 'scss_lint', require: false
+  gem 'quiet_assets', github: 'seanfcarroll/quiet_assets', branch: 'master'
 end
 
 

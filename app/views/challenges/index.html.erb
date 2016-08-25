@@ -3,13 +3,13 @@
 </section>
 
 <div>
-  <% if current_participant && current_participant.organizer_id.present? %>
-  <br/>
-  <div class="row">
-    <div class="col-md-2 col-md-offset-8">
-      <%= link_to '+ New Challenge', new_challenge_path, class: 'btn btn-primary outline' %>
+  <% if policy(Challenge.new).create? %>
+    <br/>
+    <div class="row">
+      <div class="col-md-2 col-md-offset-8">
+        <%= link_to '+ New Challenge', new_challenge_path, class: 'btn btn-primary outline' %>
+      </div>
     </div>
-  </div>
   <% end %>
 
   <div class="challenges-container">

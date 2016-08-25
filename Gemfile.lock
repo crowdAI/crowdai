@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/seanfcarroll/quiet_assets.git
+  revision: 9d293b9e385d632c1270096d0b47fd16deebdc0c
+  branch: master
+  specs:
+    quiet_assets (1.1.0)
+      railties (>= 3.1, <= 5.0)
+
+GIT
   remote: git://github.com/thoughtbot/paperclip.git
   revision: 431d1e8bfcf2c9a49bf3a4db2725684fc377d7e8
   specs:
@@ -663,6 +671,7 @@ DEPENDENCIES
   puma
   puma_worker_killer
   pundit
+  quiet_assets!
   railroady
   rails (= 4.2.6)
   rails-erd

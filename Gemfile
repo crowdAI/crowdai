@@ -26,6 +26,7 @@ gem 'simple_enum'
 gem "schema_plus_views"
 gem 'seed_dump'
 gem 'validate_url'
+gem 'paper_trail'
 
 # forms / data manipulation / charts
 gem 'simple_form'

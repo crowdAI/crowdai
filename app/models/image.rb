@@ -1,5 +1,6 @@
 class Image < ActiveRecord::Base
   belongs_to :imageable, polymorphic: true
+  has_paper_trail
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
   has_attached_file :image,

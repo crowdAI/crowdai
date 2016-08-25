@@ -39,7 +39,7 @@ feature "participant creation", js: true do
     end
 
 
-    scenario "participant's name may be non-unique" do
+    scenario "participant's name must be unique" do
       FactoryGirl.create(:participant, name: 'Bill Hayden')
       participant = FactoryGirl.build(:participant, name: 'Bill Hayden')
       visit '/'
@@ -49,7 +49,7 @@ feature "participant creation", js: true do
       fill_in 'participant_password', with: participant.password
       fill_in "Password confirmation", with: participant.password_confirmation
       click_button "Get started"
-      expect(page).to have_content "A message with a confirmation link has been sent to your email address"
+      expect(page).to have_content "has already been taken"
     end
   end
 

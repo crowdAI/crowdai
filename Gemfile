@@ -23,7 +23,7 @@ gem "skylight"
 
 # model
 gem 'simple_enum'
-gem "schema_plus_views"
+gem 'scenic', '~> 1.3'
 gem 'seed_dump'
 gem 'validate_url'
 gem 'paper_trail'
@@ -35,7 +35,6 @@ gem 'cocoon'
 gem 'redcarpet'
 gem 'groupdate'
 gem 'rouge'
-gem 'ransack'
 gem 'friendly_id', '~> 5.1.0'
 #gem 'active_median'
 #gem "chartkick"

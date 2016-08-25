@@ -30,7 +30,11 @@
       <a href="#dataset-configuration" id="dataset-configuration-tab" aria-controls="dataset-configuration" role="tab" data-toggle="tab">Dataset</a>
     </li>
     <li role="presentation">
-      <%= link_to 'Docker', challenge_docker_configurations_path(@challenge) %>
+      <% if @challenge.persisted? %>
+        <%= link_to 'Docker', challenge_docker_configurations_path(@challenge) %>
+      <% else %>
+        <%= link_to 'Docker', '#' %>
+      <% end %>
     </li>
   </ul>
 

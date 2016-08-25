@@ -28,10 +28,10 @@
     </div>
   <% end %>
 
-  <% if @challenge.id == 1 %>
-    <%= f.input :framework, :collection => Submission::FRAMEWORKS.sort.map {|k,v| [v,k]} %>
-  <% else %>
+  <% if @challenge.id == 3 %>
     <%= f.input :api, :collection => Submission::APIS.sort.map {|k,v| [v,k]} %>
+  <% else %>
+    <%= f.input :framework, :collection => Submission::FRAMEWORKS.sort.map {|k,v| [v,k]} %>
   <% end %>
 
 

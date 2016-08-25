@@ -5,7 +5,7 @@ class ChallengePolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    @record.running? || @record.completed? || participant && participant.admin? || participant && @record.organizer_id == participant.organizer_id
   end
 
   def edit?

@@ -1,13 +1,23 @@
+<section class="header-section">
+  <div class="intro"></div>
+</section>
 
-<%= link_to 'Add Organizer', new_organizer_path, class: 'btn btn-primary outline pull-right' %>
+<div>
+  <% if policy(Organizer.new).create? %>
+    <br/>
+    <div class="row">
+      <div class="col-md-2 col-md-offset-8">
+        <%= link_to 'Add Organizer', new_organizer_path, class: 'btn btn-primary outline pull-right' %>
+      </div>
+    </div>
+  <% end %>
 
-
-<h1>Already hosting on CrowdAI</h1>
-
-<% @organizers.each do |organizer| %>
-  <div class="jumbotron">
-    <h4><%= link_to organizer.organizer, organizer_path(organizer) %></h4>
-    <%= organizer.description %>
+  <div class="challenges-container">
+    <ul class="challenges-list">
+      <% @organizers.each do |organizer| %>
+        <%= render partial: 'organizers/index/organizer', locals: { organizer: organizer } %>
+      <% end %>
+    </ul>
   </div>
 
-<% end %>
+</div>

@@ -1,0 +1,17 @@
+<li>
+  <%= link_to organizer_path(organizer) do %>
+    <div class="row">
+      <div class="col-xs-9">
+        <h3><%= organizer.organizer %></h3>
+      </div>
+      <div class="col-xs-3">
+        <span class="glyphicon glyphicon-eye-open"></span> <%= organizer.challenges.count %> challenges
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div><%= organizer.description %></div>
+      </div>
+    </div>
+  <% end %>
+</li>

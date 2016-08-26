@@ -82,7 +82,7 @@ ul.challenges-list li {
   color: $crowdai-bg-white;
   @include media(">=phone", "<=tablet") {
     font-size: 70%;
-    width: 50px;
+    width: 60px;
   }
   @include media(">tablet") {
     font-size: 100%;

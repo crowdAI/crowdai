@@ -15,7 +15,7 @@
   <div class="challenges-container">
     <ul class="challenges-list">
       <% @challenges.each do |challenge| %>
-        <%= render partial: 'challenge', locals: { challenge: challenge } %>
+        <%= render partial: 'challenges/index/challenge', locals: { challenge: challenge } %>
       <% end %>
     </ul>
   </div>

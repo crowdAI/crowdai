@@ -1,7 +1,17 @@
 <section class="challenges-container">
   <ul class="challenges-list">
     <% @challenges.each do |challenge| %>
-      <%= render partial: 'challenges/challenge', locals: { challenge: challenge } %>
+      <%= render partial: 'challenges/index/challenge', locals: { challenge: challenge } %>
     <% end %>
   </ul>
 </section>
+
+<hr/>
+
+<div class="challenges-container">
+  <ul class="challenges-list">
+    <% @articles.each do |article| %>
+      <%= render partial: 'articles/index/article', locals: { article: article } %>
+    <% end %>
+  </ul>
+</div>

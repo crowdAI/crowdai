@@ -47,7 +47,7 @@ Rails.application.routes.draw do
 
   get 'markdown_editor/show'
 
-  get 'landing_page/index'  # TODO refactor
+  resources :landing_page, only: [:index]
 
   resources :organizers do
     resources :challenges
@@ -98,5 +98,5 @@ Rails.application.routes.draw do
 
   get '/pages/*id' => 'pages#show', as: :page, format: false
 
-  root 'challenges#index', as: :authenticated_root
+  root 'landing_page#index'
 end

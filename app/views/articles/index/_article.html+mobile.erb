@@ -1,0 +1,19 @@
+<li>
+  <%= link_to article_path(article) do %>
+    <div class="row">
+      <div class="col-xs-3">
+        <div class="challenge-list-image text-center">
+          <%= image_tag image_medium_url(Article.find(article.id)),  class: "img-circle", size: "40" %><br/>
+          <span class="category-badge"><%= Article::CATEGORIES[article.category] %></span>
+        </div>
+      </div>
+      <div class="col-xs-8">
+        <h4><%= article.article %></h4>
+        <div class="challenge-list-detail">
+          <span class="glyphicon glyphicon-eye-open"></span> <%= article.view_count %>&ensp; | &ensp;
+          <span class="glyphicon glyphicon-star"></span> <%= article.vote_count %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</li>

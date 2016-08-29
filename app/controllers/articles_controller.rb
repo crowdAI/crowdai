@@ -30,7 +30,11 @@ class ArticlesController < ApplicationController
 
 
   def create
-    @article = current_participant.articles.new(article_params)
+    if current_participant
+      @article = current_participant.articles.new(article_params)
+    else
+      raise Pundit::NotAuthorizedError
+    end
     authorize @article
 
     if @article.save

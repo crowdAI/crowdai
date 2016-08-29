@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-describe ArticlesHelper do
+describe ChallengesHelper do
 
 end

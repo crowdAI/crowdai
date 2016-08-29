@@ -128,6 +128,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-kickstarter'
   gem 'to_factory'
+  gem 'traceroute'
 end
 
 group :test do

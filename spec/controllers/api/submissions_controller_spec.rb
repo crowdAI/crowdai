@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-describe SubmissionsController do
+describe Api::SubmissionsController do
 
-  
+
   describe 'PUT update' do
     it 'works' do
       put :update, {}, {}

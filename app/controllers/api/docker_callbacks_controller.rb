@@ -1,4 +1,4 @@
-class Api::V1::DockerCallbacksController < Api::V1::BaseController
+class Api::DockerCallbacksController < Api::BaseController
 
   def create
     puts 'Docker callback'

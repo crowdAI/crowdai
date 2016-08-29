@@ -4,7 +4,13 @@ require 'rails_helper'
 
 describe SubmissionsController do
 
-  
+  context '.create' do
+    it 'requires you to be logged in' do
+      expect { xhr :post, :create }.to raise_error(Pundit::NotAuthorizedError)
+    end
+  end
+
+
   describe 'GET index' do
     it 'works' do
       get :index, {}, {}
@@ -12,7 +18,7 @@ describe SubmissionsController do
     end
   end
 
-  
+
   describe 'GET leaderboard' do
     it 'works' do
       get :leaderboard, {}, {}
@@ -20,7 +26,7 @@ describe SubmissionsController do
     end
   end
 
-  
+
   describe 'GET show' do
     it 'works' do
       get :show, {}, {}
@@ -28,7 +34,7 @@ describe SubmissionsController do
     end
   end
 
-  
+
   describe 'GET new' do
     it 'works' do
       get :new, {}, {}
@@ -36,7 +42,7 @@ describe SubmissionsController do
     end
   end
 
-  
+
   describe 'POST create' do
     it 'works' do
       post :create, {}, {}
@@ -44,7 +50,7 @@ describe SubmissionsController do
     end
   end
 
-  
+
   describe 'DELETE destroy' do
     it 'works' do
       delete :destroy, {}, {}
@@ -52,7 +58,7 @@ describe SubmissionsController do
     end
   end
 
-  
+
   describe 'GET grade' do
     it 'works' do
       get :grade, {}, {}
@@ -60,7 +66,7 @@ describe SubmissionsController do
     end
   end
 
-  
+
   describe 'GET execute' do
     it 'works' do
       get :execute, {}, {}

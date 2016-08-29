@@ -43,6 +43,6 @@ class ApplicationController < ActionController::Base
 
   def not_authorized
     flash[:error] = "You are not authorised for this action"
-    redirect_to '/'
+    redirect_to root_path
   end
 end

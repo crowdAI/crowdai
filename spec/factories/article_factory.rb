@@ -9,6 +9,10 @@ FactoryGirl.define do
     view_count 0
     comment_count 0
 
+    trait :invalid do
+      category nil
+    end
+
     trait :with_sections do
       article_sections { [ build(:article_section, seq: 0),
                           build(:article_section, seq: 1),

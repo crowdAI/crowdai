@@ -5,15 +5,15 @@ class OrganizerPolicy < ApplicationPolicy
   end
 
   def show?
-    participant && participant.admin? || participant && @record.organizer_id == participant.organizer_id
+    participant && participant.admin? || participant && @record.id == participant.organizer_id
   end
 
   def edit?
-    participant && participant.admin?
+    show?
   end
 
   def update?
-    edit?
+    show?
   end
 
   def new?
@@ -41,7 +41,7 @@ class OrganizerPolicy < ApplicationPolicy
         scope.all
       else
         if participant && participant.organizer_id
-          scope.where("organizer_id = ?", participant.organizer_id)
+          scope.where("id = ?", participant.organizer_id)
         else
           scope.none
         end

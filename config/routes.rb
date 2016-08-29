@@ -3,7 +3,6 @@ require 'sidetiq/web'
 
 Rails.application.routes.draw do
 
-  resources :article_sections
   mount Sidekiq::Web => '/sidekiq'
 
   get 'markdown_editor/create'
@@ -39,10 +38,8 @@ Rails.application.routes.draw do
 
   # API
   namespace :api do
-    namespace :v1 do
-      resources :submissions, only: [:update]
-      resources :docker_callbacks, only: [:create]
-    end
+    resources :submissions, only: [:update]
+    resources :docker_callbacks, only: [:create]
   end
 
   get 'markdown_editor/show'

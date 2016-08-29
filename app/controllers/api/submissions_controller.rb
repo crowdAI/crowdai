@@ -1,4 +1,4 @@
-class Api::V1::SubmissionsController < Api::V1::BaseController
+class Api::SubmissionsController < Api::BaseController
 
   def update
     SubmissionGrade.create!(grading_params)

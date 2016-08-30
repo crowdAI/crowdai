@@ -44,7 +44,7 @@ class ArticleSectionsController < ApplicationController
 
 
     def set_article_section
-      @article_section = ArticleSection.find(params[:id])
+      @article_section = ArticleSection.friendly.find(params[:id])
     end
 
     def article_section_params

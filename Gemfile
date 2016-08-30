@@ -23,7 +23,7 @@ gem "skylight"
 
 # model
 gem 'simple_enum'
-gem "schema_plus_views"
+gem 'scenic', '~> 1.3'
 gem 'seed_dump'
 gem 'validate_url'
 gem 'paper_trail'
@@ -31,11 +31,11 @@ gem 'paper_trail'
 # forms / data manipulation / charts
 gem 'simple_form'
 gem 'country_select'
-#gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables-rails.git'
 gem 'cocoon'
 gem 'redcarpet'
 gem 'groupdate'
 gem 'rouge'
+gem 'friendly_id', '~> 5.1.0'
 #gem 'active_median'
 #gem "chartkick"
 
@@ -128,6 +128,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-kickstarter'
   gem 'to_factory'
+  gem 'traceroute'
 end
 
 group :test do

@@ -22,42 +22,19 @@
         <strong>Description:</strong>
         <%= @organizer.description %>
       </p>
+      <hr/>
+      <%= render partial: 'organizers/show/administrative_users' %>
 
+      <hr/>
+      <h1 class="text-center">Challenges</h1>
       <div class="challenges-container">
         <ul class="challenges-list">
           <% @challenges.each do |challenge| %>
-            <%= render partial: 'challenges/challenge', locals: { challenge: challenge } %>
+            <%= render partial: 'challenges/index/challenge', locals: { challenge: challenge } %>
           <% end %>
         </ul>
       </div>
 
-      <hr/>
-      <h1>Administrative users</h1>
-      <div class='table-responsive'>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th></th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @organizer.participants.each do |participant| %>
-            <tr>
-              <td><%= participant.name %></td>
-              <td><%= participant.email %></td>
-              <td><%# if current_participant.admin? %>
-                <%#= link_to 'Remove', [@organizer, participant], method: :nullify, data: { confirm: 'Remove this user from the administration of your organizer on CrowdAI?' }, class: 'btn btn-small btn-danger outline' %>
-                <%# end %>
-              </td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-
-      </div>
 
     </div>
   </div>

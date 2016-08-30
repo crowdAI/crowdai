@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'support/pundit_matcher'
 
-
+#  https://gist.github.com/netzfisch/acc249f828884c739848
 describe ArticlePolicy do
   context "for a published article" do
     subject { ArticlePolicy.new(participant, article) }

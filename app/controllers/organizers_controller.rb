@@ -1,24 +1,29 @@
 class OrganizersController < ApplicationController
   before_filter :authenticate_participant!
   before_action :set_organizer, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized, except: :index
+
 
   def index
-    @organizers = Organizer.all
+    @organizers = policy_scope(Organizer)
   end
 
   def show
-    @challenges = Challenge.where(organizer: @organizer)
+    authorize @organizer
   end
 
   def new
     @organizer = Organizer.new
+    authorize @organizer
   end
 
   def edit
+    authorize @organizer
   end
 
   def create
     @organizer = Organizer.new(organizer_params)
+    authorize @organizer
 
     if @organizer.save
       if current_participant.admin?
@@ -34,6 +39,7 @@ class OrganizersController < ApplicationController
   end
 
   def update
+    authorize @organizer
     if @organizer.update(organizer_params)
       redirect_to @organizer, notice: 'Hosting organizer was successfully updated.'
     else
@@ -42,13 +48,14 @@ class OrganizersController < ApplicationController
   end
 
   def destroy
+    authorize @organizer
     @organizer.destroy
     redirect_to organizers_url, notice: 'Hosting organizer was successfully destroyed.'
   end
 
   private
     def set_organizer
-      @organizer = Organizer.find(params[:id])
+      @organizer = Organizer.friendly.find(params[:id])
     end
 
     def organizer_params

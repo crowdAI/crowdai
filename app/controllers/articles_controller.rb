@@ -2,8 +2,10 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized, except: [:index, :show]
 
+
   def index
-    @articles = policy_scope(Article)
+    @query = Article.ransack(params[:q])
+    @articles = policy_scope(@query.result)
   end
 
 
@@ -28,7 +30,11 @@ class ArticlesController < ApplicationController
 
 
   def create
-    @article = current_participant.articles.new(article_params)
+    if current_participant
+      @article = current_participant.articles.new(article_params)
+    else
+      raise Pundit::NotAuthorizedError
+    end
     authorize @article
 
     if @article.save
@@ -56,10 +62,14 @@ class ArticlesController < ApplicationController
     redirect_to articles_url, notice: 'Article was successfully deleted.'
   end
 
+  def articles_filter
+    Article::CATEGORIES.sort.map {|k,v| [v,k]}
+  end
+
 
   private
     def set_article
-      @article = Article.find(params[:id])
+      @article = Article.friendly.find(params[:id])
       authorize @article
     end
 

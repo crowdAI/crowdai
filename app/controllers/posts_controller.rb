@@ -45,11 +45,11 @@ class PostsController < ApplicationController
 
   private
     def set_post
-      @post = Post.find(params[:id])
+      @post = Post.friendly.find(params[:id])
     end
 
     def set_topic_and_challenge
-      @topic = Topic.find(params[:topic_id])
+      @topic = Topic.friendly.find(params[:topic_id])
       @challenge = @topic.challenge
     end
 

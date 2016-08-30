@@ -1,9 +1,0 @@
-<%= link_to challenge_path(challenge) do %>
-  <li class="list-group-item">
-    <%= challenge.organizer.organizer %><br/>
-    <b><%= challenge.challenge %></b><br/>
-    <%= challenge.start_date %>
-    <%= challenge.end_date %>
-    <span class="badge"><%= challenge.status_cd %></span>
-  </li>
-<% end %>

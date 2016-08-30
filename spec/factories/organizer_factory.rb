@@ -5,6 +5,10 @@ FactoryGirl.define do
     description "Epidemiology, literally the “study of what is upon people”, is concerned with the dynamics of health and disease in human populations."
     approved true
 
+    trait :invalid do
+      organizer nil
+    end
+
     trait :unapproved do
       approved false
     end
@@ -12,5 +16,7 @@ FactoryGirl.define do
     trait :second_organizer do
       organizer "Second Organizer"
     end
+
+
   end
 end

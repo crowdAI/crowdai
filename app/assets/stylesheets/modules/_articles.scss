@@ -24,3 +24,13 @@
   text-transform: uppercase;
   font-weight: 500;
 }
+
+.article-filter-container {
+  @include media(">=phone", "<=tablet") {
+    margin-left: 6px;
+    padding-right: 6px;
+  }
+  @include media(">tablet") {
+    margin-left: 10px;
+  }
+}

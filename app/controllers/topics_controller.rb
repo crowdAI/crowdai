@@ -44,11 +44,11 @@ class TopicsController < ApplicationController
 
   private
     def set_topic
-      @topic = Topic.find(params[:id])
+      @topic = Topic.friendly.find(params[:id])
     end
 
     def set_challenge
-      @challenge = Challenge.find(params[:challenge_id])
+      @challenge = Challenge.friendly.find(params[:challenge_id])
     end
 
     def topic_params

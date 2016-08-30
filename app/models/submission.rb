@@ -32,7 +32,8 @@ class Submission < ActiveRecord::Base
     'scikit2' => 'Python-2 Scikit-Learn',
     'scikit3' => 'Python-3 Scikit-Learn',
     'octave' => 'Octave',
-    'keras' => 'Keras'
+    'keras' => 'Keras',
+    'openimaj' => 'OpenIMAJ'
   }
 
   APIS = {

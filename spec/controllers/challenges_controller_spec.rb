@@ -24,7 +24,7 @@ RSpec.describe ChallengesController, type: :controller do
   # Challenge. As you add validations to Challenge, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryGirl.build(:challenge).attributes.symbolize_keys
   }
 
   let(:invalid_attributes) {
@@ -40,6 +40,7 @@ RSpec.describe ChallengesController, type: :controller do
     it "assigns all challenges as @challenges" do
       challenge = Challenge.create! valid_attributes
       get :index, {}, valid_session
+      puts assigns
       expect(assigns(:challenges)).to eq([challenge])
     end
   end

@@ -14,8 +14,8 @@
           <div>
             <span class="category-badge"><%= Article::CATEGORIES[article.category] %></span>
             <span>&ensp;</span>
-            <span class="glyphicon glyphicon-eye-open"></span> <%= article.view_count %> views &ensp; | &ensp;
-            <span class="glyphicon glyphicon-star"></span> <%= article.vote_count %> votes
+            <span class="glyphicon glyphicon-eye-open"></span> <%= pluralize(article.view_count, ' view') %>&ensp; | &ensp;
+            <span class="glyphicon glyphicon-star"></span> <%= pluralize(article.vote_count, 'vote') %>
         </div>
       </div>
     </div>

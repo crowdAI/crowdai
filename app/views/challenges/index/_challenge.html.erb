@@ -12,11 +12,11 @@
         <div class="challenge-list-detail">
           <span class="challenge-badge <%= challenge.status_cd %>"><%= challenge.status_cd %></span>
           <span>&ensp;</span>
-          <span class="glyphicon glyphicon-eye-open"></span> <%= challenge.page_views %> views &ensp; | &ensp;
+          <span class="glyphicon glyphicon-eye-open"></span> <%= pluralize(challenge.page_views, ' view') %>&ensp; | &ensp;
           <span class="glyphicon glyphicon-user"></span>
           <%= challenge.participant_count %>
           &ensp; | &ensp;
-          <span class="glyphicon glyphicon-list-alt"></span> <%= challenge.submission_count %> submissions
+          <span class="glyphicon glyphicon-list-alt"></span> <%= pluralize(challenge.submission_count, 'submission') %>
         </div>
       </div>
     </div>

@@ -5,11 +5,11 @@
 
       <span class="pull-right">
         <% if current_participant.admin? || current_participant.organizer_id == @organizer.id %>
-        <%= link_to '+ New Challenge', new_challenge_path, class: 'btn btn-primary outline' %>
-        <%= link_to 'Edit Organizer', edit_organizer_path(@organizer), class: 'btn btn-primary outline' %>
+          <%= link_to '+ New Challenge', new_challenge_path, class: 'btn btn-primary outline' %>
+          <%= link_to 'Edit Organizer', edit_organizer_path(@organizer), class: 'btn btn-primary outline' %>
         <% end %>
         <% if current_participant.admin? %>
-        <%= link_to 'Delete Organizer', @organizer, method: :delete, data: { confirm: 'Remove this user from the administration of your organizer on CrowdAI?' }, class: 'btn btn-small btn-danger outline' %>
+          <%= link_to 'Delete Organizer', @organizer, method: :delete, data: { confirm: 'Remove this user from the administration of your organizer on CrowdAI?' }, class: 'btn btn-small btn-danger outline' %>
         <% end %>
       </span>
 
@@ -29,8 +29,10 @@
       <h1 class="text-center">Challenges</h1>
       <div class="challenges-container">
         <ul class="challenges-list">
-          <% @challenges.each do |challenge| %>
-            <%= render partial: 'challenges/index/challenge', locals: { challenge: challenge } %>
+          <% if @organizer.challenges.any? %>
+            <% @organizer.challenges.each do |challenge| %>
+              <%= render partial: 'challenges/index/challenge', locals: { challenge: challenge } %>
+            <% end %>
           <% end %>
         </ul>
       </div>

@@ -1,7 +1,5 @@
 require "rails_helper"
-require 'views/devise/devise_sessions_new'
-require 'views/topics_pages'
-require 'views/posts_pages'
+
 
 RSpec.feature "topic", type: :feature do
   before(:each) do

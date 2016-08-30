@@ -62,6 +62,10 @@ class ArticlesController < ApplicationController
     redirect_to articles_url, notice: 'Article was successfully deleted.'
   end
 
+  def articles_filter
+    Article::CATEGORIES.sort.map {|k,v| [v,k]}
+  end
+
 
   private
     def set_article

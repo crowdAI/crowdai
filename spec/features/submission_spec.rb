@@ -1,5 +1,4 @@
 require "rails_helper"
-require 'views/devise/devise_sessions_new'
 
 feature "competitor submissions", js: true do
   let!(:participant) { create(:participant) }

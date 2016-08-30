@@ -2,22 +2,21 @@
   <div class="intro"></div>
 </section>
 
-<div>
-  <% if policy(Organizer.new).create? %>
+<div class="challenges-container">
+  <div class='article-filter-container'>
+    <% if policy(Organizer.new).create? %>
     <br/>
     <div class="row">
-      <div class="col-md-2 col-md-offset-8">
-        <%= link_to 'Add Organizer', new_organizer_path, class: 'btn btn-primary outline pull-right' %>
+      <div class="col-md-2">
+        <%= link_to '+ Add Organizer', new_organizer_path, class: 'btn btn-primary outline' %>
       </div>
     </div>
-  <% end %>
-
-  <div class="challenges-container">
-    <ul class="challenges-list">
-      <% @organizers.each do |organizer| %>
-        <%= render partial: 'organizers/index/organizer', locals: { organizer: organizer } %>
-      <% end %>
-    </ul>
+    <% end %>
   </div>
-
+  
+  <ul class="challenges-list">
+    <% @organizers.each do |organizer| %>
+    <%= render partial: 'organizers/index/organizer', locals: { organizer: organizer } %>
+    <% end %>
+  </ul>
 </div>

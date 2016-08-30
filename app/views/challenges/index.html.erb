@@ -2,22 +2,21 @@
   <div class="intro"></div>
 </section>
 
-<div>
-  <% if policy(Challenge.new).create? %>
+<div class="challenges-container">
+  <div class='article-filter-container'>
+    <% if policy(Challenge.new).create? %>
     <br/>
     <div class="row">
-      <div class="col-md-2 col-md-offset-8">
+      <div class="col-md-2">
         <%= link_to '+ New Challenge', new_challenge_path, class: 'btn btn-primary outline' %>
       </div>
     </div>
-  <% end %>
-
-  <div class="challenges-container">
-    <ul class="challenges-list">
-      <% @challenges.each do |challenge| %>
-        <%= render partial: 'challenges/index/challenge', locals: { challenge: challenge } %>
-      <% end %>
-    </ul>
+    <% end %>
   </div>
 
+  <ul class="challenges-list">
+    <% @challenges.each do |challenge| %>
+    <%= render partial: 'challenges/index/challenge', locals: { challenge: challenge } %>
+    <% end %>
+  </ul>
 </div>

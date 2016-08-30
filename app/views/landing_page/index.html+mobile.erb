@@ -1,4 +1,5 @@
 <section class="challenges-container">
+  <h3 class='text-center'><%= link_to 'Challenges', challenges_path %></h3>
   <ul class="challenges-list">
     <% @challenges.each do |challenge| %>
       <%= render partial: 'challenges/index/challenge', locals: { challenge: challenge } %>
@@ -9,6 +10,7 @@
 <hr/>
 
 <div class="challenges-container">
+  <h3 class='text-center'><%= link_to 'Knowledge Base', articles_path %></h3>
   <ul class="challenges-list">
     <% @articles.each do |article| %>
       <%= render partial: 'articles/index/article', locals: { article: article } %>

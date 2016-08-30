@@ -34,12 +34,12 @@ class ArticleSectionsController < ApplicationController
 
   def destroy
     @article_section.destroy
-    redirect_to article_sections_url, notice: 'Article section was successfully destroyed.'
+    redirect_to article_url(@article), notice: 'Article section was successfully destroyed.'
   end
 
   private
     def set_article
-      @article = Article.find(params[:article_id])
+      @article = Article.friendly.find(params[:article_id])
     end
 
 

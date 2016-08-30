@@ -1,4 +1,4 @@
-<div id='section-<%= article_section.section.parameterize %>'>
+<div id='<%= article_section.section.parameterize %>'>
   <% if policy(article).update? %>
     <div class="pull-right">
       <%= glyphicon_link 'pencil', 'Edit', edit_article_article_section_path(article,article_section), remote: true %>

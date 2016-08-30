@@ -20,6 +20,7 @@
 
       <div class='pull-right'>
         <%= f.button :submit, class: 'btn btn-primary outline' %>
+        <%= link_to 'Delete Section', [@article,@article_section], method: :delete, data: { confirm: 'Delete this section?' }, class: 'btn btn-primary outline' %>
       </div>
     <% end %>
 

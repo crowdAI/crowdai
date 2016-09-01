@@ -9,7 +9,7 @@ feature 'Challenge CRUD for admin user', js: true do
   describe "create new challenge page" do
     before(:example) do
       #visit_organizer(admin,organizer)  TODO
-      visit_landing_page(admin  )
+      visit_landing_page(admin)
       visit organizer_path(organizer)
       click_link '+ New Challenge'
     end

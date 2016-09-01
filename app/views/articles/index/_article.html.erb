@@ -7,9 +7,9 @@
         </div>
       </div>
       <div class="col-xs-7 col-md-10">
-        <h2><%= article.article %></h2>
+        <div class="article-list-detail">
 
-        <div class="challenge-list-detail">
+        <h2><%= article.article %></h2>
           <div>by <%= link_to "@#{article.participant.name}", participant_path(article.participant_id), class: 'participant-mention' %> <%= article.created_at.strftime("%-d %B '%y") %></div>
           <div>
             <span class="category-badge"><%= Article::CATEGORIES[article.category] %></span>

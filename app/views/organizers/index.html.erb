@@ -2,7 +2,7 @@
   <div class="intro"></div>
 </section>
 
-<div class="challenges-container">
+<div class="list-container">
   <div class='article-filter-container'>
     <% if policy(Organizer.new).create? %>
     <br/>
@@ -13,8 +13,8 @@
     </div>
     <% end %>
   </div>
-  
-  <ul class="challenges-list">
+
+  <ul class="list-items">
     <% @organizers.each do |organizer| %>
     <%= render partial: 'organizers/index/organizer', locals: { organizer: organizer } %>
     <% end %>

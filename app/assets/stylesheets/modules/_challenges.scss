@@ -37,41 +37,6 @@
 }
 
 
-/* index page */
-.challenges-container {
-  max-width: 750px;
-  @include media(">=phone", "<=tablet") {
-    margin: 10px auto;
-  }
-  @include media(">tablet") {
-    margin: 20px auto;
-  }
-}
-
-ul.challenges-list {
-  margin: 0px;
-  padding: 0px;
-}
-
-
-ul.challenges-list li {
-  background: $crowdai-bg-medium-grey;
-  display: block;
-  border-radius: 2px 2px 2px 2px;
-  -webkit-box-shadow: 0 10px 6px -6px #000;
-  -moz-box-shadow: 0 10px 6px -6px #000;
-  box-shadow: 0 10px 6px -6px #a9a9a9;
-  @include media(">=phone", "<=tablet") {
-    padding: 5px;
-    margin: 5px;
-  }
-  @include media(">tablet") {
-    width: 675px;
-    padding: 20px;
-    margin: 10px;
-  }
-}
-
 
 .challenge-badge {
   padding: .2em .6em .3em;

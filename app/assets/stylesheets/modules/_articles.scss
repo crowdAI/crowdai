@@ -7,12 +7,10 @@
   color: $crowdai-bg-white;
   @include media(">=phone", "<=tablet") {
     font-size: 70%;
-    //width: 50px;
   }
   @include media(">tablet") {
     font-size: 100%;
     font-weight: 300;
-    //width: 85px;
   }
 }
 

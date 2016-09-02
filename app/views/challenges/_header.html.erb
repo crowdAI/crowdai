@@ -1,36 +1,23 @@
 <% content_for(:header) do %>
 
-<div class='header-section'>
-  <br/>
-  <div class="row">
-    <div class="col-md-1 col-md-offset-1">
-      <div class="enclosure">
-        <div class="image-container">
-          <img src="<%= image_medium_url(@challenge) %>"/>
-        </div>
-      </div>
-    </div>
+<div class="challenge-header">
+  <%= image_tag image_medium_url(@challenge), class: 'img-circle img-responsive challenge-image' %>
 
-    <div class="col-md-6">
-      <h2><%= @challenge.challenge.upcase %></h2>
-      <p><%= @challenge.tagline %></p>
-    </div>
+  <div class='challenge-stats'>
+    <span class="glyphicon glyphicon-eye-open"></span> <%= pluralize(@challenge.page_views, ' view') %>
+    <br/>
+    <span class="glyphicon glyphicon-user"></span> <%= pluralize(@challenge.participant_count, ' participant') %>    <br/>
+    <span class="glyphicon glyphicon-list-alt"></span> <%= pluralize(@challenge.submission_count, ' submission') %>
+  </div>
 
-    <div class="col-md-2 col-md-offset-1">
-      <div class="challenge-list-detail">
-        <br/>
-        <span class="glyphicon glyphicon-eye-open"></span> <%= @challenge.page_views %> views <br/>
-        <span class="glyphicon glyphicon-user"></span>
-          <%= @challenge.participant_count %>
-          <br/>
-        <span class="glyphicon glyphicon-list-alt"></span> <%= @challenge.submission_count %> submissions
-      </div>
-    </div>
-  </div><!-- row -->
-  <br/><br/>
+  <div class='challenge-info'>
+    <h2><%= @challenge.challenge.upcase %></h2>
+    <p><%= @challenge.tagline %></p>
+  </div>
 
   <% if !@challenge.perpetual_challenge %>
     <%= render partial: 'challenges/show/calendar' %>
   <% end %>
-</div><!-- header-section -->
+</div>
+
 <% end %>

@@ -1,5 +1,5 @@
-<div class="challenges-container">
-  <ul class="challenges-list">
+<div class="list-container">
+  <ul class="list-items">
     <% @organizers.each do |organizer| %>
     <%= render partial: 'organizers/index/organizer', locals: { organizer: organizer } %>
     <% end %>

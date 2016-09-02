@@ -1,0 +1,67 @@
+/*
+<div class="list-container">
+  <div class="list-heading">
+    <%= link_to 'Knowledge Base', articles_path %>
+  </div>
+  <ul class="list-items">
+    <% @articles.each do |article| %>
+      <%= render partial: 'articles/index/article', locals: { article: article } %>
+    <% end %>
+  </ul>
+</div>
+*/
+
+
+.list-container {
+  max-width: 750px;
+  @include media(">=phone", "<=tablet") {
+    margin: 10px auto;
+  }
+  @include media(">tablet") {
+    margin: 20px auto;
+  }
+}
+
+
+.list-heading {
+  max-width: 750px;
+  background-color: $crowdai-bg-medium-grey;
+  font-weight: 500;
+  color: $crowdai-text-dark;
+  text-align: center;
+  @include media(">=phone", "<=tablet") {
+    padding: 5px;
+    margin: 5px;
+    font-size: 20px;
+  }
+  @include media(">tablet") {
+    width: 675px;
+    padding: 15px;
+    margin: 10px;
+    font-size: 30px;
+  }
+}
+
+ul.list-items {
+  margin: 0px;
+  padding: 0px;
+}
+
+
+ul.list-items li {
+  background: $crowdai-bg-medium-grey;
+  display: block;
+  border-radius: 2px 2px 2px 2px;
+  -webkit-box-shadow: 0 10px 6px -6px #000;
+  -moz-box-shadow: 0 10px 6px -6px #000;
+  box-shadow: 0 10px 6px -6px #a9a9a9;
+  @include media(">=phone", "<=tablet") {
+    padding: 5px;
+    margin: 5px;
+  }
+  @include media(">tablet") {
+    width: 675px;
+    padding: 20px;
+    margin: 10px;
+  }
+}

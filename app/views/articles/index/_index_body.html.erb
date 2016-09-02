@@ -1,5 +1,5 @@
 <div>
-  <div class="challenges-container">
+  <div class="list-container">
     <div class='article-filter-container'>
       <div class="row">
         <div class="col-md-4 col-xs-12">
@@ -11,7 +11,7 @@
     </div>
 
 
-    <ul class="challenges-list">
+    <ul class="list-items">
       <% @articles.each do |article| %>
         <%= render partial: 'articles/index/article', locals: { article: article } %>
       <% end %>

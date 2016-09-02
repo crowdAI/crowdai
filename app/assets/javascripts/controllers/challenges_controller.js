@@ -25,8 +25,6 @@ $(document).on('ready page:load', function() {
     var viewport_height = $(window).height();
     var challenges_container_height = $('.challenges-container')[0].offsetHeight;
     var additional_height = viewport_height - container_fluid_height;
-    console.log(container_fluid_height);
-    console.log(viewport_height);
 
     if (additional_height > 0) {
       $('.challenges-container')[0].style.height = (challenges_container_height + additional_height) + 'px';

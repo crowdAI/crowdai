@@ -1,75 +1,61 @@
 /* show / edit page */
+
 .challenge-header {
-  padding-top: 60px;
   background-color: $crowdai-bg-medium-grey;
-  height: 370px;
-}
-
-
-.enclosure {
-    display: inline-block;
-    background-color: $crowdai-bg-medium-grey;
-}
-
-
-.image-container {
-    height: 0;
-    padding-bottom: 100%;
-    background-color: silver;
-    border-radius: 50%;
-    @include media(">=phone", "<=tablet") {
-      width: 90px;
-    }
-    @include media(">=tablet") {
-      width: 110px;
-    }
-    overflow: hidden;
-    position: relative;
-    background-color: white;
-}
-
-
-.image-container img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-}
-
-
-/* index page */
-.challenges-container {
-  max-width: 750px;
-  @include media(">=phone", "<=tablet") {
-    margin: 10px auto;
+  overflow: auto;
+  overflow-x: hidden;
+  @include media(">phone") {
+    padding-top: 60px;
+    padding-left: 150px;
+    padding-right: 150px;
+    height: $crowdai-header-section-height;
   }
-  @include media(">tablet") {
-    margin: 20px auto;
+  @include media("<=phone") {
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: auto;
   }
 }
 
-ul.challenges-list {
-  margin: 0px;
-  padding: 0px;
+
+.challenge-image-column {
+  height: 140px;
 }
 
+.challenge-image {
+  height: 110px;
+  float: left;
+  margin-right: 50px;
+  @include media("<=phone") {
+    float: none;
+  }
+  @include media(">phone") {
 
-ul.challenges-list li {
-  background: $crowdai-bg-medium-grey;
-  display: block;
-  border-radius: 2px 2px 2px 2px;
-  -webkit-box-shadow: 0 10px 6px -6px #000;
-  -moz-box-shadow: 0 10px 6px -6px #000;
-  box-shadow: 0 10px 6px -6px #a9a9a9;
-  @include media(">=phone", "<=tablet") {
-    padding: 5px;
-    margin: 5px;
   }
-  @include media(">tablet") {
-    width: 675px;
-    padding: 20px;
-    margin: 10px;
+}
+
+.challenge-info {
+  display: inline-block;
+  padding-bottom: 20px;
+}
+
+.challenge-stats {
+  padding-top: 20px;
+  margin-right: 30px;
+  color: $crowdai-text-light;
+  @include media("<=phone") {
+    padding-left: 10px;
+    padding-right: 10px;
+    float: left;
+    height: auto;
   }
+  @include media(">phone") {
+    float: right;
+    height: 140px;
+    padding-left: 20px;
+  }
+
 }
 
 

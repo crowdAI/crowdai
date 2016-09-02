@@ -21,10 +21,10 @@ function adjustText(percent) {
     $('.ai-progress-text').css('visibility','hidden');
   } else {
     if(percent < 30) {
-      $('.ai-progress-text').css({'color': ai_red, 'width': '10%', 'left': '50%'});
+      $('.ai-progress-text').css({'color': ai_red, 'width': '30%', 'left': '50%'});
     }
     if(percent >= 30 && percent < 65) {
-      $('.ai-progress-text').css({'color': ai_red, 'width': '10%', 'left': percent + 5 + '%'});
+      $('.ai-progress-text').css({'color': ai_red, 'width': '30%', 'left': percent + 5 + '%'});
     }
     if(percent >= 65) {
       $('.ai-progress-text').css({'color': ai_white, 'width': percent + '%'});

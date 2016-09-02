@@ -7,12 +7,10 @@
   color: $crowdai-bg-white;
   @include media(">=phone", "<=tablet") {
     font-size: 70%;
-    //width: 50px;
   }
   @include media(">tablet") {
     font-size: 100%;
     font-weight: 300;
-    //width: 85px;
   }
 }
 
@@ -32,5 +30,14 @@
   }
   @include media(">tablet") {
     margin-left: 10px;
+  }
+}
+
+
+.article-list-detail {
+  color: $crowdai-text-light;
+
+  h2 {
+    margin-bottom: 0px;
   }
 }

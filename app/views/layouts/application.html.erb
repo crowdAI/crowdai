@@ -45,17 +45,25 @@
         <%= yield(:header) %>
       <% end %>
 
+
       <% if content_for?(:sidebar) %>
-        <div class="row white-background-fix">
-          <div class="col-md-3 sidebar-container">
+        <div class="row white-background-fix equal-col-height">
+          <div class="col-sm-3 hidden-xs sidebar-container">
             <%= yield(:sidebar) %>
           </div>
-          <div class="col-md-9">
+          <div class="col-sm-9 hidden-xs">
+            <%= yield %>
+          </div>
+          <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
             <%= yield %>
           </div>
         </div>
       <% else %>
-        <%= yield %>
+        <div class="row white-background-fix">
+          <div class='col-xs-12'>
+            <%= yield %>
+          </div>
+        </div>
       <% end %>
 
       <%= render 'layouts/footer' %>

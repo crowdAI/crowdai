@@ -22,11 +22,6 @@
   padding: 40px 40px 40px 40px;
 }
 
-.sidebar-container {
-  color: inherit;
-  background-color: $crowdai-bg-dark-grey;
-  padding-left: 50px;
-}
 
 .calendar-container-left {
   clear: left;
@@ -38,4 +33,16 @@
 
 .white-background-fix {
   background-color: $crowdai-bg-white;
+}
+
+
+// equal column height
+// https://scotch.io/bar-talk/different-tricks-on-how-to-make-bootstrap-columns-all-the-same-height
+.row.equal-col-height {
+    overflow: hidden;
+}
+
+.row.equal-col-height [class*="col-"]{
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
 }

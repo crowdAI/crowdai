@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
   protect_from_forgery with: :exception
   after_filter :participant_activity
-  before_action :detect_device_variant
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_filter :set_paper_trail_whodunnit
 
@@ -22,10 +21,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-  def detect_device_variant
-    request.variant = :mobile if browser.device.mobile? || browser.device.tablet?
-  end
-
   def participant_activity
     current_participant.try :touch
   end

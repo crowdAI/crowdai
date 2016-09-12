@@ -20,6 +20,7 @@
   padding-top: 10px;
 }
 
+
 .links-container > ul {
   -webkit-padding-start: 0px;
 }
@@ -31,8 +32,9 @@
   @media(min-width: $screen-sm) {
     display: inline;
     padding-left: 20px;
-  }  
+  }
 }
+
 
 .links-container > ul > li > a {
   text-decoration: none;

@@ -34,11 +34,13 @@
 
   <body data-no-turbolink="false">
     <div class="container-fluid">
-      <% if participant_signed_in? %>
-        <%= render 'layouts/navbars/navbar_authenticated' %>
-      <% else %>
-        <%= render 'layouts/navbars/navbar_public' %>
-      <% end %>
+      <%= render 'layouts/navbars/navbar' %>
+
+      <%# if participant_signed_in? %>
+        <%#= render 'layouts/navbars/navbar_authenticated' %>
+      <%# else %>
+        <%#= render 'layouts/navbars/navbar_public' %>
+      <%# end %>
       <%= render partial: "layouts/flash_messages", flash: flash %>
 
       <% if content_for?(:header) %>

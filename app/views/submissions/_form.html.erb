@@ -10,6 +10,19 @@
   <%= f.association :challenge, as: :hidden %>
   <%= f.hidden_field :participant_id, value: current_participant.id %>
 
+  <div class='row'>
+    <% if @challenge.api_required %>
+      <div class='col-md-4'>
+        <%= f.input :api, :collection => Submission::APIS.sort.map {|k,v| [v,k]} %>
+      </div>
+    <% end %>
+    <% if @challenge.framework_required %>
+      <div class='col-md-4'>
+        <%= f.input :framework, :collection => Submission::FRAMEWORKS.sort.map {|k,v| [v,k]} %>
+      </div>
+    <% end %>
+  </div>
+
   <%= f.simple_fields_for :submission_files do |file| %>
     <div class="nested-fields">
       <b><%= @challenge.submission_file_definitions[file.index].submission_file_description %></b>
@@ -17,13 +30,6 @@
       <%= file.hidden_field :seq %><!-- populated by controller -->
       <%= file.input :submission_file_s3_key, as: :file, label: false, input_html: { class: 's3File', accept: @challenge.submission_file_definitions[file.index].file_accept } %>
     </div>
-  <% end %>
-
-  <% if @challenge.api_required %>
-    <%= f.input :api, :collection => Submission::APIS.sort.map {|k,v| [v,k]} %>
-  <% end %>
-  <% if @challenge.framework_required %>
-    <%= f.input :framework, :collection => Submission::FRAMEWORKS.sort.map {|k,v| [v,k]} %>
   <% end %>
 
 
@@ -43,7 +49,7 @@
                         class: 'form-control markdown-textarea',
                         placeholder: 'Please describe your submission.',
                         required: true,
-                        rows: 20 %>
+                        rows: 10 %>
       </div>
       <div class="tab-pane markdown-preview-pane" id="preview-pane-description">
         <div id="markdown-preview"></div>

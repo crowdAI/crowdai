@@ -6,7 +6,7 @@
     </a>
     <ul class="dropdown-menu">
       <li><%= glyphicon_link 'user', 'Profile', participant_path(current_participant) %></li>
-      <li><%= glyphicon_link 'cog', 'Password', edit_participant_registration_path %></li>
+      <li><%= glyphicon_link 'cog', 'Change password', edit_participant_registration_path %></li>
       <li><%= glyphicon_link 'log-out', 'Sign out', destroy_participant_session_path, :method => :delete %></li>
     </ul>
   </li><!-- dropdown -->

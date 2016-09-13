@@ -40,8 +40,12 @@ class SubmissionsController < ApplicationController
     @submission = @challenge.submissions.new
     # TODO for the first challenge we are working with 2 files.
     # Make this challenge config data in next release
-    @submission.submission_files.build(seq: 0)
-    @submission.submission_files.build(seq: 1)
+
+    #@submission.submission_files.build(seq: 0)
+    #@submission.submission_files.build(seq: 1)
+    @challenge.submission_file_definitions.each do |file|
+      @submission.submission_files.build(seq: file.seq)
+    end
   end
 
   def create

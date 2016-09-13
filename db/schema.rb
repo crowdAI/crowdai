@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160913085617) do
+ActiveRecord::Schema.define(version: 20160913142216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,10 @@ ActiveRecord::Schema.define(version: 20160913085617) do
     t.string   "score_secondary_title"
     t.boolean  "automatic_grading",                default: false
     t.string   "slug"
+    t.string   "submission_license"
+    t.boolean  "api_required",                     default: false
+    t.boolean  "framework_required",               default: false
+    t.integer  "daily_submissions"
   end
 
   add_index "challenges", ["organizer_id"], name: "index_challenges_on_organizer_id", using: :btree

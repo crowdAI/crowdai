@@ -74,6 +74,7 @@ class ChallengesController < ApplicationController
                     :license, :license_markdown,
                     :perpetual_challenge, :automatic_grading,
                     :grader, :grading_factor, :answer_file_s3_key,
+                    :submission_license, :api_required, :framework_required, :daily_submissions,
                     dataset_attributes: [:id, :challenge_id, :description, :_destroy],
                     events_attributes: [:id, :challenge_id, :seq, :event, :event_time, :_destroy ],
                     submissions_attributes: [:id, :challenge_id, :participant_id, :_destroy ],

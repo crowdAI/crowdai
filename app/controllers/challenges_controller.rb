@@ -77,7 +77,8 @@ class ChallengesController < ApplicationController
                     dataset_attributes: [:id, :challenge_id, :description, :_destroy],
                     events_attributes: [:id, :challenge_id, :seq, :event, :event_time, :_destroy ],
                     submissions_attributes: [:id, :challenge_id, :participant_id, :_destroy ],
-                    image_attributes: [:id, :image, :_destroy ]
+                    image_attributes: [:id, :image, :_destroy ],
+                    submission_file_definitions_attributes: [:id, :challenge_id, :seq, :submission_file_description, :filetype, :file_required, :submission_file_help_text, :_destroy]
                     )
     end
 end

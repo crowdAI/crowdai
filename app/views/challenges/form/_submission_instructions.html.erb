@@ -26,6 +26,17 @@
     </div>
   </div>
 
+  <h3>Submission File Definitions</h3>
+  
+  <div class="submission-file-definitions-configuration">
+    <%= f.simple_fields_for :submission_file_definitions do |file| %>
+      <%= render 'challenges/form/submission_file_definition_fields', f: file %>
+    <% end %>
+    <%= link_to_add_association 'Add Submission File Definition', f, :submission_file_definitions,
+                              html_options = { partial: 'challenges/form/submission_file_definition_fields',
+                                               class: 'btn btn-primary outline' } %>
+  </div>
+
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-primary outline' %>
   </div>

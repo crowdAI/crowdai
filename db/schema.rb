@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160825190529) do
+ActiveRecord::Schema.define(version: 20160913142216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,10 @@ ActiveRecord::Schema.define(version: 20160825190529) do
     t.string   "score_secondary_title"
     t.boolean  "automatic_grading",                default: false
     t.string   "slug"
+    t.string   "submission_license"
+    t.boolean  "api_required",                     default: false
+    t.boolean  "framework_required",               default: false
+    t.integer  "daily_submissions"
   end
 
   add_index "challenges", ["organizer_id"], name: "index_challenges_on_organizer_id", using: :btree
@@ -301,6 +305,19 @@ ActiveRecord::Schema.define(version: 20160825190529) do
   add_index "posts", ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
   add_index "posts", ["topic_id"], name: "index_posts_on_topic_id", using: :btree
 
+  create_table "submission_file_definitions", force: :cascade do |t|
+    t.integer  "challenge_id"
+    t.integer  "seq"
+    t.string   "submission_file_description"
+    t.string   "filetype_cd"
+    t.boolean  "file_required",               default: false
+    t.text     "submission_file_help_text"
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
+
+  add_index "submission_file_definitions", ["challenge_id"], name: "index_submission_file_definitions_on_challenge_id", using: :btree
+
   create_table "submission_files", force: :cascade do |t|
     t.integer  "submission_id"
     t.integer  "seq"
@@ -430,6 +447,7 @@ ActiveRecord::Schema.define(version: 20160825190529) do
   add_foreign_key "participants", "organizers"
   add_foreign_key "posts", "participants"
   add_foreign_key "posts", "topics"
+  add_foreign_key "submission_file_definitions", "challenges"
   add_foreign_key "submission_files", "submissions"
   add_foreign_key "submission_grades", "submissions"
   add_foreign_key "submissions", "challenges"

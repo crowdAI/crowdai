@@ -1,0 +1,29 @@
+<div class="nested-fields">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="pull-right">
+        <%= link_to_remove_association 'x', f %>
+      </div>
+      <div class="row">
+        <div class='col-md-8'>
+          <%= f.input :submission_file_description %>
+        </div>
+        <div class='col-md-2'>
+          <%= f.input :filetype, collection: enum_option_pairs(SubmissionFileDefinition, :filetype), include_blank: false %>
+        </div>
+        <div class='col-md-2'>
+          <%= f.input :file_required %>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-2'>
+          <%= f.input :seq %>
+        </div>
+        <div class='col-md-10'>
+          <%= f.input :submission_file_help_text, placeholder: 'Describe the help text for this field which is visible to the participant.' %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

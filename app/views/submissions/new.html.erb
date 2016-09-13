@@ -1,16 +1,19 @@
 <%= render partial: 'challenges/sidebar' %>
 <%= render partial: 'challenges/header', challenge: @challenge %>
 
-<p class="lead">
-Please upload your submissions and include a detailed description of the methodology, techniques and insights leveraged with this submission. After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC).
-</p>
+<div class='page-content-container'>
+  <p class="lead">
+    <%= @challenge.submission_license %>
+  </p>
 
-<p class="lead"><b>
-  By making your submission you indicate your agreement with these terms.</b></p>
+  <p class="lead"><b>
+    By making your submission you indicate your agreement with these terms.
+  </b></p>
 
-<% if @submissions_remaining < 1 %>
-  <h2>You may submit a maximum of five entries each 24 hours.</h2>
-<% else %>
-  <p class="text-primary"><b>You have <%= @submissions_remaining %> submissions remaining today (in a 24 hour window). </b></p>
-  <%= render 'form' %>
-<% end %>
+  <% if @submissions_remaining < 1 %>
+    <h2>You may submit a maximum of <%= pluralize(@challenge.daily_submissions,'entry') %> each 24 hours.</h2>
+  <% else %>
+    <p class="text-primary"><b>You have <%= @submissions_remaining %> submissions remaining today (in a 24 hour window). </b></p>
+    <%= render 'form' %>
+  <% end %>
+</div>

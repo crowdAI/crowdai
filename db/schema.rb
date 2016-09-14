@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914141444) do
+ActiveRecord::Schema.define(version: 20160914174902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,7 +87,6 @@ ActiveRecord::Schema.define(version: 20160914141444) do
     t.string   "slug"
     t.string   "submission_license"
     t.boolean  "api_required",                     default: false
-    t.boolean  "framework_required",               default: false
     t.integer  "daily_submissions"
   end
 
@@ -349,23 +348,22 @@ ActiveRecord::Schema.define(version: 20160914141444) do
     t.integer  "challenge_id"
     t.integer  "participant_id"
     t.float    "score"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.text     "description"
-    t.string   "framework"
     t.float    "score_secondary"
     t.string   "grading_message"
-    t.string   "grading_status_cd",    default: "ready"
+    t.string   "grading_status_cd",       default: "ready"
     t.text     "description_markdown"
-    t.integer  "vote_count",           default: 0
-    t.boolean  "post_challenge",       default: false
+    t.integer  "vote_count",              default: 0
+    t.boolean  "post_challenge",          default: false
     t.string   "api"
-    t.string   "slug"
+    t.integer  "docker_configuration_id"
   end
 
   add_index "submissions", ["challenge_id"], name: "index_submissions_on_challenge_id", using: :btree
+  add_index "submissions", ["docker_configuration_id"], name: "index_submissions_on_docker_configuration_id", using: :btree
   add_index "submissions", ["participant_id"], name: "index_submissions_on_participant_id", using: :btree
-  add_index "submissions", ["slug"], name: "index_submissions_on_slug", unique: true, using: :btree
 
   create_table "topics", force: :cascade do |t|
     t.integer  "challenge_id"
@@ -424,6 +422,7 @@ ActiveRecord::Schema.define(version: 20160914141444) do
   add_foreign_key "submission_files", "submissions"
   add_foreign_key "submission_grades", "submissions"
   add_foreign_key "submissions", "challenges"
+  add_foreign_key "submissions", "docker_configurations"
   add_foreign_key "submissions", "participants"
   add_foreign_key "topics", "challenges"
   add_foreign_key "topics", "participants"

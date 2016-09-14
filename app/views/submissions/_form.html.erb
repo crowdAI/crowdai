@@ -11,14 +11,14 @@
   <%= f.hidden_field :participant_id, value: current_participant.id %>
 
   <div class='row'>
+    <div class='col-md-4'>
+      <%= f.input :docker_configuration_id, collection: @challenge.docker_configurations, label_method: :name, value_method: :id, include_blank: false %>
+    </div>
+
+
     <% if @challenge.api_required %>
       <div class='col-md-4'>
         <%= f.input :api, :collection => Submission::APIS.sort.map {|k,v| [v,k]} %>
-      </div>
-    <% end %>
-    <% if @challenge.framework_required %>
-      <div class='col-md-4'>
-        <%= f.input :framework, :collection => Submission::FRAMEWORKS.sort.map {|k,v| [v,k]} %>
       </div>
     <% end %>
   </div>

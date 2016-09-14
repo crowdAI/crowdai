@@ -3,7 +3,7 @@ class DockerConfigurationsController < ApplicationController
   before_action :set_challenge
 
   def index
-    @docker_configurations = DockerConfiguration.all
+    @docker_configurations = @challenge.docker_configurations
   end
 
 

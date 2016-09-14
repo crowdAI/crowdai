@@ -7,8 +7,7 @@ class Challenge < ActiveRecord::Base
 
   belongs_to :organizer
   has_many :dataset_files,            dependent: :destroy
-  accepts_nested_attributes_for :dataset_files, reject_if: :all_blank, allow_destroy: true
-  # TODO I think this can go
+  has_many :docker_configurations,    dependent: :destroy
   has_many :submission_file_definitions, dependent: :destroy
   accepts_nested_attributes_for :submission_file_definitions, reject_if: :all_blank, allow_destroy: true
 

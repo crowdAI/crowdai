@@ -1,0 +1,33 @@
+<h3>All submissions</h3>
+<div class='table-responsive'>
+  <table class='table table-hover table-bordered leaderboard sortable'>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Status</th>
+        <th>Files</th>
+        <th>Participant</th>
+        <th>Score</th>
+        <th>Secondary</th>
+        <th>Post Challenge</th>
+        <th>Submission UTC</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% participant_submissions.each do |s| %>
+      <tr>
+        <td><%= s.id %></td>
+        <td><%= s.grading_status_cd %></td>
+        <td><%= s.files %></td>
+        <td><%= link_to s.name, participant_path(s.participant_id) %></td>
+        <td><%= s.score %></td>
+        <td><%= s.score_secondary %></td>
+        <td><%= s.post_challenge %></td>
+        <td><%= s.created_at.strftime("%a, %e %b %Y %R") %></td>
+        <td><%= link_to 'Delete', challenge_submissions_path(challenge,s.id), method: :delete, confirm: 'Are you sure?', class: 'btn btn-primary outline' %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

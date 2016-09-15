@@ -35,12 +35,6 @@
   <body data-no-turbolink="false">
     <div class="container-fluid">
       <%= render 'layouts/navbars/navbar' %>
-
-      <%# if participant_signed_in? %>
-        <%#= render 'layouts/navbars/navbar_authenticated' %>
-      <%# else %>
-        <%#= render 'layouts/navbars/navbar_public' %>
-      <%# end %>
       <%= render partial: "layouts/flash_messages", flash: flash %>
 
       <% if content_for?(:header) %>
@@ -49,11 +43,11 @@
 
 
       <% if content_for?(:sidebar) %>
-        <div class="row white-background-fix equal-col-height">
+        <div class="row white-background-fix">
           <div class="col-sm-3 hidden-xs sidebar-container">
             <%= yield(:sidebar) %>
           </div>
-          <div class="col-sm-9 hidden-xs">
+          <div class="col-sm-9 hidden-xs page-body-container">
             <%= yield %>
           </div>
           <div class="col-xs-12 hidden-sm hidden-md hidden-lg">

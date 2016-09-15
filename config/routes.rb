@@ -51,9 +51,9 @@ Rails.application.routes.draw do
   end
 
   resources :challenges do
-    resources :dataset_files, except: [:show]
+    resources :dataset_files, except: [:show, :update, :edit]
     resources :events
-    resources :submissions, except: [ :edit, :update ] do
+    resources :submissions, except: [:edit, :update] do
       get :grade
       get :execute
     end

@@ -1,10 +1,9 @@
 FactoryGirl.define do
   factory :submission, class: Submission do
-    association :challenge
+    challenge { FactoryGirl.create :challenge }
     association :participant
     grading_status_cd 'ready'
     description_markdown '#Upload description'
-    framework 'scikit3'
-    score 1.5
+    submission_files { [ build(:submission_file, submission_file_s3_key: 'project.tar') ]}
   end
 end

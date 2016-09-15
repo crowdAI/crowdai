@@ -14,7 +14,7 @@ function adjustProgress(percent) {
 }
 
 function adjustText(percent) {
-  var ai_red    = '#FF4E48';           // source: _variables.scss
+  var ai_red    = '#FF4E48';           
   var ai_white  = '#FFFFFF';
   var screen_width = $(window).width();
   if(screen_width < 690) {

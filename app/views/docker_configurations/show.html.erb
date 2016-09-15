@@ -1,0 +1,91 @@
+<%= render partial: 'challenges/sidebar' %>
+<%= render partial: 'challenges/header', challenge: @challenge %>
+
+<div class="page-content-container">
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="pull-right">
+        <%= link_to 'x', challenge_docker_configuration_path(@challenge,@docker_configuration),
+                  method: :delete, remote: true %>
+      </div>
+
+      <br/>
+      <div class="row">
+        <div class="col-md-2 text-right">
+          <strong>Name</strong>
+        </div>
+        <div class="col-md-5"><%= @docker_configuration.name %></div>
+        <div class="col-md-4">
+          <%= display_checkbox(@docker_configuration.execute_on_submission,"Execute on submission?") %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">
+          <strong>Image</strong>
+        </div>
+        <div class="col-md-5"><%= @docker_configuration.image %></div>
+        <div class="col-md-4">
+          <%= display_checkbox(@docker_configuration.destroy_after_success,"Destroy after success?") %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">
+          <strong>Mount point</strong>
+        </div>
+        <div class="col-md-9"><%= @docker_configuration.mount_point %></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">
+          <strong>Command</strong>
+        </div>
+        <div class="col-md-9"><%= @docker_configuration.execute_command %></div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-9 col-md-offset-2">
+          <table class="table table-condensed table-hover">
+            <thead>
+              <tr>
+                <th>File</th>
+                <th>Directory</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @docker_configuration.docker_files.each do |docker_file| %>
+              <tr>
+                <td><%= s3_filename(docker_file.configuration_file_s3_key) %></td>
+                <td><%= docker_file.directory %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <hr/>
+      <div class="row">
+        <div class="col-md-12">
+          <span class="pull-left">
+            <%= link_to 'Container Instances', docker_configuration_container_instances_path(@docker_configuration)  %>
+          </span>
+          <span class="pull-right">
+            <%= link_to 'Edit', edit_challenge_docker_configuration_path(@challenge,@docker_configuration), class: 'btn btn-primary outline' %>
+          </span>
+        </div>
+      </div>
+      <!-- row -->
+    </div>
+    <!-- panel body -->
+  </div>
+  <!-- panel -->
+
+
+  <%= link_to 'Docker configurations', challenge_docker_configurations_path(@challenge), class: 'btn btn-primary outline'  %>
+
+</div>

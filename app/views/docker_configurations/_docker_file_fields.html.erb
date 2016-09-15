@@ -1,7 +1,10 @@
 <div class="nested-fields">
   <div class="row">
     <div class="col-md-6">
-      <%= f.input :configuration_file_s3_key %>
+      <%= s3_filename(f.object.configuration_file_s3_key) %>
+      <%= f.input :configuration_file_s3_key,
+                  as: :file,
+                  input_html: { class: 's3File' } %>
     </div>
     <div class="col-md-6">
       <%= f.input :directory, required: true %>

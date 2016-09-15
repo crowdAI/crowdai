@@ -14,9 +14,7 @@
         <table class='table table-hover table-striped table-bordered leaderboard sortable'>
           <thead>
             <tr>
-              <% if @challenge.id != 3 %>
-                <th>Framework</th>
-              <% else %>
+              <% if @challenge.api_required  %>
                 <th>API</th>
               <% end %>
               <% if @challenge.secondary_sort_order == 'not_used' %>
@@ -32,9 +30,7 @@
           <tbody>
             <% @submissions.each do |submission| %>
             <tr>
-              <% if @challenge.id != 3 %>
-                <td><%= Submission::FRAMEWORKS[submission.framework] %></td>
-              <% else %>
+              <% if @challenge.api_required %>
                 <td><%= Submission::APIS[submission.api] %></td>
               <% end %>
 
@@ -42,14 +38,26 @@
                 <% if submission.failed? %>
                   <td><%= submission.grading_message %></td>
                 <% else %>
-                  <td><%= link_to submission.score, challenge_submission_path(@challenge, submission) %></td>
+                  <td>
+                    <% if submission.graded? %>
+                      <%= link_to submission.score, challenge_submission_path(@challenge, submission) %>
+                    <% end %>
+                  </td>
                 <% end %>
               <% else %>
                 <% if submission.failed? %>
                   <td colspan="2"><%= submission.grading_message %></td>
                 <% else %>
-                  <td><%= link_to submission.score, challenge_submission_path(@challenge, submission) %></td>
-                  <td><%= link_to submission.score_secondary, challenge_submission_path(@challenge, submission) %></td>
+                  <td>
+                    <% if submission.graded? %>
+                      <%= link_to submission.score, challenge_submission_path(@challenge, submission) %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <% if submission.graded? %>
+                      <%= link_to submission.score_secondary, challenge_submission_path(@challenge, submission) %>
+                    <% end %>
+                  </td>
                 <% end %>
               <% end %>
               <td><%= link_to submission.created_at, challenge_submission_path(@challenge, submission) %></td>

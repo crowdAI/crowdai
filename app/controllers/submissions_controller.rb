@@ -58,7 +58,7 @@ class SubmissionsController < ApplicationController
 
   def destroy
     @submission.destroy
-    redirect_to submissions_url, notice: 'Submission was successfully destroyed.'
+    redirect_to challenge_leaderboards_path(@challenge), notice: 'Submission was successfully destroyed.'
   end
 
   def grade
@@ -88,8 +88,12 @@ class SubmissionsController < ApplicationController
 
 
     def submission_params
-      params.require(:submission).permit(:challenge_id, :participant_id, :description_markdown, :score, :score_secondary, :grading_status, :grading_message, :framework, :api,
-                                  submission_files_attributes: [:id, :seq, :submission_file_s3_key, :_delete])
+      params.require(:submission)
+            .permit(:challenge_id, :participant_id, :description_markdown, :score,
+                    :score_secondary, :grading_status, :grading_message,
+                    :api, :docker_configuration_id,
+                    submission_files_attributes:
+                        [:id, :seq, :submission_file_s3_key, :_delete])
     end
 
 
@@ -98,7 +102,7 @@ class SubmissionsController < ApplicationController
                                                  success_action_status: '201',
                                                  acl: 'public-read')
     end
-    
+
 
     def set_submissions_remaining
       submissions_today = Submission.where("participant_id = ? and created_at >= ?", current_participant.id, Time.now - 24.hours).count

@@ -8,6 +8,9 @@ class LeaderboardsController < ApplicationController
     if @challenge.completed?
       @ongoing_leaderboards = @challenge.ongoing_leaderboards
     end
+    if current_participant && (current_participant.admin? || @challenge.organizer_id == current_participant.organizer_id)
+      @participant_submissions = ParticipantSubmission.where(challenge_id: @challenge.id)
+    end
     load_gon({percent_progress: @challenge.timeline.pct_passed})
   end
 

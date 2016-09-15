@@ -2,18 +2,20 @@ class LaunchContainer
 
   def initialize(configuration_id)
     @config = DockerConfiguration.find(configuration_id)
-    @container_instance = ContainerInstance.create!(docker_configuration_id: configuration_id, status: :initialized)
+    @container_instance = ContainerInstance.create!(docker_configuration_id: configuration_id,
+                                                    status: :initialized)
+    @files_array = @config.docker_files.map{ |f| "#{f.directory}#{f.configuration_file_s3_key}" }
   end
 
 
   def build
     base_image = Docker::Image.create('fromImage' => @config.image)
-    files_array = @config.docker_files.map{ |f| "#{f.directory}#{f.configuration_file_s3_key}" }    
-    image = base_image.insert_local('localPath' => files_array, 'outputPath' => @config.mount_point)
+    image = base_image.insert_local('localPath' => @files_array, 'outputPath' => @config.mount_point)
     container = Docker::Container.create('Cmd' => @config.execute_command, 'Image' => image.id)
     @container_instance.update!(image_sha: image.id, container_sha: container.id, status: :built)
     container
   end
+
 
 
   def start

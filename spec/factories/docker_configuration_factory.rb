@@ -11,7 +11,7 @@ FactoryGirl.define do
       docker_files { [ build(:docker_file, configuration_file_s3_key: 'grade.sh'),
                  build(:docker_file, configuration_file_s3_key: 'install.sh'),
                  build(:docker_file, configuration_file_s3_key: 'run.sh'),
-                 build(:docker_file, configuration_file_s3_key: 'callback.sh') ] }
+                 build(:docker_file, configuration_file_s3_key: 'callback.sh')] }
     end
   end
 end

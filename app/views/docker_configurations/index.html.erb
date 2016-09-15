@@ -60,7 +60,7 @@
             <tbody>
               <% docker_configuration.docker_files.each do |docker_file| %>
               <tr>
-                <td><%= docker_file.configuration_file_s3_key %></td>
+                <td><%= s3_filename(docker_file.configuration_file_s3_key) %></td>
                 <td><%= docker_file.directory %></td>
               </tr>
               <% end %>

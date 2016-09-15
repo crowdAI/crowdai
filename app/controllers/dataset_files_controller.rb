@@ -17,27 +17,17 @@ class DatasetFilesController < ApplicationController
     @dataset_file = @challenge.dataset_files.new
   end
 
-  def edit
-  end
 
   def create
     @dataset_file = @challenge.dataset_files.new(dataset_file_params)
     if @dataset_file.save
-      redirect_to challenge_dataset_files_path([@challenge,@dataset_file]),
+      redirect_to challenge_dataset_files_path(@challenge, @dataset_file),
                   notice: 'Dataset file was successfully created.'
     else
       render :new
     end
   end
 
-  def update
-    if @dataset_file.update(dataset_file_params)
-      redirect_to challenge_dataset_files_path([@challenge,@dataset_file]),
-                  notice: 'Dataset file was successfully updated.'
-    else
-      render :edit
-    end
-  end
 
   def destroy
     @dataset_file.destroy

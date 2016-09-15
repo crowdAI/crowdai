@@ -12,8 +12,8 @@ class LaunchSubmission < LaunchContainer
 
 
   def s3_keys
-    #files_array = @config.docker_files.map{ |f| "#{f.directory}#{f.configuration_file_s3_key}" }
-    s3_keys_array = @submission.submission_files.map{ |f| f.submission_file_s3_key }
+    s3_keys_array = @config.docker_files.map{ |f| f.configuration_file_s3_key }
+    s3_keys_array.concat @submission.submission_files.map{ |f| f.submission_file_s3_key }
     s3_keys_array.concat @config.challenge.dataset_files.map { |f| f.dataset_file_s3_key }
   end
 
@@ -33,6 +33,7 @@ class LaunchSubmission < LaunchContainer
       resp = s3.get_object({ bucket: ENV['AWS_S3_BUCKET'], key: s3_key }, target: filename )
     end
   end
+
 
   def files_array
     download_files

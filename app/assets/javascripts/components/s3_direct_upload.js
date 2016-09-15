@@ -8,11 +8,6 @@ $(function() {
     fileInput.after(barContainer);
 
 
-    function checkFile(file) {
-      //debugger;
-    }
-
-
     fileInput.fileupload({
       fileInput:        fileInput,
       url:              form.data('url'),
@@ -26,7 +21,7 @@ $(function() {
 
       add: function(e, data) {
         var modelFile = $('.s3File')[0].files[0];
-        if (modelFile.size > 681574400 ) {
+        if (modelFile && modelFile.size > 681574400 ) {
           console.log("file type " + modelFile.type)
           console.log("file is too big " + modelFile.size);
           submitButton.prop('disabled', false);
@@ -57,9 +52,7 @@ $(function() {
         progressBar.text("File uploaded");
 
         var key   = $(data.jqXHR.responseXML).find("Key").text();
-        // var url   = '//' + form.data('host') + '/' + key;
         // create hidden field
-        //var input = $("<input />", { type:'hidden', name: fileInput.attr('name'), value: url })
         var input = $("<input />", { type:'hidden', name: fileInput.attr('name'), value: key })
         form.append(input);
         console.log("removing: " + elem);

@@ -8,6 +8,9 @@ class DockerConfigurationsController < ApplicationController
     @docker_configurations = @challenge.docker_configurations
   end
 
+  def show
+  end
+
 
   def new
     @docker_configuration = DockerConfiguration.new(challenge_id: @challenge.id)

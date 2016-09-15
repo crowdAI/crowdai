@@ -1,5 +1,5 @@
 $(document).on('ready page:load', function() {
-  /* --------------------------------- challenges / edit ---------------------------------------- */
+  /* --------------------------------- articles  ---------------------------------------- */
   if (!_.isEmpty(gon) && gon.rails.controller == 'articles') {
     expandSidebar();
   }

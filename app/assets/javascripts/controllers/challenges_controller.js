@@ -36,9 +36,10 @@ $(document).on('ready page:load', function() {
   /* --------------------------------- challenges / show --------------------------------------- */
   if (!_.isEmpty(gon) && gon.rails.controller == 'challenges' && gon.rails.action == 'show') {
 
-    expandSidebar();
     adjustProgress(gon.percent_progress);
     adjustText(gon.percent_progress);
+    expandSidebar();
+
   } /* challenges / show */
 
 });

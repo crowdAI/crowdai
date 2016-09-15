@@ -1,14 +1,17 @@
 function expandSidebar(){
+  setTimeout(executeSidebar,1000);
+  // TODO need to fix this properly
+}
 
-/*
+
+function executeSidebar(){
   var sidebar = $(".sidebar-container")[0];
   if(sidebar) {
-    var page_content = $(".page-content-container")[0];
+    var page_content = $(".page-body-container")[0];
     if(page_content.offsetHeight > sidebar.offsetHeight) {
-      sidebar.style.height = page_content.offsetHeight + 'px';
+      sidebar.style.height = page_content.offsetHeight +'px';
     }
   }
-  */
 }
 
 
@@ -17,7 +20,7 @@ function adjustProgress(percent) {
 }
 
 function adjustText(percent) {
-  var ai_red    = '#FF4E48';           
+  var ai_red    = '#FF4E48';
   var ai_white  = '#FFFFFF';
   var screen_width = $(window).width();
   if(screen_width < 690) {

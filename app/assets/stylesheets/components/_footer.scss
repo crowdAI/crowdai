@@ -5,8 +5,10 @@
   color: white;
   border-bottom: 1px solid rgba(230, 230, 230, 0.7);
   display: block;
-  @include media(">tablet") {
+  padding-top: 40px;
+  @media(min-width: $screen-sm) {
     min-height: 250px;
+    padding-top: 75px;
   }
 }
 
@@ -18,21 +20,21 @@
   padding-top: 10px;
 }
 
+
 .links-container > ul {
   -webkit-padding-start: 0px;
 }
 
 
 .links-container > ul > li {
-  @include media(">=phone", "<=tablet") {
-    list-style-type: none;
-    text-align: center;
-  }
-  @include media(">tablet") {
+  list-style-type: none;
+  text-align: center;
+  @media(min-width: $screen-sm) {
     display: inline;
     padding-left: 20px;
   }
 }
+
 
 .links-container > ul > li > a {
   text-decoration: none;

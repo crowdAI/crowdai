@@ -34,28 +34,38 @@
 
   <body data-no-turbolink="false">
     <div class="container-fluid">
-      <% if participant_signed_in? %>
-        <%= render 'layouts/navbars/navbar_authenticated' %>
-      <% else %>
-        <%= render 'layouts/navbars/navbar_public' %>
-      <% end %>
+      <%= render 'layouts/navbars/navbar' %>
+
+      <%# if participant_signed_in? %>
+        <%#= render 'layouts/navbars/navbar_authenticated' %>
+      <%# else %>
+        <%#= render 'layouts/navbars/navbar_public' %>
+      <%# end %>
       <%= render partial: "layouts/flash_messages", flash: flash %>
 
       <% if content_for?(:header) %>
         <%= yield(:header) %>
       <% end %>
 
+
       <% if content_for?(:sidebar) %>
-        <div class="row white-background-fix">
-          <div class="col-md-3 sidebar-container">
+        <div class="row white-background-fix equal-col-height">
+          <div class="col-sm-3 hidden-xs sidebar-container">
             <%= yield(:sidebar) %>
           </div>
-          <div class="col-md-9">
+          <div class="col-sm-9 hidden-xs">
+            <%= yield %>
+          </div>
+          <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
             <%= yield %>
           </div>
         </div>
       <% else %>
-        <%= yield %>
+        <div class="row white-background-fix">
+          <div class='col-xs-12'>
+            <%= yield %>
+          </div>
+        </div>
       <% end %>
 
       <%= render 'layouts/footer' %>

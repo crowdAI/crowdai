@@ -1,3 +1,5 @@
+/*
+
 .nav-pills > li.active > a {
   color: black;
   background-color: transparent;;
@@ -12,21 +14,6 @@
   font-weight: 600;
 }
 
-
-
-/*
-.nav-pills > li.active > a,
- {
-  color: $crowdai-text-darker;
-  background-color: transparent;
-}
-
-.nav-pills a:hover,
-.nav-pills a:focus {
-  color: $brand-primary;
-  background-color: transparent;
-  text-decoration: underline;
-} */
 
 
 .nav-mobile-pills {
@@ -49,3 +36,22 @@
 .nav-mobile-tab-content .navbar-nav {
   margin: 0px;
 }
+*/
+
+.navbar-collapse {
+    height: 100vh;
+}
+
+.mobile-menu li {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+  padding: 7px;
+}
+
+/*
+.mobile-menu li a:hover,
+.mobile-menu a:focus {
+  padding: 10px;
+  background-color: $crowdai-bg-light-grey;
+ */

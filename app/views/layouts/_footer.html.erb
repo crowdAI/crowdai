@@ -1,12 +1,9 @@
   <nav class="navbar navbar-footer navbar-static-bottom" role="navigation">
-    <div class="container-fluid">
-      <br/>
-      <br/>
-      <br/>
-      <br/>
       <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-          <div class="links-container">
+        <div class="col-xs-10 col-xs-offset-1">
+
+          <!-- desktop footer -->
+          <div class="links-container hidden-xs hidden-sm">
             <%= link_to image_tag("epfl_2x", height: '60'), 'http://epfl.ch/' %>
             <ul class='pull-right'>
               <li><%= link_to 'Contact us', page_path('contact') %></li>
@@ -15,7 +12,21 @@
               <li><%= awesome_link('twitter', nil, 'https://twitter.com/crowd_ai') %></li>
             </ul>
           </div>
+          <!-- desktop footer end -->
+
+          <!-- mobile footer -->
+          <div class="links-container hidden-md hidden-lg">
+            <ul>
+              <li>
+                  <%= link_to 'Contact', page_path('contact') %> ·
+                  <%= link_to 'Privacy', page_path('privacy') %> ·
+                  <%= link_to 'Terms', page_path('terms') %> ·
+                  <%= awesome_link('twitter', nil, 'https://twitter.com/crowd_ai') %>
+              <li><%= link_to image_tag("epfl_2x", height: '40'), 'http://epfl.ch/' %></li>
+            </ul>
+          </div>
+          <!-- mobile footer end -->
+
         </div>
       </div>
-    </div>
   </nav>

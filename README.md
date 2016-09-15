@@ -1,6 +1,7 @@
 ![CrowdAI Logo](https://www.crowdai.org/assets/crowdai_logo_smile-e85e52e02f89493e355c1459d0409de859c0a239f7b177fd73731dca9cbf61fb.svg)
 
-By [Salathé Lab](http://plataformatec.com.br/).
+
+By [Salathé Lab](http://www.digitalepidemiologylab.org/).
 
 
 ## Submission Grading
@@ -41,6 +42,7 @@ Optionally, a some of these files may be overwitten by the participant submissio
 - Execute command as indicated on the container is run (usually **run.sh**)
 - Results are sent back to the Rails server and leaderboard via a callback API script **callback.sh**
 
+>>>>>>> master
 
 ### Development Standards
 

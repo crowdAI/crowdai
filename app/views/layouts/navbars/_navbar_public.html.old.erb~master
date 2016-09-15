@@ -11,6 +11,7 @@
 
   <div class="collapse navbar-collapse" id="crowdai-navbar-collapse">
     <div class="navbar-right">
+
       <ul class="nav navbar-nav">
         <%= render 'layouts/navbars/navbar_menu' %>
       </ul>

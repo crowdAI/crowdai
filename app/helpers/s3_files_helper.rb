@@ -1,4 +1,4 @@
-module DownloadsHelper
+module S3FilesHelper
 
   def s3_filesize(s3_key)
     s3_file_obj = Aws::S3::Object.new(bucket_name: ENV['AWS_S3_BUCKET'], key: s3_key)
@@ -6,13 +6,18 @@ module DownloadsHelper
     filesize = number_to_human_size(s3_file_obj.content_length)
   end
 
+
   def s3_expiring_url(s3_key)
     s3_file_obj = Aws::S3::Object.new(bucket_name: ENV['AWS_S3_BUCKET'], key: s3_key)
     return nil if !s3_file_obj.exists?
     url = s3_file_obj.presigned_url(:get, expires_in: 3600)
   end
 
-  # TODO deletion links
+
+  def s3_filename(s3_key)
+    return nil if s3_key.nil?
+    s3_key.split('/')[-1]
+  end
 
 
   def datasets_url(s3_key)
@@ -24,7 +29,6 @@ module DownloadsHelper
     #out = capture { link_to s3_file_info(s3_file_obj), expiring_url }
     s3 = Aws::S3::Object.new(bucket_name: ENV['AWS_S3_BUCKET'], key: s3_key)
   end
-
 
 
   def s3_file_info(s3_file_obj)

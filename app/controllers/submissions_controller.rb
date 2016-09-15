@@ -38,10 +38,9 @@ class SubmissionsController < ApplicationController
 
   def new
     @submission = @challenge.submissions.new
-    # TODO for the first challenge we are working with 2 files.
-    # Make this challenge config data in next release
-    @submission.submission_files.build(seq: 0)
-    @submission.submission_files.build(seq: 1)
+    @challenge.submission_file_definitions.each do |file|
+      @submission.submission_files.build(seq: file.seq)
+    end
   end
 
   def create
@@ -59,7 +58,7 @@ class SubmissionsController < ApplicationController
 
   def destroy
     @submission.destroy
-    redirect_to submissions_url, notice: 'Submission was successfully destroyed.'
+    redirect_to challenge_leaderboards_path(@challenge), notice: 'Submission was successfully destroyed.'
   end
 
   def grade
@@ -82,14 +81,21 @@ class SubmissionsController < ApplicationController
       end
     end
 
+
     def set_challenge
       @challenge = Challenge.friendly.find(params[:challenge_id])
     end
 
+
     def submission_params
-      params.require(:submission).permit(:challenge_id, :participant_id, :description_markdown, :score, :score_secondary, :grading_status, :grading_message, :framework, :api,
-                                  submission_files_attributes: [:id, :seq, :submission_file_s3_key, :_delete])
+      params.require(:submission)
+            .permit(:challenge_id, :participant_id, :description_markdown, :score,
+                    :score_secondary, :grading_status, :grading_message,
+                    :api, :docker_configuration_id,
+                    submission_files_attributes:
+                        [:id, :seq, :submission_file_s3_key, :_delete])
     end
+
 
     def set_s3_direct_post
       @s3_direct_post = S3_BUCKET.presigned_post(key: "submission_files/#{SecureRandom.uuid}/${filename}",
@@ -97,9 +103,10 @@ class SubmissionsController < ApplicationController
                                                  acl: 'public-read')
     end
 
+
     def set_submissions_remaining
       submissions_today = Submission.where("participant_id = ? and created_at >= ?", current_participant.id, Time.now - 24.hours).count
-      @submissions_remaining = (5 - submissions_today)
+      @submissions_remaining = (@challenge.daily_submissions - submissions_today)
     end
 
 

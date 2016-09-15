@@ -7,8 +7,9 @@ class Challenge < ActiveRecord::Base
 
   belongs_to :organizer
   has_many :dataset_files,            dependent: :destroy
-  accepts_nested_attributes_for :dataset_files, reject_if: :all_blank, allow_destroy: true
-  # TODO I think this can go
+  has_many :docker_configurations,    dependent: :destroy
+  has_many :submission_file_definitions, dependent: :destroy
+  accepts_nested_attributes_for :submission_file_definitions, reject_if: :all_blank, allow_destroy: true
 
   has_many :events,                   dependent: :destroy
   has_many :submissions,              dependent: :destroy
@@ -35,6 +36,12 @@ class Challenge < ActiveRecord::Base
   validates_presence_of :primary_sort_order
   validates_presence_of :grading_factor
 
+  after_initialize do
+    if self.new_record?
+      self.submission_license = "Please upload your submissions and include a detailed description of the methodology, techniques and insights leveraged with this submission. After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC)."
+      self.daily_submissions = 5
+    end
+  end
 
 
   def timeline

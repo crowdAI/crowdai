@@ -1,4 +1,9 @@
-<%= simple_form_for([@challenge,@docker_configuration]) do |f| %>
+<%= simple_form_for([@challenge,@docker_configuration],
+                html: { class: "directUpload" },
+                data: { 'form-data' => (@s3_direct_post.fields),
+                        'url' => @s3_direct_post.url,
+                        'host' => URI.parse(@s3_direct_post.url).host }
+                ) do |f| %>
   <%= f.error_notification %>
 
   <div class="row">

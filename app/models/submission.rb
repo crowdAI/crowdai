@@ -12,29 +12,9 @@ class Submission < ActiveRecord::Base
   as_enum :grading_status, [:ready, :submitted, :graded, :failed], map: :string
   validates_presence_of :grading_status
 
-  validates_presence_of :framework, if: :not_openfood?
-  validates_presence_of :api, if: :openfood?
+  validates_presence_of :docker_configuration_id
   validates_presence_of :description_markdown
 
-  def openfood?
-    self.challenge.id == 3
-  end
-
-  def not_openfood?
-    self.challenge.id != 3
-  end
-
-
-  FRAMEWORKS = {
-    'caffe' => "Caffe",
-    'tensorflow' => 'Tensorflow',
-    'torch7' => 'Torch7',
-    'scikit2' => 'Python-2 Scikit-Learn',
-    'scikit3' => 'Python-3 Scikit-Learn',
-    'octave' => 'Octave',
-    'keras' => 'Keras',
-    'openimaj' => 'OpenIMAJ'
-  }
 
   APIS = {
     'google' => "Google Vision",

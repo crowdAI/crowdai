@@ -1,5 +1,5 @@
 <div role="tabpanel" class="tab-pane" id="submission-instructions">
-  <h1>Submission Instructions</h1>
+  <h2>Submission Instructions</h2>
 
   <div class="markdown-editor">
     <ul class="nav nav-tabs" data-tabs="tabs">
@@ -24,6 +24,31 @@
         <div id="markdown-preview-submission-instructions"></div>
       </div>
     </div>
+  </div>
+
+
+  <h2>Submission License</h2>
+  <p>This license text is displayed on the submission upload page during and after the challenge.</p>
+  <%= f.text_area :submission_license, class: 'form-control markdown-textarea', required: true, rows: 10 %>
+
+  <h2>Submission Requirements</h2>
+  <div class='row'>
+    <div class='col-md-3'>
+      <%= f.input :daily_submissions %>
+    </div>
+    <div class='col-md-3'>
+      <%= f.input :api_required %>
+    </div>
+  </div>
+
+  <h2>Submission File Definitions</h2>
+  <div class="submission-file-definitions-configuration">
+    <%= f.simple_fields_for :submission_file_definitions do |file| %>
+      <%= render 'challenges/form/submission_file_definition_fields', f: file %>
+    <% end %>
+    <%= link_to_add_association 'Add Submission File Definition', f, :submission_file_definitions,
+                              html_options = { partial: 'challenges/form/submission_file_definition_fields',
+                                               class: 'btn btn-primary outline' } %>
   </div>
 
   <div class="form-actions">

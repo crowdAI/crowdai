@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160825190529) do
+ActiveRecord::Schema.define(version: 20160914174902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,9 @@ ActiveRecord::Schema.define(version: 20160825190529) do
     t.string   "score_secondary_title"
     t.boolean  "automatic_grading",                default: false
     t.string   "slug"
+    t.string   "submission_license"
+    t.boolean  "api_required",                     default: false
+    t.integer  "daily_submissions"
   end
 
   add_index "challenges", ["organizer_id"], name: "index_challenges_on_organizer_id", using: :btree
@@ -301,6 +304,19 @@ ActiveRecord::Schema.define(version: 20160825190529) do
   add_index "posts", ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
   add_index "posts", ["topic_id"], name: "index_posts_on_topic_id", using: :btree
 
+  create_table "submission_file_definitions", force: :cascade do |t|
+    t.integer  "challenge_id"
+    t.integer  "seq"
+    t.string   "submission_file_description"
+    t.string   "filetype_cd"
+    t.boolean  "file_required",               default: false
+    t.text     "submission_file_help_text"
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
+
+  add_index "submission_file_definitions", ["challenge_id"], name: "index_submission_file_definitions_on_challenge_id", using: :btree
+
   create_table "submission_files", force: :cascade do |t|
     t.integer  "submission_id"
     t.integer  "seq"
@@ -332,50 +348,22 @@ ActiveRecord::Schema.define(version: 20160825190529) do
     t.integer  "challenge_id"
     t.integer  "participant_id"
     t.float    "score"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.text     "description"
-    t.string   "framework"
     t.float    "score_secondary"
     t.string   "grading_message"
-    t.string   "grading_status_cd",    default: "ready"
+    t.string   "grading_status_cd",       default: "ready"
     t.text     "description_markdown"
-    t.integer  "vote_count",           default: 0
-    t.boolean  "post_challenge",       default: false
+    t.integer  "vote_count",              default: 0
+    t.boolean  "post_challenge",          default: false
     t.string   "api"
-    t.string   "slug"
+    t.integer  "docker_configuration_id"
   end
 
   add_index "submissions", ["challenge_id"], name: "index_submissions_on_challenge_id", using: :btree
+  add_index "submissions", ["docker_configuration_id"], name: "index_submissions_on_docker_configuration_id", using: :btree
   add_index "submissions", ["participant_id"], name: "index_submissions_on_participant_id", using: :btree
-  add_index "submissions", ["slug"], name: "index_submissions_on_slug", unique: true, using: :btree
-
-  create_table "submissions__grades_backup", id: false, force: :cascade do |t|
-    t.integer  "id"
-    t.integer  "submission_id"
-    t.string   "grading_status_cd"
-    t.string   "grading_message"
-    t.float    "grading_factor"
-    t.float    "score"
-    t.float    "score_secondary"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "submissions_backup", id: false, force: :cascade do |t|
-    t.integer  "id"
-    t.integer  "challenge_id"
-    t.integer  "participant_id"
-    t.float    "score"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "description"
-    t.string   "framework"
-    t.float    "score_secondary"
-    t.string   "grading_message"
-    t.string   "grading_status_cd"
-    t.text     "description_markdown"
-  end
 
   create_table "topics", force: :cascade do |t|
     t.integer  "challenge_id"
@@ -430,9 +418,11 @@ ActiveRecord::Schema.define(version: 20160825190529) do
   add_foreign_key "participants", "organizers"
   add_foreign_key "posts", "participants"
   add_foreign_key "posts", "topics"
+  add_foreign_key "submission_file_definitions", "challenges"
   add_foreign_key "submission_files", "submissions"
   add_foreign_key "submission_grades", "submissions"
   add_foreign_key "submissions", "challenges"
+  add_foreign_key "submissions", "docker_configurations"
   add_foreign_key "submissions", "participants"
   add_foreign_key "topics", "challenges"
   add_foreign_key "topics", "participants"
@@ -557,6 +547,25 @@ ActiveRecord::Schema.define(version: 20160825190529) do
               dataset_files df
             WHERE (dfd.dataset_file_id = df.id)) pc
     WHERE ((pc.participant_id = p.id) AND (pc.challenge_id = c.id));
+  SQL
+
+  create_view :participant_submissions,  sql_definition: <<-SQL
+      SELECT s.id,
+      s.challenge_id,
+      s.participant_id,
+      p.name,
+      s.grading_status_cd,
+      s.post_challenge,
+      s.score,
+      s.score_secondary,
+      count(f.*) AS files,
+      s.created_at
+     FROM submissions s,
+      participants p,
+      submission_files f
+    WHERE ((s.participant_id = p.id) AND (f.submission_id = s.id))
+    GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
+    ORDER BY s.created_at DESC;
   SQL
 
 end

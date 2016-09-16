@@ -4,20 +4,17 @@
 <div class="page-content-container">
 
   <div class="panel panel-default">
+    <div class='panel-heading'>
+      <h3>Docker Configuration: <%= link_to @docker_configuration.name, challenge_docker_configurations_path(@challenge) %></h3>
+      <h3>Image: <%= @docker_configuration.image %></h3>
+    </div>
     <div class="panel-body">
-      <div class="row">
-        <div class="col-md-2 text-right"><strong>Name</strong></div>
-        <div class="col-md-5"><%= link_to @docker_configuration.name, challenge_docker_configurations_path(@challenge) %></div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-2 text-right"><strong>Image</strong></div>
-        <div class="col-md-5"><%= @docker_configuration.image %></div>
-      </div>
+
 
 
       <div class="row">
-        <div class="col-md-9 col-md-offset-2">
+        <div class="col-md-12">
           <table class="table table-condensed table-hover">
             <thead>
               <tr>
@@ -25,6 +22,9 @@
                 <th>Image</th>
                 <th>Container</th>
                 <th>Logs</th>
+                <th>Created</th>
+                <th>Updated</th>
+                <th></th>
               </tr>
             </thead>
 
@@ -34,7 +34,10 @@
                 <td><%= instance.status %></td>
                 <td><%= instance.image_sha %></td>
                 <td><%= instance.container_sha %></td>
-                <td><%= link_to "#{instance.container_logs.count} logs", container_instance_container_logs_path(instance) %></td
+                <td><%= link_to "#{instance.container_logs.count} logs", container_instance_container_logs_path(instance) %></td>
+                <td><%= instance.created_at.strftime("%a, %e %b %Y %R") %>
+                <td><%= instance.updated_at.strftime("%a, %e %b %Y %R") %>
+                <td><%= link_to 'delete', [@docker_configuration,instance], method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>
               <% end %>
             </tbody>

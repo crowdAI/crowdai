@@ -36,7 +36,7 @@ class ContainerInstancesController < ApplicationController
 
   def destroy
     @container_instance.destroy
-    redirect_to containers_url, notice: 'Docker container was successfully destroyed.'
+    redirect_to docker_configuration_container_instances_path(@docker_configuration), notice: 'Container instance log was successfully destroyed.'
   end
 
   private

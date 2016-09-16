@@ -15,6 +15,13 @@
       <%= f.input :answer_file_s3_key %>
       <%= f.input :automatic_grading %>
     </div>
+    <div class='col-md-3'>
+      <%= link_to("Re-grade", challenge_regrade_path(@challenge), class: 'button',
+                                                                  remote: true,
+                                                                  data: { confirm: 'Are you sure you want to re-grade all submissions?' },
+                                                                  class: 'btn btn-primary outline' ) %>
+      <div id='regrade-status'></div>
+    </div>
   </div>
 
   <hr/>

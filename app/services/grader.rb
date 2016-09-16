@@ -11,6 +11,8 @@ class Grader
   def grade
     @query = api_query
     if @query
+      puts @submission.inspect
+      puts @query.inspect
       response = call_grader
       evaluate_response(@submission.id,response)
     else

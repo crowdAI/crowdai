@@ -13,6 +13,7 @@
         <%= f.input :name, hint:  'Name of container as presented to users' %>
         <%= f.input :image, hint: 'Docker image stored on Docker Hub' %>
         <%= f.input :mount_point, hint: 'Full path, including trailing "/"' %>
+        <%= f.input :datasets_directory, hint: 'Full path, including trailing "/"' %>
         <%= f.input :destroy_after_success %>
         <%= f.input :execute_command %>
       </div>

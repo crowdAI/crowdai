@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914174902) do
+ActiveRecord::Schema.define(version: 20160916140156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -169,23 +169,22 @@ ActiveRecord::Schema.define(version: 20160914174902) do
     t.datetime "updated_at",                            null: false
     t.string   "name"
     t.boolean  "execute_on_submission", default: false
-    t.string   "slug"
+    t.string   "datasets_directory"
   end
 
   add_index "docker_configurations", ["challenge_id"], name: "index_docker_configurations_on_challenge_id", using: :btree
-  add_index "docker_configurations", ["slug"], name: "index_docker_configurations_on_slug", unique: true, using: :btree
 
   create_table "docker_files", force: :cascade do |t|
     t.integer  "docker_configuration_id"
     t.string   "configuration_file_s3_key"
     t.string   "directory"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.string   "slug"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.boolean  "grading_only",              default: false
+    t.boolean  "overwritable",              default: false
   end
 
   add_index "docker_files", ["docker_configuration_id"], name: "index_docker_files_on_docker_configuration_id", using: :btree
-  add_index "docker_files", ["slug"], name: "index_docker_files_on_slug", unique: true, using: :btree
 
   create_table "events", force: :cascade do |t|
     t.integer  "challenge_id"

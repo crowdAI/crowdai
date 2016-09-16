@@ -52,7 +52,8 @@ class DockerConfigurationsController < ApplicationController
     end
 
     def docker_configuration_params
-      params.require(:docker_configuration).permit(:challenge_id, :name, :image, :mount_point, :destroy_after_success, :execute_command,
+      params.require(:docker_configuration)
+            .permit(:challenge_id, :name, :image, :mount_point, :datasets_directory, :destroy_after_success, :execute_command, :overwritable,
                 docker_files_attributes: [:id, :_destroy, :configuration_file_s3_key, :directory])
     end
 

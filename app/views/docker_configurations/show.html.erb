@@ -40,27 +40,42 @@
 
       <div class="row">
         <div class="col-md-2 text-right">
-          <strong>Command</strong>
+          <strong>Datasets directory</strong>
+        </div>
+        <div class="col-md-9"><%= @docker_configuration.datasets_directory %></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">
+          <strong>Run Command</strong>
         </div>
         <div class="col-md-9"><%= @docker_configuration.execute_command %></div>
       </div>
 
+      <hr/>
 
       <div class="row">
-        <div class="col-md-9 col-md-offset-2">
+        <div class="col-md-12 ">
           <table class="table table-condensed table-hover">
             <thead>
               <tr>
                 <th>File</th>
                 <th>Directory</th>
+                <th>Grading Only?</th>
+                <th>Overwritable?</th>
               </tr>
             </thead>
 
             <tbody>
               <% @docker_configuration.docker_files.each do |docker_file| %>
               <tr>
-                <td><%= s3_filename(docker_file.configuration_file_s3_key) %></td>
+                <td><%= link_to s3_filename(docker_file.configuration_file_s3_key),
+                                s3_expiring_url(docker_file.configuration_file_s3_key),
+                                class: 'expiring-url',
+                                data: { 'dataset-file-id': docker_file.id } %></td>
                 <td><%= docker_file.directory %></td>
+                <td><%= check_box_tag :grading_only, '1', docker_file.grading_only, disabled: true %></td>
+                <td><%= check_box_tag :overwritable, '1', docker_file.overwritable, disabled: true %></td>
               </tr>
               <% end %>
             </tbody>

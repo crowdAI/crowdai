@@ -9,7 +9,7 @@
         <th>Participant</th>
         <th>Score</th>
         <th>Secondary</th>
-        <th>Post Challenge</th>
+        <th>Post Challenge?</th>
         <th>Submission UTC</th>
         <th></th>
         <th></th>
@@ -24,7 +24,7 @@
         <td><%= link_to s.name, participant_path(s.participant_id) %></td>
         <td><%= s.score %></td>
         <td><%= s.score_secondary %></td>
-        <td><%= s.post_challenge %></td>
+        <td><%= check_box_tag :post_challenge, '1', s.post_challenge, disabled: true %></td>
         <td><%= s.created_at.strftime("%a, %e %b %Y %R") %></td>
         <td><%= link_to "Grade",challenge_submission_grade_path(challenge, s.id), class: 'button', remote: true, class: 'btn btn-primary outline btn-xs' %></td>
         <td><%= link_to 'Delete', challenge_submission_path(challenge,s.id), method: :delete, confirm: 'Are you sure?', class: 'btn btn-primary outline btn-xs' %></td>

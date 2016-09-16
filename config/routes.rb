@@ -60,6 +60,7 @@ Rails.application.routes.draw do
     resources :leaderboards, only: [:index]
     resources :topics
     resources :docker_configurations
+    get :regrade
   end
 
   resources :docker_configurations do

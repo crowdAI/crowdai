@@ -1,6 +1,8 @@
 class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized, except: [:index, :show]
+  respond_to :html
+  respond_to :js
 
   def index
     @challenges = policy_scope(Challenge)
@@ -53,6 +55,17 @@ class ChallengesController < ApplicationController
     authorize @challenge
     @challenge.destroy
     redirect_to challenges_url, notice: 'Challenge was successfully destroyed.'
+  end
+
+
+  def regrade
+    challenge = Challenge.friendly.find(params[:challenge_id])
+    authorize challenge
+    challenge.submissions.each do |s|
+      SubmissionGraderJob.perform_later(s.id)
+    end
+    @submission_count = challenge.submissions.count
+    render 'challenges/form/regrade_status'
   end
 
 

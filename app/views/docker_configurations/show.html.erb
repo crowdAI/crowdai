@@ -7,7 +7,7 @@
     <div class="panel-body">
       <div class="pull-right">
         <%= link_to 'x', challenge_docker_configuration_path(@challenge,@docker_configuration),
-                  method: :delete, remote: true %>
+                  method: :delete, remote: true,  data: { confirm: 'Are you sure?' } %>
       </div>
 
       <br/>

@@ -6,8 +6,11 @@
                   as: :file,
                   input_html: { class: 's3File' } %>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
       <%= f.input :directory, required: true %>
+    </div>
+    <div class='col-md-1'>
+      <%= link_to_remove_association "delete", f %>
     </div>
   </div>
 </div>

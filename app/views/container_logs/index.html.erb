@@ -61,8 +61,8 @@
                 <td><%= log.log_level %></td>
                 <td><%= log.log_source %></td>
                 <td><%= log.message %></td>
-                <td><%= link_to 'Details', container_instances_container_log_path(@container_instance,log) %></td>
-                <td><%= link_to 'Delete', container_instances_container_log_path(@container_instance,log), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td><%#= link_to 'Details', container_instances_container_log_path(@container_instance,log) %></td>
+                <td><%#= link_to 'Delete', container_instances_container_log_path(@container_instance,log), method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>
               <% end %>
             </tbody>

@@ -11,7 +11,6 @@
         <th>Post Challenge?</th>
         <th>Submission UTC</th>
         <th></th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -24,8 +23,16 @@
         <td><%= s.score_secondary %></td>
         <td><%= check_box_tag :post_challenge, '1', s.post_challenge, disabled: true %></td>
         <td><%= s.created_at.strftime("%a, %e %b %Y %R") %></td>
-        <td><%= link_to "Grade",challenge_submission_grade_path(challenge, s.id), id: "grade-button-#{s.id}", class: 'button', remote: true, class: 'btn btn-primary outline btn-xs' %></td>
-        <td><%= link_to 'Delete', challenge_submission_path(challenge,s.id), method: :delete, confirm: 'Are you sure?', class: 'btn btn-primary outline btn-xs' %></td>
+        <td><div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Docker
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Grade Submission",challenge_submission_grade_path(challenge, s.id), id: "grade-button-#{s.id}", class: 'button', remote: true %></li>
+                <li><%= link_to "DockerHub",challenge_submission_hub_path(challenge, s.id), id: "grade-button-#{s.id}", class: 'button', remote: true %></li>
+                <li><%= link_to 'Delete Submission', challenge_submission_path(challenge,s.id), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+              </ul>
+            </div>
+        </td>
       </tr>
       <% end %>
     </tbody>

@@ -71,6 +71,11 @@ class SubmissionsController < ApplicationController
     render 'submissions/ajax/refresh_submission_job'
   end
 
+  def hub
+    @job = SubmissionDockerHubJob.perform_later(@submission.id)
+    render 'submissions/ajax/refresh_submission_job'
+  end
+
 
   def execute  # TODO remove
     @job = SubmissionExecutionJob.perform_later(@submission.id)

@@ -1,41 +1,49 @@
 class GradeSubmission < LaunchContainer
 
-  def initialize(configuration_id,submission_id)
-    @config = DockerConfiguration.find(configuration_id)
+  # Launches the container with the dataset files and the submission files injected
+  def initialize(submission_id)
     @submission = Submission.find(submission_id)
-    validate!
+    @config = DockerConfiguration.find(@submission.docker_configuration_id)
+    @container_instance = ContainerInstance.create!(docker_configuration_id: @config.id,
+                                                    status: :initialized)
+    @tmpdir = tmpdir
+    @files_array = files_array
   end
 
 
-  def grade(configuration_id,submission_id)
-    config = DockerConfiguration.find(configuration_id)
-    base_image = Docker::Image.create('fromImage' => config.container)
-    image = base_image.insert_local('localPath' => 'scripts/docker/callback.sh', 'outputPath' => config.mount_point)
-    container = Docker::Container.create('Cmd' => '/project/callback.sh', 'Image' => image.id)
-    c = DockerContainer.create!(image_id: base_image.id, container_id: container.id)
-    c.container_log.create!(log_level: :info, message: 'Container created')
-    container.start
-    c.container_log.create!(log_level: :info, message: 'Container launched')
+  def grade
+    start
   end
 
 
-  def callback_script(id)
-    #curl -X PUT -G https://crowdai-stg.herokuapp.com/api/v1/docker_callbacks/create -d "score=999999" -d "score_secondary=123456" -H 'Authorization: Token token="***REMOVED***"'
+  def s3_keys
+    s3_keys_array = @config.docker_files.map{ |f| f.configuration_file_s3_key }
+    s3_keys_array.concat @submission.submission_files.map{ |f| f.submission_file_s3_key }
+    s3_keys_array.concat @config.challenge.dataset_files.map { |f| f.dataset_file_s3_key }
   end
 
-  private
-  def validate!
-    raise ArgumentError.new("Submission could not be found") if @submission.nil?
-    super
+
+  def tmpdir
+    dir = "tmp/#{@submission.id}_#{Time.now.to_i}/"
+    FileUtils.mkdir_p(dir)
+    return dir
   end
 
+
+  def download_files
+    s3 = Aws::S3::Client.new
+    s3_keys.each do |s3_key|
+      filename = "#{@tmpdir}/#{s3_key.split('/')[-1]}"
+      s3_file_obj = Aws::S3::Object.new(bucket_name: ENV['AWS_S3_BUCKET'], key: s3_key)
+      resp = s3.get_object({ bucket: ENV['AWS_S3_BUCKET'], key: s3_key }, target: filename )
+    end
+  end
+
+
+  def files_array
+    download_files
+    files = Dir.entries(@tmpdir).reject{ |e| File.directory? e }
+    filepaths = files.map { |f| "#{@tmpdir}#{f}" }
+  end
 
 end
-
-
-# config = DockerConfiguration.find(1)
-# base_image = Docker::Image.create('fromImage' => config.container)
-# files_injection = config.docker_files.map(&:configuration_file_s3_key)
-# image = base_image.insert_local('localPath' => files_injection, 'outputPath' => config.mount_point)
-
-# image = base_image.insert_local('localPath' => 'scripts/docker/callback.sh', 'outputPath' => config.mount_point)

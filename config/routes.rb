@@ -55,6 +55,7 @@ Rails.application.routes.draw do
     resources :events
     resources :submissions, except: [:edit, :update] do
       get :grade
+      get :hub
       get :execute
     end
     resources :leaderboards, only: [:index]

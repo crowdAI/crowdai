@@ -4,6 +4,7 @@ class SubmissionsController < ApplicationController
   before_action :set_challenge
   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
   before_action :set_submissions_remaining
+  respond_to :html, :js
 
   def index
     if params[:participant_id] && @challenge.completed?
@@ -36,12 +37,14 @@ class SubmissionsController < ApplicationController
     end
   end
 
+
   def new
     @submission = @challenge.submissions.new
     @challenge.submission_file_definitions.each do |file|
       @submission.submission_files.build(seq: file.seq)
     end
   end
+
 
   def create
     @submission = Submission.new(submission_params)
@@ -56,17 +59,20 @@ class SubmissionsController < ApplicationController
     end
   end
 
+
   def destroy
     @submission.destroy
     redirect_to challenge_leaderboards_path(@challenge), notice: 'Submission was successfully destroyed.'
   end
 
+
   def grade
     @job = SubmissionGraderJob.perform_later(@submission.id)
-    render 'admin/submissions/refresh_submission_job'
+    render 'submissions/ajax/refresh_submission_job'
   end
 
-  def execute
+
+  def execute  # TODO remove
     @job = SubmissionExecutionJob.perform_later(@submission.id)
     render 'admin/submissions/refresh_submission_job'
   end

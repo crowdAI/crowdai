@@ -11,6 +11,11 @@ class LaunchSubmission < LaunchContainer
   end
 
 
+  def grade
+    start
+  end
+
+
   def s3_keys
     s3_keys_array = @config.docker_files.map{ |f| f.configuration_file_s3_key }
     s3_keys_array.concat @submission.submission_files.map{ |f| f.submission_file_s3_key }

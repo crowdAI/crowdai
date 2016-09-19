@@ -3,7 +3,6 @@
   <table class='table table-hover table-bordered leaderboard sortable'>
     <thead>
       <tr>
-        <th>ID</th>
         <th>Status</th>
         <th>Files</th>
         <th>Participant</th>
@@ -18,7 +17,6 @@
     <tbody>
       <% participant_submissions.each do |s| %>
       <tr>
-        <td><%= s.id %></td>
         <td><%= s.grading_status_cd %></td>
         <td><%= s.files %></td>
         <td><%= link_to s.name, participant_path(s.participant_id) %></td>
@@ -26,7 +24,7 @@
         <td><%= s.score_secondary %></td>
         <td><%= check_box_tag :post_challenge, '1', s.post_challenge, disabled: true %></td>
         <td><%= s.created_at.strftime("%a, %e %b %Y %R") %></td>
-        <td><%= link_to "Grade",challenge_submission_grade_path(challenge, s.id), class: 'button', remote: true, class: 'btn btn-primary outline btn-xs' %></td>
+        <td><%= link_to "Grade",challenge_submission_grade_path(challenge, s.id), id: "grade-button-#{s.id}", class: 'button', remote: true, class: 'btn btn-primary outline btn-xs' %></td>
         <td><%= link_to 'Delete', challenge_submission_path(challenge,s.id), method: :delete, confirm: 'Are you sure?', class: 'btn btn-primary outline btn-xs' %></td>
       </tr>
       <% end %>

@@ -1,0 +1,24 @@
+<%= render partial: 'challenges/sidebar' %>
+<%= render partial: 'challenges/header', challenge: @challenge %>
+
+<div class="page-content-container">
+
+  <h1>Edit Docker File</h1>
+  <%= simple_form_for([@docker_configuration,@docker_file]) do |f| %>
+
+    <div class="form-inputs">
+      <%= f.input :configuration_file_s3_key, readonly: true %>
+      <%= f.input :directory, required: true %>
+      <%= f.input :grading_only %>
+      <%= f.input :overwritable %>
+
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Update", class: "btn btn-primary outline" %>
+    </div>
+  <% end %>
+
+
+  <%#= link_to 'Cancel', challenge_docker_configuration_path(challenge_id: @docker_configuration.challenge), class: 'btn btn-primary outline' %>
+</div>

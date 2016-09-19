@@ -67,6 +67,10 @@ Rails.application.routes.draw do
     resources :container_instances
   end
 
+  resources :docker_configurations do
+    resources :docker_files, except: [:index, :show]
+  end
+
   resources :container_instances do
     resources :container_logs, only: [:index, :show, :destroy]
   end

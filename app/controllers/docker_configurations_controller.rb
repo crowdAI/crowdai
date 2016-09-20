@@ -1,7 +1,6 @@
 class DockerConfigurationsController < ApplicationController
   before_action :set_docker_configuration, only: [:show, :edit, :update, :destroy]
   before_action :set_challenge
-  before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
 
 
   def index
@@ -53,13 +52,8 @@ class DockerConfigurationsController < ApplicationController
 
     def docker_configuration_params
       params.require(:docker_configuration)
-            .permit(:challenge_id, :name, :image, :mount_point, :datasets_directory, :destroy_after_success, :execute_command, :overwritable,
-                docker_files_attributes: [:id, :_destroy, :configuration_file_s3_key, :directory])
+            .permit(:challenge_id, :name, :image, :mount_point, :datasets_directory, :destroy_after_success, :execute_command, :overwritable)
     end
 
-    def set_s3_direct_post
-      @s3_direct_post = S3_BUCKET.presigned_post(key: "docker_files/#{SecureRandom.uuid}/${filename}",
-                                                 success_action_status: '201',
-                                                 acl: 'public-read')
-    end
+
 end

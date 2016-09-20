@@ -1,9 +1,4 @@
-<%= simple_form_for([@challenge,@docker_configuration],
-                html: { class: "directUpload" },
-                data: { 'form-data' => (@s3_direct_post.fields),
-                        'url' => @s3_direct_post.url,
-                        'host' => URI.parse(@s3_direct_post.url).host }
-                ) do |f| %>
+<%= simple_form_for([@challenge,@docker_configuration]) do |f| %>
   <%= f.error_notification %>
 
   <div class="row">
@@ -18,15 +13,7 @@
         <%= f.input :execute_command %>
       </div>
 
-      <h3>Files injected into container</h3>
-      <div class="events-configuration">
-        <%= f.simple_fields_for :docker_files do |docker_file| %>
-          <%= render 'docker_configurations/docker_file_fields', f: docker_file %>
-        <% end %>
-        <%= link_to_add_association 'Add File', f, :docker_files,
-                                  html_options = { partial: 'docker_configurations/docker_file_fields',
-                                                   class: 'btn btn-primary outline pull-right' } %>
-      </div>
+    
 
   <div class="form-actions">
     <%= f.button :submit, 'Update', class: 'btn btn-primary outline' %>

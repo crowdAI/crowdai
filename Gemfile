@@ -117,6 +117,7 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'scss_lint', require: false
   gem 'quiet_assets', github: 'seanfcarroll/quiet_assets', branch: 'master'
+  gem 'shog', branch: 'master'
 end
 
 

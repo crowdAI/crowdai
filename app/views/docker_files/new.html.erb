@@ -1,0 +1,30 @@
+<%= render partial: 'challenges/sidebar' %>
+<%= render partial: 'challenges/header', challenge: @challenge %>
+
+<div class="page-content-container">
+  <h1>New Docker File</h1>
+
+  <%= simple_form_for([@docker_configuration,@docker_file],
+                    html: { class: "directUpload" },
+                    data: { 'form-data' => (@s3_direct_post.fields),
+                          'url' => @s3_direct_post.url,
+                          'host' => URI.parse(@s3_direct_post.url).host }
+                    ) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.input :configuration_file_s3_key, as: :file, input_html: {class: 's3File' } %>
+      <%= f.input :directory, required: true %>
+      <%= f.input :grading_only %>
+      <%= f.input :overwritable %>
+
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Create File", id: 'submitS3', class: "btn btn-primary outline" %>
+    </div>
+  <% end %>
+
+
+  <%= link_to 'Cancel', docker_configuration_path(@docker_configuration), class: 'btn btn-primary outline' %>
+</div>

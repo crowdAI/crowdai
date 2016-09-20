@@ -55,6 +55,7 @@ Rails.application.routes.draw do
     resources :events
     resources :submissions, except: [:edit, :update] do
       get :grade
+      get :hub
       get :execute
     end
     resources :leaderboards, only: [:index]
@@ -65,6 +66,10 @@ Rails.application.routes.draw do
 
   resources :docker_configurations do
     resources :container_instances
+  end
+
+  resources :docker_configurations do
+    resources :docker_files, except: [:index, :show]
   end
 
   resources :container_instances do
@@ -85,6 +90,7 @@ Rails.application.routes.draw do
 
   resources :submissions do
     resources :votes, only: [:create, :destroy]
+    resources :container_instances
   end
 
   resources :articles do

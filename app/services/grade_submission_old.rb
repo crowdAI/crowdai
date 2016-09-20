@@ -1,4 +1,4 @@
-class GradeSubmission < LaunchContainer
+class GradeSubmissionOld < LaunchContainer
 
   def initialize(configuration_id,submission_id)
     @config = DockerConfiguration.find(configuration_id)

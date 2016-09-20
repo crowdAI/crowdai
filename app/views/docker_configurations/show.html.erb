@@ -63,8 +63,11 @@
                 <th>Directory</th>
                 <th>Grading Only?</th>
                 <th>Overwritable?</th>
+                <th></th>
+                <th><%= link_to '+add', new_docker_configuration_docker_file_path(@docker_configuration) %></th>
               </tr>
             </thead>
+
 
             <tbody>
               <% @docker_configuration.docker_files.each do |docker_file| %>
@@ -76,6 +79,8 @@
                 <td><%= docker_file.directory %></td>
                 <td><%= check_box_tag :grading_only, '1', docker_file.grading_only, disabled: true %></td>
                 <td><%= check_box_tag :overwritable, '1', docker_file.overwritable, disabled: true %></td>
+                <td><%= link_to 'Edit', edit_docker_configuration_docker_file_path(@docker_configuration,docker_file) %></td>
+                <td><%= link_to 'x', docker_configuration_docker_file_path(@docker_configuration,docker_file), method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>
               <% end %>
             </tbody>

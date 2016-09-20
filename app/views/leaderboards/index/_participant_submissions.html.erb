@@ -1,9 +1,7 @@
 <h3>All submissions</h3>
-<div class='table-responsive'>
-  <table class='table table-hover table-bordered leaderboard sortable'>
+  <table class='table table-responsive table-hover table-bordered leaderboard sortable'>
     <thead>
       <tr>
-        <th>ID</th>
         <th>Status</th>
         <th>Files</th>
         <th>Participant</th>
@@ -12,13 +10,11 @@
         <th>Post Challenge?</th>
         <th>Submission UTC</th>
         <th></th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
       <% participant_submissions.each do |s| %>
       <tr>
-        <td><%= s.id %></td>
         <td><%= s.grading_status_cd %></td>
         <td><%= s.files %></td>
         <td><%= link_to s.name, participant_path(s.participant_id) %></td>
@@ -26,10 +22,18 @@
         <td><%= s.score_secondary %></td>
         <td><%= check_box_tag :post_challenge, '1', s.post_challenge, disabled: true %></td>
         <td><%= s.created_at.strftime("%a, %e %b %Y %R") %></td>
-        <td><%= link_to "Grade",challenge_submission_grade_path(challenge, s.id), class: 'button', remote: true, class: 'btn btn-primary outline btn-xs' %></td>
-        <td><%= link_to 'Delete', challenge_submission_path(challenge,s.id), method: :delete, confirm: 'Are you sure?', class: 'btn btn-primary outline btn-xs' %></td>
+        <td><div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Process
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Grade Submission",challenge_submission_grade_path(challenge, s.id), id: "grade-button-#{s.id}", class: 'button', remote: true %></li>
+                <li><%= link_to 'Container Status', submission_container_instances_path(s) %></li>
+                <li><%= link_to "Deploy to Docker Hub",challenge_submission_hub_path(challenge, s.id), id: "grade-button-#{s.id}", class: 'button', remote: true %></li>
+                <li><%= link_to 'Delete Submission', challenge_submission_path(challenge,s.id), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+              </ul>
+            </div>
+        </td>
       </tr>
       <% end %>
     </tbody>
   </table>
-</div>

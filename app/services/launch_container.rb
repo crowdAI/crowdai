@@ -11,15 +11,21 @@ class LaunchContainer
 
   def build
     begin
-      @container_instance.container_logs.create!(log_level: :info, message: "Building container from image #{@config.image}.")
+      @container_instance.container_logs.create!(log_level: :info, log_source: :server, message: "Building container from image #{@config.image}.")
       base_image = Docker::Image.create('fromImage' => @config.image)
+
+      @container_instance.container_logs.create!(log_level: :info, log_source: :server, message: "Inserting files #{@files_array.join(", ")}.")
       image = base_image.insert_local('localPath' => @files_array, 'outputPath' => @config.mount_point)
+
+      @container_instance.container_logs.create!(log_level: :info, log_source: :server, message: "Instantiating image #{image.id} with command #{@config.execute_command}.")
       container = Docker::Container.create('Cmd' => @config.execute_command, 'Image' => image.id)
+
       @container_instance.update!(image_sha: image.id, container_sha: container.id, status: :built)
-      @container_instance.container_logs.create!(log_level: :info, message: "Container built.")
+      @container_instance.container_logs.create!(log_level: :info, log_source: :server, message: "Container built.")
       return container
     rescue => e
-      @container_instance.update!(status: :error, message: e.message)
+      @container_instance.update!(status: :error)
+      @container_instance.container_logs.create!(log_level: :error, log_source: :server, message: e.message)
       raise e
     end
   end
@@ -27,12 +33,12 @@ class LaunchContainer
 
   def start
     container = self.build
-    @container_instance.container_logs.create!(log_level: :info, message: 'Container created')
+    @container_instance.container_logs.create!(log_level: :info, log_source: :server, message: 'Container created')
     if container.start
       @container_instance.update!(status: :started)
-      @container_instance.container_logs.create!(log_level: :info, message: 'Container started')
+      @container_instance.container_logs.create!(log_level: :info, log_source: :server, message: 'Container started.')
     else
-      @container_instance.container_logs.create!(log_level: :error, message: 'Could not start container')
+      @container_instance.container_logs.create!(log_level: :error, log_source: :server, message: 'Could not start container.')
     end
   end
 

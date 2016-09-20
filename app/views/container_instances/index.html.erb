@@ -19,6 +19,7 @@
             <thead>
               <tr>
                 <th>Status</th>
+                <th>Submission</th>
                 <th>Image</th>
                 <th>Container</th>
                 <th>Logs</th>
@@ -32,9 +33,10 @@
               <% @container_instances.each do |instance| %>
               <tr>
                 <td><%= instance.status %></td>
+                <td><%= instance.submission_id %></td>
                 <td><%= instance.image_sha %></td>
                 <td><%= instance.container_sha %></td>
-                <td><%= link_to "#{instance.container_logs.count} logs", container_instance_container_logs_path(instance) %></td>
+                <td><%= link_to pluralize(instance.container_logs.count, 'log'), container_instance_container_logs_path(instance) %></td>
                 <td><%= instance.created_at.strftime("%a, %e %b %Y %R") %>
                 <td><%= instance.updated_at.strftime("%a, %e %b %Y %R") %>
                 <td><%= link_to 'delete', [@docker_configuration,instance], method: :delete, data: { confirm: 'Are you sure?' } %></td>

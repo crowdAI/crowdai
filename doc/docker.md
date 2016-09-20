@@ -1,4 +1,55 @@
-### Docker commands
+## Docker Machine commands
+
+## Connect to Docker Machine
+
+### Command
+Find the machine name
+```
+osx$ docker-machine ls
+```
+
+### Response
+Response from server
+```
+NAME              ACTIVE   DRIVER       STATE     URL                        SWARM   DOCKER    ERRORS
+aws-sandbox       -        amazonec2    Running   tcp://52.16.157.182:2376           v1.12.0
+crowdAI-prd-cpu   -        amazonec2    Running   tcp://52.208.112.53:2376           v1.12.1
+dev               -        virtualbox   Stopped                                      Unknown
+```
+
+## Make one of the instances active for this shell only
+```
+osx$ eval $(docker-machine env crowdAI-prd-cpu)
+docker-machine ls
+```
+
+The instance now has an **active** indicator
+```
+NAME              ACTIVE   DRIVER       STATE     URL                        SWARM   DOCKER    ERRORS
+aws-sandbox       -        amazonec2    Running   tcp://52.16.157.182:2376           v1.12.0
+crowdAI-prd-cpu   *        amazonec2    Running   tcp://52.208.112.53:2376           v1.12.1
+dev               -        virtualbox   Stopped                                      Unknown
+```
+
+## Working with images
+
+List images on Docker Machine
+```
+docker images
+```
+
+response
+```
+REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+<none>                   <none>              0d926c8b665a        17 hours ago        4.834 GB
+<none>                   <none>              8259f466eff1        4 days ago          4.843 GB
+<none>                   <none>              f3a8d24bae54        4 days ago          4.834 GB
+jupyter/scipy-notebook   latest              3f4324b0e654        11 days ago         4.751 GB
+jupyter/scipy-notebook   05ccd6db25ea        746a019f1c2a        6 weeks ago         4.669 GB
+jupyter/scipy-notebook   0017b56d93c9        38ab6b0b5938        8 months ago        3.482 GB
+```
+
+
 
 #### Docker machine
 

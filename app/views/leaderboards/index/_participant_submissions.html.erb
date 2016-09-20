@@ -1,6 +1,5 @@
 <h3>All submissions</h3>
-<div class='table-responsive'>
-  <table class='table table-hover table-bordered leaderboard sortable'>
+  <table class='table table-responsive table-hover table-bordered leaderboard sortable'>
     <thead>
       <tr>
         <th>Status</th>
@@ -28,6 +27,7 @@
               <span class="caret"></span></button>
               <ul class="dropdown-menu">
                 <li><%= link_to "Grade Submission",challenge_submission_grade_path(challenge, s.id), id: "grade-button-#{s.id}", class: 'button', remote: true %></li>
+                <li><%= link_to 'Container Status', submission_container_instances_path(s) %></li>
                 <li><%= link_to "DockerHub",challenge_submission_hub_path(challenge, s.id), id: "grade-button-#{s.id}", class: 'button', remote: true %></li>
                 <li><%= link_to 'Delete Submission', challenge_submission_path(challenge,s.id), method: :delete, data: { confirm: 'Are you sure?' } %></li>
               </ul>
@@ -37,4 +37,3 @@
       <% end %>
     </tbody>
   </table>
-</div>

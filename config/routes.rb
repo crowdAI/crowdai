@@ -90,6 +90,7 @@ Rails.application.routes.draw do
 
   resources :submissions do
     resources :votes, only: [:create, :destroy]
+    resources :container_instances
   end
 
   resources :articles do

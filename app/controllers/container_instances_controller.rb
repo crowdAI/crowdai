@@ -3,8 +3,13 @@ class ContainerInstancesController < ApplicationController
   before_action :set_docker_configuration
 
   def index
-    @container_instances = ContainerInstance.all
+    if @submission
+      @container_instances = @submission.container_instances
+    else
+      @container_instances = @docker_configuration.container_instances
+    end
   end
+  
 
   def show
   end
@@ -45,11 +50,16 @@ class ContainerInstancesController < ApplicationController
     end
 
     def set_docker_configuration
-      @docker_configuration = DockerConfiguration.find(params[:docker_configuration_id])
+      if params[:docker_configuration_id]  # via docker config page
+        @docker_configuration = DockerConfiguration.find(params[:docker_configuration_id])
+      else # via a submission
+        @submission = Submission.find(params[:submission_id])
+        @docker_configuration = DockerConfiguration.find(@submission.docker_configuration_id)
+      end
       @challenge = @docker_configuration.challenge
     end
 
     def container_instance_params
-      params.require(:container_instance).permit(:docker_configuration_id, :status_cd, :message, :image_sha, :container_sha)
+      params.require(:container_instance).permit(:docker_configuration_id, :submission_id, :status_cd, :message, :image_sha, :container_sha)
     end
 end

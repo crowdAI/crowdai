@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160916140156) do
+ActiveRecord::Schema.define(version: 20160920080738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,10 +115,12 @@ ActiveRecord::Schema.define(version: 20160916140156) do
     t.string   "image_sha"
     t.string   "container_sha"
     t.string   "slug"
+    t.integer  "submission_id"
   end
 
   add_index "container_instances", ["docker_configuration_id"], name: "index_container_instances_on_docker_configuration_id", using: :btree
   add_index "container_instances", ["slug"], name: "index_container_instances_on_slug", unique: true, using: :btree
+  add_index "container_instances", ["submission_id"], name: "index_container_instances_on_submission_id", using: :btree
 
   create_table "container_logs", force: :cascade do |t|
     t.integer  "container_instance_id"
@@ -408,6 +410,7 @@ ActiveRecord::Schema.define(version: 20160916140156) do
   add_foreign_key "challenges", "organizers"
   add_foreign_key "comments", "participants"
   add_foreign_key "container_instances", "docker_configurations"
+  add_foreign_key "container_instances", "submissions"
   add_foreign_key "container_logs", "container_instances"
   add_foreign_key "dataset_file_downloads", "dataset_files"
   add_foreign_key "dataset_file_downloads", "participants"

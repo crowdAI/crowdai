@@ -8,12 +8,22 @@
   display: block;
 }
 
-
+/*
 .navbar-underline:hover {
   color: black !important;
   border-bottom: 3px solid;
   border-bottom-color: #FF4E48;
   margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+ */
+
+
+.navbar-underline:hover {
+  color: black !important;
+  border-bottom: 3px solid;
+  border-bottom-color: #FF4E48;
+  margin-bottom: 5px;
   padding-bottom: 10px;
 }
 

@@ -1,9 +1,26 @@
-<li><%= link_to "Knowledge Base", articles_path, class: 'navbar-underline' %></li>
-<li><%= link_to "Challenges", challenges_path, class: 'navbar-underline' %></li>
+<li>
+  <%= link_to articles_path do %>
+    <span class='navbar-underline'>Knowledge Base</span>
+  <% end %>
+</li>
+
+<li>
+  <%= link_to challenges_path do %>
+    <span class='navbar-underline'>Challenges</span>
+  <% end %>
+</li>
 
 <% if current_participant && current_participant.admin? %>
-  <li><%= link_to "Organizers", organizers_path, class: 'navbar-underline' %></li>
-  <li><%= link_to 'Admin', admin_root_path, class: 'navbar-underline' %></li>
+  <li>
+    <%= link_to organizers_path do %>
+      <span class='navbar-underline'>Organizers</span>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to admin_root_path do %>
+      <span class='navbar-underline'>Admin</span>
+    <% end %>
+  </li>
 <% end %>
 
 <% if current_participant && current_participant.organizer_id.present? %>

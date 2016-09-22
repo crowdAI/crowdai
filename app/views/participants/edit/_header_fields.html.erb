@@ -1,11 +1,9 @@
-
 <%= render 'participants/edit/avatar' %>
 
 <%= simple_form_for(@participant) do |f| %>
 <div class="row">
   <div class="col-md-4 col-md-offset-4">
     <%= f.input :name, required: true, placeholder: 'Enter your name' %>
-
 
     <div id="content">
       <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
@@ -29,7 +27,7 @@
     </div>
 
     <% if current_participant.admin? %>
-      <%= f.association :organizer, :include_blank => false, :label_method => lambda { |host| "#{host.organizer}" } %>
+    <%= f.association :organizer, :include_blank => true, :label_method => lambda { |host| "#{host.organizer}" } %>
     <% end %>
     <%= f.input :email, placeholder: 'Email', required: true %>
     <%= f.input :github, placeholder: 'Github' %>
@@ -37,6 +35,7 @@
     <%= f.input :twitter, placeholder: 'Twitter'  %>
     <%= f.input :website, placeholder: 'Website'  %>
     <%= f.button :submit, "Save", class: "btn btn-primary btn-block outline" %>
+  </div>
 </div>
 
 <% end %>

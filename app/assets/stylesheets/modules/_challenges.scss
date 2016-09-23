@@ -2,15 +2,15 @@
 
 .challenge-header {
   background-color: $crowdai-bg-medium-grey;
-  overflow: auto;
-  overflow-x: hidden;
-  @include media(">phone") {
-    padding-top: 60px;
-    padding-left: 150px;
-    padding-right: 150px;
-    height: $crowdai-header-section-height;
-  }
-  @include media("<=phone") {
+  overflow: hidden;;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 150px;
+  padding-right: 150px;
+  height: auto;
+
+
+  @media (max-width: 480px) {
     padding-top: 10px;
     padding-left: 20px;
     padding-right: 20px;
@@ -100,6 +100,7 @@
 .challenge-list-detail {
   margin-bottom: 20px;
   color: $crowdai-text-light;
+  font-size: 14px;
 }
 
 

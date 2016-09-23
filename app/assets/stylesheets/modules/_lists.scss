@@ -1,15 +1,3 @@
-/*
-<div class="list-container">
-  <div class="list-heading">
-    <%= link_to 'Knowledge Base', articles_path %>
-  </div>
-  <ul class="list-items">
-    <% @articles.each do |article| %>
-      <%= render partial: 'articles/index/article', locals: { article: article } %>
-    <% end %>
-  </ul>
-</div>
-*/
 
 
 .list-container {

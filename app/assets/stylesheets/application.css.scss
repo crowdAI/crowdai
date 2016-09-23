@@ -51,3 +51,9 @@ html {
 
 /* constrain images to Bootstrap columns */
 img { max-width: 100%; }
+
+
+/* chrome autofill yellow */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+}

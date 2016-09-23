@@ -10,9 +10,11 @@
   -webkit-transform: rotate(0deg) skewY(0deg);
   -webkit-transform-origin: 50% 10%;
   transform-origin: 50% 10%;
+  font-family: $headings-font-family;
 }
 
 .mini-calendar span {
+  font-family: $headings-font-family;
   color: $crowdai-text-dark !important;
   font-weight: 200;
 }
@@ -28,7 +30,7 @@
 
 .mini-calendar strong {
   position: absolute;
-  font-size: 0.9em;
+  font-size: 12.5px;
   font-weight: 200;
   top: 0;
   padding: 0.05em 0;
@@ -45,7 +47,7 @@
 
 .mini-calendar span {
   width: 100%;
-  font-size: 1.4em;
+  font-size: 20px;
   letter-spacing: -0.05em;
   padding-top: 0.8em;
   color: #2f2f2f;
@@ -67,6 +69,8 @@ div.calendar-container {
   left: 50%;
   top: 30%;
   color: $crowdai-bg-white;
+  font-size: 14px;
+  font-family: $headings-font-family;
 }
 
 .ai-progressbar {
@@ -107,4 +111,6 @@ div.calendar-container {
 .calendar-date {
   padding-top: 10px;
   color: $crowdai-text-light;
+  font-family: $headings-font-family;
+  font-size: 14px;
 }

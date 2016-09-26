@@ -1,50 +1,35 @@
 require 'rails_helper'
 
-RSpec.describe Participant, type: :model do
-  before do
-    @participant = build(:participant)
+describe Participant do
+  context 'associations' do
+    it { should belong_to(:organizer) }
+    it { should have_one(:image) }
+    it { should accept_nested_attributes_for(:image) }
+    it { should have_many(:submissions) }
+    it { should have_many(:posts) }
+    it { should have_many(:votes) }
+    it { should have_many(:comments) }
+    it { should have_many(:articles) }
+    it { should have_many(:leaderboards) }
+    it { should have_many(:ongoing_leaderboards) }
+    it { should have_many(:participant_challenges) }
+    it { should have_many(:dataset_file_downloads) }
   end
 
-  describe 'basic Participant model pre-checks' do
-
-    it 'has a valid participant factory' do
-      participant = build(:participant)
-      expect(participant).to be_valid
-    end
-
-    it 'has a valid admin participant factory' do
-      admin_participant = build(:participant, :admin)
-      expect(admin_participant).to be_valid
-      expect(admin_participant.admin).to be true
-    end
-
-    it 'has enforces minimum password requirements' do |_variable|
-      expect(@participant = build(:participant, password: '1234', password_confirmation: '1234')).to be_invalid
-    end
+  context 'validations' do
+    it { should validate_presence_of(:email) }
+    it { should validate_presence_of(:name) }
+    it { is_expected.to allow_value(Faker::Lorem.characters(8)).for :password }
+    it { is_expected.not_to allow_value(Faker::Lorem.characters(7)).for :password }
+    it { is_expected.to allow_value(Faker::Lorem.characters(72)).for :password }
+    it { is_expected.not_to allow_value(Faker::Lorem.characters(73)).for :password }
   end
 
-  describe 'fields and associations' do
-    subject { @participant }
+  context 'validations with instance variable' do
+    before do
+      @participant = build(:participant)
+    end
 
-    it { should respond_to(:name) }
-    it { should respond_to(:email) }
-    it { should respond_to(:email_public) }
-    it { should respond_to(:password) }
-    it { should respond_to(:password_confirmation) }
-    it { should respond_to(:admin) }
-    it { should respond_to(:city) }
-    it { should respond_to(:country) }
-    it { should respond_to(:bio) }
-    it { should respond_to(:website) }
-    it { should respond_to(:github) }
-    it { should respond_to(:linkedin) }
-    it { should respond_to(:twitter) }
-    it { should respond_to(:organizer) }
-    it { should respond_to(:submissions) }
-    it { should_not be_admin }
-  end
-
-  describe 'specific validations' do
     it "responds to admin? with admin attribute set to 'true'" do
       @participant.admin = true
       @participant.save!
@@ -91,156 +76,83 @@ RSpec.describe Participant, type: :model do
 
       it { should_not be_valid }
     end
-  end
 
-  # === Relations ===
-  it { is_expected.to belong_to :organizer }
-  it { is_expected.to have_one :image }
-  it { is_expected.to have_many :submissions }
-  it { is_expected.to have_many :posts }
+    context 'methods' do
+      describe '#disable_account' do
+        it 'works' do
+          participant = create(:participant)
+          participant.disable_account('A reason')
+          expect(participant.account_disabled).to eq(true)
+          expect(participant.account_disabled_reason).to eq("A reason")
+          expect(participant.inactive_message).to eq("Your account has been disabled. Please contact us at info@crowdai.org.")
+          expect(participant.active_for_authentication?).to be false
+        end
+      end
 
-  # === Nested Attributes ===
-  it { is_expected.to accept_nested_attributes_for :image }
 
-  # === Database (Columns) ===
-  it { is_expected.to have_db_column :id }
-  it { is_expected.to have_db_column :email }
-  it { is_expected.to have_db_column :encrypted_password }
-  it { is_expected.to have_db_column :reset_password_token }
-  it { is_expected.to have_db_column :reset_password_sent_at }
-  it { is_expected.to have_db_column :remember_created_at }
-  it { is_expected.to have_db_column :sign_in_count }
-  it { is_expected.to have_db_column :current_sign_in_at }
-  it { is_expected.to have_db_column :last_sign_in_at }
-  it { is_expected.to have_db_column :current_sign_in_ip }
-  it { is_expected.to have_db_column :last_sign_in_ip }
-  it { is_expected.to have_db_column :confirmation_token }
-  it { is_expected.to have_db_column :confirmed_at }
-  it { is_expected.to have_db_column :confirmation_sent_at }
-  it { is_expected.to have_db_column :failed_attempts }
-  it { is_expected.to have_db_column :unlock_token }
-  it { is_expected.to have_db_column :locked_at }
-  it { is_expected.to have_db_column :admin }
-  it { is_expected.to have_db_column :verified }
-  it { is_expected.to have_db_column :verification_date }
-  it { is_expected.to have_db_column :country }
-  it { is_expected.to have_db_column :city }
-  it { is_expected.to have_db_column :timezone }
-  it { is_expected.to have_db_column :created_at }
-  it { is_expected.to have_db_column :updated_at }
-  it { is_expected.to have_db_column :unconfirmed_email }
-  it { is_expected.to have_db_column :organizer_id }
-  it { is_expected.to have_db_column :name }
-  it { is_expected.to have_db_column :email_public }
-  it { is_expected.to have_db_column :bio }
-  it { is_expected.to have_db_column :website }
-  it { is_expected.to have_db_column :github }
-  it { is_expected.to have_db_column :linkedin }
-  it { is_expected.to have_db_column :twitter }
+      describe '#online?' do
+        it 'works' do
+          participant = create(:participant)
+          expect(participant.online?).to be true
+        end
+      end
 
-  # === Database (Indexes) ===
-  it { is_expected.to have_db_index ["confirmation_token"] }
-  it { is_expected.to have_db_index ["email"] }
-  it { is_expected.to have_db_index ["organizer_id"] }
-  it { is_expected.to have_db_index ["reset_password_token"] }
-  it { is_expected.to have_db_index ["unlock_token"] }
 
-  # === Validations (Length) ===
-  it { is_expected.to allow_value(Faker::Lorem.characters(8)).for :password }
-  it { is_expected.not_to allow_value(Faker::Lorem.characters(7)).for :password }
-  it { is_expected.to allow_value(Faker::Lorem.characters(72)).for :password }
-  it { is_expected.not_to allow_value(Faker::Lorem.characters(73)).for :password }
+      describe '#avatar' do
+        it 'works' do
+          participant = Participant.new
+          result = participant.avatar
+          expect(result).not_to be_nil
+        end
+      end
 
-  # === Validations (Presence) ===
-  context "with conditions" do
-    before do
-      allow(subject).to receive(:email_required?).and_return(true)
+
+      describe '#avatar_medium_url' do
+        it 'works' do
+          participant = Participant.new
+          result = participant.avatar_medium_url
+          expect(result).not_to be_nil
+        end
+      end
+
+      describe '#process_urls' do
+        it 'works' do
+          participant = Participant.new
+          result = participant.process_urls
+          expect(result).not_to be_nil
+        end
+      end
+
+      describe '#format_url' do
+        it 'works for https' do
+          participant = create(:participant, github: 'https://github.com/seanfcarroll')
+          participant.format_url('github')
+          expect(participant.github).to eq('https://github.com/seanfcarroll')
+        end
+
+        it 'works for http' do
+          participant = create(:participant, website: 'http://www.seanfcarroll')
+          participant.format_url('website')
+          expect(participant.website).to eq('http://www.seanfcarroll')
+        end
+
+        it 'works for bare url' do
+          participant = create(:participant, website: 'www.seanfcarroll')
+          participant.format_url('website')
+          expect(participant.website).to eq('http://www.seanfcarroll')
+        end
+      end
+
+      describe '#after_confirmation' do
+        it 'queues AddToMailChimpListJob' do
+          ActiveJob::Base.queue_adapter = :test
+          expect {
+            participant = create(:participant)
+            participant.confirm!
+          }.to have_enqueued_job(AddToMailChimpListJob)
+        end
+      end
     end
 
-    it { is_expected.to validate_presence_of :email }
   end
-
-  it { is_expected.to validate_presence_of :email }
-  context "with conditions" do
-    before do
-      allow(subject).to receive(:password_required?).and_return(true)
-    end
-
-    it { is_expected.to validate_presence_of :password }
-  end
-
-  
-  describe '#active_for_authentication?' do
-    it 'works' do
-      participant = Participant.new
-      result = participant.active_for_authentication?
-      expect(result).not_to be_nil
-    end
-  end
-
-  
-  describe '#inactive_message' do
-    it 'works' do
-      participant = Participant.new
-      result = participant.inactive_message
-      expect(result).not_to be_nil
-    end
-  end
-
-  
-  describe '#online?' do
-    it 'works' do
-      participant = Participant.new
-      result = participant.online?
-      expect(result).not_to be_nil
-    end
-  end
-
-  
-  describe '#avatar' do
-    it 'works' do
-      participant = Participant.new
-      result = participant.avatar
-      expect(result).not_to be_nil
-    end
-  end
-
-  
-  describe '#avatar_medium_url' do
-    it 'works' do
-      participant = Participant.new
-      result = participant.avatar_medium_url
-      expect(result).not_to be_nil
-    end
-  end
-
-  
-  describe '#process_urls' do
-    it 'works' do
-      participant = Participant.new
-      result = participant.process_urls
-      expect(result).not_to be_nil
-    end
-  end
-
-  
-  describe '#format_url' do
-    it 'works' do
-      participant = Participant.new
-      url_field = double('url_field')
-      result = participant.format_url(url_field)
-      expect(result).not_to be_nil
-    end
-  end
-
-  
-  describe '#after_confirmation' do
-    it 'works' do
-      participant = Participant.new
-      result = participant.after_confirmation
-      expect(result).not_to be_nil
-    end
-  end
-
-
 end

@@ -1,20 +1,25 @@
 class Article < ActiveRecord::Base
   include FriendlyId
   friendly_id :article, use: :slugged
+
   belongs_to :participant
+
+  has_one :image, as: :imageable, dependent: :destroy
+  accepts_nested_attributes_for :image, allow_destroy: true
   has_many :votes, as: :votable
   has_paper_trail :ignore => [:view_count, :comment_count]
-
   has_many :comments, as: :commentable
   has_many :article_sections, dependent: :destroy
   accepts_nested_attributes_for :article_sections, reject_if: :all_blank, allow_destroy: true
-  has_one :image, as: :imageable, dependent: :destroy
-  accepts_nested_attributes_for :image, allow_destroy: true
 
   scope :published, -> () { where published: true }
 
-  validates_presence_of :category
-  validates_presence_of :summary
+  validates :participant_id,    presence: true
+  validates :article,           presence: true
+  validates :category,          presence: true
+  validates :summary,           presence: true
+  validates :view_count,        presence: true
+  validates :vote_count,        presence: true
 
 
   CATEGORIES = {

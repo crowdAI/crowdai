@@ -11,10 +11,11 @@ class Submission < ActiveRecord::Base
   has_many :container_instances, dependent: :destroy
 
   as_enum :grading_status, [:ready, :submitted, :graded, :failed], map: :string
-  validates_presence_of :grading_status
 
-  validates_presence_of :docker_configuration_id
-  validates_presence_of :description_markdown
+  validates :participant_id,            presence: true
+  validates :challenge_id,              presence: true
+  validates :grading_status,            presence: true
+  validates :description_markdown,      presence: true
 
 
   APIS = {

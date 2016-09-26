@@ -6,22 +6,25 @@ class Challenge < ActiveRecord::Base
   has_paper_trail :ignore => :page_views
 
   belongs_to :organizer
+
+  has_one :image,                     as: :imageable, dependent: :destroy
+  accepts_nested_attributes_for :image, allow_destroy: true
   has_many :dataset_files,            dependent: :destroy
   has_many :docker_configurations,    dependent: :destroy
   has_many :submission_file_definitions, dependent: :destroy
-  accepts_nested_attributes_for :submission_file_definitions, reject_if: :all_blank, allow_destroy: true
-
+  accepts_nested_attributes_for :submission_file_definitions,
+                                reject_if: :all_blank,
+                                allow_destroy: true
   has_many :events,                   dependent: :destroy
+  accepts_nested_attributes_for :events,
+                                reject_if: :all_blank,
+                                allow_destroy: true
   has_many :submissions,              dependent: :destroy
   has_many :leaderboards,             class_name: 'Leaderboard'
   has_many :ongoing_leaderboards,     class_name: 'OngoingLeaderboard'
   has_many :participant_challenges,   class_name: 'ParticipantChallenge'
   has_many :topics
 
-  has_one :image,                     as: :imageable, dependent: :destroy
-  accepts_nested_attributes_for :image, allow_destroy: true
-
-  accepts_nested_attributes_for :events, reject_if: :all_blank, allow_destroy: true
   # accepts_nested_attributes_for :submissions, reject_if: :all_blank, allow_destroy: true TODO cleanup controller
 
   as_enum :status, [:draft, :running, :completed, :perpetual, :cancelled], map: :string
@@ -31,7 +34,7 @@ class Challenge < ActiveRecord::Base
 
   validates_presence_of :status
   validates_presence_of :challenge
-  validates_presence_of :organizer
+  validates_presence_of :organizer_id
   validates_presence_of :grader
   validates_presence_of :primary_sort_order
   validates_presence_of :grading_factor
@@ -83,6 +86,7 @@ class Challenge < ActiveRecord::Base
       self.license = RenderMarkdown.new.render(license_markdown)
     end
   end
+
 
   def valid_status
     if self.status == :running

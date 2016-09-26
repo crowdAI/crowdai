@@ -1,11 +1,11 @@
 class Event < ActiveRecord::Base
-  belongs_to :challenge
   has_paper_trail
-
-  validates :seq, presence: true
-  validates :event, presence: true
-  validates :event_time, presence: true
+  belongs_to :challenge
 
   default_scope { order('seq') }
 
+  validates :challenge_id,    presence: true
+  validates :seq,             presence: true
+  validates :event,           presence: true
+  validates :event_time,      presence: true
 end

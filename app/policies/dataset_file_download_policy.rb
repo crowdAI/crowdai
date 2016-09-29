@@ -1,0 +1,2 @@
+class DatasetFileDownloadPolicy < ApplicationPolicy
+end

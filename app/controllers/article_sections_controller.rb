@@ -1,6 +1,7 @@
 class ArticleSectionsController < ApplicationController
   before_action :set_article_section, only: [:show, :edit, :update, :destroy]
   before_action :set_article
+  after_action :verify_authorized
   respond_to :js, :html
 
 
@@ -9,6 +10,7 @@ class ArticleSectionsController < ApplicationController
 
   def new
     @article_section = @article.article_sections.build(section: 'new section')
+    authorize @article_section
   end
 
   def edit
@@ -16,6 +18,7 @@ class ArticleSectionsController < ApplicationController
 
   def create
     @article_section = @article.article_sections.create(article_section_params)
+    authorize @article_section
 
     if @article_section.save
       render :js => "window.location.href='"+article_path(@article)+"'"   #force a page reload
@@ -45,6 +48,7 @@ class ArticleSectionsController < ApplicationController
 
     def set_article_section
       @article_section = ArticleSection.friendly.find(params[:id])
+      authorize @article_section
     end
 
     def article_section_params

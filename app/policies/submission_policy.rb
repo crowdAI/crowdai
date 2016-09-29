@@ -1,0 +1,2 @@
+class SubmissionPolicy < ApplicationPolicy
+end 

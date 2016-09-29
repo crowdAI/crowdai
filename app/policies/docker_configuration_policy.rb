@@ -1,0 +1,2 @@
+class DockerConfigurationPolicy < ApplicationPolicy
+end 

@@ -1,6 +1,7 @@
 class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized, except: [:index, :show]
+  before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
   respond_to :html
   respond_to :js
 
@@ -20,6 +21,7 @@ class ChallengesController < ApplicationController
   def new
     @challenge = Challenge.new
     authorize @challenge
+    load_gon
   end
 
 
@@ -62,7 +64,7 @@ class ChallengesController < ApplicationController
     challenge = Challenge.friendly.find(params[:challenge_id])
     authorize challenge
     challenge.submissions.each do |s|
-      SubmissionGraderJob.perform_later(s.id)
+      #SubmissionGraderJob.perform_later(s.id)
     end
     @submission_count = challenge.submissions.count
     render 'challenges/form/regrade_status'
@@ -95,4 +97,12 @@ class ChallengesController < ApplicationController
                     submission_file_definitions_attributes: [:id, :challenge_id, :seq, :submission_file_description, :filetype, :file_required, :submission_file_help_text, :_destroy]
                     )
     end
+
+
+    def set_s3_direct_post
+      @s3_direct_post = S3_BUCKET.presigned_post(key: "answer_files/challenge_#{@challenge.id}_#{SecureRandom.uuid}/${filename}",
+                                                 success_action_status: '201',
+                                                 acl: 'private')
+    end
+
 end

@@ -5,5 +5,5 @@ class DatasetFile < ActiveRecord::Base
 
   validates :challenge_id,          presence: true
   validates :description,           presence: true
-  validates :dataset_file_s3_key,   presence: true
+  #validates :dataset_file_s3_key,   presence: true
 end

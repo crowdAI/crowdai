@@ -1,8 +1,7 @@
 
 $(document).on('ready page:load', function() {
   /* --------------------------------- challenges / edit ---------------------------------------- */
-  if (!_.isEmpty(gon) && gon.rails.controller == 'challenges' && gon.rails.action == 'edit') {
-
+  if (!_.isEmpty(gon) && gon.rails.controller === 'challenges' && (gon.rails.action === 'edit' || gon.rails.action === 'new')) {
     function toggleEvents() {
       if ( $('#challenge_perpetual_challenge').is(':checked')){
         $('.events-configuration').hide();
@@ -11,15 +10,32 @@ $(document).on('ready page:load', function() {
       }
     }
 
-    toggleEvents();  // page load
+    function toggleGrader() {
+      var grader = $('#challenge_grader')[0].value;
+      if (grader === 'f1_logloss') {
+        $('#python-grader').show();
+        $('#docker-grader').hide();
+      } else {
+        $('#python-grader').hide();
+        $('#docker-grader').show();
+      }
+    }
+
+    // initial page load
+    toggleEvents();
+    toggleGrader();
     expandSidebar();
-    $('#challenge_perpetual_challenge')[0].addEventListener('click',toggleEvents);  // user action
+
+    // register events
+    $('#challenge_perpetual_challenge')[0].addEventListener('click',toggleEvents);
+    $('#challenge_grader')[0].addEventListener('change',toggleGrader);
+
   } /* challenges / edit */
 
 
 
   /* --------------------------------- challenges / index --------------------------------------- */
-  if (!_.isEmpty(gon) && gon.rails.controller == 'challenges' && gon.rails.action == 'index') {
+  if (!_.isEmpty(gon) && gon.rails.controller === 'challenges' && gon.rails.action === 'index') {
 
     var container_fluid_height = $('.container-fluid')[0].offsetHeight;
     var viewport_height = $(window).height();
@@ -34,7 +50,7 @@ $(document).on('ready page:load', function() {
 
 
   /* --------------------------------- challenges / show --------------------------------------- */
-  if (!_.isEmpty(gon) && gon.rails.controller == 'challenges' && gon.rails.action == 'show') {
+  if (!_.isEmpty(gon) && gon.rails.controller === 'challenges' && gon.rails.action === 'show') {
 
     adjustProgress(gon.percent_progress);
     adjustText(gon.percent_progress);

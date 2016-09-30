@@ -49,9 +49,9 @@ class DatasetFilesController < ApplicationController
     end
 
     def set_s3_direct_post
-      @s3_direct_post = S3_BUCKET.presigned_post(key: "dataset_files/#{SecureRandom.uuid}/${filename}",
+      @s3_direct_post = S3_BUCKET.presigned_post(key: "dataset_files/challenge_#{@challenge.id}/#{SecureRandom.uuid}_${filename}",
                                                  success_action_status: '201',
-                                                 acl: 'public-read')
+                                                 acl: 'private')
     end
 
     def authenticate_admin

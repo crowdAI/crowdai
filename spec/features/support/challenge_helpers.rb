@@ -39,9 +39,6 @@ module ChallengeHelpers
     find('#resources-tab').click
     find('#challenge_resources_markdown').set(challenge_data.resources_markdown)
 
-    find('#timeline-tab').click
-    check('Perpetual challenge')
-
     find('#submission-instructions-tab').click
     find('#challenge_submission_instructions_markdown').set(challenge_data.submission_instructions_markdown)
   end

@@ -4,10 +4,10 @@
     <div class='col-md-12 text-center'>
       <%= simple_form_for @participant, html: { id: 'avatar-form' } do |f| %>
         <%= f.error_notification %>
-        <%= f.simple_fields_for :image, @participant.image.presence || Image.new do |avatar_fields| %>
-          <%= avatar_fields.error_notification %>
+        <%= f.simple_fields_for :image, @participant.image.presence || Image.new do |avatar| %>
+          <%= avatar.error_notification %>
 
-          <%= avatar_fields.label :image do %>
+          <%= avatar.label :image do %>
             <img src="<%= avatar_medium_url(@participant) %>"/>
           <% end %>
 

@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/derekprior/momentjs-rails.git
+  revision: fa8ac4899554775945704fd6b7a7b3c5ce1bde17
+  specs:
+    momentjs-rails (2.15.1)
+      railties (>= 3.1)
+
+GIT
   remote: git://github.com/seanfcarroll/quiet_assets.git
   revision: 9d293b9e385d632c1270096d0b47fd16deebdc0c
   branch: master
@@ -16,6 +23,15 @@ GIT
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (~> 0.3.0)
+
+GIT
+  remote: git://github.com/zpaulovics/datetimepicker-rails.git
+  revision: 36d21cec5da7f5b214925804f60e63c61c747023
+  branch: master
+  submodules: true
+  specs:
+    datetimepicker-rails (4.7.16)
+      momentjs-rails (>= 2.9.0)
 
 GEM
   remote: https://rubygems.org/
@@ -383,8 +399,6 @@ GEM
     mimemagic (0.3.1)
     mini_portile2 (2.1.0)
     minitest (5.9.1)
-    momentjs-rails (2.11.1)
-      railties (>= 3.1)
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -641,6 +655,7 @@ DEPENDENCIES
   cocoon
   country_select
   database_cleaner
+  datetimepicker-rails!
   devise
   docker-api
   excon
@@ -667,6 +682,7 @@ DEPENDENCIES
   lodash-rails
   mandrill-api
   mandrill_mailer
+  momentjs-rails (~> 2.9)!
   net-ssh
   paper_trail
   paperclip!

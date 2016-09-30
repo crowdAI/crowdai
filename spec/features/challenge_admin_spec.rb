@@ -23,19 +23,27 @@ feature 'Challenge CRUD for admin user', js: true do
       enter_challenge_without_timeline(challenge_data)
 
       find('#timeline-tab').click
+
+      # event 0
       click_link 'Add Milestone'
       fill_in 'Seq',          with: '0'
       fill_in 'Event',        with: 'Start of event'
+      fill_in 'Event time',   with: '24/08/2016 08:01'
 
+      # event 1
       click_link 'Add Milestone'
+
       seq_fields = page.all('input[id^="challenge_events_attributes_"][id$="_seq"]')
       seq_fields[1].set('1')
 
       event_fields = page.all('input[id^="challenge_events_attributes_"][id$="_event"]')
       event_fields[1].set('End of event')
-      #sleep(5)
+
+      date_fields = page.all('input[id^="challenge_events_attributes_"][id$="_event_time"]')
+      date_fields[1].set('24/10/2016 17:00')
 
       click_button 'Create Challenge'
+
       expect(page).to have_content "Challenge was successfully created."
     end
 
@@ -51,10 +59,9 @@ feature 'Challenge CRUD for admin user', js: true do
       click_link 'Add file'
       fill_in 'Seq',                with: '1'
       fill_in 'Description',        with: 'Test Filename'
-      #find('#dataset_file_dataset_file_s3_key').click
       attach_file('dataset_file_dataset_file_s3_key', Rails.root + 'spec/support/files/test_text_file.txt')
       expect(page).not_to have_content "failed"
-      click_button "Create File"  # TODO
+      click_button "Create File"
     end
 
     scenario "challenge admin must configure a grading method" do
@@ -63,7 +70,7 @@ feature 'Challenge CRUD for admin user', js: true do
       click_link 'Evaluation'
       select 'F1 logloss',              from: 'Grader'
       fill_in 'Grading factor',         with: '0.3'
-      fill_in 'Answer file s3 key',     with: 'answer_files/plant_village_answers.csv'
+      attach_file('answer_file_s3_key', Rails.root + 'spec/support/files/test_csv_file.csv')
       fill_in 'Primary score title',    with: 'Mean F1'
       fill_in 'Secondary score title',  with: 'Mean Log loss'
       click_button 'Update Challenge'

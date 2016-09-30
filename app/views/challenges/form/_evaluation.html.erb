@@ -1,26 +1,78 @@
 <div role="tabpanel" class="tab-pane" id="evaluation">
   <h2>Evaluation</h2>
+
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-12">
+      <div class='pull-right'>
+        <div id='regrade-status'>
+            <%= link_to("Re-grade",
+                    challenge_regrade_path(challenge),
+                    class: 'button',
+                    remote: true,
+                    data: { confirm: 'Are you sure you want to re-grade all submissions?' },
+                    class: 'btn btn-primary outline' ) %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-4">
       <%= f.input :grader, collection: enum_option_pairs(Challenge, :grader), include_blank: false %>
+    </div>
+    <div class='col-md-4 col-md-offset-4'>
+      <%= f.input :automatic_grading %>
+    </div>
+  </div>
+
+  <div id='python-grader'>
+    <div class="row">
+      <div class='col-md-4'>
+        <%= f.input :grading_factor %>
+      </div>
+      <div class='col-md-4'>
+        <%= f.label 'Answer File' %><br/>
+        <% if f.object.answer_file_s3_key %>
+          <%= link_to s3_filename(f.object.answer_file_s3_key),
+                      s3_expiring_url(f.object.answer_file_s3_key),
+                      class: 'expiring-url' %>
+        <% else %>
+          No answer file uploaded.
+        <% end %>
+      </div>
+      <div class='col-md-4'>
+        <%= f.input :answer_file_s3_key, as: :file, input_html: {class: 's3File' }, label: false %>
+      </div>
+    </div>
+  </div>
+
+  <div id='docker-grader'>
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <h5>Docker Container grader configuration is found in the Docker tab.</h5>
+      </div>
+    </div>
+  </div>
+
+
+  </div>
+  <hr/>
+
+  <div class="row">
+    <div class="col-md-4">
       <%= f.input :score_title, label: "Primary score title" %>
       <%= f.input :score_secondary_title, label: "Secondary score title" %>
     </div>
     <div class="col-md-3">
-      <%= f.input :grading_factor %>
       <%= f.input :primary_sort_order, label: "Sort order", collection: enum_option_pairs(Challenge, :primary_sort_order), include_blank: false %>
       <%= f.input :secondary_sort_order, label: "Sort order", collection: enum_option_pairs(Challenge, :secondary_sort_order), include_blank: false %>
     </div>
     <div class="col-md-3">
-      <%= f.input :answer_file_s3_key %>
-      <%= f.input :automatic_grading %>
+
     </div>
     <div class='col-md-3'>
-      <%= link_to("Re-grade", challenge_regrade_path(@challenge), class: 'button',
-                                                                  remote: true,
-                                                                  data: { confirm: 'Are you sure you want to re-grade all submissions?' },
-                                                                  class: 'btn btn-primary outline' ) %>
-      <div id='regrade-status'></div>
+
     </div>
   </div>
 

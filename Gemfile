@@ -59,6 +59,11 @@ gem 'browser'
 # css
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
+gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+
+
+
 gem 'font-awesome-rails'
 gem 'include_media_rails'
 

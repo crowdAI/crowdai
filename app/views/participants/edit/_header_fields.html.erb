@@ -27,7 +27,7 @@
     </div>
 
     <% if current_participant.admin? %>
-    <%= f.association :organizer, :include_blank => true, :label_method => lambda { |host| "#{host.organizer}" } %>
+      <%= f.association :organizer, :include_blank => true, :label_method => lambda { |host| "#{host.organizer}" } %>
     <% end %>
     <%= f.input :email, placeholder: 'Email', required: true %>
     <%= f.input :github, placeholder: 'Github' %>

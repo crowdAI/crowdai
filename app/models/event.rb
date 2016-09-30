@@ -4,7 +4,6 @@ class Event < ActiveRecord::Base
 
   default_scope { order('seq') }
 
-  validates :challenge_id,    presence: true
   validates :seq,             presence: true
   validates :event,           presence: true
   validates :event_time,      presence: true

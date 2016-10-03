@@ -100,7 +100,7 @@ class ChallengesController < ApplicationController
 
 
     def set_s3_direct_post
-      @s3_direct_post = S3_BUCKET.presigned_post(key: "answer_files/challenge_#{@challenge.id}_#{SecureRandom.uuid}/${filename}",
+      @s3_direct_post = S3_BUCKET.presigned_post(key: "answer_files/#{SecureRandom.uuid}/${filename}",
                                                  success_action_status: '201',
                                                  acl: 'private')
     end

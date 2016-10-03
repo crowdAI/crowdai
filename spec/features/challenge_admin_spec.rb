@@ -43,7 +43,6 @@ feature 'Challenge CRUD for admin user', js: true do
       date_fields[1].set('24/10/2016 17:00')
 
       click_button 'Create Challenge'
-
       expect(page).to have_content "Challenge was successfully created."
     end
 
@@ -70,7 +69,7 @@ feature 'Challenge CRUD for admin user', js: true do
       click_link 'Evaluation'
       select 'F1 logloss',              from: 'Grader'
       fill_in 'Grading factor',         with: '0.3'
-      attach_file('answer_file_s3_key', Rails.root + 'spec/support/files/test_csv_file.csv')
+      attach_file('challenge_answer_file_s3_key', Rails.root + 'spec/support/files/test_csv_file.csv')
       fill_in 'Primary score title',    with: 'Mean F1'
       fill_in 'Secondary score title',  with: 'Mean Log loss'
       click_button 'Update Challenge'
@@ -81,7 +80,7 @@ feature 'Challenge CRUD for admin user', js: true do
 
   describe "validate challenge statuses" do
     before(:example) do
-      visit_landing_page(admin  )
+      visit_landing_page(admin)
       visit organizer_path(organizer)
       click_link '+ New Challenge'
       enter_challenge_with_timeline(challenge_data)
@@ -112,35 +111,47 @@ feature 'Challenge CRUD for admin user', js: true do
 
     scenario "a draft challenge can have datasets added" do
       click_button 'Create Challenge'
-      find('#glyphicon-link-dataset').click
-      click_link 'Add file'
-      fill_in 'Seq', with: '0'
-      fill_in 'Description', with: "test file"
-      attach_file('Dataset file s3 key', Rails.root + 'spec/support/files/test_csv_file.csv')
-      expect(page).to have_content("File uploaded")
-      click_button 'Create File'
+      add_dataset_file
       expect(page).to have_content("Dataset file was successfully created.")
     end
 
     scenario "a challenge with datasets can move from draft to running" do
+      click_button 'Create Challenge'
+      add_dataset_file
       find('#glyphicon-link-edit').click
       find('#overview-tab').click
       select 'Running', from: 'Status'
-      click_button 'Create Challenge'
+      click_button 'Update Challenge'
       expect(page).to have_content "Challenge was successfully updated."
     end
 
     scenario "challenge can move from running to cancelled" do
+      click_button 'Create Challenge'
+      add_dataset_file
+      find('#glyphicon-link-edit').click
+      find('#overview-tab').click
+      select 'Running', from: 'Status'
+      click_button 'Update Challenge'
+
+      find('#glyphicon-link-edit').click
       find('#overview-tab').click
       select 'Cancelled', from: 'Status'
-      click_button 'Create Challenge'
+      click_button 'Update Challenge'
       expect(page).to have_content "Challenge was successfully updated."
     end
 
     scenario "challenge can move from running to completed" do
+      click_button 'Create Challenge'
+      add_dataset_file
+      find('#glyphicon-link-edit').click
+      find('#overview-tab').click
+      select 'Running', from: 'Status'
+      click_button 'Update Challenge'
+
+      find('#glyphicon-link-edit').click
       find('#overview-tab').click
       select 'Completed', from: 'Status'
-      click_button 'Create Challenge'
+      click_button 'Update Challenge'
       expect(page).to have_content "Challenge was successfully updated."
     end
 

@@ -24,7 +24,7 @@ Capybara.register_driver :chrome do |app|
 end
 Capybara.current_driver = :chrome
 Capybara.javascript_driver = :chrome
-#Capybara.server_port = 52508
+Capybara.server_port = 52508  # port registered with Amazon S3 CORS config
 Capybara::Screenshot.register_driver(:chrome) do |driver, path|
   filename = File.basename(path)
   driver.browser.save_screenshot("#{Rails.root}/tmp/capybara/#{filename}")

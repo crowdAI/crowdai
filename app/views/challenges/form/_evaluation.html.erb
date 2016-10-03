@@ -5,17 +5,19 @@
     <div class="col-md-12">
       <div class='pull-right'>
         <div id='regrade-status'>
-            <%= link_to("Re-grade",
+            <% if @challenge.status == :running || @challenge.status == :completed %>
+              <%= link_to("Re-grade",
                     challenge_regrade_path(challenge),
-                    class: 'button',
                     remote: true,
                     data: { confirm: 'Are you sure you want to re-grade all submissions?' },
                     class: 'btn btn-primary outline' ) %>
+            <% else %>
+              <%= link_to "Re-grade", '#', class: 'btn btn-primary outline disabled' %>
+            <% end %>
         </div>
       </div>
     </div>
   </div>
-
 
   <div class="row">
     <div class="col-md-4">
@@ -33,7 +35,7 @@
       </div>
       <div class='col-md-4'>
         <%= f.label 'Answer File' %><br/>
-        <% if f.object.answer_file_s3_key %>
+        <% if f.object.answer_file_s3_key.nil? %>
           <%= link_to s3_filename(f.object.answer_file_s3_key),
                       s3_expiring_url(f.object.answer_file_s3_key),
                       class: 'expiring-url' %>
@@ -55,8 +57,6 @@
     </div>
   </div>
 
-
-  </div>
   <hr/>
 
   <div class="row">

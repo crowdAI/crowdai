@@ -5,9 +5,14 @@ class Topic < ActiveRecord::Base
   belongs_to :challenge
   belongs_to :participant
   has_many :posts, dependent: :destroy
+
   default_scope { order('sticky desc') }
 
-  validates :topic, presence: true, length: { maximum: 255 }
+
+  validates :challenge_id,    presence: true
+  validates :participant_id,  presence: true
+  validates :topic,           presence: true,
+                              length: { maximum: 255 }
 
 
   def last_activity

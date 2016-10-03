@@ -6,4 +6,7 @@ class ContainerInstance < ActiveRecord::Base
   as_enum :status, [:initialized, :built, :started, :error, :deleted, :completed], map: :string
 
   default_scope { order('id DESC') }
+
+  validates :status,                    presence: true
+  validates :docker_configuration_id,   presence: true
 end

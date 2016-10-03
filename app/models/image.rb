@@ -1,6 +1,6 @@
 class Image < ActiveRecord::Base
-  belongs_to :imageable, polymorphic: true
   has_paper_trail
+  belongs_to :imageable, polymorphic: true
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
   has_attached_file :image,
@@ -14,8 +14,10 @@ class Image < ActiveRecord::Base
     :thumb => "-quality 90 -strip",
     :medium => "-quality 90 -strip",
   }
-
-  validates_attachment :image, presence: true, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+  validates_attachment :image,
+                        presence: true,
+                        content_type:
+                            { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
 
   def cropping?

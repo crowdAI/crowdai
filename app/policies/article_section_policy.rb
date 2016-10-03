@@ -1,0 +1,2 @@
+class ArticleSectionPolicy < ArticlePolicy
+end

@@ -1,0 +1,2 @@
+class LeaderboardPolicy < ApplicationPolicy
+end 

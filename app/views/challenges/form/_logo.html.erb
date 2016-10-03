@@ -4,21 +4,15 @@
   <div class="row">
     <div class='col-md-6'>
 
-        <%= f.error_notification %>
         <%= f.simple_fields_for :image, @challenge.image.presence || Image.new do |image| %>
           <%= image.error_notification %>
-          <div>
-            <img src="<%= image_medium_url(@challenge) %>"/>
-          </div>
 
-          <% if @challenge.image.present? %>
-            <%= image.check_box '_destroy' %> remove
+          <%= image.label :image do %>
+            <img src="<%= image_medium_url(@challenge) %>"/>
           <% end %>
 
-          <span class="btn btn-primary outline">
-              Browse <%= image.file_field :image %>
-          </span>
-
+          <%= image.file_field :image, class: 'upload-btn' %>
+          <br/>
 
         <% end %>
         <%=  f.button :submit, "Update Logo", class: "btn btn-primary outline" %>

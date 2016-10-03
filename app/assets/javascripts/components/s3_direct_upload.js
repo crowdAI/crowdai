@@ -22,8 +22,6 @@ $(function() {
       add: function(e, data) {
         var modelFile = $('.s3File')[0].files[0];
         if (modelFile && modelFile.size > 681574400 ) {
-          console.log("file type " + modelFile.type)
-          console.log("file is too big " + modelFile.size);
           submitButton.prop('disabled', false);
           progressBar
             .css("background", "red")
@@ -55,7 +53,6 @@ $(function() {
         // create hidden field
         var input = $("<input />", { type:'hidden', name: fileInput.attr('name'), value: key })
         form.append(input);
-        console.log("removing: " + elem);
         elem.remove();
       },
 

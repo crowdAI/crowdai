@@ -1,0 +1,2 @@
+class ParticipantPolicy < ApplicationPolicy
+end 

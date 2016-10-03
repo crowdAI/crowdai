@@ -1,27 +1,20 @@
 require 'rails_helper'
 
-RSpec.describe Post, type: :model do
-  # === Relations ===
-  it { is_expected.to belong_to :topic }
-  it { is_expected.to belong_to :participant }
+describe Post do
+  context 'associations' do
+    it { should belong_to(:topic) }
+    it { should belong_to(:participant) }
+    it { should have_many(:votes) }
+  end
 
+  context 'indexes' do
+    it { should have_db_index ["topic_id"] }
+    it { should have_db_index ["participant_id"] }
+  end
 
-
-  # === Nested Attributes ===
-
-
-  # === Database (Columns) ===
-  it { is_expected.to have_db_column :id }
-  it { is_expected.to have_db_column :topic_id }
-  it { is_expected.to have_db_column :participant_id }
-  it { is_expected.to have_db_column :post }
-  it { is_expected.to have_db_column :vote_count }
-  it { is_expected.to have_db_column :flagged }
-  it { is_expected.to have_db_column :notify }
-  it { is_expected.to have_db_column :created_at }
-  it { is_expected.to have_db_column :updated_at }
-
-  # === Database (Indexes) ===
-  it { is_expected.to have_db_index ["topic_id"] }
-  it { is_expected.to have_db_index ["participant_id"] }
+  context 'validations' do
+    it { should validate_presence_of(:topic_id) }
+    it { should validate_presence_of(:participant_id) }
+    it { should validate_presence_of(:vote_count) }
+  end
 end

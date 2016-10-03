@@ -166,3 +166,10 @@ SimpleForm.setup do |config|
   # Defines which i18n scope will be used in Simple Form.
   # config.i18n_scope = 'simple_form'
 end
+
+# show long form of errors
+module SimpleForm::Components::Errors
+  def errors_on_attribute
+    object.errors.full_messages_for(attribute_name)
+  end
+end

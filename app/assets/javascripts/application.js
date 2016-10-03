@@ -32,6 +32,10 @@
 //= require components/flash_messages
 //= require components/sorttable
 
+//= require moment
+//= require bootstrap-datetimepicker
+//= require pickers
+
 // modules
 //= require modules/dataset_file_downloads
 //= require modules/devise

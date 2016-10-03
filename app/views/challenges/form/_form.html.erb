@@ -31,9 +31,9 @@
     </li>
     <li role="presentation">
       <% if @challenge.persisted? %>
-        <%= link_to 'Docker', challenge_docker_configurations_path(@challenge) %>
-      <% else %>
-        <%= link_to 'Docker', '#' %>
+      <%= link_to 'Docker', challenge_docker_configurations_path(@challenge) %>
+    <% else %>
+      <%= link_to 'Docker', '#' %>
       <% end %>
     </li>
   </ul>
@@ -42,27 +42,35 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
 
-      <%= simple_form_for @challenge do |f| %>
-      <br/>
-      <%= f.error_notification %>
+      <%= simple_form_for @challenge,
+                          html: { class: "directUpload" },
+                          data: { 'form-data' => (@s3_direct_post.fields),
+                                'url' => @s3_direct_post.url,
+                                'host' => URI.parse(@s3_direct_post.url).host } do |f| %>
+
       <div class="has-error">
-        <%= f.error :base %>
+        <% if f.object.errors.any? %>
+          <br/>
+          <% f.object.errors.full_messages.each do |msg| %>
+            <div class='alert alert-danger'><%= msg %></div>
+          <% end %>
+        <% end %>
       </div>
 
-        <%= f.hidden_field :organizer_id, value: current_participant.organizer_id %>
+      <%= f.hidden_field :organizer_id, value: current_participant.organizer_id %>
 
-        <!-- Tab panes -->
-        <div class="tab-content">
-          <%= render 'challenges/form/overview', f: f %>
-          <%= render 'challenges/form/logo', f: f %>
-          <%= render 'challenges/form/evaluation', f: f %>
-          <%= render 'challenges/form/rules', f: f %>
-          <%= render 'challenges/form/prizes', f: f %>
-          <%= render 'challenges/form/resources', f: f %>
-          <%= render 'challenges/form/event', f: f %>
-          <%= render 'challenges/form/submission_instructions', f: f %>
-          <%= render 'challenges/form/dataset_configuration', f: f %>
-        </div>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <%= render 'challenges/form/overview', f: f %>
+        <%= render 'challenges/form/logo', f: f %>
+        <%= render 'challenges/form/evaluation', f: f, challenge: @challenge %>
+        <%= render 'challenges/form/rules', f: f %>
+        <%= render 'challenges/form/prizes', f: f %>
+        <%= render 'challenges/form/resources', f: f %>
+        <%= render 'challenges/form/event', f: f %>
+        <%= render 'challenges/form/submission_instructions', f: f %>
+        <%= render 'challenges/form/dataset_configuration', f: f %>
+      </div>
       <% end %>
 
     </div>

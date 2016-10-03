@@ -1,8 +1,10 @@
 class SubmissionGrade < ActiveRecord::Base
-  after_save :update_submission
   belongs_to :submission
+  after_save :update_submission
 
   as_enum :grading_status, [:ready, :submitted, :graded, :failed], map: :string
+
+  validates :submission_id, presence: true
 
   def update_submission
     Submission.update(self.submission_id,

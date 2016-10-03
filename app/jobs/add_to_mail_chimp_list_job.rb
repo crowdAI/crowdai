@@ -13,6 +13,7 @@ class AddToMailChimpListJob < ActiveJob::Base
                                  merge_fields: { FNAME: participant.name }})
     rescue Exception => e
       if e.message =~ /ooks fake or invalid, please enter a real email address/
+        participant.disable_account('MailChimp rejected email as a fake address')
         disable_account(participant_id,'MailChimp rejected email as a fake address')
       end
     end
@@ -20,11 +21,6 @@ class AddToMailChimpListJob < ActiveJob::Base
   end
 
 
-  def disable_account(participant_id,reason)
-    Participant.update(participant_id,
-                      account_disabled: true,
-               account_disabled_reason: reason,
-                 account_disabled_dttm: Time.now )
-  end
+
 
 end

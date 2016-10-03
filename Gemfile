@@ -59,6 +59,11 @@ gem 'browser'
 # css
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
+gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+
+
+
 gem 'font-awesome-rails'
 gem 'include_media_rails'
 
@@ -126,7 +131,7 @@ group :development, :test do
   gem 'faker'
   gem 'spring'
   gem 'table_print'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.5'
   gem 'rspec-kickstarter'
   gem 'to_factory'
   gem 'traceroute'

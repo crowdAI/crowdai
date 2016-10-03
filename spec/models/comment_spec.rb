@@ -1,5 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe Comment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Comment do
+  context 'associations' do
+    it { should belong_to(:commentable) }
+    it { should belong_to(:participant) }
+  end
+
+  context 'methods' do
+    pending "comments are currently not implemented"
+  end
 end

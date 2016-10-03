@@ -14,15 +14,15 @@ module VotesHelper
 
 
   def guest_link(votable)
-    link_to "#{awesome_icon_tag('star-o fa-2x')} #{votable.vote_count}".html_safe, new_participant_session_path
+    link_to "#{awesome_icon_tag('star-o fa-2x')} #{votable.vote_count}".html_safe, new_participant_session_path, id: "vote-link-#{votable.id}"
   end
 
   def upvote_link(votable)
-    link_to "#{awesome_icon_tag('star-o fa-2x')} #{votable.vote_count}".html_safe, eval(create_vote_path(votable)), method: :post, remote: true
+    link_to "#{awesome_icon_tag('star-o fa-2x')} #{votable.vote_count}".html_safe, eval(create_vote_path(votable)), method: :post, remote: true, id: "vote-link-#{votable.id}"
   end
 
   def downvote_link(votable, vote_id)
-    link_to "#{awesome_icon_tag('star fa-2x')} #{votable.vote_count}".html_safe, eval(destroy_vote_path(votable, vote_id)), method: :delete, remote: true
+    link_to "#{awesome_icon_tag('star fa-2x')} #{votable.vote_count}".html_safe, eval(destroy_vote_path(votable, vote_id)), method: :delete, remote: true, id: "vote-link-#{votable.id}"
   end
 
   def participant_vote_id(votable)

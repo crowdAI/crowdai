@@ -1,13 +1,11 @@
 require 'rails_helper'
 require 'sanitize'
 
+
 feature "site navigation for signed in participant", js: true do
 
   let!(:challenge) { create(:challenge, :with_events) }
   let!(:participant) { create(:participant) }
-
-  # http://ios-driver.github.io/ios-driver/?page=native
-  # https://github.com/appium/appium_capybara
 
 
   describe "authenticated landing page" do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160926105014) do
+ActiveRecord::Schema.define(version: 20161004094606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -304,9 +304,11 @@ ActiveRecord::Schema.define(version: 20160926105014) do
     t.text     "submission_file_help_text"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
+    t.integer  "submission_id"
   end
 
   add_index "submission_file_definitions", ["challenge_id"], name: "index_submission_file_definitions_on_challenge_id", using: :btree
+  add_index "submission_file_definitions", ["submission_id"], name: "index_submission_file_definitions_on_submission_id", using: :btree
 
   create_table "submission_files", force: :cascade do |t|
     t.integer  "submission_id"

@@ -11,8 +11,6 @@ describe DatasetFile do
   end
 
   context 'validations' do
-    it { should validate_presence_of(:challenge_id) }
     it { should validate_presence_of(:description) }
-    it { should validate_presence_of(:dataset_file_s3_key) }
   end
 end

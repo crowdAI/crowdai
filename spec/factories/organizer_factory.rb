@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :organizer, class: Organizer do
-    organizer  "First Organizer"
-    address 'Campus Biotech, Geneva'
-    description "Epidemiology, literally the “study of what is upon people”, is concerned with the dynamics of health and disease in human populations."
+    organizer  Faker::Lorem.sentence(3)
+    address Faker::Lorem.sentence(3)
+    description Faker::Lorem.sentence(20)
     approved true
 
     trait :invalid do
@@ -14,9 +14,7 @@ FactoryGirl.define do
     end
 
     trait :second_organizer do
-      organizer "Second Organizer"
+      organizer Faker::Lorem.sentence(3)
     end
-
-
   end
 end

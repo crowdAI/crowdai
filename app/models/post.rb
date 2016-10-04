@@ -5,7 +5,5 @@ class Post < ActiveRecord::Base
   belongs_to :participant
   has_many :votes, as: :votable
 
-  validates :topic_id, presence: true
-  validates :participant_id, presence: true
   validates :vote_count, presence: true
 end

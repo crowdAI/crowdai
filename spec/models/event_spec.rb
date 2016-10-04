@@ -10,7 +10,6 @@ describe Event do
   end
 
   context 'validations' do
-    it { should validate_presence_of(:challenge_id) }
     it { should validate_presence_of(:seq) }
     it { should validate_presence_of(:event) }
     it { should validate_presence_of(:event_time) }

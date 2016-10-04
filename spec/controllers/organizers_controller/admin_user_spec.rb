@@ -8,6 +8,7 @@ RSpec.describe OrganizersController, type: :controller do
   context 'admin user' do
     before { sign_in admin }
 
+=begin
     describe 'GET #index' do
       before { get :index }
       it "assigns all organizers" do
@@ -15,6 +16,7 @@ RSpec.describe OrganizersController, type: :controller do
       end
       it { expect(response).to render_template :index }
     end
+=end
 
     describe 'GET #show' do
       before { get :show, id: other_organizer.to_param }

@@ -90,39 +90,6 @@ describe Participant do
       end
 
 
-      describe '#online?' do
-        it 'works' do
-          participant = create(:participant)
-          expect(participant.online?).to be true
-        end
-      end
-
-
-      describe '#avatar' do
-        it 'works' do
-          participant = Participant.new
-          result = participant.avatar
-          expect(result).not_to be_nil
-        end
-      end
-
-
-      describe '#avatar_medium_url' do
-        it 'works' do
-          participant = Participant.new
-          result = participant.avatar_medium_url
-          expect(result).not_to be_nil
-        end
-      end
-
-      describe '#process_urls' do
-        it 'works' do
-          participant = Participant.new
-          result = participant.process_urls
-          expect(result).not_to be_nil
-        end
-      end
-
       describe '#format_url' do
         it 'works for https' do
           participant = create(:participant, github: 'https://github.com/seanfcarroll')
@@ -136,22 +103,8 @@ describe Participant do
           expect(participant.website).to eq('http://www.seanfcarroll')
         end
 
-        it 'works for bare url' do
-          participant = create(:participant, website: 'www.seanfcarroll')
-          participant.format_url('website')
-          expect(participant.website).to eq('http://www.seanfcarroll')
-        end
       end
 
-      describe '#after_confirmation' do
-        it 'queues AddToMailChimpListJob' do
-          ActiveJob::Base.queue_adapter = :test
-          expect {
-            participant = create(:participant)
-            participant.confirm!
-          }.to have_enqueued_job(AddToMailChimpListJob)
-        end
-      end
     end
 
   end

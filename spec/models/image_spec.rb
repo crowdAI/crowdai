@@ -9,47 +9,16 @@ describe Image do
     it { is_expected.to have_db_index ["imageable_type", "imageable_id"] }
   end
 
-  context 'methods' do
-    describe '#cropping?' do
-      it 'works' do
-        image = Image.new
-        result = image.cropping?
-        expect(result).not_to be_nil
-      end
+  describe "An Image instance" do
+      let(:image) { create :image, image: File.new("#{Rails.root}/spec/support/files/p_image5.jpg") }
+      it { expect(image).to be_valid }
+      it { expect(image.get_true_size).to eql "500.0,375.0" }
     end
 
-    describe '#freshly_uploaded_avatar?' do
-      it 'works' do
-        image = Image.new
-        result = image.freshly_uploaded_avatar?
-        expect(result).not_to be_nil
-      end
+    describe "An Avatar instance" do
+      let(:participant) { create :participant }
+      let(:image) { create :image, imageable: participant }
+      it { expect(image).to be_freshly_uploaded_avatar }
     end
-
-
-    describe '#get_true_size' do
-      it 'works' do
-        image = Image.new
-        result = image.get_true_size
-        expect(result).not_to be_nil
-      end
-    end
-
-    describe '#do_crop_reprocess' do
-      it 'works' do
-        image = Image.new
-        result = image.do_crop_reprocess
-        expect(result).not_to be_nil
-      end
-    end
-
-    describe '#do_avatar_reprocess' do
-      it 'works' do
-        image = Image.new
-        result = image.do_avatar_reprocess
-        expect(result).not_to be_nil
-      end
-    end
-  end
 
 end

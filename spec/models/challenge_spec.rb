@@ -94,11 +94,31 @@ describe Challenge do
 
     describe '#valid_status' do
       it 'does not allow a challenge to be running without dataset files' do
-        c = create(:challenge)
-        expect{c.update!(status_cd: 'running')}.to raise_error(ActiveRecord::RecordInvalid)
+        challenge = create(:challenge)
+        expect {
+          challenge.update!(status: :running)
+        }.to raise_error(ActiveRecord::RecordInvalid)
       end
-      it 'only permits a running challenge to be cancelled' do
-        pending "currently not tested"
+
+      it 'prevents a draft challenge being cancelled' do
+        challenge = create(:challenge, :draft_with_milestone)
+        expect {
+          challenge.update!(status: :cancelled)
+        }.to raise_error(ActiveRecord::RecordInvalid)
+      end
+
+      it 'prevents a completed challenge being cancelled' do
+        challenge = create(:challenge, :draft_with_milestone)
+        expect {
+          challenge.update!(status: :completed)
+          challenge.update!(status: :cancelled)
+        }.to raise_error(ActiveRecord::RecordInvalid)
+      end
+
+      it 'permits a running challenge to be cancelled' do
+        challenge = create(:challenge, :with_events)
+        challenge.update!(status: :cancelled)
+        expect(challenge.status).to eq(:cancelled)
       end
     end
 

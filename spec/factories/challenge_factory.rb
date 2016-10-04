@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :challenge, class: Challenge do
     organizer { FactoryGirl.create :organizer }
-    challenge 'Draft Challenge'
-    tagline 'Challenge tagline'
-    status_cd 'draft'
+    challenge Faker::Lorem.sentence(3)
+    tagline Faker::Lorem.sentence(3)
+    status :draft
     description_markdown "### The description"
     evaluation_markdown "# An evaluation"
     rules_markdown "Some *rules*"
@@ -24,22 +24,38 @@ FactoryGirl.define do
 
     trait :with_events do
       challenge "Running Challenge"
-      status_cd 'running'
+      status :running
       events { [ build(:event, event_time: 2.days.ago),
                 build(:event, event_time: 2.days.since) ] }
       dataset_files {[ build(:dataset_file) ]}
     end
 
     trait :with_milestone do
-      status_cd 'running'
-      events { [ build(:event, event_time: 2.days.ago),
-                 build(:event, event_time: 1.day.ago),
-                 build(:event, event_time: 2.days.since) ] }
+      status :running
+      events { [ build(:event, event_time: 2.weeks.ago),
+                 build(:event, event_time: 1.week.ago),
+                 build(:event, event_time: 2.weeks.since) ] }
+      dataset_files {[ build(:dataset_file) ]}
+    end
+
+    trait :future do
+      status :running
+      events { [ build(:event, event_time: 2.weeks.since),
+                 build(:event, event_time: 3.weeks.since),
+                 build(:event, event_time: 5.weeks.since) ] }
+      dataset_files {[ build(:dataset_file) ]}
+    end
+
+    trait :past do
+      status :running
+      events { [ build(:event, event_time: 5.weeks.ago),
+                 build(:event, event_time: 3.weeks.ago),
+                 build(:event, event_time: 2.weeks.ago) ] }
       dataset_files {[ build(:dataset_file) ]}
     end
 
     trait :draft_with_milestone do
-      status_cd 'draft'
+      status :draft
       events { [ build(:event, event_time: 2.days.ago),
                  build(:event, event_time: 1.day.ago),
                  build(:event, event_time: 2.days.since) ] }
@@ -47,8 +63,8 @@ FactoryGirl.define do
     end
 
     trait :with_milestones do
-      challenge "Running Challenge"
-      status_cd 'running'
+      challenge Faker::Lorem.sentence(3)
+      status :running
       events { [ build(:event, event_time: 2.days.ago),
                  build(:event, event_time: 1.day.ago),
                  build(:event, event_time: 1.day.since),
@@ -57,14 +73,14 @@ FactoryGirl.define do
     end
 
     trait :running do
-      status_cd 'running'
-      challenge 'Running Challenge'
+      status :running
+      challenge Faker::Lorem.sentence(3)
       dataset_files {[ build(:dataset_file) ]}
     end
 
     trait :draft do
-      status_cd 'draft'
-      challenge 'Draft Challenge'
+      status :draft
+      challenge Faker::Lorem.sentence(3)
     end
 
 

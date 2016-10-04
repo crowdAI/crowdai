@@ -8,9 +8,6 @@ class Topic < ActiveRecord::Base
 
   default_scope { order('sticky desc') }
 
-
-  validates :challenge_id,    presence: true
-  validates :participant_id,  presence: true
   validates :topic,           presence: true,
                               length: { maximum: 255 }
 

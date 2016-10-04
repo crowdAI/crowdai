@@ -94,7 +94,7 @@ class Challenge < ActiveRecord::Base
         errors.add(:base, "Challenge cannot start until dataset files are added.")
       end
     end
-    if self.status == :cancelled and self.status_was != :running
+    if self.status == :cancelled && self.status_was != :running
       errors.add(:base, "Only a running challenge may be cancelled.")
     end
   end

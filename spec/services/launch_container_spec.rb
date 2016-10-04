@@ -1,3 +1,4 @@
+
 require 'rails_helper'
 
 RSpec.describe LaunchContainer do
@@ -10,6 +11,7 @@ RSpec.describe LaunchContainer do
     specify { expect change(ContainerInstance, :count).by(1) }
   end
 
+=begin
   describe 'builds a Docker container on the docker-machine' do
     before { launch_container.build }
     specify { expect(ContainerInstance.last.status).to eq(:built) }
@@ -23,4 +25,5 @@ RSpec.describe LaunchContainer do
     specify { expect(ContainerLog.count).to eq(2) }
     specify { expect(ContainerLog.last.message).to eq('Container started') }
   end
+=end
 end

@@ -6,7 +6,4 @@ describe Comment do
     it { should belong_to(:participant) }
   end
 
-  context 'methods' do
-    pending "comments are currently not implemented"
-  end
 end

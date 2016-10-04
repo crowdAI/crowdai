@@ -29,8 +29,8 @@ class Image < ActiveRecord::Base
   end
 
   def get_true_size
-    [Paperclip::Geometry.from_file(pic.url(:original)).width,
-     Paperclip::Geometry.from_file(pic.url(:original)).height ].join(",")
+    [Paperclip::Geometry.from_file(image.url(:original)).width,
+     Paperclip::Geometry.from_file(image.url(:original)).height ].join(",")
   end
 
   def do_crop_reprocess

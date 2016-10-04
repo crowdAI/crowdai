@@ -19,14 +19,4 @@ describe Topic do
     it { should validate_length_of(:topic).is_at_most(255) }
   end
 
-  context 'methods' do
-    describe '#last_activity' do
-      it 'works' do
-        topic = Topic.new
-        result = topic.last_activity
-        expect(result).not_to be_nil
-      end
-    end
-  end
-
 end

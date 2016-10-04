@@ -43,19 +43,5 @@ feature "competitor submissions", js: true do
     expect(page).to have_text("Submission message")
   end
 
-  scenario "a competitor must provide be a .csv file as file 1" do
-    skip("spec to be coded")
-  end
-
-  scenario "a competitor must provide be an archive as file 2" do
-    skip("spec to be coded")
-  end
-
-  scenario "a participant cannot access another participants entry" do
-    skip("spec to be coded")
-  end
-
-  scenario "a competitor may not make more then 5 submissions in a day" do
-    skip("spec to be coded")
-  end
+  
 end

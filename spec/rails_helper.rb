@@ -16,7 +16,6 @@ require 'mandrill_mailer/offline'
 require 'support/pundit_matcher'
 
 
-
 ActiveRecord::Migration.maintain_test_schema!
 
 Capybara.register_driver :chrome do |app|

@@ -1,25 +1,25 @@
 require "rails_helper"
 
+
 feature "participant creation", js: true do
   describe "successful participant registration" do
     scenario "with valid details" do
+      participant = FactoryGirl.build(:participant)
 
       visit "/"
       click_link "Sign up"
 
-      fill_in "name",                  with: 'test_participant'
-      fill_in "Email",                 with: "test@example.com"
-      fill_in 'participant_password',  with: "crowdai123"
-      fill_in "Password confirmation", with: "crowdai123"
+      fill_in "name",                  with: participant.name
+      fill_in "Email",                 with: participant.email
+      fill_in 'participant_password',  with: participant.password
+      fill_in "Password confirmation", with: participant.password
 
       click_button "Get started"
 
       expect(page).to have_content("A message with a confirmation link has been sent to your email address.")
-      puts "emails: #{MandrillMailer::deliveries}"
-
     end
 
-
+=begin
     scenario "confirm email" do
 
       visit "/"
@@ -31,12 +31,12 @@ feature "participant creation", js: true do
       fill_in "Password confirmation", with: "crowdai123"
 
       click_button "Get started"
-      puts "emails: #{MandrillMailer::deliveries}"
 
       current_email.click_link "Confirm my account"
 
       expect(page).to have_content("Your email address has been successfully confirmed.")
     end
+=end
 
 
     scenario "participant's name must be unique" do

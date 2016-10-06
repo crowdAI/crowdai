@@ -1,3 +1,4 @@
+=begin
 require 'tempfile'
 
 if ENV["DOCKER_CERT"].present?
@@ -23,3 +24,4 @@ if ENV["DOCKER_CERT"].present?
     scheme: 'https'
   }
 end
+=end

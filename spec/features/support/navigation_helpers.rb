@@ -10,6 +10,17 @@ module NavigationHelpers
     click_link(challenge.challenge)
   end
 
+  def visit_organizers_index(participant)
+    visit_landing_page(participant)
+    click_link 'Organizers'
+  end
+
+  def visit_organizer(participant,organizer)
+    visit_landing_page(admin)
+    click_link 'Organizers'
+    click_link organizer.organizer
+  end
+
   def open_menu(participant)
     visit_landing_page(participant)
     find("#avatar-menu").click

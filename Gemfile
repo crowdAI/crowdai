@@ -141,6 +141,7 @@ group :test do
   gem "factory_girl_rails"
   gem 'simplecov', :require => false
   gem 'capybara'
+  gem 'capybara-email'
   gem 'selenium-webdriver'
   gem 'capybara-screenshot', '1.0.13'
   gem 'database_cleaner'

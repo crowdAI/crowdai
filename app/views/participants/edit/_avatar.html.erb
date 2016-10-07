@@ -11,7 +11,7 @@
             <img src="<%= avatar_medium_url(@participant) %>"/>
           <% end %>
 
-          <%= avatar_fields.file_field :image, class: 'upload-btn' %>
+          <%= avatar.file_field :image, class: 'upload-btn' %>
           <br/>
           <div id="loading-text"><b>.....loading</b></div>
         <% end %>

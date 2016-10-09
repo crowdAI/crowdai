@@ -12,11 +12,11 @@
 !/log/.keep
 /tmp
 /coverage
-/config/application.yml
+config/application.yml
 .DS_Store
 *.swp
 public/assets_test/*
 public/assets/*
 screenshot*
 .byebug_history
-scripts/challenges/openfood/public_500/iamges/*
+scripts/challenges/openfood/public_500/images/*

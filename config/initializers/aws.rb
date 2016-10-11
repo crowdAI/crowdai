@@ -1,5 +1,4 @@
 # direct AWS initializer for direct S3 uploads
-=begin
 Aws.config.update({
   region: ENV['AWS_REGION'],
   credentials: Aws::Credentials.new(
@@ -10,4 +9,3 @@ Aws.config.update({
 
 s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
 S3_BUCKET = s3.bucket(ENV['AWS_S3_BUCKET'])
-=end

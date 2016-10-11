@@ -13,7 +13,7 @@ feature 'Article voting', js: true do
       click_link article.article
 
       within "a#vote-link-#{article.id}" do
-        page.should have_content '0'
+        expect(page).to have_content '0'
       end
     end
 
@@ -22,7 +22,7 @@ feature 'Article voting', js: true do
       click_link voted_article.article
 
       within "a#vote-link-#{voted_article.id}" do
-        page.should have_content '1'
+        expect(page).to have_content '1'
       end
     end
 

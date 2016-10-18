@@ -13,8 +13,6 @@ describe Post do
   end
 
   context 'validations' do
-    it { should validate_presence_of(:topic_id) }
-    it { should validate_presence_of(:participant_id) }
     it { should validate_presence_of(:vote_count) }
   end
 end

@@ -52,7 +52,7 @@ class SubmissionsController < ApplicationController
       if @challenge.automatic_grading
         SubmissionGraderJob.perform_later(@submission.id)
       end
-      redirect_to challenge_submissions_path(@challenge)
+      redirect_to challenge_submissions_path(@challenge), notice: 'Submission accepted.'
     else
       @errors = @submission.errors
       render :new

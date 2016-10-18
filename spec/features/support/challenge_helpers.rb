@@ -75,4 +75,18 @@ module ChallengeHelpers
     click_button 'Create File'
   end
 
+  def add_submission_file
+    find('#submission-instructions-tab').click
+    click_button 'Add Submission File Definition'
+    fill_in 'Submission file description', with: 'File 1'
+    fill_in 'Seq', with: 1
+    fill_in 'Submission file help text', with: 'Some help text'
+  end
+
+  def access_submission(challenge)
+    visit challenge_path(challenge)
+    click_link "Submit Entry"
+    page.find('.btn-block', text: 'Submit Entry').click
+  end
+
 end

@@ -32,7 +32,6 @@ Rails.application.routes.draw do
     resources :votes
     resources :dataset_file_downloads
     resources :leaderboards, only: :index
-    resources :docker_configurations
     root to: 'participants#index'
   end
 

@@ -1,21 +1,17 @@
 require "rails_helper"
 
+feature 'Posts CRUD', js: true do
 
-RSpec.feature "topic", type: :feature do
-  before(:each) do
-    @participant = create :participant
-    @admin_participant = create :participant, :admin
-    @challenge = create :challenge, :with_events
-    @login_page = DeviseSessionsNew.new
-    @running_challenge = create :challenge, :with_events
-  end
+  let!(:participant) { create(:participant) }
+  let!(:challenge) { create(:challenge, :with_events) }
 
+  describe "as a participant" do
+    before(:example) do
+      visit_challenge(participant,challenge)
+    end
 
-  describe "creation" do
     scenario "a participant can create a post" do
-      @login_page.visit_page.login(@participant)
-      topics = TopicsPages.new
-      topics.index(@challenge)
+      find("#glyphicon-link-discussion").click
       click_link "+ New Topic"
       fill_in "Topic", with: "Post test"
       click_button "Create Topic"
@@ -25,20 +21,6 @@ RSpec.feature "topic", type: :feature do
       find('#markdown_textarea').set('### Markdown Heading')
       click_button "Create Post"
       expect(page).to have_selector("h3", text: "Markdown Heading")
-      expect(page).to have_content("Post was successfully created.")
-    end
-
-
-    scenario "a participant can respond to a post" do
-      @login_page.visit_page.login(@participant)
-      @topic = create :topic, :with_posts
-      @topic.challenge = @running_challenge
-      @topic.save
-      visit new_topic_post_path(@topic)
-      expect(page).to have_content(@topic.topic)
-      find('#markdown_textarea').set('## Post Reply Test')
-      click_button "Create Post"
-      expect(page).to have_selector("h2", text: "Post Reply Test")
       expect(page).to have_content("Post was successfully created.")
     end
   end

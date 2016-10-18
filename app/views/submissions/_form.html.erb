@@ -12,9 +12,12 @@
 
   <div class='row'>
     <div class='col-md-4'>
-      <%= f.input :docker_configuration_id, collection: @challenge.docker_configurations, label_method: :name, value_method: :id, include_blank: false %>
+      <% if @challenge.grader == :docker_container %>
+        <%= f.input :docker_configuration_id, collection: @challenge.docker_configurations, label_method: :name, value_method: :id, include_blank: false %>
+      <% else %>
+        <h3><%= "Will be graded by #{@challenge.grader}" %><h3>
+      <% end %>
     </div>
-
 
     <% if @challenge.api_required %>
       <div class='col-md-4'>
@@ -24,11 +27,11 @@
   </div>
 
   <%= f.simple_fields_for :submission_files do |file| %>
+    <hr/>
     <div class="nested-fields">
-      <b><%= @challenge.submission_file_definitions[file.index].submission_file_description %></b>
       <p><%= @challenge.submission_file_definitions[file.index].submission_file_help_text %></p>
       <%= file.hidden_field :seq %><!-- populated by controller -->
-      <%= file.input :submission_file_s3_key, as: :file, label: false, input_html: { class: 's3File', accept: @challenge.submission_file_definitions[file.index].file_accept } %>
+      <%= file.input :submission_file_s3_key, as: :file, label: @challenge.submission_file_definitions[file.index].submission_file_description, input_html: { class: 's3File', accept: @challenge.submission_file_definitions[file.index].file_accept } %>
     </div>
   <% end %>
 

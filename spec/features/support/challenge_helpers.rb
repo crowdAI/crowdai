@@ -52,6 +52,8 @@ module ChallengeHelpers
 
     date_fields = page.all('input[id^="challenge_events_attributes_"][id$="_event_time"]')
     date_fields[1].set('24/10/2016 17:00')
+
+    add_submission_file
   end
 
 
@@ -73,6 +75,20 @@ module ChallengeHelpers
     fill_in 'Description', with: "test file"
     attach_file('Dataset file s3 key', Rails.root + 'spec/support/files/test_csv_file.csv')
     click_button 'Create File'
+  end
+
+  def add_submission_file
+    find('#submission-instructions-tab').click
+    click_button 'Add Submission File Definition'
+    fill_in 'Submission file description', with: 'File 1'
+    fill_in 'Seq', with: 1
+    fill_in 'Submission file help text', with: 'Some help text'
+  end
+
+  def access_submission(challenge)
+    visit challenge_path(challenge)
+    click_link "Submit Entry"
+    page.find('.btn-block', text: 'Submit Entry').click
   end
 
 end

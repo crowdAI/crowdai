@@ -29,9 +29,6 @@ feature "competitor submissions for python grading", js: true do
     click_button 'Create Submission'
     expect(page).to have_text("can't be blank")
   end
-
-
-
 end
 
 feature "competitor submissions for docker grading", js: true do
@@ -48,5 +45,4 @@ feature "competitor submissions for docker grading", js: true do
     expect(page).not_to have_text("Will be graded by #{challenge.grader}")
     expect(page).to have_text "Docker configuration"
   end
-
 end

@@ -52,8 +52,6 @@ module ChallengeHelpers
 
     date_fields = page.all('input[id^="challenge_events_attributes_"][id$="_event_time"]')
     date_fields[1].set('24/10/2016 17:00')
-
-    add_submission_file
   end
 
 

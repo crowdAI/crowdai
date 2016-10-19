@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161009181244) do
+ActiveRecord::Schema.define(version: 20161019153059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20161009181244) do
     t.string   "submission_license"
     t.boolean  "api_required",                     default: false
     t.integer  "daily_submissions"
+    t.float    "threshold"
   end
 
   add_index "challenges", ["organizer_id"], name: "index_challenges_on_organizer_id", using: :btree
@@ -114,10 +115,12 @@ ActiveRecord::Schema.define(version: 20161009181244) do
     t.datetime "updated_at",              null: false
     t.string   "image_sha"
     t.string   "container_sha"
+    t.string   "slug"
     t.integer  "submission_id"
   end
 
   add_index "container_instances", ["docker_configuration_id"], name: "index_container_instances_on_docker_configuration_id", using: :btree
+  add_index "container_instances", ["slug"], name: "index_container_instances_on_slug", unique: true, using: :btree
   add_index "container_instances", ["submission_id"], name: "index_container_instances_on_submission_id", using: :btree
 
   create_table "container_logs", force: :cascade do |t|
@@ -127,9 +130,11 @@ ActiveRecord::Schema.define(version: 20161009181244) do
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.string   "log_source_cd"
+    t.string   "slug"
   end
 
   add_index "container_logs", ["container_instance_id"], name: "index_container_logs_on_container_instance_id", using: :btree
+  add_index "container_logs", ["slug"], name: "index_container_logs_on_slug", unique: true, using: :btree
 
   create_table "dataset_file_downloads", force: :cascade do |t|
     t.integer  "participant_id"
@@ -137,10 +142,12 @@ ActiveRecord::Schema.define(version: 20161009181244) do
     t.string   "ip_address"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "slug"
   end
 
   add_index "dataset_file_downloads", ["dataset_file_id"], name: "index_dataset_file_downloads_on_dataset_file_id", using: :btree
   add_index "dataset_file_downloads", ["participant_id"], name: "index_dataset_file_downloads_on_participant_id", using: :btree
+  add_index "dataset_file_downloads", ["slug"], name: "index_dataset_file_downloads_on_slug", unique: true, using: :btree
 
   create_table "dataset_files", force: :cascade do |t|
     t.integer  "seq"
@@ -149,9 +156,11 @@ ActiveRecord::Schema.define(version: 20161009181244) do
     t.string   "description"
     t.integer  "challenge_id"
     t.string   "dataset_file_s3_key"
+    t.string   "slug"
   end
 
   add_index "dataset_files", ["challenge_id"], name: "index_dataset_files_on_challenge_id", using: :btree
+  add_index "dataset_files", ["slug"], name: "index_dataset_files_on_slug", unique: true, using: :btree
 
   create_table "docker_configurations", force: :cascade do |t|
     t.integer  "challenge_id"
@@ -187,9 +196,11 @@ ActiveRecord::Schema.define(version: 20161009181244) do
     t.datetime "event_time"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "slug"
   end
 
   add_index "events", ["challenge_id"], name: "index_events_on_challenge_id", using: :btree
+  add_index "events", ["slug"], name: "index_events_on_slug", unique: true, using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -304,11 +315,9 @@ ActiveRecord::Schema.define(version: 20161009181244) do
     t.text     "submission_file_help_text"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
-    t.integer  "submission_id"
   end
 
   add_index "submission_file_definitions", ["challenge_id"], name: "index_submission_file_definitions_on_challenge_id", using: :btree
-  add_index "submission_file_definitions", ["submission_id"], name: "index_submission_file_definitions_on_submission_id", using: :btree
 
   create_table "submission_files", force: :cascade do |t|
     t.integer  "submission_id"

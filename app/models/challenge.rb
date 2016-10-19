@@ -25,10 +25,9 @@ class Challenge < ActiveRecord::Base
   has_many :participant_challenges,       class_name: 'ParticipantChallenge'
   has_many :topics
 
-  # accepts_nested_attributes_for :submissions, reject_if: :all_blank, allow_destroy: true TODO cleanup controller
 
   as_enum :status, [:draft, :running, :completed, :perpetual, :cancelled], map: :string
-  as_enum :grader, [:f1_logloss, :docker_container], map: :string
+  as_enum :grader, [:f1_logloss, :discrete_mean_squared_error, :docker_container], map: :string
   as_enum :primary_sort_order, [:ascending, :descending], map: :string
   as_enum :secondary_sort_order, [:ascending, :descending, :not_used], map: :string
 

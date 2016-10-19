@@ -12,7 +12,7 @@ $(document).on('ready page:load', function() {
 
     function toggleGrader() {
       var grader = $('#challenge_grader')[0].value;
-      if (grader === 'f1_logloss') {
+      if (grader !== 'docker_container') {
         $('#python-grader').show();
         $('#docker-grader').hide();
       } else {

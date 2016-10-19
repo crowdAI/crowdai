@@ -1,5 +1,5 @@
 function expandSidebar(){
-  setTimeout(executeSidebar,1000);
+  setTimeout(executeSidebar,700);
   // TODO need to fix this properly
 }
 

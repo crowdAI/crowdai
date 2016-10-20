@@ -27,6 +27,7 @@ $(function() {
             .css("background", "red")
             .text("Upload failed: please limit your archive to 650MB.");
         } else {
+          console.log("submitted ");
           data.submit();
         }
       },
@@ -65,7 +66,3 @@ $(function() {
     });
   });
 });
-
-
-
-// https://devcenter.heroku.com/articles/direct-to-s3-image-uploads-in-rails

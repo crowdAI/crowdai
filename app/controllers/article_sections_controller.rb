@@ -14,7 +14,6 @@ class ArticleSectionsController < ApplicationController
   end
 
   def edit
-    Rails.logger.debug "Yo #{@article_section.section.parameterize}"
   end
 
   def create

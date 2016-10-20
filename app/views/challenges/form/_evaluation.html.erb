@@ -1,29 +1,23 @@
 <div role="tabpanel" class="tab-pane" id="evaluation">
   <h2>Evaluation</h2>
 
-  <div class="row">
-    <div class="col-md-12">
-      <div class='pull-right'>
-        <div id='regrade-status'>
-            <% if @challenge.status == :running || @challenge.status == :completed %>
-              <%= link_to("Re-grade",
-                    challenge_regrade_path(challenge),
-                    remote: true,
-                    data: { confirm: 'Are you sure you want to re-grade all submissions?' },
-                    class: 'btn btn-primary outline' ) %>
-            <% else %>
-              <%= link_to "Re-grade", '#', class: 'btn btn-primary outline disabled' %>
-            <% end %>
-        </div>
+  <div class='row'>
+    <div class="col-md-6">
+      <%= f.input :grader, collection: enum_option_pairs(Challenge, :grader), include_blank: false %>
+    </div>
+    <div class='col-md-3 col-md-offset-3'>
+      <div id='regrade-status'>
+        <% if @challenge.status == :running || @challenge.status == :completed %>
+        <%= link_to("Re-grade", challenge_regrade_path(challenge), remote: true, data: { confirm: 'Are you sure you want to re-grade all submissions?' }, class: 'btn btn-primary outline' ) %>
+      <% else %>
+        <%= link_to "Re-grade", '#', class: 'btn btn-primary outline disabled' %>
+        <% end %>
       </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-4">
-      <%= f.input :grader, collection: enum_option_pairs(Challenge, :grader), include_blank: false %>
-    </div>
-    <div class='col-md-4 col-md-offset-4'>
+  <div class='row'>
+    <div class='col-md-12'>
       <%= f.input :automatic_grading %>
     </div>
   </div>
@@ -34,17 +28,23 @@
         <%= f.input :grading_factor %>
       </div>
       <div class='col-md-4'>
+        <%= f.input :threshold %>
+      </div>
+      <div class='col-md-4'></div>
+    </div>
+    <div class="row">
+      <div class='col-md-8'>
         <%= f.label 'Answer File' %><br/>
         <% if f.object.answer_file_s3_key.nil? %>
-          <%= link_to s3_filename(f.object.answer_file_s3_key),
+        <%= link_to s3_filename(f.object.answer_file_s3_key),
                       s3_expiring_url(f.object.answer_file_s3_key),
                       class: 'expiring-url' %>
-        <% else %>
-          No answer file uploaded.
+      <% else %>
+        No answer file uploaded.
         <% end %>
       </div>
       <div class='col-md-4'>
-          <%= f.input :answer_file_s3_key, as: :file, input_html: {class: 's3File' }, label: false %>
+        <%= f.input :answer_file_s3_key, as: :file, input_html: {class: 's3File' }, label: false %>
       </div>
     </div>
   </div>
@@ -68,12 +68,8 @@
       <%= f.input :primary_sort_order, label: "Sort order", collection: enum_option_pairs(Challenge, :primary_sort_order), include_blank: false %>
       <%= f.input :secondary_sort_order, label: "Sort order", collection: enum_option_pairs(Challenge, :secondary_sort_order), include_blank: false %>
     </div>
-    <div class="col-md-3">
-
-    </div>
-    <div class='col-md-3'>
-
-    </div>
+    <div class="col-md-3"></div>
+    <div class='col-md-3'></div>
   </div>
 
   <hr/>

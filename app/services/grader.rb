@@ -52,6 +52,7 @@ class Grader
     query = { query: { submission_id: @submission.id,
                        grader: c.grader,
                        grading_factor: c.grading_factor,
+                       threshold: c.threshold,
                        answer_key: c.answer_file_s3_key,
                        submission_key: get_submission_key }}
   end

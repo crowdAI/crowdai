@@ -15,38 +15,43 @@
     <div class="col-md-12 text-center">
       <h1><%= @participant.name %></h1>
       <% if @participant.online? %>
-          <h3><i class="fa fa-circle-o" style="color:green"></i> <span style="color:green"><b>online now</b></span><h3>
-      <% else %>
-          <h2>Last seen <%= time_ago_in_words(@participant.updated_at) %> ago.</h2>
-      <% end %>
+      <h3>
+        <i class="fa fa-circle-o" style="color:green"></i>
+        <span style="color:green">
+          <b>online now</b>
+        </span>
+        <h3>
+        <% else %>
+          <h2>Last seen
+            <%= time_ago_in_words(@participant.updated_at) %>
+            ago.</h2>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center">
+          <%= markdown(@participant.bio) %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <ul>
+            <% if @participant.website.present? %>
+            <%= glyphicon_link 'user', 'My website', @participant.website, class: 'btn btn-primary outline' %>
+            <% end %>
+            <% if @participant.github.present? %>
+            <%= awesome_link 'fa-github', 'Github', @participant.github, class: 'btn btn-primary outline' %>
+            <% end %>
+            <% if @participant.linkedin.present? %>
+            <%= awesome_link 'fa-linkedin', 'LinkedIn', @participant.linkedin, class: 'btn btn-primary outline' %>
+            <% end %>
+            <% if @participant.twitter.present? %>
+            <%= awesome_link 'fa-twitter', 'Twitter', @participant.twitter, class: 'btn btn-primary outline' %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2 text-center">
-      <%= markdown(@participant.bio) %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <ul>
-        <% if @participant.website.present? %>
-        <%= glyphicon_link 'user', 'My website', @participant.website, class: 'btn btn-primary outline' %>
-        <% end %>
-        <% if @participant.github.present? %>
-        <%= awesome_link 'fa-github', 'Github', @participant.github, class: 'btn btn-primary outline' %>
-        <% end %>
-        <% if @participant.linkedin.present? %>
-        <%= awesome_link 'fa-linkedin', 'LinkedIn', @participant.linkedin, class: 'btn btn-primary outline' %>
-        <% end %>
-        <% if @participant.twitter.present? %>
-        <%= awesome_link 'fa-twitter', 'Twitter', @participant.twitter, class: 'btn btn-primary outline' %>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-
-
-
-
-</div>

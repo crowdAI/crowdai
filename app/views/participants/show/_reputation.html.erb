@@ -1,13 +1,10 @@
 <div class="tab-pane" id="reputation">
   <br/>
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-      <h3>Reputation</h3>
-      <% if @participant.votes.any? %>
-        <%= @participant.votes.count + 5 %> points
-      <% else %>
-        5 points
-      <% end %>
-    </div>
-  </div>
+
+        <% if @participant.votes.any? %>
+          <p><%= @participant.votes.count + 5 %> points</p>
+        <% else %>
+          <p>5 points</p>
+        <% end %>
+
 </div>

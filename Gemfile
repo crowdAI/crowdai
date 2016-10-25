@@ -141,8 +141,9 @@ group :test do
   gem 'simplecov', :require => false
   gem 'capybara'
   gem 'capybara-email'
-  gem 'selenium-webdriver'
-  gem 'capybara-screenshot', '1.0.13'
+  #gem 'selenium-webdriver'
+  gem 'capybara-screenshot'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
   gem "launchy"
   gem 'shoulda'

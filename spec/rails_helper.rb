@@ -18,11 +18,11 @@ require 'support/pundit_matcher'
 
 ActiveRecord::Migration.maintain_test_schema!
 
-Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
-end
-Capybara.current_driver = :chrome
-Capybara.javascript_driver = :chrome
+#Capybara.register_driver :chrome do |app|
+#  Capybara::Selenium::Driver.new(app, browser: :chrome)
+#end
+#Capybara.current_driver = :chrome
+Capybara.javascript_driver = :webkit
 Capybara.server_port = 52508  # port registered with Amazon S3 CORS config
 Capybara::Screenshot.register_driver(:chrome) do |driver, path|
   filename = File.basename(path)

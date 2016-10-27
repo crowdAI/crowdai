@@ -7,9 +7,8 @@ class Api::BaseController < ApplicationController
 
 
   def auth_by_api_key
-    api_key = '***REMOVED***'
     authenticate_or_request_with_http_token do |token, options|
-      token == api_key
+      token == ENV['CROWDAI_API_KEY']
     end
   end
 end

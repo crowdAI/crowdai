@@ -1,6 +1,8 @@
 class SubmissionGrade < ActiveRecord::Base
   belongs_to :submission
   after_save :update_submission
+  default_scope { order('created_at DESC') }
+
 
   as_enum :grading_status, [:ready, :submitted, :graded, :failed], map: :string
 

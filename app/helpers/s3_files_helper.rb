@@ -1,6 +1,7 @@
 module S3FilesHelper
 
   def s3_filesize(s3_key)
+    return 0 if s3_key.nil?
     s3_file_obj = Aws::S3::Object.new(bucket_name: ENV['AWS_S3_BUCKET'], key: s3_key)
     return 0 if !s3_file_obj.exists?
     filesize = number_to_human_size(s3_file_obj.content_length)

@@ -1,4 +1,4 @@
-<h3>All submissions</h3>
+<h3>Submission Administration</h3>
   <table class='table table-responsive table-hover table-bordered leaderboard sortable'>
     <thead>
       <tr>
@@ -15,7 +15,7 @@
     <tbody>
       <% participant_submissions.each do |s| %>
       <tr>
-        <td><%= s.grading_status_cd %></td>
+        <td><%= link_to s.grading_status_cd, challenge_submission_path(challenge, s.id) %></td>
         <td><%= s.files %></td>
         <td><%= link_to s.name, participant_path(s.participant_id) %></td>
         <td><%= s.score %></td>

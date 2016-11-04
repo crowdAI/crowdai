@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-md-10">
+        <table class='table table-hover table-striped table-bordered leaderboard sortable'>
+            <thead>
+                <th>Grading Status</th>
+                <th>Grading Factor</th>
+                <th>Score</th>
+                <th>Score Secondary</th>
+                <th>Graded</th>
+                <th>Message</th>
+            </thead>
+            <tbody>
+                <% submission.submission_grades.each do |sg| %>
+                <tr>
+                    <td><%= sg.grading_status %></td>
+                    <td><%= sg.grading_factor %></td>
+                    <td><%= sg.score %></td>
+                    <td><%= sg.score_secondary %></td>
+                    <td><%= display_dttm(sg.created_at) %></td>
+                    <td><%= sg.grading_message %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>

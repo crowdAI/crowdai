@@ -50,3 +50,7 @@
 
   </div>
 </div><!-- row -->
+
+<% if current_participant && current_participant.admin? %>
+  <%= render partial: 'submissions/show/grading_history', locals: { challenge: @challenge, submission: @submission } %>
+<% end %>

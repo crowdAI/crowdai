@@ -36,8 +36,6 @@ gem 'redcarpet'
 gem 'groupdate'
 gem 'rouge'
 gem 'friendly_id', '~> 5.1.0'
-#gem 'active_median'
-#gem "chartkick"
 
 
 # performance
@@ -59,8 +57,8 @@ gem 'browser'
 # css
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
-gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
-gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+gem 'momentjs-rails', '~> 2.9'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.42'
 
 
 gem 'font-awesome-rails'
@@ -99,7 +97,7 @@ gem 'high_voltage', '~> 2.4.0'
 #gem 'sitemap_generator'
 
 # images
-gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem "paperclip", "~> 5.0.0"
 gem 'carrierwave'
 gem 'net-ssh'
 gem 'inline_svg'
@@ -120,14 +118,13 @@ group :development do
   gem 'sdoc', '~> 0.4.0'
   gem 'web-console', '~> 2.0'
   gem 'scss_lint', require: false
-  gem 'quiet_assets', github: 'seanfcarroll/quiet_assets', branch: 'master'
   gem 'shog', branch: 'master'
 end
 
 
 group :development, :test do
   gem 'byebug'
-  gem 'faker'
+  gem 'ffaker'
   gem 'spring'
   gem 'table_print'
   gem 'rspec-rails', '~> 3.5'
@@ -141,7 +138,6 @@ group :test do
   gem 'simplecov', :require => false
   gem 'capybara'
   gem 'capybara-email'
-  #gem 'selenium-webdriver'
   gem 'capybara-screenshot'
   gem 'capybara-webkit'
   gem 'database_cleaner'

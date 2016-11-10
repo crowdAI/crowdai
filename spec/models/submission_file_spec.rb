@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe SubmissionFileDefinition do
+describe SubmissionFile do
   context 'associations' do
-    it { should belong_to(:challenge) }
+    it { should belong_to(:submission) }
   end
 
   context 'indexes' do

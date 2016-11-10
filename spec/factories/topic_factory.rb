@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :topic, class: Topic do
     challenge nil
     participant nil
-    topic Faker::Lorem.sentence(3)
+    topic FFaker::Lorem.sentence(3)
     sticky false
     views 1
     posts_count 3

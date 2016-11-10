@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :challenge, class: Challenge do
     organizer { FactoryGirl.create :organizer }
-    challenge Faker::Lorem.sentence(3)
-    tagline Faker::Lorem.sentence(3)
+    challenge FFaker::Lorem.sentence(3)
+    tagline FFaker::Lorem.sentence(3)
     status :draft
     description_markdown "### The description"
     evaluation_markdown "# An evaluation"
@@ -24,7 +24,7 @@ FactoryGirl.define do
     end
 
     trait :with_events do
-      challenge Faker::Lorem.sentence(3)
+      challenge FFaker::Lorem.sentence(3)
       status :running
       events { [ build(:event, event_time: 2.days.ago),
                 build(:event, event_time: 2.days.since) ] }
@@ -64,7 +64,7 @@ FactoryGirl.define do
     end
 
     trait :with_milestones do
-      challenge Faker::Lorem.sentence(3)
+      challenge FFaker::Lorem.sentence(3)
       status :running
       events { [ build(:event, event_time: 2.days.ago),
                  build(:event, event_time: 1.day.ago),
@@ -75,13 +75,13 @@ FactoryGirl.define do
 
     trait :running do
       status :running
-      challenge Faker::Lorem.sentence(3)
+      challenge FFaker::Lorem.sentence(3)
       dataset_files {[ build(:dataset_file) ]}
     end
 
     trait :draft do
       status :draft
-      challenge Faker::Lorem.sentence(3)
+      challenge FFaker::Lorem.sentence(3)
     end
 
 

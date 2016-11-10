@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :article, class: Article do
-    article { Faker::Lorem.sentence(4) }
-    summary { Faker::Lorem.sentence(4) }
+    article { FFaker::Lorem.sentence(4) }
+    summary { FFaker::Lorem.sentence(4) }
     participant
     category 'tensorflow'
     published true

@@ -19,10 +19,10 @@ describe Participant do
   context 'validations' do
     it { should validate_presence_of(:email) }
     it { should validate_presence_of(:name) }
-    it { is_expected.to allow_value(Faker::Lorem.characters(8)).for :password }
-    it { is_expected.not_to allow_value(Faker::Lorem.characters(7)).for :password }
-    it { is_expected.to allow_value(Faker::Lorem.characters(72)).for :password }
-    it { is_expected.not_to allow_value(Faker::Lorem.characters(73)).for :password }
+    it { is_expected.to allow_value(FFaker::Lorem.characters(8)).for :password }
+    it { is_expected.not_to allow_value(FFaker::Lorem.characters(7)).for :password }
+    it { is_expected.to allow_value(FFaker::Lorem.characters(72)).for :password }
+    it { is_expected.not_to allow_value(FFaker::Lorem.characters(73)).for :password }
   end
 
   context 'validations with instance variable' do

@@ -198,11 +198,10 @@ GEM
     factory_girl_rails (4.7.0)
       factory_girl (~> 4.7.0)
       railties (>= 3.0.0)
-    faker (1.6.3)
-      i18n (~> 0.5)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     fast_blank (1.0.0)
+    ffaker (2.2.0)
     ffi (1.9.14)
     figaro (1.1.1)
       thor (~> 0.14)
@@ -658,8 +657,8 @@ DEPENDENCIES
   docker-api
   excon
   factory_girl_rails
-  faker
   fast_blank
+  ffaker
   figaro
   fog (= 1.35.0)
   font-awesome-rails

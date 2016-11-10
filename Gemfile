@@ -127,7 +127,7 @@ end
 
 group :development, :test do
   gem 'byebug'
-  gem 'faker'
+  gem 'ffaker'
   gem 'spring'
   gem 'table_print'
   gem 'rspec-rails', '~> 3.5'

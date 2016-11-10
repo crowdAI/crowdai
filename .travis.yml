@@ -8,3 +8,6 @@ rvm:
 env:
   - RAILS=4-2-stable DB=sqlite3
   - RAILS=4-2-stable DB=postgres
+
+before_script:
+  - psql -c 'create database crowdai_test;' -U postgres

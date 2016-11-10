@@ -40,7 +40,7 @@ RSpec.describe ArticlesController, type: :controller do
       it { expect(response).to render_template :edit }
     end
 
-
+=begin
     describe 'POST #create' do
       context 'with valid attributes' do
         it "saves the new record in the database" do
@@ -66,7 +66,7 @@ RSpec.describe ArticlesController, type: :controller do
         end
       end
     end
-
+=end
     describe 'PATCH #update' do
       context 'for allowed article with valid attributes' do
         before { patch :update, id: article.to_param, article: { article: 'changed' } }

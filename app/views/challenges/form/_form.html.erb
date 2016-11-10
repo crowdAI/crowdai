@@ -42,7 +42,7 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
 
-      <%= simple_form_for @challenge,
+        <%= simple_form_for @challenge,
                           html: { class: "directUpload" },
                           data: { 'form-data' => (@s3_direct_post.fields),
                                 'url' => @s3_direct_post.url,

@@ -4,9 +4,11 @@ Rails.application.configure do
   Sidekiq::Testing.inline!
 
   # load env variables
-  figaro_file = File.join(Rails.root, 'config', 'application.yml')
-  YAML::load_file(figaro_file).symbolize_keys[:test].each do |key,value|
-    ENV[key.to_s] = value
+  if !ENV['TRAVIS']
+    figaro_file = File.join(Rails.root, 'config', 'application.yml')
+    YAML::load_file(figaro_file).symbolize_keys[:test].each do |key,value|
+      ENV[key.to_s] = value
+    end
   end
 
   # Settings specified here will take precedence over those in config/application.rb.

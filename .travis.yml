@@ -6,8 +6,11 @@ rvm:
   - 2.3.1
 
 env:
-  - RAILS=4-2-stable DB=sqlite3
   - RAILS=4-2-stable DB=postgres
 
 before_script:
   - psql -c 'create database crowdai_test;' -U postgres
+
+before_install:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start

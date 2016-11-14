@@ -6,26 +6,31 @@
     <%= f.hidden_field :participant_id, value: current_participant.id %>
     <%= f.input :notify %>
 
-    <div id="content">
-      <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+    <div class="markdown-editor">
+      <ul class="nav nav-tabs" data-tabs="tabs">
         <li class="active">
-          <a href="#editor-pane" data-toggle="tab">Write</a>
+          <a href="#editor-pane-description" data-toggle="tab">Write</a>
         </li>
         <li>
-          <a href="#preview-pane" data-toggle="tab">Preview</a>
+          <a href="#preview-pane-description" class="preview-pane-link" data-toggle="tab">Preview</a>
         </li>
       </ul>
-      <div id="my-tab-content" class="tab-content">
-        <div class="tab-pane active" id="editor-pane">
-          <%= f.label :post %>
+      <div class="tab-content">
+        <div class="tab-pane active" id="editor-pane-description">
+          <%= f.label 'Description' %>
           <%= render 'markdown_editor/toolbar' %>
-          <%= f.text_area :post, id: 'markdown_textarea', class: 'form-control', placeholder: 'Please describe your submission.', required: true, rows: 10 %>
+          <%= f.text_area :post_markdown,
+                          class: 'form-control markdown-textarea',
+                          placeholder: "What's on your mind?",
+                          required: true,
+                          rows: 30 %>
         </div>
-        <div class="tab-pane" id="preview-pane">
-          <div id="markdown-preview"></div>
+        <div class="tab-pane markdown-preview-pane" id="preview-pane-description">
+          <div class="markdown-preview"></div>
         </div>
       </div>
     </div>
+
 
 
   </div>

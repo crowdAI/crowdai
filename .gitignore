@@ -20,3 +20,4 @@ public/assets/*
 screenshot*
 .byebug_history
 scripts/challenges/openfood/public_500/images/*
+scripts/dev_from_prd.sh

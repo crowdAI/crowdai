@@ -52,6 +52,7 @@ feature 'Challenge CRUD for admin user', js: true do
       expect(page).to have_button 'Update Challenge'
     end
 
+=begin
     scenario 'create challenge with dataset' do
       create_perpetual_challenge(challenge_data)
       find('#glyphicon-link-dataset').click
@@ -62,6 +63,7 @@ feature 'Challenge CRUD for admin user', js: true do
       expect(page).not_to have_content "failed"
       click_button "Create File"
     end
+=end
 
     scenario "challenge admin must configure a grading method" do
       create_perpetual_challenge(challenge_data)

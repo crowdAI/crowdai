@@ -10,6 +10,7 @@ FactoryGirl.define do
     trait :with_posts do
       after(:create) do |topic|
         topic.posts << FactoryGirl.create_list(:post, 3, topic: topic)
+        topic.participant = topic.posts.first.participant
       end
     end
   end

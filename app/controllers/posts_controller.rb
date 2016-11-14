@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_filter :authenticate_participant!
   before_action :set_post, only: [:edit, :update, :destroy]
   before_action :set_topic_and_challenge
+  after_action :notify_subscribers, only: [:create, :update]
 
 
   def new
@@ -55,5 +56,9 @@ class PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:topic_id, :participant_id, :post_markdown, :votes, :flagged, :notify)
+    end
+
+    def notify_subscribers
+      PostNotificationJob.perform_later(@post)
     end
 end

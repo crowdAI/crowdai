@@ -122,6 +122,15 @@ describe Challenge do
       end
     end
 
+    describe "friendly_id" do
+      it 'updates the slug when the challenge title changes' do
+        challenge = create(:challenge)
+        challenge.challenge = 'a new challenge title'
+        challenge.save!
+        expect(challenge.slug).to eq('a-new-challenge-title')
+      end
+    end
+
 
   end
 end

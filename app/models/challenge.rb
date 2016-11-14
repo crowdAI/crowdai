@@ -86,6 +86,16 @@ class Challenge < ActiveRecord::Base
     end
   end
 
+  def reset_friendly_id
+    if challenge_changed?
+      self.slug = 'poo'
+    end
+  end
+
+  def should_generate_new_friendly_id?
+    challenge_changed?
+  end
+
 
   def valid_status
     if self.status == :running

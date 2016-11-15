@@ -12,15 +12,17 @@ class ApplicationMailer < ActionMailer::Base
       from_email:   "no-reply@crowdai.org",
       to: [
         {
-          email:    options[:email],
+          email:    options[:to],
           type:     "to"
         }
       ],
       global_merge_vars:  options[:global_merge_vars]
     }
-    MANDRILL.messages.send_template( options[:template], [], message) unless Rails.env.test?
-
-    rescue Mandrill::Error => e
+    #puts message
+    MANDRILL.messages.send_template( options[:template], [], message) unless Rails.env.staging?
+  
+    rescue Mandrill::UnknownTemplateError => e
+      puts "#{e.class}: #{e.message}"
       Rails.logger.debug("#{e.class}: #{e.message}")
       raise
   end

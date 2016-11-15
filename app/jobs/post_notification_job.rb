@@ -2,12 +2,13 @@ class PostNotificationJob < BaseJob
   queue_as :default
 
   def perform(post)
-    subscribed_participants(post.id).each do |i|
-      puts "Processing id: #{i}"
+    debugger
+    subscribed_participant_ids(post.id).each do |row_id|
+      PostNotificationMailer.mailer(post.id, row_id)
     end
   end
 
-  def subscribed_participants(post_id)
+  def subscribed_participant_ids(post_id)
     ids = admin_ids.concat(post_participants(post_id))
     ids.uniq
   end

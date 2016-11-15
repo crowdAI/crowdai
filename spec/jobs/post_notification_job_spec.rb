@@ -11,8 +11,14 @@ RSpec.describe PostNotificationJob, type: :job do
     it 'queues the job' do
       expect { job }.to change(ActiveJob::Base.queue_adapter.enqueued_jobs, :size).by(1)
     end
+
+    it "send the email" do
+      puts 'sending'
+      PostNotificationJob.perform_later(post)
+    end
   end
 
+=begin
   describe 'private methods' do
     let(:job) { described_class.new(post) }
     let!(:admin) { create :participant, :admin }
@@ -31,10 +37,8 @@ RSpec.describe PostNotificationJob, type: :job do
       all_ids = participant_ids.concat([admin.id, admin2.id])
       expect { job.subscribed_participants(post).to eq all_ids }
     end
-
-
   end
-
+=end
 
 
 end

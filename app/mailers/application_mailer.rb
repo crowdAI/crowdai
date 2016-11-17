@@ -1,4 +1,7 @@
 class ApplicationMailer < ActionMailer::Base
+  include Rails.application.routes.url_helpers
+  include ActionView::Helpers::UrlHelper
+  include  ActionView::Helpers::TextHelper
 
   default(
     from: "no-reply@crowdai.org",
@@ -20,7 +23,7 @@ class ApplicationMailer < ActionMailer::Base
     }
     #puts message
     MANDRILL.messages.send_template( options[:template], [], message) unless Rails.env.staging?
-  
+
     rescue Mandrill::UnknownTemplateError => e
       puts "#{e.class}: #{e.message}"
       Rails.logger.debug("#{e.class}: #{e.message}")

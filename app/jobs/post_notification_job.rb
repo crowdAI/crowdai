@@ -2,14 +2,15 @@ class PostNotificationJob < BaseJob
   queue_as :default
 
   def perform(post)
-    debugger
-    subscribed_participant_ids(post.id).each do |row_id|
-      PostNotificationMailer.mailer(post.id, row_id)
+    subscribed_participant_ids(post).each do |participant_id|
+      if post.participant_id != participant_id
+        PostNotificationMailer.sendmail(participant_id, post.id).deliver_now
+      end
     end
   end
 
-  def subscribed_participant_ids(post_id)
-    ids = admin_ids.concat(post_participants(post_id))
+  def subscribed_participant_ids(post)
+    ids = admin_ids.concat(post_participant_ids(post))
     ids.uniq
   end
 
@@ -19,8 +20,7 @@ class PostNotificationJob < BaseJob
   end
 
 
-  def post_participants(post_id)
-    post = Post.find(post_id)
+  def post_participant_ids(post)
     Post.where(topic_id: post.topic_id).pluck(:participant_id)
   end
 end

@@ -1,4 +1,5 @@
-class EndChallengeJob < ActiveJob::Base
+class EndChallengeJob
+  include Sidekiq::Worker
   include Sidetiq::Schedulable
 
   recurrence { daily }

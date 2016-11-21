@@ -1,4 +1,5 @@
-class UpdateChallengeStatsJob < ActiveJob::Base
+class UpdateChallengeStatsJob
+  include Sidekiq::Worker
   include Sidetiq::Schedulable
 
   recurrence { hourly }

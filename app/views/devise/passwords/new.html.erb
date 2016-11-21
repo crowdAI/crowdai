@@ -1,33 +1,34 @@
 <div class="container-medium-grey">
-  <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-          <div class="centered-text">
-            <h2>Forgot your password?</h2>
-          </div>
-          <br/>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="centered-text">
+                        <h2>Forgot your password?</h2>
+                    </div>
+                    <br/>
 
-          <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-          <%= f.error_notification %>
+                    <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+                    <%= f.error_notification %>
 
-          <% resource.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
+                    <% resource.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                    <% end %>
 
-        <div class="form-inputs">
-          <%= f.input :email, required: true, autofocus: true, label: 'Email address' %>
+                    <div class="form-inputs">
+                        <%= f.input :email, required: true, autofocus: true, label: 'Email address' %>
+                    </div>
+                    <br/>
+                    <div class="form-actions">
+                        <%= f.button :submit, "Reset my password", class: "btn btn-primary btn-block outline" %>
+                    </div>
+                    <% end %>
+                    <br/><br/>
+                    <br/><br/>
+                    <br/><br/>
+
+                </div>
+            </div>
         </div>
-        <br/>
-        <div class="form-actions">
-          <%= f.button :submit, "Send me reset password instructions", class: "btn btn-primary btn-block outline" %>
-        </div>
-        <% end %>
-        <br/><br/>
-        <br/><br/>
-        <br/><br/>
-
-      </div>
     </div>
-  </div>
 </div>

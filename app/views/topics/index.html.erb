@@ -6,7 +6,11 @@
     <div class="col-xs-7 col-md-10">
       <% if @headline_post %>
       <blockquote>
-        <p><%= link_to @headline_post.post, new_topic_post_path(@headline_post.topic_id) %></p>
+        <p>
+          <%= link_to new_topic_post_path(@headline_post.topic_id) do %>
+              <% simple_format(@headline_post.post) %>
+           <% end %>
+         </p>
         <footer>Posted by
           <%= @headline_post.name %>
           in

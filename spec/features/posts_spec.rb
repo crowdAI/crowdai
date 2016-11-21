@@ -18,7 +18,7 @@ feature 'Posts CRUD', js: true do
       expect(page).to have_content("Topic was successfully created.")
       click_link "Post test"
       expect(page).to have_content("Post test")
-      find('#markdown_textarea').set('### Markdown Heading')
+      find('.markdown-textarea').set('### Markdown Heading')
       click_button "Create Post"
       expect(page).to have_selector("h3", text: "Markdown Heading")
       expect(page).to have_content("Post was successfully created.")

@@ -3,7 +3,7 @@ class Challenge < ActiveRecord::Base
   friendly_id :challenge, use: :slugged
   before_validation :cache_rendered_markdown
   validate :valid_status
-  has_paper_trail :ignore => :page_views
+  has_paper_trail :ignore => [:created_at, :updated_at, :page_views, :description, :rules, :prizes, :resources, :evaluation, :license]
 
   belongs_to :organizer
 
@@ -84,6 +84,16 @@ class Challenge < ActiveRecord::Base
     if license_markdown_changed?
       self.license = RenderMarkdown.new.render(license_markdown)
     end
+  end
+
+  def reset_friendly_id
+    if challenge_changed?
+      self.slug = 'poo'
+    end
+  end
+
+  def should_generate_new_friendly_id?
+    challenge_changed?
   end
 
 

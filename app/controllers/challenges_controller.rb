@@ -13,7 +13,10 @@ class ChallengesController < ApplicationController
 
   def show
     authorize @challenge
-    @challenge.record_page_view
+    #@versions = @challenge.versions
+    if !params[:version]
+      @challenge.record_page_view
+    end
     load_gon({percent_progress: @challenge.timeline.pct_passed})
   end
 
@@ -74,7 +77,10 @@ class ChallengesController < ApplicationController
   private
   def set_challenge
     @challenge = Challenge.friendly.find(params[:id])
-    authorize @challenge
+    if params[:version]
+      @challenge = @challenge.versions[params[:version].to_i].reify
+    end
+    #authorize @challenge
   end
 
 

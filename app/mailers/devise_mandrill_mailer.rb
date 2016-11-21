@@ -74,6 +74,7 @@ class DeviseMandrillMailer < Devise::Mailer
     MANDRILL.messages.send_template( options[:template], [], message) unless Rails.env.test?
 
     rescue Mandrill::Error => e
+      puts e.message
       Rails.logger.debug("#{e.class}: #{e.message}")
       raise
   end

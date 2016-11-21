@@ -83,7 +83,7 @@ gem 'figaro'
 # email
 gem 'mandrill-api'
 gem 'gibbon'
-gem 'mandrill_mailer'
+#gem 'mandrill_mailer'
 
 # background processing
 gem 'sidekiq'

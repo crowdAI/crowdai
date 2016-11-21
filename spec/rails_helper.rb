@@ -12,7 +12,6 @@ require 'support/login_helper'
 require 'features/support/navigation_helpers'
 require 'features/support/challenge_helpers'
 require 'support/feature_helpers'
-require 'mandrill_mailer/offline'
 require 'support/pundit_matcher'
 
 

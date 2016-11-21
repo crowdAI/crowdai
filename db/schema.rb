@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161019153059) do
+ActiveRecord::Schema.define(version: 20161114141303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -300,6 +300,7 @@ ActiveRecord::Schema.define(version: 20161019153059) do
     t.datetime "updated_at",                     null: false
     t.integer  "vote_count",     default: 0
     t.string   "slug"
+    t.text     "post_markdown"
   end
 
   add_index "posts", ["participant_id"], name: "index_posts_on_participant_id", using: :btree

@@ -52,6 +52,7 @@ class SubmissionsController < ApplicationController
       if @challenge.automatic_grading
         SubmissionGraderJob.perform_later(@submission.id)
       end
+      notify_admins
       redirect_to challenge_submissions_path(@challenge), notice: 'Submission accepted.'
     else
       @errors = @submission.errors
@@ -118,6 +119,10 @@ class SubmissionsController < ApplicationController
     def set_submissions_remaining
       submissions_today = Submission.where("participant_id = ? and created_at >= ?", current_participant.id, Time.now - 24.hours).count
       @submissions_remaining = (@challenge.daily_submissions - submissions_today)
+    end
+
+    def notify_admins
+      SubmissionNotificationJob.perform_later(@submission)
     end
 
 

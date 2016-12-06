@@ -4,6 +4,7 @@ class PostNotificationMailer < ApplicationMailer
     participant = Participant.find(participant_id)
     post = Post.find(post_id)
     options = format_options(participant,post)
+    @model_id = post_id
     mandrill_send(options)
   end
 

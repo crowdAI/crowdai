@@ -3,7 +3,7 @@ class SubmissionNotificationJob < BaseJob
 
   def perform(submission)
     admin_ids.each do |admin_id|
-      PostNotificationMailer.sendmail(admin_id, submission.id).deliver_now
+      SubmissionNotificationMailer.sendmail(admin_id, submission.id).deliver_now
     end
   end
 

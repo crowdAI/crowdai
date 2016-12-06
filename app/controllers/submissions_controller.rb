@@ -49,7 +49,7 @@ class SubmissionsController < ApplicationController
   def create
     @submission = Submission.new(submission_params)
     if @submission.save
-      if @challenge.automatic_grading
+      if @challenge.automatic_grading && @challenge.grader != :docker_container
         SubmissionGraderJob.perform_later(@submission.id)
       end
       notify_admins

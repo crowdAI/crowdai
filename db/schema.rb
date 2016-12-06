@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121083612) do
+ActiveRecord::Schema.define(version: 20161206142527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -188,6 +188,16 @@ ActiveRecord::Schema.define(version: 20161121083612) do
   end
 
   add_index "docker_files", ["docker_configuration_id"], name: "index_docker_files_on_docker_configuration_id", using: :btree
+
+  create_table "emails", force: :cascade do |t|
+    t.integer  "model_id"
+    t.string   "mailer"
+    t.text     "recipients"
+    t.text     "options"
+    t.string   "status_cd"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "events", force: :cascade do |t|
     t.integer  "challenge_id"

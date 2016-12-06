@@ -23,11 +23,16 @@ class ApplicationMailer < ActionMailer::Base
     }
     #puts message
     MANDRILL.messages.send_template( options[:template], [], message) unless Rails.env.staging?
+    logger(options)
 
     rescue Mandrill::UnknownTemplateError => e
       puts "#{e.class}: #{e.message}"
       Rails.logger.debug("#{e.class}: #{e.message}")
       raise
+  end
+
+  def logger(options)
+    Email.create!(model_id: @model_id, mailer: self.class.to_s, recipients: options[:to], options: options, status: :sent)
   end
 
 

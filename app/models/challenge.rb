@@ -24,6 +24,7 @@ class Challenge < ActiveRecord::Base
   has_many :ongoing_leaderboards,         class_name: 'OngoingLeaderboard'
   has_many :participant_challenges,       class_name: 'ParticipantChallenge'
   has_many :topics
+  has_many :emails,                       dependent: :destroy
 
 
   as_enum :status, [:draft, :running, :completed, :perpetual, :cancelled], map: :string

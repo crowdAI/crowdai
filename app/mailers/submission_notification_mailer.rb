@@ -4,6 +4,7 @@ class SubmissionNotificationMailer < ApplicationMailer
     participant = Participant.find(participant_id)
     submission = Submission.find(submission_id)
     options = format_options(participant,submission)
+    @model_id = submission_id
     mandrill_send(options)
   end
 

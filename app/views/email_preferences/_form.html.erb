@@ -1,0 +1,17 @@
+<%= simple_form_for([@participant,@email_preference]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :participant %>
+    <%= f.input :opt_out_all %>
+    <%= f.input :newsletter %>
+    <%= f.input :leaderboard_entry %>
+    <%= f.input :any_post %>
+    <%= f.input :my_topic_post %>
+    <%= f.input :new_leader %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

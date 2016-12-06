@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   devise_for :participants
   resources :participants, only: [:show, :edit, :update, :destroy] do
     get :sync_mailchimp
+    resources :email_preferences, only: [:edit, :update]
   end
 
   # Administrate

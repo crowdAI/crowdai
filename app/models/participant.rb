@@ -1,6 +1,7 @@
 class Participant < ActiveRecord::Base
   include FriendlyId
   friendly_id :name, use: :slugged
+  after_create :set_email_preferences
   before_save { self.email = email.downcase }
   before_save :process_urls
 
@@ -90,6 +91,10 @@ class Participant < ActiveRecord::Base
   def after_confirmation
     super
     AddToMailChimpListJob.perform_later(self.id)
+  end
+
+  def set_email_preferences
+    self.email_preferences.create!
   end
 
 

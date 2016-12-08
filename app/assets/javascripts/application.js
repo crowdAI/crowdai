@@ -48,6 +48,7 @@
 //= require controllers/dataset_files_controller
 //= require controllers/submissions_controller
 //= require controllers/articles_controller
+//= require controllers/email_preferences_controller
 
 
 

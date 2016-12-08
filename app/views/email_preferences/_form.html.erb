@@ -2,16 +2,20 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :participant %>
-    <%= f.input :opt_out_all %>
-    <%= f.input :newsletter %>
-    <%= f.input :leaderboard_entry %>
-    <%= f.input :any_post %>
-    <%= f.input :my_topic_post %>
-    <%= f.input :new_leader %>
+    <lead>General preferences</lead>
+    <%= f.input :opt_out_all, label: 'Opt out of all emails' %>
+    <%= f.input :newsletter, label: 'crowdAI Newsletter' %>
+
+    <lead>In challenges in which I am participating</lead>
+    <%= f.input :leaderboard_entry, label: 'A new entry is made on the leaderboard' %>
+    <%= f.input :any_post, label: 'Any discussion post is made' %>
+    <%= f.input :my_topic_post, label: 'A post is made to a topic to which I am participating' %>
+
+    <lead>In any challenge</lead>
+    <%= f.input :new_leader, label: 'There is a new leader on the leaderboard' %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, 'Update Email Preferences', class: 'btn btn-primary outline' %>
   </div>
 <% end %>

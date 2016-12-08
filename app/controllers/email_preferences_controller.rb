@@ -8,7 +8,7 @@ class EmailPreferencesController < ApplicationController
 
   def update
     if @email_preference.update(email_preference_params)
-      redirect_to @email_preference, notice: 'Email preference was successfully updated.'
+      redirect_to edit_participant_email_preference_path(@participant, @email_preference), notice: 'Your email preferences were successfully updated.'
     else
       render :edit
     end

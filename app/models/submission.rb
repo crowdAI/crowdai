@@ -62,5 +62,9 @@ class Submission < ActiveRecord::Base
     end
   end
 
+  def schedule_leaderboard_email
+    LeaderboardNotificationJob.perform_later(self)
+  end
+
 
 end

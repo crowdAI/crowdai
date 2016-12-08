@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161206155453) do
+ActiveRecord::Schema.define(version: 20161208153220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -191,14 +191,14 @@ ActiveRecord::Schema.define(version: 20161206155453) do
 
   create_table "email_preferences", force: :cascade do |t|
     t.integer  "participant_id"
-    t.boolean  "opt_out_all",       default: false
-    t.boolean  "newsletter",        default: true
-    t.boolean  "leaderboard_entry", default: true
-    t.boolean  "any_post",          default: true
-    t.boolean  "my_topic_post",     default: true
-    t.boolean  "new_leader",        default: true
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.boolean  "opt_out_all",     default: false
+    t.boolean  "newsletter",      default: true
+    t.boolean  "my_leaderboard",  default: true
+    t.boolean  "any_post",        default: true
+    t.boolean  "my_topic_post",   default: true
+    t.boolean  "any_leaderboard", default: true
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   add_index "email_preferences", ["participant_id"], name: "index_email_preferences_on_participant_id", using: :btree

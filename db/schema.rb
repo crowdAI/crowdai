@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161206142527) do
+ActiveRecord::Schema.define(version: 20161208153220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -188,6 +188,20 @@ ActiveRecord::Schema.define(version: 20161206142527) do
   end
 
   add_index "docker_files", ["docker_configuration_id"], name: "index_docker_files_on_docker_configuration_id", using: :btree
+
+  create_table "email_preferences", force: :cascade do |t|
+    t.integer  "participant_id"
+    t.boolean  "opt_out_all",     default: false
+    t.boolean  "newsletter",      default: true
+    t.boolean  "my_leaderboard",  default: true
+    t.boolean  "any_post",        default: true
+    t.boolean  "my_topic_post",   default: true
+    t.boolean  "any_leaderboard", default: true
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "email_preferences", ["participant_id"], name: "index_email_preferences_on_participant_id", using: :btree
 
   create_table "emails", force: :cascade do |t|
     t.integer  "model_id"
@@ -428,6 +442,7 @@ ActiveRecord::Schema.define(version: 20161206142527) do
   add_foreign_key "dataset_file_downloads", "participants"
   add_foreign_key "docker_configurations", "challenges"
   add_foreign_key "docker_files", "docker_configurations"
+  add_foreign_key "email_preferences", "participants"
   add_foreign_key "events", "challenges"
   add_foreign_key "participants", "organizers"
   add_foreign_key "posts", "participants"

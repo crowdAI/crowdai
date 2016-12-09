@@ -1,6 +1,7 @@
 class Participant < ActiveRecord::Base
   include FriendlyId
   friendly_id :name, use: :slugged
+  after_create :set_email_preferences
   before_save { self.email = email.downcase }
   before_save :process_urls
 
@@ -18,7 +19,8 @@ class Participant < ActiveRecord::Base
   has_many :leaderboards,               class_name: 'Leaderboard'
   has_many :ongoing_leaderboards,       class_name: 'OngoingLeaderboard'
   has_many :participant_challenges,     class_name: 'ParticipantChallenge'
-  has_many :dataset_file_downloads, dependent: :destroy
+  has_many :dataset_file_downloads,     dependent: :destroy
+  has_many :email_preferences,          dependent: :destroy
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   VALID_URL_REGEX = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/
@@ -89,6 +91,10 @@ class Participant < ActiveRecord::Base
   def after_confirmation
     super
     AddToMailChimpListJob.perform_later(self.id)
+  end
+
+  def set_email_preferences
+    self.email_preferences.create!
   end
 
 

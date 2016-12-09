@@ -1,6 +1,7 @@
 class SubmissionGrade < ActiveRecord::Base
   belongs_to :submission
   after_save :update_submission
+  after_save :notify_participant
   default_scope { order('created_at DESC') }
 
 
@@ -15,4 +16,9 @@ class SubmissionGrade < ActiveRecord::Base
                       score: self.score,
                       score_secondary: self.score_secondary)
   end
+
+  def notify_participant
+    SubmissionNotificationJob.perform_later(@submission)
+  end
+
 end

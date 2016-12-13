@@ -30,7 +30,7 @@ class EmailPreferencesController < ApplicationController
     end
 
     def email_preference_params
-      params.require(:email_preference).permit(:participant_id, :opt_out_all, :newsletter, :leaderboard_entry, :any_post, :my_topic_post, :new_leader)
+      params.require(:email_preference).permit(:participant_id, :opt_out_all, :newsletter, :my_leaderboard, :any_post, :my_topic_post, :any_leaderboard)
     end
 
     def unsubscribe_token_or_authenticate

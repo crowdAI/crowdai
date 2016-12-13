@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class ApplicationMailer < ActionMailer::Base
   include Rails.application.routes.url_helpers
   include ActionView::Helpers::UrlHelper
@@ -9,6 +11,9 @@ class ApplicationMailer < ActionMailer::Base
   )
 
   def mandrill_send(options={})
+    unsubscribe_token = generate_unsubscribe_token
+    options[:global_merge_vars] << { name: 'UNSUBSCRIBE_LINK',
+                                     content: build_unsubscribe_url(options[:participant_id],unsubscribe_token) }
     message = {
       subject:      options[:subject],
       from_name:    "crowdAI",
@@ -21,9 +26,8 @@ class ApplicationMailer < ActionMailer::Base
       ],
       global_merge_vars:  options[:global_merge_vars]
     }
-    #puts message
     MANDRILL.messages.send_template( options[:template], [], message) unless Rails.env.staging?
-    logger(options)
+    email_logger(options,unsubscribe_token)
 
     rescue Mandrill::UnknownTemplateError => e
       puts "#{e.class}: #{e.message}"
@@ -31,10 +35,28 @@ class ApplicationMailer < ActionMailer::Base
       raise
   end
 
-  def logger(options)
-    Email.create!(model_id: @model_id, mailer: self.class.to_s, recipients: options[:to], options: options, status: :sent)
+
+  def email_logger(options,unsubscribe_token)
+    Email.create!(model_id: @model_id,
+                  mailer: self.class.to_s,
+                  recipients: options[:to],
+                  options: options,
+                  status: :sent,
+                  participant_id: options[:participant_id],
+                  email_preferences_token: unsubscribe_token,
+                  token_expiration_dttm: DateTime.current + 7.days)
   end
 
+
+  def generate_unsubscribe_token
+    SecureRandom.urlsafe_base64(24)
+  end
+
+  def build_unsubscribe_url(participant_id,unsubscribe_token)
+    participant = Participant.find(participant_id)
+    pref = participant.email_preferences.first
+    return "https://www.crowdai.org/participants/#{participant.id}/email_preferences/#{pref.id}/edit?unsubscribe_token=#{unsubscribe_token}"
+  end
 
 
 end

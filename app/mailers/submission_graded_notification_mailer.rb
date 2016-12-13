@@ -13,9 +13,10 @@ class SubmissionGradedNotificationMailer < ApplicationMailer
     challenge = submission.challenge
 
     options = {
-      subject:     "[crowdAI/#{challenge.challenge}] Submission graded",
-      to:           participant.email,
-      template:     "crowdAI General Template",
+      participant_id:   participant.id,
+      subject:          "[crowdAI/#{challenge.challenge}] Submission graded",
+      to:               participant.email,
+      template:         "crowdAI General Template",
       global_merge_vars: [
         {
           name:           "NAME",
@@ -56,7 +57,7 @@ class SubmissionGradedNotificationMailer < ApplicationMailer
               + "The secondary score is: " + submission.score_secondary + '</p>'
       end
     end
-    
+
     return msg
   end
 

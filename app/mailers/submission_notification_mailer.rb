@@ -13,9 +13,10 @@ class SubmissionNotificationMailer < ApplicationMailer
     challenge = submission.challenge
 
     options = {
-      subject:     "[ADMIN:crowdAI/#{challenge.challenge}] Submission made",
-      to:           participant.email,
-      template:     "crowdAI General Template",
+      participant_id:   participant.id,
+      subject:          "[ADMIN:crowdAI/#{challenge.challenge}] Submission made",
+      to:               participant.email,
+      template:         "crowdAI General Template",
       global_merge_vars: [
         {
           name:           "NAME",

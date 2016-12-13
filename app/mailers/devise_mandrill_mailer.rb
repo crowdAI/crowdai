@@ -3,6 +3,7 @@ class DeviseMandrillMailer < Devise::Mailer
 
   def reset_password_instructions(record, token, opts={})
     options = {
+      participant_id:   record.id,
       subject:          "crowdAI Password Reset",
       email:            record.email,
       global_merge_vars:  [
@@ -22,6 +23,7 @@ class DeviseMandrillMailer < Devise::Mailer
 
   def confirmation_instructions(record, token, opts={})
     options = {
+      participant_id:   record.id,
       subject:          "crowdAI Confirmation Instructions",
       email:            record.email,
       global_merge_vars:  [
@@ -41,6 +43,7 @@ class DeviseMandrillMailer < Devise::Mailer
 
   def unlock_instructions(record, token, opts={})
     options = {
+      participant_id:   record.id,
       subject:          "crowdAI Unlock Instructions",
       email:            record.email,
       global_merge_vars:  [

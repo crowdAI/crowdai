@@ -16,9 +16,10 @@ class PostNotificationMailer < ApplicationMailer
     puts email_body(challenge,topic,post)
 
     options = {
-      subject:     "[crowdAI/#{challenge.challenge}] #{topic.topic}",
-      to:           participant.email,
-      template:     "crowdAI General Template",
+      participant_id:   participant.id,
+      subject:          "[crowdAI/#{challenge.challenge}] #{topic.topic}",
+      to:               participant.email,
+      template:         "crowdAI General Template",
       global_merge_vars: [
         {
           name:           "NAME",

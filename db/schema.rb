@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208153220) do
+ActiveRecord::Schema.define(version: 20161212125607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -209,8 +209,11 @@ ActiveRecord::Schema.define(version: 20161208153220) do
     t.text     "recipients"
     t.text     "options"
     t.string   "status_cd"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "email_preferences_token"
+    t.datetime "token_expiration_dttm"
+    t.integer  "participant_id"
   end
 
   create_table "events", force: :cascade do |t|

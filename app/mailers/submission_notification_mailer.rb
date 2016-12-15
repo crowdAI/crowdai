@@ -32,12 +32,14 @@ class SubmissionNotificationMailer < ApplicationMailer
 
 
   def email_body(challenge,submission)
+    "<div>" +
     "<p>A new submission has been made to the " +
     "#{challenge.challenge} challenge.</p>" +
     "<br/>" +
-    "<pre>#{submission.description}</pre>" +
+    "#{submission.description}" +
     "<br/>" +
-    "<p>Click #{link_to 'leaderboard', challenge_leaderboards_url(challenge)} to see the submission.</p>"
+    "<p>Click #{link_to 'leaderboard', challenge_leaderboards_path(challenge)} to see the submission.</p>" +
+    "</div>"
   end
 
 

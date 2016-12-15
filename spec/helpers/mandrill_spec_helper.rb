@@ -13,9 +13,17 @@ res = [
                               {:name=>"UNSUBSCRIBE_LINK", :content=>"http://localhost:3000/participants/151/email_preferences/151/edit?unsubscribe_token=VHMZh4IHVyIf937vRC1W2JgerNwxpP1h"}]
       }]
 
-describe MandrillSpecHelper do
 
+describe MandrillSpecHelper do
     let(:man) { MandrillSpecHelper.new(res) }
+
+    it '#status' do
+      expect(man.status).to eq('sent')
+    end
+
+    it '#reject_reason' do
+      expect(man.reject_reason).to eq(nil)
+    end
 
     it '#merge_var' do
       expect(man.merge_var('NAME')).to eq("Example_name_10")
@@ -37,7 +45,4 @@ describe MandrillSpecHelper do
     it '#email_array' do
       expect(man.email_array).to match_array(["lela@example.com","lela2@example.com"])
     end
-
-
-
 end

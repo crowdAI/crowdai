@@ -5,6 +5,14 @@ class MandrillSpecHelper
     @msg = result[1]
   end
 
+  def status
+    @res["status"]
+  end
+
+  def reject_reason
+    @res["reject_reason"]
+  end
+
   def merge_vars
     @msg[:global_merge_vars]
   end

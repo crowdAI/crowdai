@@ -1,14 +1,10 @@
 require 'securerandom'
 
-class ApplicationMailer < ActionMailer::Base
+class ApplicationMailer #< ActionMailer::Base
   include Rails.application.routes.url_helpers
   include ActionView::Helpers::UrlHelper
-  include  ActionView::Helpers::TextHelper
+  include ActionView::Helpers::TextHelper
 
-  default(
-    from: "no-reply@crowdai.org",
-    reply_to: "no-reply@crowdai.org"
-  )
 
   def mandrill_send(options={})
     unsubscribe_token = generate_unsubscribe_token
@@ -26,11 +22,13 @@ class ApplicationMailer < ActionMailer::Base
       ],
       global_merge_vars:  options[:global_merge_vars]
     }
-    MANDRILL.messages.send_template( options[:template], [], message) unless Rails.env.staging?
+    res = nil
+    res = MANDRILL.messages.send_template( options[:template], [], message) unless Rails.env.staging?
     email_logger(options,unsubscribe_token)
 
+    return [res, message]
+
     rescue Mandrill::UnknownTemplateError => e
-      puts "#{e.class}: #{e.message}"
       Rails.logger.debug("#{e.class}: #{e.message}")
       raise
   end
@@ -55,7 +53,7 @@ class ApplicationMailer < ActionMailer::Base
   def build_unsubscribe_url(participant_id,unsubscribe_token)
     participant = Participant.find(participant_id)
     pref = participant.email_preferences.first
-    return "https://www.crowdai.org/participants/#{participant.id}/email_preferences/#{pref.id}/edit?unsubscribe_token=#{unsubscribe_token}"
+    return "#{ENV['HOST']}/participants/#{participant.id}/email_preferences/#{pref.id}/edit?unsubscribe_token=#{unsubscribe_token}"
   end
 
 

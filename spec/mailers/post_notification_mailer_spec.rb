@@ -1,4 +1,5 @@
 require 'spec_helper'
+#require 'mandrill_mailer/offline'
 
 RSpec.describe PostNotificationMailer, type: :mailer do
 
@@ -7,10 +8,22 @@ RSpec.describe PostNotificationMailer, type: :mailer do
     let(:topic) { create :topic, challenge: challenge }
     let(:post) { create :post, topic: topic }
 
-    subject(:mailer) { described_class.new }
+    before :each do
+      #MandrillMailer::deliveries.clear
+    end
 
-    it '#email_body' do
-      expect(mailer.email_body(challenge,topic,post)).not_to be_empty
+    it 'successfully sends a message' do
+      ret = described_class.new.sendmail(post.participant_id,post.id)[0][0]
+      expect(ret["status"]).to eq 'sent'
+      expect(ret["reject_reason"]).to eq nil
+    end
+
+    it 'send the message with the correct parameters' do
+      res = described_class.new.sendmail(post.participant_id,post.id)
+      byebug
+      man = MandrillHelper.new(res)
+      #expect(msg[:to][0][:email]).to eq post.participant.email
+      expect(msg[:global_merge_vars][0][:body]).to be_a_valid_html_fragment
     end
   end
 

@@ -118,6 +118,7 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'scss_lint', require: false
   gem 'shog', branch: 'master'
+  gem 'rubocop', require: false
 end
 
 

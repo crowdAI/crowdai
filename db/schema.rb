@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -17,6 +16,12 @@ ActiveRecord::Schema.define(version: 20161212125607) do
   enable_extension "plpgsql"
   enable_extension "pg_stat_statements"
 
+  create_table "ar_internal_metadata", primary_key: "key", id: :string, force: :cascade do |t|
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "article_sections", force: :cascade do |t|
     t.integer  "article_id"
     t.integer  "seq",                  default: 1
@@ -27,10 +32,9 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.string   "icon"
     t.string   "section"
     t.string   "slug"
+    t.index ["article_id"], name: "index_article_sections_on_article_id", using: :btree
+    t.index ["slug"], name: "index_article_sections_on_slug", unique: true, using: :btree
   end
-
-  add_index "article_sections", ["article_id"], name: "index_article_sections_on_article_id", using: :btree
-  add_index "article_sections", ["slug"], name: "index_article_sections_on_slug", unique: true, using: :btree
 
   create_table "articles", force: :cascade do |t|
     t.string   "article"
@@ -44,10 +48,9 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.integer  "comment_count",  default: 0
     t.string   "summary"
     t.string   "slug"
+    t.index ["participant_id"], name: "index_articles_on_participant_id", using: :btree
+    t.index ["slug"], name: "index_articles_on_slug", unique: true, using: :btree
   end
-
-  add_index "articles", ["participant_id"], name: "index_articles_on_participant_id", using: :btree
-  add_index "articles", ["slug"], name: "index_articles_on_slug", unique: true, using: :btree
 
   create_table "challenges", force: :cascade do |t|
     t.integer  "organizer_id"
@@ -89,10 +92,9 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.boolean  "api_required",                     default: false
     t.integer  "daily_submissions"
     t.float    "threshold"
+    t.index ["organizer_id"], name: "index_challenges_on_organizer_id", using: :btree
+    t.index ["slug"], name: "index_challenges_on_slug", unique: true, using: :btree
   end
-
-  add_index "challenges", ["organizer_id"], name: "index_challenges_on_organizer_id", using: :btree
-  add_index "challenges", ["slug"], name: "index_challenges_on_slug", unique: true, using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.integer  "commentable_id"
@@ -102,10 +104,9 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.string   "slug"
+    t.index ["participant_id"], name: "index_comments_on_participant_id", using: :btree
+    t.index ["slug"], name: "index_comments_on_slug", unique: true, using: :btree
   end
-
-  add_index "comments", ["participant_id"], name: "index_comments_on_participant_id", using: :btree
-  add_index "comments", ["slug"], name: "index_comments_on_slug", unique: true, using: :btree
 
   create_table "container_instances", force: :cascade do |t|
     t.integer  "docker_configuration_id"
@@ -117,11 +118,10 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.string   "container_sha"
     t.string   "slug"
     t.integer  "submission_id"
+    t.index ["docker_configuration_id"], name: "index_container_instances_on_docker_configuration_id", using: :btree
+    t.index ["slug"], name: "index_container_instances_on_slug", unique: true, using: :btree
+    t.index ["submission_id"], name: "index_container_instances_on_submission_id", using: :btree
   end
-
-  add_index "container_instances", ["docker_configuration_id"], name: "index_container_instances_on_docker_configuration_id", using: :btree
-  add_index "container_instances", ["slug"], name: "index_container_instances_on_slug", unique: true, using: :btree
-  add_index "container_instances", ["submission_id"], name: "index_container_instances_on_submission_id", using: :btree
 
   create_table "container_logs", force: :cascade do |t|
     t.integer  "container_instance_id"
@@ -131,10 +131,9 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.datetime "updated_at",            null: false
     t.string   "log_source_cd"
     t.string   "slug"
+    t.index ["container_instance_id"], name: "index_container_logs_on_container_instance_id", using: :btree
+    t.index ["slug"], name: "index_container_logs_on_slug", unique: true, using: :btree
   end
-
-  add_index "container_logs", ["container_instance_id"], name: "index_container_logs_on_container_instance_id", using: :btree
-  add_index "container_logs", ["slug"], name: "index_container_logs_on_slug", unique: true, using: :btree
 
   create_table "dataset_file_downloads", force: :cascade do |t|
     t.integer  "participant_id"
@@ -143,11 +142,10 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "slug"
+    t.index ["dataset_file_id"], name: "index_dataset_file_downloads_on_dataset_file_id", using: :btree
+    t.index ["participant_id"], name: "index_dataset_file_downloads_on_participant_id", using: :btree
+    t.index ["slug"], name: "index_dataset_file_downloads_on_slug", unique: true, using: :btree
   end
-
-  add_index "dataset_file_downloads", ["dataset_file_id"], name: "index_dataset_file_downloads_on_dataset_file_id", using: :btree
-  add_index "dataset_file_downloads", ["participant_id"], name: "index_dataset_file_downloads_on_participant_id", using: :btree
-  add_index "dataset_file_downloads", ["slug"], name: "index_dataset_file_downloads_on_slug", unique: true, using: :btree
 
   create_table "dataset_files", force: :cascade do |t|
     t.integer  "seq"
@@ -157,10 +155,9 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.integer  "challenge_id"
     t.string   "dataset_file_s3_key"
     t.string   "slug"
+    t.index ["challenge_id"], name: "index_dataset_files_on_challenge_id", using: :btree
+    t.index ["slug"], name: "index_dataset_files_on_slug", unique: true, using: :btree
   end
-
-  add_index "dataset_files", ["challenge_id"], name: "index_dataset_files_on_challenge_id", using: :btree
-  add_index "dataset_files", ["slug"], name: "index_dataset_files_on_slug", unique: true, using: :btree
 
   create_table "docker_configurations", force: :cascade do |t|
     t.integer  "challenge_id"
@@ -173,9 +170,8 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.string   "name"
     t.boolean  "execute_on_submission", default: false
     t.string   "datasets_directory"
+    t.index ["challenge_id"], name: "index_docker_configurations_on_challenge_id", using: :btree
   end
-
-  add_index "docker_configurations", ["challenge_id"], name: "index_docker_configurations_on_challenge_id", using: :btree
 
   create_table "docker_files", force: :cascade do |t|
     t.integer  "docker_configuration_id"
@@ -185,9 +181,8 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.datetime "updated_at",                                null: false
     t.boolean  "grading_only",              default: false
     t.boolean  "overwritable",              default: false
+    t.index ["docker_configuration_id"], name: "index_docker_files_on_docker_configuration_id", using: :btree
   end
-
-  add_index "docker_files", ["docker_configuration_id"], name: "index_docker_files_on_docker_configuration_id", using: :btree
 
   create_table "email_preferences", force: :cascade do |t|
     t.integer  "participant_id"
@@ -199,9 +194,8 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.boolean  "any_leaderboard", default: true
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.index ["participant_id"], name: "index_email_preferences_on_participant_id", using: :btree
   end
-
-  add_index "email_preferences", ["participant_id"], name: "index_email_preferences_on_participant_id", using: :btree
 
   create_table "emails", force: :cascade do |t|
     t.integer  "model_id"
@@ -224,10 +218,9 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "slug"
+    t.index ["challenge_id"], name: "index_events_on_challenge_id", using: :btree
+    t.index ["slug"], name: "index_events_on_slug", unique: true, using: :btree
   end
-
-  add_index "events", ["challenge_id"], name: "index_events_on_challenge_id", using: :btree
-  add_index "events", ["slug"], name: "index_events_on_slug", unique: true, using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -235,12 +228,11 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.string   "sluggable_type", limit: 50
     t.string   "scope"
     t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
   end
-
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.integer  "imageable_id"
@@ -253,10 +245,9 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "slug"
+    t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id", using: :btree
+    t.index ["slug"], name: "index_images_on_slug", unique: true, using: :btree
   end
-
-  add_index "images", ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id", using: :btree
-  add_index "images", ["slug"], name: "index_images_on_slug", unique: true, using: :btree
 
   create_table "organizers", force: :cascade do |t|
     t.string   "organizer"
@@ -266,9 +257,8 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.datetime "updated_at",                  null: false
     t.boolean  "approved",    default: false
     t.string   "slug"
+    t.index ["slug"], name: "index_organizers_on_slug", unique: true, using: :btree
   end
-
-  add_index "organizers", ["slug"], name: "index_organizers_on_slug", unique: true, using: :btree
 
   create_table "participants", force: :cascade do |t|
     t.string   "email",                   default: "",    null: false
@@ -308,14 +298,13 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.text     "account_disabled_reason"
     t.datetime "account_disabled_dttm"
     t.string   "slug"
+    t.index ["confirmation_token"], name: "index_participants_on_confirmation_token", unique: true, using: :btree
+    t.index ["email"], name: "index_participants_on_email", unique: true, using: :btree
+    t.index ["organizer_id"], name: "index_participants_on_organizer_id", using: :btree
+    t.index ["reset_password_token"], name: "index_participants_on_reset_password_token", unique: true, using: :btree
+    t.index ["slug"], name: "index_participants_on_slug", unique: true, using: :btree
+    t.index ["unlock_token"], name: "index_participants_on_unlock_token", unique: true, using: :btree
   end
-
-  add_index "participants", ["confirmation_token"], name: "index_participants_on_confirmation_token", unique: true, using: :btree
-  add_index "participants", ["email"], name: "index_participants_on_email", unique: true, using: :btree
-  add_index "participants", ["organizer_id"], name: "index_participants_on_organizer_id", using: :btree
-  add_index "participants", ["reset_password_token"], name: "index_participants_on_reset_password_token", unique: true, using: :btree
-  add_index "participants", ["slug"], name: "index_participants_on_slug", unique: true, using: :btree
-  add_index "participants", ["unlock_token"], name: "index_participants_on_unlock_token", unique: true, using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.integer  "topic_id"
@@ -328,11 +317,10 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.integer  "vote_count",     default: 0
     t.string   "slug"
     t.text     "post_markdown"
+    t.index ["participant_id"], name: "index_posts_on_participant_id", using: :btree
+    t.index ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
+    t.index ["topic_id"], name: "index_posts_on_topic_id", using: :btree
   end
-
-  add_index "posts", ["participant_id"], name: "index_posts_on_participant_id", using: :btree
-  add_index "posts", ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
-  add_index "posts", ["topic_id"], name: "index_posts_on_topic_id", using: :btree
 
   create_table "submission_file_definitions", force: :cascade do |t|
     t.integer  "challenge_id"
@@ -343,9 +331,8 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.text     "submission_file_help_text"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
+    t.index ["challenge_id"], name: "index_submission_file_definitions_on_challenge_id", using: :btree
   end
-
-  add_index "submission_file_definitions", ["challenge_id"], name: "index_submission_file_definitions_on_challenge_id", using: :btree
 
   create_table "submission_files", force: :cascade do |t|
     t.integer  "submission_id"
@@ -354,10 +341,9 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.datetime "updated_at",             null: false
     t.string   "submission_file_s3_key"
     t.string   "slug"
+    t.index ["slug"], name: "index_submission_files_on_slug", unique: true, using: :btree
+    t.index ["submission_id"], name: "index_submission_files_on_submission_id", using: :btree
   end
-
-  add_index "submission_files", ["slug"], name: "index_submission_files_on_slug", unique: true, using: :btree
-  add_index "submission_files", ["submission_id"], name: "index_submission_files_on_submission_id", using: :btree
 
   create_table "submission_grades", force: :cascade do |t|
     t.integer  "submission_id"
@@ -369,10 +355,9 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.string   "slug"
+    t.index ["slug"], name: "index_submission_grades_on_slug", unique: true, using: :btree
+    t.index ["submission_id"], name: "index_submission_grades_on_submission_id", using: :btree
   end
-
-  add_index "submission_grades", ["slug"], name: "index_submission_grades_on_slug", unique: true, using: :btree
-  add_index "submission_grades", ["submission_id"], name: "index_submission_grades_on_submission_id", using: :btree
 
   create_table "submissions", force: :cascade do |t|
     t.integer  "challenge_id"
@@ -389,11 +374,10 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.boolean  "post_challenge",          default: false
     t.string   "api"
     t.integer  "docker_configuration_id"
+    t.index ["challenge_id"], name: "index_submissions_on_challenge_id", using: :btree
+    t.index ["docker_configuration_id"], name: "index_submissions_on_docker_configuration_id", using: :btree
+    t.index ["participant_id"], name: "index_submissions_on_participant_id", using: :btree
   end
-
-  add_index "submissions", ["challenge_id"], name: "index_submissions_on_challenge_id", using: :btree
-  add_index "submissions", ["docker_configuration_id"], name: "index_submissions_on_docker_configuration_id", using: :btree
-  add_index "submissions", ["participant_id"], name: "index_submissions_on_participant_id", using: :btree
 
   create_table "topics", force: :cascade do |t|
     t.integer  "challenge_id"
@@ -405,11 +389,10 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.string   "slug"
+    t.index ["challenge_id"], name: "index_topics_on_challenge_id", using: :btree
+    t.index ["participant_id"], name: "index_topics_on_participant_id", using: :btree
+    t.index ["slug"], name: "index_topics_on_slug", unique: true, using: :btree
   end
-
-  add_index "topics", ["challenge_id"], name: "index_topics_on_challenge_id", using: :btree
-  add_index "topics", ["participant_id"], name: "index_topics_on_participant_id", using: :btree
-  add_index "topics", ["slug"], name: "index_topics_on_slug", unique: true, using: :btree
 
   create_table "versions", force: :cascade do |t|
     t.string   "item_type",  null: false
@@ -418,9 +401,8 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.string   "whodunnit"
     t.text     "object"
     t.datetime "created_at"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
   end
-
-  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
   create_table "votes", force: :cascade do |t|
     t.integer  "votable_id",     null: false
@@ -429,10 +411,9 @@ ActiveRecord::Schema.define(version: 20161212125607) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.string   "slug"
+    t.index ["participant_id"], name: "index_votes_on_participant_id", using: :btree
+    t.index ["slug"], name: "index_votes_on_slug", unique: true, using: :btree
   end
-
-  add_index "votes", ["participant_id"], name: "index_votes_on_participant_id", using: :btree
-  add_index "votes", ["slug"], name: "index_votes_on_slug", unique: true, using: :btree
 
   add_foreign_key "article_sections", "articles"
   add_foreign_key "articles", "participants"

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby "2.3.1"
-gem 'rails', '4.2.6'
+gem 'rails', '5.0.0.1'
 gem 'pg'
 gem 'puma'
 gem 'puma_worker_killer'
@@ -9,8 +9,8 @@ gem 'puma_worker_killer'
 
 # user accounts / admin
 gem 'devise'
-gem "administrate"
-gem "administrate-field-image"
+gem "administrate", "~> 0.3.0"
+#gem "administrate-field-image"
 gem "bourbon"
 gem 'pundit'
 #gem 'blazer'

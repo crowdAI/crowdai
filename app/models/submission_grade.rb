@@ -2,6 +2,7 @@ class SubmissionGrade < ActiveRecord::Base
   belongs_to :submission
   after_save :update_submission
   after_save :notify_participant
+  after_save :schedule_leaderboard_email
   default_scope { order('created_at DESC') }
 
 
@@ -19,6 +20,12 @@ class SubmissionGrade < ActiveRecord::Base
 
   def notify_participant
     SubmissionNotificationJob.perform_later(@submission)
+  end
+
+  def schedule_leaderboard_email
+    if self.grading_status == :graded
+      LeaderboardNotificationJob.perform_later(self)
+    end
   end
 
 end

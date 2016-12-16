@@ -3,7 +3,7 @@ class SubmissionGradedNotificationJob < BaseJob
 
   def perform(submission)
     recipient_ids(submission).each do |participant_id|
-      SubmissionGradedNotificationMailer.sendmail(submission.participant_id, submission.id).deliver_now
+      SubmissionGradedNotificationMailer.new.sendmail(submission.participant_id, submission.id)
     end
   end
 

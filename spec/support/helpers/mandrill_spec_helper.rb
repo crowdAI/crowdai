@@ -43,4 +43,8 @@ class MandrillSpecHelper
     @msg[:to].map {|e| e[:email] }
   end
 
+  def unsubscribe_url
+    merge_var('UNSUBSCRIBE_URL')
+  end
+
 end

@@ -17,7 +17,7 @@ class PostNotificationMailer < ApplicationMailer
       participant_id:   participant.id,
       subject:          "[crowdAI/#{challenge.challenge}] #{topic.topic}",
       to:               participant.email,
-      template:         "crowdAI General Template",
+      template:         "crowdAI General Template TEST",
       global_merge_vars: [
         {
           name:           "NAME",
@@ -42,7 +42,6 @@ class PostNotificationMailer < ApplicationMailer
     "<p>Click #{link_to 'here', new_topic_post_path(topic)} to see the post.</p>" +
     "</div>"
   end
-
 
 
 end

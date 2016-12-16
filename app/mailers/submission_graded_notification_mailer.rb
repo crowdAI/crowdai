@@ -59,7 +59,6 @@ class SubmissionGradedNotificationMailer < ApplicationMailer
                'The secondary score is: ' + submission.score_secondary + '</p>'
       end
     end
-
     return msg
   end
 

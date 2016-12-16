@@ -4,7 +4,7 @@ class PostNotificationJob < BaseJob
   def perform(post)
     subscribed_participant_ids(post).each do |participant_id|
       if post.participant_id != participant_id
-        PostNotificationMailer.sendmail(participant_id, post.id).deliver_now
+        PostNotificationMailer.new.sendmail(participant_id, post.id)
       end
     end
   end

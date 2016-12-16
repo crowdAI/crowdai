@@ -13,6 +13,7 @@ class SubmissionGradedNotificationMailer < ApplicationMailer
     challenge = submission.challenge
 
     options = {
+      participant_id:   participant.id,
       subject:     "[crowdAI/#{challenge.challenge}] Submission graded",
       to:           participant.email,
       template:     "crowdAI General Template",
@@ -31,18 +32,20 @@ class SubmissionGradedNotificationMailer < ApplicationMailer
 
 
   def email_body(challenge,submission)
+    "<div>" +
     "<p>Your submission to the " +
     "#{challenge.challenge} challenge has now been graded.</p>" +
     "<br/>" +
     grading_message(submission) +
     "<pre>#{submission.description}</pre>" +
     "<br/>" +
-    "<p>Click #{link_to 'submissions', challenge_submissions_url(challenge)} to see the submission.</p>"
+    "<p>Click #{link_to 'submissions', challenge_submissions_path(challenge)} to see the submission.</p>" +
+    "</div>"
   end
 
 
   def grading_message(submission)
-    msg = nil
+    msg = ' '
     if submission.failed?
       msg = '<p>There was an error!<br/>' +
             + submission.grading_message + '</p>'
@@ -52,11 +55,10 @@ class SubmissionGradedNotificationMailer < ApplicationMailer
       if submission.score_secondary.nil?
         msg = '<p>The score is: ' + submission.score + '</p>'
       else
-        msg = '<p>The primary score is: ' + submission.score + '<br/>'
-              + "The secondary score is: " + submission.score_secondary + '</p>'
+        msg = '<p>The primary score is: ' + submission.score + '<br/>' +
+               'The secondary score is: ' + submission.score_secondary + '</p>'
       end
     end
-    
     return msg
   end
 

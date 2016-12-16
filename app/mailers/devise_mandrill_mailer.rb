@@ -3,6 +3,7 @@ class DeviseMandrillMailer < Devise::Mailer
 
   def reset_password_instructions(record, token, opts={})
     options = {
+      participant_id:   record.id,
       subject:          "crowdAI Password Reset",
       email:            record.email,
       global_merge_vars:  [
@@ -12,7 +13,7 @@ class DeviseMandrillMailer < Devise::Mailer
         },
         {
           name:         "RESET_PASSWORD_URL",
-          content:      edit_password_url(record, reset_password_token: token)
+          content:      edit_password_path(record, reset_password_token: token)
         }
       ],
       template:         "crowdAI Devise reset_password_instructions"
@@ -22,6 +23,7 @@ class DeviseMandrillMailer < Devise::Mailer
 
   def confirmation_instructions(record, token, opts={})
     options = {
+      participant_id:   record.id,
       subject:          "crowdAI Confirmation Instructions",
       email:            record.email,
       global_merge_vars:  [
@@ -31,7 +33,7 @@ class DeviseMandrillMailer < Devise::Mailer
         },
         {
           name:         "CONFIRMATION_URL",
-          content:      confirmation_url(record, confirmation_token: token)
+          content:      confirmation_path(record, confirmation_token: token)
         }
       ],
       template:         "crowdAI Devise confirmation_instructions"
@@ -41,6 +43,7 @@ class DeviseMandrillMailer < Devise::Mailer
 
   def unlock_instructions(record, token, opts={})
     options = {
+      participant_id:   record.id,
       subject:          "crowdAI Unlock Instructions",
       email:            record.email,
       global_merge_vars:  [
@@ -50,7 +53,7 @@ class DeviseMandrillMailer < Devise::Mailer
         },
         {
           name:         "UNLOCK_URL",
-          content:      unlock_url(record, unlock_token: token)
+          content:      unlock_path(record, unlock_token: token)
         }
       ],
       template:         "crowdAI Devise unlock_instructions"

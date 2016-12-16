@@ -1,14 +1,19 @@
-class ApplicationMailer < ActionMailer::Base
+require 'securerandom'
+
+class ApplicationMailer # Does not inherit from ActionMailer
   include Rails.application.routes.url_helpers
   include ActionView::Helpers::UrlHelper
-  include  ActionView::Helpers::TextHelper
+  include ActionView::Helpers::TextHelper
 
-  default(
-    from: "no-reply@crowdai.org",
-    reply_to: "no-reply@crowdai.org"
-  )
 
-  def mandrill_send(options={})
+  def mandrill_send(options)
+    unsubscribe_token = generate_unsubscribe_token
+    options[:unsubscribe_url] = unsubscribe_url(options[:participant_id],unsubscribe_token)
+    options[:global_merge_vars] << { name: 'UNSUBSCRIBE_LINK',
+                                     content: build_unsubscribe_link(options) }
+    # TODO needs refactoring
+    options[:global_merge_vars] << { name: 'UNSUBSCRIBE_URL',
+                                    content: options[:unsubscribe_url] }
     message = {
       subject:      options[:subject],
       from_name:    "crowdAI",
@@ -21,20 +26,47 @@ class ApplicationMailer < ActionMailer::Base
       ],
       global_merge_vars:  options[:global_merge_vars]
     }
-    #puts message
-    MANDRILL.messages.send_template( options[:template], [], message) unless Rails.env.staging?
-    logger(options)
+    res = nil
+    res = MANDRILL.messages.send_template( options[:template], [], message) unless Rails.env.staging?
+    email_logger(options,unsubscribe_token)
+
+    return [res, message]
 
     rescue Mandrill::UnknownTemplateError => e
-      puts "#{e.class}: #{e.message}"
       Rails.logger.debug("#{e.class}: #{e.message}")
       raise
   end
 
-  def logger(options)
-    Email.create!(model_id: @model_id, mailer: self.class.to_s, recipients: options[:to], options: options, status: :sent)
+
+  def email_logger(options,unsubscribe_token)
+    Email.create!(model_id: @model_id,
+                  mailer: self.class.to_s,
+                  recipients: options[:to],
+                  options: options,
+                  status: :sent,
+                  participant_id: options[:participant_id],
+                  email_preferences_token: unsubscribe_token,
+                  token_expiration_dttm: DateTime.current + 7.days)
   end
 
+
+  def unsubscribe_url(participant_id,unsubscribe_token)
+    participant = Participant.find(participant_id)
+    pref = participant.email_preferences.first
+    url = "#{ENV['HOST']}/participants/#{participant.id}/email_preferences/#{pref.id}/edit?unsubscribe_token=#{unsubscribe_token}"
+  end
+
+
+  def generate_unsubscribe_token
+    SecureRandom.urlsafe_base64(24)
+  end
+
+
+  def build_unsubscribe_link(options)
+    "<div>" +
+    "<a href='#{options[:unsubscribe_url]}'>Unsubscribe</a>" +
+    "</div>"
+  end
 
 
 end

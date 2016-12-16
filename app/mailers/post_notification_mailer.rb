@@ -13,12 +13,11 @@ class PostNotificationMailer < ApplicationMailer
     topic = post.topic
     challenge = post.topic.challenge
 
-    puts email_body(challenge,topic,post)
-
     options = {
-      subject:     "[crowdAI/#{challenge.challenge}] #{topic.topic}",
-      to:           participant.email,
-      template:     "crowdAI General Template",
+      participant_id:   participant.id,
+      subject:          "[crowdAI/#{challenge.challenge}] #{topic.topic}",
+      to:               participant.email,
+      template:         "crowdAI General Template TEST",
       global_merge_vars: [
         {
           name:           "NAME",
@@ -34,14 +33,15 @@ class PostNotificationMailer < ApplicationMailer
 
 
   def email_body(challenge,topic,post)
+    "<div>" +
     "<p>A new post has been made to the " +
-    "#{link_to challenge.challenge, challenges_url(challenge)} challenge.</p>" +
+    "#{link_to challenge.challenge, challenges_path(challenge)} challenge.</p>" +
     "<br/>" +
     "#{post.post}" +
     "<br/>" +
-    "<p>Click #{link_to 'here', new_topic_post_url(topic)} to see the post.</p>"
+    "<p>Click #{link_to 'here', new_topic_post_path(topic)} to see the post.</p>" +
+    "</div>"
   end
-
 
 
 end

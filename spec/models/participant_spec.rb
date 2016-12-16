@@ -102,9 +102,24 @@ describe Participant do
           participant.format_url('website')
           expect(participant.website).to eq('http://www.seanfcarroll')
         end
+      end
+    end
 
+    context 'email preference defaults' do
+      let(:participant) { create :participant }
+      it 'verify preference table is created' do
+        expect(participant.email_preferences.count).to eq(1)
       end
 
+      it 'verify preference flags are correctly set' do
+        email = participant.email_preferences.first
+        expect(email.opt_out_all).to be false
+        expect(email.newsletter).to be true
+        expect(email.my_leaderboard).to be true
+        expect(email.any_post).to be true
+        expect(email.my_topic_post).to be true
+        expect(email.any_leaderboard).to be true
+      end
     end
 
   end

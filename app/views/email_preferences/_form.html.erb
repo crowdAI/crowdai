@@ -15,6 +15,7 @@
     <%= f.input :any_leaderboard, label: 'A new entry is made on the leaderboard' %>
   </div>
 
+  <%= f.hidden_field :unsubscribe_token, value: params[:unsubscribe_token] %>
   <div class="form-actions">
     <%= f.button :submit, 'Update Email Preferences', class: 'btn btn-primary outline' %>
   </div>

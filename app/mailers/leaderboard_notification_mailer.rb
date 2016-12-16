@@ -1,4 +1,4 @@
-class SubmissionNotificationMailer < ApplicationMailer
+class LeaderboardNotificationMailer < ApplicationMailer
 
   def sendmail(participant_id,submission_id)
     participant = Participant.find(participant_id)
@@ -14,9 +14,9 @@ class SubmissionNotificationMailer < ApplicationMailer
 
     options = {
       participant_id:   participant.id,
-      subject:          "[ADMIN:crowdAI/#{challenge.challenge}] Submission made",
+      subject:          "[crowdAI/#{challenge.challenge}] Leaderboard changed",
       to:               participant.email,
-      template:         "crowdAI General Template",
+      template:         "crowdAI General Template TEST",
       global_merge_vars: [
         {
           name:           "NAME",
@@ -33,12 +33,12 @@ class SubmissionNotificationMailer < ApplicationMailer
 
   def email_body(challenge,submission)
     "<div>" +
-    "<p>A new submission has been made to the " +
-    "#{challenge.challenge} challenge.</p>" +
+    "<p>A new entry has been made on the " +
+    "#{challenge.challenge} challenge's leaderboard.</p>" +
     "<br/>" +
     "#{submission.description}" +
     "<br/>" +
-    "<p>Click #{link_to 'leaderboard', challenge_leaderboards_path(challenge)} to see the submission.</p>" +
+    "<p>Click #{link_to 'leaderboard', challenge_leaderboards_path(challenge)}.</p>" +
     "</div>"
   end
 

@@ -50,7 +50,7 @@ class EmailPreferencesController < ApplicationController
 
 
     def unsubscribe_token_or_authenticate
-      if @token
+      if @token.present?
         email = Email.where(participant_id: @participant.id, email_preferences_token: @token)[0]
         if current_participant && (email.participant_id != current_participant.id)
           flash[:error] = "The unsubscribe link is not valid for the currently logged in participant."

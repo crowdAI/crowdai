@@ -22,8 +22,8 @@
             </tr>
           </thead>
           <tbody>
-            <% @challenge.dataset_files.each do |file| %>
-            <tr>
+            <% @dataset_files.each do |file| %>
+              <tr>
               <td><%= file.seq %></td>
               <td><%= link_to file.description,
                               s3_expiring_url(file.dataset_file_s3_key),

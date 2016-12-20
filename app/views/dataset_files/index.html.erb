@@ -19,6 +19,10 @@
               <th></th>
               <th>Description</th>
               <th>File Size</th>
+              <% if current_participant.admin? %>
+                <th>Evaluation?</th>
+                <th></th>
+              <% end %>
             </tr>
           </thead>
           <tbody>
@@ -30,6 +34,14 @@
                               class: 'expiring-url',
                               data: { 'dataset-file-id': file.id } %></td>
               <td><%= s3_filesize(file.dataset_file_s3_key) %></td>
+              <% if current_participant.admin? %>
+                <td>
+                  <%= file.evaluation %>
+                </td>
+                <td>
+                  <%= link_to 'delete', challenge_dataset_files_path(@challenge,file), method: :delete, data: { confirm: 'Sure?'} %>
+                </td>
+              <% end %>
             </tr>
             <% end %>
           </tbody>

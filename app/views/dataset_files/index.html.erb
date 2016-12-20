@@ -39,7 +39,7 @@
                   <%= file.evaluation %>
                 </td>
                 <td>
-                  <%= link_to 'delete', challenge_dataset_files_path(@challenge,file), method: :delete, data: { confirm: 'Sure?'} %>
+                  <%= link_to 'delete', challenge_dataset_file_path(@challenge,file), method: :delete, data: { confirm: 'Sure?'} %>
                 </td>
               <% end %>
             </tr>

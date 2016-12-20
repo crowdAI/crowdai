@@ -1,4 +1,4 @@
-class SubmissionFileDefinition < ActiveRecord::Base
+class SubmissionFileDefinition < ApplicationRecord
   has_paper_trail
   belongs_to :challenge
 
@@ -18,5 +18,5 @@ class SubmissionFileDefinition < ActiveRecord::Base
         nil
     end
   end
-  
+
 end

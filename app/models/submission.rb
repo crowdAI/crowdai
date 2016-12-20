@@ -1,4 +1,4 @@
-class Submission < ActiveRecord::Base
+class Submission < ApplicationRecord
   before_validation :cache_rendered_markdown
   before_save :set_post_challenge
 

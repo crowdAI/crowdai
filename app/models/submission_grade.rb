@@ -1,4 +1,4 @@
-class SubmissionGrade < ActiveRecord::Base
+class SubmissionGrade < ApplicationRecord
   belongs_to :submission
   after_save :update_submission
   after_save :notify_participant

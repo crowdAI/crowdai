@@ -1,4 +1,4 @@
-class Image < ActiveRecord::Base
+class Image < ApplicationRecord
   has_paper_trail
   belongs_to :imageable, polymorphic: true
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h

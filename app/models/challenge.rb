@@ -1,4 +1,4 @@
-class Challenge < ActiveRecord::Base
+class Challenge < ApplicationRecord
   include FriendlyId
   friendly_id :challenge, use: :slugged
   before_validation :cache_rendered_markdown

@@ -1,4 +1,4 @@
-class ContainerInstance < ActiveRecord::Base
+class ContainerInstance < ApplicationRecord
   belongs_to :docker_configuration
   belongs_to :submission
   has_many :container_logs, dependent: :destroy

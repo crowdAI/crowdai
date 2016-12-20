@@ -1,4 +1,4 @@
-class DatasetFileDownload < ActiveRecord::Base
+class DatasetFileDownload < ApplicationRecord
   belongs_to :participant
   belongs_to :dataset_file
 

@@ -6,7 +6,11 @@ class DatasetFilesController < ApplicationController
   before_filter :authenticate_admin, except: [:show, :index]
 
   def index
-    @dataset_files = DatasetFile.all
+    if current_participant.admin?
+      @dataset_files = @challenge.dataset_files
+    else
+      @dataset_files = @challenge.dataset_files.where(evaluation: false)
+    end
     load_gon({percent_progress: @challenge.timeline.pct_passed})
   end
 
@@ -45,7 +49,7 @@ class DatasetFilesController < ApplicationController
     end
 
     def dataset_file_params
-      params.require(:dataset_file).permit(:dataset_id, :seq, :description, :dataset_file_s3_key)
+      params.require(:dataset_file).permit(:dataset_id, :seq, :description, :evaluation, :dataset_file_s3_key)
     end
 
     def set_s3_direct_post

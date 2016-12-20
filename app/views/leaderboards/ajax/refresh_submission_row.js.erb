@@ -1,0 +1,2 @@
+$('#submission-row-<%= @submission.id %>')
+    .replaceWith('<%= j render partial: 'leaderboards/index/submission_row', locals: { challenge: @challenge, submission: @submission } %>');

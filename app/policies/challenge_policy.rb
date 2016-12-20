@@ -31,7 +31,7 @@ class ChallengePolicy < ApplicationPolicy
   def regrade?
     edit?
   end
-  
+
 
   class Scope
     attr_reader :participant, :scope

@@ -146,4 +146,5 @@ group :test do
   gem 'timecop'
   gem 'shoulda-matchers', require: false
   gem 'sanitize'
+  gem 'rails-controller-testing'
 end

@@ -1,0 +1,17 @@
+<tr id="submission-row-<%= submission.id %>" >
+  <%= simple_form_for submission, url: edit_challenge_submission_path(challenge,submission), remote: true do |f| %>
+    <td><%= f.submit 'Grade', class: 'btn btn-primary' %></td>
+    <td><%= submission.files %></td>
+    <td><%= link_to submission.name, participant_path(submission.participant_id) %></td>
+    <td><%= f.input :score, label: false %></td>
+    <td><%= f.input :score_secondary, label: false %></td>
+  <% end %>
+    <td><%= check_box_tag :post_challenge, '1', submission.post_challenge, disabled: true %></td>
+    <td><%= submission.created_at.strftime("%a, %e %b %Y %R") %></td>
+    <td><div id="grade-button-<%= submission.id %>" >
+      <%= link_to 'delete',
+            challenge_submission_path(challenge,submission.id),
+            method: :delete, data: { confirm: 'Are you sure?' },
+            class: 'btn btn-primary' %>
+    </td>
+</tr>

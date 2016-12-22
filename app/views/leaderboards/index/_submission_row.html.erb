@@ -1,0 +1,25 @@
+<tr id="submission-row-<%= submission.id %>" >
+    <td><%= link_to submission.grading_status_cd, challenge_submission_path(challenge, submission.id) %></td>
+    <td><%= submission.files %></td>
+    <td><%= link_to submission.name, participant_path(submission.participant_id) %></td>
+    <td><%= submission.score %></td>
+    <td><%= submission.score_secondary %></td>
+    <td><%= check_box_tag :post_challenge, '1', submission.post_challenge, disabled: true %></td>
+    <td><%= submission.created_at.strftime("%a, %e %b %Y %R") %></td>
+    <td>
+    <div id="grade-button-<%= submission.id %>" >
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Process
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Grade Submission",challenge_submission_grade_path(challenge, submission.id), class: 'button', remote: true %></li>
+            <% if @challenge.grader == :docker_container %>
+              <li><%= link_to 'Container Status', submission_container_instances_path(submission) %></li>
+              <li><%= link_to "Deploy to Docker Hub",challenge_submission_hub_path(challenge, submission.id), class: 'button', remote: true %></li>
+            <% end %>
+            <li><%= link_to 'Delete Submission', challenge_submission_path(challenge,submission.id), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+          </ul>
+      </div>
+    </div>
+    </td>
+</tr>

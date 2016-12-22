@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161212125607) do
+ActiveRecord::Schema.define(version: 20161220103253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,12 +149,13 @@ ActiveRecord::Schema.define(version: 20161212125607) do
 
   create_table "dataset_files", force: :cascade do |t|
     t.integer  "seq"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "description"
     t.integer  "challenge_id"
     t.string   "dataset_file_s3_key"
     t.string   "slug"
+    t.boolean  "evaluation",          default: false
     t.index ["challenge_id"], name: "index_dataset_files_on_challenge_id", using: :btree
     t.index ["slug"], name: "index_dataset_files_on_slug", unique: true, using: :btree
   end

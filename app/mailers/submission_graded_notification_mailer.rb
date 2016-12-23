@@ -39,7 +39,7 @@ class SubmissionGradedNotificationMailer < ApplicationMailer
     grading_message(submission) +
     "<pre>#{submission.description}</pre>" +
     "<br/>" +
-    "<p>Click #{link_to 'submissions', challenge_submissions_path(challenge)} to see the submission.</p>" +
+    "<p>Click #{link_to 'submissions', challenge_submissions_path(challenge), only_path: false} to see the submission.</p>" +
     "</div>"
   end
 

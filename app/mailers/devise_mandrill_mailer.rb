@@ -13,7 +13,7 @@ class DeviseMandrillMailer < Devise::Mailer
         },
         {
           name:         "RESET_PASSWORD_URL",
-          content:      edit_password_path(record, reset_password_token: token)
+          content:      edit_password_url(record, reset_password_token: token)
         }
       ],
       template:         "crowdAI Devise reset_password_instructions"
@@ -33,7 +33,7 @@ class DeviseMandrillMailer < Devise::Mailer
         },
         {
           name:         "CONFIRMATION_URL",
-          content:      confirmation_path(record, confirmation_token: token)
+          content:      confirmation_url(record, confirmation_token: token)
         }
       ],
       template:         "crowdAI Devise confirmation_instructions"
@@ -53,7 +53,7 @@ class DeviseMandrillMailer < Devise::Mailer
         },
         {
           name:         "UNLOCK_URL",
-          content:      unlock_path(record, unlock_token: token)
+          content:      unlock_url(record, unlock_token: token)
         }
       ],
       template:         "crowdAI Devise unlock_instructions"

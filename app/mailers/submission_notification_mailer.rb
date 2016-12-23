@@ -38,7 +38,7 @@ class SubmissionNotificationMailer < ApplicationMailer
     "<br/>" +
     "#{submission.description}" +
     "<br/>" +
-    "<p>Click #{link_to 'leaderboard', challenge_leaderboards_path(challenge)} to see the submission.</p>" +
+    "<p>Click #{link_to 'leaderboard', challenge_leaderboards_path(challenge), only_path: false} to see the submission.</p>" +
     "</div>"
   end
 

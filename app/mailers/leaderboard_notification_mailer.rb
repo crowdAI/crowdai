@@ -38,7 +38,7 @@ class LeaderboardNotificationMailer < ApplicationMailer
     "<br/>" +
     "#{submission.description}" +
     "<br/>" +
-    "<p>Click #{link_to 'leaderboard', challenge_leaderboards_path(challenge)}.</p>" +
+    "<p>Click #{link_to 'leaderboard', challenge_leaderboards_path(challenge), only_path: false}.</p>" +
     "</div>"
   end
 

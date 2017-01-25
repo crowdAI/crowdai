@@ -27,6 +27,10 @@ Capybara::Screenshot.register_driver(:chrome) do |driver, path|
   filename = File.basename(path)
   driver.browser.save_screenshot("#{Rails.root}/tmp/capybara/#{filename}")
 end
+Capybara::Webkit.configure do |config|
+  config.allow_url("cdn.mathjax.org")
+  config.allow_url("www.gravatar.com")
+end
 
 RSpec.configure do |config|
   Capybara.reset_sessions!

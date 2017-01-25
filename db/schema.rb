@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161220103253) do
+ActiveRecord::Schema.define(version: 20170124155613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,13 +61,13 @@ ActiveRecord::Schema.define(version: 20161220103253) do
     t.text     "rules"
     t.text     "prizes"
     t.text     "resources"
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
     t.text     "dataset_description"
     t.text     "submission_instructions"
     t.string   "tagline"
     t.text     "evaluation"
-    t.string   "primary_sort_order_cd"
+    t.string   "primary_sort_order_cd",            default: "ascending"
     t.string   "secondary_sort_order_cd"
     t.text     "description_markdown"
     t.text     "rules_markdown"
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 20161220103253) do
     t.text     "dataset_description_markdown"
     t.text     "submission_instructions_markdown"
     t.boolean  "perpetual_challenge",              default: false
-    t.float    "grading_factor"
+    t.float    "grading_factor",                   default: 1.0
     t.string   "grader_cd"
     t.string   "answer_file_s3_key"
     t.integer  "page_views",                       default: 0

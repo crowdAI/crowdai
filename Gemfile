@@ -55,6 +55,7 @@ gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'lodash-rails'
 gem 'browser'
+gem 'coffee-rails'
 
 
 # css

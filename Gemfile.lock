@@ -310,7 +310,7 @@ GEM
       pry (>= 0.9.12)
       shellany (~> 0.0)
       thor (>= 0.18.1)
-    high_voltage (2.4.0)
+    high_voltage (3.0.0)
     hitimes (1.2.4)
     httparty (0.14.0)
       multi_xml (>= 0.5.2)
@@ -658,7 +658,7 @@ DEPENDENCIES
   gon
   groupdate
   guard
-  high_voltage (~> 2.4.0)
+  high_voltage
   httparty
   include_media_rails
   inline_svg

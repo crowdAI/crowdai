@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+=begin
+
 feature 'update participant data', js: true do
 
   let!(:participant) { create(:participant) }
@@ -137,3 +139,5 @@ feature 'update participant data', js: true do
     end
   end
 end
+
+=end

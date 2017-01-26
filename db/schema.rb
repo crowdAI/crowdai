@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170124155613) do
+ActiveRecord::Schema.define(version: 20170125100039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -258,6 +258,7 @@ ActiveRecord::Schema.define(version: 20170124155613) do
     t.datetime "updated_at",                  null: false
     t.boolean  "approved",    default: false
     t.string   "slug"
+    t.string   "api_key"
     t.index ["slug"], name: "index_organizers_on_slug", unique: true, using: :btree
   end
 
@@ -299,6 +300,7 @@ ActiveRecord::Schema.define(version: 20170124155613) do
     t.text     "account_disabled_reason"
     t.datetime "account_disabled_dttm"
     t.string   "slug"
+    t.string   "api_key"
     t.index ["confirmation_token"], name: "index_participants_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_participants_on_email", unique: true, using: :btree
     t.index ["organizer_id"], name: "index_participants_on_organizer_id", using: :btree

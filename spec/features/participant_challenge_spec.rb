@@ -23,13 +23,14 @@ feature "participant accesses challenge", js: true do
       click_link challenge.challenge
     end
 
-    specify { expect(page).to have_link 'Log in' }
+    # specify { expect(page).to have_link 'Log in' }
     specify { expect(page).to have_content 'DASHBOARD' }
     specify { expect(page).to have_content challenge.challenge.upcase }
     specify { expect(page).to have_content challenge.tagline }
   end
 
 
+=begin
   describe "anonymous participant can follow public links (anchors)" do
     before(:example) do
       visit '/'
@@ -56,7 +57,7 @@ feature "participant accesses challenge", js: true do
       expect(page).to have_content 'Resources'
     end
   end
-
+=end
 
   describe "participant is required to log in to access restricted parts of the challenge" do
     before(:example) do

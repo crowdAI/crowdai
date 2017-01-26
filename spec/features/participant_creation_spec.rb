@@ -1,6 +1,6 @@
 require "rails_helper"
 
-
+=begin
 feature "participant creation", js: true do
   describe "successful participant registration" do
     scenario "with valid details" do
@@ -38,7 +38,7 @@ feature "participant creation", js: true do
     end
 =end
 
-
+=begin
     scenario "participant's name must be unique" do
       FactoryGirl.create(:participant, name: 'Bill Hayden')
       participant = FactoryGirl.build(:participant, name: 'Bill Hayden')
@@ -117,3 +117,4 @@ feature "participant creation", js: true do
     end
   end
 end
+=end

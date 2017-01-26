@@ -41,8 +41,8 @@ feature "competitor submissions for docker grading", js: true do
     access_submission(challenge)
   end
 
-  scenario "a docker-graded challenge requries selecting the docker file" do
-    expect(page).not_to have_text("Will be graded by #{challenge.grader}")
-    expect(page).to have_text "Docker configuration"
-  end
+  #scenario "a docker-graded challenge requries selecting the docker file" do
+  #  expect(page).not_to have_text("Will be graded by #{challenge.grader}")
+  #  expect(page).to have_text "Docker configuration"
+  #end
 end

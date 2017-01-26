@@ -19,12 +19,12 @@ class SubmissionGrade < ApplicationRecord
   end
 
   def notify_participant
-    SubmissionNotificationJob.perform_later(@submission)
+    SubmissionNotificationJob.perform_later(self.submission)
   end
 
   def schedule_leaderboard_email
     if self.grading_status == :graded
-      LeaderboardNotificationJob.perform_later(self)
+      #LeaderboardNotificationJob.perform_later(self.submission)
     end
   end
 

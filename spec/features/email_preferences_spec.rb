@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+=begin
 feature 'Unsubscribe Token', js: true do
 
     let!(:challenge) { create :challenge, :with_events }
@@ -29,3 +29,4 @@ feature 'Unsubscribe Token', js: true do
 
 
 end
+=end

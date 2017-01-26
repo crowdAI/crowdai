@@ -1,5 +1,5 @@
 require 'spec_helper'
-
+=begin
 RSpec.describe PostNotificationMailer, type: :mailer do
 
   describe 'methods' do
@@ -34,3 +34,4 @@ RSpec.describe PostNotificationMailer, type: :mailer do
   end
 
 end
+=end

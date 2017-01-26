@@ -1,4 +1,4 @@
-class DockerFile < ActiveRecord::Base
+class DockerFile < ApplicationRecord
   has_paper_trail
   belongs_to :docker_configuration
 

@@ -1,3 +1,3 @@
-class ParticipantSubmission < ActiveRecord::Base
+class ParticipantSubmission < ApplicationRecord
   include SqlView
 end

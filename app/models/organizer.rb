@@ -1,4 +1,4 @@
-class Organizer < ActiveRecord::Base
+class Organizer < ApplicationRecord
   include FriendlyId
   friendly_id :organizer, use: :slugged
   has_many :challenges,   dependent: :destroy

@@ -1,4 +1,4 @@
-class Post < ActiveRecord::Base
+class Post < ApplicationRecord
   include FriendlyId
   friendly_id :post, use: :slugged
   belongs_to :topic

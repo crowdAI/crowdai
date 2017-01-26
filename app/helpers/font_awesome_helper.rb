@@ -11,9 +11,10 @@ module FontAwesomeHelper
 
 
 # usage:
+#  <%= awesome_link 'fa-github', 'Github', @participant.github, class: 'btn btn-primary outline' %>
 #  <%= awesome_link 'fa-arrow-circle-o-up', 'wikipedia', 'www.wikipedia.com' %>
 #  <%= awesome_link('fa-minus-circle', travel_path(current_island.name, travel) %>
-#  <li><%= awesome_link('fa-bookmark',
+#  <%= awesome_link('fa-bookmark',
 #                     sentence_unbookmark_path(dialog, current_participant.id),
 #                     method: :delete, remote: true, title: "Remove bookmark") %></li>
 

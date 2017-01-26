@@ -1,4 +1,4 @@
-class DatasetFile < ActiveRecord::Base
+class DatasetFile < ApplicationRecord
   has_paper_trail
   belongs_to :challenge
   has_many :dataset_file_downloads, dependent: :destroy

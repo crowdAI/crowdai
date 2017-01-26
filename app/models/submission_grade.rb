@@ -1,4 +1,4 @@
-class SubmissionGrade < ActiveRecord::Base
+class SubmissionGrade < ApplicationRecord
   belongs_to :submission
   after_save :update_submission
   after_save :notify_participant
@@ -19,12 +19,12 @@ class SubmissionGrade < ActiveRecord::Base
   end
 
   def notify_participant
-    SubmissionNotificationJob.perform_later(@submission)
+    SubmissionNotificationJob.perform_later(self.submission)
   end
 
   def schedule_leaderboard_email
     if self.grading_status == :graded
-      LeaderboardNotificationJob.perform_later(self)
+      #LeaderboardNotificationJob.perform_later(self.submission)
     end
   end
 

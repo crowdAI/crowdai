@@ -1,4 +1,4 @@
-class DockerConfiguration < ActiveRecord::Base
+class DockerConfiguration < ApplicationRecord
   has_paper_trail
   belongs_to :challenge
   has_many :docker_files, dependent: :destroy

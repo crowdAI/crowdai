@@ -1,4 +1,4 @@
-class ParticipantChallenge < ActiveRecord::Base
+class ParticipantChallenge < ApplicationRecord
   include SqlView
 
   belongs_to :challenge

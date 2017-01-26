@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   # API
   namespace :api do
     resources :submissions, only: [:update]
+    resources :external_graders, only: [:update, :show]
     resources :docker_callbacks, only: [:create]
   end
 
@@ -101,6 +102,8 @@ Rails.application.routes.draw do
 
 
   get '/pages/*id' => 'pages#show', as: :page, format: false
+
+  match '*path', to: 'errors#e404', via: :all
 
   root 'landing_page#index'
 end

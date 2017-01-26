@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby "2.3.1"
-gem 'rails', '4.2.6'
+gem 'rails', '5.0.0.1'
 gem 'pg'
 gem 'puma'
 gem 'puma_worker_killer'
@@ -9,8 +9,8 @@ gem 'puma_worker_killer'
 
 # user accounts / admin
 gem 'devise'
-gem "administrate"
-gem "administrate-field-image"
+gem "administrate", "~> 0.3.0"
+#gem "administrate-field-image"
 gem "bourbon"
 gem 'pundit'
 #gem 'blazer'
@@ -28,6 +28,7 @@ gem 'seed_dump'
 gem 'validate_url'
 gem 'paper_trail'
 
+
 # forms / data manipulation / charts
 gem 'simple_form'
 gem 'country_select'
@@ -36,6 +37,8 @@ gem 'redcarpet'
 gem 'groupdate'
 gem 'rouge'
 gem 'friendly_id', '~> 5.1.0'
+# gem "rectify"
+
 
 
 # performance
@@ -146,4 +149,5 @@ group :test do
   gem 'timecop'
   gem 'shoulda-matchers', require: false
   gem 'sanitize'
+  gem 'rails-controller-testing'
 end

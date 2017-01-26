@@ -1,4 +1,4 @@
-class OngoingLeaderboard < ActiveRecord::Base
+class OngoingLeaderboard < ApplicationRecord
   include SqlView
 
   belongs_to :challenge

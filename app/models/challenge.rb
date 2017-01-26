@@ -1,4 +1,4 @@
-class Challenge < ActiveRecord::Base
+class Challenge < ApplicationRecord
   include FriendlyId
   friendly_id :challenge, use: :slugged
   before_validation :cache_rendered_markdown
@@ -28,7 +28,7 @@ class Challenge < ActiveRecord::Base
 
 
   as_enum :status, [:draft, :running, :completed, :perpetual, :cancelled], map: :string
-  as_enum :grader, [:f1_logloss, :discrete_mean_squared_error, :manual, :docker_container], map: :string
+  as_enum :grader, [:f1_logloss, :discrete_mean_squared_error, :manual, :external], map: :string
   as_enum :primary_sort_order, [:ascending, :descending], map: :string
   as_enum :secondary_sort_order, [:ascending, :descending, :not_used], map: :string
 

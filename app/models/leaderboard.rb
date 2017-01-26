@@ -1,4 +1,4 @@
-class Leaderboard < ActiveRecord::Base
+class Leaderboard < ApplicationRecord
   include SqlView
 
   belongs_to :challenge

@@ -1,4 +1,4 @@
-class Participant < ActiveRecord::Base
+class Participant < ApplicationRecord
   include FriendlyId
   friendly_id :name, use: :slugged
   after_create :set_email_preferences

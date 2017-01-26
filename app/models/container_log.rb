@@ -1,4 +1,4 @@
-class ContainerLog < ActiveRecord::Base
+class ContainerLog < ApplicationRecord
   belongs_to :container_instance
 
   as_enum :log_level, [:info, :error], map: :string

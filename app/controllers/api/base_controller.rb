@@ -8,7 +8,8 @@ class Api::BaseController < ApplicationController
 
   def auth_by_api_key
     authenticate_or_request_with_http_token do |token, options|
-      token == ENV['CROWDAI_API_KEY']
+      organizer = Organizer.where(api_key: token).first
+      (token == ENV['CROWDAI_API_KEY'] || organizer.present?)
     end
   end
 end

@@ -1,4 +1,4 @@
-class Topic < ActiveRecord::Base
+class Topic < ApplicationRecord
   include FriendlyId
   friendly_id :topic, use: :slugged
   include ActionView::Helpers::DateHelper

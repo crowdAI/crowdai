@@ -1,3 +1,3 @@
-class EmailPreference < ActiveRecord::Base
+class EmailPreference < ApplicationRecord
   belongs_to :participant
 end

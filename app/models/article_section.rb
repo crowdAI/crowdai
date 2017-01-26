@@ -1,4 +1,4 @@
-class ArticleSection < ActiveRecord::Base
+class ArticleSection < ApplicationRecord
   include FriendlyId
   friendly_id :section, use: :slugged
   before_validation :cache_rendered_markdown

@@ -59,5 +59,13 @@
         </div>
       </div>
 
+      <% if current_participant == @participant || current_participant.admin? %>
+        <div class='row'>
+          <div class="col-xs-12 text-center">
+            <h3>API Key: 12323525346e574574574<h3>
+            <p><%= awesome_link 'refresh', 'Regenerate Key', '#' %></p>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>

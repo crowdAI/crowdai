@@ -1,4 +1,4 @@
-class Comment < ActiveRecord::Base
+class Comment < ApplicationRecord
   include FriendlyId
   friendly_id :comment, use: :slugged
   belongs_to :commentable, :polymorphic => true

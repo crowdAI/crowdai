@@ -1,6 +1,12 @@
 ActiveAdmin.register Participant do
   permit_params :email, :password, :password_confirmation
 
+  controller do
+    def find_resource
+      scoped_collection.friendly.find(params[:id])
+    end
+  end
+
   index do
     selectable_column
     id_column

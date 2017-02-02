@@ -14,10 +14,11 @@ class ChallengesController < ApplicationController
   def show
     authorize @challenge
     #@versions = @challenge.versions
-    if !params[:version]
+    if !params[:version]  # dont' record page views on history pages
       @challenge.record_page_view
     end
-    load_gon({percent_progress: @challenge.timeline.pct_passed})
+    @challenge = ChallengesPresenter.new(@challenge)
+    load_gon({percent_progress: @challenge.pct_passed})
   end
 
 

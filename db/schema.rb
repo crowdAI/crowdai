@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170202092833) do
+ActiveRecord::Schema.define(version: 20170202152914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,8 @@ ActiveRecord::Schema.define(version: 20170202092833) do
     t.boolean  "api_required",                     default: false
     t.integer  "daily_submissions"
     t.float    "threshold"
+    t.datetime "start_dttm"
+    t.datetime "end_dttm"
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id", using: :btree
     t.index ["slug"], name: "index_challenges_on_slug", unique: true, using: :btree
   end

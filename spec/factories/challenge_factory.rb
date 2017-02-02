@@ -17,61 +17,8 @@ FactoryGirl.define do
     grading_factor 0.3
     license_markdown '## This is a license'
     submission_file_definitions { [ build(:submission_file_definition)]}
-
-
-    trait :with_event do
-      events { [ build(:event) ] }
-    end
-
-    trait :with_events do
-      challenge FFaker::Lorem.sentence(3)
-      status :running
-      events { [ build(:event, event_time: 2.days.ago),
-                build(:event, event_time: 2.days.since) ] }
-      dataset_files {[ build(:dataset_file) ]}
-    end
-
-    trait :with_milestone do
-      status :running
-      events { [ build(:event, event_time: 2.weeks.ago),
-                 build(:event, event_time: 1.week.ago),
-                 build(:event, event_time: 2.weeks.since) ] }
-      dataset_files {[ build(:dataset_file) ]}
-    end
-
-    trait :future do
-      status :running
-      events { [ build(:event, event_time: 2.weeks.since),
-                 build(:event, event_time: 3.weeks.since),
-                 build(:event, event_time: 5.weeks.since) ] }
-      dataset_files {[ build(:dataset_file) ]}
-    end
-
-    trait :past do
-      status :running
-      events { [ build(:event, event_time: 5.weeks.ago),
-                 build(:event, event_time: 3.weeks.ago),
-                 build(:event, event_time: 2.weeks.ago) ] }
-      dataset_files {[ build(:dataset_file) ]}
-    end
-
-    trait :draft_with_milestone do
-      status :draft
-      events { [ build(:event, event_time: 2.days.ago),
-                 build(:event, event_time: 1.day.ago),
-                 build(:event, event_time: 2.days.since) ] }
-      dataset_files {[ build(:dataset_file) ]}
-    end
-
-    trait :with_milestones do
-      challenge FFaker::Lorem.sentence(3)
-      status :running
-      events { [ build(:event, event_time: 2.days.ago),
-                 build(:event, event_time: 1.day.ago),
-                 build(:event, event_time: 1.day.since),
-                 build(:event, event_time: 2.days.since) ] }
-      dataset_files {[ build(:dataset_file) ]}
-    end
+    start_dttm 2.weeks.ago
+    end_dttm 4.weeks.since 
 
     trait :running do
       status :running

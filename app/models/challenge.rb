@@ -15,10 +15,6 @@ class Challenge < ApplicationRecord
   accepts_nested_attributes_for           :submission_file_definitions,
                                           reject_if: :all_blank,
                                           allow_destroy: true
-  has_many :events,                       dependent: :destroy
-  accepts_nested_attributes_for           :events,
-                                          reject_if: :all_blank,
-                                          allow_destroy: true
   has_many :submissions,                  dependent: :destroy
   has_many :leaderboards,                 class_name: 'Leaderboard'
   has_many :ongoing_leaderboards,         class_name: 'OngoingLeaderboard'

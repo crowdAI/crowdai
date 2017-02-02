@@ -53,13 +53,9 @@ class Submission < ApplicationRecord
 
   # set flag if challenge has completed
   def set_post_challenge
-    if self.challenge.events.any?
-      challenge_end = self.challenge.events.last.event_time
-      if Time.now > challenge_end
-        self.post_challenge = true
-      end
+    if Time.now > self.challenge.end_dttm
+      self.post_challenge = true
     end
   end
-
 
 end

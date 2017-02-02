@@ -97,8 +97,8 @@ class ChallengesController < ApplicationController
                     :perpetual_challenge, :automatic_grading,
                     :grader, :grading_factor, :answer_file_s3_key,
                     :submission_license, :api_required, :daily_submissions, :threshold,
+                    :start_dttm, :end_dttm,
                     dataset_attributes: [:id, :challenge_id, :description, :_destroy],
-                    events_attributes: [:id, :challenge_id, :seq, :event, :event_time, :_destroy ],
                     submissions_attributes: [:id, :challenge_id, :participant_id, :_destroy ],
                     image_attributes: [:id, :image, :_destroy ],
                     submission_file_definitions_attributes: [:id, :challenge_id, :seq, :submission_file_description, :filetype, :file_required, :submission_file_help_text, :_destroy]

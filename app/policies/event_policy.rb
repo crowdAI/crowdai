@@ -1,2 +1,0 @@
-class EventPolicy < ApplicationPolicy
-end 

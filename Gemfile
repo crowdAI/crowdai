@@ -9,9 +9,6 @@ gem 'puma_worker_killer'
 
 # user accounts / admin
 gem 'devise'
-gem "administrate", "~> 0.3.0"
-#gem "administrate-field-image"
-gem "bourbon"
 gem 'pundit'
 #gem 'blazer'
 

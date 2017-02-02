@@ -15,27 +15,6 @@ Rails.application.routes.draw do
     resources :email_preferences, only: [:edit, :update]
   end
 
-  # Administrate
-  namespace :admin do
-    resources :articles
-    resources :article_sections
-    resources :comments
-    resources :participants
-    resources :challenges, except: [:edit]
-    resources :images
-    resources :dataset_files
-    resources :organizers
-    resources :submissions
-    resources :submission_files
-    resources :submission_grades
-    resources :posts
-    resources :events
-    resources :topics
-    resources :votes
-    resources :dataset_file_downloads
-    resources :leaderboards, only: :index
-    root to: 'participants#index'
-  end
 
   # API
   namespace :api do

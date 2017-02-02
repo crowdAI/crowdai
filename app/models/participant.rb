@@ -1,7 +1,9 @@
 class Participant < ApplicationRecord
   include FriendlyId
+  include ApiKey
   friendly_id :name, use: :slugged
   after_create :set_email_preferences
+  after_create :set_api_key
   before_save { self.email = email.downcase }
   before_save :process_urls
 
@@ -95,6 +97,10 @@ class Participant < ApplicationRecord
 
   def set_email_preferences
     self.email_preferences.create!
+  end
+
+  def set_api_key
+    self.api_key = generate_api_key
   end
 
 

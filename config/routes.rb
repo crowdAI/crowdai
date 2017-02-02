@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   devise_for :participants
   resources :participants, only: [:show, :edit, :update, :destroy] do
     get :sync_mailchimp
+    get :regen_api_key
     resources :email_preferences, only: [:edit, :update]
   end
 
@@ -49,6 +50,7 @@ Rails.application.routes.draw do
 
   resources :organizers do
     resources :challenges
+    get :regen_api_key
   end
 
   resources :challenges do

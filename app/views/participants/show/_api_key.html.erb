@@ -1,0 +1,8 @@
+<div id='api-key'>
+  <div class='row'>
+    <div class="col-xs-12 text-center">
+      <h3>API Key: <%= participant.api_key %><h3>
+      <p><%= awesome_link 'refresh', 'Regenerate Key', participant_regen_api_key_path(participant), remote: true %></p>
+    </div>
+  </div>
+</div>

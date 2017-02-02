@@ -15,6 +15,14 @@ class ParticipantsController < ApplicationController
     end
   end
 
+  def regen_api_key
+    @participant = Participant.friendly.find(params[:participant_id])
+    authorize @participant
+    @participant.set_api_key
+    @participant.save!
+    render 'participants/ajax/refresh_api_key', notice: 'API Key regenerated.'
+  end
+
   def sync_mailchimp
     @job = AddToMailChimpListJob.perform_later(params[:participant_id])
     render 'admin/participants/refresh_sync_mailchimp_job_status'

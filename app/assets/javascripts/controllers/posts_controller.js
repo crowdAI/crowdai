@@ -1,4 +1,4 @@
-$(document).on('ready page:load', function() {
+$(document).on('turbolinks:load', function() {
   /* --------------------------------- posts / new --------------------------------------- */
   if (!_.isEmpty(gon) && gon.rails.controller == 'posts' && gon.rails.action == 'new') {
     expandSidebar();

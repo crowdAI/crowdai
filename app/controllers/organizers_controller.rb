@@ -53,6 +53,14 @@ class OrganizersController < ApplicationController
     redirect_to organizers_url, notice: 'Hosting organizer was successfully destroyed.'
   end
 
+  def regen_api_key
+    @organizer = Organizer.friendly.find(params[:organizer_id])
+    authorize @organizer
+    @organizer.set_api_key
+    @organizer.save!
+    render 'organizers/ajax/refresh_api_key', notice: 'API Key regenerated.'
+  end
+
   private
     def set_organizer
       @organizer = Organizer.friendly.find(params[:id])

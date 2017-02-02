@@ -22,6 +22,8 @@
         <strong>Description:</strong>
         <%= @organizer.description %>
       </p>
+
+      <%= render partial: 'organizers/show/api_key', locals: { organizer: @organizer } %>
       <hr/>
       <%= render partial: 'organizers/show/administrative_users' %>
 

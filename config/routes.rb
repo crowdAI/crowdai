@@ -3,38 +3,27 @@ require 'sidetiq/web'
 
 Rails.application.routes.draw do
 
-  mount Sidekiq::Web => '/sidekiq'
+  admin = lambda do |request|
+    request.env['warden'].authenticate? && request.env['warden'].user.admin?
+  end
+
+  constraints admin do
+    mount Sidekiq::Web => '/sidekiq'
+    ActiveAdmin.routes(self)
+  end
 
   get 'markdown_editor/create'
   get 'markdown_editor/show'
 
-  devise_for :participants
+  #devise_for :participants
+  devise_for :participants #, ActiveAdmin::Devise.config
+  #ActiveAdmin.routes(self)
   resources :participants, only: [:show, :edit, :update, :destroy] do
     get :sync_mailchimp
+    get :regen_api_key
     resources :email_preferences, only: [:edit, :update]
   end
 
-  # Administrate
-  namespace :admin do
-    resources :articles
-    resources :article_sections
-    resources :comments
-    resources :participants
-    resources :challenges, except: [:edit]
-    resources :images
-    resources :dataset_files
-    resources :organizers
-    resources :submissions
-    resources :submission_files
-    resources :submission_grades
-    resources :posts
-    resources :events
-    resources :topics
-    resources :votes
-    resources :dataset_file_downloads
-    resources :leaderboards, only: :index
-    root to: 'participants#index'
-  end
 
   # API
   namespace :api do
@@ -49,6 +38,7 @@ Rails.application.routes.draw do
 
   resources :organizers do
     resources :challenges
+    get :regen_api_key
   end
 
   resources :challenges do

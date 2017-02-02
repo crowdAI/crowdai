@@ -9,10 +9,11 @@ gem 'puma_worker_killer'
 
 # user accounts / admin
 gem 'devise'
-gem "administrate", "~> 0.3.0"
-#gem "administrate-field-image"
-gem "bourbon"
 gem 'pundit'
+gem 'activeadmin', github: 'activeadmin'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'active_admin_datetimepicker'
+gem 'activeadmin-xls', github: 'thambley/activeadmin-xls'
 #gem 'blazer'
 
 # monitoring

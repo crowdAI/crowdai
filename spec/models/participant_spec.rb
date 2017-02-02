@@ -122,5 +122,19 @@ describe Participant do
       end
     end
 
+    context 'API key' do
+      let!(:participant) { create :participant }
+      it 'verify API key is created when account created' do
+        expect(participant.api_key.length).to eq(32)
+      end
+
+      it 'verify API key can be updated' do
+        api_key = participant.api_key
+        participant.set_api_key
+        expect(participant.api_key.length).to eq(32)
+        expect(participant.api_key).not_to eq(api_key)
+      end
+    end
+
   end
 end

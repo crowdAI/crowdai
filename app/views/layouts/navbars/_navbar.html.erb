@@ -18,7 +18,7 @@
           <%= render 'layouts/navbars/navbar_menu' %>
           <% if participant_signed_in? %>
             <li><%= link_to 'Profile', participant_path(current_participant) %></li>
-            <li><%= link_to 'Change Password', edit_participant_registration_path %></li>
+            <li><%= link_to 'Change Password', edit_participant_password_path %></li>
             <li><%= link_to 'Sign out', destroy_participant_session_path, :method => :delete %></li>
           <% else %>
             <li><%= link_to "Log in", new_participant_session_path %></li>

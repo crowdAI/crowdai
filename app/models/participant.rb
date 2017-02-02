@@ -1,13 +1,17 @@
 class Participant < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable, :confirmable,
+         :recoverable, :rememberable, :trackable, :validatable, :lockable
   include FriendlyId
   include ApiKey
-  friendly_id :name, use: :slugged
+  friendly_id :name, use: [:slugged, :finders]
   after_create :set_email_preferences
   after_create :set_api_key
   before_save { self.email = email.downcase }
   before_save :process_urls
 
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable,  :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 
   belongs_to :organizer

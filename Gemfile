@@ -101,7 +101,6 @@ gem 'sinatra', :require => nil
 
 
 # static pages, sitemap
-gem 'high_voltage'
 #gem 'sitemap_generator'
 
 # images

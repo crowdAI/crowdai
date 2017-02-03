@@ -90,6 +90,10 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
 
+  match '/pages/contact', to: 'pages#contact', via: :get
+  match '/pages/privacy', to: 'pages#privacy', via: :get
+  match '/pages/terms',   to: 'pages#terms', via: :get
+
 
   get '/pages/*id' => 'pages#show', as: :page, format: false
 

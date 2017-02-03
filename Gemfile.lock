@@ -352,7 +352,6 @@ GEM
     has_scope (0.7.0)
       actionpack (>= 4.1, < 5.1)
       activesupport (>= 4.1, < 5.1)
-    high_voltage (3.0.0)
     hitimes (1.2.4)
     httparty (0.14.0)
       multi_xml (>= 0.5.2)
@@ -713,7 +712,6 @@ DEPENDENCIES
   gon
   groupdate
   guard
-  high_voltage
   httparty
   include_media_rails
   inherited_resources!

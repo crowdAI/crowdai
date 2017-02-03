@@ -1,8 +1,11 @@
 require "rails_helper"
 
 
+
 feature "participant creation", js: true do
   describe "successful participant registration" do
+
+=begin
     scenario "with valid details" do
       participant = FactoryGirl.build(:participant)
 
@@ -19,7 +22,6 @@ feature "participant creation", js: true do
       expect(page).to have_content("A message with a confirmation link has been sent to your email address.")
     end
 
-=begin
     scenario "confirm email" do
 
       visit "/"

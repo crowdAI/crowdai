@@ -15,4 +15,8 @@ class Organizer < ApplicationRecord
   def set_api_key
     self.api_key = generate_api_key
   end
+
+  def should_generate_new_friendly_id?
+    organizer_changed?
+  end
 end

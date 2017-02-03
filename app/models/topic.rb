@@ -10,6 +10,10 @@ class Topic < ApplicationRecord
 
   validates :topic, presence: true, length: { maximum: 255 }
 
+  def should_generate_new_friendly_id?
+    topic_changed?
+  end
+
 
   def last_activity
     sql = %Q[

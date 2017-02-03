@@ -8,6 +8,10 @@ class Post < ApplicationRecord
 
   validates :vote_count, presence: true
 
+  def should_generate_new_friendly_id?
+    post_changed?
+  end
+
   private
   def cache_rendered_markdown
     if post_markdown_changed?

@@ -1,6 +1,4 @@
 class Participant < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
   include FriendlyId
@@ -105,6 +103,10 @@ class Participant < ApplicationRecord
 
   def set_api_key
     self.api_key = generate_api_key
+  end
+
+  def should_generate_new_friendly_id?
+    name_changed?
   end
 
 

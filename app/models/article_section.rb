@@ -35,6 +35,10 @@ class ArticleSection < ApplicationRecord
     'filter' => 'Filter'
   }
 
+  def should_generate_new_friendly_id?
+    section_changed?
+  end
+
 
   private
   def cache_rendered_markdown

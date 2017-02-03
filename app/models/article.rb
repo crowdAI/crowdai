@@ -50,5 +50,9 @@ class Article < ApplicationRecord
     self.save
   end
 
+  def should_generate_new_friendly_id?
+    article_changed?
+  end
+
 
 end

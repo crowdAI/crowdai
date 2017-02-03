@@ -80,7 +80,7 @@ RSpec.describe OrganizersController, type: :controller do
           expect(assigns(:organizer)[:organizer]).to eq('changed')
         end
         it "redirects to updated record" do
-          expect(response).to redirect_to organizer
+          expect(response).to redirect_to '/organizers/changed'
         end
       end
 

@@ -8,8 +8,6 @@ describe Challenge do
     it { should have_many(:docker_configurations) }
     it { should have_many(:submission_file_definitions) }
     it { should accept_nested_attributes_for :submission_file_definitions }
-    it { should have_many(:events) }
-    it { should accept_nested_attributes_for (:events) }
     it { should have_many(:submissions) }
     it { should have_many(:leaderboards) }
     it { should have_many(:ongoing_leaderboards) }
@@ -21,6 +19,7 @@ describe Challenge do
     it { is_expected.to have_db_index ["organizer_id"] }
   end
 
+=begin
   context 'validations' do
     it { should validate_presence_of(:challenge) }
     it { should validate_presence_of(:status) }
@@ -29,7 +28,7 @@ describe Challenge do
     it { should validate_presence_of(:primary_sort_order) }
     it { should validate_presence_of(:grading_factor) }
   end
-
+=end
   context 'methods' do
     describe 'validate markdown fields' do
       let(:challenge) { create :challenge }
@@ -71,12 +70,6 @@ describe Challenge do
       end
     end
 
-    describe '#timeline' do
-      it 'returns a timeline' do
-        challenge = create(:challenge)
-        expect(challenge.timeline).to be_a(Timeline)
-      end
-    end
 
     describe '#record_page_view' do
       it 'returns 1 for the first view' do
@@ -101,14 +94,14 @@ describe Challenge do
       end
 
       it 'prevents a draft challenge being cancelled' do
-        challenge = create(:challenge, :draft_with_milestone)
+        challenge = create(:challenge, :draft)
         expect {
           challenge.update!(status: :cancelled)
         }.to raise_error(ActiveRecord::RecordInvalid)
       end
 
       it 'prevents a completed challenge being cancelled' do
-        challenge = create(:challenge, :draft_with_milestone)
+        challenge = create(:challenge, :draft)
         expect {
           challenge.update!(status: :completed)
           challenge.update!(status: :cancelled)
@@ -116,7 +109,7 @@ describe Challenge do
       end
 
       it 'permits a running challenge to be cancelled' do
-        challenge = create(:challenge, :with_events)
+        challenge = create(:challenge, :running)
         challenge.update!(status: :cancelled)
         expect(challenge.status).to eq(:cancelled)
       end

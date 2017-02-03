@@ -35,7 +35,10 @@ module ChallengeHelpers
 
   def enter_challenge_with_timeline(challenge_data)
     enter_challenge_without_timeline(challenge_data)
+    find('#timeline-tab').click
+    
 
+=begin
     find('#timeline-tab').click
     click_link 'Add Milestone'
     fill_in 'Seq',          with: '0'
@@ -52,6 +55,7 @@ module ChallengeHelpers
 
     date_fields = page.all('input[id^="challenge_events_attributes_"][id$="_event_time"]')
     date_fields[1].set('24/10/2016 17:00')
+=end
   end
 
 

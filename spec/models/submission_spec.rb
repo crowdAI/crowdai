@@ -52,11 +52,6 @@ describe Submission do
          it { expect(submission.post_challenge).to be false }
        end
 
-       context 'events are assigned it is after the end of challenge' do
-         let(:challenge) { create(:challenge, :past)}
-         let(:submission) { create(:submission, challenge: challenge) }
-         it { expect(submission.post_challenge).to be true }
-       end
      end
 
      describe '#submitted?' do

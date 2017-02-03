@@ -47,7 +47,8 @@ class DockerConfigurationsController < ApplicationController
     end
 
     def set_challenge
-      @challenge = Challenge.friendly.find(params[:challenge_id])
+      challenge = Challenge.friendly.find(params[:challenge_id])
+      @challenge = ChallengesPresenter.new(challenge)
     end
 
     def docker_configuration_params

@@ -14,7 +14,7 @@ class PostsController < ApplicationController
        @post.post = "[quote]#{quote_post.post}[/quote]"
      end
    end
-   load_gon({percent_progress: @challenge.timeline.pct_passed})
+   load_gon({percent_progress: @challenge.pct_passed})
   end
 
   def edit
@@ -51,7 +51,7 @@ class PostsController < ApplicationController
 
     def set_topic_and_challenge
       @topic = Topic.friendly.find(params[:topic_id])
-      @challenge = @topic.challenge
+      @challenge = ChallengesPresenter.new(@topic.challenge)
     end
 
     def post_params

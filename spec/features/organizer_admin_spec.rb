@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature 'Organizer CRUD for admin user', js: true do
   let!(:admin) { create(:participant, :admin) }
-  let!(:running_challenge) { create(:challenge, :with_events) }
+  let!(:running_challenge) { create(:challenge) }
 
   describe "create new organizer link" do
     before(:example) do

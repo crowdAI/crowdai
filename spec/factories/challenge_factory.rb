@@ -18,7 +18,7 @@ FactoryGirl.define do
     license_markdown '## This is a license'
     submission_file_definitions { [ build(:submission_file_definition)]}
     start_dttm 2.weeks.ago
-    end_dttm 4.weeks.since 
+    end_dttm 4.weeks.since
 
     trait :running do
       status :running
@@ -30,7 +30,6 @@ FactoryGirl.define do
       status :draft
       challenge FFaker::Lorem.sentence(3)
     end
-
 
   end
 end

@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe SubmissionGradedNotificationMailer, type: :mailer do
 
   describe 'methods' do
-    let(:challenge) { create :challenge, :with_events }
+    let(:challenge) { create :challenge }
     let(:participant) { create :participant }
     let(:submission) { create :submission, challenge: challenge, participant: participant }
 

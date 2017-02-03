@@ -58,7 +58,7 @@ RSpec.describe ArticlesController, type: :controller do
           expect(assigns(:article)[:article]).to eq('changed')
         end
         it "redirects to updated record" do
-          expect(response).to redirect_to article
+          expect(response).to redirect_to '/articles/changed'
         end
       end
 

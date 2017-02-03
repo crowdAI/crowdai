@@ -1,9 +1,9 @@
 require "rails_helper"
-
+=begin
 feature "competitor submissions for python grading", js: true do
   let!(:participant) { create(:participant) }
   let!(:admin_participant) { create(:participant, :admin) }
-  let!(:challenge) { create(:challenge, :with_milestones) }
+  let!(:challenge) { create(:challenge) }
 
   before (:example) do
     sign_in(participant)
@@ -46,3 +46,4 @@ feature "competitor submissions for docker grading", js: true do
   #  expect(page).to have_text "Docker configuration"
   #end
 end
+=end

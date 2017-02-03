@@ -14,10 +14,11 @@ class ChallengesController < ApplicationController
   def show
     authorize @challenge
     #@versions = @challenge.versions
-    if !params[:version]
+    if !params[:version]  # dont' record page views on history pages
       @challenge.record_page_view
     end
-    load_gon({percent_progress: @challenge.timeline.pct_passed})
+    @challenge = ChallengesPresenter.new(@challenge)
+    load_gon({percent_progress: @challenge.pct_passed})
   end
 
 
@@ -96,8 +97,8 @@ class ChallengesController < ApplicationController
                     :perpetual_challenge, :automatic_grading,
                     :grader, :grading_factor, :answer_file_s3_key,
                     :submission_license, :api_required, :daily_submissions, :threshold,
+                    :start_dttm, :end_dttm,
                     dataset_attributes: [:id, :challenge_id, :description, :_destroy],
-                    events_attributes: [:id, :challenge_id, :seq, :event, :event_time, :_destroy ],
                     submissions_attributes: [:id, :challenge_id, :participant_id, :_destroy ],
                     image_attributes: [:id, :image, :_destroy ],
                     submission_file_definitions_attributes: [:id, :challenge_id, :seq, :submission_file_description, :filetype, :file_required, :submission_file_help_text, :_destroy]

@@ -1,4 +1,4 @@
-$(document).on('ready page:load', function() {
+$(document).on('turbolinks:load', function() {
   /* --------------------------------- leaderboards / index --------------------------------------- */
   if (!_.isEmpty(gon) && gon.rails.controller == 'topics' && gon.rails.action == 'index') {
     expandSidebar();

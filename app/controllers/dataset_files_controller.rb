@@ -11,7 +11,7 @@ class DatasetFilesController < ApplicationController
     else
       @dataset_files = @challenge.dataset_files.where(evaluation: false)
     end
-    load_gon({percent_progress: @challenge.timeline.pct_passed})
+    load_gon({percent_progress: @challenge.pct_passed})
   end
 
   def show
@@ -45,7 +45,8 @@ class DatasetFilesController < ApplicationController
     end
 
     def set_challenge
-      @challenge = Challenge.friendly.find(params[:challenge_id])
+      challenge = Challenge.friendly.find(params[:challenge_id])
+      @challenge = ChallengesPresenter.new(challenge)
     end
 
     def dataset_file_params

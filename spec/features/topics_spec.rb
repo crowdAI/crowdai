@@ -1,10 +1,11 @@
+=begin
 require "rails_helper"
 
 feature 'Topics CRUD', js: true do
 
   let!(:participant) { create(:participant) }
   let!(:admin) { create(:participant, :admin) }
-  let!(:challenge) { create(:challenge, :with_events) }
+  let!(:challenge) { create(:challenge) }
 
   describe "as a participant" do
     before(:example) do
@@ -65,3 +66,4 @@ feature 'Topics CRUD', js: true do
 
   end
 end
+=end

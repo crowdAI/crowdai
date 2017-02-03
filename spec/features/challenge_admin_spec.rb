@@ -19,6 +19,8 @@ feature 'Challenge CRUD for admin user', js: true do
       expect(page).to have_content "Challenge was successfully created."
     end
 
+
+=begin
     scenario 'create challenge with start and finish dates' do
       enter_challenge_without_timeline(challenge_data)
 
@@ -45,6 +47,7 @@ feature 'Challenge CRUD for admin user', js: true do
       click_button 'Create Challenge'
       expect(page).to have_content "Challenge was successfully created."
     end
+=end
 
     scenario 'edit challenge after creation' do
       create_perpetual_challenge(challenge_data)

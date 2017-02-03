@@ -15,10 +15,6 @@ class Challenge < ApplicationRecord
   accepts_nested_attributes_for           :submission_file_definitions,
                                           reject_if: :all_blank,
                                           allow_destroy: true
-  has_many :events,                       dependent: :destroy
-  accepts_nested_attributes_for           :events,
-                                          reject_if: :all_blank,
-                                          allow_destroy: true
   has_many :submissions,                  dependent: :destroy
   has_many :leaderboards,                 class_name: 'Leaderboard'
   has_many :ongoing_leaderboards,         class_name: 'OngoingLeaderboard'
@@ -35,7 +31,7 @@ class Challenge < ApplicationRecord
   validates_presence_of :status
   validates_presence_of :challenge
   validates_presence_of :organizer_id
-  validates_presence_of :grader
+  #validates_presence_of :grader
   validates_presence_of :primary_sort_order
   validates_presence_of :grading_factor
 
@@ -44,11 +40,6 @@ class Challenge < ApplicationRecord
       self.submission_license = "Please upload your submissions and include a detailed description of the methodology, techniques and insights leveraged with this submission. After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC)."
       self.daily_submissions = 5
     end
-  end
-
-
-  def timeline
-    Timeline.new(self)
   end
 
 

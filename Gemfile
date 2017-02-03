@@ -21,6 +21,10 @@ gem "rorvswild"
 #gem "skylight"
 #gem "brakeman", :require => false
 
+# trailblazer
+#gem 'trailblazer-rails'
+
+
 
 # model
 gem 'simple_enum'
@@ -34,11 +38,11 @@ gem 'paper_trail'
 gem 'simple_form'
 gem 'country_select'
 gem 'cocoon'
-gem 'redcarpet'
+gem 'redcarpet', '~> 3.4.0'
 gem 'groupdate'
 gem 'rouge'
 gem 'friendly_id', '~> 5.1.0'
-# gem "rectify"
+gem "rectify"
 
 
 

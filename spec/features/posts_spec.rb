@@ -1,9 +1,9 @@
 require "rails_helper"
-
+=begin
 feature 'Posts CRUD', js: true do
 
   let!(:participant) { create(:participant) }
-  let!(:challenge) { create(:challenge, :with_events) }
+  let!(:challenge) { create(:challenge) }
 
   describe "as a participant" do
     before(:example) do
@@ -26,3 +26,4 @@ feature 'Posts CRUD', js: true do
   end
 
 end
+=end

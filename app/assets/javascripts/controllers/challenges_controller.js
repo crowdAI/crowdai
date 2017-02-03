@@ -1,5 +1,5 @@
 
-$(document).on('ready page:load', function() {
+$(document).on('turbolinks:load', function() {
   /* --------------------------------- challenges / edit ---------------------------------------- */
   if (!_.isEmpty(gon) && gon.rails.controller === 'challenges' && (gon.rails.action === 'edit' || gon.rails.action === 'new')) {
     function toggleEvents() {

@@ -8,8 +8,7 @@ class Topic < ApplicationRecord
 
   default_scope { order('sticky desc') }
 
-  validates :topic,           presence: true,
-                              length: { maximum: 255 }
+  validates :topic, presence: true, length: { maximum: 255 }
 
   def should_generate_new_friendly_id?
     topic_changed?

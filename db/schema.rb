@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170202152914) do
+ActiveRecord::Schema.define(version: 20170203142700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -227,18 +227,6 @@ ActiveRecord::Schema.define(version: 20170202152914) do
     t.integer  "participant_id"
   end
 
-  create_table "events", force: :cascade do |t|
-    t.integer  "challenge_id"
-    t.integer  "seq"
-    t.string   "event"
-    t.datetime "event_time"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "slug"
-    t.index ["challenge_id"], name: "index_events_on_challenge_id", using: :btree
-    t.index ["slug"], name: "index_events_on_slug", unique: true, using: :btree
-  end
-
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
@@ -446,7 +434,6 @@ ActiveRecord::Schema.define(version: 20170202152914) do
   add_foreign_key "docker_configurations", "challenges"
   add_foreign_key "docker_files", "docker_configurations"
   add_foreign_key "email_preferences", "participants"
-  add_foreign_key "events", "challenges"
   add_foreign_key "participants", "organizers"
   add_foreign_key "posts", "participants"
   add_foreign_key "posts", "topics"

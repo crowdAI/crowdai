@@ -3,6 +3,7 @@ class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized, except: [:index, :show]
   before_action :set_s3_direct_post, only: [:edit, :update]
+  after_action :update_stats_job
   respond_to :html
   respond_to :js
 
@@ -111,6 +112,10 @@ class ChallengesController < ApplicationController
       @s3_direct_post = S3_BUCKET.presigned_post(key: "answer_files/#{@challenge.slug}_#{SecureRandom.uuid}/${filename}",
                                                  success_action_status: '201',
                                                  acl: 'private')
+    end
+
+    def update_stats_job
+      UpdateChallengeStatsJob.perform_later
     end
 
 end

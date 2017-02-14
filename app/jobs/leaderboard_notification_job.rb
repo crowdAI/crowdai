@@ -2,14 +2,13 @@ class LeaderboardNotificationJob < BaseJob
   queue_as :default
 
   def perform(submission)
-    subscribed_participant_ids.each do |participant_id|
+    subscribed_participant_ids(submission).each do |participant_id|
       LeaderboardNotificationMailer.new.sendmail(participant_id, submission.id)
     end
   end
 
-
   def subscribed_participant_ids(submission)
-    ids = admin_ids.concat(challenge_participant_ids(post)).concat(all_participants)
+    ids = admin_ids.concat(challenge_participant_ids(submission)).concat(all_participants)
     ids.uniq
   end
 

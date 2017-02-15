@@ -35,7 +35,7 @@ class PostNotificationMailer < ApplicationMailer
     link_to challenge.challenge, challenges_url(challenge)
   end
 
-  def new_post_link(challenge)
+  def new_post_link(topic)
     link_to 'here', new_topic_post_url(topic)
   end
 
@@ -47,7 +47,7 @@ class PostNotificationMailer < ApplicationMailer
     "<br/>" +
     "#{post.post}" +
     "<br/>" +
-    "<p>Click #{new_post_link(challenge)} to see the post.</p>" +
+    "<p>Click #{new_post_link(topic)} to see the post.</p>" +
     "</div>"
   end
 

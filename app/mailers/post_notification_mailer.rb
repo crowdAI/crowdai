@@ -31,15 +31,23 @@ class PostNotificationMailer < ApplicationMailer
     }
   end
 
+  def challenge_link(challenge)
+    link_to challenge.challenge, challenges_url(challenge)
+  end
+
+  def new_post_link(challenge)
+    link_to 'here', new_topic_post_url(topic)
+  end
+
 
   def email_body(challenge,topic,post)
     "<div>" +
     "<p>A new post has been made to the " +
-    "#{link_to challenge.challenge, challenges_url(challenge), only_path: false} challenge.</p>" +
+    "#{challenge_link(challenge)} challenge.</p>" +
     "<br/>" +
     "#{post.post}" +
     "<br/>" +
-    "<p>Click #{link_to 'here', new_topic_post_url(topic), only_path: false} to see the post.</p>" +
+    "<p>Click #{new_post_link(challenge)} to see the post.</p>" +
     "</div>"
   end
 

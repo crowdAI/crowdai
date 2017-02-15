@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('turbolinks:load', function() {
   $('.directUpload').find('.s3File').each(function(i, elem) {
     var fileInput     = $(elem);
     var form          = $(fileInput.parents('form:first'));

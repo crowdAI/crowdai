@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe PostNotificationMailer, type: :mailer do
+RSpec.describe LeaderboardNotificationMailer, type: :mailer do
 
   describe 'methods' do
     let(:challenge) { create :challenge }
@@ -26,16 +26,10 @@ RSpec.describe PostNotificationMailer, type: :mailer do
       expect(man.merge_var('BODY')).to be_a_valid_html_fragment
     end
 
-    it 'produces a valid challenge link' do
-      link = described_class.new.challenge_link(challenge)
-      expect(link).to be_a_valid_html_fragment
-      expect(link).to include(ENV['HOST'])
-    end
-
-    it 'produces a valid new_post link' do
-      link = described_class.new.new_post_link(challenge)
-      expect(link).to be_a_valid_html_fragment
-      expect(link).to include(ENV['HOST'])
+    it 'produces a valid leaderboard link' do
+      leaderboard_link = described_class.new.leaderboard_link(submission)
+      expect(leaderboard_link).to be_a_valid_html_fragment
+      expect(leaderboard_link).to include(ENV['HOST'])
     end
   end
 

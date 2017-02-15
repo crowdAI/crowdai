@@ -40,4 +40,8 @@ class ApplicationController < ActionController::Base
     flash[:error] = "You are not authorised for this action"
     redirect_to root_path
   end
+
+  def terminate_challenge
+    TerminateChallenges.new.call
+  end
 end

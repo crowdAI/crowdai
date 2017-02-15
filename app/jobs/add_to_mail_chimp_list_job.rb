@@ -23,4 +23,5 @@ class AddToMailChimpListJob < ActiveJob::Base
 
 
 
+
 end

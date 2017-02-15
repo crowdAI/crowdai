@@ -1,4 +1,5 @@
 class LandingPageController < ApplicationController
+  before_action :terminate_challenge, only: [:index]
   skip_filter :authenticate_participant!
 
   def index

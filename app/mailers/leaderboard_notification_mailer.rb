@@ -30,6 +30,10 @@ class LeaderboardNotificationMailer < ApplicationMailer
     }
   end
 
+  def leaderboard_link(challenge)
+    link_to 'leaderboard', challenge_leaderboards_url(challenge)
+  end
+
 
   def email_body(challenge,submission)
     "<div>" +
@@ -38,7 +42,7 @@ class LeaderboardNotificationMailer < ApplicationMailer
     "<br/>" +
     "#{submission.description}" +
     "<br/>" +
-    "<p>Click #{link_to 'leaderboard', challenge_leaderboards_path(challenge), only_path: false}.</p>" +
+    "<p>Click #{leaderboard_link(challenge)}.</p>" +
     "</div>"
   end
 

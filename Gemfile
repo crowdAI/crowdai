@@ -96,7 +96,6 @@ gem 'gibbon'
 # background processing
 gem 'sidekiq'
 gem 'sidekiq-statistic'
-gem 'sidetiq'
 gem 'sinatra', :require => nil
 
 

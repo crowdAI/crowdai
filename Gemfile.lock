@@ -602,6 +602,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    streamio-ffmpeg (3.0.2)
+      multi_json (~> 1.8)
     table_print (1.5.6)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
@@ -736,6 +738,7 @@ DEPENDENCIES
   simplecov
   sinatra
   spring
+  streamio-ffmpeg
   table_print
   therubyracer
   timecop

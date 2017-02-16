@@ -25,6 +25,9 @@ class Api::ExternalGradersController < Api::BaseController
                                       challenge_id: params[:challenge_id],
                                       description_markdown: 'Submitted externally.')
       SubmissionGrade.create!(grading_params(submission))
+      if params[:aws_gif_key].present?
+        ProcessAiGymGifJob.perform_later(submission.id,params[:aws_gif_key])
+      end
       message = "participant: #{participant.name}, submission: #{params[:id]} scored"
       status = :accepted
     rescue => e

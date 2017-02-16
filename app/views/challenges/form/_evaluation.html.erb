@@ -19,6 +19,7 @@
   <div class='row'>
     <div class='col-md-12'>
       <%= f.input :automatic_grading %>
+      <%= f.input :video_on_leaderboard %>
     </div>
   </div>
 
@@ -69,9 +70,12 @@
       <%= f.input :primary_sort_order, label: "Sort order", collection: enum_option_pairs(Challenge, :primary_sort_order), include_blank: false %>
       <%= f.input :secondary_sort_order, label: "Sort order", collection: enum_option_pairs(Challenge, :secondary_sort_order), include_blank: false %>
     </div>
-    <div class="col-md-3"></div>
+    <div class="col-md-3">
+      </div>
     <div class='col-md-3'></div>
   </div>
+
+
 
   <hr/>
 

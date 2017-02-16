@@ -45,7 +45,6 @@ gem 'friendly_id', '~> 5.1.0'
 gem "rectify"
 
 
-
 # performance
 gem 'fast_blank'
 
@@ -107,12 +106,11 @@ gem "paperclip", "~> 5.0.0"
 gem 'carrierwave'
 gem 'net-ssh'
 gem 'inline_svg'
+gem 'streamio-ffmpeg'
 
 # Amazon
 gem 'aws-sdk', '~> 2.2'
 gem 'fog', '1.35.0'
-
-
 
 
 group :development do

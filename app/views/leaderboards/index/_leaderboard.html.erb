@@ -24,7 +24,7 @@
         <td><%= row + 1 %></td>
         <% if challenge.video_on_leaderboard %>
           <td>
-            <%= video_tag("stand2.mp4", size: "100x100", autoplay: true, loop: true) %>
+            <%= submission_video(leader.submission_id) %>
           </td>
         <% end %>
         <td><%= link_to participant_path(leader.participant) do %>

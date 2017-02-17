@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170216163129) do
+ActiveRecord::Schema.define(version: 20170217110226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -345,10 +345,11 @@ ActiveRecord::Schema.define(version: 20170216163129) do
   create_table "submission_files", force: :cascade do |t|
     t.integer  "submission_id"
     t.integer  "seq"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "submission_file_s3_key"
     t.string   "slug"
+    t.boolean  "leaderboard_video",      default: false
     t.index ["slug"], name: "index_submission_files_on_slug", unique: true, using: :btree
     t.index ["submission_id"], name: "index_submission_files_on_submission_id", using: :btree
   end
@@ -447,40 +448,6 @@ ActiveRecord::Schema.define(version: 20170216163129) do
   add_foreign_key "topics", "challenges"
   add_foreign_key "topics", "participants"
   add_foreign_key "votes", "participants"
-
-  create_view :leaderboards,  sql_definition: <<-SQL
-      SELECT l.row_num,
-      l.id,
-      l.challenge_id,
-      l.participant_id,
-      l.name,
-      l.entries,
-      l.score,
-      l.score_secondary,
-      l.created_at,
-      l.updated_at
-     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS row_num,
-              s.id,
-              s.challenge_id,
-              s.participant_id,
-              p.name,
-              cnt.entries,
-              s.score,
-              s.score_secondary,
-              s.created_at,
-              s.updated_at
-             FROM submissions s,
-              participants p,
-              ( SELECT c.challenge_id,
-                      c.participant_id,
-                      count(c.*) AS entries
-                     FROM submissions c
-                    WHERE (c.post_challenge = false)
-                    GROUP BY c.challenge_id, c.participant_id) cnt
-            WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l
-    WHERE (l.row_num = 1)
-    ORDER BY l.score DESC, l.score_secondary;
-  SQL
 
   create_view :ongoing_leaderboards,  sql_definition: <<-SQL
       SELECT l.row_num,
@@ -586,6 +553,40 @@ ActiveRecord::Schema.define(version: 20170216163129) do
     WHERE ((s.participant_id = p.id) AND (f.submission_id = s.id))
     GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
     ORDER BY s.created_at DESC;
+  SQL
+
+  create_view :leaderboards,  sql_definition: <<-SQL
+      SELECT l.row_num,
+      l.id AS submission_id,
+      l.challenge_id,
+      l.participant_id,
+      l.name,
+      l.entries,
+      l.score,
+      l.score_secondary,
+      l.created_at,
+      l.updated_at
+     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS row_num,
+              s.id,
+              s.challenge_id,
+              s.participant_id,
+              p.name,
+              cnt.entries,
+              s.score,
+              s.score_secondary,
+              s.created_at,
+              s.updated_at
+             FROM submissions s,
+              participants p,
+              ( SELECT c.challenge_id,
+                      c.participant_id,
+                      count(c.*) AS entries
+                     FROM submissions c
+                    WHERE (c.post_challenge = false)
+                    GROUP BY c.challenge_id, c.participant_id) cnt
+            WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l
+    WHERE (l.row_num = 1)
+    ORDER BY l.score DESC, l.score_secondary;
   SQL
 
 end

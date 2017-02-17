@@ -21,10 +21,6 @@ gem "rorvswild"
 #gem "skylight"
 #gem "brakeman", :require => false
 
-# trailblazer
-#gem 'trailblazer-rails'
-
-
 
 # model
 gem 'simple_enum'

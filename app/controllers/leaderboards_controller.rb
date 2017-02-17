@@ -27,4 +27,6 @@ class LeaderboardsController < ApplicationController
     challenge = Challenge.friendly.find(params[:challenge_id])
     @challenge = ChallengesPresenter.new(challenge)
   end
+
+
 end

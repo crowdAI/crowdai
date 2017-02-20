@@ -32,6 +32,11 @@ Capybara::Webkit.configure do |config|
   config.allow_url("www.gravatar.com")
 end
 
+Capybara::Webkit.configure do |config|
+  config.allow_unknown_urls
+  config.ignore_ssl_errors
+end
+
 RSpec.configure do |config|
   Capybara.reset_sessions!
 

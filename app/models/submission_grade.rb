@@ -6,9 +6,10 @@ class SubmissionGrade < ApplicationRecord
   default_scope { order('created_at DESC') }
 
 
-  as_enum :grading_status, [:ready, :submitted, :graded, :failed], map: :string
+  as_enum :grading_status, [:ready, :submitted, :graded, :failed], map: :string, accessor: :whiny
 
   validates :submission_id, presence: true
+  validates :grading_status, presence: true
 
   def update_submission
     Submission.update(self.submission_id,

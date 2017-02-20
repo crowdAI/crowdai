@@ -2,7 +2,6 @@
 <%= render partial: 'challenges/header', challenge: @challenge %>
 
 <div class="page-content-container">
-
   <% if @challenge.completed? %>
       <ul class="nav nav-pills">
         <li class="active"><a href="#event-leaderboard" data-toggle="pill">Leaderboard</a></li>
@@ -26,5 +25,4 @@
   <% if current_participant && current_participant.admin? #&& @participant_submissions %>
     <%= render partial: 'leaderboards/index/participant_submissions', locals: { challenge: @challenge, participant_submissions: @participant_submissions } %>
   <% end %>
-
 </div>

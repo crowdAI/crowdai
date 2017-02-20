@@ -3,6 +3,7 @@ module LeaderboardVideosHelper
   def submission_video_url(submission_id)
     video_url = nil
     submission_file = SubmissionFile.where(submission_id: submission_id, leaderboard_video: true).where.not(submission_file_s3_key: nil).first
+
     if submission_file.present?
       video_url = s3_expiring_url(submission_file.submission_file_s3_key)
     end

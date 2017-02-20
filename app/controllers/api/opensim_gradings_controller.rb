@@ -42,6 +42,7 @@ class Api::OpensimGradingsController < Api::BaseController
       submission = Submission.find(params[:submission_id])
       validate_s3_key(params[:s3_key])
       ProcessAiGymGifJob.perform_later(submission.id,params[:s3_key])
+      message = "Animated GIF accepted for processing."
     rescue => e
       status = :bad_request
       message = e
@@ -52,9 +53,7 @@ class Api::OpensimGradingsController < Api::BaseController
 
 
   def validate_s3_key(s3_key)
-    if S3Service.new(s3_key,shared_bucket=true).invalid_key?
-      raise InvalidS3Key, "The provided S3 key could not be accessed in the crowdAI shared bucket."
-    end
+    S3Service.new(s3_key,shared_bucket=true).valid_key?
   end
 
 

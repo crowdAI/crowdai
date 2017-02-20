@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170217110226) do
+ActiveRecord::Schema.define(version: 20170220132101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -536,25 +536,6 @@ ActiveRecord::Schema.define(version: 20170217110226) do
     WHERE ((pc.participant_id = p.id) AND (pc.challenge_id = c.id));
   SQL
 
-  create_view :participant_submissions,  sql_definition: <<-SQL
-      SELECT s.id,
-      s.challenge_id,
-      s.participant_id,
-      p.name,
-      s.grading_status_cd,
-      s.post_challenge,
-      s.score,
-      s.score_secondary,
-      count(f.*) AS files,
-      s.created_at
-     FROM submissions s,
-      participants p,
-      submission_files f
-    WHERE ((s.participant_id = p.id) AND (f.submission_id = s.id))
-    GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
-    ORDER BY s.created_at DESC;
-  SQL
-
   create_view :leaderboards,  sql_definition: <<-SQL
       SELECT l.row_num,
       l.id AS submission_id,
@@ -587,6 +568,25 @@ ActiveRecord::Schema.define(version: 20170217110226) do
             WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l
     WHERE (l.row_num = 1)
     ORDER BY l.score DESC, l.score_secondary;
+  SQL
+
+  create_view :participant_submissions,  sql_definition: <<-SQL
+      SELECT s.id,
+      s.challenge_id,
+      s.participant_id,
+      p.name,
+      s.grading_status_cd,
+      s.post_challenge,
+      s.score,
+      s.score_secondary,
+      count(f.*) AS files,
+      s.created_at
+     FROM participants p,
+      (submissions s
+       LEFT JOIN submission_files f ON ((f.submission_id = s.id)))
+    WHERE (s.participant_id = p.id)
+    GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
+    ORDER BY s.created_at DESC;
   SQL
 
 end

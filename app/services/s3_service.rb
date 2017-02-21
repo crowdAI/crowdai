@@ -16,5 +16,4 @@ class S3Service
     @bucket.object(@s3_key).exists?
   end
 
-
 end

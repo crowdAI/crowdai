@@ -20,7 +20,7 @@ class Api::OpensimGradingsController < Api::BaseController
     message = nil
     status = nil
     begin
-      participant = Participant.where(api_key: params[:dev_api_key]).first
+      participant = Participant.where(api_key: params[:api_key]).first
       raise ActiveRecord::RecordNotFound if participant.nil?
       submission = Submission.create!(participant_id: participant.id,
                                       challenge_id: params[:challenge_id],

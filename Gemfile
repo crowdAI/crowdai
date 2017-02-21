@@ -79,9 +79,6 @@ gem 'excon'
 gem 'docker-api'
 
 # heroku / production
-group :production, :staging do
-  gem 'rails_12factor'
-end
 gem 'figaro'
 
 # email
@@ -107,6 +104,13 @@ gem 'streamio-ffmpeg'
 # Amazon
 gem 'aws-sdk', '~> 2.2'
 gem 'fog', '1.35.0'
+
+# static analysis
+group :development do
+  gem 'brakeman', :require => false
+  gem 'derailed_benchmarks'
+  gem 'stackprof'
+end
 
 
 group :development do

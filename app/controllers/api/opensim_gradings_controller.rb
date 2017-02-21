@@ -40,7 +40,9 @@ class Api::OpensimGradingsController < Api::BaseController
   def update
     begin
       submission = Submission.find(params[:submission_id])
-      validate_s3_key(params[:s3_key])
+      raise ActiveRecord::RecordNotFound if submission.nil?
+      key_valid = validate_s3_key(params[:s3_key])
+      raise ActiveRecord::RecordNotFound if !key_valid
       ProcessAiGymGifJob.perform_later(submission.id,params[:s3_key])
       message = "Animated GIF accepted for processing."
     rescue => e

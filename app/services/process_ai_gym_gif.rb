@@ -13,6 +13,7 @@ class ProcessAiGymGif
   end
 
   def download_gif(gif_s3_key)
+    Rails.logger.info "Downloading GIF from key: #{gif_s3_key}"
     gif_tempfile = Tempfile.new(['gif_file','.gif'])
     gif_tempfile.binmode
     @s3.get_object(bucket: ENV['AWS_S3_SHARED_BUCKET'], key: gif_s3_key) do |chunk|
@@ -36,7 +37,7 @@ class ProcessAiGymGif
     mp4_key = "submission_files/submission_#{@submission.id}/#{SecureRandom.uuid}_gif.mp4"
     @s3.put_object(bucket: ENV['AWS_S3_BUCKET'], key: mp4_key, body: IO.read(m4_tempfile))
     @submission.submission_files.create!(seq: 0, submission_file_s3_key: mp4_key, leaderboard_video: true)
-    Rails.logger.info "MP4 file uploaded to #{mp4_key}"
+    Rails.logger.info "MP4 file uploaded to #{mp4_key}, submission_id: #{@submission.id}"
   end
 
 end

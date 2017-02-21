@@ -154,3 +154,5 @@ group :test do
   gem 'sanitize'
   gem 'rails-controller-testing'
 end
+
+gem "rack-timeout"

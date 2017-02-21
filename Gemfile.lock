@@ -449,6 +449,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    rack-timeout (0.4.2)
     railroady (1.5.2)
     rails (5.0.0.1)
       actioncable (= 5.0.0.1)
@@ -718,6 +719,7 @@ DEPENDENCIES
   puma
   puma_worker_killer
   pundit
+  rack-timeout
   railroady
   rails (= 5.0.0.1)
   rails-controller-testing

@@ -7,10 +7,3 @@ module Crowdai
 end
 
 # raise InvalidS3Key.new(s3_key: 'ssssss')
-
-
-class CustomException < StandardError
-  def initialize(data)
-    @data = data
-  end
-end

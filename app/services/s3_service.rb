@@ -2,7 +2,6 @@ class S3Service
 
   def initialize(s3_key,shared_bucket=false)
     @s3_key = s3_key
-    @s3_key = 'challenge_6\stand.gif'
     if shared_bucket
       @bucket = ENV['AWS_S3_SHARED_BUCKET']
     else

@@ -29,6 +29,7 @@ class Api::OpensimGradingsController < Api::BaseController
       message = "Participant: #{participant.name}, submission: #{params[:id]} scored"
       status = :accepted
     rescue => e
+      Rails.logger.error e
       status = :bad_request
       message = e
     ensure
@@ -42,10 +43,11 @@ class Api::OpensimGradingsController < Api::BaseController
       submission = Submission.find(params[:submission_id])
       raise ActiveRecord::RecordNotFound if submission.nil?
       key_valid = validate_s3_key(params[:s3_key])
-      raise ActiveRecord::RecordNotFound if !key_valid
+      raise InvalidS3Key.new(s3_key: params[:s3_key]) if !key_valid
       ProcessAiGymGifJob.perform_later(submission.id,params[:s3_key])
       message = "Animated GIF accepted for processing."
     rescue => e
+      Rails.logger.error e
       status = :bad_request
       message = e
     ensure

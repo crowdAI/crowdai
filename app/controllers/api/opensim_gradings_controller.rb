@@ -30,6 +30,7 @@ class Api::OpensimGradingsController < Api::BaseController
       status = :accepted
     rescue => e
       Rails.logger.error e
+      Rails.logger.error params
       status = :bad_request
       message = e
     ensure
@@ -48,6 +49,7 @@ class Api::OpensimGradingsController < Api::BaseController
       message = "Animated GIF accepted for processing."
     rescue => e
       Rails.logger.error e
+      Rails.logger.error params
       status = :bad_request
       message = e
     ensure

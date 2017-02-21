@@ -34,11 +34,13 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <%= link_to 'Email preferences', edit_participant_email_preference_path(@participant,@participant.email_preferences.first) %>
+      <% if @participant.admin? || current_participant == @participant %>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <%= link_to 'Email preferences', edit_participant_email_preference_path(@participant,@participant.email_preferences.first) %>
+          </div>
         </div>
-      </div>
+      <% end %>
 
       <div class="row">
         <div class="col-md-12 text-center">

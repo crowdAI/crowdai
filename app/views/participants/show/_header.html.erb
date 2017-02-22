@@ -34,13 +34,14 @@
         </div>
       </div>
 
-      <% if @participant.admin? || current_participant == @participant %>
+      <% if current_participant.admin? || current_participant == @participant %>
         <div class="row">
           <div class="col-md-12 text-center">
             <%= link_to 'Email preferences', edit_participant_email_preference_path(@participant,@participant.email_preferences.first) %>
           </div>
         </div>
       <% end %>
+
 
       <div class="row">
         <div class="col-md-12 text-center">

@@ -1,6 +1,6 @@
 // Twitter bootstrap javascript
 
 // Tooltips
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
     $('a').tooltip();
 });

@@ -1,6 +1,6 @@
 // auto submission of avatar images after selecting a file
 
-$(document).ready(function(){
+$(document).on('turbolinks:load', function() {
   $('#loading-text').hide();
   $('.upload-btn').hide();
 

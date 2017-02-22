@@ -1,4 +1,4 @@
-$(document).on('ready page:load', function() {
+$(document).on('turbolinks:load', function() {
   $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
     var self = this;
     if ($(self).hasClass('preview-pane-link')) {

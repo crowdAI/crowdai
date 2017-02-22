@@ -1,4 +1,4 @@
-$(document).on('ready page:load', function() {
+$(document).on('turbolinks:load', function() {
 
   function insertText(before_text, after_text, textBox) {
       textBox.focus();

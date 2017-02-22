@@ -12,7 +12,7 @@ function uncheckOptOutAll(){
 }
 
 
-$(document).on('ready page:load', function() {
+$(document).on('turbolinks:load', function() {
   $('#email_preference_opt_out_all').change(function(){
     if($(this).is(":checked")) {
       updateAll(false);

@@ -14,12 +14,6 @@
 }
 
 .modal video {
-    min-width: 100%;
-    min-height: 100%;
-}
-
-.modal-content  {
-    -webkit-border-radius: 0px !important;
-    -moz-border-radius: 0px !important;
-    border-radius: 0px !important;
+    max-width: 100%;
+    max-height: 100%;
 }

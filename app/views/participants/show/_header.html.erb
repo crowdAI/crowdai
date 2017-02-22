@@ -62,7 +62,8 @@
         </div>
       </div>
 
-      <%= render partial: 'participants/show/api_key', locals: { participant: @participant } %>
-
+      <% if current_participant.admin? || current_participant == @participant %>
+        <%= render partial: 'participants/show/api_key', locals: { participant: @participant } %>
+      <% end %>
     </div>
   </div>

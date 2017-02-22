@@ -4,11 +4,22 @@
 }
 
 .leaderboard th, .leaderboard td {
-    padding: 20px !important;
     text-align: center;
+    border: none !important;
 }
 
 .leaderboard th {
     text-align: center;
     background-color: $crowdai-bg-medium-grey;
+}
+
+.modal video {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.modal-content  {
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;
 }

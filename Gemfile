@@ -18,7 +18,6 @@ gem 'activeadmin-xls', github: 'thambley/activeadmin-xls'
 
 # monitoring
 gem "rorvswild"
-#gem "skylight"
 #gem "brakeman", :require => false
 
 

@@ -11,8 +11,8 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery.turbolinks
 //= require jquery-ui
 
 
@@ -49,8 +49,6 @@
 //= require controllers/submissions_controller
 //= require controllers/articles_controller
 //= require controllers/email_preferences_controller
-
-
 
 
 //= require z.jquery.fileupload

@@ -2,6 +2,7 @@ class LeaderboardsController < ApplicationController
   before_filter :authenticate_participant!
   before_action :set_leaderboard, only: [:show]
   before_action :set_challenge
+  respond_to :js, :html
 
   def index
     @leaderboards = @challenge.leaderboards
@@ -16,6 +17,13 @@ class LeaderboardsController < ApplicationController
 
   def show
     load_gon({percent_progress: @challenge.pct_passed})
+  end
+
+  def video_modal
+    @submission_id = params[:submission_id]
+    @participant = params[:participant]
+    @score = params[:score]
+    render 'video_modal'
   end
 
   private

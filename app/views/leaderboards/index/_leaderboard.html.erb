@@ -24,11 +24,19 @@
         <td><%= row + 1 %></td>
         <% if challenge.video_on_leaderboard %>
           <td>
-            <%= submission_video(leader.submission_id) %>
+            <%= link_to challenge_video_modal_path(submission_id: leader.submission_id,
+                                                   participant: leader.participant.name,
+                                                   score: leader.score),
+                    {:remote => true,
+                      'data-toggle' =>  "modal",
+                      'data-target' =>
+                      '#modal-window' } do %>
+              <%= submission_video(leader.submission_id) %>
+            <% end %>
           </td>
         <% end %>
         <td><%= link_to participant_path(leader.participant) do %>
-              <%= image_tag avatar_url(leader.participant,'medium'), size: '30x30', class: "img-circle navbar-profile-img" %>
+              <%= image_tag avatar_url(leader.participant,'medium'), size: '90x90', class: "img-circle navbar-profile-img img-responsive center-block" %>
               <%= leader.participant.name %>
             <% end %>
           </td>

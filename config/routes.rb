@@ -50,6 +50,7 @@ Rails.application.routes.draw do
       get :execute
     end
     resources :leaderboards, only: [:index]
+    get 'leaderboards/video_modal' => 'leaderboards#video_modal', as: :video_modal
     resources :topics
     resources :docker_configurations
     get :regrade

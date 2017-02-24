@@ -4,7 +4,6 @@ class EmailPreferencesController < ApplicationController
   before_action :set_update_token, only: [:update]
   before_action :unsubscribe_token_or_authenticate
 
-
   def edit
     #authorize @email_preference
   end
@@ -13,9 +12,11 @@ class EmailPreferencesController < ApplicationController
     #authorize @email_preference
     if @email_preference.update(email_preference_params)
       if @token
-        redirect_to edit_participant_email_preference_path(@participant, @email_preference, unsubscribe_token: @token), notice: 'Your email preferences were successfully updated.'
+        redirect_to edit_participant_email_preference_path(@participant, @email_preference, unsubscribe_token: @token),
+                                                          notice: 'Your email preferences were successfully updated.'
       else
-        redirect_to edit_participant_email_preference_path(@participant, @email_preference), notice: 'Your email preferences were successfully updated.'
+        redirect_to edit_participant_email_preference_path(@participant, @email_preference),
+                                                          notice: 'Your email preferences were successfully updated.'
       end
     else
       render :edit

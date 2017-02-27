@@ -35,6 +35,16 @@ class Challenge < ApplicationRecord
   validates_presence_of :primary_sort_order
   validates_presence_of :grading_factor
 
+
+  default_scope { order("CASE status_cd
+                          WHEN 'running' THEN 1
+                          WHEN 'perpetual' THEN 2
+                          WHEN 'completed' THEN 3
+                          WHEN 'cancelled' THEN 4
+                          WHEN 'draft' THEN 5
+                          ELSE 6
+                        END, updated_at DESC") }
+
   after_initialize do
     if self.new_record?
       self.submission_license = "Please upload your submissions and include a detailed description of the methodology, techniques and insights leveraged with this submission. After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC)."
@@ -94,4 +104,6 @@ class Challenge < ApplicationRecord
       errors.add(:base, "Only a running challenge may be cancelled.")
     end
   end
+
+
 end

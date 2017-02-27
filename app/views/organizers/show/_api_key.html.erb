@@ -1,5 +1,5 @@
 <div id='api-key'>
-  <% if policy(:organizer).edit? %>
+  <% if policy(@organizer).edit? %>
   <p>
     <strong>API Key:</strong>
     <%= organizer.api_key %>

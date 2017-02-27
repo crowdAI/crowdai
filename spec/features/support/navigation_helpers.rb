@@ -1,5 +1,6 @@
 module NavigationHelpers
 
+
   def visit_landing_page(participant)
     sign_in(participant)
     visit '/'
@@ -29,6 +30,11 @@ module NavigationHelpers
   def visit_own_profile(participant)
     open_menu(participant)
     click_link 'Profile'
+  end
+
+  def visit_profile(participant,participant2)
+    visit_landing_page(participant)
+    visit "/participants/#{participant2.slug}"
   end
 
   def visit_password_page(participant)

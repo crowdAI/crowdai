@@ -7,8 +7,19 @@ function updateAll(checked) {
 }
 
 
-function uncheckOptOutAll(){
-  $('#email_preference_opt_out_all').prop('checked',false);
+
+function optOutAllSetting(){
+  if( $('#email_preference_newsletter').is(":checked")
+      || $('#email_preference_my_leaderboard').is(":checked")
+      || $('#email_preference_any_post').is(":checked")
+      || $('#email_preference_my_topic_post').is(":checked")
+      || $('#email_preference_any_leaderboard').is(":checked") ) {
+        $('#email_preference_opt_out_all').prop('checked',false);
+        console.log('some checked');
+      } else {
+        $('#email_preference_opt_out_all').prop('checked',true);
+        console.log('none checked');
+      }
 }
 
 
@@ -22,33 +33,23 @@ $(document).on('turbolinks:load', function() {
   });
 
   $('#email_preference_newsletter').change(function(){
-    if($(this).is(":checked")) {
-      uncheckOptOutAll();
-    }
+    optOutAllSetting();
   });
 
   $('#email_preference_my_leaderboard').change(function(){
-    if($(this).is(":checked")) {
-      uncheckOptOutAll();
-    }
+    optOutAllSetting();
   });
 
   $('#email_preference_any_post').change(function(){
-    if($(this).is(":checked")) {
-      uncheckOptOutAll();
-    }
+    optOutAllSetting();
   });
 
   $('#email_preference_my_topic_post').change(function(){
-    if($(this).is(":checked")) {
-      uncheckOptOutAll();
-    }
+    optOutAllSetting();
   });
 
   $('#email_preference_any_leaderboard').change(function(){
-    if($(this).is(":checked")) {
-      uncheckOptOutAll();
-    }
+    optOutAllSetting();
   });
 
 });

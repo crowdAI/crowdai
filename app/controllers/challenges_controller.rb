@@ -8,7 +8,7 @@ class ChallengesController < ApplicationController
   respond_to :js
 
   def index
-    @challenges = policy_scope(Challenge).order(status_cd: :desc, updated_at: :asc)
+    @challenges = policy_scope(Challenge)
     load_gon
   end
 

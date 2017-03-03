@@ -1,4 +1,4 @@
-$(document).on('ready page:load', function() {
+$(document).on('turbolinks:load', function() {
   $('.account-help-links').hide();
   $('.show-help-link').hover(function(){
     console.log('show');

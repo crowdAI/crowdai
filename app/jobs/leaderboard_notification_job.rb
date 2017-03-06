@@ -2,9 +2,9 @@ class LeaderboardNotificationJob < BaseJob
   queue_as :default
 
   def perform(submission)
-    subscribed_participant_ids(submission).each do |participant_id|
-      LeaderboardNotificationMailer.new.sendmail(participant_id, submission.id)
-    end
+    #subscribed_participant_ids(submission).each do |participant_id|
+      #LeaderboardNotificationMailer.new.sendmail(participant_id, submission.id)
+    #end
   end
 
   def subscribed_participant_ids(submission)

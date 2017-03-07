@@ -1,29 +1,23 @@
-<p id="notice"><%= notice %></p>
+<div class='container mailers-container'>
+  <div class='row'>
+    <div class='col-xs-12'>
+      <h2>Mailer Dashboard</h2>
+    </div>
+  </div>
 
-<h1>Mailers</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Mailer</th>
-      <th>Paused</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+  <div class='row'>
     <% @mailers.each do |mailer| %>
-      <tr>
-        <td><%= mailer.mailer %></td>
-        <td><%= mailer.paused %></td>
-        <td><%= link_to 'Show', mailer %></td>
-        <td><%= link_to 'Edit', edit_mailer_path(mailer) %></td>
-        <td><%= link_to 'Destroy', mailer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Mailer', new_mailer_path %>
+      <%= link_to mailer_path(mailer) do %>
+        <div class='col-xs-4'>
+          <div class='panel panel-default'>
+            <div class='panel-body'>
+              <h3><%= mailer.mailer %></h3>
+              <div><%= mailer_status(mailer) %></div>
+              <div><%= mailer.emails.count %> emails sent.</div>
+            </div>
+          </div>
+        </div>
+        <% end %><%# link_to %>
+    <% end %><%# each %>
+  </div>
+</div>

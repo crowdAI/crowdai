@@ -1,0 +1,2 @@
+class MailerPolicy < AdminResourcePolicy
+end

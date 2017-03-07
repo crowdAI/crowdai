@@ -1,18 +1,15 @@
-<p id="notice"><%= notice %></p>
+<div class='mailers-container'>
+  <div class='col-xs-8 col-xs-offset-2'>
 
-<p>
-  <strong>Mailer:</strong>
-  <%= @mailer.mailer %>
-</p>
+    <h3><%= @mailer.mailer %></h3>
+    <div><%= mailer_status(@mailer) %></div>
+    <div><%= @mailer.emails.count %> emails sent.</div>
 
-<p>
-  <strong>Paused:</strong>
-  <%= @mailer.paused %>
-</p>
+    <%= pause_start_button(@mailer) %>
 
-<p>
-  <%= @mailer.emails.count %> emails sent.
-</p>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_mailer_path(@mailer) %> |
-<%= link_to 'Back', mailers_path %>
+
+
+</div>

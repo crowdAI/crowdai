@@ -15,7 +15,7 @@ class MailersController < InheritedResources::Base
   def update
     @mailer.update(paused: params[:paused])
     @mailer.save
-    redirect_to mailer_path(@mailer)
+    redirect_to mailers_path
   end
 
   private

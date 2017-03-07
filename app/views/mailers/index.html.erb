@@ -7,13 +7,14 @@
 
   <div class='row'>
     <% @mailers.each do |mailer| %>
-      <%= link_to mailer_path(mailer) do %>
+      <%= link_to mailer_emails_path(mailer) do %>
         <div class='col-xs-4'>
           <div class='panel panel-default'>
             <div class='panel-body'>
               <h3><%= mailer.mailer %></h3>
               <div><%= mailer_status(mailer) %></div>
               <div><%= mailer.emails.count %> emails sent.</div>
+              <div><%= pause_start_button(mailer) %></div>
             </div>
           </div>
         </div>

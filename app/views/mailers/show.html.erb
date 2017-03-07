@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mailer:</strong>
+  <%= @mailer.mailer %>
+</p>
+
+<p>
+  <strong>Paused:</strong>
+  <%= @mailer.paused %>
+</p>
+
+<p>
+  <%= @mailer.emails.count %> emails sent.
+</p>
+
+<%= link_to 'Edit', edit_mailer_path(@mailer) %> |
+<%= link_to 'Back', mailers_path %>

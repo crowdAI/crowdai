@@ -4,8 +4,7 @@ class DatasetFileDownload < ApplicationRecord
 
   validates :ip_address,
             presence: true,
-            uniqueness: false,
-            format: { with: Regexp.union(Resolv::IPv4::Regex, Resolv::IPv6::Regex) }
+            uniqueness: false
   validates :participant_id,      presence: true
   validates :dataset_file_id,     presence: true
 end

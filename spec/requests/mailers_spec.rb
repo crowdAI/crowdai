@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+=begin
 RSpec.describe "Mailers", type: :request do
   describe "GET /mailers" do
     it "works! (now write some real specs)" do
@@ -8,3 +9,4 @@ RSpec.describe "Mailers", type: :request do
     end
   end
 end
+=end

@@ -42,7 +42,7 @@ class ApplicationMailer # Does not inherit from ActionMailer
     Email.create!(model_id: @model_id,
                   mailer: self.class.to_s,
                   recipients: options[:to],
-                  options: options,
+                  options_json: options,
                   status: :sent,
                   participant_id: options[:participant_id],
                   email_preferences_token: unsubscribe_token,

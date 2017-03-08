@@ -1,5 +1,5 @@
 require "rails_helper"
-
+=begin
 RSpec.describe MailersController, type: :routing do
   describe "routing" do
 
@@ -37,3 +37,4 @@ RSpec.describe MailersController, type: :routing do
 
   end
 end
+=end

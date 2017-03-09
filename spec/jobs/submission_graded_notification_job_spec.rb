@@ -6,7 +6,7 @@ RSpec.describe SubmissionGradedNotificationJob, type: :job do
   let!(:participant) { create :participant }
   let(:submission) { create :submission, participant: participant }
   let!(:admin) { create :participant, :admin }
-  let!(:mailer) { create :mailer, mailer: 'SubmissionGradedNotificationMailer'}
+  let!(:mailer) { create :mailer, mailer: 'SubmissionGradedNotificationMailer' }
 
   describe 'queues the job' do
     puts "Mailer: #{Mailer.count}"

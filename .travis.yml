@@ -15,3 +15,10 @@ before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
+  - sudo apt-get update
+  - sudo apt-get purge postgresql-9.1 postgresql-9.2 postgresql-9.3 postgresql-9.4
+  - sudo apt-get install postgresql-client-common postgresql-9.5
+  - sudo service postgresql start
+
+
+before_install:

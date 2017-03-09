@@ -12,5 +12,5 @@ class Email < ApplicationRecord
   end
 
 
-  as_enum :status, [:sent, :mandrill_sent, :mandrill_bounced], map: :string
+  as_enum :status, [:sent, :paused, :mandrill_sent, :mandrill_bounced], map: :string
 end

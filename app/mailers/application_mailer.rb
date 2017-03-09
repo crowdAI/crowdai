@@ -27,7 +27,9 @@ class ApplicationMailer # Does not inherit from ActionMailer
       global_merge_vars:  options[:global_merge_vars]
     }
     res = nil
-    res = MANDRILL.messages.send_template( options[:template], [], message) unless Rails.env.staging?
+    if !mailer_paused?
+      res = MANDRILL.messages.send_template( options[:template], [], message) unless Rails.env.staging?
+    end
     email_logger(options,unsubscribe_token)
 
     return [res, message]
@@ -39,14 +41,23 @@ class ApplicationMailer # Does not inherit from ActionMailer
 
 
   def email_logger(options,unsubscribe_token)
+    status = :sent
+    status = :paused if mailer_paused?
+
     Email.create!(model_id: @model_id,
                   mailer: self.class.to_s,
                   recipients: options[:to],
                   options_json: options,
-                  status: :sent,
+                  status: status,
                   participant_id: options[:participant_id],
                   email_preferences_token: unsubscribe_token,
                   token_expiration_dttm: DateTime.current + 7.days)
+  end
+
+
+  def mailer_paused?
+    mailer = Mailer.where(mailer: self.class.to_s)
+    return mailer.paused
   end
 
 

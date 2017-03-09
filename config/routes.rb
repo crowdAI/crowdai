@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   constraints admin do
     mount Sidekiq::Web => '/sidekiq'
     ActiveAdmin.routes(self)
+    resources :mailers do
+      resources :emails
+    end
+
   end
 
   get 'markdown_editor/create'

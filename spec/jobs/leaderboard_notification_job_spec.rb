@@ -4,6 +4,8 @@ RSpec.describe LeaderboardNotificationJob, type: :job do
   include ActiveJob::TestHelper
 
   let!(:submission) { create :submission }
+  let!(:mailer) { create :mailer, mailer: 'LeaderboardNotificationMailer' }
+
 
   describe 'executes the job' do
     subject(:job) { described_class.perform_later(submission) }
@@ -18,7 +20,7 @@ RSpec.describe LeaderboardNotificationJob, type: :job do
     it 'executes with no errors' do
       perform_enqueued_jobs { job }
     end
-    
+
   end
 
 

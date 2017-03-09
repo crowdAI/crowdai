@@ -1,2 +1,2 @@
-class DockerConfigurationPolicy < ApplicationPolicy
-end 
+class DockerConfigurationPolicy < AdminResourcePolicy
+end

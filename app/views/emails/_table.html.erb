@@ -1,0 +1,43 @@
+<div id='table'>
+
+<%= search_form_for @search, :remote=>"true", url: mailer_emails_path, :method => :get do |f| %>
+<table class='table table-condensed table-striped table-hover'>
+  <thead>
+    <tr>
+      <th><%= sort_link(@search, :id,"ID" )%></th>
+      <th><%= sort_link(@search, :model_id, "Model ID") %></th>
+      <th><%= sort_link(@search,:recipients, 'Recipients' )%></th>
+      <th><%= sort_link(@search,:status_cd, 'Status' )%></th>
+      <th><%= sort_link(@search,:created_at, 'Date' )%></th>
+      <th><%= sort_link(@search,:participant_id, 'Participant' )%></th>
+    </tr>
+    <tr>
+      <th><%= f.submit 'Filter', class: 'btn btn-primary' %></th>
+      <th><%= f.text_field :model_id_eq %></th>
+      <th><%= f.text_field :recipients_cont %></th>
+      <th><%= f.text_field :status_cd_cont %></th>
+      <th><%= f.text_field :created_at_cont %></th>
+      <th><%= f.text_field :participant_id_cont %></th>
+    </tr>
+  </thead>
+<% end %>
+
+  <tbody>
+    <% @emails.each do |email| %>
+      <tr>
+        <td><%= email.id %></td>
+        <td><%= email.model_id %></td>
+        <td><%= email.recipients %></td>
+        <td><%= email.status_cd %></td>
+        <td><%= email.created_at %></td>
+        <td><%= email.participant_id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>
+
+<div class='text-center'>
+  <%= paginate @emails %>
+</div>

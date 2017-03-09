@@ -10,11 +10,11 @@ RSpec.describe PostNotificationJob, type: :job do
   let!(:topic) { create :topic, participant: author }
   let!(:post1) { create :post, topic: topic, participant: participant1 }
   let!(:post2) { create :post, topic: topic, participant: author }
-
+  let!(:mailer) { create :mailer, mailer: 'PostNotificationMailer' }
 
   describe 'executes the job' do
     subject(:job) { described_class.perform_later(post2) }
-    
+
     it 'queues the job' do
       expect { job }.to change(ActiveJob::Base.queue_adapter.enqueued_jobs, :size).by(1)
     end
@@ -43,10 +43,6 @@ RSpec.describe PostNotificationJob, type: :job do
 
     it '#post_participant_ids' do
       expect(job.post_participant_ids(post2)).to match_array([author.id,participant1.id])
-    end
-
-    it '#all_participants' do
-      expect(job.all_participants).to match_array([author.id,participant1.id])
     end
 
     it '#subscribed_participant_ids' do

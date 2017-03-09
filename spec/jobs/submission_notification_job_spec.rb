@@ -4,6 +4,7 @@ RSpec.describe SubmissionNotificationJob, type: :job do
   include ActiveJob::TestHelper
 
   let(:submission) { create :submission }
+  let(:mailer) { create :mailer, mailer: 'SubmissionNotificationMailer' }
   subject(:job) { described_class.perform_later(submission) }
 
   describe 'queues the job' do

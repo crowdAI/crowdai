@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170220132101) do
+ActiveRecord::Schema.define(version: 20170307122103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -226,6 +226,9 @@ ActiveRecord::Schema.define(version: 20170220132101) do
     t.string   "email_preferences_token"
     t.datetime "token_expiration_dttm"
     t.integer  "participant_id"
+    t.jsonb    "options_json"
+    t.integer  "mailer_id"
+    t.index ["mailer_id"], name: "index_emails_on_mailer_id", using: :btree
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -253,6 +256,13 @@ ActiveRecord::Schema.define(version: 20170220132101) do
     t.string   "slug"
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id", using: :btree
     t.index ["slug"], name: "index_images_on_slug", unique: true, using: :btree
+  end
+
+  create_table "mailers", force: :cascade do |t|
+    t.string   "mailer"
+    t.boolean  "paused",     default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "organizers", force: :cascade do |t|
@@ -436,6 +446,7 @@ ActiveRecord::Schema.define(version: 20170220132101) do
   add_foreign_key "docker_configurations", "challenges"
   add_foreign_key "docker_files", "docker_configurations"
   add_foreign_key "email_preferences", "participants"
+  add_foreign_key "emails", "mailers"
   add_foreign_key "participants", "organizers"
   add_foreign_key "posts", "participants"
   add_foreign_key "posts", "topics"

@@ -49,6 +49,7 @@
 //= require controllers/submissions_controller
 //= require controllers/articles_controller
 //= require controllers/email_preferences_controller
+//= require controllers/mailers_controller
 
 
 //= require z.jquery.fileupload

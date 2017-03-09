@@ -1,0 +1,12 @@
+<%= simple_form_for(@mailer) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :mailer %>
+    <%= f.input :paused %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -45,10 +45,6 @@ RSpec.describe PostNotificationJob, type: :job do
       expect(job.post_participant_ids(post2)).to match_array([author.id,participant1.id])
     end
 
-    it '#all_participants' do
-      expect(job.all_participants).to match_array([author.id,participant1.id])
-    end
-
     it '#subscribed_participant_ids' do
       expect(job.subscribed_participant_ids(post2)).to match_array([author.id,participant1.id,admin.id])
     end

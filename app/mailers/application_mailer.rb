@@ -56,7 +56,7 @@ class ApplicationMailer # Does not inherit from ActionMailer
 
 
   def mailer_paused?
-    mailer = Mailer.where(mailer: self.class.to_s)
+    mailer = Mailer.where(mailer: self.class.to_s).first
     return mailer.paused
   end
 

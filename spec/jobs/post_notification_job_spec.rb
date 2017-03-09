@@ -10,11 +10,11 @@ RSpec.describe PostNotificationJob, type: :job do
   let!(:topic) { create :topic, participant: author }
   let!(:post1) { create :post, topic: topic, participant: participant1 }
   let!(:post2) { create :post, topic: topic, participant: author }
-
+  let!(:mailer) { create :mailer, mailer: 'PostNotificationMailer' }
 
   describe 'executes the job' do
     subject(:job) { described_class.perform_later(post2) }
-    
+
     it 'queues the job' do
       expect { job }.to change(ActiveJob::Base.queue_adapter.enqueued_jobs, :size).by(1)
     end

@@ -1,6 +1,6 @@
 language: ruby
 
-sudo: false
+sudo: required
 
 rvm:
   - 2.3.1
@@ -10,6 +10,7 @@ env:
 
 before_script:
   - psql -c 'create database crowdai_test;' -U postgres
+  - psql crowdai_test -c 'CREATE EXTENSION "postgres-json-schema";' -U postgres
 
 before_install:
   - "export DISPLAY=:99.0"

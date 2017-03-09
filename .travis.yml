@@ -1,6 +1,12 @@
 language: ruby
 
 sudo: required
+dist: trusty
+addons:
+    postgresql: "9.6"
+    
+services:
+    - postgresql
 
 rvm:
   - 2.3.1
@@ -10,16 +16,8 @@ env:
 
 before_script:
   - psql -c 'create database crowdai_test;' -U postgres
-  - psql crowdai_test -c 'CREATE EXTENSION "postgres-json-schema";' -U postgres
 
 before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
-  - sudo apt-get update
-  - sudo apt-get purge postgresql-9.1 postgresql-9.2 postgresql-9.3 postgresql-9.4
-  - sudo apt-get install postgresql-client-common postgresql-9.5
-  - sudo service postgresql start
-
-
-before_install:

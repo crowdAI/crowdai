@@ -45,7 +45,7 @@ class ApplicationMailer # Does not inherit from ActionMailer
     status = :paused if mailer_paused?
 
     Email.create!(model_id: @model_id,
-                  mailer: self.class.to_s,
+                  mailer: self.class,
                   recipients: options[:to],
                   options_json: options,
                   status: status,

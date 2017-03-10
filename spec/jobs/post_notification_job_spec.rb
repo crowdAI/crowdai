@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+=begin
 RSpec.describe PostNotificationJob, type: :job do
   include ActiveJob::TestHelper
 
@@ -51,3 +51,4 @@ RSpec.describe PostNotificationJob, type: :job do
   end
 
 end
+=end

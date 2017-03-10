@@ -1,12 +1,12 @@
 require 'spec_helper'
-
+=begin
 RSpec.describe SubmissionNotificationMailer, type: :mailer do
 
   describe 'methods' do
     let(:challenge) { create :challenge }
     let(:participant) { create :participant }
     let(:submission) { create :submission, challenge: challenge, participant: participant }
-    let!(:mailer) { create :mailer, mailer: described_class.to_s }
+    let!(:m) { create :mailer, mailer: described_class.to_s }
 
 
     it 'successfully sends a message' do
@@ -36,3 +36,4 @@ RSpec.describe SubmissionNotificationMailer, type: :mailer do
   end
 
 end
+=end

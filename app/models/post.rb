@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   include FriendlyId
-  friendly_id :post, use: :slugged
+  friendly_id :post, use: [:slugged, :finders]
   belongs_to :topic
   belongs_to :participant
   has_many :votes, as: :votable

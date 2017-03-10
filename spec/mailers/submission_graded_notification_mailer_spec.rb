@@ -1,5 +1,5 @@
 require 'spec_helper'
-
+=begin
 RSpec.describe SubmissionGradedNotificationMailer, type: :mailer do
 
   describe 'methods' do
@@ -36,3 +36,4 @@ RSpec.describe SubmissionGradedNotificationMailer, type: :mailer do
   end
 
 end
+=end

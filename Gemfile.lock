@@ -28,6 +28,13 @@ GIT
       responders
 
 GIT
+  remote: git://github.com/crowdAI/active_bootstrap_skin.git
+  revision: a3c0830ae15c428da452a0e98aee58aa58d2f1bc
+  specs:
+    active_bootstrap_skin (0.1.4)
+      bootstrap-sass (~> 3.3.6)
+
+GIT
   remote: git://github.com/thambley/activeadmin-xls.git
   revision: a5a70018c626d1ad3cde9f763bad3d10fa68867a
   specs:
@@ -64,8 +71,6 @@ GEM
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
     active_admin_datetimepicker (0.3.0)
       xdan-datetimepicker-rails (~> 2.5.1)
-    active_bootstrap_skin (0.1.4)
-      bootstrap-sass (~> 3.3.6)
     activejob (5.0.0.1)
       activesupport (= 5.0.0.1)
       globalid (>= 0.3.6)
@@ -669,7 +674,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_admin_datetimepicker
-  active_bootstrap_skin
+  active_bootstrap_skin!
   activeadmin!
   activeadmin-xls!
   annotate

@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-=begin
 feature "participant accesses challenge", js: true do
   let!(:challenge) { create(:challenge) }
   let!(:draft_challenge) { create(:challenge, :draft) }
@@ -29,9 +28,7 @@ feature "participant accesses challenge", js: true do
     specify { expect(page).to have_content challenge.challenge.upcase }
     specify { expect(page).to have_content challenge.tagline }
   end
-=end
 
-=begin
   describe "anonymous participant can follow public links (anchors)" do
     before(:example) do
       visit '/'
@@ -58,9 +55,7 @@ feature "participant accesses challenge", js: true do
       expect(page).to have_content 'Resources'
     end
   end
-=end
 
-=begin
   describe "participant is required to log in to access restricted parts of the challenge" do
     before(:example) do
       visit '/'
@@ -157,4 +152,3 @@ feature "participant accesses challenge", js: true do
 
 
 end
-=end

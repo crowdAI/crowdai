@@ -16,7 +16,7 @@ class Challenge < ApplicationRecord
                                           reject_if: :all_blank,
                                           allow_destroy: true
   has_many :submissions,                  dependent: :destroy
-  #has_many :leaderboards,                 class_name: 'Leaderboard'
+  has_many :leaderboards,                 class_name: 'Leaderboard'
   has_many :ongoing_leaderboards,         class_name: 'OngoingLeaderboard'
   has_many :participant_challenges,       class_name: 'ParticipantChallenge'
   has_many :topics

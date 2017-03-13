@@ -2,7 +2,7 @@ class Organizer < ApplicationRecord
   include FriendlyId
   include ApiKey
   after_create :set_api_key
-  friendly_id :organizer, use: :slugged
+  friendly_id :organizer, use: [:slugged, :finders]
   has_many :challenges,   dependent: :destroy
   has_many :participants, dependent: :nullify
 

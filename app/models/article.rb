@@ -1,7 +1,6 @@
 class Article < ApplicationRecord
   include FriendlyId
-  friendly_id :article, use: :slugged
-
+  friendly_id :article, use: [:slugged, :finders]
   belongs_to :participant
 
   has_one :image, as: :imageable, dependent: :destroy

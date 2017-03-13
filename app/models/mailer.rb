@@ -1,6 +1,6 @@
 class Mailer < ApplicationRecord
   has_many :emails
-  default_scope { order('mailer') }
+  default_scope { order('mailer_classname') }
 
 
   def paused?

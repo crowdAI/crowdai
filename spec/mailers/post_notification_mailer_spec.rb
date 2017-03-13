@@ -1,11 +1,13 @@
 require 'spec_helper'
-=begin
+
 RSpec.describe PostNotificationMailer, type: :mailer do
 
   describe 'methods' do
     let(:challenge) { create :challenge }
     let(:participant) { create :participant }
-    let(:post) { create :post, challenge: challenge, participant: participant }
+    let(:post) { create :post, participant: participant }
+    let!(:mailer) { create :mailer, mailer_classname: described_class.to_s }
+
 
     it 'successfully sends a message' do
       res = described_class.new.sendmail(participant.id,post.id)
@@ -40,4 +42,3 @@ RSpec.describe PostNotificationMailer, type: :mailer do
   end
 
 end
-=end

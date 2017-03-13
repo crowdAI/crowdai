@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+=begin
 RSpec.describe LeaderboardNotificationJob, type: :job do
   include ActiveJob::TestHelper
 
@@ -25,3 +25,4 @@ RSpec.describe LeaderboardNotificationJob, type: :job do
 
 
 end
+=end

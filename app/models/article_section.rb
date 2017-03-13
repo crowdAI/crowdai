@@ -1,6 +1,6 @@
 class ArticleSection < ApplicationRecord
   include FriendlyId
-  friendly_id :section, use: :slugged
+  friendly_id :section, use: [:slugged, :finders]
   before_validation :cache_rendered_markdown
 
   belongs_to :article

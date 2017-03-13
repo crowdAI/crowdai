@@ -9,7 +9,7 @@ describe Challenge do
     it { should have_many(:submission_file_definitions) }
     it { should accept_nested_attributes_for :submission_file_definitions }
     it { should have_many(:submissions) }
-    it { should have_many(:leaderboards) }
+    #it { should have_many(:leaderboards) }
     it { should have_many(:ongoing_leaderboards) }
     it { should have_many(:participant_challenges) }
     it { should have_many(:topics) }

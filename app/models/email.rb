@@ -1,5 +1,6 @@
 class Email < ApplicationRecord
   belongs_to :challenge, optional: true
+  belongs_to :mailer
 
 
   def index

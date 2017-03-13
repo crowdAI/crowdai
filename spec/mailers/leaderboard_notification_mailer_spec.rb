@@ -6,7 +6,7 @@ RSpec.describe LeaderboardNotificationMailer, type: :mailer do
     let(:challenge) { create :challenge }
     let(:participant) { create :participant }
     let(:submission) { create :submission, challenge: challenge, participant: participant }
-    let!(:mailer) { create :mailer, mailer: described_class.to_s }
+    let!(:mailer) { create :mailer, mailer_classname: described_class.to_s }
 
 
     it 'successfully sends a message' do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170307122103) do
+ActiveRecord::Schema.define(version: 20170313115510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -217,7 +217,7 @@ ActiveRecord::Schema.define(version: 20170307122103) do
 
   create_table "emails", force: :cascade do |t|
     t.integer  "model_id"
-    t.string   "mailer"
+    t.string   "mailer_classname"
     t.text     "recipients"
     t.text     "options"
     t.string   "status_cd"
@@ -259,10 +259,10 @@ ActiveRecord::Schema.define(version: 20170307122103) do
   end
 
   create_table "mailers", force: :cascade do |t|
-    t.string   "mailer"
-    t.boolean  "paused",     default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "mailer_classname"
+    t.boolean  "paused",           default: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "organizers", force: :cascade do |t|
@@ -460,6 +460,40 @@ ActiveRecord::Schema.define(version: 20170307122103) do
   add_foreign_key "topics", "participants"
   add_foreign_key "votes", "participants"
 
+  create_view :leaderboards,  sql_definition: <<-SQL
+      SELECT l.row_num,
+      l.id AS submission_id,
+      l.challenge_id,
+      l.participant_id,
+      l.name,
+      l.entries,
+      l.score,
+      l.score_secondary,
+      l.created_at,
+      l.updated_at
+     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS row_num,
+              s.id,
+              s.challenge_id,
+              s.participant_id,
+              p.name,
+              cnt.entries,
+              s.score,
+              s.score_secondary,
+              s.created_at,
+              s.updated_at
+             FROM submissions s,
+              participants p,
+              ( SELECT c.challenge_id,
+                      c.participant_id,
+                      count(c.*) AS entries
+                     FROM submissions c
+                    WHERE (c.post_challenge = false)
+                    GROUP BY c.challenge_id, c.participant_id) cnt
+            WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l
+    WHERE (l.row_num = 1)
+    ORDER BY l.score DESC, l.score_secondary;
+  SQL
+
   create_view :ongoing_leaderboards,  sql_definition: <<-SQL
       SELECT l.row_num,
       l.id,
@@ -545,40 +579,6 @@ ActiveRecord::Schema.define(version: 20170307122103) do
               dataset_files df
             WHERE (dfd.dataset_file_id = df.id)) pc
     WHERE ((pc.participant_id = p.id) AND (pc.challenge_id = c.id));
-  SQL
-
-  create_view :leaderboards,  sql_definition: <<-SQL
-      SELECT l.row_num,
-      l.id AS submission_id,
-      l.challenge_id,
-      l.participant_id,
-      l.name,
-      l.entries,
-      l.score,
-      l.score_secondary,
-      l.created_at,
-      l.updated_at
-     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS row_num,
-              s.id,
-              s.challenge_id,
-              s.participant_id,
-              p.name,
-              cnt.entries,
-              s.score,
-              s.score_secondary,
-              s.created_at,
-              s.updated_at
-             FROM submissions s,
-              participants p,
-              ( SELECT c.challenge_id,
-                      c.participant_id,
-                      count(c.*) AS entries
-                     FROM submissions c
-                    WHERE (c.post_challenge = false)
-                    GROUP BY c.challenge_id, c.participant_id) cnt
-            WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l
-    WHERE (l.row_num = 1)
-    ORDER BY l.score DESC, l.score_secondary;
   SQL
 
   create_view :participant_submissions,  sql_definition: <<-SQL

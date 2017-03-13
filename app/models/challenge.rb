@@ -24,7 +24,7 @@ class Challenge < ApplicationRecord
 
 
   as_enum :status, [:draft, :running, :completed, :perpetual, :cancelled], map: :string
-  as_enum :grader, [:f1_logloss, :discrete_mean_squared_error, :manual, :external], map: :string
+  as_enum :grader, [:f1_logloss, :discrete_mean_squared_error, :diff_ratio, :manual, :external], map: :string
   as_enum :primary_sort_order, [:ascending, :descending], map: :string
   as_enum :secondary_sort_order, [:ascending, :descending, :not_used], map: :string
 

@@ -49,12 +49,20 @@ class Grader
     c = @submission.challenge
     submission_key = get_submission_key
     return false if submission_key.blank? || c.answer_file_s3_key.blank?
-    query = { query: { submission_id: @submission.id,
+    if c.threshold.present?
+      query = { query: { submission_id: @submission.id,
                        grader: c.grader,
                        grading_factor: c.grading_factor,
                        threshold: c.threshold,
                        answer_key: c.answer_file_s3_key,
                        submission_key: get_submission_key }}
+    else
+        query = { query: { submission_id: @submission.id,
+                         grader: c.grader,
+                         grading_factor: c.grading_factor,
+                         answer_key: c.answer_file_s3_key,
+                         submission_key: get_submission_key }}
+    end
   end
 
 

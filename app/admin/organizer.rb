@@ -5,4 +5,11 @@ ActiveAdmin.register Organizer do
       scoped_collection.friendly.find(params[:id])
     end
   end
+
+  index do
+    selectable_column
+    column :id
+    column :organizer
+    actions
+  end
 end

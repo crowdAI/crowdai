@@ -12,12 +12,12 @@ ActiveAdmin.register Mailer do
   controller do
   end
 
-  filter :mailer
+  filter :mailer_classname
   filter :paused
 
   index do
     selectable_column
-    column :mailer
+    column :mailer_classname
     column :paused
     actions
   end

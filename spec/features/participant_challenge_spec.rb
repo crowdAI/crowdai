@@ -94,8 +94,8 @@ feature "participant accesses challenge", js: true do
     end
 
     scenario "show for running challenge" do
-      visit "/challenges/#{challenge.id}"
-      expect(current_path).to eq("/challenges/#{challenge.id}")
+      visit "/challenges/#{challenge.slug}"
+      expect(current_path).to eq("/challenges/#{challenge.slug}")
     end
 
     scenario "edit challenge" do

@@ -15,6 +15,8 @@ ActiveAdmin.register Challenge do
     end
   end
 
+  filter :status_cd
+
   index do
     selectable_column
     column :challenge

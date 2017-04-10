@@ -28,7 +28,7 @@ class ProcessAiGymGif
     mp4_tempfile = Tempfile.new(['mp4file','.mp4'])
     mp4_tempfile.binmode
     movie = FFMPEG::Movie.new(gif_tempfile.path)
-    movie.transcode(mp4_tempfile.path) { |progress| Rails.logger.info progress }
+    movie.transcode(mp4_tempfile.path, %w(-pix_fmt yuv420p)) { |progress| Rails.logger.info progress }
     mp4_tempfile.rewind
     return mp4_tempfile
   end

@@ -6,12 +6,16 @@
           <%= image_tag image_medium_url(Challenge.find(challenge.id)),  class: "img-circle" %>
         </div>
       </div>
+
       <div class="col-xs-7 col-md-10">
         <h3><%= challenge.challenge %></h3>
 
         <div class="challenge-list-detail">
-          <span class="challenge-badge <%= challenge.status_cd %>"><%= challenge.status_cd %></span>
+          <span class="challenge-badge <%= challenge.status_cd %>"><%= challenge.status_formatted %></span>
           <span>&ensp;</span>
+          <span class='visible-xs hidden-md'>
+            <br/>
+          </span>
           <span class="glyphicon glyphicon-eye-open"></span> <%= pluralize(challenge.page_views, ' view') %>&ensp; | &ensp;
           <span class="glyphicon glyphicon-user"></span>
           <%= challenge.participant_count %>
@@ -19,6 +23,7 @@
           <span class="glyphicon glyphicon-list-alt"></span> <%= pluralize(challenge.submission_count, 'submission') %>
         </div>
       </div>
-    </div>
+
+
   <% end %>
 </li>

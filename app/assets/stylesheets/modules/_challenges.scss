@@ -68,11 +68,11 @@
   color: $crowdai-bg-white;
   @include media(">=phone", "<=tablet") {
     font-size: 70%;
-    width: 60px;
+    width: 100px;
   }
   @include media(">tablet") {
     font-size: 100%;
-    width: 85px;
+    width: 120px;
   }
 }
 
@@ -94,6 +94,10 @@
 
 .challenge-badge.perpetual {
   background-color: $brand-warning;
+}
+
+.challenge-badge.starting_soon {
+  background-color: #FF8C00;
 }
 
 

@@ -23,7 +23,7 @@ class Challenge < ApplicationRecord
   has_many :emails,                       dependent: :destroy
 
 
-  as_enum :status, [:draft, :running, :completed, :perpetual, :cancelled], map: :string
+  as_enum :status, [:draft, :running, :completed, :perpetual, :cancelled, :starting_soon], map: :string
   as_enum :grader, [:f1_logloss, :discrete_mean_squared_error, :diff_ratio, :manual, :external], map: :string
   as_enum :primary_sort_order, [:ascending, :descending], map: :string
   as_enum :secondary_sort_order, [:ascending, :descending, :not_used], map: :string
@@ -57,6 +57,11 @@ class Challenge < ApplicationRecord
     self.page_views ||= 0
     self.page_views += 1
     self.save
+  end
+
+  def status_formatted
+    return 'Starting soon' if status == :starting_soon
+    return status.capitalize
   end
 
 

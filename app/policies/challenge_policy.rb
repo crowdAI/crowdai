@@ -46,9 +46,9 @@ class ChallengePolicy < ApplicationPolicy
         scope.all
       else
         if participant && participant.organizer_id
-          scope.where("status_cd IN ('running','completed') OR organizer_id = ?", participant.organizer_id)
+          scope.where("status_cd IN ('running','completed','starting_soon') OR organizer_id = ?", participant.organizer_id)
         else
-          scope.where("status_cd IN ('running','completed')")
+          scope.where("status_cd IN ('running','completed','starting_soon')")
         end
       end
     end

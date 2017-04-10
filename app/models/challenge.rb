@@ -38,7 +38,7 @@ class Challenge < ApplicationRecord
 
   default_scope { order("CASE status_cd
                           WHEN 'running' THEN 1
-                          WHEN 'perpetual' THEN 2
+                          WHEN 'starting_soon' THEN 2
                           WHEN 'completed' THEN 3
                           WHEN 'cancelled' THEN 4
                           WHEN 'draft' THEN 5

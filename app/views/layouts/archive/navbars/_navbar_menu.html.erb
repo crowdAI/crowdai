@@ -1,0 +1,30 @@
+<li>
+  <%= link_to articles_path do %>
+    <span class='navbar-underline'>Knowledge Base</span>
+  <% end %>
+</li>
+
+<li>
+  <%= link_to challenges_path do %>
+    <span class='navbar-underline'>Challenges</span>
+  <% end %>
+</li>
+
+<% if current_participant && current_participant.admin? %>
+  <li>
+    <%= link_to organizers_path do %>
+      <span class='navbar-underline'>Organizers</span>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to '/admin' do %>
+      <span class='navbar-underline'>Admin</span>
+    <% end %>
+  </li>
+<% end %>
+
+<% if current_participant && current_participant.organizer_id.present? %>
+  <li><%= link_to current_participant.organizer.organizer,
+                  organizer_path(current_participant.organizer),
+                  class: 'navbar-underline' %></li>
+<% end %>

@@ -58,12 +58,9 @@ gem 'coffee-rails'
 
 
 # css
-gem 'sass-rails', '~> 5.0'
-gem 'bootstrap-sass'
-gem 'active_bootstrap_skin', github: 'crowdAI/active_bootstrap_skin'
+gem 'sass-rails'
+gem 'compass-rails'
 gem 'momentjs-rails', '~> 2.9'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.17.42'
-
 
 gem 'font-awesome-rails'
 gem 'include_media_rails'
@@ -104,6 +101,18 @@ gem 'streamio-ffmpeg'
 # Amazon
 gem 'aws-sdk', '~> 2.2'
 gem 'fog', '1.35.0'
+
+# Trailblazer
+gem "trailblazer"
+gem "trailblazer-rails"
+gem "cells-rails"
+gem "cells"
+gem "cells-erb"
+gem "kaminari-cells"
+
+group :development, :test do
+  gem "rspec-cells"
+end
 
 # static analysis
 group :development do

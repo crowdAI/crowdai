@@ -1,0 +1,38 @@
+<header>
+  <div class="row">
+    <div class="branding">
+      <a class="logo" href="#" title=""></a>
+    </div>
+    <div class="search">
+      <form id="search-box" method="get" action="">
+        <label>
+          <input id="search-bar" type="search" name="search" placeholder="Search crowdAI">
+          <span class="ss-icon"></span>
+        </label>
+      </form>
+      <a class="search-open" href="#">search</a>
+    </div>
+    <div id="mobile-search-overlay">
+      <a class="search-open" href="#">search</a>
+        <form method="get" action="">
+          <input type="search" name="search" placeholder="Search crowdAI">
+        </form>
+      <a id="search-close" href="#">close</a>
+    </div>
+    <nav class="primary">
+      <%= desktop_links %>
+      </nav>
+        <div class="menu">
+          <a id="mobile-nav" href="#"><i class="ss-icon">menu</i></a>
+        </div>
+      </div>
+      <nav class="mobile-primary">
+        <div id="mobile-nav-header">
+          <div class="row">
+            <a class="logo" href="#" title=""></a>
+            <a id="mobile-nav" href="#"><i class="ss-icon">close</i></a>
+          </div>
+        </div>
+        <%= mobile_links %>
+      </nav>
+  </header>

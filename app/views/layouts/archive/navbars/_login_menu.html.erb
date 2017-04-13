@@ -1,0 +1,17 @@
+<% if participant_signed_in? %>
+  <li class="dropdown">
+    <a href="#" id="avatar-menu" class="dropdown-toggle profile-image" data-toggle="dropdown">
+      <%= image_tag avatar_url(current_participant,'medium'), size: '30x30', class: "img-circle navbar-profile-img" %><%= current_participant.name %>
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li><%= glyphicon_link 'user', 'Profile', participant_path(current_participant) %></li>
+      <li><%= glyphicon_link 'cog', 'Change password', edit_participant_registration_path %></li>
+      <li><%= glyphicon_link 'log-out', 'Sign out', destroy_participant_session_path, :method => :delete %></li>
+    </ul>
+  </li><!-- dropdown -->
+
+<% else %>
+  <li><%= link_to "Log in", new_participant_session_path, class: 'btn btn-primary outline' %></li>
+  <li><%= link_to "Sign up", new_participant_registration_path, class: 'btn btn-primary outline' %></li>
+<% end %>

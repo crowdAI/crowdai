@@ -1,0 +1,2 @@
+module ParticipantSettingsControllerHelper
+end

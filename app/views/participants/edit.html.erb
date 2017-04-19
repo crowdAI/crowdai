@@ -1,10 +1,39 @@
-<div class="container-medium-grey">
-
-<% if @participant.pending_reconfirmation? %>
-  <%= render 'participants/edit/account_pending' %>
-<% else %>
-  <%= render 'participants/edit/header_fields' %>
-<% end %>
-
-</div>
-<br/><br/>
+<content>
+      <div class="masthead">
+          <div class="row">
+              <div class="info">
+                  <h2>Edit Profile</h2>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <form class="sgl-col">
+              <fieldset>
+                  <label>Name</label>
+                  <input type="text" name="" placeholder="">
+                  <label>Profile Picture</label>
+                  <div class="upload">
+                      <img class="img-thumb" src="" alt="" />
+                      <a href="#">Delete</a> | <a href="#">Replace</a>
+                      <span>Your image will be cropped if necessary. 5MB limit</span>
+                  </div>
+                  <label>Location</label>
+                  <input type="text" name="" placeholder="">
+                  <label>Bio</label>
+                  <textarea></textarea>
+                  <label>Github</label>
+                  <input type="text" name="" placeholder="URL (e.g. www.github/crowdai)">
+                  <label>LinkedIn</label>
+                  <input type="text" name="" placeholder="URL (e.g. www.linkedin.com/in/crowdai)">
+                  <label>Twitter</label>
+                  <input type="text" name="" placeholder="URL (e.g. www.twitter.com/crowdai)">
+                  <label>Website</label>
+                  <input type="text" name="" placeholder="URL (e.g. www.crowdai.org)">
+                  <div class="button-group">
+                      <button class="btn btn-primary" type="submit">Save</button>
+                      <button class="btn btn-secondary" type="submit">Cancel</button>
+                  </div>
+              </fieldset>
+          </form>
+      </div>
+  </content>

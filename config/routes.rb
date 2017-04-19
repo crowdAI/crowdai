@@ -88,7 +88,6 @@ Rails.application.routes.draw do
 
   get '/pages/*id' => 'pages#show', as: :page, format: false
 
-  match '*path', to: 'errors#e404', via: :all
 
   root 'landing_page#index'
 end

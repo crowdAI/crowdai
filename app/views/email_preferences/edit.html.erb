@@ -1,9 +1,57 @@
-<div class="container-medium-grey">
-  <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-
-      <h1>Email Preferences</h1>
-      <%= render 'form' %>
-    </div></div>
-    <br/><br/><br/><br/><br/>
-</div>
+<content>
+		<div class="masthead">
+			<div class="row">
+				<h2>Account Settings</h2>
+			</div>
+		</div>
+		<div class="sub-nav">
+			<div class="row">
+				<ul>
+          <li><%= link_to 'Email & Password', edit_participant_password_path %></li>
+					<li class="active">Email Notifications</li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<form class="sgl-col">
+				<fieldset class="checkbox">
+					<div>
+						<input type="checkbox" id="news1" value="crowdai">
+						<label for="news1">Receive the crowdAI Newsletter</label>
+					</div>
+					<div>
+						<input type="checkbox" id="news2" value="challenge">
+						<label for="news2">Receive email for challenges which I am following</label>
+					</div>
+					<div>
+						<input type="checkbox" id="news3" value="comment">
+						<label for="news3">Receive emails when someone mentions me in a comment/post</label>
+					</div>
+				</fieldset>
+				<fieldset class="checkbox">
+					<h4>Email Frequency</h4>
+					<div>
+					<input type="checkbox" id="email1" value="every-email">
+					<label for="email1">Receive every email</label>
+					</div>
+					<div>
+						<input type="checkbox" id="email2" value="daily-email">
+						<label for="email2">Receive a daily digest email</label>
+					</div>
+					<div>
+						<input type="checkbox" id="email3" value="weekly-email">
+						<label for="email3">Receive a weekly digest email</label>
+					</div>
+				</fieldset>
+				<div class="button-group">
+					<button class="btn btn-primary" type="submit">Save</button>
+					<button class="btn btn-secondary" type="submit">Cancel</button>
+				</div>
+			</form>
+		</div>
+		<div class="additional">
+			<div class="row">
+				<a data-remodal-target="modal">Delete my account</a>
+			</div>
+		</div>
+	</content>

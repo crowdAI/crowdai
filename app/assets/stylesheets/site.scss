@@ -156,13 +156,19 @@ content.background-grey {
 
 .logo {
     display: block;
-    width: 129px;
     background: url(../img/misc/crowdai-logo.svg) no-repeat left center;
+    width: 129px;
     height: 24px;
 
     @media screen and (max-width: 800px) {
 		width: 108px;
 	    height: 20px;
+	}
+
+	@media screen and (max-width: 640px) {
+		background: url(../img/misc/crowdai-logomark.svg) no-repeat left center;
+	    width: 28px;
+	    height: 28px;
 	}
 }
 
@@ -246,12 +252,6 @@ content.background-grey {
 	}
 }
 
-.btn .ss-icon {
-	font-size: 13px;
-	position: relative;
-	top: 1px;
-}
-
 .btn {
 	.active {
 		color: $color-accent;
@@ -333,7 +333,6 @@ textarea {
 	background: $color-grey-03;
 	border: 1px solid $color-grey-20;
 	@include border-radius(2px);
-	@include box-sizing(border-box);
 	&:focus {
 		outline: 0;
 		border-color: $color-grey-40;
@@ -396,7 +395,6 @@ select {
 	background: #fff;
 	border: 1px solid $color-grey-20;
 	@include border-radius(2px);
-	@include box-sizing(border-box);
 	&:focus {
 		outline: 0;
 		border-color: $color-grey-40;
@@ -466,7 +464,7 @@ fieldset.checkbox {
 
 fieldset.radiogroup {
 	overflow: hidden;
-	margin-bottom: 15px;
+	margin-bottom: 18px;
 
 	legend {
 		margin-bottom: 4px;
@@ -604,7 +602,6 @@ form .md-editor {
 			height: 36px;
 			border: 1px solid $color-grey-20;
 			@include border-radius(2px);
-			@include box-sizing(border-box);
 
 			&:last-of-type {
 				margin-right: 0;
@@ -633,22 +630,16 @@ form .md-editor {
 					text-align: center;
 					@include transition(background 0.3s ease);
 
+					.fa {
+						color: $color-grey-87;
+					}
+
 					&:hover {
 						cursor: pointer;
 						background: #fff;
 					}
 					&:focus {
 						outline: 0;
-					}
-					span {
-						font-family: 'SSCommunity';
-					}
-					&.icon-nmbrd-list {
-						img {
-							width: 12px;
-							height: 13px;
-							margin-top: 10px;
-						}
 					}
 				}
 			}
@@ -658,7 +649,25 @@ form .md-editor {
 		margin: 0;
 		max-width: 100%;
 		background: $color-grey-03;
-		@include border-radius(2px);
+		border-bottom: 1px dashed $color-grey-20;
+		@include border-radius(2px 2px 0 0);
+	}
+
+	div.mde-img {
+		padding-left: 10px;
+		background: $color-grey-03;
+		border: 1px solid $color-grey-20;
+		border-top: none;
+		@include border-radius(0 0 2px 2px);
+
+		input[type=file] {
+			display: none;
+		}
+		p {
+			margin: 0;
+			font-size: 14px;
+			line-height: 38px;
+		}
 	}
 }
 
@@ -683,6 +692,10 @@ div.section-container {
 		&:last-of-type {
 			margin-bottom: 0;
 		}
+
+		.mde-img {
+			background: #fff;
+		}
 	}
 }
 
@@ -699,7 +712,6 @@ progress {
 	background-color: #e5e5e5;
 	border: none;
 	@include border-radius(4px);
-	@include box-sizing(border-box);
 }
 
 progress[value] {
@@ -882,21 +894,41 @@ code.block {
 
 /* Icons */
 
-.ss-icon {
+.fa {
 	color: $color-grey-40;
 	font-size: 18px;
 	@include transition(0.4s);
 }
 
-a .ss-icon:hover {
+a .fa:hover {
 	color: $color-grey-54;
 }
 
-.ss-icon:before,
-.ss-social-regular:before {
-	position: relative;
-    top: .2em;
-    margin-right: 6px;
+
+/* Flash bars */
+
+.flash-bar,
+.flash-bar-error {
+	background: #fffbed;
+	color: #69634d;
+	font-size: 14px;
+	height: 48px;
+	border-bottom: 1px solid #e6e6e6;
+
+	p {
+		float: left;
+		margin-top: 14px;
+	}
+
+	.fa {
+		float: right;
+		margin-top: 16px;
+	}
+}
+
+.flash-bar-error {
+	background: #f9f2f4;
+	color: $color-accent-dark;;
 }
 
 
@@ -1071,9 +1103,15 @@ a .ss-icon:hover {
 /* Heading + Icon link */
 
 .heading-w-icon {
-	.ss-icon {
-		position: relative;
-		top: -0.5em;
+	display: block;
+
+	h2 {
+		float: left;
+	}
+
+	.fa {
+		float: left;
+		margin-top: 4px;
 		margin-left: 8px;
 	}
 }
@@ -1083,9 +1121,9 @@ a .ss-icon:hover {
 
 .icon-w-text {
 
-	.ss-icon{
+	.fa {
 		position: relative;
-		top: 3px;
+		top: 1px;
 		margin-right: 6px;
 	}
 
@@ -1106,11 +1144,17 @@ a .ss-icon:hover {
 		margin-right: 6px;
 	}
 
-	.ss-icon {
+	.fa {
 		float: left;
 		position: relative;
 		top: 2px;
 	}
+}
+
+/* Panel – Message */
+
+.panel-body .message {
+	margin: -14px 0 25px 0;
 }
 
 
@@ -1123,15 +1167,15 @@ a .ss-icon:hover {
 		float: left;
 		margin-right: 20px;
 
-		.twitter {
+		.fa-twitter {
 			color: #55acee;
 		}
 
-		.github {
+		.fa-github {
 			color: #2b2626;
 		}
 
-		.linkedin {
+		.fa-linkedin {
 			color: #0077b5;
 		}
 	}
@@ -1142,12 +1186,12 @@ a .ss-icon:hover {
 
 .like-count {
 	font-size: 13px;
-	line-height: 24px;
+	line-height: 20px;
 	text-align: center;
 	width: 40px;
 
 	@media screen and (max-width: 640px) {
-		line-height: 20px;
+		line-height: 18px;
 	}
 
 	.active {
@@ -1197,8 +1241,8 @@ form#search-box {
 			position: absolute;
 			top: 12px;
 			left: 10px;
-			font-family: 'SSCommunity';
-			content: 'search';
+			font-family: 'FontAwesome';
+			content: '\f002';
 			width: 20px;
 			height: 20px;
 			color: $color-grey-40;
@@ -1263,38 +1307,25 @@ header {
 		height: 60px;
 	}
 
-	.row {
-		@media screen and (max-width: 640px) {
-			padding-left: 8px;
-		}
-	}
-
 	.branding {
 		float: left;
-	}
+		margin-top: 26px;
 
-	.logo {
-	    display: block;
-	    width: 129px;
-	    background: url(../img/misc/crowdai-logo.svg) no-repeat left center;
-	    height: 78px;
-
-	    @media screen and (max-width: 800px) {
-			width: 108px;
-		    height: 58px;
+		@media screen and (max-width: 800px) {
+			margin-top: 21px;
 		}
 
 		@media screen and (max-width: 640px) {
-			display: none;
+			margin-top: 16px;
 		}
 	}
 
 	.search {
 	    float: left;
-	    margin: 21px 0 0 32px;
+	    margin: 21px 0 0 24px;
 
 	    @media screen and (max-width: 800px) {
-			margin: 12px 0 0 24px;
+			margin: 12px 0 0 20px;
 		}
 
 		@media screen and (max-width: 640px) {
@@ -1314,8 +1345,7 @@ header {
 				margin: 0 0 0 16px;
 				width: 20px;
 				color: $color-grey-40;
-				font-family: 'SSCommunity';
-				font-size: 18px;
+				font-family: 'FontAwesome';
 				line-height: normal;
 
 				&:hover {
@@ -1332,19 +1362,19 @@ header {
 	#mobile-search-overlay {
 		overflow: hidden;
 		position: absolute;
+		display: flex;
 		top: 0;
 		left: 0;
 		width: 100%;
+		max-width: 640px;
 		height: 0px;
 		background: #fff;
-		@include box-sizing(border-box);
 		opacity: 0;
-		@include transition(height 0.3s ease, opacity 0.3s ease);
+		@include transition(opacity 0.3s ease);
 
 		a {
 			float: left;
-			font-family: 'SSCommunity';
-			font-size: 18px;
+			font-family: 'FontAwesome';
 			line-height: normal;
 			color: $color-grey-40;
 
@@ -1360,19 +1390,17 @@ header {
 			}
 		}
 		form {
-			display: inline-block;
+			display: inherit;
 			float: left;
-			margin: 11px 0 0 16px;
-			width: 200px;
-			max-width: 320px;
+			margin: 0 20px 0;
+			width: 100%;
+			min-width: 200px;
 
 			input[type=search] {
 				padding: 0;
 				width: 100%;
 				background: #fff;
 				border: none;
-				border-color: #fff;
-				@include box-sizing(border-box);
 				font-family: 'Roboto', sans-serif;
 				font-size: 15px;
 				line-height: 36px;
@@ -1435,6 +1463,10 @@ header {
 						&.logo {
 							float: left;
 							display: block;
+							background: url(../img/misc/crowdai-logo.svg) no-repeat left center;
+						    width: 129px;
+						    height: 24px;
+							margin-top: 17px;
 						}
 						&#mobile-nav {
 							float: right;
@@ -1452,7 +1484,7 @@ header {
 				}
 
 				ul {
-					padding: 10px 0;
+					padding: 20px 0;
 					border-bottom: 1px solid $color-grey-10;
 
 					li {
@@ -1639,7 +1671,6 @@ header {
 	max-height: 350px;
 	border: 1px solid $color-grey-40;
 	@include border-radius(2px);
-	@include box-shadow(0px 1px 4px 0px rgba(0,0,0,0.08));
 
 	@media screen and (max-width: 640px) {
 		width: 100%;
@@ -1651,6 +1682,7 @@ header {
 		display: block;
 		padding: 15px 15px 0;
 		border-bottom: 1px solid $color-grey-10;
+
 		&:last-of-type {
 			border-bottom: none;
 		}
@@ -1660,7 +1692,7 @@ header {
 		}
 		li {
 			overflow: hidden;
-			display: list-item;
+			display: flex;
 			margin-bottom: 15px;
 
 			img {
@@ -1668,24 +1700,29 @@ header {
 				margin-right: 10px;
 				width: 36px !important;
 				height: 36px !important;
-				@include border-radius(2px);
 			}
-
 			a {
 				overflow: hidden;
-				display: inline-block;
+				display: inline;
+				float: left;
 				margin: 10px 0 0;
 				max-width: 300px;
+				height: 18px;
+				border-bottom: 1px solid transparent;
 				font-size: 14px;
 				line-height: 18px;
 				white-space: nowrap;
 				text-overflow: ellipsis;
+				@include transition(0.3s ease);
 
 				&:hover {
-					border-bottom: 1px solid $color-accent-dark;
+					border-bottom: 1px solid $color-accent;
 				}
 				@media screen and (max-width: 380px) {
 					max-width: 240px;
+				}
+				@media screen and (min-width: 381px) and (max-width: 640px) {
+					max-width: 520px;
 				}
 			}
 		}
@@ -1917,6 +1954,11 @@ header {
 
 	.info {
 		float: left;
+
+		p.large,
+		p.location {
+			clear: both;
+		}
 	}
 
 	.large {
@@ -1976,6 +2018,7 @@ header {
 	}
 
 	.user-link {
+		display: block;
 		margin-top: 13px;
 
 		@media screen and (max-width: 800px) {
@@ -2068,7 +2111,7 @@ header {
 			width: calc(100% - 104px);
 		}
 
-		span {
+		.location {
 			color: $color-grey-54;
 			margin-top: 18px;
 		}
@@ -2222,6 +2265,10 @@ header {
 		.active {
 			color: $color-accent-dark;
 		}
+
+		.draft {
+			color: #2eb664;
+		}
 	}
 
 	.stats {
@@ -2342,6 +2389,11 @@ header {
 
 		@media screen and (max-width: 640px) {
 			padding: 13px 0 9px;
+		}
+
+		.description {
+			color: $color-grey-54;
+			margin-top: 1px;
 		}
 
 		.stats {
@@ -2573,11 +2625,6 @@ table.submissions {
 		}
 	}
 
-	.process {
-		text-align: right;
-		margin-left: 16px;
-	}
-
 	.secondary {
 		@media screen and (max-width: 640px) {
 			display: none;
@@ -2591,6 +2638,8 @@ table.submissions {
 	}
 
 	.last-submission {
+		text-align: right;
+
 		@media screen and (max-width: 1024px) {
 			display: none;
 		}
@@ -2877,7 +2926,6 @@ table.submissions {
 	width: 480px;
 	height: auto;
 	@include border-radius(2px);
-	@include box-sizing(border-box);
 	text-align: left;
 
 	@media screen and (max-width: 640px) {
@@ -2949,7 +2997,6 @@ form {
 		max-width: 680px;
 		border: 1px solid $color-grey-20;
 		@include border-radius(2px);
-		@include box-sizing(border-box);
 
 		select {
 			max-width: 330px;
@@ -2964,7 +3011,7 @@ form {
 			max-width: 100%;
 		}
 
-		a.ss-icon {
+		a.fa {
 			position: absolute;
 			top: 8px;
 			right: 8px;
@@ -3187,7 +3234,6 @@ form {
 	background: #fff;
 	border: 1px solid $color-grey-10;
 	@include border-radius(2px);
-	@include box-sizing(border-box);
 	@include transition(width 0.3s ease, height 0.3s ease);
 
 	@media screen and (max-width: 640px) {
@@ -3272,11 +3318,11 @@ div.additional {
 		cursor: pointer;
 		&:before {
 			float: left;
-			margin: 2px 10px 0 0;
-			font-family: "SSCommunity";
+			margin: 0 8px 0 0;
+			font-family: 'FontAwesome';
 			font-size: 18px;
 			color: $color-grey-54;
-			content: 'trash';
+			content: '\f1f8';
 		}
 	}
 }
@@ -3344,12 +3390,12 @@ footer {
 				color: rgba(255,255,255,0.8);
 			}
 
-			.ss-icon {
+			.fa {
 				color: rgba(255,255,255,0.5);
 				@include transition(0.25s);
 			}
 
-			.ss-icon:hover {
+			.fa:hover {
 				color: rgba(255,255,255,0.8);
 			}
 		}

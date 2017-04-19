@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313115510) do
+ActiveRecord::Schema.define(version: 20170419133220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,33 +125,6 @@ ActiveRecord::Schema.define(version: 20170313115510) do
     t.index ["slug"], name: "index_comments_on_slug", unique: true, using: :btree
   end
 
-  create_table "container_instances", force: :cascade do |t|
-    t.integer  "docker_configuration_id"
-    t.string   "status_cd"
-    t.string   "message"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.string   "image_sha"
-    t.string   "container_sha"
-    t.string   "slug"
-    t.integer  "submission_id"
-    t.index ["docker_configuration_id"], name: "index_container_instances_on_docker_configuration_id", using: :btree
-    t.index ["slug"], name: "index_container_instances_on_slug", unique: true, using: :btree
-    t.index ["submission_id"], name: "index_container_instances_on_submission_id", using: :btree
-  end
-
-  create_table "container_logs", force: :cascade do |t|
-    t.integer  "container_instance_id"
-    t.string   "log_level_cd"
-    t.string   "message"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.string   "log_source_cd"
-    t.string   "slug"
-    t.index ["container_instance_id"], name: "index_container_logs_on_container_instance_id", using: :btree
-    t.index ["slug"], name: "index_container_logs_on_slug", unique: true, using: :btree
-  end
-
   create_table "dataset_file_downloads", force: :cascade do |t|
     t.integer  "participant_id"
     t.integer  "dataset_file_id"
@@ -175,31 +148,6 @@ ActiveRecord::Schema.define(version: 20170313115510) do
     t.boolean  "evaluation",          default: false
     t.index ["challenge_id"], name: "index_dataset_files_on_challenge_id", using: :btree
     t.index ["slug"], name: "index_dataset_files_on_slug", unique: true, using: :btree
-  end
-
-  create_table "docker_configurations", force: :cascade do |t|
-    t.integer  "challenge_id"
-    t.string   "image"
-    t.string   "mount_point"
-    t.boolean  "destroy_after_success"
-    t.string   "execute_command"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.string   "name"
-    t.boolean  "execute_on_submission", default: false
-    t.string   "datasets_directory"
-    t.index ["challenge_id"], name: "index_docker_configurations_on_challenge_id", using: :btree
-  end
-
-  create_table "docker_files", force: :cascade do |t|
-    t.integer  "docker_configuration_id"
-    t.string   "configuration_file_s3_key"
-    t.string   "directory"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.boolean  "grading_only",              default: false
-    t.boolean  "overwritable",              default: false
-    t.index ["docker_configuration_id"], name: "index_docker_files_on_docker_configuration_id", using: :btree
   end
 
   create_table "email_preferences", force: :cascade do |t|
@@ -382,19 +330,17 @@ ActiveRecord::Schema.define(version: 20170313115510) do
     t.integer  "challenge_id"
     t.integer  "participant_id"
     t.float    "score"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.text     "description"
     t.float    "score_secondary"
     t.string   "grading_message"
-    t.string   "grading_status_cd",       default: "ready"
+    t.string   "grading_status_cd",    default: "ready"
     t.text     "description_markdown"
-    t.integer  "vote_count",              default: 0
-    t.boolean  "post_challenge",          default: false
+    t.integer  "vote_count",           default: 0
+    t.boolean  "post_challenge",       default: false
     t.string   "api"
-    t.integer  "docker_configuration_id"
     t.index ["challenge_id"], name: "index_submissions_on_challenge_id", using: :btree
-    t.index ["docker_configuration_id"], name: "index_submissions_on_docker_configuration_id", using: :btree
     t.index ["participant_id"], name: "index_submissions_on_participant_id", using: :btree
   end
 
@@ -438,13 +384,8 @@ ActiveRecord::Schema.define(version: 20170313115510) do
   add_foreign_key "articles", "participants"
   add_foreign_key "challenges", "organizers"
   add_foreign_key "comments", "participants"
-  add_foreign_key "container_instances", "docker_configurations"
-  add_foreign_key "container_instances", "submissions"
-  add_foreign_key "container_logs", "container_instances"
   add_foreign_key "dataset_file_downloads", "dataset_files"
   add_foreign_key "dataset_file_downloads", "participants"
-  add_foreign_key "docker_configurations", "challenges"
-  add_foreign_key "docker_files", "docker_configurations"
   add_foreign_key "email_preferences", "participants"
   add_foreign_key "emails", "mailers"
   add_foreign_key "participants", "organizers"
@@ -454,7 +395,6 @@ ActiveRecord::Schema.define(version: 20170313115510) do
   add_foreign_key "submission_files", "submissions"
   add_foreign_key "submission_grades", "submissions"
   add_foreign_key "submissions", "challenges"
-  add_foreign_key "submissions", "docker_configurations"
   add_foreign_key "submissions", "participants"
   add_foreign_key "topics", "challenges"
   add_foreign_key "topics", "participants"

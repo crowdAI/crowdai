@@ -56,20 +56,7 @@ Rails.application.routes.draw do
     resources :leaderboards, only: [:index]
     get 'leaderboards/video_modal' => 'leaderboards#video_modal', as: :video_modal
     resources :topics
-    resources :docker_configurations
     get :regrade
-  end
-
-  resources :docker_configurations do
-    resources :container_instances
-  end
-
-  resources :docker_configurations do
-    resources :docker_files, except: [:index, :show]
-  end
-
-  resources :container_instances do
-    resources :container_logs, only: [:index, :show, :destroy]
   end
 
   resources :dataset_files, except: [:show] do
@@ -86,7 +73,6 @@ Rails.application.routes.draw do
 
   resources :submissions do
     resources :votes, only: [:create, :destroy]
-    resources :container_instances
   end
 
   resources :articles do

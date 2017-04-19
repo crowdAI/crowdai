@@ -8,7 +8,6 @@ class Submission < ApplicationRecord
   has_many :submission_grades, dependent: :destroy
   accepts_nested_attributes_for :submission_files, reject_if: lambda { |f| f[:submission_file_s3_key].blank? }, allow_destroy: true
   has_many :votes, as: :votable
-  has_many :container_instances, dependent: :destroy
 
   as_enum :grading_status, [:ready, :submitted, :graded, :failed], map: :string
 

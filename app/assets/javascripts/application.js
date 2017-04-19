@@ -9,5 +9,7 @@
 //= require moment
 
 //= require z.jquery.fileupload
+//= require remodel.min
+//= require site
 
 //= require turbolinks

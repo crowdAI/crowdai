@@ -1,27 +1,94 @@
-<section class="header-section">
-  <div class="intro"></div>
-</section>
-
-<section class="list-container">
-  <div class="list-heading">
-    <%= link_to 'Challenges', challenges_path %>
+<content id='home'>
+  <div class="row">
+    <h1>Solve real-world problems <br>using open data</h1>
+    <p class="large">crowdAI connects data science experts and enthusiasts with open data to solve specific problems, through challenges.</p>
   </div>
-  <ul class="list-items">
-    <% @challenges.each do |challenge| %>
-      <%= render partial: 'challenges/index/challenge', locals: { challenge: challenge } %>
-    <% end %>
-  </ul>
-</section>
-
-<hr/>
-
-<div class="list-container">
-  <div class="list-heading">
-    <%= link_to 'Knowledge Base', articles_path %>
+  <div class="row button-group">
+    <%= link_to "Sign up", new_participant_registration_path, class: "btn btn-primary btn-large" %>
+    <%= link_to "Host a Challenge", '#', class: 'btn btn-secondary btn-large' %>
   </div>
-    <ul class="list-items">
-    <% @articles.each do |article| %>
-      <%= render partial: 'articles/index/article', locals: { article: article } %>
-    <% end %>
-  </ul>
-</div>
+
+  <div class="row">
+    <div class="section-header">
+      <h3>Challenges</h3>
+      <%= link_to 'See all', challenges_path, class: "btn btn-secondary" %>
+    </div>
+
+    <ul class="list-challenges">
+      <li>
+        <div class="pic">
+                      <a href="#"><img src="assets/challenge-2.jpg" alt=""></a>
+                  </div>
+                  <div class="details">
+                      <h5><a href="#">Challenge Title</a></h5>
+                      <p class="description">Brief description brief description brief description brief description</p>
+                      <p class="status active">XX days left</p>
+                  </div>
+                  <div class="stats">
+                      <div class="stat-fr">
+                          27<br>
+                          <span>Submissions</span>
+                      </div>
+                      <div class="stat-fr">
+                          142<br>
+                          <span>Particpants</span>
+                      </div>
+                      <div class="stat-fr">
+                          1,034<br>
+                          <span>Views</span>
+                      </div>
+                  </div>
+              </li>
+
+              <li>
+                  <div class="pic">
+                      <a href="#"><img src="assets/challenge-2.jpg" alt=""></a>
+                  </div>
+                  <div class="details">
+                      <h5><a href="#">Challenge Title</a></h5>
+                      <p class="description">Brief description brief description brief description brief description</p>
+                      <p class="status active">XX days left</p>
+                  </div>
+                  <div class="stats">
+                      <div class="stat-fr">
+                          27<br>
+                          <span>Submissions</span>
+                      </div>
+                      <div class="stat-fr">
+                          142<br>
+                          <span>Particpants</span>
+                      </div>
+                      <div class="stat-fr">
+                          1,034<br>
+                          <span>Views</span>
+                      </div>
+                  </div>
+              </li>
+
+              <li>
+                  <div class="pic">
+                      <a href="#"><%= image_tag("challenges/challenge-2.jpg", alt: "") %></a>
+                  </div>
+                  <div class="details">
+                      <h5><a href="#">Challenge Title</a></h5>
+                      <p class="description">Brief description brief description brief description brief description</p>
+                      <p class="status">Completed</p>
+                  </div>
+                  <div class="stats">
+                      <div class="stat-fr">
+                          27<br>
+                          <span>Submissions</span>
+                      </div>
+                      <div class="stat-fr">
+                          142<br>
+                          <span>Particpants</span>
+                      </div>
+                      <div class="stat-fr">
+                          1,034<br>
+                          <span>Views</span>
+                      </div>
+                  </div>
+              </li>
+          </ul>
+      </div>
+  </content>

@@ -32,7 +32,7 @@ class SubmissionNotificationMailer < ApplicationMailer
 
 
   def challenge_link(challenge)
-    link_to challenge.challenge, challenges_url(challenge)
+    link_to challenge.challenge, challenge_url(challenge)
   end
 
   def leaderboard_link(challenge)

@@ -1,14 +1,14 @@
 class ChallengesController < ApplicationController
   before_action :terminate_challenge, only: [:show, :index]
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
-  after_action :verify_authorized, except: [:index, :show]
+  after_action :verify_authorized, except: [:index, :load_more, :show]
   before_action :set_s3_direct_post, only: [:edit, :update]
-  after_action :update_stats_job
-  respond_to :html
-  respond_to :js
+  #after_action :update_stats_job
+  respond_to :html, :js
 
   def index
     @challenges = policy_scope(Challenge)
+    #@challenge_cells = cell(:challenge_index_detail, collection: @challenges)
     load_gon
   end
 
@@ -76,6 +76,10 @@ class ChallengesController < ApplicationController
     render 'challenges/form/regrade_status'
   end
 
+  def load_more
+    @challenges = policy_scope(Challenge)
+    render js: concept("challenge/cell/list", @challenges, page: params[:page]).(:append)
+  end
 
   private
   def set_challenge

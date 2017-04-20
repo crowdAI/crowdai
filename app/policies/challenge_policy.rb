@@ -32,6 +32,10 @@ class ChallengePolicy < ApplicationPolicy
     edit?
   end
 
+  def load_more?
+    index?
+  end
+
 
   class Scope
     attr_reader :participant, :scope

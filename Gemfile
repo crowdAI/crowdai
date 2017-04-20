@@ -47,11 +47,10 @@ gem 'fast_blank'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
+#gem 'jquery-ui-rails'
 gem "gon"
 #gem "jquery-fileupload-rails"
 gem 'turbolinks'
-gem 'jquery-turbolinks'
 gem 'lodash-rails'
 gem 'browser'
 gem 'coffee-rails'

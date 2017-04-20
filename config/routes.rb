@@ -58,6 +58,7 @@ Rails.application.routes.draw do
     resources :topics
     get :regrade
   end
+  get '/load_more_challenges', to: 'challenges#load_more', as: :load_more_challenges
 
   resources :dataset_files, except: [:show] do
     resources :dataset_file_downloads, only: [:create]

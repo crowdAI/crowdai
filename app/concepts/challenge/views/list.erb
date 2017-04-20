@@ -1,0 +1,13 @@
+<div class="row">
+  <ul class="list-challenges">
+    <%= concept('challenge/cell/list_detail', collection: challenges) %>
+  </ul>
+</div>
+
+<div id="load-more">
+  <%= link_to "Load more", load_more_challenges_path(page: challenges.next_page), remote: true %>
+</div>
+
+<div id='load-more2'>
+  goodbye
+</div>

@@ -1,15 +1,10 @@
-
 //= require jquery
 //= require jquery_ujs
-//= require jquery.turbolinks
-//= require jquery-ui
-
-//= require lodash
-
-//= require moment
-
-//= require z.jquery.fileupload
-//= require remodel.min
-//= require site
 
 //= require turbolinks
+
+
+$(document).on('ajax:error', function(xhr, status, error) {
+  console.log(status.responseText);
+  console.log(error);
+});

@@ -1,4 +1,6 @@
 class HeaderCell < Cell::ViewModel
+  include Escaped
+
   def show
     render
   end
@@ -20,7 +22,7 @@ class HeaderCell < Cell::ViewModel
             </ul>
           </div>
         </div>"
-      return dropdown.html_safe
+      return dropdown
     end
   end
 
@@ -41,7 +43,7 @@ class HeaderCell < Cell::ViewModel
     end
 
     links << "</ul>"
-    links.join.html_safe
+    links.join
   end
 
   def mobile_links

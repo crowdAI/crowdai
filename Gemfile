@@ -101,13 +101,14 @@ gem 'streamio-ffmpeg'
 gem 'aws-sdk', '~> 2.2'
 gem 'fog', '1.35.0'
 
-# Trailblazer
+# View
 gem "trailblazer"
 gem "trailblazer-rails"
 gem "cells-rails"
 gem "cells"
 gem "cells-erb"
 gem "kaminari-cells"
+gem "faraday"
 
 group :development, :test do
   gem "rspec-cells"

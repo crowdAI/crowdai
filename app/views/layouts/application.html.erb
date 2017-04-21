@@ -22,9 +22,9 @@
   </head>
 
   <body data-no-turbolink="false">
-    <%= cell(:header,Participant.first) %>
+    <%= concept('header/cell',Participant.first) %>
     <%= yield %>
-    <%= cell(:footer,nil) %>
+    <%= concept('footer/cell') %>
     <%= render partial: 'layouts/google_analytics_body' %>
   </body>
 </html>

@@ -754,6 +754,7 @@ DEPENDENCIES
   docker-api
   excon
   factory_girl_rails
+  faraday
   fast_blank
   ffaker
   figaro

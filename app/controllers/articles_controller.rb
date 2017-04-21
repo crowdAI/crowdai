@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  after_action :verify_authorized
+  after_action :verify_authorized, except: [:load_more]
 
 
   def index
@@ -12,7 +12,11 @@ class ArticlesController < ApplicationController
 
   def show
     @article.record_page_view
-    @comments = @article.comments
+    if params[:article_section_id]
+      @article_section = ArticleSection.find(params[:article_section_id])
+    else
+      @article_section = @article.article_sections.first
+    end
     load_gon
   end
 
@@ -61,6 +65,11 @@ class ArticlesController < ApplicationController
 
   def articles_filter
     Article::CATEGORIES.sort.map {|k,v| [v,k]}
+  end
+
+  def load_more
+    @articles = policy_scope(Article)
+    render js: concept("article/cell/list", @articles, page: params[:page]).(:append)
   end
 
 

@@ -81,6 +81,7 @@ Rails.application.routes.draw do
     resources :votes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
   end
+  get '/load_more_articles', to: 'articles#load_more', as: :load_more_articles
 
   match '/pages/contact', to: 'pages#contact', via: :get
   match '/pages/privacy', to: 'pages#privacy', via: :get

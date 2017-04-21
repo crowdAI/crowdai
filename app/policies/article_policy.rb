@@ -28,6 +28,10 @@ class ArticlePolicy < ApplicationPolicy
     new?
   end
 
+  def load_more?
+    index?
+  end
+
   class Scope
     attr_reader :participant, :scope
 

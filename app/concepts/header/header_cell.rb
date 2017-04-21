@@ -1,4 +1,4 @@
-class HeaderCell < Cell::ViewModel
+class Header::Cell < Cell::Concept
   include Escaped
 
   def show

@@ -1,16 +1,5 @@
-<%= render partial: 'sidebar' %>
-<%= render partial: 'articles/show/header' %>
-
-<div class="page-content-container">
-  <%= render partial: 'votes/vote_link', locals: { votable: @article } %>
-  <%= render partial: 'articles/show/version_links' %>
-
-
-  <div id='new-section'></div>
-
-  <% @article.article_sections.each do |section| %>
-    <%= render partial: 'article_sections/show', locals: { article: @article, article_section: section } %>
-  <% end %>
-
-  <%#= render partial: 'comments/comments', locals: { commentable: @article, comments: @comments } %>
-</div>
+<content>
+  <%= concept('article/cell/article_masthead', @article, article_section: @article_section) %>
+  <%= concept('article/cell/article_subnav', @article, article_section: @article_section) %>
+  <%= concept('article/cell', @article, article_section: @article_section) %>
+</content>

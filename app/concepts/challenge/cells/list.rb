@@ -22,4 +22,5 @@ class Challenge::Cell::List < Cell::Concept
   def page
     options[:page] or 1
   end
+
 end

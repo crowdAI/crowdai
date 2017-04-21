@@ -1,11 +1,15 @@
 <li>
   <div class="pic">
-    <a href="#"><img src="assets/img/tutorials/tutorial-1.jpg" alt=""></a>
+    <%= link_to article_path(article) do %>
+      <%= concept('media/cell',article,size: :medium) %>
+    <% end %>
   </div>
   <div class="details">
     <h5><%= link_to article.article, article_path(article) %></h5>
     <p class="description"><%= article.summary %></p>
-    <p class="user">By <a href="#">LiberiFatali</a> | <a href="#">Tensorflow</a></p>
+    <p class="user">By
+      <%= link_to author.name, participant_path(author) %>
+    </p>
   </div>
   <div class="stats">
     <div class="stat-fr">

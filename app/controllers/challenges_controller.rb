@@ -7,20 +7,24 @@ class ChallengesController < ApplicationController
   respond_to :html, :js
 
   def index
+    @challenge_filter = params[:challenge_filter] ||= 'all'
     @challenges = policy_scope(Challenge)
-    #@challenge_cells = cell(:challenge_index_detail, collection: @challenges)
-    load_gon
+    case @challenge_filter
+    when 'all'
+      @challenge_list = @challenges
+    when 'active'
+      @challenge_list = policy_scope(Challenge).where(status_cd: 'running')
+    when 'completed'
+      @challenge_list = policy_scope(Challenge).where(status_cd: 'completed')
+    end
   end
 
 
   def show
     authorize @challenge
-    #@versions = @challenge.versions
     if !params[:version]  # dont' record page views on history pages
       @challenge.record_page_view
     end
-    @challenge = ChallengesPresenter.new(@challenge)
-    load_gon({percent_progress: @challenge.pct_passed})
   end
 
 

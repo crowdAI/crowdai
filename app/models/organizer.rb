@@ -5,7 +5,7 @@ class Organizer < ApplicationRecord
   friendly_id :organizer, use: [:slugged, :finders]
   has_many :challenges,   dependent: :destroy
   has_many :participants, dependent: :nullify
-
+  has_one :image, as: :imageable, dependent: :destroy
   validates :organizer, presence: true
 
   def approved?

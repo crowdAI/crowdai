@@ -1,17 +1,70 @@
-<%= render partial: 'sidebar' %>
-<%= render partial: 'header', challenge: @challenge %>
+<content>
+  <%= concept('challenge/cell/challenge_masthead', @challenge) %>
+  <%= concept('challenge/cell/challenge_subnav', @challenge) %>
 
 
-<div class="page-content-container">
-  <h5>Challenge Details</h5>
-  <%= render 'challenges/show/version_links' %>
-  <div data-spy="scroll" data-target=".navbar" data-offset="50">
-    <div>
-      <%= render 'challenges/show/overview', challenge: @challenge %>
-      <%= render 'challenges/show/evaluation', challenge: @challenge %>
-      <%= render 'challenges/show/rules', challenge: @challenge %>
-      <%= render 'challenges/show/prizes', challenge: @challenge %>
-      <%= render 'challenges/show/resources', challenge: @challenge %>
-    </div>
-  </div>
-</div>
+
+      <div class="row">
+          <div class="article">
+              <p>Our movement originates in the brain. Many neurological disorders, such as Cerebral Palsy, Multiple Sclerosis, or strokes can lead to problems with walking. Treatments are often symptomatic, and it's often hard to predict outcomes of surgeries. Understanding underlying mechanisms is key to improvement of treatments. This motivates our efforts to model the motor control unit of the brain.</p>
+              <p>In this challenge, your task is to model the motor control unit in a virtual environment. You are given a musculoskeletal model with 18 muscles to control. At every 10ms you send signals to these muscles to activate or deactivate them. The objective is to walk as far as possible in 5 seconds.</p>
+              <p>For modelling physics we use OpenSim - a biomechanical physics environment for musculoskeletal simulations. <a href="#">Read more</a></p>
+              <img src="assets/img/misc/training.gif" alt="">
+              <p><strong>NOTE:</strong> There have been a few changes to the API of the grading server. Please update your <code>osim-rl</code> installation by:<br>
+              <code>pip install git+https://github.com/kidzik/osim-rl.git</code><br>
+              and update your submission script by referring to: (<a href="">https://github.com/stanfordnmbl/osim-rl/blob/master/scripts/submit.py#L43)</a><br>
+              In the meantime if you run into scary looking error messages when using your previous submission scripts, please do not panic !! :D :D !!</p>
+              <h2>Credits</h2>
+              <p>This challenge wouldn't be possible without:</p>
+              <ul class="bullets">
+                  <li><a href="https://github.com/opensim-org/opensim-core" rel="nofollow" target="_blank">OpenSim</a></li>
+                  <li><a href="https://nmbl.stanford.edu/" rel="nofollow" target="_blank">Stanford Neuromuscular Biomechanics Lab</a> </li>
+                  <li><a href="http://mobilize.stanford.edu/" rel="nofollow" target="_blank">Stanford Mobilize Center</a></li>
+                  <li><a href="https://gym.openai.com/" rel="nofollow" target="_blank">OpenAI gym</a></li>
+                  <li><a href="https://github.com/openai/gym-http-api" rel="nofollow" target="_blank">OpenAI http client</a></li>
+                  <li><a href="https://github.com/matthiasplappert/keras-rl" rel="nofollow" target="_blank">keras-rl</a></li>
+                  <li>and many other teams, individuals and projects</li>
+              </ul>
+              <p>For more details and queries please contact:</p>
+              <ul class="bullets">
+                  <li><a href="http://kidzinski.com/" rel="nofollow" target="_blank">Łukasz Kidziński</a></li>
+                  <li><a href="mailto:sharada.mohanty@epfl.ch" rel="nofollow" target="_blank">S.P. Mohanty</a></li>
+                  <li><a href="mailto:%20info@crowdai.org" rel="nofollow" target="_blank">CrowdAI</a></li>
+              </ul>
+              <h2>Partners</h2>
+              <ul class="partners">
+                  <li><a href=""><img src="assets/img/partners/stanford.png" alt=""></a></li>
+                  <li><a href=""><img src="assets/img/partners/stanford.png" alt=""></a></li>
+                  <li><a href=""><img src="assets/img/partners/stanford.png" alt=""></a></li>
+                  <li><a href=""><img src="assets/img/partners/stanford.png" alt=""></a></li>
+                  <li><a href=""><img src="assets/img/partners/stanford.png" alt=""></a></li>
+              </ul>
+              <h2>Evaluation</h2>
+              <p>Your task is to build a function <code>f</code> which takes current state <code>observation</code> (31 dimensional vector) and returns mouscle activations <code>action</code> (18 dimensional vector) in a way that maximizes the reward.</p>
+              <p>The trial ends either if the pelvis of the model goes below <code>0.7</code> meter or if you reach <code>500</code> iterations (corresponding to <code>5</code> seconds in the virtual environment). Let <code>N</code> be the length of the trial. Your total reward is simply the position of the pelvis on the <code>x</code> axis after <code>N</code> steps. The value is given in centimeters.</p>
+              <p>After each iteration you get a reward equal to the change of the <code>x</code> axis of pelvis during this iteration.</p>
+              <p>You can test your model on your local machine. For submission, you will need to interact with the remote environment: crowdAI sends you the current <code>observation</code> and you need to send back the action you take in the given state.</p>
+              <h2>Rules</h2>
+              <p>You are allowed to:</p>
+              <ul class="bullets">
+                  <li>Modify objective function for training (eg. extra penalty for falling or moving to fast, reward keeping head at the same level, etc.), by </li>
+                  <li>Modify the musculoskeletal model for training (eg. constrain the Y axis of pelvis)</li>
+                  <li>Submit a maximum of one submissions each 6 hours.</li>
+              </ul>
+              <p>Note, that the model trained in your modified environment must still be compatible with the challenge environment. </p>
+              <p>You are not allowed to:</p>
+              <ul class="bullets">
+                  <li>Use external datasets (ex. kinematics of people walking)</li>
+                  <li>Engineer the trajectories/muscle activations by hand</li>
+              </ul>
+              <p>Other:</p>
+              <ul class="bullets">
+                  <li>crowdAI reserves the right to modify challenge rules as required.</li>
+              </ul>
+              <h2>Prizes</h2>
+              <p>The winner will be invited to the 2nd Applied Machine Learning Days at EPFL in Switzerland on January 29 &amp; 30, 2018, with travel and accommodation covered.</p>
+              <h2>Resources</h2>
+              <p>Please refer to the Getting Started guide in the <a href="">Dataset section</a> of the challenge, for more details on how to access the challenge environments, and also for a basic tutorial on how to make your first submission.</p>
+          </div>
+      </div>
+  </content>

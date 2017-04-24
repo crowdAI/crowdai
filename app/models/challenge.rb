@@ -21,6 +21,7 @@ class Challenge < ApplicationRecord
   has_many :participant_challenges,       class_name: 'ParticipantChallenge'
   has_many :topics
   has_many :emails,                       dependent: :destroy
+  has_many :votes, as: :votable
 
 
   as_enum :status, [:draft, :running, :completed, :perpetual, :cancelled, :starting_soon], map: :string

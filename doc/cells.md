@@ -9,6 +9,7 @@ http://culttt.com/2016/06/29/using-trailblazer-cells-action-mailer/
 
 http://culttt.com/2016/06/08/getting-started-trailblazer-cells/
 
+http://stackoverflow.com/questions/5546892/how-to-access-can-method-from-within-cell
 
 Reform
 

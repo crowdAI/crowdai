@@ -15,3 +15,7 @@ Questions
 - Rails is rendering [alt=""] as [alt] - is this OK?
 <img src="assets/img/tutorials/tutorial-2.jpg" alt="">
 - How to handle history links on challenges (currently missing)
+- How to handle errors on multi-tab forms?
+- How does the challenge header look when the challenge is ended or in draft?
+- challenge days remaining (already logged in Basecamp)
+- We dont' currently display the challenge end time to the participants.

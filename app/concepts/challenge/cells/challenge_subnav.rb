@@ -5,4 +5,8 @@ class Challenge::Cell::ChallengeSubnav < Cell::Concept
     render :challenge_subnav
   end
 
+  def challenge
+    model
+  end
+
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170419133220) do
+ActiveRecord::Schema.define(version: 20170424114924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 20170419133220) do
     t.datetime "start_dttm"
     t.datetime "end_dttm"
     t.boolean  "video_on_leaderboard",             default: false
+    t.integer  "vote_count",                       default: 0
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id", using: :btree
     t.index ["slug"], name: "index_challenges_on_slug", unique: true, using: :btree
   end

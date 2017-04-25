@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170424114924) do
+ActiveRecord::Schema.define(version: 20170425153443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -246,8 +246,6 @@ ActiveRecord::Schema.define(version: 20170424114924) do
     t.boolean  "admin",                   default: false
     t.boolean  "verified",                default: false
     t.date     "verification_date"
-    t.string   "country"
-    t.string   "city"
     t.string   "timezone"
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
@@ -265,6 +263,7 @@ ActiveRecord::Schema.define(version: 20170424114924) do
     t.datetime "account_disabled_dttm"
     t.string   "slug"
     t.string   "api_key"
+    t.string   "location"
     t.index ["confirmation_token"], name: "index_participants_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_participants_on_email", unique: true, using: :btree
     t.index ["organizer_id"], name: "index_participants_on_organizer_id", using: :btree

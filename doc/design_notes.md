@@ -8,6 +8,9 @@ Suggestions
 - Remove the superscript on the article section titles
 - Additional default images, eg: for challenges, tutorials
 - Contact page is a bit short... should we add some content here?
+- Use type=password for password fields (and add CSS )
+<input type="text" name="" placeholder="Password">
+
 
 
 Questions

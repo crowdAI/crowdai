@@ -1,19 +1,17 @@
 class Header::Cell < Cell::Concept
   include Escaped
+  include Devise::Controllers::Helpers
+  Devise::Controllers::Helpers.define_helpers(Devise::Mapping.new(:participant, {}))
 
   def show
     render
-  end
-
-  def current_participant
-    model
   end
 
   def participant_dropdown
     if current_participant
       dropdown =
         "<div class='user'>
-          <a id='toggle-user' href='#'>#{ image_tag 'users/user-2.jpg', alt: '' }</a>
+          <a id='toggle-user' href='#'>#{ concept('media/cell', current_participant, size: :medium) }</a>
           <div id='user-container'>
             <ul>
               <li>#{ link_to current_participant.name, participant_path(current_participant)}</li>

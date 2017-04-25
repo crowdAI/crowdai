@@ -1,37 +1,30 @@
-<div class="container-medium-grey">
+<content class="background-grey">
   <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-          <div class="centered-text">
-            <h2>Log In</h2>
-          </div>
-          <br/>
-          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="form-inputs">
-            <%= f.input :email, required: true, autofocus: true, label: 'Email address' %>
-            <%= f.input :password, required: true %>
-            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-          </div>
-
-          <div class="form-actions">
-            <%= f.button :submit, "Log in", class: "btn btn-primary btn-block outline" %>
-          </div>
-          <% end %>
-
-          <br/>
-          <div class="account-help centered-text">
-            <div class='show-help-link'>Can't sign in?</div>
-            <div class="account-help-links centered-text">
-              <%= link_to "Forgot your password?", new_password_path(resource_name) %><br/>
-              <%= link_to "Account locked?", new_unlock_path(resource_name) %><br/>
-              <%= link_to "Resend account confirmation", new_confirmation_path(resource_name) %><br/>
+    <%= form_for resource, as: resource_name, url: session_path(resource_name), html: { class: 'panel' } do |f| %>
+      <fieldset>
+        <div class="panel-body">
+          <h3>Log In</h3>
+          <input type="email" name="participant[email]" placeholder="Email address">
+          <input type="password" name="participant[password]" placeholder="Password">
+          <fieldset class="checkbox">
+            <div>
+              <input type="checkbox" id="remember-login" name="participant[remember_me]">
+              <label for="remember-login">Remember me</label>
             </div>
-          </div>
-          <br/><br/>
-
+          </fieldset>
+          <button class="btn btn-primary btn-login" type="submit">Log In</button>
+          <a id="login-issues" href="#">Can't log in?</a>
+          <ul id="login-help">
+            <li><%= link_to "Forgot your password?", new_password_path(resource_name) %></li>
+            <li><%= link_to "Account locked?", new_unlock_path(resource_name) %></li>
+            <li><%= link_to "Resend account confirmation", new_confirmation_path(resource_name) %></li>
+          </ul>
         </div>
-      </div>
-    </div>
+        <div class="panel-footer">
+          <p>Not registered?
+            <%= link_to 'Sign up', new_participant_registration_path %></p>
+        </div>
+      </fieldset>
+    <% end %>
   </div>
-</div>
+</content>

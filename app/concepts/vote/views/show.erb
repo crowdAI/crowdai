@@ -1,9 +1,1 @@
-<% if current_participant.nil? || vote_id.present? %>
-  <%= link_to '#', class: 'btn btn-secondary' do %>
-    <i class="<%= classes %>" aria-hidden="true"></i><%= " #{votable.vote_count}" %>
-  <% end %>
-<% else %>
-  <%= link_to create_vote_path, method: :post, remote: true, id: "vote-link-#{votable.id}", class: 'btn btn-secondary' do %>
-    <i class="<%= classes %>" aria-hidden="true"></i><%= " #{votable.vote_count}" %>
-  <% end %>
-<% end %>
+<%= vote_link %>

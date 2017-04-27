@@ -5,6 +5,6 @@
     </div>
   </div>
 
-  <%= concept('challenge/cell/challenges_subnav', @challenges, challenge_filter: @challenge_filter) %>
-  <%= concept('challenge/cell/list', @challenge_list) %>
+  <%= concept(Challenge::Cell::ChallengesSubnav, @challenges, challenge_filter: @challenge_filter) %>
+  <%= concept(Challenge::Cell::List, @challenge_list) %>
 </content>

@@ -1,6 +1,8 @@
 <li>
   <div class="pic">
-    <a href="#"><img src="" alt=""></a>
+    <%= link_to challenge_path(challenge) do %>
+      <%= concept(Media::Cell,challenge,size: :medium) %>
+    <% end %>
   </div>
   <div class="details">
     <h5><%= link_to challenge.challenge, challenge_path(challenge) %></h5>

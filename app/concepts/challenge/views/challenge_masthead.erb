@@ -33,7 +33,7 @@
       </div>
       <div class="button-group">
         <%= link_to 'Submit Entry', challenge_submissions_path(challenge), class: "btn btn-secondary" %>
-        <%= concept('vote/cell', challenge) %>
+        <%= concept(Vote::Cell, challenge) %>
       </div>
     </div>
   </div>

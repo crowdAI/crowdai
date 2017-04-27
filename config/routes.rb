@@ -68,12 +68,16 @@ Rails.application.routes.draw do
     resources :posts, only: [:new, :create, :edit, :update, :destroy]
   end
 
+  resources :challenges do
+    resources :votes, only: [:create]
+  end
+
   resources :posts do
-    resources :votes, only: [:create, :destroy]
+    resources :votes, only: [:create]
   end
 
   resources :submissions do
-    resources :votes, only: [:create, :destroy]
+    resources :votes, only: [:create]
   end
 
   resources :articles do

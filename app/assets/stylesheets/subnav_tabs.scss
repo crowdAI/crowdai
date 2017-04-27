@@ -1,0 +1,9 @@
+// https://codepen.io/cssjockey/pen/jGzuK
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}

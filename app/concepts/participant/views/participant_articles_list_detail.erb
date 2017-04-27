@@ -1,0 +1,24 @@
+<li>
+  <div class="pic">
+    <%= link_to article_path(article) do %>
+      <%= concept(Media::Cell,article,size: :medium) %>
+    <% end %>
+  </div>
+  <div class="details">
+    <h5><%= link_to article.article, article_path(article) %></h5>
+    <p class="description"><%= article.summary %></p>
+    <p class="user">By
+      <%= link_to article.participant.name, participant_path(article.participant) %>
+    </p>
+  </div>
+  <div class="stats">
+    <div class="stat-fr">
+      <%= article.vote_count %><br>
+      <span>Likes</span>
+    </div>
+    <div class="stat-fr">
+      <%= article.view_count %><br>
+      <span>Views</span>
+    </div>
+  </div>
+</li>

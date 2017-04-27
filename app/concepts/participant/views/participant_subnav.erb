@@ -1,0 +1,13 @@
+<div class="sub-nav">
+  <div class="row">
+    <ul class='tabs'>
+      <li data-tab='tab-challenges' class="active">Challenges <sup><%= challenges_count %></sup></li>
+      <li data-tab='tab-articles'>Tutorials <sup><%= articles_count %></sup></li>
+      <li data-tab='tab-bio'>Bio</li>
+    </ul>
+  </div>
+
+  <%= concept(Participant::Cell::ParticipantChallengesList, challenges) %>
+  <%= concept(Participant::Cell::ParticipantArticlesList, articles) %>
+  <%= concept(Participant::Cell::ParticipantBio, participant) %>
+</div>

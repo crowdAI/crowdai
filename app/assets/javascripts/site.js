@@ -57,5 +57,5 @@ $(document).on('turbolinks:load', function() {
 
 // Form Date Picker
 $(document).on('turbolinks:load',function(){
-	$('.datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val();
+	//$('.datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val();
 });

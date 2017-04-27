@@ -7,4 +7,5 @@ class Participant::Cell < Cell::Concept
   def participant
     model
   end
+
 end

@@ -2,6 +2,8 @@ Changes made
 - id instead of class for load-more
 - removed category from articles masthead and index page
 - Removed Follow and Share buttons
+- Added tabs CSS and JS
+- Hide superscript counts for participants when = 0
 
 Suggestions
 - instead of stacking the article section titles, can we have a slider?

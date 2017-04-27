@@ -3,6 +3,7 @@
 
 //= require turbolinks
 //= require site
+//= require subnav_tabs
 
 $(document).on('ajax:error', function(xhr, status, error) {
   console.log(status.responseText);

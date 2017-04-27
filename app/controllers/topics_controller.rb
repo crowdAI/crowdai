@@ -6,8 +6,6 @@ class TopicsController < ApplicationController
 
   def index
     @topics = @challenge.topics
-    @headline_post = Post.find_by_sql(headline_sql).first  # TODO move into model layer based on answers or views
-    load_gon({percent_progress: @challenge.pct_passed})
   end
 
   def show
@@ -48,8 +46,7 @@ class TopicsController < ApplicationController
     end
 
     def set_challenge
-      challenge = Challenge.friendly.find(params[:challenge_id])
-      @challenge = ChallengesPresenter.new(challenge)
+      @challenge = Challenge.friendly.find(params[:challenge_id])
     end
 
     def topic_params

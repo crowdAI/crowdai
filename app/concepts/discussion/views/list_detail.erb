@@ -1,0 +1,25 @@
+<li>
+  <div class="like-count">
+    <span>0</span><br>
+    <i class="fa fa-heart" aria-hidden="true"></i>
+  </div>
+  <div class="pic">
+    <%= link_to participant_path(author) do %>
+      <%= concept(Media::Cell,author,size: :small) %>
+    <% end %>
+  </div>
+  <div class="details">
+    <h5><%= link_to topic.topic, new_topic_post_path(topic) %></h5>
+    <p class="user">Posted by <a href="#"><%= author.name %></a> 6 days ago</p>
+  </div>
+  <div class="stats">
+    <div class="stat-fl">
+      Comments<br>
+      <span>5</span>
+    </div>
+    <div class="stat-fl">
+      Last comment<br>
+      <span><a href="#">joonho</a> 13 days ago</span>
+    </div>
+  </div>
+</li>

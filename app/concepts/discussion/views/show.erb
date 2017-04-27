@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="list-options">
+    <p>7 Topics | <a href="#">Subscribe</a></p>
+    <%= link_to 'New Topic', new_challenge_topic_path(challenge), class: 'btn btn-secondary' %>
+  </div>
+
+  <%= concept(Discussion::Cell::List, topics) %>
+</div>

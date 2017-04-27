@@ -3,7 +3,10 @@ Changes made
 - removed category from articles masthead and index page
 - Removed Follow and Share buttons
 - Added tabs CSS and JS
-- Hide superscript counts for participants when = 0
+- Hid superscript counts for participants when = 0
+
+Requests
+- change the active tab CSS on challenges
 
 Suggestions
 - instead of stacking the article section titles, can we have a slider?

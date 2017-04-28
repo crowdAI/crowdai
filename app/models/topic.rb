@@ -4,7 +4,8 @@ class Topic < ApplicationRecord
   include ActionView::Helpers::DateHelper
   belongs_to :challenge
   belongs_to :participant
-  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :votes, as: :votable
 
   default_scope { order('sticky desc') }
 

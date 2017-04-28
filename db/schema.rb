@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170425153443) do
+ActiveRecord::Schema.define(version: 20170428123839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,16 +114,20 @@ ActiveRecord::Schema.define(version: 20170425153443) do
     t.index ["slug"], name: "index_challenges_on_slug", unique: true, using: :btree
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.integer  "commentable_id"
-    t.string   "commentable_type"
-    t.text     "comment"
+  create_table "comments", id: :integer, default: -> { "nextval('posts_id_seq'::regclass)" }, force: :cascade do |t|
+    t.integer  "topic_id"
     t.integer  "participant_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.text     "comment"
+    t.boolean  "flagged",          default: false
+    t.boolean  "notify",           default: true
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "vote_count",       default: 0
     t.string   "slug"
-    t.index ["participant_id"], name: "index_comments_on_participant_id", using: :btree
-    t.index ["slug"], name: "index_comments_on_slug", unique: true, using: :btree
+    t.text     "comment_markdown"
+    t.index ["participant_id"], name: "index_posts_on_participant_id", using: :btree
+    t.index ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
+    t.index ["topic_id"], name: "index_posts_on_topic_id", using: :btree
   end
 
   create_table "dataset_file_downloads", force: :cascade do |t|
@@ -272,22 +276,6 @@ ActiveRecord::Schema.define(version: 20170425153443) do
     t.index ["unlock_token"], name: "index_participants_on_unlock_token", unique: true, using: :btree
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.integer  "topic_id"
-    t.integer  "participant_id"
-    t.text     "post"
-    t.boolean  "flagged",        default: false
-    t.boolean  "notify",         default: true
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "vote_count",     default: 0
-    t.string   "slug"
-    t.text     "post_markdown"
-    t.index ["participant_id"], name: "index_posts_on_participant_id", using: :btree
-    t.index ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
-    t.index ["topic_id"], name: "index_posts_on_topic_id", using: :btree
-  end
-
   create_table "submission_file_definitions", force: :cascade do |t|
     t.integer  "challenge_id"
     t.integer  "seq"
@@ -348,12 +336,15 @@ ActiveRecord::Schema.define(version: 20170425153443) do
     t.integer  "challenge_id"
     t.integer  "participant_id"
     t.string   "topic"
-    t.boolean  "sticky",         default: false
-    t.integer  "views",          default: 0
-    t.integer  "posts_count",    default: 0
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.boolean  "sticky",               default: false
+    t.integer  "views",                default: 0
+    t.integer  "posts_count",          default: 0
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.string   "slug"
+    t.integer  "vote_count",           default: 0
+    t.string   "description"
+    t.string   "description_markdown"
     t.index ["challenge_id"], name: "index_topics_on_challenge_id", using: :btree
     t.index ["participant_id"], name: "index_topics_on_participant_id", using: :btree
     t.index ["slug"], name: "index_topics_on_slug", unique: true, using: :btree
@@ -384,13 +375,12 @@ ActiveRecord::Schema.define(version: 20170425153443) do
   add_foreign_key "articles", "participants"
   add_foreign_key "challenges", "organizers"
   add_foreign_key "comments", "participants"
+  add_foreign_key "comments", "topics"
   add_foreign_key "dataset_file_downloads", "dataset_files"
   add_foreign_key "dataset_file_downloads", "participants"
   add_foreign_key "email_preferences", "participants"
   add_foreign_key "emails", "mailers"
   add_foreign_key "participants", "organizers"
-  add_foreign_key "posts", "participants"
-  add_foreign_key "posts", "topics"
   add_foreign_key "submission_file_definitions", "challenges"
   add_foreign_key "submission_files", "submissions"
   add_foreign_key "submission_grades", "submissions"
@@ -508,7 +498,7 @@ ActiveRecord::Schema.define(version: 20170425153443) do
            SELECT t.challenge_id AS id,
               t.challenge_id,
               ps.id AS participant_id
-             FROM posts ps,
+             FROM comments ps,
               topics t
             WHERE (t.id = ps.topic_id)
           UNION

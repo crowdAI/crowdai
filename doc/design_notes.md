@@ -4,9 +4,12 @@ Changes made
 - Removed Follow and Share buttons
 - Added tabs CSS and JS
 - Hid superscript counts for participants when = 0
+- Like count for discussions is total of topic.likes + comments.likes
 
 Requests
 - change the active tab CSS on challenges
+- Submit button for comments
+- Need a create Topic page
 
 Suggestions
 - instead of stacking the article section titles, can we have a slider?
@@ -27,3 +30,4 @@ Questions
 - How does the challenge header look when the challenge is ended or in draft?
 - challenge days remaining (already logged in Basecamp)
 - We dont' currently display the challenge end time to the participants.
+- We currently accept markdown for the discussion comments. Should we display the markdown editor or just have a markdown enabled field. If markdown enabled only should we include placeholder text like 'You can use markdown here'

@@ -1,8 +1,24 @@
 <div class="row">
-  <div class="list-options">
-    <p>7 Topics | <a href="#">Subscribe</a></p>
-    <%= link_to 'New Topic', new_challenge_topic_path(challenge), class: 'btn btn-secondary' %>
+  <div class="discussion-topic">
+    <div class="pic">
+      <%= link_to participant_path(topic.participant) do %>
+        <%= concept(Media::Cell,topic.participant,size: :small) %>
+      <% end %>
+    </div>
+    <div class="topic-content">
+      <%= concept(Vote::Cell,topic) %>
+      <h4><%= topic.topic %></h4>
+      <p class="details">Posted by
+        <%= link_to author.name, participant_path(author) %>
+        <%= time_ago_in_words(topic.created_at) %> ago |&nbsp;
+        <a href="#">Quote</a>
+      </p>
+      <div class="comment">
+        <p><%= topic.description %></p>
+      </div>
+    </div>
   </div>
 
-  <%= concept(Discussion::Cell::List, topics) %>
+  <%= concept(Discussion::Cell::CommentForm,topic) %>
+  <%= concept(Discussion::Cell::Comment, collection: comments) %>
 </div>

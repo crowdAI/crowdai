@@ -65,14 +65,15 @@ Rails.application.routes.draw do
   end
 
   resources :topics do
-    resources :posts, only: [:new, :create, :edit, :update, :destroy]
+    resources :comments, only: [:new, :create, :edit, :update, :destroy]
+    resources :votes, only: [:create]
   end
 
   resources :challenges do
     resources :votes, only: [:create]
   end
 
-  resources :posts do
+  resources :comments do
     resources :votes, only: [:create]
   end
 
@@ -82,8 +83,7 @@ Rails.application.routes.draw do
 
   resources :articles do
     resources :article_sections
-    resources :votes, only: [:create, :destroy]
-    resources :comments, only: [:create, :destroy]
+    resources :votes, only: [:create]
   end
   get '/load_more_articles', to: 'articles#load_more', as: :load_more_articles
 

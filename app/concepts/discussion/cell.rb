@@ -1,15 +1,20 @@
 class Discussion::Cell < Cell::Concept
+  include ActionView::Helpers::DateHelper
 
   def show
     render
   end
 
-  def topics
+  def topic
     model
   end
 
-  def challenge
-    options[:challenge]
+  def comments
+    @comments ||= topic.comments
   end
-  
+
+  def author
+    @author ||= topic.participant
+  end
+
 end

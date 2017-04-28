@@ -1,0 +1,19 @@
+<div class="discussion-comment">
+  <div class="pic">
+    <%= link_to participant_path(author) do %>
+      <%= concept(Media::Cell,author,size: :small) %>
+    <% end %>
+  </div>
+  <div class="topic-content">
+    <%#= concept(Vote::Cell,comment) %>
+    <p class="details">Posted by
+      <%#= link_to author.name, participant_path(author) %>
+      <%#= time_ago_in_words(comment.created_at) %> ago | &nbsp;
+      <%= model.id %>
+      <a href="#">Quote</a> | <a href="#">Reply</a>
+    </p>
+    <div class="comment">
+      <p><%#= comment.comment %></p>
+    </div>
+  </div>
+</div>

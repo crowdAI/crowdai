@@ -1,33 +1,57 @@
 class CommentsController < ApplicationController
-  before_action :set_commentable
-  respond_to :js
+  before_filter :authenticate_participant!
+  before_action :set_comment, only: [:edit, :update, :destroy]
+  before_action :set_topic_and_challenge
+  #after_action :notify_subscribers, only: [:create]
 
-  def create #comment
-    @commentable.comments.create(participant: current_participant, comment: comment_params[:comment])
-    @commentable.update(comment_count: @commentable.comments.count)
-    @comments = @commentable.comments
-    render 'comments/refresh_comments'
+
+  def new
+    @comments = @topic.comments("created_at DESC")
+    @comment = @topic.comments.new
+   end
+
+  def edit
   end
 
-  def destroy #uncomment
-    Comment.destroy(params[:id])
-    @commentable.update(comment_count: @commentable.comments.count)
-    @comments = @commentable.comments
-    render 'comments/refresh_comments'
-  end
+  def create
+    @comment = Comment.new(comment_params)
 
-  private
-  def set_commentable
-    params.each do |key,val|
-      if key =~ /(.+)_id$/
-        @commentable = $1.classify.constantize.friendly.find(val)
-        break
-      end
+    if @comment.save
+      redirect_to new_topic_comment_path(@topic), notice: 'Comment was successfully created.'
+    else
+      render :new
     end
   end
 
-  def comment_params
-    params.require(:comment).permit(:comment)
+  def update
+    if @comment.update(comment_params)
+      redirect_to new_topic_comment_path(@topic), notice: 'Comment was successfully updated.'
+    else
+      render :edit
+    end
   end
 
+
+  def destroy
+    @comment.destroy
+    redirect_to new_topic_comment_path(@topic), notice: 'Comment was successfully deleted.'
+  end
+
+  private
+    def set_comment
+      @comment = Comment.friendly.find(params[:id])
+    end
+
+    def set_topic_and_challenge
+      @topic = Topic.friendly.find(params[:topic_id])
+      @challenge = @topic.challenge
+    end
+
+    def comment_params
+      params.require(:comment).permit(:topic_id, :participant_id, :comment_markdown, :votes, :flagged, :notify)
+    end
+
+    def notify_subscribers
+      PostNotificationJob.perform_later(@post)
+    end
 end

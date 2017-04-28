@@ -1,0 +1,10 @@
+<div class="discussion-comment">
+  <div class="pic">
+    <%= link_to participant_path(current_participant) do %>
+      <%= concept(Media::Cell,current_participant,size: :small) %>
+    <% end %>
+  </div>
+  <form class="add-comment">
+    <textarea placeholder="Add a comment..."></textarea>
+  </form>
+</div>

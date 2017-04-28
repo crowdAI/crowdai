@@ -11,4 +11,8 @@ class Discussion::Cell::CommentForm < Cell::Concept
     model
   end
 
+  def comment
+    topic.comments.build(participant: current_participant)
+  end
+
 end

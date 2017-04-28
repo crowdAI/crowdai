@@ -4,7 +4,8 @@
       <%= concept(Media::Cell,current_participant,size: :small) %>
     <% end %>
   </div>
-  <form class="add-comment">
-    <textarea placeholder="Add a comment..."></textarea>
-  </form>
+  <%= comment %>
+  <%#= form_for topic_comments_path(topic, comment) do |f| %>
+    <%#= f.text_area :comment_markdown, placeholder: "Add a comment..." %>
+  <%# end %>
 </div>

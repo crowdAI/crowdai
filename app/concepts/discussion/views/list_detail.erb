@@ -6,7 +6,7 @@
     <% end %>
   </div>
   <div class="details">
-    <h5><%= link_to topic.topic, new_topic_comment_path(topic) %></h5>
+    <h5><%= link_to topic.topic, challenge_topic_path(challenge,topic) %></h5>
     <p class="user">
       Posted by <%= link_to author.name, participant_path(author) %>&nbsp;
       <%= time_ago_in_words(topic.updated_at) %> ago

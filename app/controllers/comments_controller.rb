@@ -39,7 +39,7 @@ class CommentsController < ApplicationController
 
   private
     def set_comment
-      @comment = Comment.friendly.find(params[:id])
+      @comment = Comment.find(params[:id])
     end
 
     def set_topic_and_challenge

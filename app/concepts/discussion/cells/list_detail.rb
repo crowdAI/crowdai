@@ -10,16 +10,20 @@ class Discussion::Cell::ListDetail < Cell::Concept
     model
   end
 
+  def challenge
+    @challenge ||= topic.challenge
+  end
+
   def author
-    topic.participant
+    @author ||= topic.participant
   end
 
   def comments
-    topic.comments
+    @comments ||= topic.comments
   end
 
   def last_comment
-    comments.last
+    @last_comment ||= comments.last
   end
 
   def last_comment_author

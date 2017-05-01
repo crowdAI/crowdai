@@ -1,42 +1,25 @@
-<div class="container-medium-grey">
-  <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-          <div class="centered-text">
-            <h2>Sign Up</h2>
-            <p>
-              <strong>One account per individual.</strong>
-              If you're joining as a company, please create one account for each individual in your group.</p>
-          </div>
-          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <%= f.error_notification %>
-
-          <br/>
-          <div class="form-inputs">
-            <%= f.input :name, required: true, autofocus: true, label: 'Display name' %>
-            <%= f.input :email, required: true, label: 'Email address'  %>
-            <%= f.input :password, required: true, placeholder: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-            <%= f.input :password_confirmation, required: true %>
-          </div>
-
-          <br/><br/>
-          <div class="form-actions">
-            <%= f.button :submit, "Get started", class: "btn btn-primary btn-block outline" %>
-          </div>
-          <% end %>
-          <br/>
-          <div class="centered-text">
-            <p>By clicking this button, you confirm that you accept our
-              <b><%= link_to 'Terms of Service', page_path('terms') %></b>
-              and
-              <b><%= link_to 'Privacy Policy', page_path('privacy') %>.</b>
-            </p>
-          </div>
-          <br/><br/><br/>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<content class="background-grey">
+	<div class="row">
+    <%= form_for resource, as: resource_name, url: registration_path(resource_name), html: { class: 'panel' } do |f| %>
+			<fieldset>
+				<div class="panel-body">
+					<h3>Sign Up</h3>
+          <%= render "shared/error_messages", :target => resource %>
+					<p><strong>One account per individual.</strong> If you're joining as part of a company/organisation, please create an account for each individual.</p>
+          <input type="text" name="participant[name]" placeholder="Display name">
+          <input type="email" name="participant[email]" placeholder="Email address">
+          <input type="text" name="participant[password]" placeholder="Choose a password">
+          <input type="text" name="participant[password_confirmation]" placeholder="Re-type password">
+					<p>By signing up, I agree to terms in the
+            <%= link_to 'Terms of Service', page_path('terms') %>
+            and <%= link_to 'Privacy Policy', page_path('privacy') %>
+          </p>
+          <button class="btn btn-primary" type="submit">Sign Up</button>
+				</div>
+				<div class="panel-footer">
+					<p>Already registered? <a href="#">Log In</a></p>
+				</div>
+			</fieldset>
+    <% end %>
+	</div>
+</content>

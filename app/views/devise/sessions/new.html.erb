@@ -4,8 +4,9 @@
       <fieldset>
         <div class="panel-body">
           <h3>Log In</h3>
+          <%= render "shared/error_messages", :target => resource %>
           <input type="email" name="participant[email]" placeholder="Email address">
-          <input type="password" name="participant[password]" placeholder="Password">
+          <input type="text" name="participant[password]" placeholder="Password">
           <fieldset class="checkbox">
             <div>
               <input type="checkbox" id="remember-login" name="participant[remember_me]">

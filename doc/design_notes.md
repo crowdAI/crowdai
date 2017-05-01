@@ -31,3 +31,4 @@ Questions
 - challenge days remaining (already logged in Basecamp)
 - We dont' currently display the challenge end time to the participants.
 - We currently accept markdown for the discussion comments. Should we display the markdown editor or just have a markdown enabled field. If markdown enabled only should we include placeholder text like 'You can use markdown here'
+- Form error messages. Do we have a top level error message as well as field-level messages?

@@ -66,16 +66,16 @@ a {
 }
 
 body {
-    background: #fff;
-    min-height: 100%;
-    position: relative;
+  background: #fff;
+  min-height: 100%;
+  position: relative;
 	display: flex;
 	flex-direction: column;
-    color: $color-grey-87;
-    font-family: 'Roboto', sans-serif;
-    font-size: 15px;
-    font-weight: 400;
-    -moz-osx-font-smoothing: grayscale;
+  color: $color-grey-87;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  -moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased !important;
 	-moz-font-smoothing: antialiased !important;
 	text-rendering: optimizelegibility !important;

@@ -1,31 +1,32 @@
 <content class="background-grey">
   <div class="row">
     <%= form_for resource, as: resource_name, url: session_path(resource_name), html: { class: 'panel' } do |f| %>
-      <fieldset>
-        <div class="panel-body">
-          <h3>Log In</h3>
-          <%= render "shared/error_messages", :target => resource %>
-          <input type="email" name="participant[email]" placeholder="Email address">
-          <input type="text" name="participant[password]" placeholder="Password">
-          <fieldset class="checkbox">
-            <div>
-              <input type="checkbox" id="remember-login" name="participant[remember_me]">
-              <label for="remember-login">Remember me</label>
-            </div>
-          </fieldset>
-          <button class="btn btn-primary btn-login" type="submit">Log In</button>
-          <a id="login-issues" href="#">Can't log in?</a>
-          <ul id="login-help">
-            <li><%= link_to "Forgot your password?", new_password_path(resource_name) %></li>
-            <li><%= link_to "Account locked?", new_unlock_path(resource_name) %></li>
-            <li><%= link_to "Resend account confirmation", new_confirmation_path(resource_name) %></li>
-          </ul>
-        </div>
-        <div class="panel-footer">
-          <p>Not registered?
-            <%= link_to 'Sign up', new_participant_registration_path %></p>
-        </div>
-      </fieldset>
+    <fieldset>
+      <div class="panel-body">
+        <h3>Log In</h3>
+        <%= render "shared/error_messages", :target => resource %>
+        <%= f.text_field :email, placeholder: 'Email address' %>
+        <%= f.text_field :password, placeholder: 'Password' %>
+        <fieldset class="checkbox">
+          <div>
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        </fieldset>
+        <%= f.button 'Log In', type: 'submit', class: 'btn btn-primary btn-login' %>
+        <a id="login-issues" href="#">Can't log in?</a>
+        <ul id="login-help">
+          <li><%= link_to "Forgot your password?", new_password_path(resource_name) %></li>
+          <li><%= link_to "Account locked?", new_unlock_path(resource_name) %></li>
+          <li><%= link_to "Resend account confirmation", new_confirmation_path(resource_name) %></li>
+        </ul>
+      </div>
+      <div class="panel-footer">
+        <p>Not registered?
+          <%= link_to 'Sign up', new_participant_registration_path %>
+        </p>
+      </div>
+    </fieldset>
     <% end %>
   </div>
 </content>

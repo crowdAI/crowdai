@@ -6,18 +6,18 @@
 					<h3>Sign Up</h3>
           <%= render "shared/error_messages", :target => resource %>
 					<p><strong>One account per individual.</strong> If you're joining as part of a company/organisation, please create an account for each individual.</p>
-          <input type="text" name="participant[name]" placeholder="Display name">
-          <input type="email" name="participant[email]" placeholder="Email address">
-          <input type="text" name="participant[password]" placeholder="Choose a password">
-          <input type="text" name="participant[password_confirmation]" placeholder="Re-type password">
+          <%= f.text_field :name, placeholder: 'Display name' %>
+          <%= f.text_field :email, placeholder: 'Email address' %>
+          <%= f.text_field :password, placeholder: 'Choose a password' %>
+          <%= f.text_field :password_confirmation, placeholder: 'Re-type password' %>
 					<p>By signing up, I agree to terms in the
             <%= link_to 'Terms of Service', page_path('terms') %>
-            and <%= link_to 'Privacy Policy', page_path('privacy') %>
+            and the <%= link_to 'Privacy Policy', page_path('privacy') %>
           </p>
-          <button class="btn btn-primary" type="submit">Sign Up</button>
+          <%= f.button 'Sign Up', type: 'submit', class: 'btn btn-primary' %>
 				</div>
 				<div class="panel-footer">
-					<p>Already registered? <a href="#">Log In</a></p>
+					<p>Already registered? <%= link_to 'Log In', new_participant_session_path %></p>
 				</div>
 			</fieldset>
     <% end %>

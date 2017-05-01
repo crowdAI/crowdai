@@ -15,7 +15,7 @@ class Header::Cell < Cell::Concept
           <div id='user-container'>
             <ul>
               <li>#{ link_to current_participant.name, participant_path(current_participant)}</li>
-              <li>#{ link_to 'Account Settings', edit_participant_password_path }</li>
+              <li>#{ link_to 'Account Settings', edit_participant_registration_path }</li>
               <li>#{ link_to 'Log Out', destroy_participant_session_path, :method => :delete }</li>
             </ul>
           </div>

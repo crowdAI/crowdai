@@ -1,38 +1,31 @@
 <content>
-      <div class="masthead">
-          <div class="row">
-              <h2>Account Settings</h2>
-          </div>
-      </div>
-      <div class="sub-nav">
-          <div class="row">
-              <ul>
-                  <li class="active">Email &amp; Password</li>
-                  <li><%= link_to 'Email Notifications', edit_participant_email_preference_path(@participant,@participant.email_preferences.first) %></li>
-              </ul>
-          </div>
-      </div>
-      <div class="row">
-          <form class="sgl-col">
-              <fieldset>
-                  <label>Email</label>
-                  <input type="email" name="email-address" placeholder="">
-                  <label>Current Password</label>
-                  <input type="text" name="current-password" placeholder="">
-                  <label>New Password</label>
-                  <input type="text" name="new-password" placeholder="">
-                  <label>Confirm New Password</label>
-                  <input type="text" name="confirm-new" placeholder="">
-                  <div class="button-group">
-                      <button class="btn btn-primary" type="submit">Save</button>
-                      <button class="btn btn-secondary" type="submit">Cancel</button>
-                  </div>
-              </fieldset>
-          </form>
-      </div>
-      <div class="additional">
-          <div class="row">
-              <a data-remodal-target="modal">Delete my account</a>
-          </div>
-      </div>
-  </content>
+  <%= render 'header' %>
+  <div class="row">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), method: :put, html: { class: 'sgl-col' }) do |f| %>
+      <%= render "shared/error_messages", target: resource %>
+      <fieldset>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+        <%= f.label :current_password, 'Current Password' %>
+        <%= f.text_field :current_password %>
+        <%= f.label :password, 'New Password' %>
+        <%= f.text_field :password, autocomplete: :off %>
+        <%= f.label :password, 'Confirm New Password' %>
+        <%= f.text_field :password, autocomplete: :off %>
+        <div class="button-group">
+          <%= f.button 'Save', type: 'submit', class: 'btn btn-primary' %>
+          <%= button_to edit_participant_registration_path, class: 'btn btn-secondary' do %>
+            Cancel
+          <% end %>
+        </div>
+      </fieldset>
+    <% end %>
+  </div>
+
+  <div class="additional">
+    <div class="row">
+      <a data-remodal-target="modal">Delete my account</a>
+    </div>
+  </div>
+
+</content>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170501150402) do
+ActiveRecord::Schema.define(version: 20170501160042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,10 +134,8 @@ ActiveRecord::Schema.define(version: 20170501150402) do
     t.string   "ip_address"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "slug"
     t.index ["dataset_file_id"], name: "index_dataset_file_downloads_on_dataset_file_id", using: :btree
     t.index ["participant_id"], name: "index_dataset_file_downloads_on_participant_id", using: :btree
-    t.index ["slug"], name: "index_dataset_file_downloads_on_slug", unique: true, using: :btree
   end
 
   create_table "dataset_files", force: :cascade do |t|
@@ -147,10 +145,8 @@ ActiveRecord::Schema.define(version: 20170501150402) do
     t.string   "description"
     t.integer  "challenge_id"
     t.string   "dataset_file_s3_key"
-    t.string   "slug"
     t.boolean  "evaluation",          default: false
     t.index ["challenge_id"], name: "index_dataset_files_on_challenge_id", using: :btree
-    t.index ["slug"], name: "index_dataset_files_on_slug", unique: true, using: :btree
   end
 
   create_table "email_preferences", force: :cascade do |t|
@@ -209,9 +205,7 @@ ActiveRecord::Schema.define(version: 20170501150402) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.string   "slug"
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id", using: :btree
-    t.index ["slug"], name: "index_images_on_slug", unique: true, using: :btree
   end
 
   create_table "mailers", force: :cascade do |t|
@@ -297,9 +291,7 @@ ActiveRecord::Schema.define(version: 20170501150402) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.string   "submission_file_s3_key"
-    t.string   "slug"
     t.boolean  "leaderboard_video",      default: false
-    t.index ["slug"], name: "index_submission_files_on_slug", unique: true, using: :btree
     t.index ["submission_id"], name: "index_submission_files_on_submission_id", using: :btree
   end
 

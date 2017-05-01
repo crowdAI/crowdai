@@ -7,6 +7,7 @@ class Organizer < ApplicationRecord
   has_many :participants, dependent: :nullify
   has_one :image, as: :imageable, dependent: :destroy
   validates :organizer, presence: true
+  validates :api_key, presence: true
 
   def approved?
     self.approved

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Vote do
   context 'associations' do
-    it { should belong_to(:votable) }
-    it { should belong_to(:participant) }
+    it { is_expected.to belong_to(:votable) }
+    it { is_expected.to belong_to(:participant) }
   end
 end

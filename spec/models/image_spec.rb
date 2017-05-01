@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Image do
   context 'associations' do
-    it { should belong_to(:imageable) }
+    it { is_expected.to belong_to(:imageable) }
   end
 
   context 'indexes' do

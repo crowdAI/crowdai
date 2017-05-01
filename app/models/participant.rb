@@ -8,6 +8,7 @@ class Participant < ApplicationRecord
   after_create :set_api_key
   before_save { self.email = email.downcase }
   before_save :process_urls
+  validates :api_key, presence: true
 
   devise :database_authenticatable,  :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable

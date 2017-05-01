@@ -7,25 +7,25 @@ describe Article do
     it { is_expected.to respond_to :published }
     it { is_expected.to respond_to :vote_count }
     it { is_expected.to respond_to :view_count }
-
+    it { is_expected.to respond_to :slug }
   end
 
   context 'associations' do
-    it { should belong_to(:participant) }
-    it { should have_one(:image).dependent(:destroy) }
+    it { is_expected.to belong_to(:participant) }
+    it { is_expected.to have_one(:image).dependent(:destroy) }
     it { is_expected.to accept_nested_attributes_for :image }
-    it { should have_many(:votes) }
-    it { should have_many(:article_sections).dependent(:destroy) }
+    it { is_expected.to have_many(:votes) }
+    it { is_expected.to have_many(:article_sections).dependent(:destroy) }
     it { is_expected.to accept_nested_attributes_for :article_sections }
   end
 
   context 'validations' do
-    it { should validate_presence_of(:participant_id) }
-    it { should validate_presence_of(:article) }
-    it { should validate_presence_of(:category) }
-    it { should validate_presence_of(:summary) }
-    it { should validate_presence_of(:view_count) }
-    it { should validate_presence_of(:vote_count) }
+    it { is_expected.to validate_presence_of(:participant_id) }
+    it { is_expected.to validate_presence_of(:article) }
+    it { is_expected.to validate_presence_of(:category) }
+    it { is_expected.to validate_presence_of(:summary) }
+    it { is_expected.to validate_presence_of(:view_count) }
+    it { is_expected.to validate_presence_of(:vote_count) }
   end
 
   context 'methods' do

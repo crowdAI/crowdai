@@ -10,12 +10,12 @@ describe ArticleSection do
   end
 
   context 'associations' do
-    it { should belong_to(:article) }
+    it { is_expected.to belong_to(:article) }
   end
 
   context 'validations' do
-    it { should validate_presence_of(:section) }
-    it { should validate_uniqueness_of(:section) }
+    it { is_expected.to validate_presence_of(:section) }
+    it { is_expected.to validate_uniqueness_of(:section) }
   end
 
   context 'methods' do

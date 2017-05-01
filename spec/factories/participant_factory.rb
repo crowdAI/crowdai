@@ -2,11 +2,12 @@ FactoryGirl.define do
   sequence(:name) { |n| "Example_name_#{n}" }
 
   factory :participant, class: Participant do
-    name 
+    name
     email { FFaker::Internet.email }
     password 'password12'
     password_confirmation 'password12'
     confirmed_at Time.now
+    api_key SecureRandom.hex
 
     trait :admin do
       admin true

@@ -4,6 +4,7 @@ FactoryGirl.define do
     address FFaker::Lorem.sentence(3)
     description FFaker::Lorem.sentence(20)
     approved true
+    api_key SecureRandom.hex
 
     trait :invalid do
       organizer nil

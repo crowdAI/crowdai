@@ -1,23 +1,43 @@
 require 'rails_helper'
 
 describe Participant do
+  context 'fields' do
+    it { is_expected.to respond_to :email }
+    it { is_expected.to respond_to :admin }
+    it { is_expected.to respond_to :timezone }
+    it { is_expected.to respond_to :name}
+    it { is_expected.to respond_to :bio }
+    it { is_expected.to respond_to :website }
+    it { is_expected.to respond_to :github }
+    it { is_expected.to respond_to :linkedin }
+    it { is_expected.to respond_to :twitter }
+    it { is_expected.to respond_to :account_disabled }
+    it { is_expected.to respond_to :account_disabled_reason }
+    it { is_expected.to respond_to :account_disabled_dttm }
+    it { is_expected.to respond_to :slug }
+    it { is_expected.to respond_to :api_key }
+    it { is_expected.to respond_to :location }
+  end
+
+
   context 'associations' do
-    it { should belong_to(:organizer) }
-    it { should have_one(:image) }
-    it { should accept_nested_attributes_for(:image) }
-    it { should have_many(:submissions) }
-    it { should have_many(:votes) }
-    it { should have_many(:comments) }
-    it { should have_many(:articles) }
-    it { should have_many(:leaderboards) }
-    it { should have_many(:ongoing_leaderboards) }
-    it { should have_many(:participant_challenges) }
-    it { should have_many(:dataset_file_downloads) }
+    it { is_expected.to belong_to(:organizer) }
+    it { is_expected.to have_one(:image) }
+    it { is_expected.to accept_nested_attributes_for(:image) }
+    it { is_expected.to have_many(:submissions) }
+    it { is_expected.to have_many(:votes) }
+    it { is_expected.to have_many(:comments) }
+    it { is_expected.to have_many(:articles) }
+    it { is_expected.to have_many(:leaderboards) }
+    it { is_expected.to have_many(:ongoing_leaderboards) }
+    it { is_expected.to have_many(:participant_challenges) }
+    it { is_expected.to have_many(:dataset_file_downloads) }
   end
 
   context 'validations' do
-    it { should validate_presence_of(:email) }
-    it { should validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:api_key) }
     it { is_expected.to allow_value(FFaker::Lorem.characters(8)).for :password }
     it { is_expected.not_to allow_value(FFaker::Lorem.characters(7)).for :password }
     it { is_expected.to allow_value(FFaker::Lorem.characters(72)).for :password }
@@ -37,16 +57,16 @@ describe Participant do
 
     describe 'when name is not present' do
       before { @participant.name = ' ' }
-      it { should_not be_valid }
+      it { is_expected.to_not be_valid }
     end
 
     describe 'when email is not present' do
       before { @participant.email = ' ' }
-      it { should_not be_valid }
+      it { is_expected.to_not be_valid }
     end
 
     describe 'when email format is invalid' do
-      it 'should be invalid' do
+      it 'is_expected.to be invalid' do
         addresses = %w(participant@foo,com participant_at_foo.org example.participant@foo.
                        foo@bar_baz.com foo@bar+baz.com foo@bar..com)
         addresses.each do |invalid_address|
@@ -57,7 +77,7 @@ describe Participant do
     end
 
     describe 'when email format is valid' do
-      it 'should be valid' do
+      it 'is_expected.to be valid' do
         addresses = %w(participant@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn)
         addresses.each do |valid_address|
           @participant.email = valid_address
@@ -73,7 +93,7 @@ describe Participant do
         participant_with_same_email.save
       end
 
-      it { should_not be_valid }
+      it { is_expected.to_not be_valid }
     end
 
     context 'methods' do

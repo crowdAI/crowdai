@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170501114013) do
+ActiveRecord::Schema.define(version: 20170501150402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 20170501114013) do
     t.text     "description"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
-    t.string   "icon"
     t.string   "section"
     t.string   "slug"
     t.index ["article_id"], name: "index_article_sections_on_article_id", using: :btree
@@ -59,7 +58,6 @@ ActiveRecord::Schema.define(version: 20170501114013) do
     t.datetime "updated_at",                     null: false
     t.string   "category"
     t.integer  "view_count",     default: 0
-    t.integer  "comment_count",  default: 0
     t.string   "summary"
     t.string   "slug"
     t.index ["participant_id"], name: "index_articles_on_participant_id", using: :btree
@@ -114,7 +112,7 @@ ActiveRecord::Schema.define(version: 20170501114013) do
     t.index ["slug"], name: "index_challenges_on_slug", unique: true, using: :btree
   end
 
-  create_table "comments", id: :integer, default: -> { "nextval('posts_id_seq'::regclass)" }, force: :cascade do |t|
+  create_table "comments", force: :cascade do |t|
     t.integer  "topic_id"
     t.integer  "participant_id"
     t.text     "comment"

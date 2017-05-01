@@ -119,6 +119,7 @@ group :development do
   gem 'brakeman', :require => false
   gem 'derailed_benchmarks'
   gem 'stackprof'
+  gem 'rubocop', require: false
 end
 
 

@@ -7,7 +7,6 @@ FactoryGirl.define do
     published true
     vote_count 0
     view_count 0
-    comment_count 0
 
     trait :invalid do
       category nil

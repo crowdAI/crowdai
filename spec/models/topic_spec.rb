@@ -4,7 +4,7 @@ describe Topic do
   context 'associations' do
     it { should belong_to(:challenge) }
     it { should belong_to(:participant) }
-    it { should have_many(:posts).dependent(:destroy) }
+    it { should have_many(:comments).dependent(:destroy) }
   end
 
   context 'indexes' do

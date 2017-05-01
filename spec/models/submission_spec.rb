@@ -6,7 +6,6 @@ describe Submission do
     it { should have_many(:submission_files).dependent(:destroy) }
     it { should have_many(:submission_grades).dependent(:destroy) }
     it { should have_many(:votes) }
-    it { should have_many(:container_instances) }
 
     it 'is ordered by seq when seq 0 is created first' do
       submission = create(:submission)

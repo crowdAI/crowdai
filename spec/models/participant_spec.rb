@@ -6,7 +6,6 @@ describe Participant do
     it { should have_one(:image) }
     it { should accept_nested_attributes_for(:image) }
     it { should have_many(:submissions) }
-    it { should have_many(:posts) }
     it { should have_many(:votes) }
     it { should have_many(:comments) }
     it { should have_many(:articles) }

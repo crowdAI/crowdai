@@ -1,12 +1,20 @@
 require 'rails_helper'
 
 describe Article do
+  context 'fields' do
+    it { is_expected.to respond_to :article }
+    it { is_expected.to respond_to :summary }
+    it { is_expected.to respond_to :published }
+    it { is_expected.to respond_to :vote_count }
+    it { is_expected.to respond_to :view_count }
+
+  end
+
   context 'associations' do
     it { should belong_to(:participant) }
     it { should have_one(:image).dependent(:destroy) }
     it { is_expected.to accept_nested_attributes_for :image }
     it { should have_many(:votes) }
-    it { should have_many(:comments) }
     it { should have_many(:article_sections).dependent(:destroy) }
     it { is_expected.to accept_nested_attributes_for :article_sections }
   end
@@ -28,7 +36,6 @@ describe Article do
         expect(result).not_to be_nil
       end
     end
-
 
     describe '#record_page_view' do
       it 'returns 1 for the first view' do

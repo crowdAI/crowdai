@@ -1,6 +1,6 @@
 FactoryGirl.define do
-  factory :post, class: Post do
-    post { FFaker::Lorem.words(4) }
+  factory :comment, class: Comment do
+    comment { FFaker::Lorem.words(4) }
     flagged false
     topic { FactoryGirl.build :topic }
     vote_count 1

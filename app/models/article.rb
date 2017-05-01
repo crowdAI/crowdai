@@ -1,8 +1,9 @@
 class Article < ApplicationRecord
   include FriendlyId
-  friendly_id :article, use: [:slugged, :finders]
-  belongs_to :participant
 
+  default_scope { order('updated_at DESC') }
+
+  belongs_to :participant
   has_one :image, as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :image, allow_destroy: true
   has_many :votes, as: :votable
@@ -10,6 +11,8 @@ class Article < ApplicationRecord
   has_many :comments, as: :commentable
   has_many :article_sections, dependent: :destroy
   accepts_nested_attributes_for :article_sections, reject_if: :all_blank, allow_destroy: true
+
+  friendly_id :article, use: [:slugged, :finders]
 
   scope :published, -> () { where published: true }
 

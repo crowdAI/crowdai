@@ -33,7 +33,6 @@ Rails.application.routes.draw do
     resources :submissions, only: [:update]
     resources :external_graders, only: [:update, :show]
     resources :opensim_gradings, only: [:create, :update, :show]
-    resources :docker_callbacks, only: [:create]
   end
 
   get 'markdown_editor/show'

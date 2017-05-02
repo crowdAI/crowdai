@@ -1,4 +1,5 @@
 class VotesController < ApplicationController
+  before_filter :authenticate_participant!
   before_action :set_votable
   respond_to :js
 

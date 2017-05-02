@@ -31,6 +31,9 @@ module Crowdai
     config.secret_key_base = ENV["SECRET_KEY_BASE"]
     #config.action_controller.default_url_options = {:host => ENV['HOST']}
     config.autoload_paths << Rails.root.join('lib')
+    config.generators do |g|
+      g.test_framework :rspec
+    end
   end
 
 end

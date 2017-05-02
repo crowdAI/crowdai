@@ -31,5 +31,16 @@ FactoryGirl.define do
       challenge FFaker::Lorem.sentence(3)
     end
 
+    trait :completed do
+      status :completed
+      challenge FFaker::Lorem.sentence(3)
+      dataset_files {[ build(:dataset_file) ]}
+    end
+
+    trait :starting_soon do
+      status :starting_soon
+      challenge FFaker::Lorem.sentence(3)
+    end
+
   end
 end

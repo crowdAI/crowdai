@@ -10,7 +10,6 @@ RSpec.describe ArticlesController, type: :controller do
   let!(:participant2_not_published) { create :article, article: 'participant2_not_published', participant: participant2, published: false}
 
   context 'signed in participant' do
-
     before do
       sign_in participant
     end

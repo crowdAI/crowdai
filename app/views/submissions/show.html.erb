@@ -16,6 +16,7 @@
     </ul>
     <br/><br/>
 
+<% unless @submission.challenge_id == 6 %>
     <div class='table-responsive'>
       <table class="table table-condensed table-bordered leaderboard">
         <thead>
@@ -41,6 +42,7 @@
         </tbody>
       </table>
     </div><!-- table-responsive -->
+<% end %>
 
     <% if @participant %>
       <div class="pull-right">

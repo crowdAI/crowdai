@@ -5,7 +5,9 @@
                 <th>Grading Status</th>
                 <th>Grading Factor</th>
                 <th>Score</th>
-                <th>Score Secondary</th>
+                <% unless submission.challenge.secondary_sort_order == :not_used %>
+                  <th>Score Secondary</th>
+                <% end %>
                 <th>Graded</th>
                 <th>Message</th>
             </thead>
@@ -15,7 +17,9 @@
                     <td><%= sg.grading_status %></td>
                     <td><%= sg.grading_factor %></td>
                     <td><%= sg.score %></td>
-                    <td><%= sg.score_secondary %></td>
+                    <% unless submission.challenge.secondary_sort_order == :not_used %>
+                      <td><%= sg.score_secondary %></td>
+                    <% end %>
                     <td><%= display_dttm(sg.created_at) %></td>
                     <td><%= sg.grading_message %></td>
                 </tr>

@@ -17,7 +17,7 @@
               <% if @challenge.api_required  %>
                 <th>API</th>
               <% end %>
-              <% if @challenge.secondary_sort_order == 'not_used' %>
+              <% if @challenge.secondary_sort_order == :not_used %>
                 <th><%= @challenge.score_title %></th>
               <% else %>
                 <th><%= @challenge.score_title %></th>
@@ -34,7 +34,7 @@
                 <td><%= Submission::APIS[submission.api] %></td>
               <% end %>
 
-              <% if @challenge.secondary_sort_order == 'not_used' %>
+              <% if @challenge.secondary_sort_order == :not_used %>
                 <% if submission.failed? %>
                   <td><%= submission.grading_message %></td>
                 <% else %>

@@ -11,16 +11,16 @@ class DatasetFilesController < ApplicationController
     else
       @dataset_files = @challenge.dataset_files.where(evaluation: false)
     end
-    load_gon({percent_progress: @challenge.pct_passed})
   end
 
   def show
   end
 
-  def new
-    @dataset_file = @challenge.dataset_files.new
-  end
-
+  #def new
+  #  require 'byebug'
+  #  byebug
+  #  @dataset_file = @challenge.dataset_files.new
+  #e#nd
 
   def create
     @dataset_file = @challenge.dataset_files.new(dataset_file_params)
@@ -32,11 +32,10 @@ class DatasetFilesController < ApplicationController
     end
   end
 
-
   def destroy
     @dataset_file.destroy
     redirect_to challenge_dataset_files_path(@challenge),
-                notice: 'Dataset file was successfully destroyed.'
+                notice: "Dataset file #{@dataset_file.title} was deleted."
   end
 
   private

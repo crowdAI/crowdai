@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170501160042) do
+ActiveRecord::Schema.define(version: 20170504122918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -146,6 +146,7 @@ ActiveRecord::Schema.define(version: 20170501160042) do
     t.integer  "challenge_id"
     t.string   "dataset_file_s3_key"
     t.boolean  "evaluation",          default: false
+    t.string   "title"
     t.index ["challenge_id"], name: "index_dataset_files_on_challenge_id", using: :btree
   end
 

@@ -36,6 +36,13 @@ RSpec.describe EmailsController, type: :controller do
   end
 
   describe "GET #new" do
+    it "assigns a new dataset_file as @dataset_file" do
+      get :new, params: {challenge_id: }, session: valid_session
+      expect(assigns(:emails_controller)).to be_a_new(EmailsController)
+    end
+  end
+
+  describe "GET #new" do
     it "assigns a new emails_controller as @emails_controller" do
       get :new, params: {}, session: valid_session
       expect(assigns(:emails_controller)).to be_a_new(EmailsController)

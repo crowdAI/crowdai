@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   end
 
   resources :challenges do
-    resources :dataset_files, except: [:show, :update, :edit]
+    resources :dataset_files, only: [:show, :index, :delete, :new, :create]
     resources :events
     resources :submissions do
       get :grade
@@ -59,9 +59,9 @@ Rails.application.routes.draw do
   end
   get '/load_more_challenges', to: 'challenges#load_more', as: :load_more_challenges
 
-  resources :dataset_files, except: [:show] do
-    resources :dataset_file_downloads, only: [:create]
-  end
+  #resources :dataset_files, except: [:show] do
+  #  resources :dataset_file_downloads, only: [:create]
+  #end
 
   resources :topics do
     resources :comments, only: [:new, :create, :edit, :update, :destroy]

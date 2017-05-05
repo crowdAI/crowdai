@@ -2,8 +2,8 @@ module LeaderboardVideosHelper
 
   def submission_media(submission_id)
     submission = Submission.find(submission_id)
-    if submission.media_type.present?
-      type = submission.split('/').first
+    if submission.media_content_type.present?
+      type = submission.media_content_type.split('/').first
       if type == 'image'
         image_tag submission.media_thumbnail, size: '125x125'
       end
@@ -17,8 +17,8 @@ module LeaderboardVideosHelper
 
   def large_submission_media(submission_id)
     submission = Submission.find(submission_id)
-    if submission.media_type.present?
-      type = submission.split('/').first
+    if submission.media_content_type.present?
+      type = submission.media_content_type.split('/').first
       if type == 'image'
         image_tag submission.media_thumbnail
       end

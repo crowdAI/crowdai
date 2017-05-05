@@ -5,13 +5,13 @@ module LeaderboardVideosHelper
     if submission.media_content_type.present?
       type = submission.media_content_type.split('/').first
       if type == 'image'
-        image_tag submission.media_thumbnail, size: '125x125'
+        return image_tag submission.media_thumbnail, size: '125x125'
       end
       if type == 'video'
-        video_tag submission.media_thumbnail, size: "125x125", autoplay: true, loop: true
+        return video_tag submission.media_thumbnail, size: "125x125", autoplay: true, loop: true
       end
     else
-      submission_video(submission_id)
+      return submission_video(submission_id)
     end
   end
 
@@ -20,13 +20,13 @@ module LeaderboardVideosHelper
     if submission.media_content_type.present?
       type = submission.media_content_type.split('/').first
       if type == 'image'
-        image_tag submission.media_thumbnail
+        return image_tag submission.media_thumbnail
       end
       if type == 'video'
-        video_tag submission.media_thumbnail, autoplay: true, loop: true
+        return video_tag submission.media_thumbnail, autoplay: true, loop: true
       end
     else
-      submission_video(submission_id)
+      return large_submission_video(submission_id)
     end
   end
 
@@ -37,24 +37,25 @@ module LeaderboardVideosHelper
     if submission_file.present?
       video_url = s3_expiring_url(submission_file.submission_file_s3_key)
     end
+    return video_url
   end
 
 
   def submission_video(submission_id)
     url = submission_video_url(submission_id)
     if url.present?
-      video_tag(url, size: "125x125", autoplay: true, loop: true)
+      return video_tag(url, size: "125x125", autoplay: true, loop: true)
     else
-      image_tag (image_path 'image_not_found.png'), size: '125x125'
+      return image_tag (image_path 'image_not_found.png'), size: '125x125'
     end
   end
 
   def large_submission_video(submission_id)
     url = submission_video_url(submission_id)
     if url.present?
-      video_tag(url, autoplay: true, loop: true)
+      return video_tag(url, autoplay: true, loop: true)
     else
-      image_tag (image_path 'image_not_found.png')
+      return image_tag (image_path 'image_not_found.png')
     end
   end
 

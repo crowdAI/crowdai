@@ -47,7 +47,7 @@ class Api::ExternalGradersController < Api::BaseController
                                       media_thumbnail: params[:media_thumbnail],
                                       media_content_type: params[:media_content_type])
       submission.submission_grades.create!(grading_params)
-      message = "Participant: #{participant.name}, submission: #{params[:id]} scored"
+      message = "Participant: #{participant.name} scored"
       status = :accepted
     rescue => e
       #Rails.logger.error e
@@ -55,7 +55,7 @@ class Api::ExternalGradersController < Api::BaseController
       status = :bad_request
       message = e
     ensure
-      render json: { message: message, submission_id: submission.inspect }, status: status
+      render json: { message: message, submission_id: submission.id }, status: status
     end
   end
 

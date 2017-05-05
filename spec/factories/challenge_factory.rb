@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :challenge, class: Challenge do
     organizer { FactoryGirl.create :organizer }
     challenge FFaker::Lorem.sentence(3)
+    challenge_client_name "TestClientName"
     tagline FFaker::Lorem.sentence(3)
     status :draft
     description_markdown "### The description"

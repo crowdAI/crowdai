@@ -34,6 +34,8 @@ class Challenge < ApplicationRecord
   #validates_presence_of :grader
   validates_presence_of :primary_sort_order
   validates_presence_of :grading_factor
+  #validates_uniqueness_of :challenge_client_name
+  validates :challenge_client_name, format: { with: /\A[a-zA-Z0-9]+\Z/ }
 
 
   default_scope { order("CASE status_cd

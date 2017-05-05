@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313115510) do
+ActiveRecord::Schema.define(version: 20170504142502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,7 +108,9 @@ ActiveRecord::Schema.define(version: 20170313115510) do
     t.float    "threshold"
     t.datetime "start_dttm"
     t.datetime "end_dttm"
-    t.boolean  "video_on_leaderboard",             default: false
+    t.boolean  "media_on_leaderboard",             default: false
+    t.string   "challenge_client_name"
+    t.boolean  "online_grading",                   default: true
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id", using: :btree
     t.index ["slug"], name: "index_challenges_on_slug", unique: true, using: :btree
   end
@@ -393,6 +395,9 @@ ActiveRecord::Schema.define(version: 20170313115510) do
     t.boolean  "post_challenge",          default: false
     t.string   "api"
     t.integer  "docker_configuration_id"
+    t.string   "media_large"
+    t.string   "media_thumbnail"
+    t.string   "media_content_type"
     t.index ["challenge_id"], name: "index_submissions_on_challenge_id", using: :btree
     t.index ["docker_configuration_id"], name: "index_submissions_on_docker_configuration_id", using: :btree
     t.index ["participant_id"], name: "index_submissions_on_participant_id", using: :btree

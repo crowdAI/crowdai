@@ -4,7 +4,7 @@
       <tr>
         <th>#</th>
         <% if challenge.media_on_leaderboard %>
-          <th>Video</th>
+          <th></th>
         <% end %>
         <th>Participant</th>
         <% if challenge.secondary_sort_order == :not_used %>
@@ -31,7 +31,7 @@
                       'data-toggle' =>  "modal",
                       'data-target' =>
                       '#modal-window' } do %>
-              <%= submission_video(leader.submission_id) %>
+              <%= submission_media(leader.submission_id) %>
             <% end %>
           </td>
         <% end %>

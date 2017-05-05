@@ -12,7 +12,9 @@
       <li><%= glyphicon_link 'arrow-up', 'Leaderboard', challenge_leaderboards_path(@challenge) %></li>
       <li><%= glyphicon_link 'random', 'Discussion', challenge_topics_path(@challenge) %></li>
       <li><%= glyphicon_link 'signal', 'Dataset', challenge_dataset_files_path(@challenge) %></li>
-      <li><%= glyphicon_link 'inbox', 'Submit Entry', challenge_submissions_path(@challenge) %></li>
+      <% if @challenge.online_grading %>
+        <li><%= glyphicon_link 'inbox', 'Submit Entry', challenge_submissions_path(@challenge) %></li>
+      <% end %>
       <hr/>
       <% if current_participant && (current_participant.admin? || current_participant.organizer_id == @challenge.organizer_id) %>
         <li><%= glyphicon_link 'pencil', 'Edit', edit_challenge_path(@challenge) %></li>

@@ -1,5 +1,35 @@
 module LeaderboardVideosHelper
 
+  def submission_media(submission_id)
+    submission = Submission.find(submission_id)
+    if submission.media_type.present?
+      type = submission.split('/').first
+      if type == 'image'
+        image_tag submission.media_thumbnail, size: '125x125'
+      end
+      if type == 'video'
+        video_tag submission.media_thumbnail, size: "125x125", autoplay: true, loop: true
+      end
+    else
+      submission_video(submission_id)
+    end
+  end
+
+  def large_submission_media(submission_id)
+    submission = Submission.find(submission_id)
+    if submission.media_type.present?
+      type = submission.split('/').first
+      if type == 'image'
+        image_tag submission.media_thumbnail
+      end
+      if type == 'video'
+        video_tag submission.media_thumbnail, autoplay: true, loop: true
+      end
+    else
+      submission_video(submission_id)
+    end
+  end
+
   def submission_video_url(submission_id)
     video_url = nil
     submission_file = SubmissionFile.where(submission_id: submission_id, leaderboard_video: true).where.not(submission_file_s3_key: nil).order("created_at desc").first

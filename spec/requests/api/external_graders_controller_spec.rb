@@ -45,10 +45,12 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       before do
         xhr :post, "/api/external_graders", params, 'Accept': 'application/vnd.api+json', 'Content-Type': 'application/vnd.api+json', 'Authorization': auth_header(organizer.api_key)
       end
-      it { puts params }
-      it { puts participant.inspect }
-      it { expect(response).to have_http_status(200) }
-      it { expect(response.body).to eq('{"message":"Developer API key is valid"}') }
+      it { puts params[:api_key] }
+      it { puts participant.api_key }
+      it { puts response.body }
+      #it { expect(response).to have_http_status(202) }
+      #it { expect(response.body[:message]).to eq("Developer API key is valid") }
+      #it { expect(response.body[:submission_id]).to be_kind_of(Integer) }
       #it { expect(response.content_type).to eq Mime[:json] }
     end
 

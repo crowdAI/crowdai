@@ -13,6 +13,7 @@ require 'features/support/navigation_helpers'
 require 'features/support/challenge_helpers'
 require 'support/feature_helpers'
 require 'support/pundit_matcher'
+require 'support/helpers/header_helpers'
 
 
 ActiveRecord::Migration.maintain_test_schema!
@@ -48,6 +49,7 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :helper
 
   config.include ControllerHelpers, type: :controller
+  config.include HeaderHelpers
 
   config.include LoginHelper, type: :feature
   config.include NavigationHelpers, type: :feature

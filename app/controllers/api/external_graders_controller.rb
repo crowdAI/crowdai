@@ -1,72 +1,105 @@
 class Api::ExternalGradersController < Api::BaseController
 
+  class DeveloperAPIKeyInvalid < StandardError
+    def initialize(msg="The API key did not match any participant record.")
+      super
+    end
+  end
+
+  class ChallengeClientNameInvalid < StandardError
+    def initialize(msg="The Challenge Client Name string did not match any challenge.")
+      super
+    end
+  end
+
+  class GradingStatusInvalid < StandardError
+    def initialize(msg="Grading status must be one of (graded|failed)")
+      super
+    end
+  end
+
   def show
     message = nil
     status = nil
     participant = Participant.where(api_key: params[:id]).first
     if participant.present?
-      message = "API key is valid"
+      message = "Developer API key is valid"
       status = :ok
     else
       message = "No participant could be found for this API key"
       status = :not_found
     end
-    render json: {message: message}, status: status
+    render json: { message: message }, status: status
   end
 
-
-  def update
+  def create
     message = nil
     status = nil
-    participant = Participant.where(api_key: params[:id]).first
     begin
-      validate_params
+      participant = Participant.where(api_key: params[:api_key]).first
+      raise Api::ExternalGradersController::DeveloperAPIKeyInvalid if participant.nil?
+      challenge = Challenge.where(challenge_client_name: params[:challenge_client_name]).first
+      raise Api::ExternalGradersController::ChallengeClientNameInvalid if challenge.nil?
       submission = Submission.create!(participant_id: participant.id,
-                                      challenge_id: params[:challenge_id],
-                                      description_markdown: 'Submitted externally.')
-      SubmissionGrade.create!(grading_params(submission))
-      if params[:aws_gif_key].present?
-        ProcessAiGymGifJob.perform_later(submission.id,params[:aws_gif_key])
-      end
-      message = "participant: #{participant.name}, submission: #{params[:id]} scored"
+                                      challenge_id: challenge.id,
+                                      description_markdown: params[:comment],
+                                      media_large: params[:media_large],
+                                      media_thumbnail: params[:media_thumbnail],
+                                      media_content_type: params[:media_content_type])
+      submission.submission_grades.create!(grading_params)
+      message = "Participant: #{participant.name}, submission: #{params[:id]} scored"
       status = :accepted
     rescue => e
+      #Rails.logger.error e
+      #Rails.logger.error params
+      status = :bad_request
+      message = e
+    ensure
+      render json: { message: message, submission_id: submission.inspect }, status: status
+    end
+  end
+
+=begin
+  def update
+    begin
+      submission = Submission.find(params[:submission_id])
+      raise ActiveRecord::RecordNotFound if submission.nil?
+      key_valid = validate_s3_key(params[:s3_key])
+      raise InvalidS3Key.new(s3_key: params[:s3_key]) if !key_valid
+      ProcessAiGymGifJob.perform_later(submission.id,params[:s3_key])
+      message = "Animated GIF accepted for processing."
+    rescue => e
+      Rails.logger.error e
+      Rails.logger.error params
       status = :bad_request
       message = e
     ensure
       render json: {message: message}, status: status
     end
   end
+=end
+
+    def validate_s3_key(s3_key)
+      S3Service.new(s3_key,shared_bucket=true).valid_key?
+    end
 
 
-
-
-  private
-  def grading_params(submission)
-    case params[:grading_status]
+    private
+    def grading_params
+      case params[:grading_status]
       when 'graded'
-        {submission_id: submission.id,
-         score: params[:score],
-         score_secondary: params[:score_secondary],
-         grading_status_cd: 'graded',
-         grading_message: nil}
+        { score: params[:score],
+          score_secondary: params[:score_secondary],
+          grading_status_cd: 'graded',
+          grading_message: nil }
       when 'failed'
-        {submission_id: submission.id,
-         score: nil,
-         score_secondary: nil,
-         grading_status_cd: 'failed',
-         grading_message: params[:grading_message]}
+        { score: nil,
+          score_secondary: nil,
+          grading_status_cd: 'failed',
+          grading_message: params[:grading_message] }
+      else
+        raise Api::ExternalGradersController::ChallengeClientNameInvalid
+      end
     end
-  end
-
-  def validate_params
-    raise 'challenge_id is a required field' if !params[:challenge_id].present?
-    if !['graded','failed'].include?(params[:grading_status])
-      raise "grading_status must be [graded|failed]"
-    end
-    raise 'score is a required field' if !params[:score].present?
-  end
-
-
 
 end

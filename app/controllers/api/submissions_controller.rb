@@ -1,4 +1,5 @@
 class Api::SubmissionsController < Api::BaseController
+  # Scipy Server Endpoint
 
   def update
     SubmissionGrade.create!(grading_params)

@@ -31,7 +31,9 @@ Rails.application.routes.draw do
   # API
   namespace :api do
     resources :submissions, only: [:update]
-    resources :external_graders, only: [:create, :update, :show]
+    resources :external_graders, only: [:create, :update, :show] do
+      get :challenge_config, on: :collection
+    end
     resources :opensim_gradings, only: [:create, :update, :show]
   end
 

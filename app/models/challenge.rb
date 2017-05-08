@@ -34,8 +34,8 @@ class Challenge < ApplicationRecord
   #validates_presence_of :grader
   validates_presence_of :primary_sort_order
   validates_presence_of :grading_factor
-  validates_uniqueness_of :challenge_client_name
-  validates :challenge_client_name, format: { with: /\A[a-zA-Z0-9]+\Z/ }
+  #validates_uniqueness_of :challenge_client_name
+  validates :challenge_client_name, format: { with: /\A[a-zA-Z0-9]/ }
 
 
   default_scope { order("CASE status_cd
@@ -64,6 +64,11 @@ class Challenge < ApplicationRecord
   def status_formatted
     return 'Starting soon' if status == :starting_soon
     return status.capitalize
+  end
+
+  def submissions_remaining(participant_id)
+    submissions_today = self.submissions.where("participant_id = ? and created_at >= ?", participant_id, Time.now - 24.hours).count
+    return (self.daily_submissions - submissions_today)
   end
 
 

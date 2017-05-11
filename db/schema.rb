@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170505115311) do
+ActiveRecord::Schema.define(version: 20170511121923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 20170505115311) do
     t.boolean  "media_on_leaderboard",             default: false
     t.string   "challenge_client_name"
     t.boolean  "online_grading",                   default: true
+    t.string   "api_key"
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id", using: :btree
     t.index ["slug"], name: "index_challenges_on_slug", unique: true, using: :btree
   end

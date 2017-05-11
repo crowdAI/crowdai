@@ -59,6 +59,7 @@ Rails.application.routes.draw do
     resources :topics
     resources :docker_configurations
     get :regrade
+    get :regen_api_key
   end
 
   resources :docker_configurations do

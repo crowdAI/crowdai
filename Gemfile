@@ -55,7 +55,7 @@ gem 'jquery-turbolinks'
 gem 'lodash-rails'
 gem 'browser'
 gem 'coffee-rails'
-
+gem 'rails-assets-isInViewport', source: 'https://rails-assets.org'
 
 # css
 gem 'sass-rails', '~> 5.0'

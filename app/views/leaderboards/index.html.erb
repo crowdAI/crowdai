@@ -25,4 +25,5 @@
   <% if current_participant && current_participant.admin? #&& @participant_submissions %>
     <%= render partial: 'leaderboards/index/participant_submissions', locals: { challenge: @challenge, participant_submissions: @participant_submissions } %>
   <% end %>
+
 </div>

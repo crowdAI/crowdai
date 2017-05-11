@@ -8,7 +8,7 @@ module LeaderboardVideosHelper
         return image_tag submission.media_thumbnail, size: '125x125', id: submission_id
       end
       if type == 'video'
-        return video_tag submission.media_thumbnail, size: "125x125", autoplay: true, loop: true, id: submission_id
+        return video_tag submission.media_thumbnail, size: "125x125", autoplay: false, loop: true, id: submission_id
       end
     else
       return submission_video(submission_id)
@@ -23,7 +23,7 @@ module LeaderboardVideosHelper
         return image_tag submission.media_thumbnail
       end
       if type == 'video'
-        return video_tag submission.media_thumbnail, autoplay: true, loop: true
+        return video_tag submission.media_thumbnail, autoplay: false, loop: true
       end
     else
       return large_submission_video(submission_id)
@@ -44,7 +44,7 @@ module LeaderboardVideosHelper
   def submission_video(submission_id)
     url = submission_video_url(submission_id)
     if url.present?
-      return video_tag(url, size: "125x125", autoplay: true, loop: true, id: submission_id)
+      return video_tag(url, size: "125x125", autoplay: false, loop: true, id: submission_id)
     else
       return image_tag (image_path 'image_not_found.png'), size: '125x125'
     end
@@ -53,7 +53,7 @@ module LeaderboardVideosHelper
   def large_submission_video(submission_id)
     url = submission_video_url(submission_id)
     if url.present?
-      return video_tag(url, autoplay: true, loop: true, id: submission_id)
+      return video_tag(url, autoplay: false, loop: true, id: submission_id)
     else
       return image_tag (image_path 'image_not_found.png')
     end

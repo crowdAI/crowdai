@@ -32,6 +32,10 @@ class ChallengePolicy < ApplicationPolicy
     edit?
   end
 
+  def regen_api_key?
+    update?
+  end
+
 
   class Scope
     attr_reader :participant, :scope

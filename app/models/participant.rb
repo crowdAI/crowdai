@@ -101,11 +101,6 @@ class Participant < ApplicationRecord
     self.email_preferences.create!
   end
 
-  def set_api_key
-    if self.api_key.blank?
-      self.api_key = generate_api_key
-    end
-  end
 
   def should_generate_new_friendly_id?
     name_changed?

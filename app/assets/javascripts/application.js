@@ -30,6 +30,7 @@
 //= require components/upload_button
 //= require components/flash_messages
 //= require components/sorttable
+//= require isInViewport
 
 //= require moment
 //= require bootstrap-datetimepicker

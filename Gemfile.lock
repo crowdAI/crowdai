@@ -44,6 +44,7 @@ GIT
 
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     CFPropertyList (2.3.4)
     actioncable (5.0.0.1)
@@ -470,6 +471,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 5.0.0.1)
       sprockets-rails (>= 2.0.0)
+    rails-assets-isInViewport (3.0.0)
     rails-controller-testing (0.0.3)
       rails (>= 4.2)
     rails-dom-testing (2.0.1)
@@ -730,6 +732,7 @@ DEPENDENCIES
   rack-timeout
   railroady
   rails (= 5.0.0.1)
+  rails-assets-isInViewport!
   rails-controller-testing
   rails-erd
   rails-footnotes (>= 4.0.0, < 5)

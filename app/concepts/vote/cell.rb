@@ -1,7 +1,4 @@
-class Vote::Cell < Cell::Concept
-  include Devise::Controllers::Helpers
-  Devise::Controllers::Helpers.define_helpers(Devise::Mapping.new(:participant, {}))
-  include ActionView::Helpers::JavaScriptHelper
+class Vote::Cell < Template::Cell
 
   def show
     render

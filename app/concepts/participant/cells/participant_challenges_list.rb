@@ -1,4 +1,4 @@
-class Participant::Cell::ParticipantChallengesList < Cell::Concept
+class Participant::Cell::ParticipantChallengesList < Template::Cell
   inherit_views Participant::Cell
 
   def show

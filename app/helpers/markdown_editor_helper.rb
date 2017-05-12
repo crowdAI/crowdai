@@ -1,8 +1,17 @@
 module MarkdownEditorHelper
+
+  def markdown_editor(fieldname, &block)
+    render(
+      partial: 'markdown_editor/markdown_editor',
+      locals: { fieldname: fieldname, block: block }
+    )
+  end
+
+
   def markdown(text)
 
     return nil if text.nil?
-    
+
     options = {
       filter_html:     true,
       hard_wrap:       true,

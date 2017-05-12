@@ -1,8 +1,5 @@
-class Discussion::Cell::List < Cell::Concept
+class Discussion::Cell::List < Template::Cell
   inherit_views Discussion::Cell
-
-  include Kaminari::Cells
-  include ActionView::Helpers::JavaScriptHelper
 
   def show
     render :list
@@ -11,5 +8,5 @@ class Discussion::Cell::List < Cell::Concept
   def topics
     model
   end
-  
+
 end

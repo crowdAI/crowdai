@@ -1,9 +1,5 @@
-class Article::Cell::List < Cell::Concept
+class Article::Cell::List < Template::Cell
   inherit_views Article::Cell
-
-  #include Escaped
-  include Kaminari::Cells
-  include ActionView::Helpers::JavaScriptHelper
 
   def show
     render :list

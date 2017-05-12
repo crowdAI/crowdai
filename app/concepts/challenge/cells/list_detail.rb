@@ -1,4 +1,4 @@
-class Challenge::Cell::ListDetail < Cell::Concept
+class Challenge::Cell::ListDetail < Template::Cell
   inherit_views Challenge::Cell
 
   def show

@@ -1,9 +1,5 @@
-class Challenge::Cell::List < Cell::Concept
+class Challenge::Cell::List < Template::Cell
   inherit_views Challenge::Cell
-
-  #include Escaped
-  include Kaminari::Cells
-  include ActionView::Helpers::JavaScriptHelper
 
   def show
     render :list

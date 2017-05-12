@@ -1,9 +1,6 @@
-class Discussion::Cell::TopicLikesListDetail < Cell::Concept
+class Discussion::Cell::TopicLikesListDetail < Template::Cell
   inherit_views Discussion::Cell
-  include Devise::Controllers::Helpers
-  include ActionView::Helpers::JavaScriptHelper
-  Devise::Controllers::Helpers.define_helpers(Devise::Mapping.new(:participant, {}))
-
+  
   def show
     render :topic_likes_list_detail
   end

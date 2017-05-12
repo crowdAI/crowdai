@@ -1,4 +1,4 @@
-class Article::Cell::ArticleMasthead < Cell::Concept
+class Article::Cell::ArticleMasthead < Template::Cell
   inherit_views Article::Cell
 
   def show

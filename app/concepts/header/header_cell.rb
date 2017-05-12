@@ -1,7 +1,4 @@
-class Header::Cell < Cell::Concept
-  include Escaped
-  include Devise::Controllers::Helpers
-  Devise::Controllers::Helpers.define_helpers(Devise::Mapping.new(:participant, {}))
+class Header::Cell < Template::Cell
 
   def show
     render

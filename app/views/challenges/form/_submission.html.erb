@@ -1,0 +1,70 @@
+<div class="row">
+  <%= form_for @challenge, html: { class: "dbl-col" } do |f| %>
+  <fieldset>
+    <label>Submission Instructions</label>
+    <%= markdown_editor("description_markdown") do |m| %>
+      <%= f.text_area :submission_instructions_markdown, class: "txt-med" %>
+    <% end %>
+
+    <p>This license text is displayed on the submission upload page during and after the challenge</p>
+    <textarea
+      class="txt-med"
+      placeholder="Please upload your submissions and include a detailed description of the methodology, techniques and insights leveraged with this submission. After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC)."></textarea>
+    <fieldset>
+      <div class="switch-container">
+        <input type="checkbox" id="switch" name="switch" class="switch" checked>
+        <label for="switch">Open source my submission after the end of the challenge</label>
+      </div>
+    </fieldset>
+    <fieldset class="radiogroup">
+      <label>License type:</label>
+      <input type="radio" name="" value="">
+      License #1
+      <input type="radio" name="" value="">
+      License #2
+      <input type="radio" name="" value="">
+      License #3
+      <input type="radio" name="" value="">
+      License #4
+    </fieldset>
+    <fieldset>
+      <label>Maximum no. of daily submissions</label>
+      <input type="text" name="" placeholder="">
+    </fieldset>
+    <fieldset>
+      <h4>Submission File Definitions</h4>
+      <div class="section-container">
+        <a class="ss-icon" href="#"></a>
+        <label>Submission file description</label>
+        <input type="text" name="" placeholder="">
+        <label>File type</label>
+        <select placeholder="Please select&hellip;">
+          <option value="">Option #1</option>
+          <option value="">Option #2</option>
+          <option value="">Option #3</option>
+          <option value="">Option #4</option>
+        </select>
+        <fieldset class="checkbox">
+          <div>
+            <input type="checkbox" name="">
+            <label for="">File required</label>
+          </div>
+        </fieldset>
+        <label>Sequence</label>
+        <select placeholder="Please select&hellip;">
+          <option value="">Option #1</option>
+          <option value="">Option #2</option>
+          <option value="">Option #3</option>
+          <option value="">Option #4</option>
+        </select>
+        <label>Submission file help text</label>
+        <textarea class="txt-sml" placeholder="Describe the help text for this field which is visible to the participant&hellip;"></textarea>
+      </div>
+      <a href="#">+ Submission File Definition</a>
+      <div class="button-group">
+        <button class="btn btn-primary">Create Challenge</button>
+        <button class="btn btn-secondary">Cancel</button>
+      </div>
+    </fieldset>
+    <% end %>
+  </div>

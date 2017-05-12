@@ -1,5 +1,4 @@
-class Discussion::Cell < Cell::Concept
-  include ActionView::Helpers::DateHelper
+class Discussion::Cell < Template::Cell
 
   def show
     render

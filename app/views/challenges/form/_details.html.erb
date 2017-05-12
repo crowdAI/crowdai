@@ -1,0 +1,51 @@
+<div class="row">
+  <%= form_for @challenge, html: { class: "sgl-col" } do |f| %>
+    <fieldset>
+      <label>Challenge Title</label>
+      <%= f.text_field :challenge %>
+      <label>Tagline</label>
+      <%= f.text_field :tagline %>
+      <label>Image</label>
+      <div class="upload">
+        <input class="file-upload" type="file" accept="image/*">
+        <span>Your image will be cropped if necessary. 5MB limit</span>
+      </div>
+      <label>Host</label>
+      <select>
+        <option value="" disabled selected hidden>Please select&hellip;</option>
+        <option value="all">All platforms</option>
+        <option value="caffe">Caffe</option>
+        <option value="data_mining">Data mining</option>
+      </select>
+    </fieldset>
+    <div class="twin-container">
+      <div class="twin-field">
+        <label>Start Date</label>
+        <%= f.text_field :start_date, class: 'datepicker', placeholder: "dd/mm/yyyy"  %>
+      </div>
+      <div class="twin-field">
+        <label>End Date</label>
+        <%= f.text_field :end_date, class: 'datepicker', placeholder: "dd/mm/yyyy"  %>
+      </div>
+    </div>
+    <div class="twin-container">
+      <div class="twin-field">
+        <label>Start Time (<abbr title="Coordinated Universal Time">UTC</abbr>)</label>
+        <%= f.text_field :start_time %>
+      </div>
+      <div class="twin-field">
+        <label>End Time (<abbr title="Coordinated Universal Time">UTC</abbr>)</label>
+        <%= f.text_field :end_time %>
+      </div>
+    </div>
+    <div class="switch-container">
+      <input type="checkbox" id="switch" name="switch" class="switch">
+      <label for="switch">Live?</label>
+    </div>
+    <div class="button-group">
+      <%= f.submit (f.object.new_record? ? "Create Challenge" : "Update Challenge"), class: 'btn btn-primary' %>
+      <%= link_to 'Cancel', '/', class: "btn btn-secondary" %>
+    </div>
+  </fieldset>
+<% end %>
+</div>

@@ -1,6 +1,5 @@
-class Discussion::Cell::Comment < Cell::Concept
+class Discussion::Cell::Comment < Template::Cell
   inherit_views Discussion::Cell
-  include ActionView::Helpers::DateHelper
 
   def show
     render :comment

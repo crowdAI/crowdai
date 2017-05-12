@@ -1,24 +1,57 @@
-<div class="markdown-editor">
-  <ul class="nav nav-tabs" data-tabs="tabs">
-    <li class="active">
-      <a href="#editor-pane-submission-instructions" data-toggle="tab">Write</a>
-    </li>
-    <li>
-      <a href="#preview-pane-submission-instructions" data-toggle="tab">Preview</a>
-    </li>
-  </ul>
-  <div id="my-tab-content" class="tab-content">
-    <div class="tab-pane active" id="editor-pane-submission-instructions">
-      <%= f.label 'Submission Instructions' %>
-      <%= render 'markdown_editor/toolbar' %>
-      <%= f.text_area eval(markdownx).to_sym,
-                      class: 'form-control markdown-textarea',
-                      placeholder: 'Describe the submission instructions for this challenge.',
-                      required: true,
-                      rows: 10 %>
-    </div>
-    <div class="tab-pane" id="preview-pane-submission-instructions">
-      <div id="markdown-preview-submission-instructions" class: "markdown-preview-pane"></div>
-    </div>
+<div class="md-editor">
+  <div class="sub-nav">
+    <ul>
+      <li class="active">Write</li>
+      <li><a href="#">Preview</a></li>
+    </ul>
+  </div>
+  <div class="md-editor-btns">
+    <ul>
+      <li><button class='add_h1'>h1</button></li>
+      <li><button class='add_h2'>h2</button></li>
+      <li><button class='add_h3'>h3</button></li>
+    </ul>
+    <ul>
+      <li>
+        <button>
+          <i class="fa fa-picture-o" aria-hidden="true"></i>
+        </button>
+      </li>
+      <li>
+        <button>
+          <i class="fa fa-link" aria-hidden="true"></i>
+        </button>
+      </li>
+    </ul>
+    <ul>
+      <li><button>B</button></li>
+      <li><button><i>i</i></button></li>
+      <li><button>&lt;/&gt;</button></li>
+      <li><button>&lt;/.&gt;</button></li>
+    </ul>
+    <ul>
+      <li>
+        <button>
+          <i class="fa fa-list-ul" aria-hidden="true"></i>
+        </button>
+      </li>
+      <li>
+        <button>
+          <i class="fa fa-list-ol" aria-hidden="true"></i>
+        </button>
+      </li>
+      <li>
+        <button>
+          <i class="fa fa-quote-left" aria-hidden="true"></i>
+        </button>
+      </li>
+    </ul>
+  </div>
+  <%= capture(&block) %>
+  <div class="mde-img">
+    <input type="file" accept="image/*">
+    <p>Attach images by
+      <a href="#">selecting them</a>
+    </p>
   </div>
 </div>

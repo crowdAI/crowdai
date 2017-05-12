@@ -1,6 +1,5 @@
-class Discussion::Cell::ListDetail < Cell::Concept
+class Discussion::Cell::ListDetail < Template::Cell
   inherit_views Discussion::Cell
-  include ActionView::Helpers::DateHelper
 
   def show
     render :list_detail

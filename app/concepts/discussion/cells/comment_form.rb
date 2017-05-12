@@ -1,8 +1,6 @@
-class Discussion::Cell::CommentForm < Cell::Concept
+class Discussion::Cell::CommentForm < Template::Cell
   inherit_views Discussion::Cell
-  include Devise::Controllers::Helpers
-  Devise::Controllers::Helpers.define_helpers(Devise::Mapping.new(:participant, {}))
-
+  
   def show
     render :comment_form
   end

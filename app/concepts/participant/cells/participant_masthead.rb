@@ -1,4 +1,4 @@
-class Participant::Cell::ParticipantMasthead < Cell::Concept
+class Participant::Cell::ParticipantMasthead < Template::Cell
   inherit_views Participant::Cell
 
   def show

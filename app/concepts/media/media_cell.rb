@@ -1,5 +1,4 @@
-class Media::Cell < Cell::Concept
-  include Escaped
+class Media::Cell < Template::Cell
 
   def show
     render

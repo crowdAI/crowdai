@@ -1,4 +1,4 @@
-class Article::Cell::ListDetail < Cell::Concept
+class Article::Cell::ListDetail < Template::Cell
   inherit_views Article::Cell
 
   def show

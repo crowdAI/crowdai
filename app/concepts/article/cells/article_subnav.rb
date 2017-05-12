@@ -1,4 +1,4 @@
-class Article::Cell::ArticleSubnav < Cell::Concept
+class Article::Cell::ArticleSubnav < Template::Cell
   inherit_views Article::Cell
 
   def show

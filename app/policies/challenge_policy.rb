@@ -25,7 +25,7 @@ class ChallengePolicy < ApplicationPolicy
   end
 
   def destroy?
-    new?
+    participant && participant.admin?
   end
 
   def regrade?

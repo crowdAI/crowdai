@@ -1,113 +1,82 @@
-<div role="tabpanel" class="tab-pane" id="evaluation">
-  <h2>Evaluation</h2>
-
-  <div class='row'>
-    <div class="col-md-6">
-      <%= f.input :grader, collection: enum_option_pairs(Challenge, :grader), include_blank: false %>
-    </div>
-    <div class='col-md-3 col-md-offset-3'>
-      <div id='regrade-status'>
-        <% if @challenge.status == :running || @challenge.status == :completed %>
-        <%= link_to("Re-grade", challenge_regrade_path(challenge), remote: true, data: { confirm: 'Are you sure you want to re-grade all submissions?' }, class: 'btn btn-primary outline' ) %>
-      <% else %>
-        <%= link_to "Re-grade", '#', class: 'btn btn-primary outline disabled' %>
-        <% end %>
+<div class="row">
+  <%= form_for @challenge, html: { class: "dbl-col" } do |f| %>
+  <fieldset>
+    <div class="twin-container">
+      <div class="twin-field">
+        <label>Grader</label>
+        <select>
+          <option value="" disabled selected hidden>Please select&hellip;</option>
+          <option></option>
+          <option></option>
+          <option></option>
+        </select>
+      </div>
+      <div class="twin-field">
+        <div class="btn-icon">
+          <button class="btn btn-primary">Re-grade</button>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class='row'>
-    <div class='col-md-12'>
-      <%= f.input :automatic_grading %>
-      <%= f.input :media_on_leaderboard %>
-      <%= f.input :online_grading %>
-      <small>If online grading is off, submissions are accepted only via API.</small>
-      <%= render partial: 'challenges/form/api_key', locals: { challenge: @challenge } %>
+  </fieldset>
+  <fieldset class="checkbox">
+    <div>
+      <%= f.check_box :automatic_grading, {}, "true", "false" %>
+      <label for="">Automatic grading</label>
     </div>
-  </div>
-
-  <div id='python-grader'>
-    <div class="row">
-      <div class='col-md-4'>
-        <%= f.input :grading_factor %>
-      </div>
-      <div class='col-md-4'>
-        <%= f.input :threshold %>
-      </div>
-      <div class='col-md-4'></div>
+    <div>
+      <%= f.check_box :media_on_leaderboard, {}, "true", "false" %>
+      <label for="">Media on leaderboard</label>
     </div>
-    <div class="row">
-      <div class='col-md-8'>
-        <%= f.label 'Answer File' %><br/>
-        <% if f.object.answer_file_s3_key %>
-          <%= link_to s3_filename(f.object.answer_file_s3_key),
-                      s3_expiring_url(f.object.answer_file_s3_key),
-                      class: 'expiring-url' %>
-        <% else %>
-        No answer file uploaded.
-        <%= f.object.answer_file_s3_key %>
-        <% end %>
-      </div>
-      <div class='col-md-4'>
-        <%= f.input :answer_file_s3_key, as: :file, input_html: {class: 's3File' }, label: false %>
-      </div>
+  </fieldset>
+  <div class="twin-container">
+    <div class="twin-field">
+      <label>Grading factor</label>
+      <%= f.text_field :grading_factor %>
+    </div>
+    <div class="twin-field">
+      <label>Threshold</label>
+      <%= f.text_field :threshold %>
     </div>
   </div>
-
-  <div id='docker-grader'>
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <h5>Docker Container grader configuration is found in the Docker tab.</h5>
-      </div>
+  <label>Answer file</label>
+  <div class="upload">
+    <input class="file-upload" type="file" accept="all">
+  </div>
+  <div class="twin-container">
+    <div class="twin-field">
+      <label>Primary score title</label>
+      <%= f.text_field :score_title %>
+    </div>
+    <div class="twin-field">
+      <label>Sort order</label>
+      <select>
+        <option value="ascending">Ascending</option>
+        <option value="descending">Descending</option>
+      </select>
     </div>
   </div>
-
-  <hr/>
-
-  <div class="row">
-    <div class="col-md-4">
-      <%= f.input :score_title, label: "Primary score title" %>
-      <%= f.input :score_secondary_title, label: "Secondary score title" %>
+  <div class="twin-container">
+    <div class="twin-field">
+      <label>Secondary score title</label>
+      <%= f.text_field :score_secondary_title %>
     </div>
-    <div class="col-md-3">
-      <%= f.input :primary_sort_order, label: "Sort order", collection: enum_option_pairs(Challenge, :primary_sort_order), include_blank: false %>
-      <%= f.input :secondary_sort_order, label: "Sort order", collection: enum_option_pairs(Challenge, :secondary_sort_order), include_blank: false %>
-    </div>
-    <div class="col-md-3">
-      </div>
-    <div class='col-md-3'></div>
-  </div>
-
-
-
-  <hr/>
-
-  <div class="markdown-editor">
-    <ul class="nav nav-tabs" data-tabs="tabs">
-      <li class="active">
-        <a href="#editor-pane-evaluation" data-toggle="tab">Write</a>
-      </li>
-      <li>
-        <a href="#preview-pane-evaluation" class="preview-pane-link" data-toggle="tab">Preview</a>
-      </li>
-    </ul>
-    <div class="tab-content">
-      <div class="tab-pane active" id="editor-pane-evaluation">
-        <%= f.label 'Evaluation' %>
-        <%= render 'markdown_editor/toolbar' %>
-        <%= f.text_area :evaluation_markdown,
-                        class: 'form-control markdown-textarea',
-                        placeholder: 'Enter evaluation criteria.',
-                        required: true,
-                        rows: 30 %>
-      </div>
-      <div class="tab-pane markdown-preview-pane" id="preview-pane-evaluation">
-        <div id="markdown-preview"></div>
-      </div>
+    <div class="twin-field">
+      <label>Sort order</label>
+      <select>
+        <option value="ascending">Ascending</option>
+        <option value="descending">Descending</option>
+      </select>
     </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-primary outline' %>
-  </div>
+  <label>Evaluation Criteria</label>
+  <%= markdown_editor("description_markdown") do |m| %>
+    <%= f.text_area :evaluation_markdown, class: "txt-med" %>
+  <% end %>
+</div>
+<div class="button-group">
+  <%= f.submit (f.object.new_record? ? "Create Challenge" : "Update Challenge"), class: 'btn btn-primary' %>
+  <%= link_to 'Cancel', '/', class: "btn btn-secondary" %>
+</div>
+</fieldset>
+<% end %>
 </div>

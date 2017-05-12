@@ -3,6 +3,7 @@
   <h2>Overview</h2>
 
     <%= f.input :challenge %>
+    <%= f.input :challenge_client_name %>
     <%= f.input :tagline %>
     <%= f.association :organizer, collection: Organizer.all, value_method: :id, label_method: :organizer, priority: @challenge.organizer, include_blank: false %>
     <% if current_participant.admin? %>

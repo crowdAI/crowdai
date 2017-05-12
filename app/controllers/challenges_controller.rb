@@ -86,6 +86,14 @@ class ChallengesController < ApplicationController
     render js: concept("challenge/cell/list", @challenges, page: params[:page]).(:append)
   end
 
+  def regen_api_key
+    @challenge = Challenge.friendly.find(params[:challenge_id])
+    authorize @challenge
+    @challenge.api_key = @challenge.generate_api_key
+    @challenge.save!
+    redirect_to edit_challenge_path(@challenge),notice: 'API Key regenerated.'
+  end
+
   private
   def set_challenge
     @challenge = Challenge.friendly.find(params[:id])
@@ -107,8 +115,9 @@ class ChallengesController < ApplicationController
                     :license, :license_markdown,
                     :perpetual_challenge, :automatic_grading,
                     :grader, :grading_factor, :answer_file_s3_key,
-                    :submission_license, :api_required, :daily_submissions, :threshold,
-                    :start_dttm, :end_dttm, :video_on_leaderboard,
+                    :submission_license, :api_required, :daily_submissions, :threshold, :online_grading,
+                    :start_dttm, :end_dttm, :media_on_leaderboard,
+                    :challenge_client_name,
                     dataset_attributes: [:id, :challenge_id, :description, :_destroy],
                     submissions_attributes: [:id, :challenge_id, :participant_id, :_destroy ],
                     image_attributes: [:id, :image, :_destroy ],

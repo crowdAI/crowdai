@@ -32,13 +32,11 @@ class ChallengesController < ApplicationController
   def new
     @challenge = Challenge.new
     authorize @challenge
-    load_gon
   end
 
 
   def edit
     authorize @challenge
-    load_gon
   end
 
 

@@ -4,7 +4,6 @@ class LandingPageController < ApplicationController
 
   def index
     @challenges = cell(:challenge_index_detail, collection: policy_scope(Challenge).limit(3))
-    load_gon
   end
 
 end

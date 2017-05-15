@@ -48,7 +48,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 #gem 'jquery-ui-rails'
-gem "gon"
 #gem "jquery-fileupload-rails"
 gem 'turbolinks'
 gem 'lodash-rails'

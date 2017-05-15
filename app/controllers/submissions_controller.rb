@@ -13,7 +13,6 @@ class SubmissionsController < ApplicationController
     else
       @submissions = current_participant.submissions.where(challenge_id: @challenge.id)
     end
-    load_gon({percent_progress: @challenge.pct_passed})
   end
 
 
@@ -23,7 +22,6 @@ class SubmissionsController < ApplicationController
     else
       participant_id = params[:participant_id]
       @submissions = Submission.where(challenge_id: @challenge.id, participant_id: participant_id)
-      load_gon({percent_progress: @challenge.pct_passed})
     end
   end
 

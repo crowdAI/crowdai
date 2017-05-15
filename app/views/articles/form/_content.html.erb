@@ -1,0 +1,16 @@
+<div class="row">
+  <%= form_for article, html: { class: "dbl-col" } do |f| %>
+    <fieldset>
+      <div id='article-sections'>
+        <%= f.fields_for :article_sections do |file| %>
+          <%= render 'articles/form/article_section_fields', f: file %>
+        <% end %>
+        <div class='links'>
+          <%= link_to_add_association '+ Add Section', f, :article_sections,
+                    html_options = { partial: 'articles/form/article_section_fields' } %>
+        </div>
+      </div>
+      <%= render partial: 'articles/form/submit_buttons', locals: { f: f } %>
+    </fieldset>
+  <% end %>
+</div>

@@ -357,11 +357,6 @@ GEM
       multi_json (>= 1.11.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    gon (6.1.0)
-      actionpack (>= 3.0)
-      json
-      multi_json
-      request_store (>= 1.0)
     groupdate (3.1.1)
       activesupport (>= 3)
     guard (2.14.0)
@@ -760,7 +755,6 @@ DEPENDENCIES
   font-awesome-rails
   friendly_id (~> 5.1.0)
   gibbon
-  gon
   groupdate
   guard
   httparty

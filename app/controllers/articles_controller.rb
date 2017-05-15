@@ -2,7 +2,6 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized, except: [:load_more]
 
-
   def index
     @query = Article.ransack(params[:q])
     @articles = policy_scope(@query.result)
@@ -17,7 +16,6 @@ class ArticlesController < ApplicationController
     else
       @article_section = @article.article_sections.first
     end
-    load_gon
   end
 
 

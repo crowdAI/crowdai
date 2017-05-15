@@ -12,11 +12,9 @@ class LeaderboardsController < ApplicationController
     if current_participant && (current_participant.admin? || @challenge.organizer_id == current_participant.organizer_id)
       @participant_submissions = ParticipantSubmission.where(challenge_id: @challenge.id)
     end
-    load_gon({percent_progress: @challenge.pct_passed})
   end
 
   def show
-    load_gon({percent_progress: @challenge.pct_passed})
   end
 
   def video_modal
@@ -35,6 +33,5 @@ class LeaderboardsController < ApplicationController
     challenge = Challenge.friendly.find(params[:challenge_id])
     @challenge = ChallengesPresenter.new(challenge)
   end
-
 
 end

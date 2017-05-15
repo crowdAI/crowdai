@@ -1,0 +1,36 @@
+<div class="row">
+  <%= form_for article, html: { class: "sgl-col" } do |f| %>
+  <fieldset>
+    <label>Title</label>
+    <%= f.text_field :article %>
+    <label>Tutorial Image</label>
+    <div class="upload">
+      <input class="file-upload" type="file" accept="image/*">
+      <span>Your image will be cropped if necessary. 5MB limit</span>
+    </div>
+    <label>Short description</label>
+    <%= f.text_area :summary, class: "txt-sml", placeholder: "Add a short description, only one sentence&hellip;"  %>
+    <label>Platform</label>
+      <select>
+        <option value="" disabled selected hidden>Please select&hellip;</option>
+        <option value="all">All platforms</option>
+        <option value="caffe">Caffe</option>
+        <option value="data_mining">Data mining</option>
+        <option value="deep_learning">Deep learning</option>
+        <option value="keras">Keras</option>
+        <option value="machine_learning">Machine learning</option>
+        <option value="octave">Octave</option>
+        <option value="scikit2">Python-2 Scikit-Learn</option>
+        <option value="scikit3">Python-3 Scikit-Learn</option>
+        <option value="tensorflow">Tensorflow</option>
+        <option value="torch7">Torch7</option></select>
+      </select>
+      <%= f.hidden_field :participant_id, value: article.id %>
+      <div class="switch-container">
+        <input type="checkbox" id="switch" name="switch" class="switch">
+        <label for="switch">Live?</label>
+      </div>
+      <%= render partial: 'articles/form/submit_buttons', locals: { f: f } %>
+    </fieldset>
+  <% end %>
+</div>

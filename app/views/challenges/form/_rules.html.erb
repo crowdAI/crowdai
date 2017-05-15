@@ -5,10 +5,7 @@
       <%= markdown_editor("description_markdown") do |m| %>
         <%= f.text_area :rules_markdown, class: "txt-med" %>
       <% end %>
-      <div class="button-group">
-        <%= f.submit (f.object.new_record? ? "Create Challenge" : "Update Challenge"), class: 'btn btn-primary' %>
-        <%= link_to 'Cancel', '/', class: "btn btn-secondary" %>
-      </div>
+      <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>
     </fieldset>
   <% end %>
 </div>

@@ -7,9 +7,9 @@
     <% end %>
 
     <p>This license text is displayed on the submission upload page during and after the challenge</p>
-    <textarea
-      class="txt-med"
-      placeholder="Please upload your submissions and include a detailed description of the methodology, techniques and insights leveraged with this submission. After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC)."></textarea>
+    <%= markdown_editor("sss") do |m| %>
+      <%= f.text_area :license_markdown, class: "txt-med", placeholder: "Please upload your submissions and include a detailed description of the methodology, techniques and insights leveraged with this submission. After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC)." %>
+    <% end %>
     <fieldset>
       <div class="switch-container">
         <input type="checkbox" id="switch" name="switch" class="switch" checked>
@@ -29,42 +29,20 @@
     </fieldset>
     <fieldset>
       <label>Maximum no. of daily submissions</label>
-      <input type="text" name="" placeholder="">
+      <%= f.text_field :daily_submissions %>
     </fieldset>
     <fieldset>
       <h4>Submission File Definitions</h4>
-      <div class="section-container">
-        <a class="ss-icon" href="#"></a>
-        <label>Submission file description</label>
-        <input type="text" name="" placeholder="">
-        <label>File type</label>
-        <select placeholder="Please select&hellip;">
-          <option value="">Option #1</option>
-          <option value="">Option #2</option>
-          <option value="">Option #3</option>
-          <option value="">Option #4</option>
-        </select>
-        <fieldset class="checkbox">
-          <div>
-            <input type="checkbox" name="">
-            <label for="">File required</label>
-          </div>
-        </fieldset>
-        <label>Sequence</label>
-        <select placeholder="Please select&hellip;">
-          <option value="">Option #1</option>
-          <option value="">Option #2</option>
-          <option value="">Option #3</option>
-          <option value="">Option #4</option>
-        </select>
-        <label>Submission file help text</label>
-        <textarea class="txt-sml" placeholder="Describe the help text for this field which is visible to the participant&hellip;"></textarea>
+      <div id='submission-file-definitions'>
+        <%= f.fields_for :submission_file_definitions do |file| %>
+          <%= render 'challenges/form/submission_file_definition_fields', f: file %>
+        <% end %>
+        <div class='links'>
+          <%= link_to_add_association '+ Submission File Definition', f, :submission_file_definitions,
+                                    html_options = { partial: 'challenges/form/submission_file_definition_fields' } %>
+        </div>
       </div>
-      <a href="#">+ Submission File Definition</a>
-      <div class="button-group">
-        <button class="btn btn-primary">Create Challenge</button>
-        <button class="btn btn-secondary">Cancel</button>
-      </div>
+          <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>
     </fieldset>
     <% end %>
   </div>

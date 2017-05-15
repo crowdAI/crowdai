@@ -1,9 +1,9 @@
 module MarkdownEditorHelper
 
-  def markdown_editor(fieldname, &block)
+  def markdown_editor(placeholder, &block)
     render(
       partial: 'markdown_editor/markdown_editor',
-      locals: { fieldname: fieldname, block: block }
+      locals: { placeholder: placeholder, block: block }
     )
   end
 

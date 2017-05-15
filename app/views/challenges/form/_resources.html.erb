@@ -1,46 +1,11 @@
 <div class="row">
-    <form class="dbl-col">
+  <%= form_for @challenge, html: { class: "dbl-col" } do |f| %>
       <fieldset>
         <label>Resources</label>
-        <div class="md-editor">
-          <div class="sub-nav">
-            <ul>
-              <li class="active">Write</li>
-              <li><a href="#">Preview</a></li>
-            </ul>
-          </div>
-          <div class="md-editor-btns">
-            <ul>
-              <li><button>h1</button></li>
-              <li><button>h2</button></li>
-              <li><button>h3</button></li>
-            </ul>
-            <ul>
-              <li><button><i class="fa fa-picture-o" aria-hidden="true"></i></button></li>
-              <li><button><i class="fa fa-link" aria-hidden="true"></i></button></li>
-            </ul>
-            <ul>
-              <li><button>B</button></li>
-              <li><button><i>i</i></button></li>
-              <li><button>&lt;/&gt;</button></li>
-              <li><button>&lt;/.&gt;</button></li>
-            </ul>
-            <ul>
-              <li><button><i class="fa fa-list-ul" aria-hidden="true"></i></button></li>
-              <li><button><i class="fa fa-list-ol" aria-hidden="true"></i></button></li>
-              <li><button><i class="fa fa-quote-left" aria-hidden="true"></i></button></li>
-            </ul>
-          </div>
-          <textarea class="txt-med"></textarea>
-          <div class="mde-img">
-            <input type="file" accept="image/*">
-            <p>Attach images by <a href="#">selecting them</a></p>
-          </div>
-        </div>
-        <div class="button-group">
-          <button class="btn btn-primary">Create Challenge</button>
-          <button class="btn btn-secondary">Cancel</button>
-        </div>
+        <%= markdown_editor("description_markdown") do |m| %>
+          <%= f.text_area :resources_markdown, class: "txt-med" %>
+        <% end %>
+        <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>
       </fieldset>
-    </form>
+    <% end %>
   </div>

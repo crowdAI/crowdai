@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170512123554) do
+ActiveRecord::Schema.define(version: 20170515114626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,32 +68,16 @@ ActiveRecord::Schema.define(version: 20170512123554) do
     t.integer  "organizer_id"
     t.string   "challenge"
     t.string   "status_cd",                        default: "draft"
-    t.text     "description"
-    t.text     "evaluation_markdown"
-    t.text     "rules"
-    t.text     "prizes"
-    t.text     "resources"
     t.datetime "created_at",                                             null: false
     t.datetime "updated_at",                                             null: false
-    t.text     "dataset_description"
-    t.text     "submission_instructions"
     t.string   "tagline"
-    t.text     "evaluation"
     t.string   "primary_sort_order_cd",            default: "ascending"
     t.string   "secondary_sort_order_cd"
-    t.text     "description_markdown"
-    t.text     "rules_markdown"
-    t.text     "prizes_markdown"
-    t.text     "resources_markdown"
-    t.text     "dataset_description_markdown"
-    t.text     "submission_instructions_markdown"
     t.boolean  "perpetual_challenge",              default: false
     t.float    "grading_factor",                   default: 1.0
     t.string   "grader_cd"
     t.string   "answer_file_s3_key"
     t.integer  "page_views",                       default: 0
-    t.text     "license"
-    t.text     "license_markdown"
     t.integer  "participant_count",                default: 0
     t.integer  "submission_count",                 default: 0
     t.string   "score_title"
@@ -109,12 +93,28 @@ ActiveRecord::Schema.define(version: 20170512123554) do
     t.boolean  "media_on_leaderboard",             default: false
     t.string   "challenge_client_name"
     t.boolean  "online_grading",                   default: true
-    t.string   "api_key"
     t.integer  "vote_count",                       default: 0
+    t.string   "api_key"
     t.date     "start_date"
     t.date     "end_date"
     t.time     "start_time"
     t.time     "end_time"
+    t.text     "description_markdown"
+    t.text     "description"
+    t.text     "evaluation_markdown"
+    t.text     "evaluation"
+    t.text     "rules_markdown"
+    t.text     "rules"
+    t.text     "prizes_markdown"
+    t.text     "prizes"
+    t.text     "resources_markdown"
+    t.text     "resources"
+    t.text     "submission_instructions_markdown"
+    t.text     "submission_instructions"
+    t.text     "license_markdown"
+    t.text     "license"
+    t.text     "dataset_description_markdown"
+    t.text     "dataset_description"
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id", using: :btree
     t.index ["slug"], name: "index_challenges_on_slug", unique: true, using: :btree
   end
@@ -396,6 +396,60 @@ ActiveRecord::Schema.define(version: 20170512123554) do
   add_foreign_key "topics", "participants"
   add_foreign_key "votes", "participants"
 
+  create_view :ongoing_leaderboards,  sql_definition: <<-SQL
+      SELECT l.row_num,
+      l.id,
+      l.challenge_id,
+      l.participant_id,
+      l.name,
+      l.entries,
+      l.score,
+      l.score_secondary,
+      l.post_challenge,
+      l.created_at,
+      l.updated_at
+     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS row_num,
+              s.id,
+              s.challenge_id,
+              s.participant_id,
+              p.name,
+              cnt.entries,
+              s.score,
+              s.score_secondary,
+              s.post_challenge,
+              s.created_at,
+              s.updated_at
+             FROM submissions s,
+              participants p,
+              ( SELECT c.challenge_id,
+                      c.participant_id,
+                      count(c.*) AS entries
+                     FROM submissions c
+                    GROUP BY c.challenge_id, c.participant_id) cnt
+            WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l
+    WHERE (l.row_num = 1)
+    ORDER BY l.score DESC, l.score_secondary;
+  SQL
+
+  create_view :participant_submissions,  sql_definition: <<-SQL
+      SELECT s.id,
+      s.challenge_id,
+      s.participant_id,
+      p.name,
+      s.grading_status_cd,
+      s.post_challenge,
+      s.score,
+      s.score_secondary,
+      count(f.*) AS files,
+      s.created_at
+     FROM participants p,
+      (submissions s
+       LEFT JOIN submission_files f ON ((f.submission_id = s.id)))
+    WHERE (s.participant_id = p.id)
+    GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
+    ORDER BY s.created_at DESC;
+  SQL
+
   create_view :leaderboards,  sql_definition: <<-SQL
       SELECT l.row_num,
       l.id AS submission_id,
@@ -430,41 +484,6 @@ ActiveRecord::Schema.define(version: 20170512123554) do
                       count(c.*) AS entries
                      FROM submissions c
                     WHERE (c.post_challenge = false)
-                    GROUP BY c.challenge_id, c.participant_id) cnt
-            WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l
-    WHERE (l.row_num = 1)
-    ORDER BY l.score DESC, l.score_secondary;
-  SQL
-
-  create_view :ongoing_leaderboards,  sql_definition: <<-SQL
-      SELECT l.row_num,
-      l.id,
-      l.challenge_id,
-      l.participant_id,
-      l.name,
-      l.entries,
-      l.score,
-      l.score_secondary,
-      l.post_challenge,
-      l.created_at,
-      l.updated_at
-     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS row_num,
-              s.id,
-              s.challenge_id,
-              s.participant_id,
-              p.name,
-              cnt.entries,
-              s.score,
-              s.score_secondary,
-              s.post_challenge,
-              s.created_at,
-              s.updated_at
-             FROM submissions s,
-              participants p,
-              ( SELECT c.challenge_id,
-                      c.participant_id,
-                      count(c.*) AS entries
-                     FROM submissions c
                     GROUP BY c.challenge_id, c.participant_id) cnt
             WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l
     WHERE (l.row_num = 1)
@@ -521,25 +540,6 @@ ActiveRecord::Schema.define(version: 20170512123554) do
               dataset_files df
             WHERE (dfd.dataset_file_id = df.id)) pc
     WHERE ((pc.participant_id = p.id) AND (pc.challenge_id = c.id));
-  SQL
-
-  create_view :participant_submissions,  sql_definition: <<-SQL
-      SELECT s.id,
-      s.challenge_id,
-      s.participant_id,
-      p.name,
-      s.grading_status_cd,
-      s.post_challenge,
-      s.score,
-      s.score_secondary,
-      count(f.*) AS files,
-      s.created_at
-     FROM participants p,
-      (submissions s
-       LEFT JOIN submission_files f ON ((f.submission_id = s.id)))
-    WHERE (s.participant_id = p.id)
-    GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
-    ORDER BY s.created_at DESC;
   SQL
 
 end

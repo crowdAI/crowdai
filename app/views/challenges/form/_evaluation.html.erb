@@ -3,13 +3,7 @@
   <fieldset>
     <div class="twin-container">
       <div class="twin-field">
-        <label>Grader</label>
-        <select>
-          <option value="" disabled selected hidden>Please select&hellip;</option>
-          <option></option>
-          <option></option>
-          <option></option>
-        </select>
+        <%= f.select :grader, enum_option_pairs(Challenge, :grader), include_blank: false %>
       </div>
       <div class="twin-field">
         <div class="btn-icon">
@@ -17,8 +11,7 @@
         </div>
       </div>
     </div>
-  </fieldset>
-  <fieldset class="checkbox">
+    <fieldset class="checkbox">
     <div>
       <%= f.check_box :automatic_grading, {}, "true", "false" %>
       <label for="">Automatic grading</label>
@@ -49,10 +42,7 @@
     </div>
     <div class="twin-field">
       <label>Sort order</label>
-      <select>
-        <option value="ascending">Ascending</option>
-        <option value="descending">Descending</option>
-      </select>
+      <%= f.select :primary_sort_order, enum_option_pairs(Challenge, :primary_sort_order), include_blank: false %>
     </div>
   </div>
   <div class="twin-container">
@@ -62,21 +52,14 @@
     </div>
     <div class="twin-field">
       <label>Sort order</label>
-      <select>
-        <option value="ascending">Ascending</option>
-        <option value="descending">Descending</option>
-      </select>
+      <%= f.select :secondary_sort_order, enum_option_pairs(Challenge, :secondary_sort_order), include_blank: false %>
     </div>
   </div>
   <label>Evaluation Criteria</label>
   <%= markdown_editor("description_markdown") do |m| %>
-    <%= f.text_area :evaluation_markdown, class: "txt-med" %>
+  <%= f.text_area :evaluation_markdown, class: "txt-med" %>
   <% end %>
-</div>
-<div class="button-group">
-  <%= f.submit (f.object.new_record? ? "Create Challenge" : "Update Challenge"), class: 'btn btn-primary' %>
-  <%= link_to 'Cancel', '/', class: "btn btn-secondary" %>
-</div>
+  <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>
 </fieldset>
 <% end %>
 </div>

@@ -42,10 +42,7 @@
       <input type="checkbox" id="switch" name="switch" class="switch">
       <label for="switch">Live?</label>
     </div>
-    <div class="button-group">
-      <%= f.submit (f.object.new_record? ? "Create Challenge" : "Update Challenge"), class: 'btn btn-primary' %>
-      <%= link_to 'Cancel', '/', class: "btn btn-secondary" %>
-    </div>
+    <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>
   </fieldset>
 <% end %>
 </div>

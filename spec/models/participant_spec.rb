@@ -37,6 +37,8 @@ describe Participant do
   context 'validations' do
     it { is_expected.to validate_presence_of(:email) }
     it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_uniqueness_of(:name).case_insensitive }
+    it { is_expected.to validate_length_of(:name).is_at_least(2) }
     it { is_expected.to validate_presence_of(:api_key) }
     it { is_expected.to allow_value(FFaker::Lorem.characters(8)).for :password }
     it { is_expected.not_to allow_value(FFaker::Lorem.characters(7)).for :password }
@@ -147,12 +149,12 @@ describe Participant do
         expect(participant.api_key.length).to eq(32)
       end
 
-      it 'verify API key can be updated' do
-        api_key = participant.api_key
-        participant.set_api_key
-        expect(participant.api_key.length).to eq(32)
-        expect(participant.api_key).not_to eq(api_key)
-      end
+      #it 'verify API key can be updated' do
+      #  api_key = participant.api_key
+      #  participant.set_api_key
+      #  expect(participant.api_key.length).to eq(32)
+      #  expect(participant.api_key).not_to eq(api_key)
+      #end
     end
 
   end

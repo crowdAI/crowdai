@@ -28,7 +28,6 @@ class ArticlesController < ApplicationController
 
 
   def edit
-    load_gon
   end
 
 

@@ -2,7 +2,7 @@
 	<div class="masthead">
 		<div class="row">
 			<div class="info">
-				<h2>Edit Challenge</h2>
+				<h2><%= title %></h2>
 			</div>
 		</div>
 	</div>
@@ -22,31 +22,31 @@
 	</div>
 
     <div id='tab-details' class='tab-content'>
-      <%= render partial: 'challenges/form/details', locals: { challenge: @challenge } %>
+      <%= render partial: 'challenges/form/details', locals: { challenge: challenge } %>
     </div>
     <div id='tab-overview' class='tab-content'>
-      <%= render partial: 'challenges/form/overview', locals: { challenge: @challenge } %>
+      <%= render partial: 'challenges/form/overview', locals: { challenge: challenge } %>
     </div>
     <div id='tab-evaluation' class='tab-content'>
-      <%= render partial: 'challenges/form/evaluation', locals: { challenge: @challenge } %>
+      <%= render partial: 'challenges/form/evaluation', locals: { challenge: challenge } %>
     </div>
     <div id='tab-rules' class='tab-content'>
-      <%= render partial: 'challenges/form/rules', locals: { challenge: @challenge } %>
+      <%= render partial: 'challenges/form/rules', locals: { challenge: challenge } %>
     </div>
     <div id='tab-prizes' class='tab-content'>
-      <%= render partial: 'challenges/form/prizes', locals: { challenge: @challenge } %>
+      <%= render partial: 'challenges/form/prizes', locals: { challenge: challenge } %>
     </div>
     <div id='tab-resources' class='tab-content'>
-      <%= render partial: 'challenges/form/resources', locals: { challenge: @challenge } %>
+      <%= render partial: 'challenges/form/resources', locals: { challenge: challenge } %>
     </div>
     <div id='tab-submission' class='tab-content'>
-      <%= render partial: 'challenges/form/submission', locals: { challenge: @challenge } %>
+      <%= render partial: 'challenges/form/submission', locals: { challenge: challenge } %>
     </div>
     <div id='tab-dataset' class='tab-content'>
-      <%= render partial: 'challenges/form/dataset', locals: { challenge: @challenge } %>
+      <%= render partial: 'challenges/form/dataset', locals: { challenge: challenge } %>
     </div>
 
-  <% if policy(@challenge).destroy? %>
+  <% if policy(challenge).destroy? %>
     <div class="additional">
       <div class="row">
         <a data-remodal-target="modal">Delete Challenge</a>

@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 feature 'Email Preferences', js: true do
@@ -100,5 +101,3 @@ feature 'Email Preferences', js: true do
     end
   end
 =end
-
-end

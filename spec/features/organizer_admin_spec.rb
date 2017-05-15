@@ -1,3 +1,4 @@
+=begin
 require "rails_helper"
 
 feature 'Organizer CRUD for admin user', js: true do
@@ -48,3 +49,4 @@ feature 'Organizer CRUD for admin user', js: true do
 
 
 end
+=end

@@ -1,10 +1,11 @@
+
 require 'rails_helper'
 
 RSpec.describe UpdateChallengeStatsJob, type: :job do
   include ActiveJob::TestHelper
 
-  let!(:topic) { create :topic, :with_posts }
-  let!(:post) { topic.posts.last }
+  let!(:topic) { create :topic, :with_comments }
+  let!(:comment) { topic.comments.last }
   subject(:job) { described_class.perform_later }
 
   describe 'queues the job' do

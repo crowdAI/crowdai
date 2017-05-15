@@ -1,2 +1,0 @@
-class DockerFilePolicy < AdminResourcePolicy
-end

@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 feature 'Article voting', js: true do
@@ -30,3 +31,4 @@ feature 'Article voting', js: true do
 
 
 end
+=end

@@ -1,2 +1,0 @@
-class ContainerInstancePolicy < ApplicationPolicy
-end 

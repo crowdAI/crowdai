@@ -5,12 +5,11 @@ FactoryGirl.define do
     topic FFaker::Lorem.sentence(3)
     sticky false
     views 1
-    posts_count 3
 
-    trait :with_posts do
+    trait :with_comments do
       after(:create) do |topic|
-        topic.posts << FactoryGirl.create_list(:post, 3, topic: topic)
-        topic.participant = topic.posts.first.participant
+        topic.comments << FactoryGirl.create_list(:comment, 3, topic: topic)
+        topic.participant = topic.comments.first.participant
       end
     end
   end

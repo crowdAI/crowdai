@@ -1,2 +1,0 @@
-class PostPolicy < ApplicationPolicy
-end 

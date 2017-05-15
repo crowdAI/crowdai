@@ -1,2 +1,0 @@
-class DockerConfigurationPolicy < AdminResourcePolicy
-end

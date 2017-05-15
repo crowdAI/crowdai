@@ -1,17 +1,17 @@
-class PostNotificationMailer < ApplicationMailer
+class CommentNotificationMailer < ApplicationMailer
 
-  def sendmail(participant_id,post_id)
+  def sendmail(participant_id,comment_id)
     participant = Participant.find(participant_id)
-    post = Post.find(post_id)
-    options = format_options(participant,post)
-    @model_id = post_id
+    comment = Comment.find(comment_id)
+    options = format_options(participant,comment)
+    @model_id = comment_id
     mandrill_send(options)
   end
 
 
-  def format_options(participant,post)
-    topic = post.topic
-    challenge = post.topic.challenge
+  def format_options(participant,comment)
+    topic = comment.topic
+    challenge = comment.topic.challenge
 
     options = {
       participant_id:   participant.id,
@@ -25,7 +25,7 @@ class PostNotificationMailer < ApplicationMailer
         },
         {
           name:           "BODY",
-          content:        email_body(challenge,topic,post)
+          content:        email_body(challenge,topic,comment)
         }
       ]
     }
@@ -35,19 +35,19 @@ class PostNotificationMailer < ApplicationMailer
     link_to challenge.challenge, challenges_url(challenge)
   end
 
-  def new_post_link(topic)
-    link_to 'here', new_topic_post_url(topic)
+  def new_comment_link(topic)
+    link_to 'here', new_topic_comment_url(topic)
   end
 
 
-  def email_body(challenge,topic,post)
+  def email_body(challenge,topic,comment)
     "<div>" +
-    "<p>A new post has been made to the " +
+    "<p>A new comment has been made to the " +
     "#{challenge_link(challenge)} challenge.</p>" +
     "<br/>" +
-    "#{post.post}" +
+    "#{comment.comment}" +
     "<br/>" +
-    "<p>Click #{new_post_link(topic)} to see the post.</p>" +
+    "<p>Click #{new_comment_link(topic)} to see the comment.</p>" +
     "</div>"
   end
 

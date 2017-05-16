@@ -34,6 +34,9 @@
       <div class="button-group">
         <%= link_to 'Submit Entry', challenge_submissions_path(challenge), class: "btn btn-secondary" %>
         <%= concept(Vote::Cell, challenge) %>
+        <% if policy(challenge).edit? %>
+          <%= link_to 'Edit', edit_challenge_path(challenge), class: "btn btn-secondary" %>
+        <% end %>
       </div>
     </div>
   </div>

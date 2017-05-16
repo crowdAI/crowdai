@@ -19,7 +19,7 @@ gem 'activeadmin-xls', github: 'thambley/activeadmin-xls'
 # monitoring
 gem "rorvswild"
 #gem "brakeman", :require => false
-
+gem 'mini_magick'
 
 # model
 gem 'simple_enum'
@@ -98,7 +98,7 @@ gem 'streamio-ffmpeg'
 
 # Amazon
 gem 'aws-sdk', '~> 2.2'
-gem 'fog', '1.35.0'
+gem 'fog'
 
 # View
 gem "trailblazer"

@@ -23,6 +23,8 @@ class Article < ApplicationRecord
   validates :view_count,        presence: true
   validates :vote_count,        presence: true
 
+  mount_uploader :image_file, ImageUploader
+
 
   CATEGORIES = {
     'caffe' => "Caffe",

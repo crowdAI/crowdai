@@ -13,13 +13,13 @@ class Challenge < ApplicationRecord
   has_one :image,                         as: :imageable, dependent: :destroy
   accepts_nested_attributes_for           :image, allow_destroy: true
   has_many :dataset_files,                dependent: :destroy
-  has_many :docker_configurations,        dependent: :destroy
+  mount_uploader :image_file, ImageUploader
 
   has_many :submission_file_definitions,  dependent: :destroy, inverse_of: :challenge
   accepts_nested_attributes_for           :submission_file_definitions,
                                           reject_if: :all_blank,
                                           allow_destroy: true
-                                          
+
   has_many :submissions,                  dependent: :destroy
   has_many :leaderboards,                 class_name: 'Leaderboard'
   has_many :ongoing_leaderboards,         class_name: 'OngoingLeaderboard'

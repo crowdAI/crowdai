@@ -1,5 +1,5 @@
 <content>
-  <%= concept('article/cell/article_masthead', @article, article_section: @article_section) %>
-  <%= concept('article/cell/article_subnav', @article, article_section: @article_section) %>
-  <%= concept('article/cell', @article, article_section: @article_section) %>
+  <%= concept(Article::Cell::ArticleMasthead, @article, article_section: @article_section) %>
+  <%= concept(Article::Cell::ArticleSubnav, @article, article_section: @article_section) %>
+  <%= concept(Article::Cell, @article, article_section: @article_section) %>
 </content>

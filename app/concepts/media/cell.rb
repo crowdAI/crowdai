@@ -1,4 +1,5 @@
 class Media::Cell < Template::Cell
+  # Media is used for attached audio / image / video which has not been uploaded via Carrierwave (eg: has come from an external grader)
 
   def show
     render

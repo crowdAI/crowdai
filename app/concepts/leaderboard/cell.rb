@@ -28,6 +28,10 @@ class Leaderboard::Cell < Template::Cell
     Participant.find(id)
   end
 
+  def submission(id)
+    Submission.find(id)
+  end
+
   def cols
     cols = [:rank, :participant]
     cols << :media if challenge.media_on_leaderboard

@@ -1,2 +1,0 @@
-class EmailPolicy < AdminResourcePolicy
-end

@@ -1,0 +1,18 @@
+<thead>
+  <tr>
+    <th class="positon">#</th>
+    <th class="participant">Participant</th>
+    <% if cols.include?(:media) %>
+      <th class="video">Video</th>
+    <% end %>
+    <th class="score"><%= challenge.score_title %></th>
+    <% if cols.include?(:score_secondary) %>
+      <th class="score"><%= challenge.score_secondary_title %></th>
+    <% end %>
+    <th class="entries">Entries</th>
+    <%= if cols.include?(:post_challenge) %>
+      <th class="post-challenge"></th>
+    <% end %>
+    <th class="last-submission">Last Submission (UTC)</th>
+  </tr>
+</thead>

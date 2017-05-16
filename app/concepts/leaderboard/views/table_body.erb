@@ -1,0 +1,49 @@
+<tbody>
+  <% leaderboard.each_with_index do |entry,row| %>
+  <tr>
+    <td class="positon">
+      <strong><%= "%02d." % (row + 1) %></strong>
+    </td>
+
+    <td class="participant">
+      <div class="user-link">
+        <%= link_to participant_path(entry.participant_id) do %>
+          <%= concept(Image::Cell,participant(entry.participant_id),size: :thumb) %>
+        <% end %>
+        <p><%= link_to entry.name, participant_path(entry.participant_id) %></p>
+      </div>
+    </td>
+
+    <% if cols.include?(:media) %>
+      <td class="video">
+        <a data-toggle="modal" data-target="" data-remote="true" href="#">
+          <video
+            autoplay="autoplay"
+            loop="loop"
+            width="100"
+            height="75"
+            src="https://crowdai-prd.s3.eu-central-1.amazonaws.com/submission_files/submission_178/2a84f97b-0f2d-4dc9-8f68-58851e017349_gif.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAILFF3ZEGG7Y4HXEQ%2F20170330%2Feu-central-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20170330T100138Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=99b9858e3ed10565f944375c9ddec8a10e19c447320eae584e8704424d2f0e03"></video>
+        </a>
+      </td>
+    <% end %>
+
+    <td class="score">
+      <strong><%= entry.score %></strong>
+    </td>
+
+    <% if cols.include?(:score_secondary) %>
+      <td class="score">
+        <strong><%= entry.score_secondary %></strong>
+      </td>
+    <% end %>
+
+    <td class="entries"><%= entry.entries %></td>
+
+    <%= if cols.include?(:post_challenge) %>
+      <td class="post-challenge"></td>
+    <% end %>
+
+    <td class="last-submission"><%= entry.created_at.strftime("%a, %e %b %Y %R") %></td>
+  </tr>
+  <% end %>
+</tbody>

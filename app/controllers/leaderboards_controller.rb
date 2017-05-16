@@ -5,7 +5,7 @@ class LeaderboardsController < ApplicationController
   respond_to :js, :html
 
   def index
-    @leaderboards = @challenge.leaderboards
+    @leaderboard = @challenge.leaderboards
     if @challenge.completed?
       @ongoing_leaderboards = @challenge.ongoing_leaderboards
     end
@@ -30,8 +30,7 @@ class LeaderboardsController < ApplicationController
   end
 
   def set_challenge
-    challenge = Challenge.friendly.find(params[:challenge_id])
-    @challenge = ChallengesPresenter.new(challenge)
+    @challenge = Challenge.friendly.find(params[:challenge_id])
   end
 
 end

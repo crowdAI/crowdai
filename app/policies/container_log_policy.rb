@@ -1,2 +1,0 @@
-class ContainerLogPolicy < ApplicationPolicy
-end 

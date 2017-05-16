@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   end
 
   resources :challenges do
-    resources :dataset_files, only: [:show, :index, :delete, :new, :create]
+    resources :dataset_files, only: [:new, :show, :index, :delete, :new, :create]
     resources :events
     resources :submissions do
       get :grade

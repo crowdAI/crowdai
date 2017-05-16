@@ -1,7 +1,6 @@
 <div class="sub-nav">
   <div class="row">
     <ul>
-      <li class="active">Overview</li>
       <li <%= tab_class('overview') %> ><%= link_to 'Overview', challenge_path(challenge) %></li>
       <li <%= tab_class('leaderboard') %> ><%= link_to 'Leaderboard', challenge_leaderboards_path(challenge) %></li>
       <li <%= tab_class('discussion') %> ><%= link_to 'Discussion', challenge_topics_path(challenge) %></li>

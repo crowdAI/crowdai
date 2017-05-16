@@ -1,4 +1,4 @@
-class Participant::Cell < Cell::Concept
+class Participant::Cell < Template::Cell
 
   def show
     render

@@ -1,0 +1,19 @@
+<div class="sub-nav">
+  <div class="row">
+    <ul>
+      <li <%= tab_class('challenges') %> ><%= link_to 'Challenges', challenge_path(challenge) %></li>
+      <li <%= tab_class('leaderboard') %> ><%= link_to 'Members', challenge_leaderboards_path(challenge) %></li>
+    <%= link_to 'Submit Entry', challenge_submissions_path(challenge), class: "btn btn-secondary" %>
+  </div>
+</div>
+
+
+<div class="sub-nav">
+    <div class="row">
+        <ul>
+            <li class="active">Challenges <sup>3</sup></li>
+            <li><a href="#">Members <sup>2</sup></a></li>
+        </ul>
+        <a class="btn btn-primary" data-remodal-target="modal">Add Members</a>
+    </div>
+</div>

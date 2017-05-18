@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 
 
   def not_authorized
-    flash[:error] = "You are not authorised for this action"
+    flash[:error] = "You are not authorised to access this page."
     redirect_to root_path
   end
 

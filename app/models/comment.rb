@@ -4,8 +4,10 @@ class Comment < ApplicationRecord
   has_many :votes, as: :votable
   before_validation :cache_rendered_markdown
 
-  validates :vote_count, presence: true
   default_scope { order('id asc') }
+
+  validates :vote_count, presence: true
+  validates :comment_markdown, presence: true
 
   private
   def cache_rendered_markdown

@@ -153,7 +153,7 @@ group :test do
   gem 'capybara'
   gem 'capybara-email'
   gem 'capybara-screenshot'
-  #gem 'capybara-webkit'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
   gem "launchy"
   gem 'shoulda'

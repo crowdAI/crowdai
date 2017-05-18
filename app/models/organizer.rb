@@ -12,7 +12,6 @@ class Organizer < ApplicationRecord
     self.approved
   end
 
-
   def should_generate_new_friendly_id?
     organizer_changed?
   end

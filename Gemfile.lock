@@ -124,6 +124,9 @@ GEM
     capybara-screenshot (1.0.14)
       capybara (>= 1.0, < 3)
       launchy
+    capybara-webkit (1.12.0)
+      capybara (>= 2.3.0, < 2.13.0)
+      json
     carrierwave (0.11.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -741,6 +744,7 @@ DEPENDENCIES
   capybara
   capybara-email
   capybara-screenshot
+  capybara-webkit
   carrierwave
   cells
   cells-erb

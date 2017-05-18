@@ -8,6 +8,8 @@ describe Article do
     it { is_expected.to respond_to :vote_count }
     it { is_expected.to respond_to :view_count }
     it { is_expected.to respond_to :slug }
+    it { is_expected.to respond_to :image_file }
+    it { is_expected.to respond_to :category }
   end
 
   context 'associations' do
@@ -29,14 +31,6 @@ describe Article do
   end
 
   context 'methods' do
-    describe '#image_medium_url' do
-      it 'works' do
-        article = Article.new
-        result = article.image_medium_url
-        expect(result).not_to be_nil
-      end
-    end
-
     describe '#record_page_view' do
       it 'returns 1 for the first view' do
         article = build(:article)
@@ -48,6 +42,13 @@ describe Article do
         article = build(:article)
         3.times { article.record_page_view }
         expect(article.view_count).to eq(3)
+      end
+
+      it '#should_generate_new_friendly_id?' do
+        s = create(:article)
+        slug = s.slug
+        s.update(article: 'new title')
+        expect(slug).not_to eq(s.slug)
       end
     end
   end

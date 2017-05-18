@@ -40,14 +40,6 @@ class Article < ApplicationRecord
   }
 
 
-  def image_medium_url
-    if image.present?
-      image.image.url(:medium)
-    else
-      "//#{ENV['HOST']}/assets/image_not_found.png"
-    end
-  end
-
   def record_page_view
     self.view_count ||= 0
     self.view_count += 1

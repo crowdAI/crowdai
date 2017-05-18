@@ -37,8 +37,9 @@ describe Challenge do
     it { is_expected.to respond_to :score_secondary_title }
     it { is_expected.to respond_to :daily_submissions }
     it { is_expected.to respond_to :threshold }
-    it { is_expected.to respond_to :video_on_leaderboard }
+    it { is_expected.to respond_to :media_on_leaderboard }
     it { is_expected.to respond_to :vote_count }
+    it { is_expected.to respond_to :api_key }
   end
 
   context 'associations' do
@@ -163,6 +164,19 @@ describe Challenge do
       end
     end
 
+    context 'API key' do
+      let!(:challenge) { create :challenge }
+      it 'API key is created when account created' do
+        expect(challenge.api_key.length).to eq(32)
+      end
+
+      it 'API key can be updated' do
+        api_key = challenge.api_key
+        challenge.update(api_key: challenge.generate_api_key)
+        expect(challenge.api_key.length).to eq(32)
+        expect(challenge.api_key).not_to eq(api_key)
+      end
+    end
 
   end
 end

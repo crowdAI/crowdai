@@ -1,0 +1,14 @@
+#flash-messages {
+  .notice {
+    padding: 20px;
+    background-color: #E0FFFF;
+  }
+  .error {
+    padding: 20px;
+    background-color: #FF6347;
+  }
+  .alert {  color: black;
+    padding: 20px;
+    background-color: #FFDAB9;
+  }
+}

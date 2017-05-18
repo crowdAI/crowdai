@@ -6,6 +6,7 @@
 //= require site
 //= require subnav_tabs
 //= require rails.validations
+//= require inline_validations
 
 
 $(document).on('ajax:error', function(xhr, status, error) {

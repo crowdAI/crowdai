@@ -4,7 +4,14 @@
       <%= concept('media/cell',article,size: :medium) %>
     </div>
     <div class="info info-tutorial">
-      <h2><%= article.article %></h2>
+      <div class="heading-w-icon">
+        <h2><%= article.article %></h2>
+        <% if policy(article).edit? %>
+          <%= link_to edit_article_path(article), title: "Edit article" do %>
+            <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+          <% end %>
+        <% end %>
+      </div>
       <p class="large"><%= article.summary %></p>
       <div class="user-link">
         <%= link_to participant_path(author) do %>
@@ -18,9 +25,6 @@
       </div>
       <div class="button-group">
         <a class="btn btn-secondary" href="#"><i class="fa fa-heart" aria-hidden="true"></i> 8</a>
-        <% if policy(article).edit? %>
-          <%= link_to 'Edit', edit_article_path(article), class: 'btn btn-secondary' %>
-        <% end %>
       </div>
     </div>
   </div>

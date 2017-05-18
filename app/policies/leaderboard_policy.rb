@@ -1,2 +1,6 @@
 class LeaderboardPolicy < ApplicationPolicy
-end 
+
+  def index?
+    true
+  end
+end

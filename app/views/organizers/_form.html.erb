@@ -1,17 +1,38 @@
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <%= simple_form_for(@organizer) do |f| %>
-    <%= f.error_notification %>
-
-    <div class="form-inputs">
-      <%= f.input :organizer %>
-      <%= f.input :address %>
-      <%= f.input :description %>
+<content>
+  <div class="masthead">
+    <div class="row">
+      <div class="info">
+        <h2><%= title %></h2>
+      </div>
     </div>
-
-    <div class="form-actions">
-      <%= f.button :submit, class: 'btn btn-primary outline' %>
-    </div>
-    <% end %>
   </div>
-</div>
+  <div class="row">
+    <form class="sgl-col">
+      <fieldset>
+        <label>Host Hame</label>
+        <input type="text" name="host-name" placeholder="">
+        <label>Profile Picture</label>
+        <div class="upload">
+          <img class="img-thumb" src="" alt=""/>
+          <a href="#">Delete</a>
+          |
+          <a href="#">Replace</a>
+          <span>Your image will be cropped if necessary. 5MB limit</span>
+        </div>
+        <label>Address</label>
+        <input type="text" name="address" placeholder="">
+        <label>Short description/Tagline</label>
+        <textarea class="txt-sml" placeholder="140 characters max." maxlength="140"></textarea>
+        <div class="button-group">
+          <button class="btn btn-primary" type="submit">Save</button>
+          <button class="btn btn-secondary" type="submit">Cancel</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="additional">
+    <div class="row">
+      <a data-remodal-target="modal">Delete host</a>
+    </div>
+  </div>
+</content>

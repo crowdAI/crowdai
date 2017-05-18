@@ -4,7 +4,14 @@
       <%= concept('media/cell',challenge,size: :medium) %>
     </div>
     <div class="info info-challenge">
-      <h2><%= challenge.challenge %></h2>
+      <div class="heading-w-icon">
+        <h2><%= challenge.challenge %></h2>
+        <% if policy(challenge).edit? %>
+          <%= link_to edit_challenge_path(challenge), title: "Edit challenge" do %>
+            <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+          <% end %>
+        <% end %>
+      </div>
       <p class="large"><%= challenge.tagline %></p>
       <div class="user-link">
         <%= link_to organizer_path(organizer) do %>

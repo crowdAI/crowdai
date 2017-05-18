@@ -4,7 +4,16 @@
       <%= concept('media/cell',participant,size: :medium) %>
     </div>
     <div class="info info-user">
-      <h2><%= participant.name %></h2>
+      <div class="heading-w-icon">
+        <h2><%= participant.name %></h2>
+        <% if policy(participant).edit? %>
+          <%= link_to edit_participant_path(participant), title: "Edit participant" do %>
+            <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+          <% end %>
+        <% end %>
+      </div>
+
+
       <p class="location"><%= location_organization %></p>
       <ul class="social-links">
         <% if participant.twitter %>

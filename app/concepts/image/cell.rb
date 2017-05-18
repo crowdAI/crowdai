@@ -17,20 +17,12 @@ class Image::Cell < Template::Cell
     else
       image_url = default_image_url
     end
-    image_tag(image_url, size: image_size)
+    image_tag(image_url)
   end
 
   def default_image_url
     image_path 'users/avatar-default.png'
   end
 
-  def image_size
-    case size
-    when :thumb
-      return "32x32"
-    when :medium
-      return "200x200"
-    end
-  end
 
 end

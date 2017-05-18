@@ -1,5 +1,5 @@
 <div class="row">
-  <%= form_for @challenge, html: { class: "sgl-col", multipart: true } do |f| %>
+  <%= form_for @challenge, validate: true, html: { class: "sgl-col", multipart: true } do |f| %>
     <fieldset>
       <label>Challenge Title</label>
       <%= f.text_field :challenge %>

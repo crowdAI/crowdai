@@ -1,17 +1,18 @@
 <content>
   <%= render 'header' %>
   <div class="row">
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), method: :put, html: { class: 'sgl-col' }) do |f| %>
+    <%= form_for resource, as: resource_name, url: registration_path(resource_name), method: :put, html: { class: 'sgl-col' }, validate: true do |f| %>
       <%= render "shared/error_messages", target: resource %>
       <fieldset>
         <%= f.label :email %>
         <%= f.text_field :email %>
         <%= f.label :current_password, 'Current Password' %>
-        <%= f.text_field :current_password %>
+        <%= f.text_field :current_password, autocomplete: :off %>
         <%= f.label :password, 'New Password' %>
         <%= f.text_field :password, autocomplete: :off %>
-        <%= f.label :password, 'Confirm New Password' %>
-        <%= f.text_field :password, autocomplete: :off %>
+        <%= f.label :password_confirmation, 'Confirm New Password' %>
+        <%= f.text_field :password_confirmation, autocomplete: :off %>
+
         <div class="button-group">
           <%= f.button 'Save', type: 'submit', class: 'btn btn-primary' %>
           <%= button_to edit_participant_registration_path, class: 'btn btn-secondary' do %>

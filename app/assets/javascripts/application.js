@@ -5,6 +5,8 @@
 //= require turbolinks
 //= require site
 //= require subnav_tabs
+//= require rails.validations
+
 
 $(document).on('ajax:error', function(xhr, status, error) {
   console.log(status.responseText);

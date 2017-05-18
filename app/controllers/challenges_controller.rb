@@ -120,6 +120,7 @@ class ChallengesController < ApplicationController
                     :end_date,
                     :start_time,
                     :end_time,
+                    :image_file,
                     dataset_attributes: [:id, :challenge_id, :description, :_destroy],
                     submissions_attributes: [:id, :challenge_id, :participant_id, :_destroy ],
                     image_attributes: [:id, :image, :_destroy ],

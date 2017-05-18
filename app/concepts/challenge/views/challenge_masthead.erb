@@ -1,7 +1,7 @@
 <div class="masthead-detailed">
   <div class="row">
     <div class="pic pic-challenge">
-      <%= concept('media/cell',challenge,size: :medium) %>
+      <%= concept(Image::Cell,challenge,size: :medium) %>
     </div>
     <div class="info info-challenge">
       <div class="heading-w-icon">
@@ -15,7 +15,7 @@
       <p class="large"><%= challenge.tagline %></p>
       <div class="user-link">
         <%= link_to organizer_path(organizer) do %>
-          <%= concept('media/cell',organizer,size: :medium) %>
+          <%= concept(Image::Cell,organizer,size: :medium) %>
         <% end %>
         <p>By <%= link_to organizer.organizer, organizer_path(organizer) %></p>
       </div>
@@ -41,9 +41,6 @@
       <div class="button-group">
         <%= link_to 'Submit Entry', challenge_submissions_path(challenge), class: "btn btn-secondary" %>
         <%= concept(Vote::Cell, challenge) %>
-        <% if policy(challenge).edit? %>
-          <%= link_to 'Edit', edit_challenge_path(challenge), class: "btn btn-secondary" %>
-        <% end %>
       </div>
     </div>
   </div>

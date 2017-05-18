@@ -1,5 +1,5 @@
 <div class="row">
-  <%= form_for @challenge, html: { class: "dbl-col" } do |f| %>
+  <%= form_for @challenge, validate: true, html: { class: "dbl-col" } do |f| %>
   <fieldset>
     <label>Prizes</label>
     <div class="md-editor">

@@ -6,3 +6,16 @@
 .pull-right {
   float: right;
 }
+
+.inline-error-message {
+  color: red;
+}
+
+.flash-messages {
+  .notice {
+    color: blue;
+  }
+  .error {
+    color: red;
+  }
+}

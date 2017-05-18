@@ -67,6 +67,6 @@ class OrganizersController < ApplicationController
     end
 
     def organizer_params
-      params.require(:organizer).permit(:organizer, :address, :description, :approved, :organizer_id, :status)
+      params.require(:organizer).permit(:organizer, :address, :description, :approved, :organizer_id, :status, :tagline, :image_file)
     end
 end

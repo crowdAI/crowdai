@@ -7,28 +7,27 @@
     </div>
   </div>
   <div class="row">
-    <form class="sgl-col">
+    <%= form_for organizer, validate: true, html: { class: "sgl-col", multipart: true  } do |f| %>
       <fieldset>
         <label>Host Hame</label>
-        <input type="text" name="host-name" placeholder="">
+        <%= f.text_field :organizer %>
         <label>Profile Picture</label>
         <div class="upload">
-          <img class="img-thumb" src="" alt=""/>
+          <%= f.file_field :image_file, class: 'file-upload' %>
           <a href="#">Delete</a>
           |
           <a href="#">Replace</a>
           <span>Your image will be cropped if necessary. 5MB limit</span>
         </div>
+        <label>Tagline<label>
+        <%= f.text_field :tagline, placeholder: "140 characters max." %>
+        <label>Description<label>
+        <%= f.text_area :description %>
         <label>Address</label>
-        <input type="text" name="address" placeholder="">
-        <label>Short description/Tagline</label>
-        <textarea class="txt-sml" placeholder="140 characters max." maxlength="140"></textarea>
-        <div class="button-group">
-          <button class="btn btn-primary" type="submit">Save</button>
-          <button class="btn btn-secondary" type="submit">Cancel</button>
-        </div>
+        <%= f.text_area :address %>
+        <%= render partial: 'submit_buttons', locals: { f: f  } %>
       </fieldset>
-    </form>
+    <% end %>
   </div>
   <div class="additional">
     <div class="row">

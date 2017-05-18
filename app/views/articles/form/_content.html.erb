@@ -1,5 +1,5 @@
 <div class="row">
-  <%= form_for article, html: { class: "dbl-col" } do |f| %>
+  <%= form_for article, validate: true, html: { class: "dbl-col" } do |f| %>
     <fieldset>
       <div id='article-sections'>
         <%= f.fields_for :article_sections do |file| %>

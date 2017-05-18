@@ -3,7 +3,7 @@ class LandingPageController < ApplicationController
   skip_filter :authenticate_participant!
 
   def index
-    @challenges = cell(:challenge_index_detail, collection: policy_scope(Challenge).limit(3))
+    @challenges = policy_scope(Challenge).limit(3)
   end
 
 end

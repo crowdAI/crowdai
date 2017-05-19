@@ -6,6 +6,7 @@ class Template::Cell < Cell::Concept
   include Kaminari::Cells
   include ActionView::Helpers::JavaScriptHelper
   include ActionView::Helpers::DateHelper
+  include ActionView::Helpers::NumberHelper
 
   def current_user
     current_participant

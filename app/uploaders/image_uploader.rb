@@ -1,5 +1,6 @@
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
+  # https://github.com/DarthSim/carrierwave-bombshelter
 
   storage :fog
 

@@ -40,8 +40,9 @@ class Challenge < ApplicationRecord
   #validates_presence_of :grader
   validates_presence_of :primary_sort_order
   validates_presence_of :grading_factor
-  #validates_uniqueness_of :challenge_client_name
+  validates_uniqueness_of :challenge_client_name
   validates :challenge_client_name, format: { with: /\A[a-zA-Z0-9]/ }
+  validates_presence_of :challenge_client_name
 
 
   default_scope { order("CASE status_cd
@@ -77,7 +78,6 @@ class Challenge < ApplicationRecord
     return (self.daily_submissions - submissions_today)
   end
 
-
   private
   def cache_rendered_markdown
     if evaluation_markdown_changed?
@@ -106,11 +106,9 @@ class Challenge < ApplicationRecord
     end
   end
 
-
   def should_generate_new_friendly_id?
     challenge_changed?
   end
-
 
   def valid_status
     if self.status == :running
@@ -122,7 +120,5 @@ class Challenge < ApplicationRecord
       errors.add(:base, "Only a running challenge may be cancelled.")
     end
   end
-
-
 
 end

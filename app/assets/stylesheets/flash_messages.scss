@@ -1,13 +1,17 @@
 #flash-messages {
-  .notice {
+  .flash-notice {
     padding: 20px;
     background-color: #E0FFFF;
   }
-  .error {
+  .flash-info {
+    padding: 20px;
+    background-color: #E0FFFF;
+  }
+  .flash-error {
     padding: 20px;
     background-color: #FF6347;
   }
-  .alert {  color: black;
+  .flash-alert {  color: black;
     padding: 20px;
     background-color: #FFDAB9;
   }

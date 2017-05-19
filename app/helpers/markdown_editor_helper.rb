@@ -9,7 +9,6 @@ module MarkdownEditorHelper
 
 
   def markdown(text)
-
     return nil if text.nil?
 
     options = {

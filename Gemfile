@@ -132,6 +132,7 @@ group :development do
   gem 'scss_lint', require: false
   gem 'shog', branch: 'master'
   gem 'rubocop', require: false
+  gem 'meta_request'
 end
 
 

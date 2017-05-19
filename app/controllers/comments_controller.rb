@@ -1,21 +1,22 @@
 class CommentsController < ApplicationController
-  before_filter :authenticate_participant!
+  before_filter :authenticate_participant!, only: [:create, :update, :destroy]
   before_action :set_comment, only: [:edit, :update, :destroy]
   before_action :set_topic_and_challenge
   #after_action :notify_subscribers, only: [:create]
 
 
   def new
+    @challenge = @topic.challenge
+    @author = @topic.participant
     @comments = @topic.comments("created_at DESC")
-    @comment = @topic.comments.new
+    @comment = Comment.new(topic_id: @topic_id)
    end
 
   def edit
   end
 
   def create
-    @comment = Comment.new(comment_params)
-
+    @comment = @topic.comments.new(comment_params)
     if @comment.save
       redirect_to new_topic_comment_path(@topic), notice: 'Comment was successfully created.'
     else

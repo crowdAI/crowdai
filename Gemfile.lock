@@ -111,6 +111,7 @@ GEM
     browser (2.3.0)
     builder (3.2.2)
     byebug (9.0.6)
+    callsite (0.0.11)
     capybara (2.7.1)
       addressable
       mime-types (>= 1.16)
@@ -427,6 +428,10 @@ GEM
       excon (>= 0.16.0, < 1.0)
       json (>= 1.7.7, < 2.0)
     memory_profiler (0.9.7)
+    meta_request (0.4.2)
+      callsite (~> 0.0, >= 0.0.11)
+      rack-contrib (~> 1.1)
+      railties (>= 3.0.0, < 5.2.0)
     method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
@@ -482,6 +487,8 @@ GEM
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.1)
+    rack-contrib (1.2.0)
+      rack (>= 0.9.1)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -780,6 +787,7 @@ DEPENDENCIES
   launchy
   lodash-rails
   mandrill-api
+  meta_request
   mini_magick
   momentjs-rails (~> 2.9)
   net-ssh

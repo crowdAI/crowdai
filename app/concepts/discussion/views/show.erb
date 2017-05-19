@@ -2,7 +2,7 @@
   <div class="discussion-topic">
     <div class="pic">
       <%= link_to participant_path(topic.participant) do %>
-        <%= concept(Media::Cell,topic.participant,size: :small) %>
+        <%= concept(Image::Cell,topic.participant,size: :thumb) %>
       <% end %>
     </div>
     <div class="topic-content">

@@ -10,7 +10,7 @@
     </div>
     <label>Short description</label>
     <%= f.text_area :summary, class: "txt-sml", placeholder: "Add a short description, only one sentence&hellip;"  %>
-    <%= f.hidden_field :participant_id, value: article.id %>
+    <%= f.hidden_field :participant_id, value: article.id %> <%# TODO %>
     <div class="switch-container">
       <input type="checkbox" id="switch" name="switch" class="switch">
       <label for="switch">Live?</label>

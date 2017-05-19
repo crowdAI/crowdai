@@ -1,6 +1,6 @@
 class Discussion::Cell::CommentForm < Template::Cell
   inherit_views Discussion::Cell
-  
+
   def show
     render :comment_form
   end
@@ -10,7 +10,7 @@ class Discussion::Cell::CommentForm < Template::Cell
   end
 
   def comment
-    topic.comments.build(participant: current_participant)
+    topic.comments.new(participant: current_participant)
   end
 
 end

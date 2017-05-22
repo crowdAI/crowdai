@@ -20,10 +20,10 @@
   </head>
 
   <body data-no-turbolink="false">
+    <%= concept(Header::Cell) %>
     <%= render 'layouts/flash_messages' %>
-    <%= concept('header/cell') %>
     <%= yield %>
-    <%= concept('footer/cell') %>
+    <%= concept(Footer::Cell) %>
     <%= render partial: 'layouts/google_analytics_body' %>
   </body>
 </html>

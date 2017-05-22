@@ -2,7 +2,6 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require cocoon
-//= require components/flash_messages
 
 //= require turbolinks
 //= require site

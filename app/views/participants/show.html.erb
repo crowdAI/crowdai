@@ -1,1 +1,38 @@
-<%= concept(Participant::Cell,@participant) %>
+<content>
+  <%= concept(Participant::Cell::ParticipantMasthead, @participant) %>
+
+  <div class="sub-nav">
+    <div class="row">
+      <ul class='tabs'>
+        <li data-tab='tab-challenges' class="active">Challenges <sup><%= @challenges.count %></sup></li>
+        <li data-tab='tab-articles'>Tutorials <sup><%= @articles.count %></sup></li>
+        <li data-tab='tab-bio'>Bio</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id='tab-challenges' class='tab-content active'>
+    <div class="row">
+      <ul class="list-challenges">
+        <%= concept(Challenge::Cell::ListDetail, collection: @challenges) %>
+      </ul>
+    </div>
+  </div>
+
+  <div id='tab-articles' class='tab-content'>
+    <div class="row">
+      <ul class="list-tutorials">
+        <%= concept(Article::Cell::ListDetail, collection: @articles) %>
+      </ul>
+    </div>
+  </div>
+
+  <div id='tab-bio' class='tab-content'>
+    <div class="row">
+      <div class="article">
+        <%= @participant.bio %>
+      </div>
+    </div>
+  </div>
+
+</content>

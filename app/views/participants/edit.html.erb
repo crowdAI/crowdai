@@ -7,10 +7,19 @@
     </div>
   </div>
   <div class="row">
-    <form class="sgl-col">
+    <%= form_for @participant, validate: true, html: { class: "sgl-col" } do |f| %>
       <fieldset>
         <label>Name</label>
-        <input type="text" name="" placeholder="">
+        <%= f.text_field :name %>
+        <div class="twin-container">
+          <div class="twin-field">
+            <label>API Key</label>
+            <%= @participant.api_key %>
+          </div>
+          <div class="twin-field">
+             <%= awesome_link 'refresh', 'Regenerate Key', participant_regen_api_key_path(@participant) %>
+          </div>
+        </div>
         <label>Profile Picture</label>
         <div class="upload">
           <img class="img-thumb" src="" alt=""/>
@@ -20,22 +29,22 @@
           <span>Your image will be cropped if necessary. 5MB limit</span>
         </div>
         <label>Location</label>
-        <input type="text" name="" placeholder="">
+        <%= f.text_field :location %>
         <label>Bio</label>
-        <textarea></textarea>
+        <%= f.text_area :bio %>
         <label>Github</label>
-        <input type="text" name="" placeholder="URL (e.g. www.github/crowdai)">
+        <%= f.text_field :github, placeholder: "URL (e.g. www.github/crowdai)" %>
         <label>LinkedIn</label>
-        <input type="text" name="" placeholder="URL (e.g. www.linkedin.com/in/crowdai)">
+        <%= f.text_field :linkedin, placeholder: "URL (e.g. www.linkedin.com/in/crowdai)" %>
         <label>Twitter</label>
-        <input type="text" name="" placeholder="URL (e.g. www.twitter.com/crowdai)">
+        <%= f.text_field :twitter, placeholder: "URL (e.g. www.twitter.com/crowdai)" %>
         <label>Website</label>
-        <input type="text" name="" placeholder="URL (e.g. www.crowdai.org)">
+        <%= f.text_field :website, placeholder: "URL (e.g. www.crowdai.org)" %>
         <div class="button-group">
-          <button class="btn btn-primary" type="submit">Save</button>
-          <button class="btn btn-secondary" type="submit">Cancel</button>
+          <%= f.submit "Save", class: 'btn btn-primary' %>
+          <%= link_to 'Cancel', participant_path(@participant), class: "btn btn-secondary" %>
         </div>
       </fieldset>
-    </form>
+    <% end %>
   </div>
 </content>

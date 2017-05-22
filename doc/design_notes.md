@@ -10,6 +10,12 @@ Requests
 - change the active tab CSS on challenges
 - Submit button for comments
 - Need a create Topic page
+- wrapping issues when the challenge description is long
+- Add API keys with recycle button to challenges and participants
+- Some problems with styling on buttons on edit view
+- How to reorder sections in articles
+- Invite members to organization
+- <content> tag is deprecated
 
 Suggestions
 - instead of stacking the article section titles, can we have a slider?
@@ -19,8 +25,6 @@ Suggestions
 - Use type=password for password fields (and add CSS )
 <input type="text" name="" placeholder="Password">
 
-
-
 Questions
 - What to do about the shorter sections in tutorials ... see example. Should the page be set to a default height (perhaps viewport height)?
 - Rails is rendering [alt=""] as [alt] - is this OK?
@@ -29,7 +33,7 @@ Questions
 - How to handle errors on multi-tab forms?
 - How does the challenge header look when the challenge is ended or in draft?
 - challenge days remaining (already logged in Basecamp)
-- We dont' currently display the challenge end time to the participants.
+- We don't currently display the challenge end time to the participants.
 - We currently accept markdown for the discussion comments. Should we display the markdown editor or just have a markdown enabled field. If markdown enabled only should we include placeholder text like 'You can use markdown here'
 - Form error messages. Do we have a top level error message as well as field-level messages?
 - Deletions for dataset files. Should there be a delete button on the index page. No edit is required.

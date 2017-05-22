@@ -1,9 +1,11 @@
 class ParticipantsController < ApplicationController
   before_filter :authenticate_participant!
   before_action :set_participant, only: [:show, :edit, :update, :destroy]
+  respond_to :html, :js
 
   def show
-
+    @articles = Article.all
+    @challenges = Challenge.all
   end
 
 
@@ -22,7 +24,7 @@ class ParticipantsController < ApplicationController
     authorize @participant
     @participant.api_key = @participant.generate_api_key
     @participant.save!
-    render 'participants/ajax/refresh_api_key', notice: 'API Key regenerated.'
+    redirect_to edit_participant_path(@participant),notice: 'API Key regenerated.'
   end
 
   def sync_mailchimp

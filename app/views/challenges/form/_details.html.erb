@@ -11,12 +11,7 @@
         <span>Your image will be cropped if necessary. 5MB limit</span>
       </div>
       <label>Host</label>
-      <select>
-        <option value="" disabled selected hidden>Please select&hellip;</option>
-        <option value="all">All platforms</option>
-        <option value="caffe">Caffe</option>
-        <option value="data_mining">Data mining</option>
-      </select>
+      <input type='text' value='<%= @challenge.organizer.organizer %>' disabled>
     </fieldset>
     <div class="twin-container">
       <div class="twin-field">
@@ -38,10 +33,8 @@
         <%= f.text_field :end_time %>
       </div>
     </div>
-    <div class="switch-container">
-      <input type="checkbox" id="switch" name="switch" class="switch">
-      <label for="switch">Live?</label>
-    </div>
+    <label>Challenge Status</label>
+    <%= f.select :status, enum_option_pairs(Challenge, :status), include_blank: false %>
     <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>
   </fieldset>
 <% end %>

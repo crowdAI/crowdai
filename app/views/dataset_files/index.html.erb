@@ -1,6 +1,5 @@
 <content>
   <%= concept(Challenge::Cell::ChallengeMasthead, @challenge) %>
   <%= concept(Challenge::Cell::ChallengeSubnav, @challenge, tab: 'dataset') %>
-  <%= link_to 'Add File', new_challenge_dataset_file_path(@challenge), class: "btn btn-secondary pull-right" %>
   <%= concept(Dataset::Cell::List, @dataset_files) %>
 </content>

@@ -6,6 +6,8 @@
       <li <%= tab_class('discussion') %> ><%= link_to 'Discussion', challenge_topics_path(challenge) %></li>
       <li <%= tab_class('dataset') %> ><%= link_to 'Dataset', challenge_dataset_files_path(challenge) %></li>
     </ul>
-    <%= link_to 'Submit Entry', challenge_submissions_path(challenge), class: "btn btn-primary" %>
+    <% if current_tab == 'dataset' && policy(challenge).update? %>
+      <%= link_to 'Add File', new_challenge_dataset_file_path(challenge), class: "btn btn-secondary pull-right" %>
+    <% end %>
   </div>
 </div>

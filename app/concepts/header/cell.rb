@@ -29,7 +29,7 @@ class Header::Cell < Template::Cell
     ]
 
     if current_participant && current_participant.admin?
-      links << "<li>#{ link_to "Admin", '#' }</li>"
+      links << "<li>#{ link_to "Admin", '/admin' }</li>"
     end
 
     if current_participant.nil?

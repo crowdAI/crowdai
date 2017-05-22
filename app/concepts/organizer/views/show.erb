@@ -35,7 +35,11 @@
   </div>
 
   <div id='tab-challenges' class='tab-content active'>
-    <%= concept(Challenge::Cell::List, challenges) %>
+    <div class="row">
+      <ul class="list-challenges">
+        <%= concept(Challenge::Cell::ListDetail, collection: challenges) %>
+      </ul>
+    </div>
   </div>
 
   <div id='tab-members' class='tab-content'>

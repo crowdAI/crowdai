@@ -1,6 +1,6 @@
 $("#load-more").remove();
 $("ul.list-tutorials").append("<%= j render partial: 'articles' %>");
-$("ul.list-tutorials").after("<%= j render partial: 'shared/load_more', locals: { collection: @articles } %>");
+$(".row").last().after("<%= j render partial: 'shared/load_more', locals: { collection: @articles } %>");
 $('html, body').animate({
    scrollTop: $(document).height()-$(window).height()},
    1400,

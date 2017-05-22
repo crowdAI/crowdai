@@ -1,3 +1,23 @@
+# == Schema Information
+#
+# Table name: images
+#
+#  id                 :integer          not null, primary key
+#  imageable_id       :integer
+#  imageable_type     :string
+#  description        :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  image_file_name    :string
+#  image_content_type :string
+#  image_file_size    :integer
+#  image_updated_at   :datetime
+#
+# Indexes
+#
+#  index_images_on_imageable_type_and_imageable_id  (imageable_type,imageable_id)
+#
+
 class Image < ApplicationRecord
   has_paper_trail
   belongs_to :imageable, polymorphic: true

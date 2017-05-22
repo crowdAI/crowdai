@@ -1,3 +1,28 @@
+# == Schema Information
+#
+# Table name: submission_grades
+#
+#  id                :integer          not null, primary key
+#  submission_id     :integer
+#  grading_status_cd :string
+#  grading_message   :string
+#  grading_factor    :float
+#  score             :float
+#  score_secondary   :float
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  slug              :string
+#
+# Indexes
+#
+#  index_submission_grades_on_slug           (slug) UNIQUE
+#  index_submission_grades_on_submission_id  (submission_id)
+#
+# Foreign Keys
+#
+#  fk_rails_8198fbcfd9  (submission_id => submissions.id)
+#
+
 class SubmissionGrade < ApplicationRecord
   belongs_to :submission
   after_save :update_submission

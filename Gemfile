@@ -122,7 +122,6 @@ end
 
 group :development do
   gem 'guard'
-  gem 'rails-footnotes', '>= 4.0.0', '<5'
   gem 'rails-erd'
   gem 'railroady'
   gem 'annotate'

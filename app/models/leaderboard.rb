@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: leaderboards
+#
+#  row_num            :integer
+#  submission_id      :integer
+#  challenge_id       :integer
+#  participant_id     :integer
+#  name               :string
+#  entries            :integer
+#  score              :float
+#  score_secondary    :float
+#  media_large        :string
+#  media_thumbnail    :string
+#  media_content_type :string
+#  created_at         :datetime
+#  updated_at         :datetime
+#
+
 class Leaderboard < ApplicationRecord
   include SqlView
 

@@ -524,8 +524,6 @@ GEM
       activesupport (>= 3.2)
       choice (~> 0.2.0)
       ruby-graphviz (~> 1.2)
-    rails-footnotes (4.1.8)
-      rails (>= 3.2)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     railties (5.0.0.1)
@@ -812,7 +810,6 @@ DEPENDENCIES
   rails-assets-isInViewport!
   rails-controller-testing
   rails-erd
-  rails-footnotes (>= 4.0.0, < 5)
   ransack
   rectify
   redcarpet (~> 3.4.0)

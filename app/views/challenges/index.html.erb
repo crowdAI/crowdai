@@ -4,7 +4,11 @@
       <h2>Challenges</h2>
     </div>
   </div>
-
-  <%= concept(Challenge::Cell::ChallengesSubnav, @challenges, challenge_filter: @challenge_filter) %>
-  <%= concept(Challenge::Cell::List, @challenge_list) %>
+  <%= concept(Challenge::Cell::ChallengesSubnav, @all_challenges, challenge_filter: @challenge_filter) %>
+  <div class="row">
+    <ul class="list-challenges">
+      <%= render partial: 'challenges' %>
+      <%= render partial: 'shared/load_more', locals: { collection: @challenges } %>
+    </ul>
+  </div>
 </content>

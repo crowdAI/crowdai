@@ -10,5 +10,10 @@
     </div>
   </div>
 
-  <%= concept(Article::Cell::List, @articles) %>
+  <div class="row">
+    <ul class="list-tutorials">
+      <%= render partial: 'articles' %>
+      <%= render partial: 'shared/load_more', locals: { collection: @articles } %>
+    </ul>
+  </div>
 </content>

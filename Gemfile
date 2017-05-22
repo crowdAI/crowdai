@@ -65,6 +65,7 @@ gem 'include_media_rails'
 # search / pagination
 gem 'ransack'
 gem 'kaminari'
+gem 'searchkick'
 
 # API / Docker
 # gem 'rack-attack'
@@ -105,7 +106,6 @@ gem "trailblazer-rails"
 gem "cells-rails"
 gem "cells"
 gem "cells-erb"
-gem "kaminari-cells"
 gem "faraday"
 
 group :development, :test do

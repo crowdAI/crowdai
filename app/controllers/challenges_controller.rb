@@ -9,14 +9,14 @@ class ChallengesController < ApplicationController
 
   def index
     @challenge_filter = params[:challenge_filter] ||= 'all'
-    @challenges = policy_scope(Challenge)
+    @all_challenges = policy_scope(Challenge)
     case @challenge_filter
     when 'all'
-      @challenge_list = @challenges
+      @challenges = Challenge.search "*", page: params[:page], per_page: 2
     when 'active'
-      @challenge_list = policy_scope(Challenge).where(status_cd: 'running')
+      @challenges = Challenge.search "*", where: {status_cd: 'running'}, page: params[:page], per_page: 2
     when 'completed'
-      @challenge_list = policy_scope(Challenge).where(status_cd: 'completed')
+      @challenges = Challenge.search "*", where: {status_cd: 'completed'}, page: params[:page], per_page: 2
     end
   end
 
@@ -77,11 +77,6 @@ class ChallengesController < ApplicationController
     end
     @submission_count = challenge.submissions.count
     render 'challenges/form/regrade_status'
-  end
-
-  def load_more
-    @challenges = policy_scope(Challenge)
-    render js: concept("challenge/cell/list", @challenges, page: params[:page]).(:append)
   end
 
   def regen_api_key

@@ -1,11 +1,11 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  after_action :verify_authorized, except: [:load_more]
+  #after_action :verify_authorized, except: [:load_more]
 
   def index
-    @query = Article.ransack(params[:q])
-    @articles = policy_scope(@query.result)
-    authorize @articles
+    @articles = Article.search "*", page: params[:page], per_page: 2
+
+    #authorize @articles
   end
 
 
@@ -58,12 +58,6 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     redirect_to articles_url, notice: 'Article was successfully deleted.'
-  end
-
-
-  def load_more
-    @articles = policy_scope(Article)
-    render js: concept("article/cell/list", @articles, page: params[:page]).(:append)
   end
 
 

@@ -1,4 +1,5 @@
 class Challenge < ApplicationRecord
+  searchkick
   include FriendlyId
   include ApiKey
 

@@ -16,12 +16,14 @@ class Challenge::Cell::ChallengesSubnav < Template::Cell
   def challenges_count(challenge_filter)
     case challenge_filter
     when 'all'
-      return all_challenges_count
+      challenges_count = all_challenges_count
     when 'active'
-      return active_challenges_count
+      challenges_count = active_challenges_count
     when 'completed'
-      return completed_challenges_count
+      challenges_count = completed_challenges_count
     end
+    challenges_count = nil if challenges_count == 0
+    return challenges_count
   end
 
   def all_challenges_count

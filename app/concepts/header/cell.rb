@@ -8,7 +8,7 @@ class Header::Cell < Template::Cell
     if current_participant
       dropdown =
         "<div class='user'>
-          <a id='toggle-user' href='#'>#{ concept('media/cell', current_participant, size: :medium) }</a>
+          <a id='toggle-user' href='#'>#{ concept(Image::Cell, current_participant, size: :thumb) }</a>
           <div id='user-container'>
             <ul>
               <li>#{ link_to current_participant.name, participant_path(current_participant)}</li>

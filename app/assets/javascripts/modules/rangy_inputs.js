@@ -66,7 +66,7 @@ $(function($) {
         return isHostObject(document, "body") ? document.body : document.getElementsByTagName("body")[0];
     }
 
-    $(document).ready(function() {
+    $(document).on('turbolinks:load', function() {
         var testTextArea = document.createElement("textarea");
 
         getBody().appendChild(testTextArea);

@@ -1,41 +1,86 @@
+function switchTab(self,tab_id,editor) {
+  editor.find('.md-tab').removeClass('active');
+  editor.find('.md-tab-content').removeClass('active');
+
+  $(self).addClass('active');
+  editor.find("#"+tab_id).addClass('active');
+  $(this).addClass('active');
+  $("."+tab_id).addClass('active');
+
+  console.log('tabbed' + tab_id);
+}
+
+
+function renderPreview(self,editor) {
+  var markdown_text = editor.find('.txt-med')[0].value;
+
+  $.ajax({
+    type: 'GET',
+    url: '/markdown_editor/show',
+    data: {
+      markdown: { markdown_text: markdown_text }
+    },
+    dataType: 'json',
+    success: function(resp){
+      editor.find('#md-preview').html(resp.data);
+    },
+    error: function(msg){
+      console.log("markdown could not be rendered due to server error: " + msg);
+    }
+  }); // ajax
+}
+
+
+function insertText(beforeText, afterText, editor) {
+    editor.focus();
+    if(typeof editor.data('lastSelection') == "undefined") {
+      editor.data("lastSelection", editor.getSelection());
+    }
+    var selection = editor.data("lastSelection");
+    editor.setSelection(selection.start, selection.end);
+    editor.surroundSelectedText(beforeText, afterText);
+}
+
+
 $(document).on('turbolinks:load', function() {
 
-  function insertText(before_text, after_text, textBox) {
-      textBox.focus();
-      if(typeof textBox.data('lastSelection') == "undefined") {
-        textBox.data("lastSelection", textBox.getSelection());
-      }
-      var selection = textBox.data("lastSelection");
-      textBox.setSelection(selection.start, selection.end);
-      textBox.surroundSelectedText(before_text, after_text);
-  }
+  var toolbarButtons = [
+    { class: ".md-h1", before: "\n# ", after: "\n"},
+    { class: ".md-h2", before: "\n## ", after: "\n"},
+    { class: ".md-h3", before: "\n### ", after: "\n"},
 
-  var theButtons = [
-    { class: ".add_strong", before: "**", after: "**"},
-    { class: ".add_em", before: "_", after: "_"},
-    { class: ".add_h1", before: "\n# ", after: "\n"},
-    { class: ".add_h2", before: "\n## ", after: "\n"},
-    { class: ".add_h3", before: "\n### ", after: "\n"},
-    { class: ".add_h4", before: "\n#### ", after: "\n"},
-    { class: ".add_h5", before: "\n##### ", after: "\n"},
-    { class: ".add_h6", before: "\n###### ", after: "\n"},
-    { class: ".add_paragraph", before: "\n", after: "\n\n"},
-    { class: ".add_blockquote", before: "\n> ", after: "\n"},
-    { class: ".add_unord_list", before: "\n* ", after: "\n"},
-    { class: ".add_ord_list", before: "\n1 ", after: "\n"},
-    { class: ".add_link", before: "[", after: "](link_url)"},
-    { class: ".add_url_link", before: "<", after: ">"},
-    { class: ".add_img", before: "![", after: "](image_url)"},
-    { class: ".add_inline_code", before: "```", after: "```"},
-    { class: ".add_fenced_code", before: "\n~~~ ruby\n", after: "\n~~~\n"}
+    { class: ".md-img", before: "![", after: "](image_url)"},
+    { class: ".md-link", before: "[", after: "](link_url)"},
+
+    { class: ".md-strong", before: "**", after: "**"},
+    { class: ".md-italic", before: "*", after: "*"},
+    { class: ".md-inline-code", before: "```", after: "```"},
+    { class: ".md-fenced-code", before: "\n```\n", after: "\n```\n"},
+
+    { class: ".md-unord-list", before: "\n* ", after: "\n"},
+    { class: ".md-ord-list", before: "\n1 ", after: "\n"},
+    { class: ".md-blockquote", before: "\n> ", after: "\n"},
   ];
 
-  theButtons.forEach( function (button) {
-    $(button.class).on('click', function (e) {
-      e.preventDefault();
-      var textBox = $(e.target).closest('.markdown-editor').find('.markdown-textarea');
-      insertText(button.before, button.after, textBox);
+
+  toolbarButtons.forEach( function (button) {
+    $(button.class).on('click', function (event) {
+      event.preventDefault();
+      var editor = $(event.target).closest('.md-editor').find('.txt-med');
+      insertText(button.before, button.after, editor);
     });
   });
 
-}); // ready page:load
+
+  $('.md-tab').click(function(event){
+    var self = this;
+    var tab_id = $(self).attr('data-tab');
+    var editor = $(self).closest('.md-editor');
+
+    switchTab(self,tab_id,editor);
+    if(tab_id === 'tab-preview'){
+      renderPreview(self,editor);
+    }
+  });
+
+}); // turbolinks

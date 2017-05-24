@@ -11,7 +11,8 @@
 //= require modules/site
 //= require modules/subnav_tabs
 //= require modules/inline_validations
-//= require modules/markdown_preview
+//= require modules/rangy_inputs
+//= require modules/markdown_editor
 
 // ---------------------- Pages ---------------------- //
 

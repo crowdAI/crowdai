@@ -11,8 +11,7 @@ Rails.application.routes.draw do
     ActiveAdmin.routes(self)
   end
 
-  get 'markdown_editor/create'
-  get 'markdown_editor/show'
+
 
   #devise_for :participants
   devise_for :participants #, ActiveAdmin::Devise.config
@@ -32,8 +31,6 @@ Rails.application.routes.draw do
     end
     resources :opensim_gradings, only: [:create, :update, :show]
   end
-
-  get 'markdown_editor/show'
 
   resources :landing_page, only: [:index]
 
@@ -89,9 +86,11 @@ Rails.application.routes.draw do
   match '/pages/privacy', to: 'pages#privacy', via: :get
   match '/pages/terms',   to: 'pages#terms', via: :get
 
-
   get '/pages/*id' => 'pages#show', as: :page, format: false
 
+  resources :markdown_editor, only: [:show] do
+    put :presign, on: :collection
+  end
 
   root 'landing_page#index'
 end

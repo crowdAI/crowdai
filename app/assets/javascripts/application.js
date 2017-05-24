@@ -4,7 +4,7 @@
 //= require jquery-ui
 //= require cocoon
 //= require rails.validations
-
+//= require jQuery-File-Upload
 //= require turbolinks
 
 // ---------------------- Modules ---------------------- //

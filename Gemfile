@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+gem 'rails-assets-isInViewport', source: 'https://rails-assets.org'
+gem 'rails-assets-jQuery-File-Upload', source: 'https://rails-assets.org'
 
 ruby "2.3.3"
 gem 'rails', '5.0.0.1'
@@ -52,7 +54,7 @@ gem 'turbolinks'
 gem 'lodash-rails'
 gem 'browser'
 gem 'coffee-rails'
-gem 'rails-assets-isInViewport', source: 'https://rails-assets.org'
+
 
 # css
 gem 'sass-rails'

@@ -33,9 +33,10 @@ function renderPreview(self,editor) {
 
 function insertText(beforeText, afterText, editor) {
     editor.focus();
-    if(typeof editor.data('lastSelection') == "undefined") {
-      editor.data("lastSelection", editor.getSelection());
-    }
+    //if(typeof editor.data('lastSelection') == "undefined") {
+    //  editor.data("lastSelection", editor.getSelection());
+    //}
+    editor.data("lastSelection", editor.getSelection());
     var selection = editor.data("lastSelection");
     editor.setSelection(selection.start, selection.end);
     editor.surroundSelectedText(beforeText, afterText);
@@ -49,12 +50,12 @@ $(document).on('turbolinks:load', function() {
     { class: ".md-h2", before: "\n## ", after: "\n"},
     { class: ".md-h3", before: "\n### ", after: "\n"},
 
-    { class: ".md-img", before: "![", after: "](image_url)"},
-    { class: ".md-link", before: "[", after: "](link_url)"},
+    { class: ".md-img", before: "![ ", after: " ](image_url)"},
+    { class: ".md-link", before: "[ ", after: " ](link_url)"},
 
     { class: ".md-strong", before: "**", after: "**"},
-    { class: ".md-italic", before: "*", after: "*"},
-    { class: ".md-inline-code", before: "```", after: "```"},
+    { class: ".md-italic", before: "_", after: "_"},
+    { class: ".md-inline-code", before: "``` ", after: " ```"},
     { class: ".md-fenced-code", before: "\n```\n", after: "\n```\n"},
 
     { class: ".md-unord-list", before: "\n* ", after: "\n"},
@@ -82,5 +83,44 @@ $(document).on('turbolinks:load', function() {
       renderPreview(self,editor);
     }
   });
+
+  function s3add(e,data){
+    console.log('add');
+    var filename = data.files[0].name;
+    var contentType = data.files[0].type;
+    var params = [];
+
+    $.ajax({
+      url: '/markdown_editor/presign?filename=' + filename,
+      type: 'PUT',
+      dataType: 'json',
+      headers: {
+        filename: filename
+      },
+      success: function(presign) {
+        data.url = presign.presigned_url,
+        data.submit();
+        //debugger;
+      },
+      error: function(error) {
+        console.log('error ' + error);
+      }
+    });
+
+  }
+
+  function onS3Done(){
+    console.log('done');
+  }
+
+  $('#fileupload').fileupload({
+    // acceptFileTypes: acceptFileType,
+    // maxFileSize: maxFileSize,
+    paramName: 'file',
+    add: s3add,
+    dataType: 'xml',
+    done: onS3Done
+  });
+
 
 }); // turbolinks

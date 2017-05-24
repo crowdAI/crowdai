@@ -1,5 +1,6 @@
+/*
 $(document).on('turbolinks:load', function() {
-  $('.directUpload').find('.s3File').each(function(i, elem) {
+  $('.s3File').each(function(i, elem) {
     var fileInput     = $(elem);
     var form          = $(fileInput.parents('form:first'));
     var submitButton  = form.find('input[type="submit"]');
@@ -66,3 +67,4 @@ $(document).on('turbolinks:load', function() {
     });
   });
 });
+*/

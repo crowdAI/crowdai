@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
 
   def index
     #@articles = Article.search "*", page: params[:page], per_page: 2
-    @articles = Article.all.page(params[:page]).per(2)
+    @articles = policy_scope(Article).page(params[:page]).per(2)
     authorize @articles
   end
 

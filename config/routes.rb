@@ -11,9 +11,6 @@ Rails.application.routes.draw do
     ActiveAdmin.routes(self)
   end
 
-
-
-  #devise_for :participants
   devise_for :participants #, ActiveAdmin::Devise.config
   #ActiveAdmin.routes(self)
   resources :participants, only: [:show, :edit, :update, :destroy] do
@@ -74,8 +71,6 @@ Rails.application.routes.draw do
   match '/pages/contact', to: 'pages#contact', via: :get
   match '/pages/privacy', to: 'pages#privacy', via: :get
   match '/pages/terms',   to: 'pages#terms', via: :get
-
-  get '/pages/*id' => 'pages#show', as: :page, format: false
 
   resources :markdown_editor, only: [:show] do
     put :presign, on: :collection

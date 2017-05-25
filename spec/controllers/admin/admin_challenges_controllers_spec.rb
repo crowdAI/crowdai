@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 RSpec.describe "Admin::ChallengesControllers", type: :request do
@@ -8,3 +9,4 @@ RSpec.describe "Admin::ChallengesControllers", type: :request do
     end
   end
 end
+=end

@@ -26,8 +26,11 @@ RSpec.describe DatasetFilesController, type: :controller do
     end
 
     describe "DELETE #destroy" do
-      before { delete :destroy, params: {challenge_id: challenge.id, id: file1.id }}
-      it { expect { DatasetFile.count }.to change by -1 }
+      def delete_file
+        delete :destroy, params: {challenge_id: challenge.id, id: file1.id }
+      end
+
+      it { expect { delete_file }.to change { DatasetFile.count }.by -1 }
       it { expect(response).to redirect_to(challenge_dataset_files_path(challenge)) }
       it { expect(flash[:notice]).to match "Dataset file #{file1.title} was deleted." }
     end

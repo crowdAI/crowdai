@@ -17,7 +17,6 @@ FactoryGirl.define do
     grader 'f1_logloss'
     grading_factor 0.3
     license_markdown '## This is a license'
-    submission_file_definitions { [ build(:submission_file_definition)]}
     start_dttm 2.weeks.ago
     end_dttm 4.weeks.since
 

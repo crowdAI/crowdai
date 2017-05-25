@@ -1,7 +1,7 @@
 class DatasetFilePolicy < ApplicationPolicy
 
   def new?
-    participant && (participant.admin? || @record.organizer_id == participant.organizer_id)
+    participant && (participant.admin? || @record.challenge.organizer_id == participant.organizer_id)
   end
 
   def create?

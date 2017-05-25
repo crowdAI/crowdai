@@ -12,13 +12,13 @@ class ChallengesController < ApplicationController
     case @challenge_filter
     when 'all'
       #@challenges = Challenge.search "*", page: params[:page], per_page: 2
-      @challenges = Challenge.all.page(params[:page]).per(2)
+      @challenges = policy_scope(Challenge).page(params[:page]).per(5)
     when 'active'
       #@challenges = Challenge.search "*", where: {status_cd: 'running'}, page: params[:page], per_page: 2
-      @challenges = Challenge.where(status_cd: 'running').page(params[:page]).per(2)
+      @challenges = policy_scope(Challenge).where(status_cd: ['running','starting_soon']).page(params[:page]).per(5)
     when 'completed'
       #@challenges = Challenge.search "*", where: {status_cd: 'completed'}, page: params[:page], per_page: 2
-      @challenges = Challenge.where(status_cd: 'completed').page(params[:page]).per(2)
+      @challenges = policy_scope(Challenge).where(status_cd: 'completed').page(params[:page]).per(5)
     end
   end
 

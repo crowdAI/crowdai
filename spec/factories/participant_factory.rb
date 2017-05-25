@@ -1,8 +1,6 @@
 FactoryGirl.define do
-  sequence(:name) { |n| "Example_name_#{n}" }
-
   factory :participant, class: Participant do
-    name
+    sequence(:name) { |n| "name_#{n}" }
     email { FFaker::Internet.email }
     password 'password12'
     password_confirmation 'password12'

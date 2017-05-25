@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 RSpec.describe "Admin::DashboardControllers", type: :request do
@@ -8,3 +9,4 @@ RSpec.describe "Admin::DashboardControllers", type: :request do
     end
   end
 end
+=end

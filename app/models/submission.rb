@@ -49,16 +49,6 @@ class Submission < ApplicationRecord
   validates :grading_status,            presence: true
   validates :description_markdown,      presence: true
 
-
-  APIS = {
-    'google' => "Google Vision",
-    'microsoft' => 'Microsoft Computer Vision',
-    'clarifai' => 'Clarifai',
-    'watson' => 'Watson',
-    'none' => 'No external API used'
-  }
-
-
   def ready?
     self.grading_status == :ready
   end

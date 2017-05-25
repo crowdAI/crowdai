@@ -74,9 +74,7 @@ class Participant < ApplicationRecord
   devise :database_authenticatable,  :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 
-  belongs_to :organizer
-  has_one :image, as: :imageable, dependent: :destroy
-  accepts_nested_attributes_for :image, allow_destroy: true
+  belongs_to :organizer, optional: true
   has_many :submissions
   has_many :posts
   has_many :votes,                      dependent: :destroy

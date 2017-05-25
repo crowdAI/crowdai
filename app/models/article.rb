@@ -32,8 +32,6 @@ class Article < ApplicationRecord
   default_scope { order('updated_at DESC') }
 
   belongs_to :participant
-  has_one :image, as: :imageable, dependent: :destroy
-  accepts_nested_attributes_for :image, allow_destroy: true
   has_many :votes, as: :votable
   has_paper_trail :ignore => [:view_count, :comment_count]
   has_many :comments, as: :commentable
@@ -53,19 +51,6 @@ class Article < ApplicationRecord
 
   mount_uploader :image_file, ImageUploader
 
-
-  CATEGORIES = {
-    'caffe' => "Caffe",
-    'tensorflow' => 'Tensorflow',
-    'torch7' => 'Torch7',
-    'scikit2' => 'Python-2 Scikit-Learn',
-    'scikit3' => 'Python-3 Scikit-Learn',
-    'octave' => 'Octave',
-    'keras' => 'Keras',
-    'machine_learning' => 'Machine learning',
-    'data_mining' => 'Data mining',
-    'deep_learning' => 'Deep learning'
-  }
 
 
   def record_page_view

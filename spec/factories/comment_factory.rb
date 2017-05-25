@@ -1,3 +1,4 @@
+
 FactoryGirl.define do
   factory :comment, class: Comment do
     comment_markdown "### Some markdown"

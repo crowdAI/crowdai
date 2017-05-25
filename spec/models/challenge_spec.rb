@@ -40,11 +40,11 @@ describe Challenge do
     it { is_expected.to respond_to :media_on_leaderboard }
     it { is_expected.to respond_to :vote_count }
     it { is_expected.to respond_to :api_key }
+    it { is_expected.to respond_to :image_file }
   end
 
   context 'associations' do
     it { is_expected.to belong_to(:organizer) }
-    it { is_expected.to have_one(:image).dependent(:destroy) }
     it { is_expected.to have_many(:dataset_files) }
     it { is_expected.to have_many(:submission_file_definitions) }
     it { is_expected.to accept_nested_attributes_for :submission_file_definitions }

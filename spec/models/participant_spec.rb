@@ -17,13 +17,12 @@ describe Participant do
     it { is_expected.to respond_to :slug }
     it { is_expected.to respond_to :api_key }
     it { is_expected.to respond_to :location }
+    it { is_expected.to respond_to :image_file }
   end
 
 
   context 'associations' do
     it { is_expected.to belong_to(:organizer) }
-    it { is_expected.to have_one(:image) }
-    it { is_expected.to accept_nested_attributes_for(:image) }
     it { is_expected.to have_many(:submissions) }
     it { is_expected.to have_many(:votes) }
     it { is_expected.to have_many(:comments) }

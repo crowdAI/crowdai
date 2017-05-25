@@ -78,8 +78,6 @@ class Challenge < ApplicationRecord
 
   belongs_to :organizer
 
-  has_one :image,                         as: :imageable, dependent: :destroy
-  accepts_nested_attributes_for           :image, allow_destroy: true
   has_many :dataset_files,                dependent: :destroy
   mount_uploader :image_file, ImageUploader
 

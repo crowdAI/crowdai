@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   # API
   namespace :api do
     resources :submissions, only: [:update]
-    resources :external_graders, only: [:create, :update, :show] do
+    resources :external_graders, only: [:create, :show] do
       get :challenge_config, on: :collection
     end
     resources :opensim_gradings, only: [:create, :update, :show]
@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   end
 
   resources :challenges do
-    resources :dataset_files, only: [:new, :show, :index, :delete, :new, :create]
+    resources :dataset_files, only: [:new, :show, :index, :destroy, :new, :create]
     resources :events
     resources :submissions do
       get :grade
@@ -52,23 +52,16 @@ Rails.application.routes.draw do
     resources :topics
     get :regrade
     get :regen_api_key
+    resources :votes, only: [:create]
   end
   get '/load_more_challenges', to: 'challenges#load_more', as: :load_more_challenges
-
-  #resources :dataset_files, except: [:show] do
-  #  resources :dataset_file_downloads, only: [:create]
-  #end
 
   resources :topics do
     resources :comments, only: [:new, :create, :edit, :update, :destroy]
     resources :votes, only: [:create]
   end
 
-  resources :challenges do
-    resources :votes, only: [:create]
-  end
-
-  resources :comments do
+  resources :comments, only: [] do
     resources :votes, only: [:create]
   end
 

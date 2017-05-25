@@ -65,10 +65,6 @@ Rails.application.routes.draw do
     resources :votes, only: [:create]
   end
 
-  resources :submissions do
-    resources :votes, only: [:create]
-  end
-
   resources :articles do
     resources :article_sections
     resources :votes, only: [:create]

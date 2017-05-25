@@ -37,7 +37,7 @@ class Topic < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :votes, as: :votable
 
-  default_scope { order('sticky desc') }
+  default_scope { order('created_at desc') }
 
   validates :topic, presence: true, length: { maximum: 255 }
 

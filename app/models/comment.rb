@@ -32,7 +32,7 @@ class Comment < ApplicationRecord
   has_many :votes, as: :votable
   before_validation :cache_rendered_markdown
 
-  default_scope { order('id asc') }
+  default_scope { order('created_at desc') }
 
   validates :vote_count, presence: true
   validates :comment_markdown, presence: true

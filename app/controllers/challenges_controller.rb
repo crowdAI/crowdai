@@ -1,4 +1,3 @@
-
 class ChallengesController < ApplicationController
   before_action :terminate_challenge, only: [:show, :index]
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
@@ -12,11 +11,14 @@ class ChallengesController < ApplicationController
     @all_challenges = policy_scope(Challenge)
     case @challenge_filter
     when 'all'
-      @challenges = Challenge.search "*", page: params[:page], per_page: 2
+      #@challenges = Challenge.search "*", page: params[:page], per_page: 2
+      @challenges = Challenge.all.page(params[:page]).per(2)
     when 'active'
-      @challenges = Challenge.search "*", where: {status_cd: 'running'}, page: params[:page], per_page: 2
+      #@challenges = Challenge.search "*", where: {status_cd: 'running'}, page: params[:page], per_page: 2
+      @challenges = Challenge.where(status_cd: 'running').page(params[:page]).per(2)
     when 'completed'
-      @challenges = Challenge.search "*", where: {status_cd: 'completed'}, page: params[:page], per_page: 2
+      #@challenges = Challenge.search "*", where: {status_cd: 'completed'}, page: params[:page], per_page: 2
+      @challenges = Challenge.where(status_cd: 'completed').page(params[:page]).per(2)
     end
   end
 

@@ -1,11 +1,11 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  #after_action :verify_authorized, except: [:load_more]
+  after_action :verify_authorized, except: [:load_more]
 
   def index
-    @articles = Article.search "*", page: params[:page], per_page: 2
-
-    #authorize @articles
+    #@articles = Article.search "*", page: params[:page], per_page: 2
+    @articles = Article.all.page(params[:page]).per(2)
+    authorize @articles
   end
 
 

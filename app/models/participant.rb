@@ -57,7 +57,7 @@
 #
 
 class Participant < ApplicationRecord
-  searchkick
+  #searchkick
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
   include FriendlyId

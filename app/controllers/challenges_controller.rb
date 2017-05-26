@@ -55,7 +55,8 @@ class ChallengesController < ApplicationController
 
 
   def update
-    authorize @challenge
+    #authorize @challenge
+    #byebug
     if @challenge.update(challenge_params)
       redirect_to @challenge, notice: 'Challenge was successfully updated.'
     else
@@ -95,7 +96,7 @@ class ChallengesController < ApplicationController
     if params[:version]
       @challenge = @challenge.versions[params[:version].to_i].reify
     end
-    #authorize @challenge
+    authorize @challenge
   end
 
 

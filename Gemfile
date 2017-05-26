@@ -92,11 +92,9 @@ gem 'sinatra', :require => nil
 #gem 'sitemap_generator'
 
 # images
-gem "paperclip", "~> 5.0.0"
-gem 'carrierwave'
+gem 'carrierwave', '~> 1.0'
 gem 'net-ssh'
 gem 'inline_svg'
-gem 'streamio-ffmpeg'
 
 # Amazon
 gem 'aws-sdk', '~> 2.2'

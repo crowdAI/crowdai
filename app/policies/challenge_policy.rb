@@ -5,7 +5,7 @@ class ChallengePolicy < ApplicationPolicy
   end
 
   def show?
-    @record.running? || @record.completed? || @record.starting_soon? || participant && participant.admin? || participant && @record.organizer_id == participant.organizer_id
+    true
   end
 
   def edit?
@@ -17,7 +17,7 @@ class ChallengePolicy < ApplicationPolicy
   end
 
   def new?
-    participant && participant.admin?
+    edit?
   end
 
   def create?
@@ -25,7 +25,7 @@ class ChallengePolicy < ApplicationPolicy
   end
 
   def destroy?
-    participant && participant.admin?
+    edit?
   end
 
   def regrade?

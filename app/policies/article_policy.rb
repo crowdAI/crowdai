@@ -25,7 +25,7 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def destroy?
-    new?
+    edit?
   end
 
   def load_more?

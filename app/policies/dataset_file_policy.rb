@@ -12,7 +12,7 @@ class DatasetFilePolicy < ApplicationPolicy
     new?
   end
 
-  def index
+  def index?
     participant
   end
 

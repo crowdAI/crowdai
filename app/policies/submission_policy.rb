@@ -1,2 +1,11 @@
 class SubmissionPolicy < ApplicationPolicy
-end 
+
+  def index?
+    participant
+  end
+
+  def show?
+    participant
+  end
+
+end

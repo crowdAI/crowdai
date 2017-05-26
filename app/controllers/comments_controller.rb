@@ -10,10 +10,8 @@ class CommentsController < ApplicationController
     @author = @topic.participant
     @comments = @topic.comments("created_at DESC")
     @comment = Comment.new(topic_id: @topic_id)
+    authorize @comment
    end
-
-  def edit
-  end
 
   def create
     @comment = @topic.comments.new(comment_params)
@@ -22,20 +20,7 @@ class CommentsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def update
-    if @comment.update(comment_params)
-      redirect_to new_topic_comment_path(@topic), notice: 'Comment was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-
-  def destroy
-    @comment.destroy
-    redirect_to new_topic_comment_path(@topic), notice: 'Comment was successfully deleted.'
+    authorize @comment
   end
 
   private

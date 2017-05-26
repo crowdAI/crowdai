@@ -1,11 +1,12 @@
 require 'rails_helper'
 
-describe ArticlePolicy do
-  context "for a published article" do
-    subject { described_class.new(participant, article) }
+describe ChallengePolicy do
+  context "for a published Challenge" do
+    subject { described_class.new(participant, challenge) }
 
-    let(:article) { create(:article, :with_sections, participant: author) }
-    let(:author) { create(:participant) }
+    let(:challenge) { create(:challenge, organizer: organizer) }
+    let(:organizer) { create(:organizer) }
+    let(:organizer_person) { create(:participant, organizer: organizer) }
     let(:admin) { create(:participant, :admin )}
 
     context 'for a public participant' do
@@ -19,8 +20,8 @@ describe ArticlePolicy do
       it { is_expected.to forbid_action(:destroy) }
     end
 
-    context 'for the author' do
-      let(:participant) { author }
+    context 'for the organizer' do
+      let(:participant) { organizer_person }
       it { is_expected.to permit_action(:show) }
       it { is_expected.to permit_action(:index) }
       it { is_expected.to permit_action(:create) }
@@ -41,4 +42,5 @@ describe ArticlePolicy do
       it { is_expected.to permit_action(:destroy) }
     end
   end
+
 end

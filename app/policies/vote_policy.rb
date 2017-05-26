@@ -1,2 +1,7 @@
 class VotePolicy < ApplicationPolicy
-end 
+
+  def create?
+    participant
+  end
+  
+end

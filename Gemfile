@@ -162,6 +162,7 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'sanitize'
   gem 'rails-controller-testing'
+  gem 'pundit-matchers', github: 'crowdAI/pundit-matchers', branch: 'participants'
 end
 
 gem "rack-timeout"

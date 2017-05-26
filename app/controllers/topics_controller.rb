@@ -3,7 +3,6 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
   before_action :set_challenge
 
-
   def index
     @topics = @challenge.topics
   end

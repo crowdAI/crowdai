@@ -8,12 +8,10 @@
 #  participant_id :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  slug           :string
 #
 # Indexes
 #
 #  index_votes_on_participant_id  (participant_id)
-#  index_votes_on_slug            (slug) UNIQUE
 #
 # Foreign Keys
 #

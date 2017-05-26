@@ -28,6 +28,15 @@ GIT
       responders
 
 GIT
+  remote: git://github.com/crowdAI/pundit-matchers.git
+  revision: 309eae16c88e61c0c2cad09c43c7eb0164a93f33
+  branch: participants
+  specs:
+    pundit-matchers (1.2.3)
+      pundit (~> 1.1, >= 1.1.0)
+      rspec-rails (>= 3.0.0)
+
+GIT
   remote: git://github.com/thambley/activeadmin-xls.git
   revision: a5a70018c626d1ad3cde9f763bad3d10fa68867a
   specs:
@@ -800,6 +809,7 @@ DEPENDENCIES
   puma
   puma_worker_killer
   pundit
+  pundit-matchers!
   rack-timeout
   railroady
   rails (= 5.0.0.1)

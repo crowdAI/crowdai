@@ -1,2 +1,0 @@
-class SubmissionFilePolicy < ApplicationPolicy
-end 

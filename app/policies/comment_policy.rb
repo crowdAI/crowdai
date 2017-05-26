@@ -1,2 +1,11 @@
 class CommentPolicy < ApplicationPolicy
-end 
+
+  def new?
+    participant
+  end
+
+  def create?
+    participant
+  end
+
+end

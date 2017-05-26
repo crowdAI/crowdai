@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   end
 
   resources :landing_page, only: [:index]
+  match '/landing_page/host', to: 'landing_page#host', via: :get
 
   resources :organizers do
     resources :challenges

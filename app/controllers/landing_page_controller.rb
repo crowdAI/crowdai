@@ -6,4 +6,7 @@ class LandingPageController < ApplicationController
     @challenges = policy_scope(Challenge).limit(3)
   end
 
+  def host
+  end
+
 end

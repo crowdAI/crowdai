@@ -18,6 +18,7 @@ describe LeaderboardPolicy do
     it { is_expected.to forbid_action(:update) }
     it { is_expected.to forbid_action(:edit) }
     it { is_expected.to forbid_action(:destroy) }
+    it { is_expected.to permit_action(:host) }
   end
 
   context 'for a participant' do
@@ -29,6 +30,7 @@ describe LeaderboardPolicy do
     it { is_expected.to forbid_action(:update) }
     it { is_expected.to forbid_action(:edit) }
     it { is_expected.to forbid_action(:destroy) }
+    it { is_expected.to permit_action(:host) }
   end
 
 end

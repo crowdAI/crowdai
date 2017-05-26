@@ -34,7 +34,6 @@ Rails.application.routes.draw do
 
   resources :organizers do
     resources :challenges
-    get :regen_api_key
   end
 
   resources :challenges do

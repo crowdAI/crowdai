@@ -40,8 +40,7 @@ class ParticipantsController < ApplicationController
     def participant_params
       params.require(:participant).permit(:email, :password, :password_confirmation,
         :phone_number, :country, :city, :name, :organizer_id,
-        :email_public, :bio, :website, :github, :linkedin, :twitter,
-          image_attributes: [:id, :image, :_destroy ])
+        :email_public, :bio, :website, :github, :linkedin, :twitter, :image_file)
     end
 
 end

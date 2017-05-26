@@ -22,7 +22,8 @@
         </div>
         <label>Profile Picture</label>
         <div class="upload">
-          <img class="img-thumb" src="" alt=""/>
+          <%= concept(Image::Cell,@participant) %> <%#,size: :thumb) TODO %>
+          <%= f.file_field :image_file, class: 'file-upload' %>
           <a href="#">Delete</a>
           |
           <a href="#">Replace</a>

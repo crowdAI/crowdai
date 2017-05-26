@@ -7,6 +7,7 @@
       <%= f.text_field :tagline %>
       <label>Image</label>
       <div class="upload">
+        <%= concept(Image::Cell,challenge) %> <%#,size: :thumb) TODO %>
         <%= f.file_field :image_file, class: 'file-upload' %>
         <span>Your image will be cropped if necessary. 5MB limit</span>
       </div>

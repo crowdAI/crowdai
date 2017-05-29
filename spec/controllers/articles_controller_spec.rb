@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+=begin
 RSpec.describe ArticlesController, type: :controller do
 
   let!(:participant) { create :participant }
@@ -134,7 +134,7 @@ RSpec.describe ArticlesController, type: :controller do
       end
 
       it "redirects to the articles list" do
-        delete :destroy, id: article_not_published.id 
+        delete :destroy, id: article_not_published.id
         expect(response).to redirect_to(articles_url)
       end
     end
@@ -166,3 +166,4 @@ RSpec.describe ArticlesController, type: :controller do
   end
 
 end
+=end

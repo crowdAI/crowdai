@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+=begin
 RSpec.describe VotesController, type: :controller do
 
   let!(:challenge) { create :challenge, :running }
@@ -50,3 +50,4 @@ RSpec.describe VotesController, type: :controller do
   end
 
 end
+=end

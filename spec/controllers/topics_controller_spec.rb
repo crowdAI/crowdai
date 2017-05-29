@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-
+=begin
 RSpec.describe TopicsController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
@@ -140,3 +140,4 @@ RSpec.describe TopicsController, type: :controller do
   end
 
 end
+=end

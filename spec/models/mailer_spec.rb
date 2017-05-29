@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+=begin
 RSpec.describe Mailer, type: :model do
   context 'fields' do
     it { is_expected.to respond_to :mailer_classname }
@@ -26,3 +26,4 @@ RSpec.describe Mailer, type: :model do
   end
 
 end
+=end

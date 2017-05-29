@@ -1,5 +1,5 @@
 require 'spec_helper'
-
+=begin
 RSpec.describe CommentNotificationMailer, type: :mailer do
 
   describe 'methods' do
@@ -42,3 +42,4 @@ RSpec.describe CommentNotificationMailer, type: :mailer do
   end
 
 end
+=end

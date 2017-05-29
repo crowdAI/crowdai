@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+=begin
 RSpec.describe Api::ExternalGradersController, type: :request do
   let(:organizer) { create :organizer, api_key: '3d1efc2332200314c86d2921dd33434c' }
   let(:challenge) { create :challenge, :running, organizer: organizer }
@@ -147,3 +147,4 @@ RSpec.describe Api::ExternalGradersController, type: :request do
   end
 
 end
+=end

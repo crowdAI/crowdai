@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+=begin
 RSpec.describe DatasetFilesController, type: :controller do
 
   let!(:challenge) { create :challenge, :running }
@@ -38,3 +38,4 @@ RSpec.describe DatasetFilesController, type: :controller do
   end
 
 end
+=end

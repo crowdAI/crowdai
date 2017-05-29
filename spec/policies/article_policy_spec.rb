@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+=begin
 describe ArticlePolicy do
   context "for a published article" do
     subject { described_class.new(user, article) }
@@ -42,3 +42,4 @@ describe ArticlePolicy do
     end
   end
 end
+=end

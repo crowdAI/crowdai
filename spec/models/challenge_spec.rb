@@ -148,11 +148,7 @@ describe Challenge do
         }.to raise_error(ActiveRecord::RecordInvalid)
       end
 
-      it 'permits a running challenge to be cancelled' do
-        challenge = create(:challenge, :running)
-        challenge.update!(status: :cancelled)
-        expect(challenge.status).to eq(:cancelled)
-      end
+
     end
 
     describe "friendly_id" do

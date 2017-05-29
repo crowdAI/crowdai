@@ -321,6 +321,7 @@ label {
 
 input[type=text],
 input[type=email],
+input[type=password],
 #search-bar,
 textarea {
 	display: block;
@@ -2956,6 +2957,7 @@ form {
 
 	input[type=email],
 	input[type=text],
+  input[type=password],
 	textarea,
 	select {
 		margin: 0 0 20px 0;
@@ -3007,7 +3009,8 @@ form {
 		 	background: #fff;
 		}
 
-		input[type=text] {
+		input[type=text],
+    input[type=password] {
 			max-width: 100%;
 		}
 
@@ -3072,6 +3075,7 @@ form {
 		margin-top: 36px;
 		input[type=text],
 		input[type=email],
+    input[type=password],
 		textarea,
 		select,
 		.twin-container {
@@ -3098,6 +3102,7 @@ form {
 		margin-top: 36px;
 		input[type=text],
 		input[type=email],
+    input[type=password],
 		select {
 			max-width: 330px;
 		}
@@ -3161,6 +3166,7 @@ form {
 
 		input[type=text],
 		input[type=email],
+    input[type=password],
 		textarea {
 			margin: 0 0 24px 0;
 			max-width: 100%;

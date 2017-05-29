@@ -6,7 +6,7 @@
         <h3>Log In</h3>
         <%= render "shared/error_messages", :target => resource %>
         <%= f.text_field :email, placeholder: 'Email address' %>
-        <%= f.text_field :password, placeholder: 'Password' %>
+        <%= f.password_field :password, placeholder: 'Password' %>
         <fieldset class="checkbox">
           <div>
             <%= f.check_box :remember_me %>

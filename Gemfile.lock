@@ -29,8 +29,7 @@ GIT
 
 GIT
   remote: git://github.com/crowdAI/pundit-matchers.git
-  revision: 309eae16c88e61c0c2cad09c43c7eb0164a93f33
-  branch: participants
+  revision: 4cd01555ee0c04c66f02f35d6f8bb4c046b533a0
   specs:
     pundit-matchers (1.2.3)
       pundit (~> 1.1, >= 1.1.0)

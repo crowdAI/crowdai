@@ -129,7 +129,7 @@ group :development do
   gem 'sdoc', '~> 0.4.0'
   gem 'web-console', '~> 2.0'
   gem 'scss_lint', require: false
-  gem 'shog', branch: 'master'
+  gem 'shog'
   gem 'rubocop', require: false
   gem 'meta_request'
 end
@@ -161,7 +161,7 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'sanitize'
   gem 'rails-controller-testing'
-  gem 'pundit-matchers', github: 'crowdAI/pundit-matchers', branch: 'participants'
+  gem 'pundit-matchers', github: 'crowdAI/pundit-matchers'
 end
 
 gem "rack-timeout"

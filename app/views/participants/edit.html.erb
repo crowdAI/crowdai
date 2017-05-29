@@ -25,11 +25,11 @@
         <br/>
         <label>Profile Picture</label>
         <div class="upload">
-          <%= concept(Image::Cell,@participant) %>
+          <%= concept(Image::Cell,@participant, klass: 'img-thumb') %>
           <%= f.file_field :image_file, class: 'file-upload' %>
-          <a href="#">Delete</a>
-          |
-          <a href="#">Replace</a>
+          <% if @participant.image_file.present? %>
+            <%= link_to 'Delete', participant_remove_image_path(@participant) %>
+          <% end %>
           <span>Your image will be cropped if necessary. 5MB limit</span>
         </div>
         <label>Location</label>
@@ -45,8 +45,10 @@
         <label>Website</label>
         <%= f.text_field :website, placeholder: "URL (e.g. www.crowdai.org)" %>
         <div class="button-group">
-          <%= f.submit "Save", class: 'btn btn-primary' %>
-          <%= link_to 'Cancel', participant_path(@participant), class: "btn btn-secondary" %>
+          <%= f.button "Save", class: 'btn btn-primary' %>
+          <%= button_to participant_path(@participant), class: "btn btn-secondary" do %>
+            Cancel
+          <% end %>
         </div>
       </fieldset>
     <% end %>

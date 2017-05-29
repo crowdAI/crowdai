@@ -1,7 +1,7 @@
 class ChallengesController < ApplicationController
   before_action :terminate_challenge, only: [:show, :index]
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
-  after_action :verify_authorized, except: [:index, :load_more, :show]
+  after_action :verify_authorized, except: [:index, :show]
   before_action :set_s3_direct_post, only: [:edit, :update]
   #after_action :update_stats_job
   respond_to :html, :js
@@ -56,7 +56,6 @@ class ChallengesController < ApplicationController
 
   def update
     #authorize @challenge
-    #byebug
     if @challenge.update(challenge_params)
       redirect_to @challenge, notice: 'Challenge was successfully updated.'
     else
@@ -88,6 +87,14 @@ class ChallengesController < ApplicationController
     @challenge.api_key = @challenge.generate_api_key
     @challenge.save!
     redirect_to edit_challenge_path(@challenge),notice: 'API Key regenerated.'
+  end
+
+  def remove_image
+    @challenge = Challenge.friendly.find(params[:challenge_id])
+    authorize @challenge
+    @challenge.remove_image_file!
+    @challenge.save
+    redirect_to edit_challenge_path(@challenge), notice: 'Image removed.'
   end
 
   private

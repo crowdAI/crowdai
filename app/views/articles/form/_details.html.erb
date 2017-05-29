@@ -5,7 +5,11 @@
     <%= f.text_field :article %>
     <label>Tutorial Image</label>
     <div class="upload">
+      <%= concept(Image::Cell,article,klass: 'img-thumb') %>
       <%= f.file_field :image_file, class: 'file-upload' %>
+      <% if article.image_file.present? %>
+        <%= link_to 'Delete', article_remove_image_path(article) %>
+      <% end %>
       <span>Your image will be cropped if necessary. 5MB limit</span>
     </div>
     <label>Short description</label>

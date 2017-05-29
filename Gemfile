@@ -95,6 +95,7 @@ gem 'sinatra', :require => nil
 gem 'carrierwave', '~> 1.0'
 gem 'net-ssh'
 gem 'inline_svg'
+gem 'file_validators'
 
 # Amazon
 gem 'aws-sdk', '~> 2.2'

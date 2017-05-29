@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :participants, only: [:show, :edit, :update, :destroy] do
     get :sync_mailchimp
     get :regen_api_key
+    get :remove_image
     resources :email_preferences, only: [:edit, :update]
   end
 
@@ -34,6 +35,7 @@ Rails.application.routes.draw do
 
   resources :organizers do
     resources :challenges
+    get :remove_image
   end
 
   resources :challenges do
@@ -49,6 +51,7 @@ Rails.application.routes.draw do
     resources :topics
     get :regrade
     get :regen_api_key
+    get :remove_image
     resources :votes, only: [:create]
   end
   get '/load_more_challenges', to: 'challenges#load_more', as: :load_more_challenges
@@ -65,6 +68,7 @@ Rails.application.routes.draw do
   resources :articles do
     resources :article_sections
     resources :votes, only: [:create]
+    get :remove_image
   end
   get '/load_more_articles', to: 'articles#load_more', as: :load_more_articles
 

@@ -69,7 +69,7 @@ class Participant < ApplicationRecord
   before_save :process_urls
   validates :api_key, presence: true
   mount_uploader :image_file, ImageUploader
-
+  validates :image_file, file_size: { less_than: 5.megabytes }
 
   devise :database_authenticatable,  :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable

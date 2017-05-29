@@ -80,6 +80,7 @@ class Challenge < ApplicationRecord
 
   has_many :dataset_files, dependent: :destroy
   mount_uploader :image_file, ImageUploader
+  #validates :image_file, file_size: { less_than: 5.megabytes }
 
   has_many :submission_file_definitions,  dependent: :destroy, inverse_of: :challenge
   accepts_nested_attributes_for           :submission_file_definitions,

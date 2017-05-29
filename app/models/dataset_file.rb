@@ -25,5 +25,4 @@ class DatasetFile < ApplicationRecord
 
   validates :description,       presence: true
   mount_uploader :dataset_file, DatasetFileUploader
-
 end

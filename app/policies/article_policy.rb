@@ -28,8 +28,8 @@ class ArticlePolicy < ApplicationPolicy
     edit?
   end
 
-  def load_more?
-    index?
+  def remove_image?
+    edit?
   end
 
   class Scope

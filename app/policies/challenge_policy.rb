@@ -32,11 +32,11 @@ class ChallengePolicy < ApplicationPolicy
     edit?
   end
 
-  def load_more?
-    index?
+  def regen_api_key?
+    update?
   end
 
-  def regen_api_key?
+  def remove_image?
     update?
   end
 

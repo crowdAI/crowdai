@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  after_action :verify_authorized, except: [:load_more]
+  after_action :verify_authorized
 
   def index
     #@articles = Article.search "*", page: params[:page], per_page: 2
@@ -60,6 +60,13 @@ class ArticlesController < ApplicationController
     redirect_to articles_url, notice: 'Article was successfully deleted.'
   end
 
+  def remove_image
+    @article = Article.friendly.find(params[:article_id])
+    authorize @article
+    @article.remove_image_file!
+    @article.save
+    redirect_to edit_article_path(@article), notice: 'Image removed.'
+  end
 
   private
     def set_article

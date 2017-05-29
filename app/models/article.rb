@@ -50,7 +50,7 @@ class Article < ApplicationRecord
   validates :vote_count,        presence: true
 
   mount_uploader :image_file, ImageUploader
-
+  validates :image_file, file_size: { less_than: 5.megabytes }
 
 
   def record_page_view

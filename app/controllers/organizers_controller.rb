@@ -53,6 +53,14 @@ class OrganizersController < ApplicationController
     redirect_to organizers_url, notice: 'Hosting organizer was successfully destroyed.'
   end
 
+  def remove_image
+    @organizer = Organizer.friendly.find(params[:organizer_id])
+    authorize @organizer
+    @organizer.remove_image_file!
+    @organizer.save
+    redirect_to edit_organizer_path(@organizer),notice: 'Image removed.'
+  end
+
   private
     def set_organizer
       @organizer = Organizer.friendly.find(params[:id])

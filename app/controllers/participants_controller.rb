@@ -32,6 +32,14 @@ class ParticipantsController < ApplicationController
     render 'admin/participants/refresh_sync_mailchimp_job_status'
   end
 
+  def remove_image
+    @participant = Participant.friendly.find(params[:participant_id])
+    authorize @participant
+    @participant.remove_image_file!
+    @participant.save
+    redirect_to edit_participant_path(@participant),notice: 'Image removed.'
+  end
+
   private
     def set_participant
       @participant = Participant.friendly.find(params[:id])

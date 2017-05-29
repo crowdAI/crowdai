@@ -32,6 +32,10 @@ class OrganizerPolicy < ApplicationPolicy
     update?
   end
 
+  def remove_image?
+    update?
+  end
+
   class Scope
     attr_reader :participant, :scope
 

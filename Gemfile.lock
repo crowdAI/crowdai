@@ -158,6 +158,10 @@ GEM
       jquery-rails (~> 4.2)
       js_regex (~> 1.2)
       rails (>= 5.0.0.1, < 5.2)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.8)
+      climate_control (>= 0.0.3, < 1.0)
     cocoon (1.2.9)
     coderay (1.1.1)
     coercible (1.0.0)
@@ -247,6 +251,10 @@ GEM
     ffi (1.9.14)
     figaro (1.1.1)
       thor (~> 0.14)
+    file_validators (1.2.0)
+      activemodel (>= 3.0)
+      cocaine (~> 0.5.4)
+      mime-types (>= 1.0)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog (1.35.0)
@@ -769,6 +777,7 @@ DEPENDENCIES
   fast_blank
   ffaker
   figaro
+  file_validators
   fog
   font-awesome-rails
   friendly_id (~> 5.1.0)

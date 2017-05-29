@@ -9,10 +9,14 @@ class Vote::Cell < Template::Cell
   end
 
   def vote_link
-    if participant_voted?
-      disabled_vote_link
+    if current_participant.nil?
+      sign_in_link
     else
-      upvote_link
+      if participant_voted?
+        disabled_vote_link
+      else
+        upvote_link
+      end
     end
   end
 
@@ -51,6 +55,13 @@ class Vote::Cell < Template::Cell
   def disabled_vote_link
     link_to "<i class='fa fa-heart active' aria-hidden='true'></i> #{display_vote_count}".html_safe,
             '#',
+            id: 'vote-link',
+            class: 'btn btn-secondary'
+  end
+
+  def sign_in_link
+    link_to "<i class='fa fa-heart' aria-hidden='true'></i> #{display_vote_count}".html_safe,
+            new_participant_session_path,
             id: 'vote-link',
             class: 'btn btn-secondary'
   end

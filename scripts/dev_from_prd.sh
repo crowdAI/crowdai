@@ -30,8 +30,8 @@ echo "DEV database refresh completed"
 
 echo "Empty crowdai-dev S3 bucket and sync from crowd-prd"
 set -x
-#aws s3 rm s3://crowdai-dev --recursive
-#aws s3 sync s3://crowdai-prd s3://crowdai-dev
+aws s3 rm s3://crowdai-dev --recursive
+aws s3 sync s3://crowdai-prd s3://crowdai-dev
 set +x
 echo ""
 

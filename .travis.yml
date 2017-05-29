@@ -4,12 +4,12 @@ sudo: required
 dist: trusty
 addons:
     postgresql: "9.6"
-    
+
 services:
     - postgresql
 
 rvm:
-  - 2.3.1
+  - 2.3.3
 
 env:
   - DB=postgres

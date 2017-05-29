@@ -834,7 +834,7 @@ DEPENDENCIES
   traceroute
   trailblazer
   trailblazer-rails
-  turbolinks
+  turbolinks (~> 5.0.0)
   uglifier (>= 1.3.0)
   validate_url
   web-console (~> 2.0)

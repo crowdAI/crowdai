@@ -24,14 +24,23 @@ class Challenge::Cell::ListDetail < Template::Cell
   end
 
   def remaining_text
-    if challenge.running?
+    case challenge.status
+    when :running, :perpetual
       if remaining_time_in_days > 0
         "#{remaining_time_in_days} days left"
       else
-        "#{remaining_time_in_hours} hours left"
+        if remaining_time_in_hours > 0
+          "#{remaining_time_in_hours} hours left"
+        else
+          "Challenge ended"   # display for perpetual challenges
+        end
       end
-    else
+    when :draft
+      "Draft"
+    when :completed
       "Challenge ended"
+    when :starting_soon
+      "Starting soon"
     end
   end
 

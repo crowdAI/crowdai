@@ -8,7 +8,7 @@
     <td class="participant">
       <div class="user-link">
         <%= link_to participant_path(entry.participant_id) do %>
-          <%= concept(Image::Cell,participant(entry.participant_id),size: :thumb) %>
+          <%= concept(Image::Cell,participant(entry.participant_id)) %>
         <% end %>
         <p><%= link_to entry.name, participant_path(entry.participant_id) %></p>
       </div>

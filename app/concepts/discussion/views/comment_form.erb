@@ -1,10 +1,9 @@
 <div class="discussion-comment">
   <div class="pic">
     <%= link_to participant_path(current_participant) do %>
-      <%= concept(Image::Cell,current_participant,size: :thumb) %>
+      <%= concept(Image::Cell,current_participant) %>
     <% end %>
   </div>
-  <%#= comment.inspect %>
   <%= form_for topic_comments_path(topic, comment) do |f| %>
     <%= f.text_area :comment_markdown, placeholder: "Add a comment..." %>
   <% end %>

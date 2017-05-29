@@ -1,7 +1,7 @@
 <div class="discussion-comment">
   <div class="pic">
     <%= link_to participant_path(current_participant) do %>
-      <%= concept(Image::Cell,current_participant,size: :thumb) %>
+      <%= concept(Image::Cell,current_participant) %>
     <% end %>
   </div>
   <%= form_for [topic, comment] do |f| %>

@@ -95,7 +95,7 @@ class Challenge < ApplicationRecord
   has_many :votes, as: :votable
 
 
-  as_enum :status, [:draft, :running, :completed, :perpetual, :cancelled, :starting_soon], map: :string
+  as_enum :status, [:draft, :running, :completed, :perpetual, :starting_soon], map: :string
   as_enum :grader, [:f1_logloss, :discrete_mean_squared_error, :diff_ratio, :manual, :external], map: :string
   as_enum :primary_sort_order, [:ascending, :descending], map: :string
   as_enum :secondary_sort_order, [:ascending, :descending, :not_used], map: :string

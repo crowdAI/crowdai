@@ -22,7 +22,7 @@
         </div>
         <label>Profile Picture</label>
         <div class="upload">
-          <%= concept(Image::Cell,@participant) %> <%#,size: :thumb) TODO %>
+          <%= concept(Image::Cell,@participant) %>
           <%= f.file_field :image_file, class: 'file-upload' %>
           <a href="#">Delete</a>
           |

@@ -50,7 +50,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 #gem 'jquery-ui-rails'
 #gem "jquery-fileupload-rails"
-gem 'turbolinks'
+gem 'turbolinks', '~> 5.0.0'
 gem 'lodash-rails'
 gem 'browser'
 gem 'coffee-rails'

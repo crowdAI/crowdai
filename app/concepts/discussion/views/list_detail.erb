@@ -2,7 +2,7 @@
   <%= concept(Discussion::Cell::TopicLikesListDetail,topic) %>
   <div class="pic">
     <%= link_to participant_path(author) do %>
-      <%= concept(Image::Cell,author,size: :thumb) %>
+      <%= concept(Image::Cell,author) %>
     <% end %>
   </div>
   <div class="details">

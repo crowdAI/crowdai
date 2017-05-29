@@ -15,7 +15,7 @@
       <p class="large"><%= article.summary %></p>
       <div class="user-link">
         <%= link_to participant_path(author) do %>
-          <%= concept('image/cell',author,size: :thumb) %>
+          <%= concept(Image::Cell,author) %>
         <% end %>
         <p>By
            <%= link_to author.name, participant_path(author) %>

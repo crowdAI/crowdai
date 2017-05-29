@@ -31,11 +31,13 @@ class Challenge::Cell::ChallengesSubnav < Template::Cell
   end
 
   def active_challenges_count
-    challenges.select { |c| c.status == :running }.count
+    statuses = [:running, :starting_soon]
+    challenges.select { |c| statuses.include?(c.status) }.count
   end
 
   def completed_challenges_count
-    challenges.select { |c| c.status == :completed }.count
+    statuses = [:completed, :perpetual]
+    challenges.select { |c| statuses.include?(c.status) }.count
   end
 
 end

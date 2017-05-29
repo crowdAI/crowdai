@@ -10,13 +10,7 @@ class Discussion::Cell::Comment < Template::Cell
   end
 
   def author
-    return @author ||= Participant.first
-    # TODO fix this
-    if comment.participant_id
-      @author ||= Participant.find(comment.participant_id)
-    else
-      @author ||= Participant.first
-    end
+    return @author ||= Participant.find(comment.participant_id)
   end
 
 end

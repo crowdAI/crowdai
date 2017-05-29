@@ -1,12 +1,12 @@
 <li>
   <div class="pic">
     <%= link_to challenge_path(challenge) do %>
-      <%= concept(Image::Cell,challenge) %> <%#,size: :thumb) TODO %>
+      <%= concept(Image::Cell,challenge) %>
     <% end %>
   </div>
   <div class="details">
     <h5><%= link_to challenge.challenge, challenge_path(challenge) %></h5>
-    <p class="description"><%= challenge.tagline %></p>
+    <p class="description ellipsis"><%= challenge.tagline %></p>
     <p class="status active"><%= remaining_text %></p>
   </div>
   <div class="stats">

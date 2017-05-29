@@ -12,3 +12,10 @@
 .turbolinks-progress-bar {
   background-color: #f0524d;
 }
+
+.ellipsis {
+  max-width: 640px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

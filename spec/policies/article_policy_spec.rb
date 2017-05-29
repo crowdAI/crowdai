@@ -2,14 +2,14 @@ require 'rails_helper'
 
 describe ArticlePolicy do
   context "for a published article" do
-    subject { described_class.new(participant, article) }
+    subject { described_class.new(user, article) }
 
-    let(:article) { create(:article, :with_sections, participant: author) }
-    let(:author) { create(:participant) }
-    let(:admin) { create(:participant, :admin )}
+    let(:article) { create(:article, user: author) }
+    let(:author) { create(:user) }
+    let(:admin) { create(:user, :admin )}
 
-    context 'for a public participant' do
-      let(:participant) { nil }
+    context 'for a public user' do
+      let(:user) { nil }
       it { is_expected.to permit_action(:show) }
       it { is_expected.to permit_action(:index) }
       it { is_expected.to forbid_action(:create) }
@@ -20,7 +20,7 @@ describe ArticlePolicy do
     end
 
     context 'for the author' do
-      let(:participant) { author }
+      let(:user) { author }
       it { is_expected.to permit_action(:show) }
       it { is_expected.to permit_action(:index) }
       it { is_expected.to permit_action(:create) }
@@ -31,7 +31,7 @@ describe ArticlePolicy do
     end
 
     context 'for an admin' do
-      let(:participant) { admin }
+      let(:user) { admin }
       it { is_expected.to permit_action(:show) }
       it { is_expected.to permit_action(:index) }
       it { is_expected.to permit_action(:create) }

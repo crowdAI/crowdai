@@ -4,8 +4,8 @@ class ParticipantsController < ApplicationController
   respond_to :html, :js
 
   def show
-    @articles = Article.all
-    @challenges = Challenge.all
+    @articles = Article.where(participant_id: @participant.id)
+    @challenges = @participant.challenges
   end
 
 

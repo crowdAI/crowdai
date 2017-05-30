@@ -13,24 +13,46 @@
 
   <div id='tab-challenges' class='tab-content active'>
     <div class="row">
-      <ul class="list-challenges">
-        <%= concept(Challenge::Cell::ListDetail, collection: @challenges) %>
-      </ul>
+      <% if @challenges.any? %>
+        <ul class="list-challenges">
+          <%= concept(Challenge::Cell::ListDetail, collection: @challenges) %>
+        </ul>
+      <% else %>
+        <div class='article'>
+          <p class='light'>
+            <%= "#{@participant.name} hasn't entered any challenges yet..." %>
+          </p>
+        </div>
+      <% end %>
     </div>
   </div>
 
   <div id='tab-articles' class='tab-content'>
     <div class="row">
-      <ul class="list-tutorials">
-        <%= concept(Article::Cell::ListDetail, collection: @articles) %>
-      </ul>
+        <% if @articles.any? %>
+          <ul class="list-tutorials">
+            <%= concept(Article::Cell::ListDetail, collection: @articles) %>
+          </ul>
+        <% else %>
+        <div class='article'>
+          <p class='light'>
+            <%= "#{@participant.name} hasn't authored any tutorials yet..." %>
+          </p>
+        </div>
+        <% end %>
     </div>
   </div>
 
   <div id='tab-bio' class='tab-content'>
     <div class="row">
       <div class="article">
-        <%= @participant.bio %>
+        <% if @participant.bio %>
+          <%= @participant.bio %>
+        <% else %>
+          <p class='light'>
+            <%= "Apparently #{@participant.name} prefers to keep an air of mystery about them..." %>
+          </p>
+        <% end %>
       </div>
     </div>
   </div>

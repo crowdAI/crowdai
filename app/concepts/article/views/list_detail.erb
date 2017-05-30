@@ -13,12 +13,12 @@
   </div>
   <div class="stats">
     <div class="stat-fr">
-      <%= article.vote_count %><br>
-      <span>Likes</span>
+      <%= article.vote_count %><br/>
+      <span><%= "Like".pluralize(article.vote_count) %></span>
     </div>
     <div class="stat-fr">
-      <%= article.view_count %><br>
-      <span>Views</span>
+      <%= article.view_count %><br/>
+      <span><%= "View".pluralize(article.view_count) %></span>
     </div>
   </div>
 </li>

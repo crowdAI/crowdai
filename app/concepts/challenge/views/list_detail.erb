@@ -12,15 +12,15 @@
   <div class="stats">
     <div class="stat-fr">
       <%= challenge.submission_count %><br>
-      <span>Submissions</span>
+      <span><%= "Submission".pluralize(challenge.submission_count) %></span>
     </div>
     <div class="stat-fr">
       <%= challenge.participant_count %><br>
-      <span>Participants</span>
+      <span><%= "Participant".pluralize(challenge.submission_count) %></span>
     </div>
     <div class="stat-fr">
       <%= challenge.page_views %><br>
-      <span>Views</span>
+      <span><%= "View".pluralize(challenge.page_views) %></span>
     </div>
   </div>
 </li>

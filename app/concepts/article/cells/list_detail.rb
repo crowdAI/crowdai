@@ -5,13 +5,12 @@ class Article::Cell::ListDetail < Template::Cell
     render :list_detail
   end
 
-  def author
-    model.participant
-  end
-
-  private
   def article
     model
+  end
+
+  def author
+    model.participant
   end
 
 end

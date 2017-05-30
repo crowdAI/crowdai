@@ -15,7 +15,7 @@ class Leaderboard::Cell::Media < Template::Cell
 
   def dimensions
     if size == :thumb
-      return "125x125"
+      return "100x100"
     else
       return "500x500"
     end
@@ -54,6 +54,10 @@ class Leaderboard::Cell::Media < Template::Cell
     else
       return image_tag(default_image_url, size: dimensions)
     end
+  end
+
+  def vid_tag(url,dimensions)
+    return "<video width='#{size}' height='#{size}' src=#{expiring_url} loop=''></video>".html_safe
   end
 
   def expiring_url

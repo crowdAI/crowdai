@@ -104,7 +104,7 @@ gem 'fog'
 # View
 gem "trailblazer"
 gem "trailblazer-rails"
-gem "cells-rails"
+gem "cells-rails", github: 'trailblazer/cells-rails'
 gem "cells"
 gem "cells-erb"
 gem "faraday"

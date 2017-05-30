@@ -43,6 +43,14 @@ GIT
       activeadmin
       spreadsheet
 
+GIT
+  remote: git://github.com/trailblazer/cells-rails.git
+  revision: 19b61614adbdaf2203c4665f06cd4d1b5204aefd
+  specs:
+    cells-rails (0.0.8)
+      actionpack (>= 3.0)
+      cells (>= 4.1.6, < 5.0.0)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -148,9 +156,6 @@ GEM
     cells-erb (0.1.0)
       cells (~> 4.0)
       erbse (>= 0.1.1)
-    cells-rails (0.0.7)
-      actionpack (>= 3.0)
-      cells (>= 4.1.6, < 5.0.0)
     choice (0.2.0)
     chunky_png (1.3.8)
     client_side_validations (9.1.0)
@@ -760,7 +765,7 @@ DEPENDENCIES
   carrierwave (~> 1.0)
   cells
   cells-erb
-  cells-rails
+  cells-rails!
   client_side_validations
   cocoon
   coffee-rails

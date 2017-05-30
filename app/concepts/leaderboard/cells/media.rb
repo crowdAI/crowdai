@@ -56,10 +56,6 @@ class Leaderboard::Cell::Media < Template::Cell
     end
   end
 
-  def vid_tag(url,dimensions)
-    return "<video width='#{size}' height='#{size}' src=#{expiring_url} loop=''></video>".html_safe
-  end
-
   def expiring_url
     if size == :thumb
       url = S3Service.new(leaderboard_row.media_thumbnail).expiring_url
@@ -76,13 +72,4 @@ class Leaderboard::Cell::Media < Template::Cell
     image_path 'users/avatar-default.png'
   end
 
-
-
-  #options
-  #  - image
-  #  - video
-  #  - size (thumb, sm, m, l)
-  #
-  # fallback to default image if missing
-  # Option to popup modal to large image
 end

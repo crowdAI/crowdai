@@ -1,0 +1,12 @@
+<div class="row">
+  <%= form_for @challenge, validate: true, html: { class: "dbl-col" } do |f| %>
+  <fieldset>
+    <label>Datasets License</label>
+    <%= markdown_editor("description_markdown") do |m| %>
+    <%= f.text_area :dataset_description_markdown, class: "txt-med" %>
+    <% end %>
+
+    <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>
+  </fieldset>
+  <% end %>
+</div>

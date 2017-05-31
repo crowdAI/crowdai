@@ -1,0 +1,43 @@
+<header>
+  <div class="row">
+    <div class="branding">
+      <a class="logo" href="/" title=""></a>
+    </div>
+    <%#
+    <div class="search">
+      <form id="search-box" method="get" action="">
+        <label>
+          <input id="search-bar" type="search" name="search" placeholder="Search crowdAI">
+          <span class="fa fa-lg"></span>
+        </label>
+      </form>
+      <a class="search-open fa fa-search fa-lg" href="#"></a>
+    </div>
+
+    <div id="mobile-search-overlay">
+      <a class="search-open fa fa-search fa-lg" href="#"></a>
+      <form method="get" action="">
+        <input type="search" name="search" placeholder="Search crowdAI">
+      </form>
+      <a id="search-close" class="fa fa-times fa-lg" href="#"></a>
+    </div> %>
+
+    <%= participant_dropdown %>
+
+    <nav class="primary">
+      <%= desktop_links %>
+    </nav>
+    <div class="menu">
+      <a id="mobile-nav" href="#"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>
+    </div>
+  </div>
+  <nav class="mobile-primary">
+    <div id="mobile-nav-header">
+      <div class="row">
+        <a class="logo" href="#" title=""></a>
+        <a id="mobile-nav" href="#"><i class="fa fa-times fa-lg" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    <%= mobile_links %>
+  </nav>
+</header>

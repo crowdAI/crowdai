@@ -1,59 +1,21 @@
-/* gems */
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "font-awesome";
-@import "jquery-ui";
-@import "include_media";
-@import "bootstrap-datetimepicker";
+@import "compass";
+@import "remodal";
+@import "site";
+@import "subnav_tabs";
+@import "inline_validations";
+//@import "active_admin";
 
-
-/* components */
-@import "components/alerts";
-@import "components/typography";
-@import "components/containers";
-@import "components/sections";
-@import "components/navbar";
-@import "components/navbar_mobile";
-@import "components/buttons";
-@import "components/links";
-@import "components/sidebar";
-@import "components/footer";
-@import "components/page_content";
-@import "components/forms";
-@import "components/calendars";
-@import "components/labels";
-@import "components/markdown_editor";
-@import "components/images";
-
-
-/* modules */
-@import "modules/authorisation";
-@import "modules/challenges";
-@import "modules/discussions";
-@import "modules/profile";
-@import "modules/leaderboard";
-@import "modules/articles";
-@import "modules/rouge";
-@import "modules/lists";
-
-
-/* site-wide overrides */
-body {
-    width: 100%;
-    height: 100%;
+.pull-right {
+  float: right;
 }
 
-html {
-    width: 100%;
-    height: 100%;
+.turbolinks-progress-bar {
+  background-color: #f0524d;
 }
 
-
-/* constrain images to Bootstrap columns */
-img { max-width: 100%; }
-
-
-/* chrome autofill yellow */
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+.ellipsis {
+  max-width: 640px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }

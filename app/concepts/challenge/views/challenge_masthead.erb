@@ -1,0 +1,46 @@
+<div class="masthead-detailed">
+  <div class="row">
+    <div class="pic pic-challenge">
+      <%= concept(Image::Cell,challenge,size: :medium) %>
+    </div>
+    <div class="info info-challenge">
+      <div class="heading-w-icon">
+        <h2><%= challenge.challenge %></h2>
+        <% if policy(challenge).edit? %>
+          <%= link_to edit_challenge_path(challenge), title: "Edit challenge" do %>
+            <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+          <% end %>
+        <% end %>
+      </div>
+      <p class="large"><%= challenge.tagline %></p>
+      <div class="user-link">
+        <%= link_to organizer_path(organizer) do %>
+          <%= concept(Image::Cell,organizer,size: :medium) %>
+        <% end %>
+        <p>By <%= link_to organizer.organizer, organizer_path(organizer) %></p>
+      </div>
+      <progress max="100" value="<%= progress %>"></progress>
+      <div class="stats">
+        <div class="stat-fl">
+          <%= remaining_time_in_days %><br>
+          <span>Days left</span>
+        </div>
+        <div class="stat-fr">
+          <%= challenge.submission_count %><br>
+          <span>Submissions</span>
+        </div>
+        <div class="stat-fr">
+          <%= challenge.participant_count %><br>
+          <span>Particpants</span>
+        </div>
+        <div class="stat-fr">
+          <%= challenge.page_views %><br>
+          <span>Views</span>
+        </div>
+      </div>
+      <div class="button-group">
+        <%= concept(Vote::Cell, challenge) %>
+      </div>
+    </div>
+  </div>
+</div>

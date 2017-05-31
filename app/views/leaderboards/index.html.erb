@@ -1,30 +1,5 @@
-<%= render partial: 'challenges/sidebar' %>
-<%= render partial: 'challenges/header', challenge: @challenge %>
-
-<div class="page-content-container">
-  <% if @challenge.completed? %>
-      <ul class="nav nav-pills">
-        <li class="active"><a href="#event-leaderboard" data-toggle="pill">Leaderboard</a></li>
-        <li><a href="#all-submissions" data-toggle="pill">All Submissions</a></li>
-      </ul>
-      <div class='tab-content'>
-        <br/>
-        <div class="tab-pane active" id="event-leaderboard">
-          <%= render partial: 'leaderboards/index/leaderboard', locals: { challenge: @challenge, leaderboards: @leaderboards } %>
-        </div>
-        <div class="tab-pane" id="all-submissions">
-          <%= render partial: 'leaderboards/index/ongoing_leaderboard', locals: { challenge: @challenge, leaderboards: @ongoing_leaderboards } %>
-        </div>
-      </div>
-  <% else %>
-    <%= render partial: 'leaderboards/index/leaderboard', locals: { challenge: @challenge, leaderboards: @leaderboards } %>
-  <% end %>
-
-  <p class="small">Entries column includes entries not yet graded which, when graded, may affect the contents of this leaderboard.</p>
-
-  <% if current_participant && current_participant.admin? #&& @participant_submissions %>
-    <%= render partial: 'leaderboards/index/participant_submissions', locals: { challenge: @challenge, participant_submissions: @participant_submissions } %>
-  <% end %>
-
-
-</div>
+<content>
+  <%= concept(Challenge::Cell::ChallengeMasthead, @challenge) %>
+  <%= concept(Challenge::Cell::ChallengeSubnav, @challenge, tab: 'leaderboard') %>
+  <%= concept(Leaderboard::Cell, @leaderboard, challenge: @challenge) %>
+</content>

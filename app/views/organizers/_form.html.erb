@@ -1,17 +1,38 @@
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <%= simple_form_for(@organizer) do |f| %>
-    <%= f.error_notification %>
-
-    <div class="form-inputs">
-      <%= f.input :organizer %>
-      <%= f.input :address %>
-      <%= f.input :description %>
+<content>
+  <div class="masthead">
+    <div class="row">
+      <div class="info">
+        <h2><%= title %></h2>
+      </div>
     </div>
-
-    <div class="form-actions">
-      <%= f.button :submit, class: 'btn btn-primary outline' %>
-    </div>
+  </div>
+  <div class="row">
+    <%= form_for organizer, validate: true, html: { class: "sgl-col", multipart: true  } do |f| %>
+      <fieldset>
+        <label>Host Hame</label>
+        <%= f.text_field :organizer %>
+        <label>Profile Picture</label>
+        <div class="upload">
+          <%= concept(Image::Cell,organizer,klass: 'img-thumb') %>
+          <%= f.file_field :image_file, class: 'file-upload' %>
+          <% if organizer.image_file.present? %>
+            <%= link_to 'Delete', organizer_remove_image_path(organizer) %>
+          <% end %>
+          <span>Your image will be cropped if necessary. 5MB limit</span>
+        </div>
+        <label>Tagline<label>
+        <%= f.text_field :tagline, placeholder: "140 characters max." %>
+        <label>Description<label>
+        <%= f.text_area :description %>
+        <label>Address</label>
+        <%= f.text_area :address %>
+        <%= render partial: 'submit_buttons', locals: { f: f  } %>
+      </fieldset>
     <% end %>
   </div>
-</div>
+  <div class="additional">
+    <div class="row">
+      <a data-remodal-target="modal">Delete host</a>
+    </div>
+  </div>
+</content>

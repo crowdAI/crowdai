@@ -1,4 +1,72 @@
+# == Schema Information
+#
+# Table name: challenges
+#
+#  id                               :integer          not null, primary key
+#  organizer_id                     :integer
+#  challenge                        :string
+#  status_cd                        :string           default("draft")
+#  created_at                       :datetime         not null
+#  updated_at                       :datetime         not null
+#  tagline                          :string
+#  primary_sort_order_cd            :string           default("ascending")
+#  secondary_sort_order_cd          :string
+#  perpetual_challenge              :boolean          default(FALSE)
+#  grading_factor                   :float            default(1.0)
+#  grader_cd                        :string
+#  answer_file_s3_key               :string
+#  page_views                       :integer          default(0)
+#  participant_count                :integer          default(0)
+#  submission_count                 :integer          default(0)
+#  score_title                      :string
+#  score_secondary_title            :string
+#  automatic_grading                :boolean          default(FALSE)
+#  slug                             :string
+#  submission_license               :string
+#  api_required                     :boolean          default(FALSE)
+#  daily_submissions                :integer
+#  threshold                        :float
+#  start_dttm                       :datetime
+#  end_dttm                         :datetime
+#  media_on_leaderboard             :boolean          default(FALSE)
+#  challenge_client_name            :string
+#  online_grading                   :boolean          default(TRUE)
+#  api_key                          :string
+#  vote_count                       :integer          default(0)
+#  start_date                       :date
+#  end_date                         :date
+#  start_time                       :time
+#  end_time                         :time
+#  description_markdown             :text
+#  description                      :text
+#  evaluation_markdown              :text
+#  evaluation                       :text
+#  rules_markdown                   :text
+#  rules                            :text
+#  prizes_markdown                  :text
+#  prizes                           :text
+#  resources_markdown               :text
+#  resources                        :text
+#  submission_instructions_markdown :text
+#  submission_instructions          :text
+#  license_markdown                 :text
+#  license                          :text
+#  dataset_description_markdown     :text
+#  dataset_description              :text
+#  image_file                       :string
+#
+# Indexes
+#
+#  index_challenges_on_organizer_id  (organizer_id)
+#  index_challenges_on_slug          (slug) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_0bdc80d25a  (organizer_id => organizers.id)
+#
+
 class Challenge < ApplicationRecord
+  #searchkick
   include FriendlyId
   include ApiKey
 
@@ -10,23 +78,25 @@ class Challenge < ApplicationRecord
 
   belongs_to :organizer
 
-  has_one :image,                         as: :imageable, dependent: :destroy
-  accepts_nested_attributes_for           :image, allow_destroy: true
-  has_many :dataset_files,                dependent: :destroy
-  has_many :docker_configurations,        dependent: :destroy
-  has_many :submission_file_definitions,  dependent: :destroy
+  has_many :dataset_files, dependent: :destroy
+  mount_uploader :image_file, ImageUploader
+  #validates :image_file, file_size: { less_than: 5.megabytes }
+
+  has_many :submission_file_definitions,  dependent: :destroy, inverse_of: :challenge
   accepts_nested_attributes_for           :submission_file_definitions,
                                           reject_if: :all_blank,
                                           allow_destroy: true
+
   has_many :submissions,                  dependent: :destroy
   has_many :leaderboards,                 class_name: 'Leaderboard'
   has_many :ongoing_leaderboards,         class_name: 'OngoingLeaderboard'
   has_many :participant_challenges,       class_name: 'ParticipantChallenge'
   has_many :topics
   has_many :emails,                       dependent: :destroy
+  has_many :votes, as: :votable
 
 
-  as_enum :status, [:draft, :running, :completed, :perpetual, :cancelled, :starting_soon], map: :string
+  as_enum :status, [:draft, :running, :completed, :perpetual, :starting_soon], map: :string
   as_enum :grader, [:f1_logloss, :discrete_mean_squared_error, :diff_ratio, :manual, :external], map: :string
   as_enum :primary_sort_order, [:ascending, :descending], map: :string
   as_enum :secondary_sort_order, [:ascending, :descending, :not_used], map: :string
@@ -39,6 +109,7 @@ class Challenge < ApplicationRecord
   validates_presence_of :grading_factor
   #validates_uniqueness_of :challenge_client_name
   validates :challenge_client_name, format: { with: /\A[a-zA-Z0-9]/ }
+  validates_presence_of :challenge_client_name
 
 
   default_scope { order("CASE status_cd
@@ -74,7 +145,6 @@ class Challenge < ApplicationRecord
     return (self.daily_submissions - submissions_today)
   end
 
-
   private
   def cache_rendered_markdown
     if evaluation_markdown_changed?
@@ -103,11 +173,9 @@ class Challenge < ApplicationRecord
     end
   end
 
-
   def should_generate_new_friendly_id?
     challenge_changed?
   end
-
 
   def valid_status
     if self.status == :running
@@ -119,6 +187,5 @@ class Challenge < ApplicationRecord
       errors.add(:base, "Only a running challenge may be cancelled.")
     end
   end
-
 
 end

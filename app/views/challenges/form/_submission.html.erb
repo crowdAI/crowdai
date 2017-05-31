@@ -1,0 +1,48 @@
+<div class="row">
+  <%= form_for @challenge, validate: true, html: { class: "dbl-col" } do |f| %>
+  <fieldset>
+    <label>Submission Instructions</label>
+    <%= markdown_editor("description_markdown") do |m| %>
+      <%= f.text_area :submission_instructions_markdown, class: "txt-med" %>
+    <% end %>
+
+    <p>This license text is displayed on the submission upload page during and after the challenge</p>
+    <%= markdown_editor("sss") do |m| %>
+      <%= f.text_area :license_markdown, class: "txt-med", placeholder: "Please upload your submissions and include a detailed description of the methodology, techniques and insights leveraged with this submission. After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC)." %>
+    <% end %>
+    <fieldset>
+      <div class="switch-container">
+        <input type="checkbox" id="switch" name="switch" class="switch" checked>
+        <label for="switch">Open source my submission after the end of the challenge</label>
+      </div>
+    </fieldset>
+    <fieldset class="radiogroup">
+      <label>License type:</label>
+      <input type="radio" name="" value="">
+      License #1
+      <input type="radio" name="" value="">
+      License #2
+      <input type="radio" name="" value="">
+      License #3
+      <input type="radio" name="" value="">
+      License #4
+    </fieldset>
+    <fieldset>
+      <label>Maximum no. of daily submissions</label>
+      <%= f.text_field :daily_submissions %>
+    </fieldset>
+    <fieldset>
+      <h4>Submission File Definitions</h4>
+      <div id='submission-file-definitions'>
+        <%= f.fields_for :submission_file_definitions do |file| %>
+          <%= render 'challenges/form/submission_file_definition_fields', f: file %>
+        <% end %>
+        <div class='links'>
+          <%= link_to_add_association '+ Submission File Definition', f, :submission_file_definitions,
+                                    html_options = { partial: 'challenges/form/submission_file_definition_fields' } %>
+        </div>
+      </div>
+          <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>
+    </fieldset>
+    <% end %>
+  </div>

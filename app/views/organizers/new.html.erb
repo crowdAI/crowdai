@@ -1,9 +1,1 @@
-<div class="container-medium-grey">
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <h1>Add an Organizer</h1>
-      <%= render 'form' %>
-      <%= link_to 'Back', articles_path %>
-    </div>
-  </div>
-</div>
+<%= render partial: 'organizers/form', locals: { organizer: @organizer, title: 'New Host' } %>

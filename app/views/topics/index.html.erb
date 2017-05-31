@@ -1,63 +1,12 @@
-<%= render partial: 'challenges/sidebar' %>
-<%= render partial: 'challenges/header', challenge: @challenge %>
+<content>
+  <%= concept(Challenge::Cell::ChallengeMasthead, @challenge) %>
+  <%= concept(Challenge::Cell::ChallengeSubnav, @challenge, tab: 'discussion') %>
 
-<div class="page-content-container">
   <div class="row">
-    <div class="col-xs-7 col-md-10">
-      <% if @headline_post %>
-      <blockquote>
-        <p>
-          <%= link_to new_topic_post_path(@headline_post.topic_id) do %>
-              <% simple_format(@headline_post.post) %>
-           <% end %>
-         </p>
-        <footer>Posted by
-          <%= @headline_post.name %>
-          in
-          <cite><%= @headline_post.topic_text %></cite>
-        </footer>
-      </blockquote>
-      <% end %>
+    <div class="list-options">
+      <p><%= pluralize(@topics.count, 'Topic') %> | <a href="#">Subscribe</a></p>
+      <%= link_to 'New Topic', new_challenge_topic_path(@challenge), class: 'btn btn-secondary' %>
     </div>
-    <div class="col-xs-1 col-md-1">
-      <%= link_to '+ New Topic', new_challenge_topic_path(@challenge), class: 'btn btn-primary outline' %>
-    </div>
+    <%= concept(Discussion::Cell::List, @topics) %>
   </div>
-
-  <div class='table-responsive'>
-    <table class="table table-striped table-hover topics-table">
-      <thead>
-        <colgroup>
-          <col class="col-md-8">
-          <col class="col-md-2">
-          <col class="col-md-2">
-        </colgroup>
-        <tr>
-          <th>Topic</th>
-          <th>Posts</th>
-          <th>Activity</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% if @topics %>
-        <% @topics.each do |topic| %>
-        <tr>
-          <td><%= content_tag(:i, nil, class: 'fa fa-thumb-tack') if topic.sticky %>
-            <%= link_to topic.topic, new_topic_post_path(topic) %>
-            <% if current_participant.admin? %>
-            <span class="pull-right">
-              <%= link_to 'Edit', edit_challenge_topic_path(@challenge,topic) %><br/>
-              <%= link_to 'Delete', [@challenge,topic], method: :delete, data: { confirm: 'Are you sure?' } %>
-            </span>
-            <% end %>
-          </td>
-          <td><%= topic.posts.count %></td>
-          <td><%= topic.last_activity %></td>
-        </tr>
-        <% end %>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-</div>
+</content>

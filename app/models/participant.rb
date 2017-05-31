@@ -1,4 +1,63 @@
+# == Schema Information
+#
+# Table name: participants
+#
+#  id                      :integer          not null, primary key
+#  email                   :string           default(""), not null
+#  encrypted_password      :string           default(""), not null
+#  reset_password_token    :string
+#  reset_password_sent_at  :datetime
+#  remember_created_at     :datetime
+#  sign_in_count           :integer          default(0), not null
+#  current_sign_in_at      :datetime
+#  last_sign_in_at         :datetime
+#  current_sign_in_ip      :inet
+#  last_sign_in_ip         :inet
+#  confirmation_token      :string
+#  confirmed_at            :datetime
+#  confirmation_sent_at    :datetime
+#  failed_attempts         :integer          default(0), not null
+#  unlock_token            :string
+#  locked_at               :datetime
+#  admin                   :boolean          default(FALSE)
+#  verified                :boolean          default(FALSE)
+#  verification_date       :date
+#  timezone                :string
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  unconfirmed_email       :string
+#  organizer_id            :integer
+#  name                    :string
+#  email_public            :boolean          default(FALSE)
+#  bio                     :text
+#  website                 :string
+#  github                  :string
+#  linkedin                :string
+#  twitter                 :string
+#  account_disabled        :boolean          default(FALSE)
+#  account_disabled_reason :text
+#  account_disabled_dttm   :datetime
+#  slug                    :string
+#  api_key                 :string
+#  location                :string
+#  image_file              :string
+#
+# Indexes
+#
+#  index_participants_on_confirmation_token    (confirmation_token) UNIQUE
+#  index_participants_on_email                 (email) UNIQUE
+#  index_participants_on_organizer_id          (organizer_id)
+#  index_participants_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_participants_on_slug                  (slug) UNIQUE
+#  index_participants_on_unlock_token          (unlock_token) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_a4e41c0c05  (organizer_id => organizers.id)
+#
+
 class Participant < ApplicationRecord
+  #searchkick
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
   include FriendlyId
@@ -8,13 +67,14 @@ class Participant < ApplicationRecord
   after_create :set_api_key
   before_save { self.email = email.downcase }
   before_save :process_urls
+  validates :api_key, presence: true
+  mount_uploader :image_file, ImageUploader
+  validates :image_file, file_size: { less_than: 5.megabytes }
 
   devise :database_authenticatable,  :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 
-  belongs_to :organizer
-  has_one :image, as: :imageable, dependent: :destroy
-  accepts_nested_attributes_for :image, allow_destroy: true
+  belongs_to :organizer, optional: true
   has_many :submissions
   has_many :posts
   has_many :votes,                      dependent: :destroy
@@ -23,6 +83,7 @@ class Participant < ApplicationRecord
   has_many :leaderboards,               class_name: 'Leaderboard'
   has_many :ongoing_leaderboards,       class_name: 'OngoingLeaderboard'
   has_many :participant_challenges,     class_name: 'ParticipantChallenge'
+  has_many :challenges, through: :participant_challenges
   has_many :dataset_file_downloads,     dependent: :destroy
   has_many :email_preferences,          dependent: :destroy
 

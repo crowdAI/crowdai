@@ -1,6 +1,5 @@
-<%= render partial: 'challenges/sidebar' %>
-<%= render partial: 'challenges/header', challenge: @challenge %>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', challenge_path(@challenge) %>
+<content>
+  <%= concept(Challenge::Cell::ChallengeMasthead, @challenge) %>
+  <%= concept(Challenge::Cell::ChallengeSubnav, @challenge, tab: 'discussion') %>
+  <%#= concept(Discussion::Cell, @topics, challenge: @challenge) %>
+</content>

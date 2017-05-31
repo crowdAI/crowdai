@@ -1,9 +1,13 @@
 class ParticipantsController < ApplicationController
   before_filter :authenticate_participant!
   before_action :set_participant, only: [:show, :edit, :update, :destroy]
+  respond_to :html, :js
 
   def show
+    @articles = Article.where(participant_id: @participant.id)
+    @challenges = @participant.challenges
   end
+
 
   def update
     @participant = Participant.friendly.find(params[:id])
@@ -20,12 +24,20 @@ class ParticipantsController < ApplicationController
     authorize @participant
     @participant.api_key = @participant.generate_api_key
     @participant.save!
-    render 'participants/ajax/refresh_api_key', notice: 'API Key regenerated.'
+    redirect_to edit_participant_path(@participant),notice: 'API Key regenerated.'
   end
 
   def sync_mailchimp
     @job = AddToMailChimpListJob.perform_later(params[:participant_id])
     render 'admin/participants/refresh_sync_mailchimp_job_status'
+  end
+
+  def remove_image
+    @participant = Participant.friendly.find(params[:participant_id])
+    authorize @participant
+    @participant.remove_image_file!
+    @participant.save
+    redirect_to edit_participant_path(@participant),notice: 'Image removed.'
   end
 
   private
@@ -36,8 +48,7 @@ class ParticipantsController < ApplicationController
     def participant_params
       params.require(:participant).permit(:email, :password, :password_confirmation,
         :phone_number, :country, :city, :name, :organizer_id,
-        :email_public, :bio, :website, :github, :linkedin, :twitter,
-          image_attributes: [:id, :image, :_destroy ])
+        :email_public, :bio, :website, :github, :linkedin, :twitter, :image_file)
     end
 
 end

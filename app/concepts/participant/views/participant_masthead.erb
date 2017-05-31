@@ -1,0 +1,32 @@
+<div class="masthead-detailed">
+  <div class="row">
+    <div class="pic pic-user">
+      <%= concept(Image::Cell,participant,size: :medium) %>
+    </div>
+    <div class="info info-user">
+      <div class="heading-w-icon">
+        <h2><%= participant.name %></h2>
+        <% if policy(participant).edit? %>
+          <%= link_to edit_participant_path(participant), title: "Edit participant" do %>
+            <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+          <% end %>
+        <% end %>
+      </div>
+      <p class="location"><%= location_organization %></p>
+      <ul class="social-links">
+        <% if participant.twitter %>
+          <li><%= link_to '<i class="fa fa-twitter" aria-hidden="true"></i>', url_for(participant.twitter) %></li>
+        <% end %>
+        <% if participant.github %>
+          <li><%= link_to '<i class="fa fa-github" aria-hidden="true"></i>', url_for(participant.github) %></li>
+        <% end %>
+        <% if participant.linkedin %>
+          <li><%= link_to '<i class="fa fa-linkedin" aria-hidden="true"></i>', url_for(participant.linkedin) %></li>
+        <% end %>
+        <% if participant.website %>
+          <li><%= link_to '<i class="fa fa-link" aria-hidden="true"></i>', url_for(participant.website) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

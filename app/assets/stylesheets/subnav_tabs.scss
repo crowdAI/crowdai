@@ -1,0 +1,25 @@
+// https://codepen.io/cssjockey/pen/jGzuK
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+// Markdown editor
+#md-preview {
+  margin: 9px 0 0;
+  padding: 10px;
+  border: 1px solid $color-grey-20;
+  min-height: 278px;
+}
+
+.md-tab-content {
+  display: none;
+}
+
+.md-tab-content.active {
+  display: block;
+}

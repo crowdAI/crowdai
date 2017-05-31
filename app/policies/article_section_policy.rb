@@ -1,2 +1,0 @@
-class ArticleSectionPolicy < ArticlePolicy
-end

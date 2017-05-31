@@ -1,22 +1,14 @@
-<section class="header-section">
-  <div class="intro"></div>
-</section>
-
-<div class="list-container">
-  <div class='article-filter-container'>
-    <% if policy(Challenge.new).create? %>
-    <br/>
+<content>
+  <div class="masthead">
     <div class="row">
-      <div class="col-md-2">
-        <%= link_to '+ New Challenge', new_challenge_path, class: 'btn btn-primary outline' %>
-      </div>
+      <h2>Challenges</h2>
     </div>
-    <% end %>
   </div>
-
-  <ul class="list-items">
-    <% @challenges.each do |challenge| %>
-    <%= render partial: 'challenges/index/challenge', locals: { challenge: challenge } %>
-    <% end %>
-  </ul>
-</div>
+  <%= concept(Challenge::Cell::ChallengesSubnav, @all_challenges, challenge_filter: @challenge_filter) %>
+  <div class="row">
+    <ul class="list-challenges">
+      <%= render partial: 'challenges' %>
+    </ul>
+  </div>
+  <%= render partial: 'shared/load_more', locals: { collection: @challenges } %>
+</content>

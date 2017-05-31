@@ -1,0 +1,31 @@
+<content>
+  <%= concept(Challenge::Cell::ChallengeMasthead, @challenge) %>
+  <%= concept(Challenge::Cell::ChallengeSubnav, @challenge, tab: 'discussion') %>
+
+  <div class="row">
+    <div class="discussion-topic">
+      <div class="pic">
+        <%= link_to participant_path(@topic.participant) do %>
+          <%= concept(Image::Cell,@topic.participant) %>
+        <% end %>
+      </div>
+      <div class="topic-content">
+        <%= concept(Vote::Cell,@topic) %>
+        <h4><%= @topic.topic %></h4>
+        <p class="details">Posted by
+          <%= link_to @author.name, participant_path(@author) %>
+          <%= time_ago_in_words(@topic.created_at) %> ago |&nbsp;
+          <a href="#">Quote</a>
+        </p>
+        <div class="comment">
+          <p><%= simple_format(@topic.description) %></p>
+        </div>
+      </div>
+    </div>
+
+    <% if current_participant %>
+      <%= render partial: 'form', locals: { topic: @topic, comment: @comment } %>
+    <% end %>
+    <%= concept(Discussion::Cell::Comment, collection: @comments) %>
+  </div>
+</content>

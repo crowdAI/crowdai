@@ -1,0 +1,26 @@
+<li>
+  <div class="pic">
+    <%= link_to challenge_path(challenge) do %>
+      <%= concept(Image::Cell,challenge) %>
+    <% end %>
+  </div>
+  <div class="details">
+    <h5 class="ellipsis"><%= link_to challenge.challenge, challenge_path(challenge) %></h5>
+    <p class="description ellipsis"><%= challenge.tagline %></p>
+    <p class="status active"><%= remaining_text %></p>
+  </div>
+  <div class="stats">
+    <div class="stat-fr">
+      <%= challenge.submission_count %><br>
+      <span><%= "Submission".pluralize(challenge.submission_count) %></span>
+    </div>
+    <div class="stat-fr">
+      <%= challenge.participant_count %><br>
+      <span><%= "Participant".pluralize(challenge.submission_count) %></span>
+    </div>
+    <div class="stat-fr">
+      <%= challenge.page_views %><br>
+      <span><%= "View".pluralize(challenge.page_views) %></span>
+    </div>
+  </div>
+</li>

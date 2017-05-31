@@ -1,49 +1,45 @@
 require 'rails_helper'
-require 'support/pundit_matcher'
-
-#  https://gist.github.com/netzfisch/acc249f828884c739848
+=begin
 describe ArticlePolicy do
   context "for a published article" do
-    subject { ArticlePolicy.new(participant, article) }
+    subject { described_class.new(user, article) }
 
-    let(:article) { create(:article, :with_sections, participant: author) }
-    let(:author) { create(:participant) }
-    let(:admin) { create(:participant, :admin )}
+    let(:article) { create(:article, user: author) }
+    let(:author) { create(:user) }
+    let(:admin) { create(:user, :admin )}
 
-    context 'for a public participant' do
-      let(:participant) { nil }
-
-      it { should authorize(:show) }
-      it { should authorize(:index) }
-      it { should_not authorize(:create) }
-      it { should_not authorize(:new) }
-      it { should_not authorize(:update) }
-      it { should_not authorize(:edit) }
-      it { should_not authorize(:destroy) }
+    context 'for a public user' do
+      let(:user) { nil }
+      it { is_expected.to permit_action(:show) }
+      it { is_expected.to permit_action(:index) }
+      it { is_expected.to forbid_action(:create) }
+      it { is_expected.to forbid_action(:new) }
+      it { is_expected.to forbid_action(:update) }
+      it { is_expected.to forbid_action(:edit) }
+      it { is_expected.to forbid_action(:destroy) }
     end
 
     context 'for the author' do
-      let(:participant) { author }
-
-      it { should authorize(:show) }
-      it { should authorize(:index) }
-      it { should_not authorize(:create) }
-      it { should_not authorize(:new) }
-      it { should authorize(:update) }
-      it { should authorize(:edit) }
-      it { should_not authorize(:destroy) }
+      let(:user) { author }
+      it { is_expected.to permit_action(:show) }
+      it { is_expected.to permit_action(:index) }
+      it { is_expected.to permit_action(:create) }
+      it { is_expected.to permit_action(:new) }
+      it { is_expected.to permit_action(:update) }
+      it { is_expected.to permit_action(:edit) }
+      it { is_expected.to permit_action(:destroy) }
     end
 
     context 'for an admin' do
-      let(:participant) { admin }
-
-      it { should authorize(:show) }
-      it { should authorize(:index) }
-      it { should authorize(:create) }
-      it { should authorize(:new) }
-      it { should authorize(:update) }
-      it { should authorize(:edit) }
-      it { should authorize(:destroy) }
+      let(:user) { admin }
+      it { is_expected.to permit_action(:show) }
+      it { is_expected.to permit_action(:index) }
+      it { is_expected.to permit_action(:create) }
+      it { is_expected.to permit_action(:new) }
+      it { is_expected.to permit_action(:update) }
+      it { is_expected.to permit_action(:edit) }
+      it { is_expected.to permit_action(:destroy) }
     end
   end
 end
+=end

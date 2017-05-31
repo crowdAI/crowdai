@@ -1,2 +1,11 @@
 class LeaderboardPolicy < ApplicationPolicy
-end 
+
+  def index?
+    true
+  end
+
+  def host?
+    true
+  end
+
+end

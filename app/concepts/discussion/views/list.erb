@@ -1,0 +1,9 @@
+<ul class="list-topics">
+  <%= concept(Discussion::Cell::ListDetail, collection: topics) %>
+</ul>
+
+<% unless 1 == 1 %>
+  <div id="load-more">
+    <%#= link_to "Load more", load_more_challenges_path(page: challenges.next_page), remote: true %>
+  </div>
+<% end %>

@@ -1,3 +1,25 @@
+# == Schema Information
+#
+# Table name: dataset_file_downloads
+#
+#  id              :integer          not null, primary key
+#  participant_id  :integer
+#  dataset_file_id :integer
+#  ip_address      :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+# Indexes
+#
+#  index_dataset_file_downloads_on_dataset_file_id  (dataset_file_id)
+#  index_dataset_file_downloads_on_participant_id   (participant_id)
+#
+# Foreign Keys
+#
+#  fk_rails_69796846aa  (dataset_file_id => dataset_files.id)
+#  fk_rails_fa0b04a034  (participant_id => participants.id)
+#
+
 class DatasetFileDownload < ApplicationRecord
   belongs_to :participant
   belongs_to :dataset_file

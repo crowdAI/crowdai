@@ -53,12 +53,12 @@ class OrganizersController < ApplicationController
     redirect_to organizers_url, notice: 'Hosting organizer was successfully destroyed.'
   end
 
-  def regen_api_key
+  def remove_image
     @organizer = Organizer.friendly.find(params[:organizer_id])
     authorize @organizer
-    @organizer.set_api_key
-    @organizer.save!
-    render 'organizers/ajax/refresh_api_key', notice: 'API Key regenerated.'
+    @organizer.remove_image_file!
+    @organizer.save
+    redirect_to edit_organizer_path(@organizer),notice: 'Image removed.'
   end
 
   private
@@ -67,6 +67,6 @@ class OrganizersController < ApplicationController
     end
 
     def organizer_params
-      params.require(:organizer).permit(:organizer, :address, :description, :approved, :organizer_id, :status)
+      params.require(:organizer).permit(:organizer, :address, :description, :approved, :organizer_id, :status, :tagline, :image_file)
     end
 end

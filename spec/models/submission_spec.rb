@@ -1,12 +1,23 @@
 require 'rails_helper'
 
 describe Submission do
+  context 'fields' do
+    it { is_expected.to respond_to :score }
+    it { is_expected.to respond_to :description }
+    it { is_expected.to respond_to :score_secondary }
+    it { is_expected.to respond_to :score }
+    it { is_expected.to respond_to :grading_message }
+    it { is_expected.to respond_to :grading_status_cd }
+    it { is_expected.to respond_to :description_markdown }
+    it { is_expected.to respond_to :vote_count }
+    it { is_expected.to respond_to :post_challenge }
+  end
+
   context 'associations' do
-    it { should belong_to(:challenge) }
-    it { should have_many(:submission_files).dependent(:destroy) }
-    it { should have_many(:submission_grades).dependent(:destroy) }
-    it { should have_many(:votes) }
-    it { should have_many(:container_instances) }
+    it { is_expected.to belong_to(:challenge) }
+    it { is_expected.to have_many(:submission_files).dependent(:destroy) }
+    it { is_expected.to have_many(:submission_grades).dependent(:destroy) }
+    it { is_expected.to have_many(:votes) }
 
     it 'is ordered by seq when seq 0 is created first' do
       submission = create(:submission)
@@ -28,15 +39,15 @@ describe Submission do
   end
 
   context 'indexes' do
-    it { should have_db_index ["challenge_id"] }
-    it { should have_db_index ["participant_id"] }
+    it { is_expected.to have_db_index ["challenge_id"] }
+    it { is_expected.to have_db_index ["participant_id"] }
   end
 
   context 'validations' do
-    it { should validate_presence_of(:participant_id) }
-    it { should validate_presence_of(:challenge_id) }
-    it { should validate_presence_of(:grading_status) }
-    it { should validate_presence_of(:description_markdown) }
+    it { is_expected.to validate_presence_of(:participant_id) }
+    it { is_expected.to validate_presence_of(:challenge_id) }
+    it { is_expected.to validate_presence_of(:grading_status) }
+    it { is_expected.to validate_presence_of(:description_markdown) }
   end
 
   context 'methods' do

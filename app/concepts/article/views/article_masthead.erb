@@ -1,0 +1,31 @@
+<div class="masthead-detailed">
+  <div class="row">
+    <div class="pic pic-tutorial">
+      <%= concept(Image::Cell,article,size: :medium) %>
+    </div>
+    <div class="info info-tutorial">
+      <div class="heading-w-icon">
+        <h2><%= article.article %></h2>
+        <% if policy(article).edit? %>
+          <%= link_to edit_article_path(article), title: "Edit article" do %>
+            <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+          <% end %>
+        <% end %>
+      </div>
+      <p class="large"><%= article.summary %></p>
+      <div class="user-link">
+        <%= link_to participant_path(author) do %>
+          <%= concept(Image::Cell,author) %>
+        <% end %>
+        <p>By
+           <%= link_to author.name, participant_path(author) %>
+           &nbsp;
+           <%= created_at %>
+        </p>
+      </div>
+      <div class="button-group">
+        <a class="btn btn-secondary" href="#"><i class="fa fa-heart" aria-hidden="true"></i> 8</a>
+      </div>
+    </div>
+  </div>
+</div>

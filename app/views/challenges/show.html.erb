@@ -1,17 +1,46 @@
-<%= render partial: 'sidebar' %>
-<%= render partial: 'header', challenge: @challenge %>
+<content>
+  <%= concept(Challenge::Cell::ChallengeMasthead, @challenge) %>
+  <%= concept(Challenge::Cell::ChallengeSubnav, @challenge) %>
 
+  <div class="row">
+    <div class="article">
 
-<div class="page-content-container">
-  <h5>Challenge Details</h5>
-  <%= render 'challenges/show/version_links' %>
-  <div data-spy="scroll" data-target=".navbar" data-offset="50">
-    <div>
-      <%= render 'challenges/show/overview', challenge: @challenge %>
-      <%= render 'challenges/show/evaluation', challenge: @challenge %>
-      <%= render 'challenges/show/rules', challenge: @challenge %>
-      <%= render 'challenges/show/prizes', challenge: @challenge %>
-      <%= render 'challenges/show/resources', challenge: @challenge %>
+      <% if @challenge.description %>
+        <h2>Overview</h2>
+        <div class='markdown-wrap'>
+          <%= @challenge.description.html_safe %>
+        </div>
+      <% end %>
+
+      <% if @challenge.evaluation %>
+        <h2>Evaluation</h2>
+        <div class='markdown-wrap'>
+          <%= @challenge.evaluation.html_safe %>
+        </div>
+      <% end %>
+
+      <% if @challenge.rules %>
+        <h2>Rules</h2>
+        <div class='markdown-wrap'>
+          <%= @challenge.rules.html_safe %>
+        </div>
+      <% end %>
+
+      <% if @challenge.prizes %>
+        <h2>Prizes</h2>
+        <div class='markdown-wrap'>
+          <%= @challenge.prizes.html_safe %>
+        </div>
+      <% end %>
+
+      <% if @challenge.resources %>
+        <h2>Resources</h2>
+        <div class='markdown-wrap'>
+          <%= @challenge.resources.html_safe %>
+        </div>
+      <% end %>
+      
     </div>
   </div>
-</div>
+
+</content>

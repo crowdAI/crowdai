@@ -5,7 +5,7 @@ class ChallengePolicy < ApplicationPolicy
   end
 
   def show?
-    @record.running? || @record.completed? || @record.starting_soon? || participant && participant.admin? || participant && @record.organizer_id == participant.organizer_id
+    true
   end
 
   def edit?
@@ -17,7 +17,7 @@ class ChallengePolicy < ApplicationPolicy
   end
 
   def new?
-    participant && participant.admin?
+    edit?
   end
 
   def create?
@@ -25,7 +25,7 @@ class ChallengePolicy < ApplicationPolicy
   end
 
   def destroy?
-    new?
+    edit?
   end
 
   def regrade?
@@ -36,6 +36,9 @@ class ChallengePolicy < ApplicationPolicy
     update?
   end
 
+  def remove_image?
+    update?
+  end
 
   class Scope
     attr_reader :participant, :scope

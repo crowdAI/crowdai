@@ -1,0 +1,16 @@
+<li data-cell='Dataset::Cell::ListDetail'>
+  <div class="details">
+    <h5><%= link_to dataset_file.title, expiring_url %></h5>
+    <p class="description"><%= dataset_file.description %></p>
+  </div>
+  <div class="stats">
+    <div class="stat-fr">
+      File Size<br>
+      <span><%= file_size %></span>
+    </div>
+    <div class="stat-fr">
+      File Format<br>
+      <span><%= file_type %></span>
+    </div>
+  </div>
+</li>

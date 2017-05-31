@@ -1,19 +1,19 @@
 class OrganizerPolicy < ApplicationPolicy
 
   def index?
-    true
+    false
   end
 
   def show?
-    participant && participant.admin? || participant && @record.id == participant.organizer_id
+    true
   end
 
   def edit?
-    show?
+    participant && participant.admin? || participant && @record.id == participant.organizer_id
   end
 
   def update?
-    show?
+    edit?
   end
 
   def new?
@@ -29,6 +29,10 @@ class OrganizerPolicy < ApplicationPolicy
   end
 
   def regen_api_key?
+    update?
+  end
+
+  def remove_image?
     update?
   end
 

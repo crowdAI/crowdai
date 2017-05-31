@@ -1,24 +1,23 @@
-<div class="markdown-editor">
-  <ul class="nav nav-tabs" data-tabs="tabs">
-    <li class="active">
-      <a href="#editor-pane-submission-instructions" data-toggle="tab">Write</a>
-    </li>
-    <li>
-      <a href="#preview-pane-submission-instructions" data-toggle="tab">Preview</a>
-    </li>
-  </ul>
-  <div id="my-tab-content" class="tab-content">
-    <div class="tab-pane active" id="editor-pane-submission-instructions">
-      <%= f.label 'Submission Instructions' %>
-      <%= render 'markdown_editor/toolbar' %>
-      <%= f.text_area eval(markdownx).to_sym,
-                      class: 'form-control markdown-textarea',
-                      placeholder: 'Describe the submission instructions for this challenge.',
-                      required: true,
-                      rows: 10 %>
+<div class="md-editor">
+  <div class="sub-nav">
+    <ul class='md-tabs'>
+      <li data-tab='tab-write' class="md-tab active">Write</li>
+      <li data-tab='tab-preview' class='md-tab'>Preview</li>
+    </ul>
+  </div>
+
+  <div id='tab-write' class='md-tab-content active'>
+    <%= render partial: 'markdown_editor/toolbar' %>
+    <%= capture(&block) %>
+    <div class="mde-img">
+      <input type="file" accept="image/*" id='fileupload'>
+      <p>Attach images by
+        <a href="#">selecting them</a>
+      </p>
     </div>
-    <div class="tab-pane" id="preview-pane-submission-instructions">
-      <div id="markdown-preview-submission-instructions" class: "markdown-preview-pane"></div>
-    </div>
+  </div>
+
+  <div id='tab-preview' class='md-tab-content'>
+    <div id='md-preview'>preview</div>
   </div>
 </div>

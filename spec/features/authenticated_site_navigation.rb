@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 require 'sanitize'
 
@@ -146,3 +147,4 @@ feature "site navigation for signed in participant", js: true do
     end
 
 end
+=end

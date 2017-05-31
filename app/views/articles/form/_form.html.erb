@@ -1,0 +1,33 @@
+<content>
+	<div class="masthead">
+		<div class="row">
+			<div class="info">
+				<h2><%= title %></h2>
+			</div>
+		</div>
+	</div>
+
+  <div class="sub-nav">
+    <div class="row">
+      <ul class='tabs'>
+        <li data-tab='tab-details' class="active">Details</sup></li>
+        <li data-tab='tab-content'>Content</li>
+      </ul>
+    </div>
+	</div>
+
+  <div id='tab-details' class='tab-content active'>
+    <%= render partial: 'articles/form/details', locals: { article: article } %>
+  </div>
+  <div id='tab-content' class='tab-content'>
+    <%= render partial: 'articles/form/content', locals: { article: article } %>
+  </div>
+
+  <% if policy(article).destroy? %>
+    <div class="additional">
+      <div class="row">
+        <a data-remodal-target="modal">Delete tutorial</a>
+      </div>
+    </div>
+  <% end %>
+</content>

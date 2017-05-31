@@ -2,18 +2,20 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized
 
-
   def index
-    @query = Article.ransack(params[:q])
-    @articles = policy_scope(@query.result)
+    #@articles = Article.search "*", page: params[:page], per_page: 2
+    @articles = policy_scope(Article).page(params[:page]).per(10)
     authorize @articles
   end
 
 
   def show
     @article.record_page_view
-    @comments = @article.comments
-    load_gon
+    if params[:article_section_id]
+      @article_section = ArticleSection.find(params[:article_section_id])
+    else
+      @article_section = @article.article_sections.first
+    end
   end
 
 
@@ -24,7 +26,6 @@ class ArticlesController < ApplicationController
 
 
   def edit
-    load_gon
   end
 
 
@@ -59,10 +60,13 @@ class ArticlesController < ApplicationController
     redirect_to articles_url, notice: 'Article was successfully deleted.'
   end
 
-  def articles_filter
-    Article::CATEGORIES.sort.map {|k,v| [v,k]}
+  def remove_image
+    @article = Article.friendly.find(params[:article_id])
+    authorize @article
+    @article.remove_image_file!
+    @article.save
+    redirect_to edit_article_path(@article), notice: 'Image removed.'
   end
-
 
   private
     def set_article
@@ -72,7 +76,7 @@ class ArticlesController < ApplicationController
 
 
     def article_params
-      params.require(:article).permit(:article, :user_id, :published, :category, :summary, :participant_id,
+      params.require(:article).permit(:article, :published, :category, :summary, :participant_id, :image_file,
                     article_sections_attributes: [:id, :article_id, :seq, :icon, :section, :description_markdown ],
                     image_attributes: [:id, :image, :_destroy ])
     end

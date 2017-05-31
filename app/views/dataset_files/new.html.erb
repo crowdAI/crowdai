@@ -1,6 +1,32 @@
-<%= render partial: 'challenges/sidebar' %>
-<%= render partial: 'challenges/header', challenge: @challenge %>
+<content>
+  <div class="masthead">
+    <div class="row">
+      <h2>Add File</h2>
+    </div>
+  </div>
+  <div class="row">
+    <%= form_for [@challenge,@dataset_file], html: { class: "sgl-col", multipart: true } do |f| %>
+      <fieldset>
+        <label>File Title</label>
+        <%= f.text_field :title %>
+        <label>File Description</label>
+        <%= f.text_field :description %>
+        <label>Sequence</label>
+        <%= f.text_field :seq %>
+        <fieldset class="checkbox">
+            <div>
+              <%= f.check_box :evaluation, {}, "true", "false" %>
+              <label for="file-evalution">Evaluation</label>
+            </div>
+        </fieldset>
+        <label>Dataset file</label>
+        <%= f.file_field :dataset_file, class: 'file-upload' %>
 
-<div class="page-content-container">
-  <%= render 'form' %>
-</div>
+        <div class="button-group">
+          <%= f.submit 'Add file', class: 'btn btn-primary' %>
+          <%= link_to 'Cancel', challenge_path(@challenge), class: "btn btn-secondary" %>
+        </div>
+      </fieldset>
+    <% end %>
+  </div>
+</content>

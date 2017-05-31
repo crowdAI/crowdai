@@ -1,22 +1,42 @@
-<%= simple_form_for([@participant,@email_preference]) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <lead>General preferences</lead>
-    <%= f.input :opt_out_all, label: 'Opt out of all emails' %>
-    <%= f.input :newsletter, label: 'crowdAI Newsletter' %>
-
-    <lead>In challenges in which I am participating</lead>
-    <%= f.input :my_leaderboard, label: 'A new entry is made on the leaderboard' %>
-    <%= f.input :any_post, label: 'Any discussion post is made' %>
-    <%= f.input :my_topic_post, label: 'A post is made to a topic to which I am participating' %>
-
-    <lead>In any challenge</lead>
-    <%= f.input :any_leaderboard, label: 'A new entry is made on the leaderboard' %>
-  </div>
-
-  <%= f.hidden_field :unsubscribe_token, value: params[:unsubscribe_token] %>
-  <div class="form-actions">
-    <%= f.button :submit, 'Update Email Preferences', class: 'btn btn-primary outline' %>
-  </div>
-<% end %>
+<div class="row">
+  <%= form_for [@participant,@email_preference], html: {class: 'sgl-col' } do |f| %>
+    <%= render "shared/error_messages", target: @email_preference %>
+    <fieldset class="checkbox">
+      <div>
+        <%= f.check_box :newsletter %>
+        <%= f.label :newsletter, 'Receive the crowdAI Newsletter' %>
+      </div>
+      <div>
+        <%= f.check_box :challenges_followed %>
+        <%= f.label :challenges_followed, 'Receive email for challenges which I am following
+' %>
+      </div>
+      <div>
+        <%= f.check_box :mentions %>
+        <%= f.label :mentions, 'Receive emails when someone mentions me in a comment/post' %>
+      </div>
+    </fieldset>
+    <fieldset class="checkbox">
+		  <h4>Email Frequency</h4>
+		  <div>
+        <%= f.check_box :receive_every_email %>
+        <%= f.label :receive_every_email, 'Receive every email' %>
+      </div>
+      <div>
+        <%= f.check_box :receive_daily_digest %>
+        <%= f.label :receive_daily_digest, 'Receive a daily digest email' %>
+      </div>
+      <div>
+        <%= f.check_box :receive_weekly_digest %>
+        <%= f.label :receive_weekly_digest, 'Receive a weekly digest email' %>
+      </div>
+      <%= f.hidden_field :unsubscribe_token, value: params[:unsubscribe_token] %>
+    </fieldset>
+    <div class="button-group">
+      <%= f.button 'Save', type: 'submit', class: 'btn btn-primary' %>
+      <%= button_to edit_participant_email_preference_path, class: 'btn btn-secondary' do %>
+        Cancel
+      <% end %>
+    </div>
+  <% end %>
+</div>

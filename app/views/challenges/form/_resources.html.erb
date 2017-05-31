@@ -1,33 +1,11 @@
-<div role="tabpanel" class="tab-pane" id="resources">
-  <h2>Resources</h2>
-
-  <div class="markdown-editor">
-    <ul class="nav nav-tabs" data-tabs="tabs">
-      <li class="active">
-        <a href="#editor-pane-resources" data-toggle="tab">Write</a>
-      </li>
-      <li>
-        <a href="#preview-pane-resources" class="preview-pane-link" data-toggle="tab">Preview</a>
-      </li>
-    </ul>
-    <div class="tab-content">
-      <div class="tab-pane active" id="editor-pane-resources">
-        <%= f.label 'Resources' %>
-        <%= render 'markdown_editor/toolbar' %>
-        <%= f.text_area :resources_markdown,
-                        class: 'form-control markdown-textarea',
-                        placeholder: 'Describe the resources available to this challenge.',
-                        required: true,
-                        rows: 20 %>
-      </div>
-      <div class="tab-pane markdown-preview-pane" id="preview-pane-resources">
-        <div id="markdown-preview"></div>
-      </div>
-    </div>
+<div class="row">
+  <%= form_for @challenge, validate: true, html: { class: "dbl-col" } do |f| %>
+      <fieldset>
+        <label>Resources</label>
+        <%= markdown_editor("description_markdown") do |m| %>
+          <%= f.text_area :resources_markdown, class: "txt-med" %>
+        <% end %>
+        <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>
+      </fieldset>
+    <% end %>
   </div>
-
-  <div class="form-actions">
-    <br/>
-    <%= f.button :submit, class: 'btn btn-primary outline' %>
-  </div>
-</div>

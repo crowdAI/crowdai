@@ -2,6 +2,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 
 require 'spec_helper'
+require 'pundit/matchers'
 require 'rspec/rails'
 require 'devise'
 require 'capybara/rails'
@@ -12,7 +13,6 @@ require 'support/login_helper'
 require 'features/support/navigation_helpers'
 require 'features/support/challenge_helpers'
 require 'support/feature_helpers'
-require 'support/pundit_matcher'
 require 'support/helpers/header_helpers'
 
 

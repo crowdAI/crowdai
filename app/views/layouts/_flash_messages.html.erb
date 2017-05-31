@@ -1,6 +1,21 @@
-<% flash.each do |type, message| %>
-  <div class="alert <%= bootstrap_class_for(type) %> fade in">
-    <button class="close" data-dismiss="alert">×</button>
-    <%= message %>
-  </div>
-<% end %>
+<div id='flash-messages'>
+  <% flash.each do |key, value| %>
+    <% if ['notice','info'].include?(key) %>
+      <div class="flash-bar">
+        <div class="row">
+          <p><%= value %></p>
+          <a href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    <% end %>
+    <% if ['error','alert'].include?(key) %>
+      <div class="flash-bar-error">
+        <div class="row">
+          <p><%= value %></p>
+          <a href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+<% flash.clear %>

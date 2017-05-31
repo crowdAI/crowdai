@@ -7,6 +7,9 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 module Crowdai
+
+  DATE_FORMAT = '%d %B %Y'
+
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -28,6 +31,9 @@ module Crowdai
     config.secret_key_base = ENV["SECRET_KEY_BASE"]
     #config.action_controller.default_url_options = {:host => ENV['HOST']}
     config.autoload_paths << Rails.root.join('lib')
+    config.generators do |g|
+      g.test_framework :rspec
+    end
   end
 
 end

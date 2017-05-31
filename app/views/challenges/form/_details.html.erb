@@ -1,0 +1,45 @@
+<div class="row">
+  <%= form_for @challenge, validate: true, html: { class: "sgl-col", multipart: true } do |f| %>
+    <fieldset>
+      <label>Challenge Title</label>
+      <%= f.text_field :challenge %>
+      <label>Tagline</label>
+      <%= f.text_field :tagline %>
+      <label>Image</label>
+      <div class="upload">
+        <%= concept(Image::Cell,challenge,klass: 'img-thumb') %>
+        <%= f.file_field :image_file, class: 'file-upload' %>
+        <% if @challenge.image_file.present? %>
+          <%= link_to 'Delete', challenge_remove_image_path(@challenge) %>
+        <% end %>
+        <span>Your image will be cropped if necessary. 5MB limit</span>
+      </div>
+      <label>Host</label>
+      <input type='text' value='<%= @challenge.organizer.organizer %>' disabled>
+    </fieldset>
+    <div class="twin-container">
+      <div class="twin-field">
+        <label>Start Date</label>
+        <%= f.text_field :start_date, class: 'datepicker', placeholder: "dd/mm/yyyy"  %>
+      </div>
+      <div class="twin-field">
+        <label>End Date</label>
+        <%= f.text_field :end_date, class: 'datepicker', placeholder: "dd/mm/yyyy"  %>
+      </div>
+    </div>
+    <div class="twin-container">
+      <div class="twin-field">
+        <label>Start Time (<abbr title="Coordinated Universal Time">UTC</abbr>)</label>
+        <%= f.text_field :start_time %>
+      </div>
+      <div class="twin-field">
+        <label>End Time (<abbr title="Coordinated Universal Time">UTC</abbr>)</label>
+        <%= f.text_field :end_time %>
+      </div>
+    </div>
+    <label>Challenge Status</label>
+    <%= f.select :status, enum_option_pairs(Challenge, :status), include_blank: false %>
+    <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>
+  </fieldset>
+<% end %>
+</div>

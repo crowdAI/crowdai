@@ -17,7 +17,7 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def new?
-    participant && participant.admin?
+    participant
   end
 
   def create?
@@ -25,7 +25,11 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def destroy?
-    new?
+    edit?
+  end
+
+  def remove_image?
+    edit?
   end
 
   class Scope

@@ -1,49 +1,60 @@
-<%= render 'participants/show/header' %>
-<div class="row">
-  <div class="col-md-12">
+<content>
+  <%= concept(Participant::Cell::ParticipantMasthead, @participant) %>
 
-    <div class="nav-center">
-      <ul id="profile-nav-tabs" class="nav nav-tabs">
-        <li role="presentation" class="active">
-          <a href="#challenges" data-toggle="tab">
-            <i class="glyphicon glyphicon-star"></i>
-            Challenges
-          </a>
-        </li>
-        <li role="presentation">
-          <a href="#articles" data-toggle="tab">
-            <i class="glyphicon glyphicon-star"></i>
-            Articles
-          </a>
-        </li>
-        <li role="presentation">
-          <a href="#notebooks" data-toggle="tab">
-            <i class="glyphicon glyphicon-file"></i>
-            Notebooks
-          </a>
-        </li>
-        <li role="presentation">
-          <a href="#reputation" data-toggle="tab">
-            <i class="glyphicon glyphicon-file"></i>
-            Reputation
-          </a>
-        </li>
-        <li role="presentation">
-          <a href="#activity" data-toggle="tab">
-            <i class="glyphicon glyphicon-file"></i>
-            Activity
-          </a>
-        </li>
-
+  <div class="sub-nav">
+    <div class="row">
+      <ul class='tabs'>
+        <li data-tab='tab-challenges' class="active">Challenges <sup><%= @challenges.count %></sup></li>
+        <li data-tab='tab-articles'>Tutorials <sup><%= @articles.count %></sup></li>
+        <li data-tab='tab-bio'>Bio</li>
       </ul>
-      <div id="profile-tab-content" class="tab-content">
-        <%= render 'participants/show/challenges' %>
-        <%= render 'participants/show/articles' %>
-        <%= render 'participants/show/notebooks' %>
-        <%= render 'participants/show/activity' %>
-        <%= render 'participants/show/reputation' %>
+    </div>
+  </div>
+
+  <div id='tab-challenges' class='tab-content active'>
+    <div class="row">
+      <% if @challenges.any? %>
+        <ul class="list-challenges">
+          <%= concept(Challenge::Cell::ListDetail, collection: @challenges) %>
+        </ul>
+      <% else %>
+        <div class='article'>
+          <p class='light'>
+            <%= "#{@participant.name} hasn't entered any challenges yet..." %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div id='tab-articles' class='tab-content'>
+    <div class="row">
+        <% if @articles.any? %>
+          <ul class="list-tutorials">
+            <%= concept(Article::Cell::ListDetail, collection: @articles) %>
+          </ul>
+        <% else %>
+        <div class='article'>
+          <p class='light'>
+            <%= "#{@participant.name} hasn't authored any tutorials yet..." %>
+          </p>
+        </div>
+        <% end %>
+    </div>
+  </div>
+
+  <div id='tab-bio' class='tab-content'>
+    <div class="row">
+      <div class="article">
+        <% if @participant.bio %>
+          <%= @participant.bio %>
+        <% else %>
+          <p class='light'>
+            <%= "Apparently #{@participant.name} prefers to keep an air of mystery about them..." %>
+          </p>
+        <% end %>
       </div>
     </div>
-
   </div>
-</div>
+
+</content>

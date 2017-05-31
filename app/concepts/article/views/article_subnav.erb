@@ -1,0 +1,19 @@
+<div class="sub-nav">
+  <div class="row">
+    <ul>
+      <% article.article_sections.each_with_index do |section,i| %>
+        <% if section == article_section %>
+          <li class="active">
+            <%= link_to section.section, article_path(article, article_section_id: section.id) %>
+            <sup><%= i + 1 %></sup>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to section.section, article_path(article, article_section_id: section.id) %>
+            <sup><%= i + 1 %></sup>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>

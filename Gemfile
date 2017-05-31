@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
+gem 'rails-assets-isInViewport', source: 'https://rails-assets.org'
+gem 'rails-assets-jQuery-File-Upload', source: 'https://rails-assets.org'
 
-ruby "2.3.1"
+ruby "2.3.3"
 gem 'rails', '5.0.0.1'
 gem 'pg'
 gem 'puma'
@@ -14,12 +16,11 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'active_admin_datetimepicker'
 gem 'activeadmin-xls', github: 'thambley/activeadmin-xls'
-#gem 'blazer'
 
 # monitoring
 gem "rorvswild"
 #gem "brakeman", :require => false
-
+gem 'mini_magick'
 
 # model
 gem 'simple_enum'
@@ -38,7 +39,7 @@ gem 'groupdate'
 gem 'rouge'
 gem 'friendly_id', '~> 5.1.0'
 gem "rectify"
-
+gem 'client_side_validations'
 
 # performance
 gem 'fast_blank'
@@ -47,23 +48,18 @@ gem 'fast_blank'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
-gem "gon"
+#gem 'jquery-ui-rails'
 #gem "jquery-fileupload-rails"
-gem 'turbolinks'
-gem 'jquery-turbolinks'
+gem 'turbolinks', '~> 5.0.0'
 gem 'lodash-rails'
 gem 'browser'
 gem 'coffee-rails'
-gem 'rails-assets-isInViewport', source: 'https://rails-assets.org'
+
 
 # css
-gem 'sass-rails', '~> 5.0'
-gem 'bootstrap-sass'
-gem 'active_bootstrap_skin', github: 'crowdAI/active_bootstrap_skin'
+gem 'sass-rails'
+gem 'compass-rails'
 gem 'momentjs-rails', '~> 2.9'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.17.42'
-
 
 gem 'font-awesome-rails'
 gem 'include_media_rails'
@@ -71,6 +67,7 @@ gem 'include_media_rails'
 # search / pagination
 gem 'ransack'
 gem 'kaminari'
+#gem 'searchkick'
 
 # API / Docker
 # gem 'rack-attack'
@@ -95,15 +92,26 @@ gem 'sinatra', :require => nil
 #gem 'sitemap_generator'
 
 # images
-gem "paperclip", "~> 5.0.0"
-gem 'carrierwave'
+gem 'carrierwave', '~> 1.0'
 gem 'net-ssh'
 gem 'inline_svg'
-gem 'streamio-ffmpeg'
+gem 'file_validators'
 
 # Amazon
 gem 'aws-sdk', '~> 2.2'
-gem 'fog', '1.35.0'
+gem 'fog'
+
+# View
+gem "trailblazer"
+gem "trailblazer-rails"
+gem "cells-rails", github: 'trailblazer/cells-rails'
+gem "cells"
+gem "cells-erb"
+gem "faraday"
+
+group :development, :test do
+  gem "rspec-cells"
+end
 
 # static analysis
 group :development do
@@ -115,15 +123,15 @@ end
 
 group :development do
   gem 'guard'
-  gem 'rails-footnotes', '>= 4.0.0', '<5'
   gem 'rails-erd'
   gem 'railroady'
   gem 'annotate'
   gem 'sdoc', '~> 0.4.0'
   gem 'web-console', '~> 2.0'
   gem 'scss_lint', require: false
-  gem 'shog', branch: 'master'
+  gem 'shog'
   gem 'rubocop', require: false
+  gem 'meta_request'
 end
 
 
@@ -153,6 +161,7 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'sanitize'
   gem 'rails-controller-testing'
+  gem 'pundit-matchers', github: 'crowdAI/pundit-matchers'
 end
 
 gem "rack-timeout"

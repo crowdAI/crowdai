@@ -8,6 +8,10 @@ class MarkdownEditorController < ApplicationController
     render json: { :success => "success", :status_code => "200", data: @markdown_text }
   end
 
+  def presign
+    render json: S3Presigner.presign(params[:filename])
+  end
+
   private
   def markdown_params
     params.require(:markdown).permit(:markdown_text)

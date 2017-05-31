@@ -1,0 +1,11 @@
+<div class="section-container nested-fields">
+  <a class="ss-icon" href="#"></a>
+  <label>Section title</label>
+  <%= f.text_field :section %>
+  <label>Section sequence</label>
+  <%= f.number_field :seq %>
+  <label>Submission content</label>
+  <%= markdown_editor("description_markdown") do |m| %>
+    <%= f.text_area :description_markdown, class: "txt-med" %>
+  <% end %>
+</div>

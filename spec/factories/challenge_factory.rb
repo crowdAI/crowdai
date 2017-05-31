@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :challenge, class: Challenge do
     organizer { FactoryGirl.create :organizer }
     challenge FFaker::Lorem.sentence(3)
-    challenge_client_name 'test'
+    sequence(:challenge_client_name) { |n| "Client_name_#{n}" }
     tagline FFaker::Lorem.sentence(3)
     status :draft
     description_markdown "### The description"
@@ -17,7 +17,6 @@ FactoryGirl.define do
     grader 'f1_logloss'
     grading_factor 0.3
     license_markdown '## This is a license'
-    submission_file_definitions { [ build(:submission_file_definition)]}
     start_dttm 2.weeks.ago
     end_dttm 4.weeks.since
 
@@ -29,6 +28,17 @@ FactoryGirl.define do
 
     trait :draft do
       status :draft
+      challenge FFaker::Lorem.sentence(3)
+    end
+
+    trait :completed do
+      status :completed
+      challenge FFaker::Lorem.sentence(3)
+      dataset_files {[ build(:dataset_file) ]}
+    end
+
+    trait :starting_soon do
+      status :starting_soon
       challenge FFaker::Lorem.sentence(3)
     end
 

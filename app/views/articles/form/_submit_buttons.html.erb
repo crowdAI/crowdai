@@ -1,0 +1,6 @@
+<div class="button-group">
+  <%= f.button (f.object.new_record? ? "Create Tutorial" : "Update Tutorial"), class: 'btn btn-primary' %>
+  <%= button_to articles_path, class: "btn btn-secondary" do %>
+    Cancel
+  <% end %>
+</div>

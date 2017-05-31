@@ -1,0 +1,44 @@
+<tbody>
+  <% leaderboard.each_with_index do |entry,row| %>
+  <tr>
+    <td class="positon">
+      <strong><%= "%02d." % (row + 1) %></strong>
+    </td>
+
+    <td class="participant">
+      <div class="user-link">
+        <%= link_to participant_path(entry.participant_id) do %>
+          <%= concept(Image::Cell,participant(entry.participant_id)) %>
+        <% end %>
+        <p><%= link_to entry.name, participant_path(entry.participant_id) %></p>
+      </div>
+    </td>
+
+    <% if cols.include?(:media) %>
+      <td class="video">
+        <a data-toggle="modal" data-target="" data-remote="true" href="#">
+          <%= concept(Leaderboard::Cell::Media,entry, size: :thumb) %>
+        </a>
+      </td>
+    <% end %>
+
+    <td class="score">
+      <strong><%= entry.score %></strong>
+    </td>
+
+    <% if cols.include?(:score_secondary) %>
+      <td class="score">
+        <strong><%= entry.score_secondary %></strong>
+      </td>
+    <% end %>
+
+    <td class="entries"><%= entry.entries %></td>
+
+    <%= if cols.include?(:post_challenge) %>
+      <td class="post-challenge"></td>
+    <% end %>
+
+    <td class="last-submission"><%= entry.created_at.strftime("%a, %e %b %Y %R") %></td>
+  </tr>
+  <% end %>
+</tbody>

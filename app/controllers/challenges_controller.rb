@@ -3,37 +3,42 @@ class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized, except: [:index, :show]
   before_action :set_s3_direct_post, only: [:edit, :update]
-  after_action :update_stats_job
-  respond_to :html
-  respond_to :js
+  #after_action :update_stats_job
+  respond_to :html, :js
 
   def index
-    @challenges = policy_scope(Challenge)
-    load_gon
+    @challenge_filter = params[:challenge_filter] ||= 'all'
+    @all_challenges = policy_scope(Challenge)
+    case @challenge_filter
+    when 'all'
+      #@challenges = Challenge.search "*", page: params[:page], per_page: 2
+      @challenges = policy_scope(Challenge).page(params[:page]).per(5)
+    when 'active'
+      #@challenges = Challenge.search "*", where: {status_cd: 'running'}, page: params[:page], per_page: 2
+      @challenges = policy_scope(Challenge).where(status_cd: ['running','starting_soon']).page(params[:page]).per(5)
+    when 'completed'
+      #@challenges = Challenge.search "*", where: {status_cd: 'completed'}, page: params[:page], per_page: 2
+      @challenges = policy_scope(Challenge).where(status_cd: 'completed').page(params[:page]).per(5)
+    end
   end
 
 
   def show
     authorize @challenge
-    #@versions = @challenge.versions
     if !params[:version]  # dont' record page views on history pages
       @challenge.record_page_view
     end
-    @challenge = ChallengesPresenter.new(@challenge)
-    load_gon({percent_progress: @challenge.pct_passed})
   end
 
 
   def new
     @challenge = Challenge.new
     authorize @challenge
-    load_gon
   end
 
 
   def edit
     authorize @challenge
-    load_gon
   end
 
 
@@ -50,7 +55,7 @@ class ChallengesController < ApplicationController
 
 
   def update
-    authorize @challenge
+    #authorize @challenge
     if @challenge.update(challenge_params)
       redirect_to @challenge, notice: 'Challenge was successfully updated.'
     else
@@ -84,6 +89,13 @@ class ChallengesController < ApplicationController
     redirect_to edit_challenge_path(@challenge),notice: 'API Key regenerated.'
   end
 
+  def remove_image
+    @challenge = Challenge.friendly.find(params[:challenge_id])
+    authorize @challenge
+    @challenge.remove_image_file!
+    @challenge.save
+    redirect_to edit_challenge_path(@challenge), notice: 'Image removed.'
+  end
 
   private
   def set_challenge
@@ -91,7 +103,7 @@ class ChallengesController < ApplicationController
     if params[:version]
       @challenge = @challenge.versions[params[:version].to_i].reify
     end
-    #authorize @challenge
+    authorize @challenge
   end
 
 
@@ -109,6 +121,11 @@ class ChallengesController < ApplicationController
                     :submission_license, :api_required, :daily_submissions, :threshold, :online_grading,
                     :start_dttm, :end_dttm, :media_on_leaderboard,
                     :challenge_client_name,
+                    :start_date,
+                    :end_date,
+                    :start_time,
+                    :end_time,
+                    :image_file,
                     dataset_attributes: [:id, :challenge_id, :description, :_destroy],
                     submissions_attributes: [:id, :challenge_id, :participant_id, :_destroy ],
                     image_attributes: [:id, :image, :_destroy ],

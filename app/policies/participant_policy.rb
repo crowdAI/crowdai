@@ -1,34 +1,38 @@
 class ParticipantPolicy < ApplicationPolicy
 
   def index?
-    true
+    false
   end
 
   def show?
-    participant && participant.admin? || participant && @record.id == participant.id
+    true
   end
 
   def edit?
-    show?
+    participant && participant.admin? || participant && @record.id == participant.id
   end
 
   def update?
-    show?
+    edit?
   end
 
   def new?
-    participant && participant.admin?
+    false
   end
 
   def create?
-    new?
+    false
   end
 
   def destroy?
-    new?
+    participant
   end
 
   def regen_api_key?
+    update?
+  end
+
+  def remove_image?
     update?
   end
 

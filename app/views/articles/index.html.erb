@@ -1,2 +1,19 @@
-<%= render partial: 'articles/index/index_header' %>
-<%= render partial: 'articles/index/index_body' %>
+<content>
+  <div class="masthead">
+    <div class="row">
+      <h2>Knowledge Base</h2>
+    </div>
+    <div class="row">
+      <div class="info">
+        <p class="large">High quality tutorials and resources to help data scientists at all levels of expertise, from beginners to experts.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <ul class="list-tutorials">
+      <%= render partial: 'articles' %>
+    </ul>
+  </div>
+  <%= render partial: 'shared/load_more', locals: { collection: @articles } %>
+</content>

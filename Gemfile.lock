@@ -28,11 +28,12 @@ GIT
       responders
 
 GIT
-  remote: git://github.com/crowdAI/active_bootstrap_skin.git
-  revision: a3c0830ae15c428da452a0e98aee58aa58d2f1bc
+  remote: git://github.com/crowdAI/pundit-matchers.git
+  revision: 4cd01555ee0c04c66f02f35d6f8bb4c046b533a0
   specs:
-    active_bootstrap_skin (0.1.4)
-      bootstrap-sass (~> 3.3.6)
+    pundit-matchers (1.2.3)
+      pundit (~> 1.1, >= 1.1.0)
+      rspec-rails (>= 3.0.0)
 
 GIT
   remote: git://github.com/thambley/activeadmin-xls.git
@@ -41,6 +42,14 @@ GIT
     activeadmin-xls (1.0.3)
       activeadmin
       spreadsheet
+
+GIT
+  remote: git://github.com/trailblazer/cells-rails.git
+  revision: 19b61614adbdaf2203c4665f06cd4d1b5204aefd
+  specs:
+    cells-rails (0.0.8)
+      actionpack (>= 3.0)
+      cells (>= 4.1.6, < 5.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -95,8 +104,6 @@ GEM
       activesupport (>= 3.0.0)
     arel (7.1.4)
     ast (2.3.0)
-    autoprefixer-rails (6.5.4)
-      execjs
     aws-sdk (2.6.38)
       aws-sdk-resources (= 2.6.38)
     aws-sdk-core (2.6.38)
@@ -113,11 +120,6 @@ GEM
     benchmark-ips (2.7.2)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (3.3.7)
-      autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
-    bootstrap3-datetimepicker-rails (4.17.43)
-      momentjs-rails (>= 2.8.1)
     bourbon (4.2.7)
       sass (~> 3.4)
       thor (~> 0.19)
@@ -125,6 +127,7 @@ GEM
     browser (2.3.0)
     builder (3.2.2)
     byebug (9.0.6)
+    callsite (0.0.11)
     capybara (2.7.1)
       addressable
       mime-types (>= 1.16)
@@ -138,16 +141,27 @@ GEM
     capybara-screenshot (1.0.14)
       capybara (>= 1.0, < 3)
       launchy
-    capybara-webkit (1.11.1)
-      capybara (>= 2.3.0, < 2.8.0)
+    capybara-webkit (1.12.0)
+      capybara (>= 2.3.0, < 2.13.0)
       json
-    carrierwave (0.11.2)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      json (>= 1.7)
+    carrierwave (1.1.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
       mime-types (>= 1.16)
-      mimemagic (>= 0.3.0)
+    cells (4.1.6)
+      declarative-builder (< 0.2.0)
+      declarative-option (< 0.2.0)
+      tilt (>= 1.4, < 3)
+      uber (< 0.2.0)
+    cells-erb (0.1.0)
+      cells (~> 4.0)
+      erbse (>= 0.1.1)
     choice (0.2.0)
+    chunky_png (1.3.8)
+    client_side_validations (9.1.0)
+      jquery-rails (~> 4.2)
+      js_regex (~> 1.2)
+      rails (>= 5.0.0.1, < 5.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -164,6 +178,22 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     colored (1.2)
+    compass (1.0.3)
+      chunky_png (~> 1.2)
+      compass-core (~> 1.0.2)
+      compass-import-once (~> 1.0.5)
+      rb-fsevent (>= 0.9.3)
+      rb-inotify (>= 0.9)
+      sass (>= 3.3.13, < 3.5)
+    compass-core (1.0.3)
+      multi_json (~> 1.0)
+      sass (>= 3.3.0, < 3.5)
+    compass-import-once (1.0.5)
+      sass (>= 3.2, < 3.5)
+    compass-rails (3.0.2)
+      compass (~> 1.0.0)
+      sass-rails (< 5.1)
+      sprockets (< 4.0)
     concurrent-ruby (1.0.2)
     connection_pool (2.2.1)
     countries (2.0.5)
@@ -176,6 +206,10 @@ GEM
     crass (1.0.2)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
+    declarative (0.0.9)
+    declarative-builder (0.1.0)
+      declarative-option (< 0.2.0)
+    declarative-option (0.1.0)
     derailed_benchmarks (1.3.2)
       benchmark-ips (~> 2)
       get_process_mem (~> 0)
@@ -193,11 +227,19 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    disposable (0.4.2)
+      declarative (>= 0.0.9, < 1.0.0)
+      declarative-builder (< 0.2.0)
+      declarative-option (< 0.2.0)
+      representable (>= 2.4.0, <= 3.1.0)
+      uber (< 0.2.0)
     docile (1.1.5)
     docker-api (1.33.0)
       excon (>= 0.38.0)
       json
     equalizer (0.0.11)
+    erbse (0.1.1)
+      temple
     erubis (2.7.0)
     excon (0.54.0)
     execjs (2.7.0)
@@ -213,6 +255,10 @@ GEM
     ffi (1.9.14)
     figaro (1.1.1)
       thor (~> 0.14)
+    file_validators (1.2.0)
+      activemodel (>= 3.0)
+      cocaine (~> 0.5.4)
+      mime-types (>= 1.0)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog (1.35.0)
@@ -334,11 +380,6 @@ GEM
       multi_json (>= 1.11.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    gon (6.1.0)
-      actionpack (>= 3.0)
-      json
-      multi_json
-      request_store (>= 1.0)
     groupdate (3.1.1)
       activesupport (>= 3)
     guard (2.14.0)
@@ -373,11 +414,10 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
-    jquery-turbolinks (2.1.0)
-      railties (>= 3.1.0)
-      turbolinks
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
+    js_regex (1.2.3)
+      regexp_parser (>= 0.3.6, <= 0.5.0)
     json (1.8.3)
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
@@ -400,11 +440,15 @@ GEM
       excon (>= 0.16.0, < 1.0)
       json (>= 1.7.7, < 2.0)
     memory_profiler (0.9.7)
+    meta_request (0.4.2)
+      callsite (~> 0.0, >= 0.0.11)
+      rack-contrib (~> 1.1)
+      railties (>= 3.0.0, < 5.2.0)
     method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mimemagic (0.3.2)
+    mini_magick (4.7.0)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     momentjs-rails (2.15.1)
@@ -429,15 +473,10 @@ GEM
     paper_trail (6.0.2)
       activerecord (>= 4.0, < 5.2)
       request_store (~> 1.1)
-    paperclip (5.0.0)
-      activemodel (>= 4.2.0)
-      activesupport (>= 4.2.0)
-      cocaine (~> 0.5.5)
-      mime-types
-      mimemagic (~> 0.3.0)
     parser (2.3.3.1)
       ast (~> 2.2)
     pg (0.19.0)
+    pipetree (0.1.1)
     polyamorous (1.3.1)
       activerecord (>= 3.0)
     powerpack (0.1.1)
@@ -453,6 +492,8 @@ GEM
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.1)
+    rack-contrib (1.2.0)
+      rack (>= 0.9.1)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -471,7 +512,16 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 5.0.0.1)
       sprockets-rails (>= 2.0.0)
+    rails-assets-blueimp-canvas-to-blob (3.7.0)
+    rails-assets-blueimp-load-image (2.12.2)
+    rails-assets-blueimp-tmpl (3.8.0)
     rails-assets-isInViewport (3.0.0)
+    rails-assets-jQuery-File-Upload (9.18.0)
+      rails-assets-blueimp-canvas-to-blob (>= 2.1.1)
+      rails-assets-blueimp-load-image (>= 1.13.0)
+      rails-assets-blueimp-tmpl (>= 2.5.4)
+      rails-assets-jquery (>= 1.6)
+    rails-assets-jquery (3.2.1)
     rails-controller-testing (0.0.3)
       rails (>= 4.2)
     rails-dom-testing (2.0.1)
@@ -482,8 +532,6 @@ GEM
       activesupport (>= 3.2)
       choice (~> 0.2.0)
       ruby-graphviz (~> 1.2)
-    rails-footnotes (4.1.8)
-      rails (>= 3.2)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     railties (5.0.0.1)
@@ -513,11 +561,25 @@ GEM
     redcarpet (3.4.0)
     redis (3.3.2)
     ref (2.0.0)
+    reform (2.2.4)
+      disposable (>= 0.4.1)
+      representable (>= 2.4.0, < 3.1.0)
+    reform-rails (0.1.7)
+      activemodel (>= 3.2)
+      reform (>= 2.2.0)
+    regexp_parser (0.4.3)
+    representable (3.0.3)
+      declarative (< 0.1.0)
+      declarative-option (< 0.2.0)
+      uber (< 0.2.0)
     request_store (1.3.1)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rorvswild (0.3.5)
     rouge (2.0.7)
+    rspec-cells (0.3.4)
+      cells (>= 4.0.0, < 6.0.0)
+      rspec-rails (~> 3.2)
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -620,9 +682,8 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     stackprof (0.2.10)
-    streamio-ffmpeg (3.0.2)
-      multi_json (~> 1.8)
     table_print (1.5.6)
+    temple (0.8.0)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
@@ -636,11 +697,25 @@ GEM
       ruby2ruby
     traceroute (0.5.0)
       rails (>= 3.0.0)
+    trailblazer (2.0.3)
+      declarative
+      reform (>= 2.2.0, < 3.0.0)
+      trailblazer-operation (>= 0.0.12, < 0.1.0)
+    trailblazer-loader (0.1.0)
+    trailblazer-operation (0.0.13)
+      declarative
+      pipetree (>= 0.1.1, < 0.2.0)
+      uber
+    trailblazer-rails (1.0.2)
+      reform-rails (>= 0.1.4, < 0.2.0)
+      trailblazer (>= 2.0.0, < 2.1.0)
+      trailblazer-loader (>= 0.1.0)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    uber (0.1.0)
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.1.2)
@@ -676,13 +751,10 @@ PLATFORMS
 
 DEPENDENCIES
   active_admin_datetimepicker
-  active_bootstrap_skin!
   activeadmin!
   activeadmin-xls!
   annotate
   aws-sdk (~> 2.2)
-  bootstrap-sass
-  bootstrap3-datetimepicker-rails (~> 4.17.42)
   brakeman
   browser
   byebug
@@ -690,9 +762,14 @@ DEPENDENCIES
   capybara-email
   capybara-screenshot
   capybara-webkit
-  carrierwave
+  carrierwave (~> 1.0)
+  cells
+  cells-erb
+  cells-rails!
+  client_side_validations
   cocoon
   coffee-rails
+  compass-rails
   country_select
   database_cleaner
   derailed_benchmarks
@@ -700,14 +777,15 @@ DEPENDENCIES
   docker-api
   excon
   factory_girl_rails
+  faraday
   fast_blank
   ffaker
   figaro
-  fog (= 1.35.0)
+  file_validators
+  fog
   font-awesome-rails
   friendly_id (~> 5.1.0)
   gibbon
-  gon
   groupdate
   guard
   httparty
@@ -715,37 +793,38 @@ DEPENDENCIES
   inherited_resources!
   inline_svg
   jquery-rails
-  jquery-turbolinks
-  jquery-ui-rails
   kaminari
   launchy
   lodash-rails
   mandrill-api
+  meta_request
+  mini_magick
   momentjs-rails (~> 2.9)
   net-ssh
   paper_trail
-  paperclip (~> 5.0.0)
   pg
   puma
   puma_worker_killer
   pundit
+  pundit-matchers!
   rack-timeout
   railroady
   rails (= 5.0.0.1)
   rails-assets-isInViewport!
+  rails-assets-jQuery-File-Upload!
   rails-controller-testing
   rails-erd
-  rails-footnotes (>= 4.0.0, < 5)
   ransack
   rectify
   redcarpet (~> 3.4.0)
   rorvswild
   rouge
+  rspec-cells
   rspec-kickstarter
   rspec-rails (~> 3.5)
   rubocop
   sanitize
-  sass-rails (~> 5.0)
+  sass-rails
   scenic (~> 1.3)
   scss_lint
   sdoc (~> 0.4.0)
@@ -761,19 +840,20 @@ DEPENDENCIES
   sinatra
   spring
   stackprof
-  streamio-ffmpeg
   table_print
   therubyracer
   timecop
   to_factory
   traceroute
-  turbolinks
+  trailblazer
+  trailblazer-rails
+  turbolinks (~> 5.0.0)
   uglifier (>= 1.3.0)
   validate_url
   web-console (~> 2.0)
 
 RUBY VERSION
-   ruby 2.3.1p112
+   ruby 2.3.3p222
 
 BUNDLED WITH
-   1.13.6
+   1.14.3

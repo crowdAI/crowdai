@@ -1,18 +1,58 @@
 require 'rails_helper'
 
 describe Challenge do
+  context 'fields' do
+    it { is_expected.to respond_to :challenge }
+    it { is_expected.to respond_to :status_cd }
+    it { is_expected.to respond_to :description }
+    it { is_expected.to respond_to :evaluation_markdown }
+    it { is_expected.to respond_to :rules }
+    it { is_expected.to respond_to :prizes }
+    it { is_expected.to respond_to :resources }
+    it { is_expected.to respond_to :dataset_description }
+    it { is_expected.to respond_to :submission_instructions }
+    it { is_expected.to respond_to :tagline }
+    it { is_expected.to respond_to :evaluation }
+    it { is_expected.to respond_to :primary_sort_order_cd }
+    it { is_expected.to respond_to :secondary_sort_order_cd }
+    it { is_expected.to respond_to :description_markdown }
+    it { is_expected.to respond_to :rules_markdown }
+    it { is_expected.to respond_to :prizes_markdown }
+    it { is_expected.to respond_to :resources_markdown }
+    it { is_expected.to respond_to :dataset_description_markdown }
+    it { is_expected.to respond_to :submission_instructions_markdown }
+    it { is_expected.to respond_to :perpetual_challenge }
+    it { is_expected.to respond_to :grading_factor }
+    it { is_expected.to respond_to :grader_cd }
+    it { is_expected.to respond_to :answer_file_s3_key }
+    it { is_expected.to respond_to :page_views }
+    it { is_expected.to respond_to :license }
+    it { is_expected.to respond_to :license_markdown }
+    it { is_expected.to respond_to :participant_count }
+    it { is_expected.to respond_to :submission_count }
+    it { is_expected.to respond_to :score_title }
+    it { is_expected.to respond_to :automatic_grading }
+    it { is_expected.to respond_to :slug }
+    it { is_expected.to respond_to :submission_license }
+    it { is_expected.to respond_to :score_secondary_title }
+    it { is_expected.to respond_to :daily_submissions }
+    it { is_expected.to respond_to :threshold }
+    it { is_expected.to respond_to :media_on_leaderboard }
+    it { is_expected.to respond_to :vote_count }
+    it { is_expected.to respond_to :api_key }
+    it { is_expected.to respond_to :image_file }
+  end
+
   context 'associations' do
-    it { should belong_to(:organizer) }
-    it { should have_one(:image).dependent(:destroy) }
-    it { should have_many(:dataset_files) }
-    it { should have_many(:docker_configurations) }
-    it { should have_many(:submission_file_definitions) }
-    it { should accept_nested_attributes_for :submission_file_definitions }
-    it { should have_many(:submissions) }
-    #it { should have_many(:leaderboards) }
-    it { should have_many(:ongoing_leaderboards) }
-    it { should have_many(:participant_challenges) }
-    it { should have_many(:topics) }
+    it { is_expected.to belong_to(:organizer) }
+    it { is_expected.to have_many(:dataset_files) }
+    it { is_expected.to have_many(:submission_file_definitions) }
+    it { is_expected.to accept_nested_attributes_for :submission_file_definitions }
+    it { is_expected.to have_many(:submissions) }
+    #it { is_expected.to have_many(:leaderboards) }
+    it { is_expected.to have_many(:ongoing_leaderboards) }
+    it { is_expected.to have_many(:participant_challenges) }
+    it { is_expected.to have_many(:topics) }
   end
 
   describe 'indexes' do
@@ -21,12 +61,12 @@ describe Challenge do
 
 =begin
   context 'validations' do
-    it { should validate_presence_of(:challenge) }
-    it { should validate_presence_of(:status) }
-    it { should validate_presence_of(:organizer_id) }
-    it { should validate_presence_of(:grader) }
-    it { should validate_presence_of(:primary_sort_order) }
-    it { should validate_presence_of(:grading_factor) }
+    it { is_expected.to validate_presence_of(:challenge) }
+    it { is_expected.to validate_presence_of(:status) }
+    it { is_expected.to validate_presence_of(:organizer_id) }
+    it { is_expected.to validate_presence_of(:grader) }
+    it { is_expected.to validate_presence_of(:primary_sort_order) }
+    it { is_expected.to validate_presence_of(:grading_factor) }
   end
 =end
   context 'methods' do
@@ -108,11 +148,7 @@ describe Challenge do
         }.to raise_error(ActiveRecord::RecordInvalid)
       end
 
-      it 'permits a running challenge to be cancelled' do
-        challenge = create(:challenge, :running)
-        challenge.update!(status: :cancelled)
-        expect(challenge.status).to eq(:cancelled)
-      end
+
     end
 
     describe "friendly_id" do
@@ -124,6 +160,19 @@ describe Challenge do
       end
     end
 
+    context 'API key' do
+      let!(:challenge) { create :challenge }
+      it 'API key is created when account created' do
+        expect(challenge.api_key.length).to eq(32)
+      end
+
+      it 'API key can be updated' do
+        api_key = challenge.api_key
+        challenge.update(api_key: challenge.generate_api_key)
+        expect(challenge.api_key.length).to eq(32)
+        expect(challenge.api_key).not_to eq(api_key)
+      end
+    end
 
   end
 end

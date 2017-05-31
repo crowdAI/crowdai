@@ -26,18 +26,8 @@ class ApplicationController < ActionController::Base
   end
 
 
-  def load_gon(vars = {})
-    rails = {controller: controller_name, action: action_name}
-    gon.rails = rails
-    if vars.any?
-      vars.each do |k,v|
-        gon.send("#{k}=", v)
-      end
-    end
-  end
-
   def not_authorized
-    flash[:error] = "You are not authorised for this action"
+    flash[:error] = "You are not authorised to access this page."
     redirect_to root_path
   end
 

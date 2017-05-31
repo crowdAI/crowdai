@@ -5,18 +5,16 @@ class LeaderboardsController < ApplicationController
   respond_to :js, :html
 
   def index
-    @leaderboards = @challenge.leaderboards
+    @leaderboard = @challenge.leaderboards
     if @challenge.completed?
       @ongoing_leaderboards = @challenge.ongoing_leaderboards
     end
     if current_participant && (current_participant.admin? || @challenge.organizer_id == current_participant.organizer_id)
       @participant_submissions = ParticipantSubmission.where(challenge_id: @challenge.id)
     end
-    load_gon({percent_progress: @challenge.pct_passed})
   end
 
   def show
-    load_gon({percent_progress: @challenge.pct_passed})
   end
 
   def video_modal
@@ -32,9 +30,7 @@ class LeaderboardsController < ApplicationController
   end
 
   def set_challenge
-    challenge = Challenge.friendly.find(params[:challenge_id])
-    @challenge = ChallengesPresenter.new(challenge)
+    @challenge = Challenge.friendly.find(params[:challenge_id])
   end
-
 
 end

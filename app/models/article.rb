@@ -1,15 +1,44 @@
-class Article < ApplicationRecord
-  include FriendlyId
-  friendly_id :article, use: [:slugged, :finders]
-  belongs_to :participant
+# == Schema Information
+#
+# Table name: articles
+#
+#  id             :integer          not null, primary key
+#  article        :string
+#  participant_id :integer
+#  published      :boolean          default(FALSE)
+#  vote_count     :integer          default(0)
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  category       :string
+#  view_count     :integer          default(0)
+#  summary        :string
+#  slug           :string
+#  image_file     :string
+#
+# Indexes
+#
+#  index_articles_on_participant_id  (participant_id)
+#  index_articles_on_slug            (slug) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_a80d056f19  (participant_id => participants.id)
+#
 
-  has_one :image, as: :imageable, dependent: :destroy
-  accepts_nested_attributes_for :image, allow_destroy: true
+class Article < ApplicationRecord
+  #searchkick
+  include FriendlyId
+
+  default_scope { order('updated_at DESC') }
+
+  belongs_to :participant
   has_many :votes, as: :votable
   has_paper_trail :ignore => [:view_count, :comment_count]
   has_many :comments, as: :commentable
   has_many :article_sections, dependent: :destroy
   accepts_nested_attributes_for :article_sections, reject_if: :all_blank, allow_destroy: true
+
+  friendly_id :article, use: [:slugged, :finders]
 
   scope :published, -> () { where published: true }
 
@@ -20,28 +49,9 @@ class Article < ApplicationRecord
   validates :view_count,        presence: true
   validates :vote_count,        presence: true
 
+  mount_uploader :image_file, ImageUploader
+  validates :image_file, file_size: { less_than: 5.megabytes }
 
-  CATEGORIES = {
-    'caffe' => "Caffe",
-    'tensorflow' => 'Tensorflow',
-    'torch7' => 'Torch7',
-    'scikit2' => 'Python-2 Scikit-Learn',
-    'scikit3' => 'Python-3 Scikit-Learn',
-    'octave' => 'Octave',
-    'keras' => 'Keras',
-    'machine_learning' => 'Machine learning',
-    'data_mining' => 'Data mining',
-    'deep_learning' => 'Deep learning'
-  }
-
-
-  def image_medium_url
-    if image.present?
-      image.image.url(:medium)
-    else
-      "//#{ENV['HOST']}/assets/image_not_found.png"
-    end
-  end
 
   def record_page_view
     self.view_count ||= 0

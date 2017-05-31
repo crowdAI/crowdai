@@ -4,8 +4,12 @@
     <p class="large">crowdAI connects data science experts and enthusiasts with open data to solve specific problems, through challenges.</p>
   </div>
   <div class="row button-group">
-    <%= link_to "Sign up", new_participant_registration_path, class: "btn btn-primary btn-large" %>
-    <%= link_to "Host a Challenge", landing_page_host_path, class: 'btn btn-secondary btn-large' %>
+    <% if current_participant %>
+      <%= link_to "Host a Challenge", landing_page_host_path, class: 'btn btn-primary btn-large' %>
+    <% else %>
+      <%= link_to "Sign up", new_participant_registration_path, class: "btn btn-primary btn-large" %>
+      <%= link_to "Host a Challenge", landing_page_host_path, class: 'btn btn-secondary btn-large' %>
+    <% end %>
   </div>
 
   <div class="row">

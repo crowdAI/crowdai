@@ -59,7 +59,7 @@
 class Participant < ApplicationRecord
   #searchkick
   devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable, :lockable
+         :recoverable, :rememberable, :trackable, :lockable
   include FriendlyId
   include ApiKey
   friendly_id :name, use: [:slugged, :finders]
@@ -67,7 +67,6 @@ class Participant < ApplicationRecord
   after_create :set_api_key
   before_save { self.email = email.downcase }
   before_save :process_urls
-  validates :api_key, presence: true
   mount_uploader :image_file, ImageUploader
   validates :image_file, file_size: { less_than: 5.megabytes }
 

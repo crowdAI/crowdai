@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  before_filter :authenticate_participant!, except: [:index, :show]
+  before_filter :authenticate_participant!, except: [:index, :show, :new]
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
   before_action :set_challenge
 

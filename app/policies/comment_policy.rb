@@ -1,7 +1,7 @@
 class CommentPolicy < ApplicationPolicy
 
   def new?
-    participant
+    true
   end
 
   def create?

@@ -108,7 +108,6 @@ gem "trailblazer-rails"
 gem "cells-rails", github: 'trailblazer/cells-rails'
 gem "cells"
 gem "cells-erb"
-gem "faraday"
 
 group :development, :test do
   gem "rspec-cells"

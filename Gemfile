@@ -18,9 +18,10 @@ gem 'active_admin_datetimepicker'
 gem 'activeadmin-xls', github: 'thambley/activeadmin-xls'
 
 # monitoring
-gem "rorvswild"
 #gem "brakeman", :require => false
 gem 'mini_magick'
+gem 'rollbar'
+gem 'oj', '~> 2.12.14'
 
 # model
 gem 'simple_enum'

@@ -59,7 +59,7 @@
 class Participant < ApplicationRecord
   #searchkick
   devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :lockable
+         :recoverable, :rememberable, :trackable, :lockable, :timeoutable
   include FriendlyId
   include ApiKey
   friendly_id :name, use: [:slugged, :finders]

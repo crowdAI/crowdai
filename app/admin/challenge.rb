@@ -10,6 +10,7 @@ ActiveAdmin.register Challenge do
 
   sidebar "Challenge Details", only: [:show, :edit] do
     ul do
+      li link_to "Leaderboard",   admin_challenge_leaderboards_path(challenge)
       li link_to "Submissions",   admin_challenge_submissions_path(challenge)
       li link_to "Topics",        admin_challenge_topics_path(challenge)
     end

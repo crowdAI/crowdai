@@ -4,7 +4,7 @@
       <% ['All','Active','Completed'].each do |filt| %>
         <% if challenge_filter == filt.downcase %>
           <li class="active">
-            <%= link_to challenges_path(challenge_filter: filt.downcase) do %>
+            <%= link_to challenges_path(challenge_filter: filt.downcase), class: 'active' do %>
               <%= filt %>
               <sup><%= challenges_count(filt.downcase) %></sup>
             <% end %>

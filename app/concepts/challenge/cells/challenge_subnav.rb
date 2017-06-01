@@ -10,14 +10,25 @@ class Challenge::Cell::ChallengeSubnav < Template::Cell
   end
 
   def current_tab
-    options[:tab] ||= 'overview'
+    Rails.logger.debug "controller: #{controller.controller_name}"
+
+    case controller.controller_name
+    when 'challenges'
+      'overview'
+    when 'leaderboards'
+      'leaderboard'
+    when 'topics'
+      'discussion'
+    when 'dataset_files'
+      'dataset'
+    end
   end
 
   def tab_class(tab)
     if tab == current_tab
-      return "class='active'"
+      return 'active'
     else
-      return nil
+      return ''
     end
   end
 

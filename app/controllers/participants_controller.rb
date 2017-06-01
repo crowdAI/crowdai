@@ -24,7 +24,7 @@ class ParticipantsController < ApplicationController
     authorize @participant
     @participant.api_key = @participant.generate_api_key
     @participant.save!
-    redirect_to edit_participant_path(@participant),notice: 'API Key regenerated.'
+    redirect_to participant_path(@participant),notice: 'API Key regenerated.'
   end
 
   def sync_mailchimp

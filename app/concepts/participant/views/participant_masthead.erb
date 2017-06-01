@@ -13,6 +13,14 @@
         <% end %>
       </div>
       <p class="location"><%= location_organization %></p>
+        <div class="text-w-icon">
+          <% if policy(participant).edit? %>
+            <p><strong>API key:</strong> <%= participant.api_key %></p>
+              <%= link_to participant_regen_api_key_path(participant) do %>
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+              <% end %>
+          <% end %>
+        </div>
       <ul class="social-links">
         <% if participant.twitter %>
           <li><%= link_to '<i class="fa fa-twitter" aria-hidden="true"></i>', url_for(participant.twitter) %></li>

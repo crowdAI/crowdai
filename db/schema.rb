@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170530155439) do
+ActiveRecord::Schema.define(version: 20170602093326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -273,6 +273,20 @@ ActiveRecord::Schema.define(version: 20170530155439) do
     t.index ["unlock_token"], name: "index_participants_on_unlock_token", unique: true, using: :btree
   end
 
+  create_table "posts", id: false, force: :cascade do |t|
+    t.serial   "id",                             null: false
+    t.integer  "topic_id"
+    t.integer  "participant_id"
+    t.text     "post"
+    t.boolean  "flagged",        default: false
+    t.boolean  "notify",         default: true
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "vote_count",     default: 0
+    t.string   "slug"
+    t.text     "post_markdown"
+  end
+
   create_table "submission_file_definitions", force: :cascade do |t|
     t.integer  "challenge_id"
     t.integer  "seq"
@@ -334,15 +348,13 @@ ActiveRecord::Schema.define(version: 20170530155439) do
     t.integer  "challenge_id"
     t.integer  "participant_id"
     t.string   "topic"
-    t.boolean  "sticky",               default: false
-    t.integer  "views",                default: 0
-    t.integer  "posts_count",          default: 0
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.boolean  "sticky",         default: false
+    t.integer  "views",          default: 0
+    t.integer  "posts_count",    default: 0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "slug"
-    t.integer  "vote_count",           default: 0
-    t.string   "description"
-    t.string   "description_markdown"
+    t.integer  "vote_count",     default: 0
     t.index ["challenge_id"], name: "index_topics_on_challenge_id", using: :btree
     t.index ["participant_id"], name: "index_topics_on_participant_id", using: :btree
     t.index ["slug"], name: "index_topics_on_slug", unique: true, using: :btree
@@ -377,6 +389,8 @@ ActiveRecord::Schema.define(version: 20170530155439) do
   add_foreign_key "email_preferences", "participants"
   add_foreign_key "emails", "mailers"
   add_foreign_key "participants", "organizers"
+  add_foreign_key "posts", "participants"
+  add_foreign_key "posts", "topics"
   add_foreign_key "submission_file_definitions", "challenges"
   add_foreign_key "submission_files", "submissions"
   add_foreign_key "submission_grades", "submissions"
@@ -461,25 +475,6 @@ ActiveRecord::Schema.define(version: 20170530155439) do
     ORDER BY l.score DESC, l.score_secondary;
   SQL
 
-  create_view :participant_submissions,  sql_definition: <<-SQL
-      SELECT s.id,
-      s.challenge_id,
-      s.participant_id,
-      p.name,
-      s.grading_status_cd,
-      s.post_challenge,
-      s.score,
-      s.score_secondary,
-      count(f.*) AS files,
-      s.created_at
-     FROM participants p,
-      (submissions s
-       LEFT JOIN submission_files f ON ((f.submission_id = s.id)))
-    WHERE (s.participant_id = p.id)
-    GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
-    ORDER BY s.created_at DESC;
-  SQL
-
   create_view :participant_challenges,  sql_definition: <<-SQL
       SELECT p.id,
       pc.challenge_id,
@@ -530,6 +525,25 @@ ActiveRecord::Schema.define(version: 20170530155439) do
               dataset_files df
             WHERE (dfd.dataset_file_id = df.id)) pc
     WHERE ((pc.participant_id = p.id) AND (pc.challenge_id = c.id));
+  SQL
+
+  create_view :participant_submissions,  sql_definition: <<-SQL
+      SELECT s.id,
+      s.challenge_id,
+      s.participant_id,
+      p.name,
+      s.grading_status_cd,
+      s.post_challenge,
+      s.score,
+      s.score_secondary,
+      count(f.*) AS files,
+      s.created_at
+     FROM participants p,
+      (submissions s
+       LEFT JOIN submission_files f ON ((f.submission_id = s.id)))
+    WHERE (s.participant_id = p.id)
+    GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
+    ORDER BY s.created_at DESC;
   SQL
 
 end

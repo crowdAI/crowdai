@@ -1,0 +1,33 @@
+<% submissions.each do |submission| %>
+  <tr id="submission-<%= submission.id %>" class='submission-row'>
+    <td class="position"></td>
+
+    <td class="participant">
+      <div class="user-link">
+        <p><%= link_to submission.participant.name, participant_path(submission.participant_id) %></p>
+      </div>
+    </td>
+
+    <% if cols.include?(:media) %>
+      <td class="video">
+        <a data-toggle="modal" data-target="" data-remote="true" href="#">
+      </td>
+    <% end %>
+
+    <td class="score">
+      <strong><%= submission.score %></strong>
+    </td>
+
+    <% if cols.include?(:score_secondary) %>
+      <td class="score">
+        <strong><%= submission.score_secondary %></strong>
+      </td>
+    <% end %>
+
+    <td class="entries">
+      <%= submission.grading_status %>
+    </td>
+
+    <td class="last-submission"><%= submission.created_at.strftime("%a, %e %b %Y %R") %></td>
+  </tr>
+<% end %>

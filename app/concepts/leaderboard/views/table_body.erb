@@ -1,6 +1,6 @@
 <tbody>
   <% leaderboard.each_with_index do |entry,row| %>
-  <tr>
+  <tr id='participant-<%= entry.participant_id %>'>
     <td class="positon">
       <strong><%= "%02d." % (row + 1) %></strong>
     </td>
@@ -32,7 +32,16 @@
       </td>
     <% end %>
 
-    <td class="entries"><%= entry.entries %></td>
+    <% if policy(entry).submission_detail? %>
+      <td class="entries">
+        <%= link_to entry.entries,
+            challenge_submission_detail_path(challenge_id: entry.challenge_id,
+                                                          participant_id: entry.participant_id),
+                                                          remote: true %>
+      </td>
+    <% else %>
+      <td class="entries"><%= entry.entries %></td>
+    <% end %>
 
     <%= if cols.include?(:post_challenge) %>
       <td class="post-challenge"></td>

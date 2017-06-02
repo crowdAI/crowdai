@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     end
     resources :leaderboards, only: [:index]
     get 'leaderboards/video_modal' => 'leaderboards#video_modal', as: :video_modal
+    get 'leaderboards/submission_detail' => 'leaderboards#submission_detail', as: :submission_detail
     resources :topics
     get :regrade
     get :regen_api_key
@@ -55,6 +56,7 @@ Rails.application.routes.draw do
     resources :votes, only: [:create]
   end
   get '/load_more_challenges', to: 'challenges#load_more', as: :load_more_challenges
+
 
   resources :topics do
     resources :comments, only: [:new, :create]

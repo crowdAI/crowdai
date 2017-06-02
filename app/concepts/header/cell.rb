@@ -42,19 +42,24 @@ class Header::Cell < Template::Cell
   end
 
   def mobile_links
+    links = [
     "<ul>
       <li><h3>#{ link_to "Challenges", challenges_path }</h3></li>
       <li><h3>#{ link_to "Knowledge Base", articles_path }</h3></li>
-    </ul>
-    <ul>
-      <li><h4>#{ link_to "Sign up", new_participant_registration_path }</h4></li>
-      <li><h4>#{ link_to "Log in", new_participant_session_path }</h4></li>
-    </ul>
-    <ul>
-      <li><h4><a href='#'>Jason Reynolds</a></h4></li>
-      <li><h4><a href='#'>Account Settings</a></h4></li>
-      <li><h4><a href='#'>Log Out</a></h4></li>
-    </ul>"
-  end
+    </ul>" ]
 
+    if current_participant.nil?
+      links << "<ul>
+                  <li><h4>#{ link_to "Sign up", new_participant_registration_path }</h4></li>
+                  <li><h4>#{ link_to "Log in", new_participant_session_path }</h4></li>
+              </ul>"
+    else
+      links << "<ul>
+                  <li>#{ link_to current_participant.name, participant_path(current_participant)}</li>
+                  <li>#{ link_to 'Account Settings', edit_participant_registration_path }</li>
+                  <li>#{ link_to 'Log Out', destroy_participant_session_path, :method => :delete }</li>
+                </ul>"
+    end
+    links.join
+  end
 end

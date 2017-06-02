@@ -12,6 +12,7 @@ class TopicsController < ApplicationController
 
   def new
     @topic = @challenge.topics.new
+    @comment = @topic.comments.new
   end
 
   def edit
@@ -49,7 +50,15 @@ class TopicsController < ApplicationController
     end
 
     def topic_params
-      params.require(:topic).permit(:challenge_id, :participant_id, :topic, :sticky, :views, :posts_count)
+      params
+        .require(:topic)
+        .permit(:challenge_id,
+                :participant_id,
+                :topic,
+                :sticky,
+                :views,
+                :posts_count,
+                comments_attributes: [:comment_markdown, :participant_id])
     end
 
     def headline_sql

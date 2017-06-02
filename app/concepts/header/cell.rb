@@ -51,10 +51,11 @@ class Header::Cell < Template::Cell
       <li><h4>#{ link_to "Log in", new_participant_session_path }</h4></li>
     </ul>
     <ul>
-      <li><h4><a href='#'>Jason Reynolds</a></h4></li>
-      <li><h4><a href='#'>Account Settings</a></h4></li>
-      <li><h4><a href='#'>Log Out</a></h4></li>
-    </ul>"
+      <li>#{ link_to current_participant.name, participant_path(current_participant)}</li>
+      <li>#{ link_to 'Account Settings', edit_participant_registration_path }</li>
+      <li>#{ link_to 'Log Out', destroy_participant_session_path, :method => :delete }</li>
+    </ul>
+    "
   end
 
 end

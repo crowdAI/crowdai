@@ -119,7 +119,7 @@ class Challenge < ApplicationRecord
                           WHEN 'cancelled' THEN 4
                           WHEN 'draft' THEN 5
                           ELSE 6
-                        END, updated_at DESC") }
+                        END, created_at DESC") }
 
   after_initialize do
     if self.new_record?

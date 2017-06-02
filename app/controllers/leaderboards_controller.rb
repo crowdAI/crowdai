@@ -24,6 +24,12 @@ class LeaderboardsController < ApplicationController
     render 'video_modal'
   end
 
+  def submission_detail
+    @leaderboard = @challenge.leaderboards
+    @submissions = Submission.where(participant_id: params[:participant_id],challenge_id: params[:challenge_id]).order(created_at: :desc)
+    render js: concept(Leaderboard::Cell,@leaderboard, challenge: @challenge, submissions: @submissions).(:insert_submissions)
+  end
+
   private
   def set_leaderboard
     @leaderboard = Leaderboard.find(params[:id])

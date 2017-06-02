@@ -5,8 +5,6 @@ describe Topic do
     it { is_expected.to respond_to :topic }
     it { is_expected.to respond_to :views }
     it { is_expected.to respond_to :vote_count }
-    it { is_expected.to respond_to :description }
-    it { is_expected.to respond_to :description_markdown }
   end
 
   context 'associations' do

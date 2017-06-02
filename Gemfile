@@ -26,7 +26,6 @@ gem 'oj', '~> 2.12.14'
 # model
 gem 'simple_enum'
 gem 'scenic', '~> 1.3'
-gem 'seed_dump'
 gem 'validate_url'
 gem 'paper_trail'
 
@@ -122,6 +121,7 @@ end
 
 
 group :development do
+  gem 'seed_dump'
   gem 'guard'
   gem 'rails-erd'
   gem 'railroady'

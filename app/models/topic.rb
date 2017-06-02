@@ -2,19 +2,17 @@
 #
 # Table name: topics
 #
-#  id                   :integer          not null, primary key
-#  challenge_id         :integer
-#  participant_id       :integer
-#  topic                :string
-#  sticky               :boolean          default(FALSE)
-#  views                :integer          default(0)
-#  posts_count          :integer          default(0)
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  slug                 :string
-#  vote_count           :integer          default(0)
-#  description          :string
-#  description_markdown :string
+#  id             :integer          not null, primary key
+#  challenge_id   :integer
+#  participant_id :integer
+#  topic          :string
+#  sticky         :boolean          default(FALSE)
+#  views          :integer          default(0)
+#  posts_count    :integer          default(0)
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  slug           :string
+#  vote_count     :integer          default(0)
 #
 # Indexes
 #
@@ -36,6 +34,7 @@ class Topic < ApplicationRecord
   belongs_to :participant
   has_many :comments, dependent: :destroy
   has_many :votes, as: :votable
+  has_paper_trail
 
   default_scope { order('created_at desc') }
 

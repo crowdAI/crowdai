@@ -5,8 +5,8 @@
   <div class="row">
     <div class="discussion-topic">
       <div class="pic">
-        <%= link_to participant_path(@topic.participant) do %>
-          <%= concept(Image::Cell,@topic.participant) %>
+        <%= link_to participant_path(@author) do %>
+          <%= concept(Image::Cell,@author) %>
         <% end %>
       </div>
       <div class="topic-content">
@@ -18,7 +18,7 @@
           <a href="#">Quote</a>
         </p>
         <div class="comment">
-          <p><%= simple_format(@topic.description) %></p>
+          <p><%= simple_format(@first_comment.comment) %></p>
         </div>
       </div>
     </div>

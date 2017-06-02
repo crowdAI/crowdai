@@ -31,8 +31,9 @@ class Comment < ApplicationRecord
   belongs_to :participant
   has_many :votes, as: :votable
   before_validation :cache_rendered_markdown
+  has_paper_trail
 
-  default_scope { order('created_at desc') }
+  #default_scope { order('created_at desc') }
 
   validates :vote_count, presence: true
   validates :comment_markdown, presence: true

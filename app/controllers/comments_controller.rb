@@ -8,7 +8,9 @@ class CommentsController < ApplicationController
   def new
     @challenge = @topic.challenge
     @author = @topic.participant
-    @comments = @topic.comments("created_at DESC")
+
+    @first_comment = @topic.comments.order(created_at: :asc).first
+    @comments = @topic.comments.where.not(id: @first_comment.id).order(created_at: :asc)
     @comment = Comment.new(topic_id: @topic_id)
     authorize @comment
    end

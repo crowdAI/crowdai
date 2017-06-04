@@ -27,7 +27,6 @@ gem 'oj', '~> 2.12.14'
 gem 'simple_enum'
 gem 'scenic', '~> 1.3'
 gem 'validate_url'
-gem 'paper_trail'
 
 
 # forms / data manipulation / charts
@@ -163,5 +162,3 @@ group :test do
   gem 'rails-controller-testing'
   gem 'pundit-matchers', github: 'crowdAI/pundit-matchers'
 end
-
-#gem "rack-timeout"

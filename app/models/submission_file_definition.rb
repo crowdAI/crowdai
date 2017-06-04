@@ -22,7 +22,6 @@
 #
 
 class SubmissionFileDefinition < ApplicationRecord
-  has_paper_trail
   belongs_to :challenge
 
   as_enum :filetype, [:csv, :zip, :tar, :txt, :any], map: :string

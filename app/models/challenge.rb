@@ -73,7 +73,6 @@ class Challenge < ApplicationRecord
   friendly_id :challenge, use: [:slugged, :finders]
   before_validation :cache_rendered_markdown
   validate :valid_status
-  has_paper_trail :ignore => [:created_at, :updated_at, :page_views, :description, :rules, :prizes, :resources, :evaluation, :license]
   after_create :set_api_key
 
   belongs_to :organizer
@@ -127,7 +126,6 @@ class Challenge < ApplicationRecord
       self.daily_submissions = 5
     end
   end
-
 
   def record_page_view
     self.page_views ||= 0

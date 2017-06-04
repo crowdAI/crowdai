@@ -1,15 +1,17 @@
+# frozen_string_literal: true
 class ApplicationController < ActionController::Base
   include Pundit
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
   protect_from_forgery with: :exception
   after_filter :participant_activity
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_filter :set_paper_trail_whodunnit
 
   protected
+
   def configure_permitted_parameters
-   devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(
-     :name, :email, :password, :password_confirmation, :remember_me) }
+    devise_parameter_sanitizer.permit(:sign_up) do |u|
+      u.permit(:name, :email, :password, :password_confirmation, :remember_me)
+    end
   end
 
   def pundit_user
@@ -21,13 +23,13 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
   def participant_activity
     current_participant.try :touch
   end
 
-
   def not_authorized
-    flash[:error] = "You are not authorised to access this page."
+    flash[:error] = 'You are not authorised to access this page.'
     redirect_to root_path
   end
 
@@ -36,18 +38,16 @@ class ApplicationController < ActionController::Base
   end
 
   def search_params
-  params[:q]
-end
+    params[:q]
+  end
 
-def clear_search_index
-  if params[:search_cancel]
-    params.delete(:search_cancel)
-    if(!search_params.nil?)
-      search_params.each do |key, param|
+  def clear_search_index
+    if params[:search_cancel]
+      params.delete(:search_cancel)
+      search_params&.each do |key, _param|
         search_params[key] = nil
       end
     end
   end
-end
 
 end

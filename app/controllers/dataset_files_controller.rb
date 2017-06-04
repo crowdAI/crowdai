@@ -1,5 +1,5 @@
 class DatasetFilesController < ApplicationController
-  before_filter :authenticate_participant!
+  before_action :authenticate_participant!
   before_action :set_dataset_file, only: [:destroy]
   before_action :set_challenge
 

@@ -1,5 +1,5 @@
 class MarkdownEditorController < ApplicationController
-  before_filter :authenticate_participant!
+  before_action :authenticate_participant!
   respond_to :js
 
   def show

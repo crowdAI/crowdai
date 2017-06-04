@@ -1,5 +1,5 @@
 class OrganizersController < ApplicationController
-  before_filter :authenticate_participant!
+  before_action :authenticate_participant!
   before_action :set_organizer, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized, except: :index
 

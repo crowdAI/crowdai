@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_filter :authenticate_participant!
+  skip_before_action :authenticate_participant!
 
   def contact
   end

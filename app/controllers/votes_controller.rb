@@ -8,6 +8,7 @@ class VotesController < ApplicationController
     @vote.participant = current_participant
     @vote.save
     @votable.update(vote_count: @votable.votes.count)
+    Rails.logger.debug("updated: #{@votable.id}")
     render js: concept(Vote::Cell,@votable).(:refresh)
   end
 

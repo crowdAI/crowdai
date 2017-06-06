@@ -1,12 +1,14 @@
 <div class="remodal" data-remodal-id="modal">
-	<form class="modal" method="" action="">
+	<form class="modal" method="" action="" data-remote="true">
 		<h3>Delete Confirmation</h3>
-			<p>Your account will be deleted and cannot be reinstated.</p>
-			<p>Your username will be redacted and your posts, submissions and comments will be marked as redacted but stay present on crowdAI.</p>
-			<p>All content contributed to crowdAI is released under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons - Attribution 4.0 International</a>.</p>
-			<div class="button-group-fluid">
-        <%= link_to 'Delete', participant_path(@participant), method: :delete,  class: "btn btn-primary" %>
-				<button class="btn btn-secondary" data-remodal-action="cancel">Cancel</button>
-			</div>
-		</form>
-	</div>
+		<p>Your account will be deleted and cannot be reinstated.</p>
+		<p>Your username will be redacted and your posts, submissions and comments will be marked as redacted but stay present on crowdAI.</p>
+		<p>All content contributed to crowdAI is released under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons - Attribution 4.0 International</a>.</p>
+		<div class="button-group-fluid">
+      <%= link_to registration_path(@participant), method: :delete do %>
+        <button class='btn btn-primary'>Delete</button>
+      <% end %>
+			<button class="btn btn-secondary" data-remodal-action="cancel">Cancel</button>
+		</div>
+	</form>
+</div>

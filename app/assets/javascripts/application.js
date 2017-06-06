@@ -5,8 +5,8 @@
 //= require cocoon
 //= require rails.validations
 //= require jQuery-File-Upload
+//= require remodal
 //= require turbolinks
-//= require remodal.min
 
 
 // ---------------------- Modules ---------------------- //
@@ -15,7 +15,6 @@
 //= require modules/inline_validations
 //= require modules/rangy_inputs
 //= require modules/markdown_editor
-//= require modules/remodal_turbolinks
 
 // ---------------------- Pages ---------------------- //
 
@@ -23,4 +22,8 @@
 $(document).on('ajax:error', function(xhr, status, error) {
   console.log(status.responseText);
   console.log(error);
+});
+
+$(document).on('turbolinks:load', function() {
+  $('[data-remodal-id=modal]').remodal();
 });

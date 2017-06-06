@@ -133,7 +133,8 @@ content {
 }
 
 a img {
-    width: 100%;
+    max-width: 100%;
+    display: block;
     @include opacity(1);
     @include transition(0.4s);
 }
@@ -969,7 +970,6 @@ a .fa:hover {
 	height: 36px;
 
 	img {
-		display: block;
 		float: left;
 		width: 36px;
 		height: 36px;
@@ -2747,6 +2747,7 @@ table.submissions {
 		height: auto;
 		max-width: 100%;
 		margin-top: 24px;
+    display: block;
 	}
 
 	.btn {

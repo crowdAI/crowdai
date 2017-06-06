@@ -133,7 +133,7 @@ content {
 }
 
 a img {
-    width: 100%;
+    max-width: 100%;
     @include opacity(1);
     @include transition(0.4s);
 }

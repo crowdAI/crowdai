@@ -31,7 +31,7 @@ class Article < ApplicationRecord
 
   default_scope { order('updated_at DESC') }
 
-  belongs_to :participant
+  belongs_to :participant, optional: true
   has_many :votes, as: :votable
   has_many :comments, as: :commentable
   has_many :article_sections, dependent: :destroy

@@ -28,7 +28,7 @@
 
 class Comment < ApplicationRecord
   belongs_to :topic
-  belongs_to :participant
+  belongs_to :participant, optional: true
   has_many :votes, as: :votable
   before_validation :cache_rendered_markdown
 

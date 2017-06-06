@@ -6,6 +6,8 @@
 //= require rails.validations
 //= require jQuery-File-Upload
 //= require turbolinks
+//= require remodal.min
+
 
 // ---------------------- Modules ---------------------- //
 //= require modules/site
@@ -13,6 +15,7 @@
 //= require modules/inline_validations
 //= require modules/rangy_inputs
 //= require modules/markdown_editor
+//= require modules/remodal_turbolinks
 
 // ---------------------- Pages ---------------------- //
 

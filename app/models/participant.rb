@@ -76,7 +76,8 @@ class Participant < ApplicationRecord
   belongs_to :organizer, optional: true
   has_many :submissions
   has_many :posts
-  has_many :votes,                      dependent: :destroy
+  has_many :votes,                      dependent: :nullify
+  has_many :topics,                     dependent: :nullify
   has_many :comments,                   dependent: :nullify
   has_many :articles,                   dependent: :nullify
   has_many :leaderboards,               class_name: 'Leaderboard'

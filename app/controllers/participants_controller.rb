@@ -19,6 +19,13 @@ class ParticipantsController < ApplicationController
     end
   end
 
+  def delete
+    participant_id = current_participant.id
+    sign_out(current_participant)
+    current_participant.destroy
+    redirect_to '/'
+  end
+
   def regen_api_key
     @participant = Participant.friendly.find(params[:participant_id])
     authorize @participant

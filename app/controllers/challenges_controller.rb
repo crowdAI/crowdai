@@ -55,7 +55,6 @@ class ChallengesController < ApplicationController
 
 
   def update
-    #authorize @challenge
     if @challenge.update(challenge_params)
       redirect_to @challenge, notice: 'Challenge was successfully updated.'
     else
@@ -65,7 +64,6 @@ class ChallengesController < ApplicationController
 
 
   def destroy
-    authorize @challenge
     @challenge.destroy
     redirect_to challenges_url, notice: 'Challenge was successfully destroyed.'
   end

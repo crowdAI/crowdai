@@ -31,7 +31,7 @@ class Topic < ApplicationRecord
   friendly_id :topic, use: [:slugged, :finders]
   include ActionView::Helpers::DateHelper
   belongs_to :challenge
-  belongs_to :participant
+  belongs_to :participant, optional: true
   has_many :comments, dependent: :destroy
   accepts_nested_attributes_for :comments, reject_if: :all_blank
   has_many :votes, as: :votable
@@ -59,5 +59,9 @@ class Topic < ApplicationRecord
       updated = post.updated_at
     end
     return time_ago_in_words(updated)
+  end
+
+  def participant
+    super || NullParticipant.new
   end
 end

@@ -21,7 +21,7 @@
 #
 
 class DatasetFileDownload < ApplicationRecord
-  belongs_to :participant
+  belongs_to :participant, optional: true
   belongs_to :dataset_file
 
   validates :ip_address,

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170604174630) do
+ActiveRecord::Schema.define(version: 20170607093509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -273,20 +273,6 @@ ActiveRecord::Schema.define(version: 20170604174630) do
     t.index ["unlock_token"], name: "index_participants_on_unlock_token", unique: true, using: :btree
   end
 
-  create_table "posts", id: false, force: :cascade do |t|
-    t.serial   "id",                             null: false
-    t.integer  "topic_id"
-    t.integer  "participant_id"
-    t.text     "post"
-    t.boolean  "flagged",        default: false
-    t.boolean  "notify",         default: true
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "vote_count",     default: 0
-    t.string   "slug"
-    t.text     "post_markdown"
-  end
-
   create_table "submission_file_definitions", force: :cascade do |t|
     t.integer  "challenge_id"
     t.integer  "seq"
@@ -379,8 +365,6 @@ ActiveRecord::Schema.define(version: 20170604174630) do
   add_foreign_key "email_preferences", "participants"
   add_foreign_key "emails", "mailers"
   add_foreign_key "participants", "organizers"
-  add_foreign_key "posts", "participants"
-  add_foreign_key "posts", "topics"
   add_foreign_key "submission_file_definitions", "challenges"
   add_foreign_key "submission_files", "submissions"
   add_foreign_key "submission_grades", "submissions"

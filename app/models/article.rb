@@ -31,7 +31,7 @@ class Article < ApplicationRecord
 
   default_scope { order('updated_at DESC') }
 
-  belongs_to :participant
+  belongs_to :participant, optional: true
   has_many :votes, as: :votable
   has_many :comments, as: :commentable
   has_many :article_sections, dependent: :destroy
@@ -51,6 +51,9 @@ class Article < ApplicationRecord
   mount_uploader :image_file, ImageUploader
   validates :image_file, file_size: { less_than: 5.megabytes }
 
+  def participant
+    super || NullParticipant.new
+  end
 
   def record_page_view
     self.view_count ||= 0
@@ -61,6 +64,5 @@ class Article < ApplicationRecord
   def should_generate_new_friendly_id?
     article_changed?
   end
-
 
 end

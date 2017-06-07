@@ -36,7 +36,7 @@ class Submission < ApplicationRecord
   before_save :set_post_challenge
 
   belongs_to :challenge
-  belongs_to :participant
+  belongs_to :participant, optional: true
   has_many :submission_files, dependent: :destroy
   has_many :submission_grades, dependent: :destroy
   accepts_nested_attributes_for :submission_files, reject_if: lambda { |f| f[:submission_file_s3_key].blank? }, allow_destroy: true

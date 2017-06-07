@@ -19,6 +19,7 @@ class ParticipantsController < ApplicationController
     end
   end
 
+
   def regen_api_key
     @participant = Participant.friendly.find(params[:participant_id])
     authorize @participant

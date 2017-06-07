@@ -28,7 +28,7 @@
 
 class Comment < ApplicationRecord
   belongs_to :topic
-  belongs_to :participant
+  belongs_to :participant, optional: true
   has_many :votes, as: :votable
   before_validation :cache_rendered_markdown
 
@@ -36,6 +36,10 @@ class Comment < ApplicationRecord
 
   validates :vote_count, presence: true
   validates :comment_markdown, presence: true
+
+  def participant
+    super || NullParticipant.new
+  end
 
   private
   def cache_rendered_markdown

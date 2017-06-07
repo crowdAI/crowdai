@@ -11,7 +11,8 @@ Rails.application.routes.draw do
     ActiveAdmin.routes(self)
   end
 
-  devise_for :participants #, ActiveAdmin::Devise.config
+  devise_for :participants
+  #, ActiveAdmin::Devise.config
   #ActiveAdmin.routes(self)
   resources :participants, only: [:show, :edit, :update, :destroy] do
     get :sync_mailchimp

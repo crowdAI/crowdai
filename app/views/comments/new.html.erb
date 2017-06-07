@@ -5,15 +5,25 @@
   <div class="row">
     <div class="discussion-topic">
       <div class="pic">
-        <%= link_to participant_path(@author) do %>
-          <%= concept(Image::Cell,@author) %>
+        <% if @author.is_a? NullParticipant %>
+          <%= link_to '#' do %>
+            <%= concept(Image::Cell,@author) %>
+          <% end %>
+        <% else %>
+          <%= link_to participant_path(@author) do %>
+            <%= concept(Image::Cell,@author) %>
+          <% end %>
         <% end %>
       </div>
       <div class="topic-content">
         <%= concept(Vote::Cell,@topic) %>
         <h4><%= @topic.topic %></h4>
         <p class="details">Posted by
-          <%= link_to @author.name, participant_path(@author) %>
+          <% if @author.is_a? NullParticipant %>
+            <%= link_to @author.name, '#' %>
+          <% else %>
+            <%= link_to @author.name, participant_path(@author) %>
+          <% end %>
           <%= time_ago_in_words(@topic.created_at) %> ago |&nbsp;
           <a href="#">Quote</a>
         </p>

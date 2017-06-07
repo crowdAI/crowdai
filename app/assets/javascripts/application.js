@@ -5,7 +5,9 @@
 //= require cocoon
 //= require rails.validations
 //= require jQuery-File-Upload
+//= require remodal
 //= require turbolinks
+
 
 // ---------------------- Modules ---------------------- //
 //= require modules/site
@@ -20,4 +22,8 @@
 $(document).on('ajax:error', function(xhr, status, error) {
   console.log(status.responseText);
   console.log(error);
+});
+
+$(document).on('turbolinks:load', function() {
+  $('[data-remodal-id=modal]').remodal();
 });

@@ -10,17 +10,8 @@
     <p class="status active"><%= remaining_text %></p>
   </div>
   <div class="stats">
-    <div class="stat-fr">
-      <%= challenge.submission_count %><br>
-      <span><%= "Submission".pluralize(challenge.submission_count) %></span>
-    </div>
-    <div class="stat-fr">
-      <%= challenge.participant_count %><br>
-      <span><%= "Participant".pluralize(challenge.submission_count) %></span>
-    </div>
-    <div class="stat-fr">
-      <%= challenge.page_views %><br>
-      <span><%= "View".pluralize(challenge.page_views) %></span>
-    </div>
+    <%= concept(Challenge::Cell::Statistic,challenge,type: 'submission') %>
+    <%= concept(Challenge::Cell::Statistic,challenge,type: 'participant') %>
+    <%= concept(Challenge::Cell::Statistic,challenge,type: 'view') %>
   </div>
 </li>

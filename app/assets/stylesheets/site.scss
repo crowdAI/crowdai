@@ -157,7 +157,7 @@ content.background-grey {
 
 .logo {
     display: block;
-    background: url('crowdai-logo.svg') no-repeat left center;
+    background: url('misc/crowdai-logo.svg') no-repeat left center;
     width: 129px;
     height: 24px;
 
@@ -167,7 +167,7 @@ content.background-grey {
 	}
 
 	@media screen and (max-width: 640px) {
-		background: url('crowdai-logomark.svg') no-repeat left center;
+		background: url('misc/crowdai-logomark.svg') no-repeat left center;
 	    width: 28px;
 	    height: 28px;
 	}

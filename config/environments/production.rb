@@ -38,6 +38,6 @@ Rails.application.configure do
 
 end
 Rails.application.routes.default_url_options[:host] = ENV['HOST']
-Carrierwave.configure do |config|
+CarrierWave.configure do |config|
   config.asset_host = "https://#{ENV['CLOUDFRONT_IMAGES_DOMAIN']}"
 end

@@ -1,13 +1,23 @@
 <div class="discussion-comment">
   <div class="pic">
-    <%= link_to participant_path(author) do %>
-      <%= concept(Image::Cell,author) %>
+    <% if comment.participant.is_a? NullParticipant %>
+      <%= link_to '#' do %>
+        <%= concept(Image::Cell,author) %>
+      <% end %>
+    <% else %>
+      <%= link_to participant_path(author) do %>
+        <%= concept(Image::Cell,author) %>
+      <% end %>
     <% end %>
   </div>
   <div class="topic-content">
     <%= concept(Vote::Cell,comment) %>
     <p class="details">Posted by
-      <%= link_to author.name, participant_path(author) %>&nbsp;
+      <% if author.is_a? NullParticipant %>
+        <%= link_to author.name, '#' %>&nbsp;
+      <% else %>
+        <%= link_to author.name, participant_path(author) %>&nbsp;
+      <% end %>
       <%= time_ago_in_words(comment.created_at) %> ago |&nbsp;
       <a href="#">Quote</a> | <a href="#">Reply</a>
     </p>

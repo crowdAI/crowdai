@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    current_participant
+    current_participant || NullParticipant.new
   end
 
   private

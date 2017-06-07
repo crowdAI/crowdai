@@ -37,6 +37,10 @@ class Comment < ApplicationRecord
   validates :vote_count, presence: true
   validates :comment_markdown, presence: true
 
+  def participant
+    super || NullParticipant.new
+  end
+
   private
   def cache_rendered_markdown
     if comment_markdown_changed?

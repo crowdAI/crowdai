@@ -13,7 +13,7 @@ class Discussion::Cell < Template::Cell
   end
 
   def author
-    @author ||= topic.participant
+    topic.participant || NullParticipant.new
   end
 
 end

@@ -7,9 +7,15 @@
   <div class="details">
     <h5><%= link_to article.article, article_path(article) %></h5>
     <p class="description"><%= article.summary %></p>
-    <p class="user">By
-      <%= link_to author.name, participant_path(author) %>
-    </p>
+    <% if article.participant.is_a? NullParticipant %>
+      <p class="user">By
+        <%= link_to author.name, '#' %>
+      </p>
+    <% else %>
+      <p class="user">By
+        <%= link_to author.name, participant_path(author) %>
+      </p>
+    <% end %>
   </div>
   <div class="stats">
     <div class="stat-fr">

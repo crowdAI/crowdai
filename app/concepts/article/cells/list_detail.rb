@@ -10,7 +10,11 @@ class Article::Cell::ListDetail < Template::Cell
   end
 
   def author
-    model.participant
+    if model.participant.present?
+      model.participant
+    else
+      NullParticipant.new
+    end
   end
 
 end

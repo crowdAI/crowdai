@@ -75,7 +75,6 @@ class Participant < ApplicationRecord
 
   belongs_to :organizer,                optional: true
   has_many :submissions,                dependent: :nullify
-  has_many :posts
   has_many :votes,                      dependent: :nullify
   has_many :topics,                     dependent: :nullify
   has_many :comments,                   dependent: :nullify
@@ -167,5 +166,16 @@ class Participant < ApplicationRecord
     name_changed?
   end
 
+  def self.find_by(args)
+    super || NullParticipant.new
+  end
+
+  def self.find(args)
+    begin
+      super
+    rescue
+      NullParticipant.new
+    end
+  end
 
 end

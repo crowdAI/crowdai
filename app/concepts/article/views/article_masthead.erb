@@ -14,14 +14,25 @@
       </div>
       <p class="large"><%= article.summary %></p>
       <div class="user-link">
-        <%= link_to participant_path(author) do %>
-          <%= concept(Image::Cell,author) %>
+        <% if article.participant.is_a? NullParticipant %>
+          <%= link_to '#' do %>
+            <%= concept(Image::Cell,author) %>
+          <% end %>
+          <p>By
+            <%= link_to author.name, '#' %>
+            &nbsp;
+            <%= created_at %>
+          </p>
+        <% else %>
+          <%= link_to participant_path(author) do %>
+            <%= concept(Image::Cell,author) %>
+          <% end %>
+          <p>By
+            <%= link_to author.name, participant_path(author) %>
+            &nbsp;
+            <%= created_at %>
+          </p>
         <% end %>
-        <p>By
-           <%= link_to author.name, participant_path(author) %>
-           &nbsp;
-           <%= created_at %>
-        </p>
       </div>
       <div class="button-group">
         <%= concept(Vote::Cell, article) %>

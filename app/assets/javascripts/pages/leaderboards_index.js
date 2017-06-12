@@ -9,14 +9,11 @@ function toggleVideoPlayers(){
 }
 
 
-
 $(document).on('turbolinks:load', function() {
-  /* --------------------------------- leaderboards / index --------------------------------------- */
-  if (!_.isEmpty(gon) && gon.rails.controller == 'leaderboards' && gon.rails.action == 'index') {
-    expandSidebar();
-    adjustProgress(gon.percent_progress);
-    adjustText(gon.percent_progress);
+  var controller = $('#controller-action').data('controller');
+  var action = $('#controller-action').data('action');
 
+  if (controller === 'leaderboards' && action === 'index') {
     var scrollTimeout = null;
     $(window).scroll(function(){
       if (scrollTimeout) {
@@ -24,7 +21,8 @@ $(document).on('turbolinks:load', function() {
       }
       scrollTimeout = setTimeout(function() {
         toggleVideoPlayers();
-      }, 1000);
+      }, 2000);
     });
   }
+
 });

@@ -1,0 +1,7 @@
+<div data-remodal-id="modal" id='modal-anchor'>
+  <h1><%= @leaderboard.name %></h1>
+  <%= concept(Leaderboard::Cell::Media,@leaderboard, size: :large) %>
+	<div class="button-group-fluid">
+		<button class="btn btn-secondary" data-remodal-action="cancel">Cancel</button>
+	</div>
+</div>

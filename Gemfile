@@ -64,7 +64,7 @@ gem 'font-awesome-rails'
 gem 'include_media_rails'
 
 # search / pagination
-gem 'ransack'
+gem 'ransack', '~> 1.8.2'
 gem 'kaminari'
 #gem 'searchkick'
 

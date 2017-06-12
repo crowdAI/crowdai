@@ -3,15 +3,8 @@
     <div class="branding">
       <a class="logo" href="/" title=""></a>
     </div>
-    <div class="search">
-      <form id="search-box" method="get" action="">
-        <label>
-          <input id="search-bar" type="search" name="search" placeholder="Search crowdAI">
-          <span class="fa fa-lg"></span>
-        </label>
-      </form>
-      <a class="search-open fa fa-search fa-lg" href="#"></a>
-    </div>
+
+    <%= react_component 'SearchContainer' %> <%#, { prerender: true } %>
 
     <div id="mobile-search-overlay">
       <a class="search-open fa fa-search fa-lg" href="#"></a>

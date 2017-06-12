@@ -8,6 +8,10 @@
 //= require remodal
 //= require turbolinks
 
+// ---------------------- React ------------------------ //
+//= require react
+//= require react_ujs
+//= require components
 
 // ---------------------- Modules ---------------------- //
 //= require modules/site

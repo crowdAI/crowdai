@@ -66,7 +66,9 @@ gem 'include_media_rails'
 # search / pagination
 gem 'ransack'
 gem 'kaminari'
-#gem 'searchkick'
+gem 'searchkick'
+gem 'react-rails'
+
 
 # API / Docker
 # gem 'rack-attack'

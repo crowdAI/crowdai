@@ -18,7 +18,7 @@ class SearchContainer extends React.Component {
         this.setState({
           challenges: data.challenges,
           articles: data.articles,
-          posts: data.posts
+          comments: data.comments
         });
       }
     });

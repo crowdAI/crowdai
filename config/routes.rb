@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   # ReactJS
   namespace :components do
     get "autocomplete" => "search_autocomplete#index"
+    get "search" => "search#show", as: :search
   end
 
 

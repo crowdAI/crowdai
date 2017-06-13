@@ -27,6 +27,7 @@
 #
 
 class Comment < ApplicationRecord
+  searchkick
   belongs_to :topic
   belongs_to :participant, optional: true
   has_many :votes, as: :votable

@@ -26,7 +26,7 @@
 #
 
 class Article < ApplicationRecord
-  searchkick
+  include SearchableArticle
   include FriendlyId
 
   default_scope { order('updated_at DESC') }

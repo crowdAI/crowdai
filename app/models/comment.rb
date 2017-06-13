@@ -27,7 +27,7 @@
 #
 
 class Comment < ApplicationRecord
-  searchkick
+  include SearchableComment
   belongs_to :topic
   belongs_to :participant, optional: true
   has_many :votes, as: :votable

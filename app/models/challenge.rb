@@ -66,7 +66,7 @@
 #
 
 class Challenge < ApplicationRecord
-  #searchkick
+  include SearchableChallenge
   include FriendlyId
   include ApiKey
 

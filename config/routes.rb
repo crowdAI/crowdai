@@ -21,6 +21,12 @@ Rails.application.routes.draw do
     resources :email_preferences, only: [:edit, :update]
   end
 
+  # ReactJS
+  namespace :components do
+    get "autocomplete" => "search_autocomplete#index"
+    get "search" => "search#show", as: :search
+  end
+
 
   # API
   namespace :api do

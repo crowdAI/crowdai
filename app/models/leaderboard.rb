@@ -6,6 +6,7 @@
 #  submission_id      :integer
 #  challenge_id       :integer
 #  participant_id     :integer
+#  organizer_id       :integer
 #  name               :string
 #  entries            :integer
 #  score              :float

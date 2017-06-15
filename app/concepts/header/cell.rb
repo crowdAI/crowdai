@@ -1,4 +1,5 @@
 class Header::Cell < Template::Cell
+  include React::Rails::ViewHelper
 
   def show
     render

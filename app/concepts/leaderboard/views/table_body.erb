@@ -16,9 +16,7 @@
 
     <% if cols.include?(:media) %>
       <td class="video">
-        <a data-toggle="modal" data-target="" data-remote="true" href="#">
-          <%= concept(Leaderboard::Cell::Media,entry, size: :thumb) %>
-        </a>
+        <%= concept(Leaderboard::Cell::Media,entry, size: :thumb) %>
       </td>
     <% end %>
 

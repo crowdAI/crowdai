@@ -6,6 +6,7 @@
 //= require rails.validations
 //= require jQuery-File-Upload
 //= require remodal
+//= require isInViewport
 //= require turbolinks
 
 
@@ -17,7 +18,7 @@
 //= require modules/markdown_editor
 
 // ---------------------- Pages ---------------------- //
-
+//= require pages/leaderboards_index
 
 $(document).on('ajax:error', function(xhr, status, error) {
   console.log(status.responseText);

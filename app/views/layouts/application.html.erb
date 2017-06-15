@@ -20,7 +20,8 @@
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
+  <body id='controller-action', data-controller="<%= controller.controller_name %>" data-action="<%= controller.action_name %>">
+    <div data-behavior="progress-bar" class="progress-bar"></div>
     <%= concept(Header::Cell) %>
     <%= render 'layouts/flash_messages' %>
     <%= yield %>

@@ -18,10 +18,9 @@ class LeaderboardsController < ApplicationController
   end
 
   def video_modal
-    @submission_id = params[:submission_id]
-    @participant = params[:participant]
-    @score = params[:score]
-    render 'video_modal'
+    Rails.logger.debug("params: #{params.inspect}");
+    @leaderboard = Leaderboard.where(submission_id: params[:submission_id]).first
+    render 'leaderboards/ajax/video_modal' if @leaderboard
   end
 
   def submission_detail

@@ -35,7 +35,7 @@ if Rails.env != 'test'
 =end
 
 
-
+=begin
   plant_village = Challenge.find(1)
   plant_village.image_file = Rails.root.join("scripts/v2/challenges/1.PV_avatar_original_(1).png").open
   plant_village.save!
@@ -67,7 +67,7 @@ if Rails.env != 'test'
   nips = Challenge.find(8)
   nips.image_file = Rails.root.join("scripts/v2/challenges/8.Screen_Shot_2017-04-10_at_1.23.56_PM.png").open
   nips.save!
-
+-end
 
 
 =begin
@@ -79,7 +79,7 @@ if Rails.env != 'test'
    9 |            2 | Screen_Shot_2016-08-04_at_11.41.59.png | Article
   14 |            4 | Screen_Shot_2016-10-20_at_17.46.43.png | Article
 =end
-
+=begin
   torch = Article.find(1)
   torch.image_file = Rails.root.join("scripts/v2/articles/1.Screen_Shot_2016-07-01_at_11.40.47.png").open
   torch.save!
@@ -91,7 +91,7 @@ if Rails.env != 'test'
   darkskies = Article.find(4)
   darkskies.image_file = Rails.root.join("scripts/v2/articles/4.Screen_Shot_2016-10-20_at_17.46.43.png").open
   darkskies.save!
-
+=end
 =begin
   Participants
 
@@ -111,7 +111,7 @@ if Rails.env != 'test'
   13 |            1 | Screen_Shot_2017-05-03_at_08.09.43.png               | Participant
   (12 rows)
 =end
-
+=begin
   p1 = Participant.find(1)
   p1.image_file = Rails.root.join("scripts/v2/participants/1.Screen_Shot_2017-05-03_at_08.09.43 (2).png").open
   p1.save!
@@ -159,4 +159,7 @@ if Rails.env != 'test'
   p760 = Participant.find(760)
   p760.image_file = Rails.root.join("scripts/v2/participants/760.M13.jpg").open
   p760.save!
+=end
+
+
 end

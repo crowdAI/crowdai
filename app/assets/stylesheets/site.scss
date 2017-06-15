@@ -1027,6 +1027,24 @@ a .fa:hover {
 	}
 }
 
+.button-group-fluid-block {
+	overflow: hidden;
+	padding-bottom: 4px;
+
+	.btn {
+		width: 100%;
+		margin-right: 16px;
+		&:last-of-type {
+			margin-right: 0;
+		}
+
+		@media screen and (max-width: 800px) {
+			width: calc(50% - 6px);
+			margin-right: 12px;
+		}
+	}
+}
+
 
 /* Sub-navigation */
 
@@ -2941,7 +2959,8 @@ table.submissions {
 	overflow-y: auto;
 	margin-bottom: 0;
 	padding: 36px 40px;
-	width: 480px;
+	min-width: 480px;
+  width: auto;
 	height: auto;
 	@include border-radius(2px);
 	text-align: left;

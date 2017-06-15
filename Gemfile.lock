@@ -539,7 +539,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.1.0)
     rake (11.3.0)
-    ransack (1.8.2)
+    ransack (1.8.3)
       actionpack (>= 3.0)
       activerecord (>= 3.0)
       activesupport (>= 3.0)
@@ -809,7 +809,7 @@ DEPENDENCIES
   rails-assets-jQuery-File-Upload!
   rails-controller-testing
   rails-erd
-  ransack (~> 1.8.2)
+  ransack
   rectify
   redcarpet (~> 3.4.0)
   rollbar

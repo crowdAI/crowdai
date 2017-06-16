@@ -73,6 +73,7 @@ class Challenge < ApplicationRecord
   friendly_id :challenge, use: [:slugged, :finders]
   before_validation :cache_rendered_markdown
   validate :valid_status
+  before_save :set_datetimes
   after_create :set_api_key
 
   belongs_to :organizer
@@ -143,7 +144,6 @@ class Challenge < ApplicationRecord
     return (self.daily_submissions - submissions_today)
   end
 
-  private
   def cache_rendered_markdown
     if evaluation_markdown_changed?
       self.evaluation = RenderMarkdown.new.render(evaluation_markdown)
@@ -183,6 +183,16 @@ class Challenge < ApplicationRecord
     end
     if self.status == :cancelled && self.status_was != :running
       errors.add(:base, "Only a running challenge may be cancelled.")
+    end
+  end
+
+
+  def set_datetimes
+    if start_date_changed? || start_time_changed?
+      self.start_dttm = start_date.to_datetime + start_time.seconds_since_midnight.seconds
+    end
+    if end_date_changed? || end_time_changed?
+      self.end_dttm = end_date.to_datetime + end_time.seconds_since_midnight.seconds
     end
   end
 

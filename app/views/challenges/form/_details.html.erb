@@ -30,11 +30,12 @@
     <div class="twin-container">
       <div class="twin-field">
         <label>Start Time (<abbr title="Coordinated Universal Time">UTC</abbr>)</label>
-        <%= f.text_field :start_time %>
+        <%= f.text_field :start_time, :value => @challenge.start_time.strftime("%H:%M")  %>
       </div>
+
       <div class="twin-field">
         <label>End Time (<abbr title="Coordinated Universal Time">UTC</abbr>)</label>
-        <%= f.text_field :end_time %>
+        <%= f.text_field :end_time, :value => @challenge.end_time.strftime("%H:%M")  %>
       </div>
     </div>
     <label>Challenge Status</label>

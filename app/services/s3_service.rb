@@ -37,4 +37,8 @@ class S3Service
     filesize = number_to_human_size(s3_file_obj.content_length)
   end
 
+  def s3_file(s3_key,filename)
+    Aws::S3::Client.new.get_object(bucket: ENV['AWS_S3_BUCKET'], key: s3_key, response_target: filename)
+  end
+
 end

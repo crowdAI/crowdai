@@ -1,9 +1,10 @@
 class Convert
 
   def call
-    DatasetFile.all.each do |dataset_file|
-      dataset_file = DatasetFile.find(dataset_file_id)
+    dataset_files = DatasetFile.where.not(dataset_file_s3_key: nil)
+    dataset_files.each_with_index do |dataset_file,idx|
       key = dataset_file.dataset_file_s3_key
+      puts "processing #{idx}: #{key}\n"
       filename = key.split('/')[-1]
       Aws::S3::Client.new.get_object(bucket: ENV['AWS_S3_BUCKET'], key: key, response_target: "tmp/#{filename}")
       dataset_file.dataset_file = Rails.root.join("tmp/#{filename}").open

@@ -11,7 +11,6 @@
 #  dataset_file_s3_key :string
 #  evaluation          :boolean          default(FALSE)
 #  title               :string
-#  dataset_file        :string
 #
 # Indexes
 #
@@ -23,5 +22,4 @@ class DatasetFile < ApplicationRecord
   has_many :dataset_file_downloads, dependent: :destroy
 
   validates :description,       presence: true
-  mount_uploader :dataset_file, DatasetFileUploader
 end

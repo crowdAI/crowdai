@@ -1,7 +1,7 @@
 class Convert
 
   def call
-    dataset_files = DatasetFile.where.not(dataset_file_s3_key: nil)
+    dataset_files = DatasetFile.where(dataset_file: nil).where.not(dataset_file_s3_key: nil)
     dataset_files.each_with_index do |dataset_file,idx|
       key = dataset_file.dataset_file_s3_key
       puts "processing #{idx}: #{key}\n"

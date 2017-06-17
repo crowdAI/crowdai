@@ -5,14 +5,13 @@
     </div>
   </div>
   <div class="row">
-    <%= form_for [@challenge,@dataset_file], html: { class: "sgl-col", multipart: true } do |f| %>
+    <%= form_for [@challenge,@dataset_file],
+                    html: { class: "sgl-col directUpload", 'data-form-data' => @s3_direct_post.fields, 'data-url' => @s3_direct_post.url, 'data-host' => URI.parse(@s3_direct_post.url).host } do |f| %>
       <fieldset>
         <label>File Title</label>
         <%= f.text_field :title %>
         <label>File Description</label>
         <%= f.text_field :description %>
-        <label>Sequence</label>
-        <%= f.text_field :seq %>
         <fieldset class="checkbox">
             <div>
               <%= f.check_box :evaluation, {}, "true", "false" %>
@@ -20,11 +19,13 @@
             </div>
         </fieldset>
         <label>Dataset file</label>
-        <%= f.file_field :dataset_file, class: 'file-upload' %>
+        <%= f.file_field :dataset_file, class: 'file-upload s3File' %>
 
         <div class="button-group">
-          <%= f.submit 'Add file', class: 'btn btn-primary' %>
-          <%= link_to 'Cancel', challenge_path(@challenge), class: "btn btn-secondary" %>
+          <%= f.button "Add file", class: 'btn btn-primary', id: 'submitS3' %>
+          <%= button_to challenges_path, class: "btn btn-secondary" do %>
+            Cancel
+          <% end %>
         </div>
       </fieldset>
     <% end %>

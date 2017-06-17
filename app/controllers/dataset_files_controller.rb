@@ -2,6 +2,7 @@ class DatasetFilesController < ApplicationController
   before_filter :authenticate_participant!
   before_action :set_dataset_file, only: [:destroy]
   before_action :set_challenge
+  before_action :set_s3_direct_post, only: [:new, :create]
 
   def index
     if current_participant.admin?
@@ -46,6 +47,12 @@ class DatasetFilesController < ApplicationController
 
     def dataset_file_params
       params.require(:dataset_file).permit(:seq, :description, :evaluation, :title, :dataset_file)
+    end
+
+    def set_s3_direct_post
+      @s3_direct_post = S3_BUCKET.presigned_post(key: "dataset_files/challenge_#{@challenge.id}/#{SecureRandom.uuid}_${filename}",
+                                               success_action_status: '201',
+                                               acl: 'private')
     end
 
 end

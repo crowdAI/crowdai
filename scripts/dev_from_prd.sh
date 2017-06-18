@@ -14,7 +14,7 @@ if [[ ${PWD##*/} != 'crowdai' ]]; then
 fi
 
 set -x
-heroku pg:backups capture --app crowdai-prd
+#heroku pg:backups capture --app crowdai-prd
 curl -o tmp/crowdai-prd.dmp `heroku pg:backups public-url --app crowdai-prd`
 su $SUDO_USER <<'EOF'
 set -x

@@ -9,14 +9,8 @@ class Challenge::Cell::ListDetail < Template::Cell
     model
   end
 
-  def end_dttm
-    d = challenge.end_date
-    t = challenge.end_time
-    dt = DateTime.new(d.year, d.month, d.day, t.hour, t.min, t.sec)
-  end
-
   def remaining_time_in_seconds
-    seconds = end_dttm - Time.now
+    seconds = challenge.end_dttm - Time.now
     if seconds.nil? || seconds < 0
       seconds = 0
     end

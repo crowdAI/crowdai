@@ -23,7 +23,7 @@ class Vote::Cell < Template::Cell
   def refresh
     Rails.logger.debug "refreshing: #{votable.id}"
     #{}%{ console.log("#{j(show)}")}
-    %{ $("#vote-link").replaceWith("#{j(show)}"); }
+    %{ $('##{vote_link_id}').replaceWith("#{j(show)}"); }
   end
 
   def participant_voted?
@@ -41,10 +41,14 @@ class Vote::Cell < Template::Cell
   def upvote_link
     link_to "<i class='fa fa-heart' aria-hidden='true'></i> #{display_vote_count}".html_safe,
             eval(create_vote_path),
-            id: 'vote-link',
+            id: vote_link_id,
             class: 'btn btn-secondary',
             method: :post,
             remote: true
+  end
+
+  def vote_link_id
+    "vote-link-#{model.class.to_s.downcase}-#{model.id}"
   end
 
   def create_vote_path
@@ -55,14 +59,14 @@ class Vote::Cell < Template::Cell
   def disabled_vote_link
     link_to "<i class='fa fa-heart active' aria-hidden='true'></i> #{display_vote_count}".html_safe,
             '#',
-            id: 'vote-link',
+            id: vote_link_id,
             class: 'btn btn-secondary'
   end
 
   def sign_in_link
     link_to "<i class='fa fa-heart' aria-hidden='true'></i> #{display_vote_count}".html_safe,
             new_participant_session_path,
-            id: 'vote-link',
+            id: vote_link_id,
             class: 'btn btn-secondary'
   end
 

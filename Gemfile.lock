@@ -422,6 +422,7 @@ GEM
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    kramdown (1.13.2)
     launchy (2.4.3)
       addressable (~> 2.3)
     libv8 (3.16.14.17)
@@ -790,6 +791,7 @@ DEPENDENCIES
   inline_svg
   jquery-rails
   kaminari
+  kramdown
   launchy
   lodash-rails
   mandrill-api

@@ -25,8 +25,8 @@ class Challenge::Cell::Statistic < Template::Cell
   end
 
   def formatted_count(counter)
-    if counter > 1000
-      "#{sprintf('%.1f', counter/1000).chomp('.0')} k"
+    if counter > 10000
+      "#{sprintf('%.1f', counter/1000.0).chomp('.0')} k"
     else
       counter
     end

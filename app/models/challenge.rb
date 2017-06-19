@@ -71,7 +71,7 @@ class Challenge < ApplicationRecord
   include ApiKey
 
   friendly_id :challenge, use: [:slugged, :finders]
-  before_validation :cache_rendered_markdown
+  before_save :cache_rendered_markdown
   validate :valid_status
   before_save :set_datetimes
   after_create :set_api_key
@@ -146,28 +146,28 @@ class Challenge < ApplicationRecord
 
   def cache_rendered_markdown
     if evaluation_markdown_changed?
-      self.evaluation = RenderMarkdown.new.render(evaluation_markdown)
+      self.evaluation = Kramdown::Document.new(self.evaluation_markdown,{coderay_line_numbers: nil}).to_html
     end
     if description_markdown_changed?
-      self.description = RenderMarkdown.new.render(description_markdown)
+      self.description = Kramdown::Document.new(self.description_markdown,{coderay_line_numbers: nil}).to_html
     end
     if rules_markdown_changed?
-      self.rules = RenderMarkdown.new.render(rules_markdown)
+      self.rules = Kramdown::Document.new(self.rules_markdown,{coderay_line_numbers: nil}).to_html
     end
     if prizes_markdown_changed?
-      self.prizes = RenderMarkdown.new.render(prizes_markdown)
+      self.prizes = Kramdown::Document.new(self.prizes_markdown,{coderay_line_numbers: nil}).to_html
     end
     if resources_markdown_changed?
-      self.resources = RenderMarkdown.new.render(resources_markdown)
+      self.resources = Kramdown::Document.new(self.resources_markdown,{coderay_line_numbers: nil}).to_html
     end
     if dataset_description_markdown_changed?
-      self.dataset_description = RenderMarkdown.new.render(dataset_description_markdown)
+      self.dataset_description = Kramdown::Document.new(self.dataset_description_markdown,{coderay_line_numbers: nil}).to_html
     end
     if submission_instructions_markdown_changed?
-      self.submission_instructions = RenderMarkdown.new.render(submission_instructions_markdown)
+      self.submission_instructions = Kramdown::Document.new(self.submission_instructions_markdown,{coderay_line_numbers: nil}).to_html
     end
     if license_markdown_changed?
-      self.license = RenderMarkdown.new.render(license_markdown)
+      self.license = Kramdown::Document.new(self.license_markdown,{coderay_line_numbers: nil}).to_html
     end
   end
 

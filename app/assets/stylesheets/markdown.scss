@@ -1,0 +1,18 @@
+.markdown-wrap {
+  ul {
+    display: block;
+    list-style-type: disc;
+    line-height: 24px;
+    padding-left: 40px;
+  }
+
+  pre {
+    margin: 9px 0 0;
+    padding: 10px;
+    border: 1px solid $color-grey-20;
+    background: $color-grey-03;
+    overflow-x: scroll;
+    font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+    font-size: 14px;
+  }
+}

@@ -3,7 +3,7 @@ class LandingPageController < ApplicationController
   skip_filter :authenticate_participant!
 
   def index
-    @challenges = policy_scope(Challenge).limit(3)
+    @challenges = policy_scope(Challenge).limit(5)
   end
 
   def host

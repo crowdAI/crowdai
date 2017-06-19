@@ -21,7 +21,6 @@ class Vote::Cell < Template::Cell
   end
 
   def refresh
-    Rails.logger.debug "refreshing: #{votable.id}"
     #{}%{ console.log("#{j(show)}")}
     %{ $('##{vote_link_id}').replaceWith("#{j(show)}"); }
   end

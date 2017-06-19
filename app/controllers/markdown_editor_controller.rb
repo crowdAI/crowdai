@@ -4,7 +4,7 @@ class MarkdownEditorController < ApplicationController
 
   def show
     markdown_text = markdown_params[:markdown_text]
-    @markdown_text = RenderMarkdown.new.render(markdown_text)
+    @markdown_text = Kramdown::Document.new(markdown_text,{coderay_line_numbers: nil}).to_html
     render json: { :success => "success", :status_code => "200", data: @markdown_text }
   end
 

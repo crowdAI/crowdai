@@ -55,8 +55,8 @@ $(document).on('turbolinks:load', function() {
 
     { class: ".md-strong", before: "**", after: "**"},
     { class: ".md-italic", before: "_", after: "_"},
-    { class: ".md-inline-code", before: "``` ", after: " ```"},
-    { class: ".md-fenced-code", before: "\n```\n", after: "\n```\n"},
+    { class: ".md-inline-code", before: "~~~ ", after: " ~~~"},
+    { class: ".md-fenced-code", before: "\n~~~\n", after: "\n~~~\n"},
 
     { class: ".md-unord-list", before: "\n* ", after: "\n"},
     { class: ".md-ord-list", before: "\n1 ", after: "\n"},

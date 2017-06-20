@@ -22,16 +22,16 @@
           <% end %>
         </div>
       <ul class="social-links">
-        <% if participant.twitter %>
+        <% if participant.twitter.present? %>
           <li><%= link_to '<i class="fa fa-twitter" aria-hidden="true"></i>', url_for(participant.twitter) %></li>
         <% end %>
-        <% if participant.github %>
+        <% if participant.github.present? %>
           <li><%= link_to '<i class="fa fa-github" aria-hidden="true"></i>', url_for(participant.github) %></li>
         <% end %>
-        <% if participant.linkedin %>
+        <% if participant.linkedin.present? %>
           <li><%= link_to '<i class="fa fa-linkedin" aria-hidden="true"></i>', url_for(participant.linkedin) %></li>
         <% end %>
-        <% if participant.website %>
+        <% if participant.website.present? %>
           <li><%= link_to '<i class="fa fa-link" aria-hidden="true"></i>', url_for(participant.website) %></li>
         <% end %>
       </ul>

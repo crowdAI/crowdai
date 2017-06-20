@@ -20,6 +20,7 @@
 // ---------------------- Pages ---------------------- //
 //= require pages/leaderboards_index
 //= require pages/dataset_files_index
+//= require pages/participants_edit
 
 
 $(document).on('ajax:error', function(xhr, status, error) {

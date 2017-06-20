@@ -21,7 +21,6 @@ $(document).on('turbolinks:load', function() {
     var barContainer  = $("<div class='upload-progress'></div>").append(progressBar);
     fileInput.after(barContainer);
 
-
     fileInput.fileupload({
       fileInput:        fileInput,
       url:              form.data('url'),

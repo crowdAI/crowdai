@@ -9,6 +9,10 @@ class Dataset::Cell::ListDetail < Template::Cell
     model
   end
 
+  def challenge
+    @challenge ||= dataset_file.challenge
+  end
+
   def expiring_url
     if s3_file_obj
       return s3_file_obj.presigned_url(:get, expires_in: 7.days.to_i)
@@ -60,5 +64,6 @@ class Dataset::Cell::ListDetail < Template::Cell
       return nil
     end
   end
+
 
 end

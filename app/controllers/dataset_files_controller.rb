@@ -31,6 +31,8 @@ class DatasetFilesController < ApplicationController
   end
 
   def destroy
+    s3 = Aws::S3::Client.new
+    s3.delete_object(key: @dataset_file.dataset_file_s3_key, bucket: ENV['AWS_S3_BUCKET'])
     @dataset_file.destroy
     redirect_to challenge_dataset_files_path(@challenge),
                 notice: "Dataset file #{@dataset_file.title} was deleted."
@@ -46,7 +48,7 @@ class DatasetFilesController < ApplicationController
     end
 
     def dataset_file_params
-      params.require(:dataset_file).permit(:seq, :description, :evaluation, :title, :dataset_file)
+      params.require(:dataset_file).permit(:seq, :description, :evaluation, :title, :dataset_file_s3_key)
     end
 
     def set_s3_direct_post

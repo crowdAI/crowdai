@@ -996,9 +996,9 @@ a .fa:hover {
 	.btn {
 		float: left;
 		margin-right: 16px;
-		&:last-of-type {
-			margin-right: 0;
-		}
+		//&:last-of-type {
+		//	margin-right: 0;
+		//}
 
 		@media screen and (max-width: 800px) {
 			margin-right: 12px;

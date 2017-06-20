@@ -54,5 +54,8 @@ module S3FilesHelper
     out
   end
 
+  def s3_delete(s3_key)
+  end
+
 
 end

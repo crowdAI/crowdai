@@ -12,6 +12,7 @@ class Header::Cell < Template::Cell
           <div id='user-container'>
             <ul>
               <li>#{ link_to current_participant.name, participant_path(current_participant)}</li>
+              <li>#{ link_to 'Profile', edit_participant_path(current_participant)}</li>
               <li>#{ link_to 'Account Settings', edit_participant_registration_path }</li>
               <li>#{ link_to 'Log Out', destroy_participant_session_path, :method => :delete }</li>
             </ul>
@@ -56,6 +57,7 @@ class Header::Cell < Template::Cell
     else
       links << "<ul>
                   <li>#{ link_to current_participant.name, participant_path(current_participant)}</li>
+                  <li>#{ link_to 'Profile', edit_participant_path(current_participant)}</li>
                   <li>#{ link_to 'Account Settings', edit_participant_registration_path }</li>
                   <li>#{ link_to 'Log Out', destroy_participant_session_path, :method => :delete }</li>
                 </ul>"

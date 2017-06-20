@@ -17,6 +17,10 @@ class LeaderboardsController < ApplicationController
   def show
   end
 
+  def delete
+    
+  end
+
   def video_modal
     Rails.logger.debug("params: #{params.inspect}");
     @leaderboard = Leaderboard.where(submission_id: params[:submission_id]).first

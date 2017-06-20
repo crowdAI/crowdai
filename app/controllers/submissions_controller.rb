@@ -1,6 +1,6 @@
 class SubmissionsController < ApplicationController
   before_filter :authenticate_participant!
-  before_action :set_submission, only: [:show, :edit, :update, :destroy, :grade, :execute]
+  before_action :set_submission, only: [:show, :edit, :update, :grade, :execute]
   before_action :set_challenge
   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
   before_action :set_submissions_remaining
@@ -60,7 +60,8 @@ class SubmissionsController < ApplicationController
 
 
   def destroy
-    @submission.destroy
+    submission = Submission.find(params[:id])
+    submission.destroy
     redirect_to challenge_leaderboards_path(@challenge), notice: 'Submission was successfully destroyed.'
   end
 
@@ -93,8 +94,7 @@ class SubmissionsController < ApplicationController
 
 
     def set_challenge
-      challenge = Challenge.friendly.find(params[:challenge_id])
-      @challenge = ChallengesPresenter.new(challenge)
+      @challenge = Challenge.friendly.find(params[:challenge_id])
     end
 
 

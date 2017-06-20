@@ -8,4 +8,8 @@ class SubmissionPolicy < ApplicationPolicy
     participant
   end
 
+  def destroy?
+    participant && participant.admin?
+  end
+
 end

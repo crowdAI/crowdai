@@ -26,6 +26,9 @@
 
     <td class="entries">
       <%= submission.grading_status %>
+      <% if policy(submission).destroy? %>
+        <p class='status active'><%= link_to 'delete', challenge_submission_path(submission.challenge,submission), method: :delete, data: {confirm: 'Are you sure?'} %></p>
+      <% end %>
     </td>
 
     <td class="last-submission"><%= submission.created_at.strftime("%a, %e %b %Y %R") %></td>

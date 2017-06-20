@@ -3,7 +3,7 @@ $(document).on('turbolinks:load', function() {
     var self = this;
     $(self).val($(self).val().toLowerCase());
     var url = $(self).val();
-    if ((url.substr(0,7) !== 'http://') || (url.substr(0,8) !== 'https://')){
+    if (url && (url.substr(0,7) !== 'http://') && (url.substr(0,8) !== 'https://')){
       $(self).val('https://' + url);
     }
   });

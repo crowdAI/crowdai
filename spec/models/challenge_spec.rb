@@ -74,11 +74,11 @@ describe Challenge do
       let(:challenge) { create :challenge }
       it 'description' do
         challenge.update!(description_markdown: '### The description')
-        expect(challenge.description).to eq("<h3>The description</h3>\n")
+        expect(challenge.description).to eq("<h3 id=\"the-description\">The description</h3>\n")
       end
       it 'evaluation' do
         challenge.update!(evaluation_markdown: '# An evaluation')
-        expect(challenge.evaluation).to eq("<h1>An evaluation</h1>\n")
+        expect(challenge.evaluation).to eq("<h1 id=\"an-evaluation\">An evaluation</h1>\n")
       end
       it 'rules' do
         challenge.update!(rules_markdown: "Some *rules*")
@@ -86,19 +86,19 @@ describe Challenge do
       end
       it 'prizes' do
         challenge.update!(prizes_markdown: "# Prizes are described here.")
-        expect(challenge.prizes).to eq("<h1>Prizes are described here.</h1>\n")
+        expect(challenge.prizes).to eq("<h1 id=\"prizes-are-described-here\">Prizes are described here.</h1>\n")
       end
       it 'resources' do
         challenge.update!(resources_markdown: "# Helpful resources")
-        expect(challenge.resources).to eq("<h1>Helpful resources</h1>\n")
+        expect(challenge.resources).to eq("<h1 id=\"helpful-resources\">Helpful resources</h1>\n")
       end
       it 'dataset_description' do
         challenge.update!(dataset_description_markdown: "# Dataset description")
-        expect(challenge.dataset_description).to eq("<h1>Dataset description</h1>\n")
+        expect(challenge.dataset_description).to eq("<h1 id=\"dataset-description\">Dataset description</h1>\n")
       end
       it 'submission_instructions' do
         challenge.update!(submission_instructions_markdown: "## Submission instructions")
-        expect(challenge.submission_instructions).to eq("<h2>Submission instructions</h2>\n")
+        expect(challenge.submission_instructions).to eq("<h2 id=\"submission-instructions\">Submission instructions</h2>\n")
       end
     end
 

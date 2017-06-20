@@ -25,13 +25,13 @@
         <label>Bio</label>
         <%= f.text_area :bio %>
         <label>Github</label>
-        <%= f.text_field :github, placeholder: "URL (e.g. www.github.com/crowdai)" %>
+        <%= f.text_field :github, placeholder: "URL (e.g. www.github.com/crowdai)", class: 'url' %>
         <label>LinkedIn</label>
-        <%= f.text_field :linkedin, placeholder: "URL (e.g. www.linkedin.com/in/crowdai)" %>
+        <%= f.text_field :linkedin, placeholder: "URL (e.g. www.linkedin.com/in/crowdai)", class: 'url' %>
         <label>Twitter</label>
-        <%= f.text_field :twitter, placeholder: "URL (e.g. www.twitter.com/crowdai)" %>
+        <%= f.text_field :twitter, placeholder: "URL (e.g. www.twitter.com/crowdai)", class: 'url' %>
         <label>Website</label>
-        <%= f.text_field :website, placeholder: "URL (e.g. www.crowdai.org)" %>
+        <%= f.text_field :website, placeholder: "URL (e.g. www.crowdai.org)", class: 'url' %>
         <div class="button-group">
           <%= f.button "Save", class: 'btn btn-primary' %>
           <%= button_to participant_path(@participant), class: "btn btn-secondary" do %>

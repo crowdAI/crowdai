@@ -78,12 +78,13 @@ class Api::ExternalGradersController < Api::BaseController
     submission_id = params[:id]
     begin
       submission = Submission.find(submission_id)
-      submission.update(score: params[:score],
+      submission.update({score: params[:score],
                         score_secondary: params[:score_secondary],
                         description_markdown: params[:comment],
                         media_large: params[:media_large],
                         media_thumbnail: params[:media_thumbnail],
-                        media_content_type: params[:media_content_type])
+                        media_content_type: params[:media_content_type]})
+      submission.save
       message = "Submission #{submission.id} for participant #{submission.participant_id} updated"
       status = :accepted
     rescue => e

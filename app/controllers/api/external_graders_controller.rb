@@ -77,6 +77,7 @@ class Api::ExternalGradersController < Api::BaseController
     status = nil
     submission_id = params[:id]
     begin
+      Rails.logger.info("PATCHing submission #{params.inspect}")
       submission = Submission.find(submission_id)
       submission.update({score: params[:score],
                         score_secondary: params[:score_secondary],

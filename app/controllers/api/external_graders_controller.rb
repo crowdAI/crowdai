@@ -72,6 +72,28 @@ class Api::ExternalGradersController < Api::BaseController
     end
   end
 
+  def update
+    message = nil
+    status = nil
+    submission_id = params[:id]
+    begin
+      submission = Submission.find(submission_id)
+      submission.update(score: params[:score],
+                        score_secondary: params[:score_secondary],
+                        description_markdown: params[:comment],
+                        media_large: params[:media_large],
+                        media_thumbnail: params[:media_thumbnail],
+                        media_content_type: params[:media_content_type])
+      message = "Submission #{submission.id} for participant #{submission.participant_id} updated"
+      status = :accepted
+    rescue => e
+      status = :bad_request
+      message = e
+    ensure
+      render json: { message: message, submission_id: submission_id }, status: status
+    end
+  end
+
 
   def challenge_config
     begin
@@ -123,3 +145,6 @@ end
 
 # local
 #curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X POST "localhost:3000/api/external_graders/?api_key=4f2b61e1aaf03d3283f135febbe225a4&challenge_id=4&comment=test&grading_status=graded&score=0.99" -H 'Authorization: Token token="427e6d98d38bb0613cc0f7a9bed26c0d"'
+
+# patch
+#curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X PATCH "localhost:3000/api/external_graders/385?media_large=testlarge&media_thumb=test2&media_content_type=videomp4&challenge_id=4&comment=test&grading_status=graded&score=0.99" -H 'Authorization: Token token="427e6d98d38bb0613cc0f7a9bed26c0d"'

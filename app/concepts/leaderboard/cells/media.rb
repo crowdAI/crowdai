@@ -15,10 +15,10 @@ class Leaderboard::Cell::Media < Template::Cell
 
   def dimensions
     if size == :thumb
-      return "100x100"
+      return "134x100"
     end
     if size == :large
-      return "500x500"
+      return "800x600"
     end
   end
 

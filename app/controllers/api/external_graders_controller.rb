@@ -79,12 +79,9 @@ class Api::ExternalGradersController < Api::BaseController
     begin
       Rails.logger.info("PATCHing submission #{params.inspect}")
       submission = Submission.find(submission_id)
-      submission.update({score: params[:score],
-                        score_secondary: params[:score_secondary],
-                        description_markdown: params[:comment],
-                        media_large: params[:media_large],
-                        media_thumbnail: params[:media_thumbnail],
-                        media_content_type: params[:media_content_type]})
+      submission.update({media_large: params[:media_large],
+                         media_thumbnail: params[:media_thumbnail],
+                         media_content_type: params[:media_content_type]})
       submission.save
       message = "Submission #{submission.id} for participant #{submission.participant_id} updated"
       status = :accepted
@@ -150,3 +147,4 @@ end
 
 # patch
 #curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X PATCH "localhost:3000/api/external_graders/385?media_large=testlarge&media_thumb=test2&media_content_type=videomp4&challenge_id=4&comment=test&grading_status=graded&score=0.99" -H 'Authorization: Token token="427e6d98d38bb0613cc0f7a9bed26c0d"'
+#curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X PATCH "localhost:3000/api/external_graders/385?media_content_type=video/mp4&media_large=challenge_8/4f2b61e1aaf03d3283f135febbe225a4___26a21687bc.mp4&media_thumbnail=challenge_8/4f2b61e1aaf03d3283f135febbe225a4___26a21687bc_134x100.mp4"

@@ -59,9 +59,9 @@ class Leaderboard::Cell::Media < Template::Cell
 
   def expiring_url
     if size == :thumb
-      url = S3Service.new(leaderboard_row.media_thumbnail).expiring_url
+      url = S3Service.new(leaderboard_row.media_thumbnail,true).expiring_url
     else
-      url = S3Service.new(leaderboard_row.media_large).expiring_url
+      url = S3Service.new(leaderboard_row.media_large,true).expiring_url
     end
   end
 

@@ -1,16 +1,12 @@
 FactoryGirl.define do
   factory :article, class: Article do
-    article { FFaker::Lorem.words(10) }
-    summary { FFaker::Lorem.words(10) }
+    article FFaker::Lorem.words(10).join(' ')
+    summary FFaker::Lorem.words(10).join(' ')
     participant
     category 'tensorflow'
     published true
     vote_count 0
     view_count 0
-
-    trait :invalid do
-      category nil
-    end
 
     trait :with_sections do
       article_sections { [ build(:article_section, seq: 0),
@@ -31,5 +27,10 @@ FactoryGirl.define do
                           build(:article_section, seq: 1),
                           build(:article_section, seq: 2) ] }
     end
+
+    trait :invalid do
+      article nil
+    end
+
   end
 end

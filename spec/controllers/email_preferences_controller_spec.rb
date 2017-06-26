@@ -1,5 +1,4 @@
 require 'rails_helper'
-=begin
 RSpec.describe EmailPreferencesController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
@@ -139,4 +138,3 @@ RSpec.describe EmailPreferencesController, type: :controller do
   end
 
 end
-=end

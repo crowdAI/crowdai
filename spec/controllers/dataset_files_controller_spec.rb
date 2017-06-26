@@ -13,14 +13,14 @@ RSpec.describe DatasetFilesController, type: :controller do
     end
 
     describe 'GET #index' do
-      before { get :index, challenge_id: challenge.id }
-      it { expect((assigns(:dataset_files).map(&:title)).sort).to eq ['first_file','file1', 'file2'].sort }
+      before { get :index, params: { challenge_id: challenge.id } }
+      it { expect(assigns(:dataset_files).sort).to eq [first_file, file1, file2].sort }
       it { expect(response).to render_template :index }
     end
 
     describe "GET #new" do
       it "assigns a new dataset_file as @dataset_file" do
-        get :new, { challenge_id: challenge.id }
+        get :new, params: { challenge_id: challenge.id }
         expect(assigns(:dataset_file)).to be_a_new(DatasetFile)
       end
     end

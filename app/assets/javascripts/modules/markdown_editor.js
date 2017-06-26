@@ -16,7 +16,7 @@ function renderPreview(self,editor) {
 
   $.ajax({
     type: 'GET',
-    url: '/markdown_editor/show',
+    url: '/markdown_editor/index',
     data: {
       markdown: { markdown_text: markdown_text }
     },

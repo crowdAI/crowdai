@@ -15,26 +15,26 @@ RSpec.describe ChallengesController, type: :controller do
 
     describe 'GET #index challenge_running' do
       before { get :index }
-      it { expect((assigns(:challenges).map(&:challenge)).sort).to eq ['challenge_running', 'challenge_completed', 'challenge_starting_soon'].sort }
+      it { expect((assigns(:challenges)).sort).to eq [challenge_running, challenge_completed, challenge_starting_soon].sort }
       it { expect(response).to render_template :index }
     end
 
     context '@challenge_list filtering' do
       describe 'GET #index "All"' do
-        before { get :index, { challenge_filter: 'all' } }
-        it { expect((assigns(:challenges).map(&:challenge)).sort).to eq ['challenge_running', 'challenge_completed', 'challenge_starting_soon'].sort }
+        before { get :index, params: { challenge_filter: 'all' } }
+        it { expect((assigns(:challenges)).sort).to eq [challenge_running, challenge_completed, challenge_starting_soon].sort }
         it { expect(response).to render_template :index }
       end
 
       describe 'GET #index "Active"' do
-        before { get :index, { challenge_filter: 'active' } }
-        it { expect((assigns(:challenges).map(&:challenge)).sort).to eq ['challenge_running','challenge_starting_soon'].sort }
+        before { get :index, params: { challenge_filter: 'active' } }
+        it { expect((assigns(:challenges)).sort).to eq [challenge_running, challenge_starting_soon].sort }
         it { expect(response).to render_template :index }
       end
 
       describe 'GET #index "Completed"' do
-        before { get :index, challenge_filter: 'completed' }
-        it { expect((assigns(:challenges).map(&:challenge)).sort).to eq ['challenge_completed'].sort }
+        before { get :index, params: { challenge_filter: 'completed'} }
+        it { expect((assigns(:challenges)).sort).to eq [challenge_completed].sort }
         it { expect(response).to render_template :index }
       end
     end
@@ -60,7 +60,7 @@ RSpec.describe ChallengesController, type: :controller do
   context 'anonymous user' do
     describe 'GET #index challenge_running' do
       before { get :index }
-      it { expect((assigns(:challenges).map(&:challenge)).sort).to eq ['challenge_running', 'challenge_completed', 'challenge_starting_soon'].sort }
+      it { expect((assigns(:challenges)).sort).to eq [challenge_running, challenge_completed, challenge_starting_soon].sort }
       it { expect(response).to render_template :index }
     end
 

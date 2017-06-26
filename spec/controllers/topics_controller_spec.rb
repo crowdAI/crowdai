@@ -1,143 +1,95 @@
 require 'rails_helper'
 
-=begin
 RSpec.describe TopicsController, type: :controller do
 
-  # This should return the minimal set of attributes required to create a valid
-  # TopicsController. As you add validations to TopicsController, be sure to
-  # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryGirl.attributes_for(:topic)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    FactoryGirl.attributes_for(:topic, :invalid)
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # TopicsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:participant) { create :participant }
+  let(:challenge) { create :challenge }
+  let(:topic) { create :topic, challenge_id: challenge.id }
+
+  before do
+    sign_in participant
+  end
 
   describe "GET #index" do
-    it "assigns all topics_controllers as @topics_controllers" do
-      topics_controller = TopicsController.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(assigns(:topics_controllers)).to eq([topics_controller])
+    it "assigns all topics as @topics" do
+      get :index, params: { challenge_id: challenge.id }
+      expect(assigns(:topics)).to eq([topic])
     end
   end
 
   describe "GET #show" do
-    it "assigns the requested topics_controller as @topics_controller" do
-      topics_controller = TopicsController.create! valid_attributes
-      get :show, params: {id: topics_controller.to_param}, session: valid_session
-      expect(assigns(:topics_controller)).to eq(topics_controller)
+    it "assigns the requested topic as @topic" do
+      get :show, params: {challenge_id: challenge.id, id: topic.id }
+      expect(assigns(:topic)).to eq(topic)
     end
   end
 
   describe "GET #new" do
-    it "assigns a new topics_controller as @topics_controller" do
-      get :new, params: {}, session: valid_session
-      expect(assigns(:topics_controller)).to be_a_new(TopicsController)
+    it "assigns a new topic as @topic" do
+      get :new, params: { challenge_id: challenge.id }
+      expect(assigns(:topic)).to be_a_new(Topic)
     end
   end
 
   describe "GET #edit" do
-    it "assigns the requested topics_controller as @topics_controller" do
-      topics_controller = TopicsController.create! valid_attributes
-      get :edit, params: {id: topics_controller.to_param}, session: valid_session
-      expect(assigns(:topics_controller)).to eq(topics_controller)
+    it "assigns the requested topic as @topic" do
+      get :edit, params: { challenge_id: challenge.id, id: topic.id }
+      expect(assigns(:topic)).to eq(topic)
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new TopicsController" do
+      it "creates a new Topic" do
         expect {
-          post :create, params: {topics_controller: valid_attributes}, session: valid_session
-        }.to change(TopicsController, :count).by(1)
+          post :create, params: { challenge_id: challenge.id, topic: valid_attributes }
+        }.to change(Topic, :count).by(1)
       end
 
-      it "assigns a newly created topics_controller as @topics_controller" do
-        post :create, params: {topics_controller: valid_attributes}, session: valid_session
-        expect(assigns(:topics_controller)).to be_a(TopicsController)
-        expect(assigns(:topics_controller)).to be_persisted
+      it "assigns a newly created topic as @topic" do
+        post :create, params: { challenge_id: challenge.id, topics_controller: valid_attributes}
+        expect(assigns(:topic)).to be_a(Topic)
+        expect(assigns(:topic)).to be_persisted
       end
 
       it "redirects to the created topics_controller" do
-        post :create, params: {topics_controller: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(TopicsController.last)
+        post :create, params: { challenge_id: challenge.id, topics_controller: valid_attributes}
+        expect(response).to redirect_to(Topics.last)
       end
     end
 
     context "with invalid params" do
-      it "assigns a newly created but unsaved topics_controller as @topics_controller" do
-        post :create, params: {topics_controller: invalid_attributes}, session: valid_session
-        expect(assigns(:topics_controller)).to be_a_new(TopicsController)
+      it "assigns a newly created but unsaved topic as @topic" do
+        post :create, params: { challenge_id: challenge.id, topic: invalid_attributes}
+        expect(assigns(:topic)).to be_a_new(Topic)
       end
 
       it "re-renders the 'new' template" do
-        post :create, params: {topics_controller: invalid_attributes}, session: valid_session
+        post :create, params: { challenge_id: challenge.id, topics_controller: invalid_attributes}
         expect(response).to render_template("new")
       end
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested topics_controller" do
-        topics_controller = TopicsController.create! valid_attributes
-        put :update, params: {id: topics_controller.to_param, topics_controller: new_attributes}, session: valid_session
-        topics_controller.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "assigns the requested topics_controller as @topics_controller" do
-        topics_controller = TopicsController.create! valid_attributes
-        put :update, params: {id: topics_controller.to_param, topics_controller: valid_attributes}, session: valid_session
-        expect(assigns(:topics_controller)).to eq(topics_controller)
-      end
-
-      it "redirects to the topics_controller" do
-        topics_controller = TopicsController.create! valid_attributes
-        put :update, params: {id: topics_controller.to_param, topics_controller: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(topics_controller)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns the topics_controller as @topics_controller" do
-        topics_controller = TopicsController.create! valid_attributes
-        put :update, params: {id: topics_controller.to_param, topics_controller: invalid_attributes}, session: valid_session
-        expect(assigns(:topics_controller)).to eq(topics_controller)
-      end
-
-      it "re-renders the 'edit' template" do
-        topics_controller = TopicsController.create! valid_attributes
-        put :update, params: {id: topics_controller.to_param, topics_controller: invalid_attributes}, session: valid_session
-        expect(response).to render_template("edit")
-      end
-    end
-  end
-
   describe "DELETE #destroy" do
-    it "destroys the requested topics_controller" do
-      topics_controller = TopicsController.create! valid_attributes
+    it "destroys the requested topic" do
       expect {
-        delete :destroy, params: {id: topics_controller.to_param}, session: valid_session
-      }.to change(TopicsController, :count).by(-1)
+        delete :destroy, params: { challenge_id: challenge.id, id: topic.id }
+      }.to change(Topic, :count).by(-1)
     end
 
-    it "redirects to the topics_controllers list" do
-      topics_controller = TopicsController.create! valid_attributes
-      delete :destroy, params: {id: topics_controller.to_param}, session: valid_session
-      expect(response).to redirect_to(topics_controllers_url)
+    it "redirects to the topics list" do
+      delete :destroy, params: { challenge_id: challenge.id, id: topic.id }
+      expect(response).to redirect_to(topics_url)
     end
   end
 
 end
-=end

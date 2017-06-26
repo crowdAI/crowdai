@@ -8,6 +8,8 @@ class ParticipantsController < ApplicationController
     @challenges = @participant.challenges
   end
 
+  def edit
+  end
 
   def update
     @participant = Participant.friendly.find(params[:id])
@@ -17,6 +19,11 @@ class ParticipantsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @participant.destroy
+    redirect_to '/', notice: 'Account was successfully deleted.'
   end
 
 

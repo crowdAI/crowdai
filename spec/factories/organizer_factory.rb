@@ -6,10 +6,6 @@ FactoryGirl.define do
     description FFaker::Lorem.sentence(20)
     approved true
 
-    trait :invalid do
-      organizer nil
-    end
-
     trait :unapproved do
       approved false
     end
@@ -17,5 +13,10 @@ FactoryGirl.define do
     trait :second_organizer do
       organizer FFaker::Lorem.sentence(3)
     end
+
+    trait :invalid do
+      organizer nil
+    end
+    
   end
 end

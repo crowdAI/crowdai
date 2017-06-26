@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   resources :landing_page, only: [:index]
   match '/landing_page/host', to: 'landing_page#host', via: :get
 
-  resources :organizers do
+  resources :organizers, except: [:index] do
     resources :challenges
     get :remove_image
   end

@@ -1,143 +1,84 @@
 require 'rails_helper'
 
-=begin
-RSpec.describe Participant, type: :controller do
+RSpec.describe ParticipantsController, type: :controller do
 
-  # This should return the minimal set of attributes required to create a valid
-  # Participant. As you add validations to Participant, be sure to
-  # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryGirl.attributes_for(:participant)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    FactoryGirl.attributes_for(:participant, :invalid)
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # Participant. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  context 'as a participant' do
+    let(:participant) { create :participant }
 
-  describe "GET #index" do
-    it "assigns all participants_controllers as @participants_controllers" do
-      participants_controller = Participant.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(assigns(:participants_controllers)).to eq([participants_controller])
+    before do
+      sign_in participant
     end
-  end
 
-  describe "GET #show" do
-    it "assigns the requested participants_controller as @participants_controller" do
-      participants_controller = Participant.create! valid_attributes
-      get :show, params: {id: participants_controller.to_param}, session: valid_session
-      expect(assigns(:participants_controller)).to eq(participants_controller)
+    describe "GET #show" do
+      it "assigns the requested participant as @participant" do
+        get :show, params: { id: participant.id }
+        expect(assigns(:participant)).to eq(participant)
+      end
     end
-  end
 
-  describe "GET #new" do
-    it "assigns a new participants_controller as @participants_controller" do
-      get :new, params: {}, session: valid_session
-      expect(assigns(:participants_controller)).to be_a_new(Participant)
+    describe "GET #edit" do
+      it "assigns the requested participant as @participant" do
+        get :edit, params: { id: participant.id }
+        expect(assigns(:participant)).to eq(participant)
+      end
     end
-  end
 
-  describe "GET #edit" do
-    it "assigns the requested participants_controller as @participants_controller" do
-      participants_controller = Participant.create! valid_attributes
-      get :edit, params: {id: participants_controller.to_param}, session: valid_session
-      expect(assigns(:participants_controller)).to eq(participants_controller)
+    describe "PUT #update" do
+      context "with valid params" do
+        let(:new_attributes) {
+          { name: 'Sean' }
+        }
+
+        it "updates the requested participant" do
+          put :update, params: { id: participant.id, participant: new_attributes}
+          participant.reload
+          expect(participant.name).to eq(new_attributes[:name])
+        end
+
+        it "assigns the requested participant as @participant" do
+          put :update, params: { id: participant.id, participant: valid_attributes }
+          expect(assigns(:participant)).to eq(participant)
+        end
+
+        #it "redirects to the participant" do
+        #  put :update, params: { id: participant.id, participant: valid_attributes }
+        #  expect(response).to redirect_to(participant)
+        #end
+      end
+
+      context "with invalid params" do
+        it "assigns the participant as @participant" do
+          put :update, params: { id: participant.id, participant: invalid_attributes }
+          expect(assigns(:participant)).to eq(participant)
+        end
+
+        it "re-renders the 'edit' template" do
+          put :update, params: { id: participant.id, participant: invalid_attributes }
+          expect(response).to render_template("edit")
+        end
+      end
     end
-  end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Participant" do
+    describe "DELETE #destroy" do
+      it "destroys the requested participant" do
         expect {
-          post :create, params: {participants_controller: valid_attributes}, session: valid_session
-        }.to change(Participant, :count).by(1)
+          delete :destroy, params: { id: participant.id }
+        }.to change(Participant, :count).by(-1)
       end
 
-      it "assigns a newly created participants_controller as @participants_controller" do
-        post :create, params: {participants_controller: valid_attributes}, session: valid_session
-        expect(assigns(:participants_controller)).to be_a(Participant)
-        expect(assigns(:participants_controller)).to be_persisted
+      it "redirects to the root" do
+        delete :destroy, params: { id: participant.id }
+        expect(response).to redirect_to('/')
       end
-
-      it "redirects to the created participants_controller" do
-        post :create, params: {participants_controller: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Participant.last)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns a newly created but unsaved participants_controller as @participants_controller" do
-        post :create, params: {participants_controller: invalid_attributes}, session: valid_session
-        expect(assigns(:participants_controller)).to be_a_new(Participant)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, params: {participants_controller: invalid_attributes}, session: valid_session
-        expect(response).to render_template("new")
-      end
-    end
-  end
-
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested participants_controller" do
-        participants_controller = Participant.create! valid_attributes
-        put :update, params: {id: participants_controller.to_param, participants_controller: new_attributes}, session: valid_session
-        participants_controller.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "assigns the requested participants_controller as @participants_controller" do
-        participants_controller = Participant.create! valid_attributes
-        put :update, params: {id: participants_controller.to_param, participants_controller: valid_attributes}, session: valid_session
-        expect(assigns(:participants_controller)).to eq(participants_controller)
-      end
-
-      it "redirects to the participants_controller" do
-        participants_controller = Participant.create! valid_attributes
-        put :update, params: {id: participants_controller.to_param, participants_controller: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(participants_controller)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns the participants_controller as @participants_controller" do
-        participants_controller = Participant.create! valid_attributes
-        put :update, params: {id: participants_controller.to_param, participants_controller: invalid_attributes}, session: valid_session
-        expect(assigns(:participants_controller)).to eq(participants_controller)
-      end
-
-      it "re-renders the 'edit' template" do
-        participants_controller = Participant.create! valid_attributes
-        put :update, params: {id: participants_controller.to_param, participants_controller: invalid_attributes}, session: valid_session
-        expect(response).to render_template("edit")
-      end
-    end
-  end
-
-  describe "DELETE #destroy" do
-    it "destroys the requested participants_controller" do
-      participants_controller = Participant.create! valid_attributes
-      expect {
-        delete :destroy, params: {id: participants_controller.to_param}, session: valid_session
-      }.to change(Participant, :count).by(-1)
-    end
-
-    it "redirects to the participants_controllers list" do
-      participants_controller = Participant.create! valid_attributes
-      delete :destroy, params: {id: participants_controller.to_param}, session: valid_session
-      expect(response).to redirect_to(participants_controllers_url)
     end
   end
 
 end
-=end

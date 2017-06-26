@@ -11,5 +11,9 @@ FactoryGirl.define do
       admin true
     end
 
+    trait :invalid do
+      name nil
+    end
+
   end
 end

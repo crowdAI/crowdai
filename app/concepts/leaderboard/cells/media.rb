@@ -53,7 +53,11 @@ class Leaderboard::Cell::Media < Template::Cell
     if expiring_url.present?
       return video_tag(expiring_url, size: dimensions)
     else
-      return image_tag(default_image_url, size: dimensions)
+      if size == :large
+        return video_tag(default_image_url, size: dimensions, autoplay: false)
+      else
+        return video_tag(default_image_url, controls: true, size: dimensions, autoplay: true, loop: true)
+      end
     end
   end
 

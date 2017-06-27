@@ -13,7 +13,7 @@ class VotesController < ApplicationController
   end
 
   def destroy #unvote
-    VOTE.destroy(params[:id])
+    Vote.destroy(params[:id])
     @votable.update(vote_count: @votable.votes.count)
     Rails.logger.debug "rendering destroy #{@votable}"
     render js: concept(Vote::Cell,@votable).(:refresh)

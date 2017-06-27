@@ -1,10 +1,15 @@
 .message {
-  background-color: red;
-  border-bottom-right-radius: 5px 5px;
-  border-top-right-radius: 5px 5px;
-  padding: 2px 5px;
+  margin: 0 0 15px 0;
+	padding: 0;
+	color: $color-accent-dark;
+  font-weight: normal;
 }
 
 div.field_with_errors div.ui-effects-wrapper {
   display: inline-block !important;
+}
+
+div.field_with_errors input[type=text] {
+  border-color: $color-accent;
+  margin-bottom: 9px;
 }

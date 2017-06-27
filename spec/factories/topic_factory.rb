@@ -12,5 +12,9 @@ FactoryGirl.define do
         topic.participant = topic.comments.first.participant
       end
     end
+
+    trait :invalid do
+      topic nil
+    end
   end
 end

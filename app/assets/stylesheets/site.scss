@@ -3455,3 +3455,20 @@ footer {
 footer.no-margin-top {
 	margin-top: 0;
 }
+
+
+/* Error message */
+
+form input,
+form select {
+  &.has-error {
+    border-color: $color-accent;
+	   margin-bottom: 9px;
+  }
+}
+
+form p.error {
+	margin: 0 0 15px 0;
+	padding: 0;
+	color: $color-accent-dark;
+}

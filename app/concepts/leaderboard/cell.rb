@@ -53,8 +53,6 @@ class Leaderboard::Cell < Template::Cell
 
   def insert_submissions
     participant_id = submissions.first.participant_id
-    Rails.logger.debug("leaderboard rows: #{ leaderboard.count }")
-    Rails.logger.debug("submission rows: #{ submissions.count }")
     #%{ console.log("#{j(submission_rows)}"); }
     %{ $("#{j(submission_rows)}").insertAfter("#participant-#{participant_id}"); }
     # TODO also remove link so multiple rows are not added after more clicks

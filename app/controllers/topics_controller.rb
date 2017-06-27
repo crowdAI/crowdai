@@ -2,6 +2,7 @@ class TopicsController < ApplicationController
   before_filter :authenticate_participant!, except: [:index, :show, :new]
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
   before_action :set_challenge
+  after_action :verify_authorized, except: [:index]
 
   def index
     @topics = @challenge.topics
@@ -13,6 +14,7 @@ class TopicsController < ApplicationController
   def new
     @topic = @challenge.topics.new
     @comment = @topic.comments.new
+    authorize @topic
   end
 
   def edit
@@ -20,6 +22,7 @@ class TopicsController < ApplicationController
 
   def create
     @topic = @challenge.topics.new(topic_params)
+    authorize @topic
     if @topic.save
       redirect_to challenge_topics_path(@challenge), notice: 'Topic was successfully created.'
     else
@@ -43,6 +46,7 @@ class TopicsController < ApplicationController
   private
     def set_topic
       @topic = Topic.friendly.find(params[:id])
+      authorize @topic
     end
 
     def set_challenge

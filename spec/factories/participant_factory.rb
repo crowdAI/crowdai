@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :participant, class: Participant do
-    sequence(:name) { |n| "name_#{n}" }
+    name { "participant_#{Random.rand(10000).to_s}@example.com" }
     email { FFaker::Internet.email }
     password 'password12'
     password_confirmation 'password12'
@@ -9,6 +9,10 @@ FactoryGirl.define do
 
     trait :admin do
       admin true
+    end
+
+    trait :invalid do
+      name nil
     end
 
   end

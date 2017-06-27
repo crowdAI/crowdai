@@ -14,15 +14,7 @@ class LeaderboardsController < ApplicationController
     end
   end
 
-  def show
-  end
-
-  def delete
-    
-  end
-
   def video_modal
-    Rails.logger.debug("params: #{params.inspect}");
     @leaderboard = Leaderboard.where(submission_id: params[:submission_id]).first
     render 'leaderboards/ajax/video_modal' if @leaderboard
   end

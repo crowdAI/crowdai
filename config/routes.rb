@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   resources :landing_page, only: [:index]
   match '/landing_page/host', to: 'landing_page#host', via: :get
 
-  resources :organizers do
+  resources :organizers, except: [:index] do
     resources :challenges
     get :remove_image
   end
@@ -54,23 +54,23 @@ Rails.application.routes.draw do
     get :regrade
     get :regen_api_key
     get :remove_image
-    resources :votes, only: [:create]
+    resources :votes, only: [:create, :destroy]
   end
   get '/load_more_challenges', to: 'challenges#load_more', as: :load_more_challenges
 
 
   resources :topics do
     resources :comments, only: [:new, :create]
-    resources :votes, only: [:create]
+    resources :votes, only: [:create, :destroy]
   end
 
   resources :comments, only: [] do
-    resources :votes, only: [:create]
+    resources :votes, only: [:create,:destroy]
   end
 
   resources :articles do
     resources :article_sections
-    resources :votes, only: [:create]
+    resources :votes, only: [:create,:destroy]
     get :remove_image
   end
   get '/load_more_articles', to: 'articles#load_more', as: :load_more_articles
@@ -79,7 +79,7 @@ Rails.application.routes.draw do
   match '/pages/privacy', to: 'pages#privacy', via: :get
   match '/pages/terms',   to: 'pages#terms', via: :get
 
-  resources :markdown_editor, only: [:show] do
+  resources :markdown_editor, only: [:index] do
     put :presign, on: :collection
   end
 

@@ -12,10 +12,12 @@ class Vote::Cell < Template::Cell
     if current_participant.nil?
       sign_in_link
     else
-      if participant_voted?
-        disabled_vote_link
-      else
+      vote = votable.votes.where(participant_id: current_participant.id).first
+      if vote.nil?
         upvote_link
+      else
+        unvote_link(vote)
+        # disabled_vote_link
       end
     end
   end
@@ -55,11 +57,25 @@ class Vote::Cell < Template::Cell
     "#{classname.downcase}_votes_path(#{votable.id})"
   end
 
+  def destroy_vote_path(votable, vote_id)
+    classname = votable.class.to_s
+    "#{classname.downcase}_vote_path(#{votable.id},#{vote_id})"
+  end
+
   def disabled_vote_link
     link_to "<i class='fa fa-heart active' aria-hidden='true'></i> #{display_vote_count}".html_safe,
             '#',
             id: vote_link_id,
             class: 'btn btn-secondary'
+  end
+
+  def unvote_link(vote)
+    link_to "<i class='fa fa-heart active' aria-hidden='true'></i> #{display_vote_count}".html_safe,
+            eval(destroy_vote_path(votable, vote.id)),
+            id: vote_link_id,
+            class: 'btn btn-secondary',
+            method: :delete,
+            remote: true
   end
 
   def sign_in_link

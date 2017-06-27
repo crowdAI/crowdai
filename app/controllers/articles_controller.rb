@@ -38,7 +38,6 @@ class ArticlesController < ApplicationController
     end
 
     if @article.save
-      @article.article_sections.create!(section: 'Introduction', icon: 'home', seq: 1)
       redirect_to @article
     else
       render :new

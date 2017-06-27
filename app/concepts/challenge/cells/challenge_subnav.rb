@@ -10,8 +10,6 @@ class Challenge::Cell::ChallengeSubnav < Template::Cell
   end
 
   def current_tab
-    Rails.logger.debug "controller: #{controller.controller_name}"
-
     case controller.controller_name
     when 'challenges'
       'overview'

@@ -2,7 +2,7 @@ class MarkdownEditorController < ApplicationController
   before_filter :authenticate_participant!
   respond_to :js
 
-  def show
+  def index
     markdown_text = markdown_params[:markdown_text]
     @markdown_text = Kramdown::Document.new(markdown_text,{coderay_line_numbers: nil}).to_html
     render json: { :success => "success", :status_code => "200", data: @markdown_text }

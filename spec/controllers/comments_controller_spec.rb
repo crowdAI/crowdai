@@ -20,7 +20,7 @@ RSpec.describe CommentsController, type: :controller do
       context "with valid params" do
         it "creates a new Comment" do
           expect {
-            post :create, topic_id: topic.id, comment: valid_attributes
+            post :create, params: { topic_id: topic.id, comment: valid_attributes }
           }.to change(Comment, :count).by(1)
         end
       end
@@ -31,7 +31,7 @@ RSpec.describe CommentsController, type: :controller do
     describe "POST #create" do
       context "with valid params" do
         it "creates a new Comment" do
-          post :create, topic_id: topic.id, comment: valid_attributes
+          post :create, params: { topic_id: topic.id, comment: valid_attributes }
           expect(response).to redirect_to(new_participant_session_path)
         end
       end

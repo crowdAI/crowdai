@@ -1,15 +1,9 @@
 class OrganizersController < ApplicationController
   before_filter :authenticate_participant!
   before_action :set_organizer, only: [:show, :edit, :update, :destroy]
-  after_action :verify_authorized, except: :index
-
-
-  def index
-    @organizers = policy_scope(Organizer)
-  end
+  after_action :verify_authorized
 
   def show
-    authorize @organizer
   end
 
   def new
@@ -18,7 +12,6 @@ class OrganizersController < ApplicationController
   end
 
   def edit
-    authorize @organizer
   end
 
   def create
@@ -39,7 +32,6 @@ class OrganizersController < ApplicationController
   end
 
   def update
-    authorize @organizer
     if @organizer.update(organizer_params)
       redirect_to @organizer, notice: 'Hosting organizer was successfully updated.'
     else
@@ -48,14 +40,12 @@ class OrganizersController < ApplicationController
   end
 
   def destroy
-    authorize @organizer
     @organizer.destroy
     redirect_to organizers_url, notice: 'Hosting organizer was successfully destroyed.'
   end
 
   def remove_image
     @organizer = Organizer.friendly.find(params[:organizer_id])
-    authorize @organizer
     @organizer.remove_image_file!
     @organizer.save
     redirect_to edit_organizer_path(@organizer),notice: 'Image removed.'
@@ -64,6 +54,7 @@ class OrganizersController < ApplicationController
   private
     def set_organizer
       @organizer = Organizer.friendly.find(params[:id])
+      authorize @organizer
     end
 
     def organizer_params

@@ -23,11 +23,25 @@ ActiveAdmin.register Participant do
   filter :sign_in_count
   filter :created_at
 
+  permit_params :name, :organizer_id, :email, :email_public, :bio, :website, :github, :linkedin, :twitter, :api_key, :location, :image_file, :password, :password_confirmation, :admin
   form do |f|
-    f.inputs "Admin Details" do
+    f.inputs "Participant Details" do
+      f.input :name
+      f.input :organizer, :as => :select, :collection => Organizer.all.collect {|organizer| [organizer.organizer, organizer.id] }, :include_blank => true
       f.input :email
+      f.input :email_public, as: :boolean
+      f.input :bio
+      f.input :website
+      f.input :github
+      f.input :linkedin
+      f.input :twitter
+      f.input :api_key
+      f.input :location
+      f.input :image_file
       f.input :password
       f.input :password_confirmation
+      f.input :admin, as: :boolean
+
     end
     f.actions
   end

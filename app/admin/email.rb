@@ -12,4 +12,10 @@ ActiveAdmin.register Email do
     actions
   end
 
+  controller do
+    def permitted_params
+      params.permit!
+    end
+  end
+
 end

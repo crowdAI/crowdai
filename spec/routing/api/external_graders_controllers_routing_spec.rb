@@ -18,7 +18,6 @@ RSpec.describe Api::ExternalGradersController, type: :routing do
       expect(:patch => "/api/external_graders/1").to route_to("api/external_graders#update", id: "1")
     end
 
-
   end
 
   describe "invalid routing" do

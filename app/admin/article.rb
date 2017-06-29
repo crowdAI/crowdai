@@ -7,8 +7,8 @@ ActiveAdmin.register Article do
   end
 
   controller do
-    def find_resource
-      scoped_collection.friendly.find(params[:id])
+    def permitted_params
+      params.permit!
     end
   end
 
@@ -20,4 +20,5 @@ ActiveAdmin.register Article do
     column :vote_count
     actions
   end
+
 end

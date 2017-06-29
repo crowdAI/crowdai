@@ -22,4 +22,6 @@ ActiveAdmin.register Mailer do
     actions
   end
 
+  
+
 end

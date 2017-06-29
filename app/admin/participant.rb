@@ -22,8 +22,18 @@ ActiveAdmin.register Participant do
   filter :current_sign_in_at
   filter :sign_in_count
   filter :created_at
+  filter :api_key
+  filter :github
+  filter :twitter
+  filter :linkedin
+  filter :location
 
-  permit_params :name, :organizer_id, :email, :email_public, :bio, :website, :github, :linkedin, :twitter, :api_key, :location, :image_file, :password, :password_confirmation, :admin
+  controller do
+    def permitted_params
+      params.permit!
+    end
+  end
+
   form do |f|
     f.inputs "Participant Details" do
       f.input :name
@@ -41,7 +51,6 @@ ActiveAdmin.register Participant do
       f.input :password
       f.input :password_confirmation
       f.input :admin, as: :boolean
-
     end
     f.actions
   end

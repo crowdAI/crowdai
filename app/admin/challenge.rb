@@ -10,7 +10,6 @@ ActiveAdmin.register Challenge do
 
   sidebar "Challenge Details", only: [:show, :edit] do
     ul do
-      li link_to "Leaderboard",   admin_challenge_leaderboards_path(challenge)
       li link_to "Submissions",   admin_challenge_submissions_path(challenge)
       li link_to "Topics",        admin_challenge_topics_path(challenge)
     end
@@ -28,7 +27,15 @@ ActiveAdmin.register Challenge do
     actions
   end
 
-  permit_params :organizer_id, :challenge, :status, :tagline, :score_title, :primary_sort_order, :score_secondary_title, :secondary_sort_order, :perpetual_challenge, :grading_factor, :grader, :challenge_client_name
+  controller do
+    def find_resource
+      scoped_collection.friendly.find(params[:id])
+    end
+    def permitted_params
+      params.permit!
+    end
+  end
+
   form do |f|
     f.inputs "Challenge" do
       f.input :organizer, :as => :select, :collection => Organizer.all.collect {|organizer| [organizer.organizer, organizer.id] }
@@ -43,6 +50,14 @@ ActiveAdmin.register Challenge do
       f.input :grading_factor
       f.input :grader
       f.input :challenge_client_name
+      f.input :description_markdown
+      f.input :evaluation_markdown
+      f.input :rules_markdown
+      f.input :prizes_markdown
+      f.input :resources_markdown
+      f.input :submission_instructions_markdown
+      f.input :license_markdown
+      f.input :dataset_description_markdown
     end
     f.actions
   end

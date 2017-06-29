@@ -14,17 +14,14 @@ ActiveAdmin.register Organizer do
     actions
   end
 
-  permit_params :organizer, :address, :description, :approved, :image_file, :tagline
-  form do |f|
-    f.inputs "Challenge" do
-      f.input :organizer
-      f.input :address
-      f.input :description
-      f.input :approved, as: :boolean
-      f.input :image_file
-      f.input :tagline
+  controller do
+    def find_resource
+      scoped_collection.friendly.find(params[:id])
     end
-    f.actions
+    def permitted_params
+      params.permit!
+    end
   end
+
 
 end

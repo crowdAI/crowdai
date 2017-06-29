@@ -2,8 +2,8 @@ require "rails_helper"
 
 RSpec.describe MarkdownEditorController, type: :routing do
   describe "valid routing" do
-    it "routes to #show" do
-      expect(:get => "/markdown_editor/1").to route_to("markdown_editor#show", :id => "1")
+    it "routes to #index" do
+      expect(:get => "/markdown_editor").to route_to("markdown_editor#index")
     end
 
     it "routes to #presign" do
@@ -13,8 +13,8 @@ RSpec.describe MarkdownEditorController, type: :routing do
 
   describe "invalid routing" do
 
-    it "routes to #index" do
-      expect(:get => "/markdown_editors").not_to be_routable
+    it "routes to #show" do
+      expect(:get => "/markdown_editor/1").not_to be_routable
     end
 
     it "routes to #new" do

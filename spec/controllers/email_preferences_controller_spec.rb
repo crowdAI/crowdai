@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 RSpec.describe EmailPreferencesController, type: :controller do
 
@@ -138,3 +139,4 @@ RSpec.describe EmailPreferencesController, type: :controller do
   end
 
 end
+=end

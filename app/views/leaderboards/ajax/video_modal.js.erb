@@ -1,2 +1,6 @@
 $("#modal-anchor").replaceWith("<%= escape_javascript(render 'leaderboards/ajax/video_modal') %>");
 $('[data-remodal-id=modal]').remodal().open();
+$('#modal-anchor').find('video').each(function(){
+  this.loop = true;
+  this.play();
+});

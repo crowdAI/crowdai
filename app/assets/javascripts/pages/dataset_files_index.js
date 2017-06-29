@@ -33,8 +33,9 @@ $(document).on('turbolinks:load', function() {
       maxFileSize:      20,
 
       add: function(e, data) {
-        var modelFile = $('.s3File')[0].files[0];
-        if (modelFile && modelFile.size > 681574400 ) {
+        //var modelFile = $('.s3File')[0].files[0];
+        data.submit();
+        /*if (modelFile && modelFile.size > 681574400 ) {
           submitButton.prop('disabled', false);
           progressBar
             .css("background", "red")
@@ -42,7 +43,7 @@ $(document).on('turbolinks:load', function() {
         } else {
           console.log("submitted ");
           data.submit();
-        }
+        } */
       },
 
       progressall: function (e, data) {

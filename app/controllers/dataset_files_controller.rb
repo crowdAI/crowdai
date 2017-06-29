@@ -23,7 +23,7 @@ class DatasetFilesController < ApplicationController
   def create
     @dataset_file = @challenge.dataset_files.new(dataset_file_params)
     if @dataset_file.save
-      redirect_to challenge_dataset_files_path(@challenge, @dataset_file),
+      redirect_to challenge_dataset_files_path(@challenge),
                   notice: 'Dataset file was successfully created.'
     else
       render :new

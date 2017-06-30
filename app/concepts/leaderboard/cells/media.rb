@@ -33,7 +33,8 @@ class Leaderboard::Cell::Media < Template::Cell
   def media_asset
     case content_type
     when nil
-      return image_tag(default_image_url, size: dimensions)
+      return "<em></em>".html_safe
+      #return image_tag(default_image_url, size: dimensions)
     when 'video'
       return video
     when 'image'

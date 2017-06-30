@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe MarkdownEditorController, type: :controller do
+RSpec.describe MarkdownEditorsController, type: :controller do
 
   let!(:participant) { create :participant }
 

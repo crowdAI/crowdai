@@ -47,7 +47,6 @@ class Submission < ApplicationRecord
   validates :participant_id,            presence: true
   validates :challenge_id,              presence: true
   validates :grading_status,            presence: true
-  validates :description_markdown,      presence: true
 
   def ready?
     self.grading_status == :ready
@@ -68,7 +67,7 @@ class Submission < ApplicationRecord
 
   private
   def cache_rendered_markdown
-    if description_markdown_changed?
+    if self.description_markdown && description_markdown_changed?
       self.description = RenderMarkdown.new.render(description_markdown)
     end
   end

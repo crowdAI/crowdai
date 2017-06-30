@@ -47,7 +47,6 @@ describe Submission do
     it { is_expected.to validate_presence_of(:participant_id) }
     it { is_expected.to validate_presence_of(:challenge_id) }
     it { is_expected.to validate_presence_of(:grading_status) }
-    it { is_expected.to validate_presence_of(:description_markdown) }
   end
 
   context 'methods' do

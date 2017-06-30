@@ -1,13 +1,13 @@
 require "rails_helper"
 
-RSpec.describe MarkdownEditorController, type: :routing do
+RSpec.describe MarkdownEditorsController, type: :routing do
   describe "valid routing" do
     it "routes to #index" do
-      expect(:get => "/markdown_editor").to route_to("markdown_editor#index")
+      expect(:get => "/markdown_editors").to route_to("markdown_editors#index")
     end
 
     it "routes to #presign" do
-      expect(put: '/markdown_editor/presign').to route_to("markdown_editor#presign")
+      expect(put: '/markdown_editors/presign').to route_to("markdown_editors#presign")
     end
   end
 

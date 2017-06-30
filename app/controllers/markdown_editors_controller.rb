@@ -1,4 +1,4 @@
-class MarkdownEditorController < ApplicationController
+class MarkdownEditorsController < ApplicationController
   before_filter :authenticate_participant!
   respond_to :js
 

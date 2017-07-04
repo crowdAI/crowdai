@@ -16,7 +16,7 @@ ActiveAdmin.register Submission do
 
   controller do
     def find_resource
-      scoped_collection.friendly.find(params[:id])
+      scoped_collection.find(params[:id])
     end
     def permitted_params
       params.permit!

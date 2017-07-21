@@ -9,7 +9,7 @@ class TopicPolicy < ApplicationPolicy
   end
 
   def new?
-    participant && (participant.admin? || @record.participant == participant)
+    participant
   end
 
   def create?

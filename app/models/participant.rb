@@ -64,7 +64,7 @@ class Participant < ApplicationRecord
   include ApiKey
   friendly_id :name, use: [:slugged, :finders]
   after_create :set_email_preferences
-  after_create :set_api_key
+  before_save :set_api_key
   before_save { self.email = email.downcase }
   before_save :process_urls
   mount_uploader :image_file, ImageUploader

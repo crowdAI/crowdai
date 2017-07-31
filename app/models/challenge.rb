@@ -111,6 +111,7 @@ class Challenge < ApplicationRecord
   #validates_uniqueness_of :challenge_client_name
   validates :challenge_client_name, format: { with: /\A[a-zA-Z0-9]/ }
   validates_presence_of :challenge_client_name
+  
 
 
   default_scope { order("featured_sequence DESC,

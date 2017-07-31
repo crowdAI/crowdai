@@ -1,7 +1,7 @@
 <tbody>
   <% leaderboard.each_with_index do |entry,row| %>
   <tr id='participant-<%= entry.participant_id %>'>
-    <td class="positon">
+    <td class="position">
       <strong><%= "%02d." % (row + 1) %></strong>
     </td>
 
@@ -10,7 +10,7 @@
         <%= link_to participant_path(entry.participant_id) do %>
           <%= concept(Image::Cell,participant(entry.participant_id)) %>
         <% end %>
-        <p><%= link_to entry.name, participant_path(entry.participant_id) %>
+        <p><%= link_to entry.name, participant_path(entry.slug) %>
            <% if participant(entry.participant_id).admin? %>
             <b>[Admin]</b>
            <% end %>

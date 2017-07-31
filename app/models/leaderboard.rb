@@ -6,6 +6,7 @@
 #  submission_id      :integer
 #  challenge_id       :integer
 #  participant_id     :integer
+#  slug               :string
 #  organizer_id       :integer
 #  name               :string
 #  entries            :integer

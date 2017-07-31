@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170731114234) do
+ActiveRecord::Schema.define(version: 20170731131136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20170731114234) do
     t.text     "dataset_description_markdown"
     t.text     "dataset_description"
     t.string   "image_file"
+    t.integer  "featured_sequence",                default: 0
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id", using: :btree
     t.index ["slug"], name: "index_challenges_on_slug", unique: true, using: :btree
   end

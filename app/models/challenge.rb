@@ -54,6 +54,7 @@
 #  dataset_description_markdown     :text
 #  dataset_description              :text
 #  image_file                       :string
+#  featured_sequence                :integer          default(0)
 #
 # Indexes
 #
@@ -112,7 +113,8 @@ class Challenge < ApplicationRecord
   validates_presence_of :challenge_client_name
 
 
-  default_scope { order("CASE status_cd
+  default_scope { order("featured_sequence DESC,
+                         CASE status_cd
                           WHEN 'running' THEN 1
                           WHEN 'starting_soon' THEN 2
                           WHEN 'completed' THEN 3

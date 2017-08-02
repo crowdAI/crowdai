@@ -17,11 +17,11 @@ class OrganizerPolicy < ApplicationPolicy
   end
 
   def new?
-    participant && participant.admin?
+    false
   end
 
   def create?
-    new?
+    participant && participant.admin?
   end
 
   def destroy?

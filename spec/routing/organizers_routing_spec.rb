@@ -2,15 +2,6 @@ require "rails_helper"
 
 RSpec.describe OrganizersController, type: :routing do
   describe "routing" do
-
-    it "routes to #index" do
-      expect(:get => "/organizers").not_to be_routable
-    end
-
-    it "routes to #new" do
-      expect(:get => "/organizers/new").to route_to("organizers#new")
-    end
-
     it "routes to #show" do
       expect(:get => "/organizers/1").to route_to("organizers#show", :id => "1")
     end
@@ -34,6 +25,15 @@ RSpec.describe OrganizersController, type: :routing do
     it "routes to #destroy" do
       expect(:delete => "/organizers/1").to route_to("organizers#destroy", :id => "1")
     end
+  end
 
+  context 'not routable' do
+    it "does not route to #index" do
+      expect(:get => "/organizers").not_to be_routable
+    end
+
+    #it "does not route to #new" do
+    # TODO  expect(:get => "/organizers/new").not_to be_routable
+    #end
   end
 end

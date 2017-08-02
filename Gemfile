@@ -8,7 +8,6 @@ gem 'pg'
 gem 'puma'
 gem 'puma_worker_killer'
 
-
 # user accounts / admin
 gem 'devise'
 gem 'pundit'
@@ -31,7 +30,6 @@ gem 'validate_url'
 
 # forms / data manipulation / charts
 gem 'simple_form'
-gem 'country_select'
 gem 'cocoon'
 gem 'redcarpet', '~> 3.4.0'
 gem 'kramdown'
@@ -48,8 +46,6 @@ gem 'fast_blank'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
-#gem 'jquery-ui-rails'
-#gem "jquery-fileupload-rails"
 gem 'turbolinks', '~> 5.0.0'
 gem 'lodash-rails'
 gem 'browser'

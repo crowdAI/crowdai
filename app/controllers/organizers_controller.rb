@@ -6,11 +6,6 @@ class OrganizersController < ApplicationController
   def show
   end
 
-  def new
-    @organizer = Organizer.new
-    authorize @organizer
-  end
-
   def edit
   end
 

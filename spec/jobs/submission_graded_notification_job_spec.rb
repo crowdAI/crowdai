@@ -1,12 +1,12 @@
 require 'rails_helper'
-=begin
+
 RSpec.describe SubmissionGradedNotificationJob, type: :job do
   include ActiveJob::TestHelper
 
   let!(:participant) { create :participant }
   let(:submission) { create :submission, participant: participant }
   let!(:admin) { create :participant, :admin }
-  let!(:mailer) { create :mailer, mailer: 'SubmissionGradedNotificationMailer' }
+  let!(:mailer) { create :mailer, mailer_classname: 'SubmissionGradedNotificationMailer' }
 
   describe 'queues the job' do
     puts "Mailer: #{Mailer.count}"
@@ -39,4 +39,3 @@ RSpec.describe SubmissionGradedNotificationJob, type: :job do
   end
 
 end
-=end

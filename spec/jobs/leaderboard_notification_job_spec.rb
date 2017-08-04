@@ -1,10 +1,10 @@
 require 'rails_helper'
-=begin
+
 RSpec.describe LeaderboardNotificationJob, type: :job do
   include ActiveJob::TestHelper
 
   let!(:submission) { create :submission }
-  let!(:mailer) { create :mailer, mailer: 'LeaderboardNotificationMailer' }
+  let!(:mailer) { create :mailer, mailer_classname: 'LeaderboardNotificationMailer' }
 
 
   describe 'executes the job' do
@@ -23,6 +23,4 @@ RSpec.describe LeaderboardNotificationJob, type: :job do
 
   end
 
-
 end
-=end

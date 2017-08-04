@@ -1,4 +1,4 @@
-class SubmissionNotificationMailer < ApplicationMailer
+class Admin::SubmissionNotificationMailer < ApplicationMailer
 
   def sendmail(participant_id,submission_id)
     participant = Participant.find(participant_id)

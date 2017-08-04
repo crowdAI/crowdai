@@ -42,14 +42,13 @@ class CommentNotificationMailer < ApplicationMailer
 
   def email_body(challenge,topic,comment)
     "<div>" +
-    "<p>A new comment has been made to the " +
-    "#{challenge_link(challenge)} challenge.</p>" +
-    "<br/>" +
-    "#{comment.comment}" +
-    "<br/>" +
-    "<p>Click #{new_comment_link(topic)} to see the comment.</p>" +
+      "<p>A new comment has been made to the " +
+      "#{challenge_link(challenge)} challenge.</p>" +
+      "<br/>" +
+      "#{comment.comment}" +
+      "<br/>" +
+      "<p>Click #{new_comment_link(topic)} to see the comment.</p>" +
     "</div>"
   end
-
 
 end

@@ -2,7 +2,9 @@ class OrganizerApplicationsController < ApplicationController
   respond_to :js
 
   def create
-    @organizer_application = OrganizerApplication.create!(organizer_application_params)
+    organizer_application = OrganizerApplication.create!(organizer_application_params)
+    Admin::OrganizerApplicationNotificationJob.perform_later(organizer_application)
+    OrganizerApplicationNotificationJob.perform_later(organizer_application)
     render 'landing_page/ajax/application_accepted'
   end
 

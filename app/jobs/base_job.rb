@@ -20,4 +20,9 @@ class BaseJob < ActiveJob::Base
   def log_process_end(job)
     @logger.info("\nPROCESS COMPLETED\n")
   end
+
+  def admin_ids
+    Participant.where(admin: true).pluck(:id)
+  end
+  
 end

@@ -1,10 +1,9 @@
 require 'rails_helper'
-=begin
-RSpec.describe SubmissionNotificationJob, type: :job do
+RSpec.describe Admin::SubmissionNotificationJob, type: :job do
   include ActiveJob::TestHelper
 
   let(:submission) { create :submission }
-  let(:mailer) { create :mailer, mailer: 'SubmissionNotificationMailer' }
+  let(:mailer) { create :mailer, mailer_classname: 'SubmissionNotificationMailer' }
   subject(:job) { described_class.perform_later(submission) }
 
   describe 'queues the job' do
@@ -29,4 +28,3 @@ RSpec.describe SubmissionNotificationJob, type: :job do
   end
 
 end
-=end

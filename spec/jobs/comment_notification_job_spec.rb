@@ -1,6 +1,6 @@
 require 'rails_helper'
-=begin
-RSpec.describe PostNotificationJob, type: :job do
+
+RSpec.describe CommentNotificationJob, type: :job do
   include ActiveJob::TestHelper
 
   let!(:author) { create :participant }
@@ -8,12 +8,12 @@ RSpec.describe PostNotificationJob, type: :job do
   let!(:participant2) { create :participant }
   let!(:admin) { create :participant, :admin }
   let!(:topic) { create :topic, participant: author }
-  let!(:post1) { create :post, topic: topic, participant: participant1 }
-  let!(:post2) { create :post, topic: topic, participant: author }
-  let!(:mailer) { create :mailer, mailer: 'PostNotificationMailer' }
+  let!(:comment1) { create :comment, topic: topic, participant: participant1 }
+  let!(:comment2) { create :comment, topic: topic, participant: author }
+  let!(:mailer) { create :mailer, mailer_classname: 'CommentNotificationMailer' }
 
   describe 'executes the job' do
-    subject(:job) { described_class.perform_later(post2) }
+    subject(:job) { described_class.perform_later(comment2) }
 
     it 'queues the job' do
       expect { job }.to change(ActiveJob::Base.queue_adapter.enqueued_jobs, :size).by(1)
@@ -41,14 +41,13 @@ RSpec.describe PostNotificationJob, type: :job do
       expect(job.admin_ids).to match_array([admin.id])
     end
 
-    it '#post_participant_ids' do
-      expect(job.post_participant_ids(post2)).to match_array([author.id,participant1.id])
+    it '#comment_participant_ids' do
+      expect(job.comment_participant_ids(comment2)).to match_array([author.id,participant1.id])
     end
 
     it '#subscribed_participant_ids' do
-      expect(job.subscribed_participant_ids(post2)).to match_array([author.id,participant1.id,admin.id])
+      expect(job.subscribed_participant_ids(comment2)).to match_array([author.id,participant1.id,admin.id])
     end
   end
 
 end
-=end

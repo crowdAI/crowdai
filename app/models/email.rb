@@ -27,6 +27,11 @@
 
 class Email < ApplicationRecord
   belongs_to :mailer
+  belongs_to :participant, optional: true
+
+  validates :mailer_classname, presence: true
+  validates :recipients, presence: true
+  validates :status, presence: true
 
   as_enum :status, [:sent, :paused, :mandrill_sent, :mandrill_bounced], map: :string
 end

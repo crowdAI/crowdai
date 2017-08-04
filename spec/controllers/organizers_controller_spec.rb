@@ -25,13 +25,6 @@ RSpec.describe OrganizersController, type: :controller do
       end
     end
 
-    describe "GET #new" do
-      it "assigns a new organizer as @organizer" do
-        get :new
-        expect(assigns(:organizer)).to be_a_new(Organizer)
-      end
-    end
-
     describe "GET #edit" do
       it "assigns the requested organizer as @organizer" do
         get :edit, params: { id: organizer.id }
@@ -109,18 +102,18 @@ RSpec.describe OrganizersController, type: :controller do
       end
     end
 
-    describe "DELETE #destroy" do
-      #it "destroys the requested organizer" do
-        #expect {
-        #  delete :destroy, params: { id: organizer.id }
-        #}.to change(Organizer, :count).by(-1)
-      #end
-
-      it "redirects to the organizers list" do
-        delete :destroy, params: { id: organizer.id }
-        expect(response).to redirect_to(organizers_url)
-      end
-    end
+    #describe "DELETE #destroy" do
+    #  it "destroys the requested organizer" do
+    #    expect {
+    #      delete :destroy, params: { id: organizer.id }
+    #    }.to change(Organizer, :count).by(-1)
+    #  end
+    #
+    #  it "redirects to the organizers list" do
+    #    delete :destroy, params: { id: organizer.id }
+    #    expect(response).to redirect_to('/')
+    #  end
+    #end
   end
 
 end

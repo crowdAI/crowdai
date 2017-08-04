@@ -1,5 +1,5 @@
 require 'spec_helper'
-=begin
+
 RSpec.describe LeaderboardNotificationMailer, type: :mailer do
 
   describe 'methods' do
@@ -36,4 +36,3 @@ RSpec.describe LeaderboardNotificationMailer, type: :mailer do
   end
 
 end
-=end

@@ -51,6 +51,7 @@ class ApplicationMailer # Does not inherit from ActionMailer
 
     Email.create!(model_id: @model_id,
                   mailer_id: mailer.id,
+                  mailer_classname: self.class.to_s,
                   recipients: options[:to],
                   options_json: options,
                   status: status,

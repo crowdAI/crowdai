@@ -25,7 +25,7 @@ class OrganizerPolicy < ApplicationPolicy
   end
 
   def destroy?
-    new?
+    participant && participant.admin? || participant && @record.id == participant.organizer_id
   end
 
   def regen_api_key?

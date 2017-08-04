@@ -7,7 +7,6 @@ describe VotesHelper do
   let!(:other_participant) { create :participant }
   let!(:article) { create :article, :with_sections, participant_id: other_participant.id }
 
-
   describe 'article vote count' do
     context 'participant has voted' do
       before do
@@ -27,6 +26,5 @@ describe VotesHelper do
       it { expect(helper.participant_vote_id(article)).to eq(nil) }
     end
   end
-
 
 end

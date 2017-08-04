@@ -14,10 +14,4 @@
 #
 
 class OrganizerApplication < ApplicationRecord
-  #validates :contact_name,              presence: true
-  #validates :email,                     presence: true
-  #validates :phone,                     presence: true
-  #validates :organization,              presence: true
-  #validates :organization_description,  presence: true
-  #validates :challenge_description,     presence: true
 end

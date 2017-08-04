@@ -1,5 +1,5 @@
 require 'spec_helper'
-=begin
+
 RSpec.describe CommentNotificationMailer, type: :mailer do
 
   describe 'methods' do
@@ -7,7 +7,6 @@ RSpec.describe CommentNotificationMailer, type: :mailer do
     let(:participant) { create :participant }
     let(:comment) { create :comment, participant: participant }
     let!(:mailer) { create :mailer, mailer_classname: described_class.to_s }
-
 
     it 'successfully sends a message' do
       res = described_class.new.sendmail(participant.id,comment.id)
@@ -42,4 +41,3 @@ RSpec.describe CommentNotificationMailer, type: :mailer do
   end
 
 end
-=end

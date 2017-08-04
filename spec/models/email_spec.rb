@@ -15,5 +15,12 @@ describe Email do
 
   context 'associations' do
     it { is_expected.to belong_to(:mailer) }
+    it { is_expected.to belong_to(:participant) }
+  end
+
+  context 'validations' do
+    it { is_expected.to validate_presence_of(:mailer_classname) }
+    it { is_expected.to validate_presence_of(:recipients) }
+    it { is_expected.to validate_presence_of(:status) }
   end
 end

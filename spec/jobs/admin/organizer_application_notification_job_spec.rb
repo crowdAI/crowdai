@@ -1,10 +1,10 @@
 require 'rails_helper'
-RSpec.describe Admin::SubmissionNotificationJob, type: :job do
+RSpec.describe Admin::OrganizerApplicationNotificationJob, type: :job do
   include ActiveJob::TestHelper
 
-  let(:submission) { create :submission }
-  let(:mailer) { create :mailer, mailer_classname: 'SubmissionNotificationMailer' }
-  subject(:job) { described_class.perform_later(submission) }
+  let(:organizer_application) { create :organizer_application }
+  let(:mailer) { create :mailer, mailer_classname: 'OrganizerApplicationNotificationMailer' }
+  subject(:job) { described_class.perform_later(organizer_application) }
 
   describe 'queues the job' do
     it 'queues the job' do

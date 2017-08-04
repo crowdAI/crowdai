@@ -1,7 +1,6 @@
 require 'spec_helper'
-=begin
-RSpec.describe SubmissionNotificationMailer, type: :mailer do
-
+RSpec.describe Admin::SubmissionNotificationMailer, type: :mailer do
+  
   describe 'methods' do
     let(:challenge) { create :challenge }
     let(:participant) { create :participant }
@@ -36,4 +35,3 @@ RSpec.describe SubmissionNotificationMailer, type: :mailer do
   end
 
 end
-=end

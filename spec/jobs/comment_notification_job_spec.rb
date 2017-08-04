@@ -28,7 +28,6 @@ RSpec.describe CommentNotificationJob, type: :job do
     end
   end
 
-
   describe 'supporting methods' do
     before(:each) do
       pref = participant2.email_preferences.first

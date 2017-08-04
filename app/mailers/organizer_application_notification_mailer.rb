@@ -1,35 +1,32 @@
 class OrganizerApplicationNotificationMailer < ApplicationMailer
 
-  def sendmail(participant_id,organizer_application)
-    participant = Participant.find(participant_id)
-    options = format_options(participant,organizer_application)
-    @model_id = organizer_application.id
+  def sendmail(organizer_application)
+    options = format_options(organizer_application)
     mandrill_send(options)
   end
 
 
-  def format_options(participant,organizer_application)
-    challenge = submission.challenge
+  def format_options(organizer_application)
 
     options = {
-      participant_id:   participant.id,
+      participant_id:   nil,
       subject:          "Organizer Application Received",
-      to:               participant.email,
+      to:               organizer_application.email,
       template:         "crowdAI General Template",
       global_merge_vars: [
         {
           name:           "NAME",
-          content:        "#{participant.name}"
+          content:        "#{organizer_application.contact_name}"
         },
         {
           name:           "BODY",
-          content:        email_body(challenge,organizer_application)
+          content:        email_body(organizer_application)
         }
       ]
     }
   end
 
-  def email_body(challenge,organizer_application)
+  def email_body(organizer_application)
     "<div>" +
       "<h3>Organizer Application received.</h3>" +
       "<p>We have received your application to become a crowdAI organizer. You will be contacted by a member of our team.</p>" +

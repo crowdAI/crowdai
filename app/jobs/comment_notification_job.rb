@@ -9,6 +9,14 @@ class CommentNotificationJob < BaseJob
     end
   end
 
+  def immediate_send_participant_ids(comment)
+    Add 5 minute delay to instant discussion emails
+  end
+
+  def delayed_send_participant_ids(comment)
+
+  end
+
   def subscribed_participant_ids(comment)
     ids = admin_ids.concat(comment_participant_ids(comment))
     ids.uniq

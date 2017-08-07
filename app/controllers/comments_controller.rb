@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_filter :authenticate_participant!, only: [:create, :update, :destroy]
   before_action :set_comment, only: [:edit, :update, :destroy]
   before_action :set_topic_and_challenge
-  #after_action :notify_subscribers, only: [:create]
+  after_action :notify_subscribers, only: [:create]
 
 
   def new
@@ -40,6 +40,6 @@ class CommentsController < ApplicationController
     end
 
     def notify_subscribers
-      PostNotificationJob.perform_later(@post)
+      CommentNotificationJob.perform_later(@post)
     end
 end

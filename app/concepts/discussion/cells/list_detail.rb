@@ -25,6 +25,10 @@ class Discussion::Cell::ListDetail < Template::Cell
     @last_comment ||= comments.last
   end
 
+  def comment_count
+    @comment_count ||= comments.count -1
+  end
+
   def last_comment_author
     return nil if last_comment.nil?
     last_comment.participant

@@ -56,6 +56,7 @@ Rails.application.routes.draw do
     get :regen_api_key
     get :remove_image
     resources :votes, only: [:create, :destroy]
+    resources :follows, only: [:create, :destroy]
   end
   get '/load_more_challenges', to: 'challenges#load_more', as: :load_more_challenges
 

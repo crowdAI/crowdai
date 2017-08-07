@@ -20,7 +20,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_8198fbcfd9  (submission_id => submissions.id)
+#  fk_rails_...  (submission_id => submissions.id)
 #
 
 class SubmissionGrade < ApplicationRecord

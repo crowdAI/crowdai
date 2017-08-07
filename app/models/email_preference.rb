@@ -24,7 +24,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_6712e930b2  (participant_id => participants.id)
+#  fk_rails_...  (participant_id => participants.id)
 #
 
 class EmailPreference < ApplicationRecord

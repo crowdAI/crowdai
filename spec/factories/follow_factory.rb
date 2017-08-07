@@ -18,7 +18,9 @@
 #  fk_rails_...  (participant_id => participants.id)
 #
 
-class Vote < ApplicationRecord
-  belongs_to :votable, :polymorphic => true
-  belongs_to :participant, optional: true
+FactoryGirl.define do
+  factory :follow, class: Follow do
+    association :followable, factory: :challenge
+    participant
+  end
 end

@@ -16,8 +16,8 @@
 #
 # Foreign Keys
 #
-#  fk_rails_69796846aa  (dataset_file_id => dataset_files.id)
-#  fk_rails_fa0b04a034  (participant_id => participants.id)
+#  fk_rails_...  (dataset_file_id => dataset_files.id)
+#  fk_rails_...  (participant_id => participants.id)
 #
 
 class DatasetFileDownload < ApplicationRecord

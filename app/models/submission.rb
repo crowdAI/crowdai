@@ -27,8 +27,8 @@
 #
 # Foreign Keys
 #
-#  fk_rails_182329c489  (participant_id => participants.id)
-#  fk_rails_62fce1582b  (challenge_id => challenges.id)
+#  fk_rails_...  (challenge_id => challenges.id)
+#  fk_rails_...  (participant_id => participants.id)
 #
 
 class Submission < ApplicationRecord

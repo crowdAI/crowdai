@@ -19,7 +19,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_2f1fa44b2d  (article_id => articles.id)
+#  fk_rails_...  (article_id => articles.id)
 #
 
 class ArticleSection < ApplicationRecord

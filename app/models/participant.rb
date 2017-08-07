@@ -53,7 +53,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_a4e41c0c05  (organizer_id => organizers.id)
+#  fk_rails_...  (organizer_id => organizers.id)
 #
 
 class Participant < ApplicationRecord
@@ -75,7 +75,7 @@ class Participant < ApplicationRecord
 
   belongs_to :organizer,                optional: true
   has_many :submissions,                dependent: :nullify
-  has_many :votes,                      dependent: :nullify
+  has_many :votes,                      dependent: :destroy
   has_many :topics,                     dependent: :nullify
   has_many :comments,                   dependent: :nullify
   has_many :articles,                   dependent: :nullify
@@ -86,6 +86,7 @@ class Participant < ApplicationRecord
   has_many :dataset_file_downloads,     dependent: :destroy
   has_many :email_preferences,          dependent: :destroy
   has_many :emails,                     dependent: :destroy
+  has_many :follows,                    dependent: :destroy
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   VALID_URL_REGEX = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/

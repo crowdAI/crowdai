@@ -18,7 +18,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_a801f5516c  (challenge_id => challenges.id)
+#  fk_rails_...  (challenge_id => challenges.id)
 #
 
 class SubmissionFileDefinition < ApplicationRecord

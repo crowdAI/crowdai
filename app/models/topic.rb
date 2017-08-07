@@ -22,8 +22,8 @@
 #
 # Foreign Keys
 #
-#  fk_rails_2d21c274d1  (challenge_id => challenges.id)
-#  fk_rails_b8f223b308  (participant_id => participants.id)
+#  fk_rails_...  (challenge_id => challenges.id)
+#  fk_rails_...  (participant_id => participants.id)
 #
 
 class Topic < ApplicationRecord

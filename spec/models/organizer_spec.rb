@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: organizers
+#
+#  id                 :integer          not null, primary key
+#  organizer          :string
+#  address            :text
+#  description        :text
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  approved           :boolean          default(FALSE)
+#  slug               :string
+#  image_file         :string
+#  tagline            :string
+#  challenge_proposal :string
+#
+# Indexes
+#
+#  index_organizers_on_slug  (slug) UNIQUE
+#
+
 require 'rails_helper'
 
 describe Organizer do

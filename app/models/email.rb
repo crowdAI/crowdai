@@ -22,7 +22,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_da93b5a271  (mailer_id => mailers.id)
+#  fk_rails_...  (mailer_id => mailers.id)
 #
 
 class Email < ApplicationRecord

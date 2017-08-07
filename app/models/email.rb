@@ -33,5 +33,5 @@ class Email < ApplicationRecord
   validates :recipients, presence: true
   validates :status, presence: true
 
-  as_enum :status, [:sent, :paused, :mandrill_sent, :mandrill_bounced], map: :string
+  as_enum :status, [:sent, :scheduled, :paused, :mandrill_sent, :mandrill_bounced], map: :string
 end

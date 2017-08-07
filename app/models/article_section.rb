@@ -43,7 +43,7 @@ class ArticleSection < ApplicationRecord
   private
   def cache_rendered_markdown
     if description_markdown_changed?
-      self.description = RenderMarkdown.new.render(description_markdown)
+      self.description = Kramdown::Document.new(self.description_markdown,{coderay_line_numbers: nil}).to_html
     end
   end
 

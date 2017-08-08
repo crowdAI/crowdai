@@ -4,6 +4,7 @@ class CommentNotificationMailer < ApplicationMailer
     participant = Participant.find(participant_id)
     comment = Comment.find(comment_id)
     options = format_options(participant,comment)
+    @model_id = comment_id
     mandrill_send(options)
   end
 

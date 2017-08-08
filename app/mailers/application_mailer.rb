@@ -44,13 +44,11 @@ class ApplicationMailer # Does not inherit from ActionMailer
 
 
   def email_logger(options,unsubscribe_token)
-    status = :sent
-    status = :paused if mailer_paused?
-
     mailer = Mailer.where(mailer_classname: self.class.to_s).first
+    status = :sent
+    status = :paused if mailer.paused
 
     Email.create!(model_id: @model_id,
-                  mailer_id: mailer.id,
                   mailer_classname: self.class.to_s,
                   recipients: options[:to],
                   options_json: options,
@@ -61,17 +59,14 @@ class ApplicationMailer # Does not inherit from ActionMailer
     return status
   end
 
-
-  def mailer_paused?
-    m = Mailer.where(mailer_classname: self.class.to_s).first
-    return m.paused
-  end
-
-
   def unsubscribe_url(participant_id,unsubscribe_token)
     participant = Participant.find(participant_id)
     pref = participant.email_preferences.first
     url = "#{ENV['HOST']}/participants/#{participant.id}/email_preferences/#{pref.id}/edit?unsubscribe_token=#{unsubscribe_token}"
+  end
+
+  def mailer_paused?
+    mailer = Mailer.where(mailer_classname: self.class.to_s).first.paused
   end
 
 

@@ -1,9 +1,9 @@
 if Rails.env == 'test'
-  Mailer.create!(mailer_classname: 'DeviseMandrill')
-  Mailer.create!(mailer_classname: 'LeaderboardNotification')
-  Mailer.create!(mailer_classname: 'PostNotifiction')
-  Mailer.create!(mailer_classname: 'SubmissionGradedNotification')
-  Mailer.create!(mailer_classname: 'SubmissionNotification')
+  Mailer.create!(mailer_classname: 'DeviseMandrillMailer')
+  Mailer.create!(mailer_classname: 'LeaderboardNotificationMailer')
+  Mailer.create!(mailer_classname: 'CommentNotifictionMailer')
+  Mailer.create!(mailer_classname: 'SubmissionGradedNotificationMailer')
+  Mailer.create!(mailer_classname: 'SubmissionNotificationMailer')
 end
 
 if Rails.env != 'test'

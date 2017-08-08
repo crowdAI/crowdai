@@ -78,12 +78,11 @@ gem 'figaro'
 # email
 gem 'mandrill-api'
 gem 'gibbon'
-gem 'statesman'
-gem 'statesman-events'
 
 # background processing
 gem 'sidekiq'
 gem 'sidekiq-statistic'
+gem 'sidekiq-scheduler'
 gem 'sinatra', :require => nil
 
 # static pages, sitemap

@@ -3,7 +3,10 @@ class LeaderboardNotificationJob < ApplicationJob
 
   def perform(submission)
     subscribed_participant_ids(submission).each do |participant_id|
-      LeaderboardNotificationMailer.new.sendmail(participant_id, submission.id)
+      email_preference = EmailPreference.where(participant_id: participant_id).first
+      if email_preference.receive_every_email
+        LeaderboardNotificationMailer.new.sendmail(participant_id, submission.id)
+      end
     end
   end
 

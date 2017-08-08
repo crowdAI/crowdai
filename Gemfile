@@ -86,7 +86,6 @@ gem 'sidekiq'
 gem 'sidekiq-statistic'
 gem 'sinatra', :require => nil
 
-
 # static pages, sitemap
 #gem 'sitemap_generator'
 

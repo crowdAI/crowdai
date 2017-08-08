@@ -1,4 +1,4 @@
-class LeaderboardNotificationJob < BaseJob
+class LeaderboardNotificationJob < ApplicationJob
   queue_as :default
 
   def perform(submission)

@@ -1,5 +1,4 @@
-class Admin::SubmissionNotificationJob < BaseJob
-  queue_as :default
+class Admin::SubmissionNotificationJob < ApplicationJob
 
   def perform(submission)
     admin_ids.each do |admin_id|

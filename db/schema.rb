@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808090000) do
+ActiveRecord::Schema.define(version: 20170808165254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -196,7 +196,7 @@ ActiveRecord::Schema.define(version: 20170808090000) do
     t.integer  "participant_id"
     t.jsonb    "options_json"
     t.integer  "mailer_id"
-    t.string   "state"
+    t.string   "status_cd"
     t.index ["mailer_id"], name: "index_emails_on_mailer_id", using: :btree
   end
 

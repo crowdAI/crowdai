@@ -14,7 +14,7 @@
 #  participant_id          :integer
 #  options_json            :jsonb
 #  mailer_id               :integer
-#  state                   :string
+#  status_cd               :string
 #
 # Indexes
 #
@@ -32,11 +32,7 @@ class Email < ApplicationRecord
 
   validates :mailer_classname, presence: true
   validates :recipients, presence: true
-  validates :state, presence: true
+  validates :status_cd, presence: true
 
-  delegate :in_state?, :current_state, :trigger!, :available_events, to: :state_machine
-  def state_machine
-    @state_machine ||= EmailStateMachine.new(self, transition_class: EmailTransition,
-                                                    association_name: :email_transitions)
-  end
+  as_enum :status, [:sent, :paused, :opened, :bounced], map: :string
 end

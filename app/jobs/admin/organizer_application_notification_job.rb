@@ -1,5 +1,4 @@
-class Admin::OrganizerApplicationNotificationJob < BaseJob
-  queue_as :default
+class Admin::OrganizerApplicationNotificationJob < ApplicationJob
 
   def perform(organizer_application)
     admin_ids.each do |admin_id|

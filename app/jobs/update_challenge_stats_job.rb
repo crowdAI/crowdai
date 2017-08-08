@@ -1,4 +1,4 @@
-class UpdateChallengeStatsJob < ActiveJob::Base
+class UpdateChallengeStatsJob < ApplicationJob
 
   def perform
     update_submissions

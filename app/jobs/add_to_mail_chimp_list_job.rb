@@ -1,4 +1,4 @@
-class AddToMailChimpListJob < ActiveJob::Base
+class AddToMailChimpListJob < ApplicationJob
   queue_as :default
 
   def perform(participant_id)

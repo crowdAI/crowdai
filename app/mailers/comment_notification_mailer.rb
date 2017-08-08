@@ -4,10 +4,8 @@ class CommentNotificationMailer < ApplicationMailer
     participant = Participant.find(participant_id)
     comment = Comment.find(comment_id)
     options = format_options(participant,comment)
-    @model_id = comment_id
     mandrill_send(options)
   end
-
 
   def format_options(participant,comment)
     topic = comment.topic
@@ -17,7 +15,7 @@ class CommentNotificationMailer < ApplicationMailer
       participant_id:   participant.id,
       subject:          "[crowdAI/#{challenge.challenge}] #{topic.topic}",
       to:               participant.email,
-      template:         "crowdAI General Template TEST",
+      template:         "crowdAI General Template",
       global_merge_vars: [
         {
           name:           "NAME",
@@ -35,10 +33,9 @@ class CommentNotificationMailer < ApplicationMailer
     link_to challenge.challenge, challenges_url(challenge)
   end
 
-  def new_comment_link(topic)
+  def comment_link(topic)
     link_to 'here', new_topic_comment_url(topic)
   end
-
 
   def email_body(challenge,topic,comment)
     "<div>" +
@@ -47,7 +44,7 @@ class CommentNotificationMailer < ApplicationMailer
       "<br/>" +
       "#{comment.comment}" +
       "<br/>" +
-      "<p>Click #{new_comment_link(topic)} to see the comment.</p>" +
+      "<p>Click #{comment_link(topic)} to see the comment.</p>" +
     "</div>"
   end
 

@@ -1,4 +1,4 @@
-class OrganizerApplicationNotificationJob < BaseJob
+class OrganizerApplicationNotificationJob < ApplicationJob
   queue_as :default
 
   def perform(organizer_application)

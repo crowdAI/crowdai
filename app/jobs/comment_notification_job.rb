@@ -1,36 +1,16 @@
-class CommentNotificationJob < BaseJob
-  queue_as :default
+class CommentNotificationJob < ApplicationJob
 
-  def perform(comment)
-    subscribed_participant_ids(comment).each do |participant_id|
-      if comment.participant_id != participant_id
-        CommentNotificationMailer.new.sendmail(participant_id, comment.id)
+  def perform(comment_id)
+    participant_ids(comment_id).each do |participant_id|
+      email_preference = EmailPreference.where(participant_id: participant_id).first
+      if email_preference.receive_every_email == true && comment.participant_id != participant_id
+        CommentNotificationMailer.new.prepare_email(participant_id, comment_id)
       end
     end
   end
 
-  def immediate_send_participant_ids(comment)
-    #Add 5 minute delay to instant discussion emails
-  end
-
-  def delayed_send_participant_ids(comment)
-
-  end
-
-  def subscribed_participant_ids(comment)
-    # @ mentioned
-    # in the thread
-    # watching the challenge
-  end
-
-  def admin_ids
-    Participant.where(admin: true).pluck(:id)
-  end
-
-  def comment_participant_ids(comment)
-    Comment.joins("LEFT JOIN email_preferences ON comments.participant_id = email_preferences.participant_id")
-           .where(comments: {topic_id: comment.topic_id}, email_preferences: { my_topic_post: true })
-           .pluck(:participant_id)
+  def participant_ids(comment_id)
+    CommentParticipantsQuery.new(comment_id).call
   end
 
 end

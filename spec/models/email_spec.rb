@@ -7,7 +7,6 @@
 #  mailer_classname        :string
 #  recipients              :text
 #  options                 :text
-#  status_cd               :string
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  email_preferences_token :string
@@ -15,6 +14,7 @@
 #  participant_id          :integer
 #  options_json            :jsonb
 #  mailer_id               :integer
+#  state                   :string
 #
 # Indexes
 #
@@ -33,7 +33,7 @@ describe Email do
     it { is_expected.to respond_to :mailer_classname }
     it { is_expected.to respond_to :recipients }
     it { is_expected.to respond_to :options }
-    it { is_expected.to respond_to :status_cd }
+    it { is_expected.to respond_to :state }
     it { is_expected.to respond_to :email_preferences_token }
     it { is_expected.to respond_to :token_expiration_dttm }
     it { is_expected.to respond_to :options_json }
@@ -43,11 +43,12 @@ describe Email do
   context 'associations' do
     it { is_expected.to belong_to(:mailer) }
     it { is_expected.to belong_to(:participant) }
+    it { is_expected.to have_many(:email_transitions) }
   end
 
   context 'validations' do
     it { is_expected.to validate_presence_of(:mailer_classname) }
     it { is_expected.to validate_presence_of(:recipients) }
-    it { is_expected.to validate_presence_of(:status) }
+    it { is_expected.to validate_presence_of(:state) }
   end
 end

@@ -7,7 +7,6 @@
 #  mailer_classname        :string
 #  recipients              :text
 #  options                 :text
-#  status_cd               :string
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  email_preferences_token :string
@@ -15,6 +14,7 @@
 #  participant_id          :integer
 #  options_json            :jsonb
 #  mailer_id               :integer
+#  state                   :string
 #
 # Indexes
 #
@@ -32,7 +32,7 @@ FactoryGirl.define do
     mailer
     recipients FFaker::Internet.email
     options '{}'
-    status :sent
+    state :prepared
     participant
     options_json '{"to": "fred1270@example.com"}'
   end

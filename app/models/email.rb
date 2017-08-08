@@ -7,7 +7,6 @@
 #  mailer_classname        :string
 #  recipients              :text
 #  options                 :text
-#  status_cd               :string
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  email_preferences_token :string
@@ -15,6 +14,7 @@
 #  participant_id          :integer
 #  options_json            :jsonb
 #  mailer_id               :integer
+#  state                   :string
 #
 # Indexes
 #
@@ -28,10 +28,15 @@
 class Email < ApplicationRecord
   belongs_to :mailer
   belongs_to :participant, optional: true
+  has_many :email_transitions, autosave: false
 
   validates :mailer_classname, presence: true
   validates :recipients, presence: true
-  validates :status, presence: true
+  validates :state, presence: true
 
-  as_enum :status, [:sent, :consolidated, :scheduled, :paused, :mandrill_sent, :mandrill_bounced], map: :string
+  delegate :in_state?, :current_state, :trigger!, :available_events, to: :state_machine
+  def state_machine
+    @state_machine ||= EmailStateMachine.new(self, transition_class: EmailTransition,
+                                                    association_name: :email_transitions)
+  end
 end

@@ -78,6 +78,8 @@ gem 'figaro'
 # email
 gem 'mandrill-api'
 gem 'gibbon'
+gem 'statesman'
+gem 'statesman-events'
 
 # background processing
 gem 'sidekiq'

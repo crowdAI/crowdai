@@ -1,17 +1,17 @@
 # == Schema Information
 #
-# Table name: votes
+# Table name: follows
 #
-#  id             :integer          not null, primary key
-#  votable_id     :integer          not null
-#  votable_type   :string           not null
-#  participant_id :integer
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id              :integer          not null, primary key
+#  followable_id   :integer          not null
+#  followable_type :string           not null
+#  participant_id  :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 # Indexes
 #
-#  index_votes_on_participant_id  (participant_id)
+#  index_follows_on_participant_id  (participant_id)
 #
 # Foreign Keys
 #

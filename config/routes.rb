@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       get :challenge_config, on: :collection
     end
     resources :opensim_gradings, only: [:create, :update, :show]
+    resources :mailchimp_webhooks, only: [:show,:create]
   end
 
   resources :landing_page, only: [:index]
@@ -62,7 +63,9 @@ Rails.application.routes.draw do
 
 
   resources :topics do
-    resources :comments, only: [:new, :create]
+    resources :comments, only: [:new, :create] do
+      get :quote
+    end
     resources :votes, only: [:create, :destroy]
   end
 

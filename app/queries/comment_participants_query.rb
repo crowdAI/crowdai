@@ -10,7 +10,7 @@ class CommentParticipantsQuery
 
   def sql
     %Q[
-      SELECT c.id AS id
+      SELECT p.participant_id AS id
         FROM comments c,
              email_preferences p
        WHERE c.topic_id IN (SELECT topic_id
@@ -19,7 +19,7 @@ class CommentParticipantsQuery
          AND p.participant_id = c.participant_id
          AND p.mentions IS TRUE
       UNION
-      SELECT f.followable_id AS id
+      SELECT f.participant_id AS id
         FROM follows f,
              email_preferences p
         WHERE followable_type = 'Challenge'

@@ -5,6 +5,6 @@
     <% end %>
   </div>
   <%= form_for topic_comments_path(topic, comment) do |f| %>
-    <%= f.text_area :comment_markdown, placeholder: "Add a comment..." %>
+    <%= f.text_area :comment_markdown, placeholder: "Add a comment...", autofocus: true %>
   <% end %>
 </div>

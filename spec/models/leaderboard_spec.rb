@@ -2,6 +2,7 @@
 #
 # Table name: leaderboards
 #
+#  id                 :integer
 #  row_num            :integer
 #  submission_id      :integer
 #  challenge_id       :integer

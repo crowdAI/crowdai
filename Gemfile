@@ -14,7 +14,7 @@ gem 'pundit'
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
 gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources.git'
 gem 'active_admin_datetimepicker'
-gem 'activeadmin-xls', git: 'https://github.com/thambley/activeadmin-xls'
+# https://dev.mikamai.com/2015/05/25/xls-export-in-activeadmin/
 
 # monitoring
 #gem "brakeman", :require => false

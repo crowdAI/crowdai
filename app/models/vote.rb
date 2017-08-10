@@ -15,7 +15,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_7d535390f0  (participant_id => participants.id)
+#  fk_rails_...  (participant_id => participants.id)
 #
 
 class Vote < ApplicationRecord

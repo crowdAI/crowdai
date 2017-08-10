@@ -121,8 +121,7 @@ class SubmissionsController < ApplicationController
     end
 
     def notify_admins
-      SubmissionNotificationJob.perform_later(@submission)
+      Admin::SubmissionNotificationJob.perform_later(@submission)
     end
-
 
 end

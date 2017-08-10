@@ -22,7 +22,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_a80d056f19  (participant_id => participants.id)
+#  fk_rails_...  (participant_id => participants.id)
 #
 
 class Article < ApplicationRecord

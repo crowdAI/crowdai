@@ -17,15 +17,15 @@ class OrganizerPolicy < ApplicationPolicy
   end
 
   def new?
-    participant && participant.admin?
+    false
   end
 
   def create?
-    new?
+    participant && participant.admin?
   end
 
   def destroy?
-    new?
+    participant && participant.admin? || participant && @record.id == participant.organizer_id
   end
 
   def regen_api_key?

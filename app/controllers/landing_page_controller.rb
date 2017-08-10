@@ -7,6 +7,7 @@ class LandingPageController < ApplicationController
   end
 
   def host
+    @organizer_application = OrganizerApplication.new
   end
 
 end

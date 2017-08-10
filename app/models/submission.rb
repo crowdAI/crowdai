@@ -27,8 +27,8 @@
 #
 # Foreign Keys
 #
-#  fk_rails_182329c489  (participant_id => participants.id)
-#  fk_rails_62fce1582b  (challenge_id => challenges.id)
+#  fk_rails_...  (challenge_id => challenges.id)
+#  fk_rails_...  (participant_id => participants.id)
 #
 
 class Submission < ApplicationRecord
@@ -68,7 +68,7 @@ class Submission < ApplicationRecord
   private
   def cache_rendered_markdown
     if self.description_markdown && description_markdown_changed?
-      self.description = RenderMarkdown.new.render(description_markdown)
+      self.description = Kramdown::Document.new(self.description_markdown,{coderay_line_numbers: nil}).to_html
     end
   end
 

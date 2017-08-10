@@ -1,5 +1,4 @@
-class SubmissionGraderJob < BaseJob
-  queue_as :default
+class SubmissionGraderJob < ApplicationJob
 
   def perform(submission_id)
     submission = Submission.find(submission_id)

@@ -2,8 +2,7 @@ class CommentsController < ApplicationController
   before_filter :authenticate_participant!, only: [:create, :update, :destroy]
   before_action :set_comment, only: [:edit, :update, :destroy]
   before_action :set_topic_and_challenge
-  #after_action :notify_subscribers, only: [:create]
-
+  respond_to :html, :js
 
   def new
     @challenge = @topic.challenge
@@ -12,12 +11,17 @@ class CommentsController < ApplicationController
     @first_comment = @topic.comments.order(created_at: :asc).first
     @comments = @topic.comments.where.not(id: @first_comment.id).order(created_at: :asc)
     @comment = Comment.new(topic_id: @topic_id)
+    if params[:quoted_comment_id]
+      quoted_comment = Comment.find(params[:quoted_comment_id])
+      @comment.comment_markdown = "> #{quoted_comment.comment_markdown}"
+    end
     authorize @comment
    end
 
   def create
     @comment = @topic.comments.new(comment_params)
     if @comment.save
+      CommentNotificationJob.set(wait: 5.minutes).perform_later(@comment.id)
       redirect_to new_topic_comment_path(@topic), notice: 'Comment was successfully created.'
     else
       render :new
@@ -39,7 +43,4 @@ class CommentsController < ApplicationController
       params.require(:comment).permit(:topic_id, :participant_id, :comment_markdown, :votes, :flagged, :notify)
     end
 
-    def notify_subscribers
-      PostNotificationJob.perform_later(@post)
-    end
 end

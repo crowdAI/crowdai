@@ -7,7 +7,6 @@
 #  mailer_classname        :string
 #  recipients              :text
 #  options                 :text
-#  status_cd               :string
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  email_preferences_token :string
@@ -15,6 +14,7 @@
 #  participant_id          :integer
 #  options_json            :jsonb
 #  mailer_id               :integer
+#  status_cd               :string
 #
 # Indexes
 #
@@ -22,11 +22,17 @@
 #
 # Foreign Keys
 #
-#  fk_rails_da93b5a271  (mailer_id => mailers.id)
+#  fk_rails_...  (mailer_id => mailers.id)
 #
 
 class Email < ApplicationRecord
   belongs_to :mailer
+  belongs_to :participant, optional: true
+  has_many :email_transitions, autosave: false
 
-  as_enum :status, [:sent, :paused, :mandrill_sent, :mandrill_bounced], map: :string
+  validates :mailer_classname, presence: true
+  validates :recipients, presence: true
+  validates :status_cd, presence: true
+
+  as_enum :status, [:sent, :paused, :opened, :bounced], map: :string
 end

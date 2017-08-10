@@ -51,7 +51,7 @@ $(document).on('turbolinks:load', function() {
     { class: ".md-h3", before: "\n### ", after: "\n"},
 
     { class: ".md-img", before: "![ ", after: " ](image_url)"},
-    { class: ".md-link", before: "[ ", after: " ](link_url)"},
+    { class: ".md-link", before: "[ ", after: " ](link_url){:target='_blank'}"},
 
     { class: ".md-strong", before: "**", after: "**"},
     { class: ".md-italic", before: "_", after: "_"},

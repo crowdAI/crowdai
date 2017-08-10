@@ -8,14 +8,13 @@ gem 'pg'
 gem 'puma'
 gem 'puma_worker_killer'
 
-
 # user accounts / admin
 gem 'devise'
 gem 'pundit'
-gem 'activeadmin', github: 'activeadmin'
-gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
+gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources.git'
 gem 'active_admin_datetimepicker'
-gem 'activeadmin-xls', github: 'thambley/activeadmin-xls'
+gem 'activeadmin-xls', git: 'https://github.com/thambley/activeadmin-xls'
 
 # monitoring
 #gem "brakeman", :require => false
@@ -31,7 +30,6 @@ gem 'validate_url'
 
 # forms / data manipulation / charts
 gem 'simple_form'
-gem 'country_select'
 gem 'cocoon'
 gem 'redcarpet', '~> 3.4.0'
 gem 'kramdown'
@@ -48,8 +46,7 @@ gem 'fast_blank'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
-#gem 'jquery-ui-rails'
-#gem "jquery-fileupload-rails"
+gem 'jquery-ui-rails'
 gem 'turbolinks', '~> 5.0.0'
 gem 'lodash-rails'
 gem 'browser'
@@ -85,8 +82,8 @@ gem 'gibbon'
 # background processing
 gem 'sidekiq'
 gem 'sidekiq-statistic'
+gem 'sidekiq-scheduler'
 gem 'sinatra', :require => nil
-
 
 # static pages, sitemap
 #gem 'sitemap_generator'
@@ -104,7 +101,7 @@ gem 'fog'
 # View
 gem "trailblazer"
 gem "trailblazer-rails"
-gem "cells-rails", github: 'trailblazer/cells-rails'
+gem "cells-rails", git: 'https://github.com/trailblazer/cells-rails'
 gem "cells"
 gem "cells-erb"
 
@@ -130,7 +127,6 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'scss_lint', require: false
   gem 'shog'
-  gem 'rubocop', require: false
   gem 'meta_request'
 end
 
@@ -153,7 +149,7 @@ group :test do
   gem 'capybara'
   gem 'capybara-email'
   gem 'capybara-screenshot'
-  gem 'capybara-webkit'
+  gem 'capybara-webkit', '1.12.0'
   gem 'database_cleaner'
   gem "launchy"
   gem 'shoulda'
@@ -161,5 +157,5 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'sanitize'
   gem 'rails-controller-testing'
-  gem 'pundit-matchers', github: 'crowdAI/pundit-matchers'
+  gem 'pundit-matchers', git: 'https://github.com/crowdAI/pundit-matchers'
 end

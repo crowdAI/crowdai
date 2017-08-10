@@ -16,7 +16,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_d1aca45f2f  (submission_id => submissions.id)
+#  fk_rails_...  (submission_id => submissions.id)
 #
 
 class SubmissionFile < ApplicationRecord

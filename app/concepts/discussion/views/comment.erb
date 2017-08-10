@@ -19,7 +19,7 @@
         <%= link_to author.name, participant_path(author) %>&nbsp;
       <% end %>
       <%= time_ago_in_words(comment.created_at) %> ago |&nbsp;
-      <a href="#">Quote</a> | <a href="#">Reply</a>
+      <%= link_to "Quote", new_topic_comment_path(comment.topic, quoted_comment_id: comment.id) %>
     </p>
     <div class="comment">
       <p><%= comment.comment %></p>

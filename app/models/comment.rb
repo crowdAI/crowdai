@@ -22,8 +22,8 @@
 #
 # Foreign Keys
 #
-#  fk_rails_30b8c1c680  (participant_id => participants.id)
-#  fk_rails_70d0b6486a  (topic_id => topics.id)
+#  fk_rails_...  (participant_id => participants.id)
+#  fk_rails_...  (topic_id => topics.id)
 #
 
 class Comment < ApplicationRecord
@@ -44,7 +44,7 @@ class Comment < ApplicationRecord
   private
   def cache_rendered_markdown
     if comment_markdown_changed?
-      self.comment = RenderMarkdown.new.render(comment_markdown)
+      self.comment = Kramdown::Document.new(self.comment_markdown,{coderay_line_numbers: nil}).to_html
     end
   end
 end

@@ -29,18 +29,20 @@ Rails.application.routes.draw do
       get :challenge_config, on: :collection
     end
     resources :opensim_gradings, only: [:create, :update, :show]
+    resources :mailchimp_webhooks, only: [:show,:create]
   end
 
   resources :landing_page, only: [:index]
   match '/landing_page/host', to: 'landing_page#host', via: :get
 
-  resources :organizers, except: [:index] do
+  resources :organizer_applications, only: [:create]
+  resources :organizers, except: [:new, :index] do
     resources :challenges
     get :remove_image
   end
 
   resources :challenges do
-    resources :dataset_files, only: [:new, :show, :index, :destroy, :new, :create]
+    resources :dataset_files, only: [:new, :show, :index, :destroy, :create]
     resources :events
     resources :submissions do
       get :grade
@@ -55,22 +57,25 @@ Rails.application.routes.draw do
     get :regen_api_key
     get :remove_image
     resources :votes, only: [:create, :destroy]
+    resources :follows, only: [:create, :destroy]
   end
   get '/load_more_challenges', to: 'challenges#load_more', as: :load_more_challenges
 
 
   resources :topics do
-    resources :comments, only: [:new, :create]
+    resources :comments, only: [:new, :create] do
+      get :quote
+    end
     resources :votes, only: [:create, :destroy]
   end
 
   resources :comments, only: [] do
-    resources :votes, only: [:create,:destroy]
+    resources :votes, only: [:create, :destroy]
   end
 
   resources :articles do
     resources :article_sections
-    resources :votes, only: [:create,:destroy]
+    resources :votes, only: [:create, :destroy]
     get :remove_image
   end
   get '/load_more_articles', to: 'articles#load_more', as: :load_more_articles

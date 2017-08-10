@@ -1,4 +1,4 @@
-class AddToMailChimpListJob < ActiveJob::Base
+class AddToMailChimpListJob < ApplicationJob
   queue_as :default
 
   def perform(participant_id)
@@ -7,10 +7,11 @@ class AddToMailChimpListJob < ActiveJob::Base
     begin
       gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'])
       resp = gibbon.lists(ENV['MAILCHIMP_LIST_ID'])
-                 .members(lower_case_md5_hashed_email_address)
-                 .upsert(body: {email_address: participant.email,
-                                       status: 'subscribed',
-                                 merge_fields: { FNAME: participant.name }})
+                   .members(lower_case_md5_hashed_email_address)
+                   .upsert(body:
+                            {email_address: participant.email,
+                            status: 'subscribed',
+                            merge_fields: { FNAME: participant.name }})
     rescue Exception => e
       if e.message =~ /ooks fake or invalid, please enter a real email address/
         participant.disable_account('MailChimp rejected email as a fake address')
@@ -19,9 +20,5 @@ class AddToMailChimpListJob < ActiveJob::Base
     end
     logger.info("AddToMailChimpListJob API response: #{resp}")
   end
-
-
-
-
 
 end

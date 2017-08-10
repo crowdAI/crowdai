@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170731131136) do
+ActiveRecord::Schema.define(version: 20170810140202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,12 +28,6 @@ ActiveRecord::Schema.define(version: 20170731131136) do
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
-  end
-
-  create_table "ar_internal_metadata", primary_key: "key", id: :string, force: :cascade do |t|
-    t.string   "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "article_sections", force: :cascade do |t|
@@ -178,12 +172,23 @@ ActiveRecord::Schema.define(version: 20170731131136) do
     t.index ["participant_id"], name: "index_email_preferences_on_participant_id", using: :btree
   end
 
+  create_table "email_transitions", force: :cascade do |t|
+    t.string   "to_state",                   null: false
+    t.text     "metadata",    default: "{}"
+    t.integer  "sort_key",                   null: false
+    t.integer  "email_id",                   null: false
+    t.boolean  "most_recent",                null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["email_id", "most_recent"], name: "index_email_transitions_parent_most_recent", unique: true, where: "most_recent", using: :btree
+    t.index ["email_id", "sort_key"], name: "index_email_transitions_parent_sort", unique: true, using: :btree
+  end
+
   create_table "emails", force: :cascade do |t|
     t.integer  "model_id"
     t.string   "mailer_classname"
     t.text     "recipients"
     t.text     "options"
-    t.string   "status_cd"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.string   "email_preferences_token"
@@ -191,7 +196,17 @@ ActiveRecord::Schema.define(version: 20170731131136) do
     t.integer  "participant_id"
     t.jsonb    "options_json"
     t.integer  "mailer_id"
+    t.string   "status_cd"
     t.index ["mailer_id"], name: "index_emails_on_mailer_id", using: :btree
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.integer  "followable_id",   null: false
+    t.string   "followable_type", null: false
+    t.integer  "participant_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["participant_id"], name: "index_follows_on_participant_id", using: :btree
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -213,16 +228,28 @@ ActiveRecord::Schema.define(version: 20170731131136) do
     t.datetime "updated_at",                       null: false
   end
 
+  create_table "organizer_applications", force: :cascade do |t|
+    t.string   "contact_name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "organization"
+    t.string   "organization_description"
+    t.string   "challenge_description"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "organizers", force: :cascade do |t|
     t.string   "organizer"
     t.text     "address"
     t.text     "description"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.boolean  "approved",    default: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.boolean  "approved",           default: false
     t.string   "slug"
     t.string   "image_file"
     t.string   "tagline"
+    t.string   "challenge_proposal"
     t.index ["slug"], name: "index_organizers_on_slug", unique: true, using: :btree
   end
 
@@ -364,6 +391,7 @@ ActiveRecord::Schema.define(version: 20170731131136) do
   add_foreign_key "dataset_file_downloads", "participants"
   add_foreign_key "email_preferences", "participants"
   add_foreign_key "emails", "mailers"
+  add_foreign_key "follows", "participants"
   add_foreign_key "participants", "organizers"
   add_foreign_key "submission_file_definitions", "challenges"
   add_foreign_key "submission_files", "submissions"
@@ -374,7 +402,7 @@ ActiveRecord::Schema.define(version: 20170731131136) do
   add_foreign_key "topics", "participants"
   add_foreign_key "votes", "participants"
 
-  create_view :ongoing_leaderboards,  sql_definition: <<-SQL
+  create_view "ongoing_leaderboards",  sql_definition: <<-SQL
       SELECT l.row_num,
       l.id,
       l.challenge_id,
@@ -409,7 +437,70 @@ ActiveRecord::Schema.define(version: 20170731131136) do
     ORDER BY l.score DESC, l.score_secondary;
   SQL
 
-  create_view :participant_challenges,  sql_definition: <<-SQL
+  create_view "participant_submissions",  sql_definition: <<-SQL
+      SELECT s.id,
+      s.challenge_id,
+      s.participant_id,
+      p.name,
+      s.grading_status_cd,
+      s.post_challenge,
+      s.score,
+      s.score_secondary,
+      count(f.*) AS files,
+      s.created_at
+     FROM participants p,
+      (submissions s
+       LEFT JOIN submission_files f ON ((f.submission_id = s.id)))
+    WHERE (s.participant_id = p.id)
+    GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
+    ORDER BY s.created_at DESC;
+  SQL
+
+  create_view "leaderboards",  sql_definition: <<-SQL
+      SELECT l.row_num,
+      l.id AS submission_id,
+      l.challenge_id,
+      l.participant_id,
+      l.slug,
+      c.organizer_id,
+      l.name,
+      l.entries,
+      l.score,
+      l.score_secondary,
+      l.media_large,
+      l.media_thumbnail,
+      l.media_content_type,
+      l.created_at,
+      l.updated_at
+     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS row_num,
+              s.id,
+              s.challenge_id,
+              s.participant_id,
+              p.slug,
+              p.name,
+              cnt.entries,
+              s.score,
+              s.score_secondary,
+              s.media_large,
+              s.media_thumbnail,
+              s.media_content_type,
+              s.created_at,
+              s.updated_at
+             FROM submissions s,
+              participants p,
+              ( SELECT c_1.challenge_id,
+                      c_1.participant_id,
+                      count(c_1.*) AS entries
+                     FROM submissions c_1
+                    WHERE (c_1.post_challenge = false)
+                    GROUP BY c_1.challenge_id, c_1.participant_id) cnt
+            WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l,
+      challenges c
+    WHERE ((l.row_num = 1) AND (c.id = l.challenge_id))
+    ORDER BY l.score DESC, l.score_secondary;
+  SQL
+
+  create_view "participant_challenges",  sql_definition: <<-SQL
       SELECT p.id,
       pc.challenge_id,
       pc.participant_id,
@@ -459,69 +550,6 @@ ActiveRecord::Schema.define(version: 20170731131136) do
               dataset_files df
             WHERE (dfd.dataset_file_id = df.id)) pc
     WHERE ((pc.participant_id = p.id) AND (pc.challenge_id = c.id));
-  SQL
-
-  create_view :participant_submissions,  sql_definition: <<-SQL
-      SELECT s.id,
-      s.challenge_id,
-      s.participant_id,
-      p.name,
-      s.grading_status_cd,
-      s.post_challenge,
-      s.score,
-      s.score_secondary,
-      count(f.*) AS files,
-      s.created_at
-     FROM participants p,
-      (submissions s
-       LEFT JOIN submission_files f ON ((f.submission_id = s.id)))
-    WHERE (s.participant_id = p.id)
-    GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
-    ORDER BY s.created_at DESC;
-  SQL
-
-  create_view :leaderboards,  sql_definition: <<-SQL
-      SELECT l.row_num,
-      l.id AS submission_id,
-      l.challenge_id,
-      l.participant_id,
-      l.slug,
-      c.organizer_id,
-      l.name,
-      l.entries,
-      l.score,
-      l.score_secondary,
-      l.media_large,
-      l.media_thumbnail,
-      l.media_content_type,
-      l.created_at,
-      l.updated_at
-     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS row_num,
-              s.id,
-              s.challenge_id,
-              s.participant_id,
-              p.slug,
-              p.name,
-              cnt.entries,
-              s.score,
-              s.score_secondary,
-              s.media_large,
-              s.media_thumbnail,
-              s.media_content_type,
-              s.created_at,
-              s.updated_at
-             FROM submissions s,
-              participants p,
-              ( SELECT c_1.challenge_id,
-                      c_1.participant_id,
-                      count(c_1.*) AS entries
-                     FROM submissions c_1
-                    WHERE (c_1.post_challenge = false)
-                    GROUP BY c_1.challenge_id, c_1.participant_id) cnt
-            WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l,
-      challenges c
-    WHERE ((l.row_num = 1) AND (c.id = l.challenge_id))
-    ORDER BY l.score DESC, l.score_secondary;
   SQL
 
 end

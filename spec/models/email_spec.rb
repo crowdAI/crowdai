@@ -1,3 +1,30 @@
+# == Schema Information
+#
+# Table name: emails
+#
+#  id                      :integer          not null, primary key
+#  model_id                :integer
+#  mailer_classname        :string
+#  recipients              :text
+#  options                 :text
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  email_preferences_token :string
+#  token_expiration_dttm   :datetime
+#  participant_id          :integer
+#  options_json            :jsonb
+#  mailer_id               :integer
+#  status_cd               :string
+#
+# Indexes
+#
+#  index_emails_on_mailer_id  (mailer_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (mailer_id => mailers.id)
+#
+
 require 'rails_helper'
 
 describe Email do
@@ -15,5 +42,12 @@ describe Email do
 
   context 'associations' do
     it { is_expected.to belong_to(:mailer) }
+    it { is_expected.to belong_to(:participant) }
+  end
+
+  context 'validations' do
+    it { is_expected.to validate_presence_of(:mailer_classname) }
+    it { is_expected.to validate_presence_of(:recipients) }
+    it { is_expected.to validate_presence_of(:status_cd) }
   end
 end

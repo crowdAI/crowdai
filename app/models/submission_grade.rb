@@ -20,14 +20,13 @@
 #
 # Foreign Keys
 #
-#  fk_rails_8198fbcfd9  (submission_id => submissions.id)
+#  fk_rails_...  (submission_id => submissions.id)
 #
 
 class SubmissionGrade < ApplicationRecord
   belongs_to :submission
   after_save :update_submission
-  after_save :notify_participant
-  after_save :schedule_leaderboard_email
+  #after_save :schedule_leaderboard_email
   default_scope { order('created_at DESC') }
 
   as_enum :grading_status, [:ready, :submitted, :graded, :failed], map: :string, accessor: :whiny
@@ -43,13 +42,9 @@ class SubmissionGrade < ApplicationRecord
                       score_secondary: self.score_secondary)
   end
 
-  def notify_participant
-    SubmissionNotificationJob.perform_later(self.submission)
-  end
-
   def schedule_leaderboard_email
     if self.grading_status == :graded
-      #LeaderboardNotificationJob.perform_later(self.submission)
+      LeaderboardNotificationJob.perform_later(self.submission)
     end
   end
 

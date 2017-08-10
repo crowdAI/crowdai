@@ -1,3 +1,27 @@
+# == Schema Information
+#
+# Table name: article_sections
+#
+#  id                   :integer          not null, primary key
+#  article_id           :integer
+#  seq                  :integer          default(1)
+#  description_markdown :text
+#  description          :text
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  section              :string
+#  slug                 :string
+#
+# Indexes
+#
+#  index_article_sections_on_article_id  (article_id)
+#  index_article_sections_on_slug        (slug) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (article_id => articles.id)
+#
+
 require 'rails_helper'
 
 describe ArticleSection do
@@ -21,9 +45,9 @@ describe ArticleSection do
   context 'methods' do
     it '#cache_rendered_markdown' do
       s = create(:article_section, description_markdown: '# Heading')
-      expect(s.description).to eq("<h1>Heading</h1>\n")
+      expect(s.description).to eq("<h1 id=\"heading\">Heading</h1>\n")
     end
-    
+
     it '#should_generate_new_friendly_id?' do
       s = create(:article_section, description_markdown: '# Heading')
       slug = s.slug

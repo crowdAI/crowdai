@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      <th>Submissions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% submission.each do |submission| %>
+    <tr>
+      <th>
+        Submission in <%= link_to submission.challenge.challenge, challenge_url(submission.challenge) %> by <%= submission.participant.name %>.
+      </th>
+      <th>
+        <%= submission.score %>
+      </th>
+      <% if submission.score_secondary %>
+        <%= submission.score_secondary %>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

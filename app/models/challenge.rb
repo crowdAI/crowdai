@@ -63,7 +63,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_0bdc80d25a  (organizer_id => organizers.id)
+#  fk_rails_...  (organizer_id => organizers.id)
 #
 
 class Challenge < ApplicationRecord
@@ -94,7 +94,9 @@ class Challenge < ApplicationRecord
   has_many :participant_challenges,       class_name: 'ParticipantChallenge'
   has_many :topics
   has_many :emails,                       dependent: :destroy
-  has_many :votes, as: :votable
+  has_many :votes,                        as: :votable
+  has_many :follows,                      as: :followable
+
 
 
   as_enum :status, [:draft, :running, :completed, :perpetual, :starting_soon], map: :string
@@ -111,7 +113,7 @@ class Challenge < ApplicationRecord
   #validates_uniqueness_of :challenge_client_name
   validates :challenge_client_name, format: { with: /\A[a-zA-Z0-9]/ }
   validates_presence_of :challenge_client_name
-  
+
 
 
   default_scope { order("featured_sequence DESC,

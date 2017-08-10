@@ -19,13 +19,13 @@
       <% else %>
         Posted by <%= link_to author.name, participant_path(author) %>&nbsp;
       <% end %>
-      <%= time_ago_in_words(topic.updated_at) %> ago
+      <%= time_ago_in_words(topic.created_at) %> ago
     </p>
   </div>
   <div class="stats">
     <div class="stat-fl">
       Comments<br>
-      <span><%= comments.count %></span>
+      <span><%= comment_count %></span>
     </div>
     <div class="stat-fl">
       Last comment<br>

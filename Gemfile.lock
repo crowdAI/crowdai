@@ -34,14 +34,6 @@ GIT
       rspec-rails (>= 3.0.0)
 
 GIT
-  remote: https://github.com/thambley/activeadmin-xls
-  revision: a5a70018c626d1ad3cde9f763bad3d10fa68867a
-  specs:
-    activeadmin-xls (1.0.3)
-      activeadmin
-      spreadsheet
-
-GIT
   remote: https://github.com/trailblazer/cells-rails
   revision: 19b61614adbdaf2203c4665f06cd4d1b5204aefd
   specs:
@@ -634,7 +626,6 @@ GEM
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
     ruby-graphviz (1.2.3)
-    ruby-ole (1.2.12.1)
     ruby2ruby (2.4.0)
       ruby_parser (~> 3.1)
       sexp_processor (~> 4.6)
@@ -705,8 +696,6 @@ GEM
       rack-protection (= 2.0.0)
       tilt (~> 2.0)
     slop (3.6.0)
-    spreadsheet (1.1.4)
-      ruby-ole (>= 1.0)
     spring (2.0.2)
       activesupport (>= 4.2)
     sprockets (3.7.1)
@@ -790,7 +779,6 @@ PLATFORMS
 DEPENDENCIES
   active_admin_datetimepicker
   activeadmin!
-  activeadmin-xls!
   annotate
   aws-sdk (~> 2.2)
   brakeman

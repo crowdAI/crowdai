@@ -62,6 +62,7 @@ class Api::ExternalGradersController < Api::BaseController
                                       media_content_type: params[:media_content_type])
       submission.submission_grades.create!(grading_params)
       submission_id = submission.id
+      notify_admins(submission)
       message = "Participant #{participant.name} scored"
       status = :accepted
     rescue => e
@@ -100,7 +101,6 @@ class Api::ExternalGradersController < Api::BaseController
       if challenge.nil?
         raise Api::ExternalGradersController::ChallengeClientNameInvalid
       end
-      config = { test: "test" }
       message = "Configuration for #{challenge.challenge_client_name}"
       status = :ok
     rescue => e
@@ -115,6 +115,10 @@ class Api::ExternalGradersController < Api::BaseController
 
   def validate_s3_key(s3_key)
     S3Service.new(s3_key,shared_bucket=true).valid_key?
+  end
+
+  def notify_admins(submission)
+    Admin::SubmissionNotificationJob.perform_later(submission)
   end
 
   private

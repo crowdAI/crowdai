@@ -1,10 +1,9 @@
 require 'securerandom'
 
-class ApplicationMailer # Does not inherit from ActionMailer
+class ApplicationMailer < ActionMailer::Base
   include Rails.application.routes.url_helpers
   include ActionView::Helpers::UrlHelper
   include ActionView::Helpers::TextHelper
-
 
   def mandrill_send(options)
     unsubscribe_token = generate_unsubscribe_token

@@ -9,7 +9,7 @@ RSpec.describe CommentParticipantsQuery do
 
   describe "execute query" do
     subject(:query) { described_class.new(comment.id).call }
-    it { expect(query.sort).to match_array([topic.participant_id, participant.id].sort) }
+    it { expect(query.sort).to match_array([participant.id].sort) }
   end
 
 end

@@ -14,11 +14,11 @@ class EmailDigestJob < ApplicationJob
   end
 
   def daily_digest_participant_ids
-    [1,2,3]
+    EmailPreference.where(receive_daily_digest: true)
   end
 
   def weekly_digest_participant_ids
-    [1,2,3]
+    EmailPreference.where(receive_weekly_digest: true)
   end
 
 end

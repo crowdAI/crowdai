@@ -26,8 +26,7 @@
 class SubmissionGrade < ApplicationRecord
   belongs_to :submission
   after_save :update_submission
-  after_save :notify_participant
-  after_save :schedule_leaderboard_email
+  #after_save :schedule_leaderboard_email
   default_scope { order('created_at DESC') }
 
   as_enum :grading_status, [:ready, :submitted, :graded, :failed], map: :string, accessor: :whiny

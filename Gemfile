@@ -26,6 +26,7 @@ gem 'oj', '~> 2.12.14'
 gem 'simple_enum'
 gem 'scenic', '~> 1.3'
 gem 'validate_url'
+gem 'paper_trail'
 
 
 # forms / data manipulation / charts

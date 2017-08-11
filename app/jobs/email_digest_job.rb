@@ -17,11 +17,11 @@ class EmailDigestJob < ApplicationJob
   end
 
   def daily_digest_participant_ids
-    EmailPreference.where(receive_daily_digest: true)
+    EmailPreference.where(receive_daily_digest: true).ids
   end
 
   def weekly_digest_participant_ids
-    EmailPreference.where(receive_weekly_digest: true)
+    EmailPreference.where(receive_weekly_digest: true).ids
   end
 
 end

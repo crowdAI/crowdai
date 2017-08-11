@@ -1,5 +1,5 @@
 class FollowsController < ApplicationController
-  before_filter :authenticate_participant!
+  before_action :authenticate_participant!
   before_action :set_followable
   respond_to :js
 

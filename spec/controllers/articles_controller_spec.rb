@@ -38,10 +38,6 @@ RSpec.describe ArticlesController, type: :controller do
       it { expect(assigns(:article)).to be_a_new(Article) }
     end
 
-    describe 'test' do
-      it { puts valid_attributes }
-    end
-
     describe "POST #create" do
       context "with valid params" do
         it "creates a new Article" do

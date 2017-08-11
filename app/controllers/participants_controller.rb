@@ -1,5 +1,5 @@
 class ParticipantsController < ApplicationController
-  before_filter :authenticate_participant!, except: [:show]
+  before_action :authenticate_participant!, except: [:show]
   before_action :set_participant, only: [:show, :edit, :update, :destroy]
   respond_to :html, :js
 

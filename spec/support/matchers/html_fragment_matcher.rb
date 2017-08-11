@@ -5,7 +5,7 @@ RSpec::Matchers.define :be_a_valid_html_fragment do |expected|
     begin
       doc = Nokogiri::XML(actual) { |config| config.strict }
     rescue Nokogiri::XML::SyntaxError => e
-      puts "caught exception: #{e}"
+      puts "INVALID HTML FRAGMENT exception: #{e}"
       puts actual
     end
   end

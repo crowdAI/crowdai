@@ -1,5 +1,5 @@
 class SubmissionsController < ApplicationController
-  before_filter :authenticate_participant!
+  before_action :authenticate_participant!
   before_action :set_submission, only: [:show, :edit, :update, :grade, :execute]
   before_action :set_challenge
   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]

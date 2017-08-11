@@ -32,7 +32,8 @@ module Crowdai
     #config.action_controller.default_url_options = {:host => ENV['HOST']}
     config.autoload_paths << Rails.root.join('lib')
     config.autoload_paths += Dir["#{Rails.root.to_s}/app/queries/**/"]
-    
+    #config.active_record.time_zone_aware_types = [:datetime]
+
     config.generators do |g|
       g.test_framework :rspec
     end

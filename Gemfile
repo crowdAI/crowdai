@@ -3,7 +3,7 @@ gem 'rails-assets-isInViewport', source: 'https://rails-assets.org'
 gem 'rails-assets-jQuery-File-Upload', source: 'https://rails-assets.org'
 
 ruby "2.3.3"
-gem 'rails', '5.0.0.1'
+gem 'rails', '5.0.4'
 gem 'pg'
 gem 'puma'
 gem 'puma_worker_killer'
@@ -104,6 +104,7 @@ gem "trailblazer-rails"
 gem "cells-rails", git: 'https://github.com/trailblazer/cells-rails'
 gem "cells"
 gem "cells-erb"
+gem 'record_tag_helper', '~> 1.0'
 
 group :development, :test do
   gem "rspec-cells"

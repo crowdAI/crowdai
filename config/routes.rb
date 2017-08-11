@@ -64,7 +64,7 @@ Rails.application.routes.draw do
 
 
   resources :topics do
-    resources :comments, only: [:new, :create] do
+    resources :comments, only: [:new, :create, :edit, :destroy, :update] do
       get :quote
     end
     resources :votes, only: [:create, :destroy]

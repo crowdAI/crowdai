@@ -20,9 +20,10 @@
       <% end %>
       <%= time_ago_in_words(comment.created_at) %> ago |&nbsp;
       <%= link_to "Quote", new_topic_comment_path(comment.topic, quoted_comment_id: comment.id) %>
+      <%= admin_actions %>
     </p>
-    <div class="comment">
-      <p><%= comment.comment %></p>
-    </div>
+    <%= div_for(comment, class: "comment") do %>
+      <p><%= comment.comment %>xx</p>
+    <% end %>
   </div>
 </div>

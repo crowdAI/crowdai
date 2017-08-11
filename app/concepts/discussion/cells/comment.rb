@@ -9,8 +9,18 @@ class Discussion::Cell::Comment < Template::Cell
     model
   end
 
+  def topic
+    @topic ||= comment.topic
+  end
+
   def author
     return @author ||= Participant.find(comment.participant_id)
+  end
+
+  def admin_actions
+    if current_participant && current_participant.admin?
+      " | #{link_to 'Edit', edit_topic_comment_path(topic,comment), remote: true} | #{link_to 'Delete', '#'}"
+    end
   end
 
 end

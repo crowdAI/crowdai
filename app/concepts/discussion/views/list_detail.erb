@@ -14,11 +14,7 @@
   <div class="details">
     <h5><%= link_to topic.topic, new_topic_comment_path(topic) %></h5>
     <p class="user">
-      <% if topic.participant.is_a? NullParticipant %>
-        Posted by <%= link_to author.name, '#' %>&nbsp;
-      <% else %>
-        Posted by <%= link_to author.name, participant_path(author) %>&nbsp;
-      <% end %>
+      <%= participant_link %>
       <%= time_ago_in_words(topic.created_at) %> ago
     </p>
   </div>

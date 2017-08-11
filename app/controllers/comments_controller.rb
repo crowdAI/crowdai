@@ -29,6 +29,11 @@ class CommentsController < ApplicationController
     authorize @comment
   end
 
+  def edit
+    @comment = Comment.find(params[:id])
+    render 'edit'
+  end
+
   private
     def set_comment
       @comment = Comment.find(params[:id])

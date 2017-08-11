@@ -34,4 +34,14 @@ class Discussion::Cell::ListDetail < Template::Cell
     last_comment.participant
   end
 
+  def participant_link
+    if topic.participant.is_a? NullParticipant
+      link = "Posted by #{link_to author.name, '#'} "
+    else
+      link = "Posted by #{link_to author.name, participant_path(author) } "
+    end
+    return link
+  end
+
+
 end

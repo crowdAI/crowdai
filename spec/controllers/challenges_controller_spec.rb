@@ -40,19 +40,19 @@ RSpec.describe ChallengesController, type: :controller do
     end
 
     describe 'GET #show challenge_completed' do
-      before { get :show, id: challenge_completed.id }
+      before { get :show, params: { id: challenge_completed.id } }
       it { expect(assigns(:challenge)).to eq challenge_completed }
       it { expect(response).to render_template :show }
     end
 
     describe 'GET #show challenge_starting_soon' do
-      before { get :show, id: challenge_starting_soon.id }
+      before { get :show, params: { id: challenge_starting_soon.id } }
       it { expect(assigns(:challenge)).to eq challenge_starting_soon }
       it { expect(response).to render_template :show }
     end
 
     describe 'GET #show challenge_draft' do
-      before { get :show, id: challenge_draft.id }
+      before { get :show, params: { id: challenge_draft.id } }
 #      it { denies_access }
     end
   end
@@ -65,19 +65,19 @@ RSpec.describe ChallengesController, type: :controller do
     end
 
     describe 'GET #show challenge_completed' do
-      before { get :show, id: challenge_completed.id }
+      before { get :show, params: { id: challenge_completed.id } }
       it { expect(assigns(:challenge)).to eq challenge_completed }
       it { expect(response).to render_template :show }
     end
 
     describe 'GET #show challenge_starting_soon' do
-      before { get :show, id: challenge_starting_soon.id }
+      before { get :show, params: { id: challenge_starting_soon.id } }
       it { expect(assigns(:challenge)).to eq challenge_starting_soon }
       it { expect(response).to render_template :show }
     end
 
     describe 'GET #show challenge_draft' do
-      before { get :show, id: challenge_draft.id }
+      before { get :show, params: { id: challenge_draft.id } }
 #      it { denies_access }
     end
   end

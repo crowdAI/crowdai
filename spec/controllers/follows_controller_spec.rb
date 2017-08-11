@@ -12,7 +12,7 @@ RSpec.describe FollowsController, type: :controller do
 
     describe "Follow a Challenge" do
       def follow
-        post :create, challenge_id: challenge.id
+        post :create, params: { challenge_id: challenge.id }
         challenge.reload
       end
       it { expect { follow }.to change { Follow.count }.by(1) }

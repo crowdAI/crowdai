@@ -14,7 +14,7 @@ RSpec.describe VotesController, type: :controller do
 
     describe "POST #create for Challenge" do
       def register_vote
-        post :create, challenge_id: challenge.id
+        post :create, params: { challenge_id: challenge.id }
         challenge.reload
       end
       it { expect { register_vote }.to change { Vote.count }.by(1) }
@@ -23,7 +23,7 @@ RSpec.describe VotesController, type: :controller do
 
     describe "POST #create for Article" do
       def register_vote
-        post :create, article_id: article.id
+        post :create, params: { article_id: article.id }
         article.reload
       end
       it { expect { register_vote }.to change { Vote.count }.by(1) }
@@ -32,7 +32,7 @@ RSpec.describe VotesController, type: :controller do
 
     describe "POST #create for Topic" do
       def register_vote
-        post :create, topic_id: topic.id
+        post :create, params: { topic_id: topic.id }
         topic.reload
       end
       it { expect { register_vote }.to change { Vote.count }.by(1) }

@@ -136,7 +136,7 @@ group :development, :test do
   gem 'ffaker'
   gem 'spring'
   gem 'table_print'
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '~> 3.5.0'
   gem 'rspec-kickstarter'
   gem 'to_factory'
   gem 'traceroute'

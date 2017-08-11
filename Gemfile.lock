@@ -673,13 +673,9 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (~> 3.2, >= 3.2.1)
-    sidekiq-scheduler (2.1.8)
-      redis (~> 3)
-      rufus-scheduler (~> 3.2)
-      sidekiq (>= 3)
-      tilt (>= 1.4.0)
-    sidekiq-statistic (1.2.0)
-      sidekiq (>= 3.3.4, < 5)
+    sidekiq-cron (0.6.3)
+      rufus-scheduler (>= 3.3.0)
+      sidekiq (>= 4.2.1)
     simple_enum (2.3.0)
       activesupport (>= 4.0.0)
     simple_form (3.5.0)
@@ -857,8 +853,7 @@ DEPENDENCIES
   shoulda
   shoulda-matchers
   sidekiq
-  sidekiq-scheduler
-  sidekiq-statistic
+  sidekiq-cron (~> 0.6.3)
   simple_enum
   simple_form
   simplecov

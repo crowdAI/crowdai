@@ -81,8 +81,7 @@ gem 'gibbon'
 
 # background processing
 gem 'sidekiq'
-gem 'sidekiq-statistic'
-gem 'sidekiq-scheduler'
+gem "sidekiq-cron", "~> 0.6.3"
 gem 'sinatra', :require => nil
 
 # static pages, sitemap

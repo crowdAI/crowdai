@@ -1,5 +1,3 @@
-require 'sidekiq-scheduler'
-
 class EmailDigestJob < ApplicationJob
 
   def perform(digest_type)

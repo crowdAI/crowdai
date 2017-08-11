@@ -1,0 +1,6 @@
+test:
+  cron: "*/1 * * * *" # execute at every 30 minutes
+  class: "EmailDigestJob"
+  queue: default
+  args:
+    digest_type: "daily"

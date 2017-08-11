@@ -12,7 +12,7 @@ RSpec.describe EmailDigestJob, type: :job do
     end
 
     it 'is placed on the default queue' do
-      expect(described_class.new.queue_name).to eq('default')
+      expect(described_class.new.queue_name).to eq('digest')
     end
 
     it 'executes with no errors' do
@@ -29,7 +29,7 @@ RSpec.describe EmailDigestJob, type: :job do
     end
 
     it 'is placed on the default queue' do
-      expect(described_class.new.queue_name).to eq('default')
+      expect(described_class.new.queue_name).to eq('digest')
     end
 
     it 'executes with no errors' do

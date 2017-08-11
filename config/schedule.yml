@@ -1,13 +1,13 @@
 daily_digest:
   cron: "* * * * *" # execute at every minute
   class: "EmailDigestJob"
-  queue: default
+  queue: digest
   args:
     digest_type: "daily"
 
 weekly_digest:
   cron: "* * * * *" # execute at every minute
   class: "EmailDigestJob"
-  queue: default
+  queue: digest
   args:
     digest_type: "weekly"

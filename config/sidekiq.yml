@@ -3,4 +3,5 @@
 :logfile: ./log/sidekiq.log
 :queues:
   - default
+  - digest
   - [high_priority, 2]

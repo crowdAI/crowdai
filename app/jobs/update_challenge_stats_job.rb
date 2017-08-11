@@ -1,4 +1,5 @@
 class UpdateChallengeStatsJob < ApplicationJob
+  queue_as :default
 
   def perform
     update_submissions

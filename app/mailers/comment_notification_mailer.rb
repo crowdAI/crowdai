@@ -14,7 +14,7 @@ class CommentNotificationMailer < ApplicationMailer
 
     options = {
       participant_id:   participant.id,
-      subject:          "[crowdAI/#{challenge.challenge}] #{topic.topic}",
+      subject:          "[crowdAI/#{challenge.challenge}] New discussion comment",
       to:               participant.email,
       template:         "crowdAI General Template",
       global_merge_vars: [

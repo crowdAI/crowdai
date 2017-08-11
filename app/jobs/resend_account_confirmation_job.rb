@@ -1,4 +1,5 @@
 class ResendAccountConfirmationJob < ApplicationJob
+  queue_as :default
 
   def perform(participant_id)
     participant = Participant.find(participant_id)

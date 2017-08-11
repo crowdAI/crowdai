@@ -1,4 +1,5 @@
 class SubmissionGradedNotificationJob < ApplicationJob
+  queue_as :default
 
   def perform(submission)
     recipient_ids(submission).each do |participant_id|

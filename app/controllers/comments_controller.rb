@@ -30,8 +30,20 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @comment = Comment.find(params[:id])
     render 'edit'
+  end
+
+  def update
+    if @comment.update(comment_params)
+      redirect_to new_topic_comment_url(@topic), notice: 'Comment was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @comment.update(comment_markdown: '***This comment has been redacted by the administrator***')
+    redirect_to new_topic_comment_url(@topic), notice: 'Comment was successfully redacted.'
   end
 
   private

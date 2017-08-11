@@ -3,7 +3,6 @@ class LandingPageController < ApplicationController
   skip_filter :authenticate_participant!
 
   def index
-    Rails.logger.info "sanity check"
     @challenges = policy_scope(Challenge).limit(5)
   end
 

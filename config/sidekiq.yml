@@ -4,3 +4,16 @@
 :queues:
   - default
   - [high_priority, 2]
+
+
+:schedule:
+  daily_digest:
+    cron: '0 * * * * *'   # every minute
+    class: EmailDigestJob
+    args: ['daily']
+
+:schedule:
+  weekly_digest:
+    cron: '0 * * * * *'   # every minute
+    class: EmailDigestJob
+    args: ['weekly']

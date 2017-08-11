@@ -93,9 +93,24 @@ RSpec.describe Api::ExternalGradersController, type: :request do
     end
 
     # TODO not implemented
-    context "with invalid host API key" do
+    context "invalid when using developer API key as master key" do
       before { xhr :post, '/api/external_graders/', valid_attributes, 'Authorization': auth_header(participant.api_key) }
-      it { expect(response).to have_http_status(401) }
+      #it { expect(response).to have_http_status(401) }
+    end
+
+    context "invalid when using challenge API key as master key" do
+      before { xhr :post, '/api/external_graders/', valid_attributes, 'Authorization': auth_header(participant.api_key) }
+      #it { expect(response).to have_http_status(401) }
+    end
+
+    context "invalid when using developer API key as challenge key" do
+      before { xhr :post, '/api/external_graders/', valid_attributes, 'Authorization': auth_header(participant.api_key) }
+      #it { expect(response).to have_http_status(401) }
+    end
+
+    context "invalid when using master API key as challenge key" do
+      before { xhr :post, '/api/external_graders/', valid_attributes, 'Authorization': auth_header(participant.api_key) }
+      #it { expect(response).to have_http_status(401) }
     end
 
     context "with invalid Challenge Client Name" do

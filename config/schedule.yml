@@ -1,6 +1,13 @@
-test:
-  cron: "*/1 * * * *" # execute at every 30 minutes
+daily_digest:
+  cron: "* * * * *" # execute at every minute
   class: "EmailDigestJob"
   queue: default
   args:
     digest_type: "daily"
+
+weekly_digest:
+  cron: "* * * * *" # execute at every minute
+  class: "EmailDigestJob"
+  queue: default
+  args:
+    digest_type: "weekly"

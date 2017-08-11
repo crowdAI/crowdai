@@ -3,7 +3,7 @@ class EmailDigestJob < ApplicationJob
 
   def perform(digest_type)
     logger.info "starting EmailDigestJob 1"
-    Rails.logger.info "starting EmailDigestJob 1"
+    Rails.logger.info "starting EmailDigestJob 2"
 
     if digest_type == 'daily'
       daily_digest_participant_ids.each do |participant_id|

@@ -3,6 +3,7 @@ require 'sidekiq-scheduler'
 class EmailDigestJob < ApplicationJob
 
   def perform(digest_type)
+    Rails.logger.info "starting EmailDigestJob"
     if digest_type == 'daily'
       daily_digest_participant_ids.each do |participant_id|
         Rails.logger.info "Sending Daily digest for participant: #{participant_id}"

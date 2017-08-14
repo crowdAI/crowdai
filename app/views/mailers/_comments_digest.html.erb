@@ -4,9 +4,9 @@
   <tbody>
     <% comments.each do |comment| %>
     <tr>
-      <th>
+      <td>
         <%= link_to comment.topic.topic, new_topic_comment_url(comment.topic) %> by <%= comment.participant.name %>.
-      </th>
+      </td>
     </tr>
     <% end %>
   </tbody>

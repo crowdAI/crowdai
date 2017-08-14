@@ -27,13 +27,23 @@ class EmailDigestMailer < ApplicationMailer
 
   def summarize_comment_notification_mailer(participant,start_dttm)
     comment_ids = CommentsDigestQuery.new(participant.id,start_dttm).call
-    comments = Comment.where(id: comment_ids).order('created_at DESC')
-    body = render(partial: "mailers/comments_digest", locals: { comments: comments })
+    comments = Comment.where(id: comment_ids).order('challenge_id DESC, created_at DESC')
+    if comments.any?
+      body = render(partial: "mailers/comments_digest", locals: { comments: comments })
+    else
+      body = "<span></span>"
+    end
+    return body
   end
 
   def summarize_submission_notification_mailer(participant,start_dttm)
-    submissions = Submission.where('created_at >= ?',start_dttm).order('created_at DESC')
-    body = render(partial: "mailers/submissions_digest", locals: { submission: submissions })
+    submissions = Submission.where('created_at >= ?',start_dttm).order('challenge_id DESC, created_at DESC')
+    if submissions.any?
+      body = render(partial: "mailers/submissions_digest", locals: { submission: submissions })
+    else
+      body = "<span></span>"
+    end
+    return body
   end
 
   def format_options(participant,body)

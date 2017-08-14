@@ -1,20 +1,21 @@
 class EmailDigestJob < ApplicationJob
   queue_as :digest
 
-  def perform(digest_type)
-    Rails.logger.info "EmailDigestJob: digest_type: #{digest_type}"
-    if digest_type["digest_type"] == 'daily'
-      Rails.logger.info "EmailDigestJob: running daily #{daily_digest_participant_ids}"
+  def perform(digest_params)
+    digest_type = digest_params["digest_type"]
+    if digest_type == 'daily'
       daily_digest_participant_ids.each do |participant_id|
         Rails.logger.info "EmailDigestJob: Sending Daily digest for participant: #{participant_id}"
-        EmailDigestMailer.new.sendmail(1,'daily')
+        #EmailDigestMailer.new.sendmail(1,'daily')
       end
+      EmailDigestMailer.new.sendmail(1,'daily')
     end
-    if digest_type["digest_type"] == 'weekly'
+    if digest_type == 'weekly'
       weekly_digest_participant_ids.each do |participant_id|
         Rails.logger.info "EmailDigestJob: Sending Weekly digest participant: #{participant_id}"
-        EmailDigestMailer.new.sendmail(1,'weekly')
+        #EmailDigestMailer.new.sendmail(1,'weekly')
       end
+      EmailDigestMailer.new.sendmail(1,'weekly')
     end
   end
 

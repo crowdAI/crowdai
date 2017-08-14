@@ -1,14 +1,14 @@
 <table>
   <thead>
     <tr>
-      <th><h3>Comments</th>
+      <th><h3>Comments</h3></th>
     </tr>
   </thead>
   <tbody>
     <% comments.each do |comment| %>
     <tr>
       <th>
-        Comment in <%= link_to comment.topic.topic, new_topic_comment_url(comment.topic) %> by <%= comment.participant.name %>.
+        <%= link_to comment.topic.topic, new_topic_comment_url(comment.topic) %> by <%= comment.participant.name %>.
       </th>
     </tr>
     <% end %>

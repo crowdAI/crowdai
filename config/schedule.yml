@@ -1,12 +1,12 @@
 daily_digest:
-  cron: "* * * * *" # execute at every minute
+  cron: "30 2 * * *" # 2:30 AM every day
   class: "EmailDigestJob"
   queue: digest
   args:
     digest_type: "daily"
 
 weekly_digest:
-  cron: "* * * * *" # execute at every minute
+  cron: "30 *2 * * 0" # 2:30 AM every Sunday
   class: "EmailDigestJob"
   queue: digest
   args:

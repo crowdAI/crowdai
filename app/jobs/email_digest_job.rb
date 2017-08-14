@@ -4,8 +4,7 @@ class EmailDigestJob < ApplicationJob
   def perform(digest_type)
     Rails.logger.info "EmailDigestJob: digest_type: #{digest_type}"
     if digest_type == 'daily'
-      Rails.logger.info 'EmailDigestJob: running daily'
-      Rails.logger.info daily_digest_participant_ids
+      Rails.logger.info "EmailDigestJob: running daily #{daily_digest_participant_ids}"
       daily_digest_participant_ids.each do |participant_id|
         Rails.logger.info "EmailDigestJob: Sending Daily digest for participant: #{participant_id}"
         EmailDigestMailer.new.sendmail(1,'daily')

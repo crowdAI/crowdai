@@ -682,6 +682,8 @@ GEM
     sidekiq-cron (0.6.3)
       rufus-scheduler (>= 3.3.0)
       sidekiq (>= 4.2.1)
+    sidekiq-history (0.0.9)
+      sidekiq (>= 3.0.0)
     simple_enum (2.3.0)
       activesupport (>= 4.0.0)
     simple_form (3.5.0)
@@ -862,6 +864,7 @@ DEPENDENCIES
   shoulda-matchers
   sidekiq
   sidekiq-cron (~> 0.6.3)
+  sidekiq-history
   simple_enum
   simple_form
   simplecov

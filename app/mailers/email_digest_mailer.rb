@@ -39,7 +39,7 @@ class EmailDigestMailer < ApplicationMailer
   end
 
   def comments(participant,start_dttm)
-    comment_ids = CommentsDigestQuery.new(participant.id,start_dttm).call
+    comment_ids = CommentsDigestQuery.new(participant,start_dttm).call
     comments = Comment.where(id: comment_ids).order('created_at DESC')
   end
 

@@ -4,8 +4,9 @@
   <tbody>
     <% submission.each do |submission| %>
     <tr>
+      <td><%= submission.participant.name %></td>
       <td>
-        <%= link_to submission.challenge.challenge, challenge_url(submission.challenge) %> by <%= submission.participant.name %>.
+        <%= link_to submission.challenge.challenge, challenge_url(submission.challenge) %>
       </td>
       <td>
         <%= submission.score %>

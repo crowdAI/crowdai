@@ -1,14 +1,7 @@
 <h3>Comments Summary</h3>
 
-<table>
-  <tbody>
-    <% comments.each do |comment| %>
-    <tr>
-      <td>
-        <%= link_to comment.topic.topic, new_topic_comment_url(comment.topic) %> by <%= comment.participant.name %>.
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<% comments.each do |comment| %>
+  <%= link_to comment.topic.topic, new_topic_comment_url(comment.topic) %> by <%= comment.participant.name %>.
+  <br/>
+<% end %>  
 <hr/>

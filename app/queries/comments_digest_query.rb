@@ -26,7 +26,7 @@ class CommentsDigestQuery
              email_preferences p
        WHERE followable_type = 'Challenge'
          AND f.participant_id = p.participant_id
-         AND f.followable_id = (SELECT challenge_id
+         AND f.followable_id IN (SELECT challenge_id
                                   FROM topics
                                  WHERE id IN (SELECT topic_id
                                                 FROM comments

@@ -26,6 +26,7 @@ class Api::OpensimGradingsController < Api::BaseController
                                       challenge_id: params[:challenge_id],
                                       description_markdown: 'Submitted externally.')
       SubmissionGrade.create!(grading_params(submission))
+      notify_admins(submission)
       message = "Participant: #{participant.name}, submission: #{params[:id]} scored"
       status = :accepted
     rescue => e
@@ -45,8 +46,9 @@ class Api::OpensimGradingsController < Api::BaseController
       raise ActiveRecord::RecordNotFound if submission.nil?
       key_valid = validate_s3_key(params[:s3_key])
       raise InvalidS3Key.new(s3_key: params[:s3_key]) if !key_valid
-      ProcessAiGymGifJob.perform_later(submission.id,params[:s3_key])
-      message = "Animated GIF accepted for processing."
+      #ProcessAiGymGifJob.perform_later(submission.id,params[:s3_key])
+      message = "Animated GIF NOT accepted for processing. This feature is deprecated."
+      notify_admins(submission)
     rescue => e
       Rails.logger.error e
       Rails.logger.error params
@@ -60,6 +62,10 @@ class Api::OpensimGradingsController < Api::BaseController
 
   def validate_s3_key(s3_key)
     S3Service.new(s3_key,shared_bucket=true).valid_key?
+  end
+
+  def notify_admins(submission)
+    Admin::SubmissionNotificationJob.perform_later(submission)
   end
 
 

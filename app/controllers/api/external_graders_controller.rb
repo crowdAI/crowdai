@@ -84,6 +84,7 @@ class Api::ExternalGradersController < Api::BaseController
                          media_thumbnail: params[:media_thumbnail],
                          media_content_type: params[:media_content_type]})
       submission.save
+      notify_admins(submission)
       message = "Submission #{submission.id} for participant #{submission.participant_id} updated"
       status = :accepted
     rescue => e

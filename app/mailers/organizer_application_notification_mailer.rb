@@ -7,7 +7,6 @@ class OrganizerApplicationNotificationMailer < ApplicationMailer
 
 
   def format_options(organizer_application)
-
     options = {
       participant_id:   nil,
       subject:          "Organizer Application Received",

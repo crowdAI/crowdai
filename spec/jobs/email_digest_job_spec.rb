@@ -5,14 +5,15 @@ RSpec.describe EmailDigestJob, type: :job do
 
   describe 'executes the daily digest' do
     let(:email_preference) { create :email_preference, :daily }
-    subject(:job) { described_class.perform_later('daily') }
+    let(:mailer) { create :mailer, mailer_classname: 'EmailDigestMailer' }
+    subject(:job) { described_class.perform_later({"digest_type":"daily"}) }
 
     it 'queues the job' do
       expect { job }.to change(ActiveJob::Base.queue_adapter.enqueued_jobs, :size).by(1)
     end
 
     it 'is placed on the default queue' do
-      expect(described_class.new.queue_name).to eq('digest')
+      expect(described_class.new.queue_name).to eq("digest")
     end
 
     it 'executes with no errors' do
@@ -22,7 +23,7 @@ RSpec.describe EmailDigestJob, type: :job do
 
   describe 'executes the daily digest' do
     let(:email_preference) { create :email_preference, :weekly }
-    subject(:job) { described_class.perform_later('weekly') }
+    subject(:job) { described_class.perform_later({"digest_type":"weekly"}) }
 
     it 'queues the job' do
       expect { job }.to change(ActiveJob::Base.queue_adapter.enqueued_jobs, :size).by(1)

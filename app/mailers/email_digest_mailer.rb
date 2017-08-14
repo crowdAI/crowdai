@@ -28,7 +28,7 @@ class EmailDigestMailer < ApplicationMailer
   end
 
   def build_body(participant,digest_type,comments,submissions)
-    body = body_header(digest_type)
+    body = body_header(digest_type) << '<br/>'
     body << render_comments(comments) << '<br/>'
     body << render_submissions(submissions) << '<br/>'
     return "<div>#{body}</div>"

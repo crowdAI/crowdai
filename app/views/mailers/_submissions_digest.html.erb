@@ -1,23 +1,7 @@
 <h3>Submissions Summary</h3>
 
-<table>
-  <tbody>
-    <% submission.each do |submission| %>
-    <tr>
-      <td><%= submission.participant.name %></td>
-      <td>
-        <%= link_to submission.challenge.challenge, challenge_url(submission.challenge) %>
-      </td>
-      <td>
-        <%= submission.score %>
-      </td>
-      <td>
-        <% if submission.score_secondary %>
-          <%= submission.score_secondary %>
-        <% end %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<% submission.each do |submission| %>
+  <%= link_to submission.challenge.challenge, challenge_url(submission.challenge) %> by <%= submission.participant.name %>.
+  <br/>
+<% end %>
 <hr/>

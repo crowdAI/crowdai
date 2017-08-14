@@ -3,5 +3,5 @@
 <% comments.each do |comment| %>
   <%= link_to comment.topic.topic, new_topic_comment_url(comment.topic) %> by <%= comment.participant.name %>.
   <br/>
-<% end %>  
+<% end %>
 <hr/>

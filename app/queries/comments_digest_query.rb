@@ -16,7 +16,7 @@ class CommentsDigestQuery
              email_preferences p
        WHERE c.topic_id IN (SELECT topic_id
                               FROM comments
-                             WHERE id = #{@participant_id}
+                             WHERE participant_id = #{@participant_id}
                                AND created_at >= '#{@start_dttm}')
          AND p.participant_id = c.participant_id
          AND p.mentions IS TRUE
@@ -30,7 +30,7 @@ class CommentsDigestQuery
                                   FROM topics
                                  WHERE id IN (SELECT topic_id
                                                 FROM comments
-                                               WHERE id = #{@participant_id}
+                                               WHERE participant_id = #{@participant_id}
                                                  AND created_at >= '#{@start_dttm}'))
          AND p.challenges_followed IS TRUE
     ]

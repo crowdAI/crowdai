@@ -1,8 +1,5 @@
 function toggleVideoPlayers(){
   var $videos = $('video');
-  $videos.each(function(){
-    this.pause();
-  });
   if ($videos.is(':in-viewport')) {
     $videos.each(function(){
       this.loop = true;

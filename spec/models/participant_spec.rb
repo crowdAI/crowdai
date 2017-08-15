@@ -189,13 +189,13 @@ describe Participant do
       end
 
       it 'verify preference flags are correctly set' do
-        email = participant.email_preferences.first
-        expect(email.opt_out_all).to be false
-        expect(email.newsletter).to be true
-        expect(email.my_leaderboard).to be true
-        expect(email.any_post).to be true
-        expect(email.my_topic_post).to be true
-        expect(email.any_leaderboard).to be true
+        pref = participant.email_preferences.first
+        expect(pref.newsletter).to be true
+        expect(pref.challenges_followed).to be true
+        expect(pref.mentions).to be true
+        expect(pref.receive_every_email).to be false
+        expect(pref.receive_daily_digest).to be true
+        expect(pref.receive_weekly_digest).to be false
       end
     end
 

@@ -1,9 +1,8 @@
-function toggleVideoPlayers(){
+function startVideoPlayers(){
   var $videos = $('video');
   if ($videos.is(':in-viewport')) {
     $videos.each(function(){
-      this.loop = true;
-      this.play();
+      var playPromise = this.play();
     });
   }
 }
@@ -20,7 +19,7 @@ $(document).on('turbolinks:load', function() {
         clearTimeout(scrollTimeout);
       }
       scrollTimeout = setTimeout(function() {
-        //toggleVideoPlayers();
+        startVideoPlayers();
       }, 2000);
     });
   }

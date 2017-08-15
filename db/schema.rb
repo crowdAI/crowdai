@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815063423) do
+ActiveRecord::Schema.define(version: 20170815134441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -222,6 +222,25 @@ ActiveRecord::Schema.define(version: 20170815063423) do
     t.boolean  "paused",           default: false
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+  end
+
+  create_table "old_leaderboard", id: false, force: :cascade do |t|
+    t.integer  "id"
+    t.bigint   "row_num"
+    t.integer  "submission_id"
+    t.integer  "challenge_id"
+    t.integer  "participant_id"
+    t.string   "slug"
+    t.integer  "organizer_id"
+    t.string   "name"
+    t.bigint   "entries"
+    t.float    "score"
+    t.float    "score_secondary"
+    t.string   "media_large"
+    t.string   "media_thumbnail"
+    t.string   "media_content_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "organizer_applications", force: :cascade do |t|
@@ -443,25 +462,6 @@ ActiveRecord::Schema.define(version: 20170815063423) do
     ORDER BY l.score DESC, l.score_secondary;
   SQL
 
-  create_view "participant_submissions",  sql_definition: <<-SQL
-      SELECT s.id,
-      s.challenge_id,
-      s.participant_id,
-      p.name,
-      s.grading_status_cd,
-      s.post_challenge,
-      s.score,
-      s.score_secondary,
-      count(f.*) AS files,
-      s.created_at
-     FROM participants p,
-      (submissions s
-       LEFT JOIN submission_files f ON ((f.submission_id = s.id)))
-    WHERE (s.participant_id = p.id)
-    GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
-    ORDER BY s.created_at DESC;
-  SQL
-
   create_view "participant_challenges",  sql_definition: <<-SQL
       SELECT p.id,
       pc.challenge_id,
@@ -514,9 +514,28 @@ ActiveRecord::Schema.define(version: 20170815063423) do
     WHERE ((pc.participant_id = p.id) AND (pc.challenge_id = c.id));
   SQL
 
+  create_view "participant_submissions",  sql_definition: <<-SQL
+      SELECT s.id,
+      s.challenge_id,
+      s.participant_id,
+      p.name,
+      s.grading_status_cd,
+      s.post_challenge,
+      s.score,
+      s.score_secondary,
+      count(f.*) AS files,
+      s.created_at
+     FROM participants p,
+      (submissions s
+       LEFT JOIN submission_files f ON ((f.submission_id = s.id)))
+    WHERE (s.participant_id = p.id)
+    GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
+    ORDER BY s.created_at DESC;
+  SQL
+
   create_view "leaderboards",  sql_definition: <<-SQL
       SELECT l.id,
-      l.row_num,
+      row_number() OVER (PARTITION BY l.challenge_id ORDER BY l.score DESC, l.score_secondary) AS row_num,
       l.id AS submission_id,
       l.challenge_id,
       l.participant_id,
@@ -531,7 +550,7 @@ ActiveRecord::Schema.define(version: 20170815063423) do
       l.media_content_type,
       l.created_at,
       l.updated_at
-     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS row_num,
+     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS submission_ranking,
               s.id,
               s.challenge_id,
               s.participant_id,
@@ -555,8 +574,8 @@ ActiveRecord::Schema.define(version: 20170815063423) do
                     GROUP BY c_1.challenge_id, c_1.participant_id) cnt
             WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l,
       challenges c
-    WHERE ((l.row_num = 1) AND (c.id = l.challenge_id))
-    ORDER BY l.score DESC, l.score_secondary;
+    WHERE ((l.submission_ranking = 1) AND (c.id = l.challenge_id))
+    ORDER BY l.challenge_id, (row_number() OVER (PARTITION BY l.challenge_id ORDER BY l.score DESC, l.score_secondary));
   SQL
 
 end

@@ -1,6 +1,6 @@
 class Leaderboard::Cell < Template::Cell
-  include Kaminari::Cells
 
+=begin
   def show
     render
   end
@@ -13,13 +13,7 @@ class Leaderboard::Cell < Template::Cell
     model
   end
 
-  def challenge
-    options[:challenge]
-  end
 
-  def post_challenge
-    options[:post_challenge]
-  end
 
   def submissions
     options[:submissions]
@@ -39,6 +33,15 @@ class Leaderboard::Cell < Template::Cell
 
   def submission(id)
     Submission.find(id)
+  end
+=end
+
+  def challenge
+    options[:challenge]
+  end
+
+  def post_challenge
+    options[:post_challenge]
   end
 
   def cols

@@ -4,19 +4,9 @@ class Leaderboard::Cell < Template::Cell
   def show
     render
   end
-
-  def submission_rows
-    render :submission_rows
-  end
-
+  
   def leaderboard
     model
-  end
-
-
-
-  def submissions
-    options[:submissions]
   end
 
   def table_head
@@ -38,6 +28,10 @@ class Leaderboard::Cell < Template::Cell
 
   def challenge
     options[:challenge]
+  end
+
+  def submissions
+    options[:submissions]
   end
 
   def post_challenge
@@ -64,6 +58,10 @@ class Leaderboard::Cell < Template::Cell
       $("#{j(submission_rows)}").insertAfter("#participant-#{participant_id}");
       $("#participant-link-#{participant_id}").replaceWith("#{j(hide_submissions_link(participant_id,challenge_id))}");
     }
+  end
+
+  def submission_rows
+    render :submission_rows
   end
 
   def hide_submissions_link(participant_id,challenge_id)

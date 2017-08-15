@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815134441) do
+ActiveRecord::Schema.define(version: 20170815152114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -224,25 +224,6 @@ ActiveRecord::Schema.define(version: 20170815134441) do
     t.datetime "updated_at",                       null: false
   end
 
-  create_table "old_leaderboard", id: false, force: :cascade do |t|
-    t.integer  "id"
-    t.bigint   "row_num"
-    t.integer  "submission_id"
-    t.integer  "challenge_id"
-    t.integer  "participant_id"
-    t.string   "slug"
-    t.integer  "organizer_id"
-    t.string   "name"
-    t.bigint   "entries"
-    t.float    "score"
-    t.float    "score_secondary"
-    t.string   "media_large"
-    t.string   "media_thumbnail"
-    t.string   "media_content_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "organizer_applications", force: :cascade do |t|
     t.string   "contact_name"
     t.string   "email"
@@ -427,39 +408,23 @@ ActiveRecord::Schema.define(version: 20170815134441) do
   add_foreign_key "topics", "participants"
   add_foreign_key "votes", "participants"
 
-  create_view "ongoing_leaderboards",  sql_definition: <<-SQL
-      SELECT l.row_num,
-      l.id,
-      l.challenge_id,
-      l.participant_id,
-      l.name,
-      l.entries,
-      l.score,
-      l.score_secondary,
-      l.post_challenge,
-      l.created_at,
-      l.updated_at
-     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS row_num,
-              s.id,
-              s.challenge_id,
-              s.participant_id,
-              p.name,
-              cnt.entries,
-              s.score,
-              s.score_secondary,
-              s.post_challenge,
-              s.created_at,
-              s.updated_at
-             FROM submissions s,
-              participants p,
-              ( SELECT c.challenge_id,
-                      c.participant_id,
-                      count(c.*) AS entries
-                     FROM submissions c
-                    GROUP BY c.challenge_id, c.participant_id) cnt
-            WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l
-    WHERE (l.row_num = 1)
-    ORDER BY l.score DESC, l.score_secondary;
+  create_view "participant_submissions",  sql_definition: <<-SQL
+      SELECT s.id,
+      s.challenge_id,
+      s.participant_id,
+      p.name,
+      s.grading_status_cd,
+      s.post_challenge,
+      s.score,
+      s.score_secondary,
+      count(f.*) AS files,
+      s.created_at
+     FROM participants p,
+      (submissions s
+       LEFT JOIN submission_files f ON ((f.submission_id = s.id)))
+    WHERE (s.participant_id = p.id)
+    GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
+    ORDER BY s.created_at DESC;
   SQL
 
   create_view "participant_challenges",  sql_definition: <<-SQL
@@ -514,25 +479,6 @@ ActiveRecord::Schema.define(version: 20170815134441) do
     WHERE ((pc.participant_id = p.id) AND (pc.challenge_id = c.id));
   SQL
 
-  create_view "participant_submissions",  sql_definition: <<-SQL
-      SELECT s.id,
-      s.challenge_id,
-      s.participant_id,
-      p.name,
-      s.grading_status_cd,
-      s.post_challenge,
-      s.score,
-      s.score_secondary,
-      count(f.*) AS files,
-      s.created_at
-     FROM participants p,
-      (submissions s
-       LEFT JOIN submission_files f ON ((f.submission_id = s.id)))
-    WHERE (s.participant_id = p.id)
-    GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
-    ORDER BY s.created_at DESC;
-  SQL
-
   create_view "leaderboards",  sql_definition: <<-SQL
       SELECT l.id,
       row_number() OVER (PARTITION BY l.challenge_id ORDER BY l.score DESC, l.score_secondary) AS row_num,
@@ -571,6 +517,51 @@ ActiveRecord::Schema.define(version: 20170815134441) do
                       count(c_1.*) AS entries
                      FROM submissions c_1
                     WHERE (c_1.post_challenge = false)
+                    GROUP BY c_1.challenge_id, c_1.participant_id) cnt
+            WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l,
+      challenges c
+    WHERE ((l.submission_ranking = 1) AND (c.id = l.challenge_id))
+    ORDER BY l.challenge_id, (row_number() OVER (PARTITION BY l.challenge_id ORDER BY l.score DESC, l.score_secondary));
+  SQL
+
+  create_view "ongoing_leaderboards",  sql_definition: <<-SQL
+      SELECT l.id,
+      row_number() OVER (PARTITION BY l.challenge_id ORDER BY l.score DESC, l.score_secondary) AS row_num,
+      l.id AS submission_id,
+      l.challenge_id,
+      l.participant_id,
+      l.slug,
+      c.organizer_id,
+      l.name,
+      l.entries,
+      l.score,
+      l.score_secondary,
+      l.media_large,
+      l.media_thumbnail,
+      l.media_content_type,
+      l.created_at,
+      l.updated_at
+     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS submission_ranking,
+              s.id,
+              s.challenge_id,
+              s.participant_id,
+              p.slug,
+              p.name,
+              cnt.entries,
+              s.score,
+              s.score_secondary,
+              s.media_large,
+              s.media_thumbnail,
+              s.media_content_type,
+              s.created_at,
+              s.updated_at
+             FROM submissions s,
+              participants p,
+              ( SELECT c_1.challenge_id,
+                      c_1.participant_id,
+                      count(c_1.*) AS entries
+                     FROM submissions c_1
+                    WHERE (c_1.post_challenge = ANY (ARRAY[true, false]))
                     GROUP BY c_1.challenge_id, c_1.participant_id) cnt
             WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l,
       challenges c

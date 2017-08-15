@@ -4,11 +4,7 @@
 #
 #  id                    :integer          not null, primary key
 #  participant_id        :integer
-#  opt_out_all           :boolean          default(FALSE)
 #  newsletter            :boolean          default(TRUE)
-#  my_leaderboard        :boolean          default(TRUE)
-#  any_post              :boolean          default(TRUE)
-#  my_topic_post         :boolean          default(TRUE)
 #  any_leaderboard       :boolean          default(TRUE)
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
@@ -29,4 +25,15 @@
 
 class EmailPreference < ApplicationRecord
   belongs_to :participant
+  after_initialize :set_defaults
+
+  def set_defaults
+    self.newsletter = true
+    self.challenges_followed = true
+    self.mentions = true
+    self.receive_every_email = false
+    self.receive_daily_digest = true
+    self.receive_weekly_digest = false
+  end
+
 end

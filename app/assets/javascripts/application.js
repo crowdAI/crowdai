@@ -21,6 +21,7 @@
 //= require pages/leaderboards_index
 //= require pages/dataset_files_index
 //= require pages/participants_edit
+//= require pages/email_preferences_edit
 
 
 $(document).on('ajax:error', function(xhr, status, error) {

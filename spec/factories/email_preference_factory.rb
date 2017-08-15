@@ -4,11 +4,7 @@
 #
 #  id                    :integer          not null, primary key
 #  participant_id        :integer
-#  opt_out_all           :boolean          default(FALSE)
 #  newsletter            :boolean          default(TRUE)
-#  my_leaderboard        :boolean          default(TRUE)
-#  any_post              :boolean          default(TRUE)
-#  my_topic_post         :boolean          default(TRUE)
 #  any_leaderboard       :boolean          default(TRUE)
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
@@ -30,12 +26,12 @@
 FactoryGirl.define do
   factory :email_preference, class: EmailPreference do
     participant
-    newsletter true
-    challenges_followed true
-    mentions true
-    receive_every_email true
-    receive_daily_digest false
-    receive_weekly_digest false
+    #newsletter true
+    #challenges_followed true
+    #mentions true
+    #receive_every_email true
+    #receive_daily_digest false
+    #receive_weekly_digest false
 
     trait :daily do
       receive_every_email false

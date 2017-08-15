@@ -1,14 +1,3 @@
-# == Schema Information
-#
-# Table name: mailers
-#
-#  id               :integer          not null, primary key
-#  mailer_classname :string
-#  paused           :boolean          default(FALSE)
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#
-
 require 'rails_helper'
 =begin
 RSpec.describe Mailer, type: :model do

@@ -1,30 +1,3 @@
-# == Schema Information
-#
-# Table name: articles
-#
-#  id             :integer          not null, primary key
-#  article        :string
-#  participant_id :integer
-#  published      :boolean          default(FALSE)
-#  vote_count     :integer          default(0)
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  category       :string
-#  view_count     :integer          default(0)
-#  summary        :string
-#  slug           :string
-#  image_file     :string
-#
-# Indexes
-#
-#  index_articles_on_participant_id  (participant_id)
-#  index_articles_on_slug            (slug) UNIQUE
-#
-# Foreign Keys
-#
-#  fk_rails_...  (participant_id => participants.id)
-#
-
 class Article < ApplicationRecord
   #searchkick
   include FriendlyId

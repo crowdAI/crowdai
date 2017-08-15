@@ -14,7 +14,6 @@ gem 'pundit'
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
 gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources.git'
 gem 'active_admin_datetimepicker'
-# https://dev.mikamai.com/2015/05/25/xls-export-in-activeadmin/
 
 # monitoring
 #gem "brakeman", :require => false
@@ -125,8 +124,6 @@ group :development do
   gem 'seed_dump'
   gem 'guard'
   gem 'rails-erd'
-  gem 'railroady'
-  gem 'annotate'
   gem 'sdoc', '~> 0.4.0'
   gem 'web-console', '~> 2.0'
   gem 'scss_lint', require: false

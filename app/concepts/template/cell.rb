@@ -8,6 +8,7 @@ class Template::Cell < Cell::Concept
   include ActionView::Helpers::NumberHelper
   include ActionView::Helpers::RecordTagHelper
 
+
   def current_user
     current_participant
   end

@@ -1,4 +1,5 @@
 class Leaderboard::Cell < Template::Cell
+  include Kaminari::Cells
 
   def show
     render

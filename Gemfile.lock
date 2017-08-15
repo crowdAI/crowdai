@@ -443,6 +443,9 @@ GEM
     kaminari-activerecord (1.0.1)
       activerecord
       kaminari-core (= 1.0.1)
+    kaminari-cells (0.0.4)
+      cells (>= 4.0.0, <= 5.0.0)
+      kaminari (>= 0.16.0)
     kaminari-core (1.0.1)
     kramdown (1.14.0)
     launchy (2.4.3)
@@ -818,6 +821,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   kaminari
+  kaminari-cells
   kramdown
   launchy
   lodash-rails

@@ -2,4 +2,5 @@
   <%= concept(Challenge::Cell::ChallengeMasthead, @challenge) %>
   <%= concept(Challenge::Cell::ChallengeSubnav, @challenge, tab: 'leaderboard') %>
   <%= concept(Leaderboard::Cell, @leaderboard, challenge: @challenge) %>
+  <%= render partial: 'shared/load_more', locals: { collection: @leaderboard } %>
 </content>

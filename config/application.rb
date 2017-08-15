@@ -25,7 +25,6 @@ module Crowdai
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
     config.active_job.queue_adapter = :sidekiq
     #config.autoload_paths += Dir[Rails.root.join('app', 'models', '{*/}')]
     config.secret_key_base = ENV["SECRET_KEY_BASE"]

@@ -52,6 +52,12 @@ class Participant < ApplicationRecord
                 account_disabled_dttm: Time.now )
   end
 
+  def enable_account
+    self.update(account_disabled: false,
+                account_disabled_reason: nil,
+                account_disabled_dttm: nil )
+  end
+
   def active_for_authentication?
     super && self.account_disabled == false
   end

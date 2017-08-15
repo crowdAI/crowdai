@@ -27,9 +27,27 @@ ActiveAdmin.register Participant do
   filter :linkedin
   filter :location
 
+  member_action :enable_account do
+    resource.enable_account
+    redirect_to admin_participant_path(resource)
+  end
+
+  member_action :disable_account do
+    resource.disable_account("Account disabled by administrator #{current_participant.name}")
+    redirect_to admin_participant_path(resource)
+  end
+
   controller do
     def permitted_params
       params.permit!
+    end
+  end
+
+  action_item :disable, only: :show do
+    if resource.account_disabled
+      link_to 'Enable account', enable_account_admin_participant_path(resource)
+    else
+      link_to 'Disable account', disable_account_admin_participant_path(resource)
     end
   end
 

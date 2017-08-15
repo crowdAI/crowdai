@@ -1,5 +1,4 @@
 ActiveAdmin.register Participant do
-  permit_params :email, :password, :password_confirmation
 
   controller do
     def find_resource
@@ -54,5 +53,22 @@ ActiveAdmin.register Participant do
     end
     f.actions
   end
+
+  permit_params :email,
+                :password,
+                :password_confirmation,
+                :name,
+                :organizer,
+                :email,
+                :email_public,
+                :bio,
+                :website,
+                :github,
+                :linkedin,
+                :twitter,
+                :api_key,
+                :location,
+                :image_file,
+                :admin
 
 end

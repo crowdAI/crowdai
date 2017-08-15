@@ -6,16 +6,14 @@ class EmailDigestJob < ApplicationJob
     if digest_type == 'daily'
       daily_digest_participant_ids.each do |participant_id|
         Rails.logger.info "EmailDigestJob: Sending Daily digest for participant: #{participant_id}"
-        #EmailDigestMailer.new.sendmail(1,'daily')
+        EmailDigestMailer.new.sendmail(participant_id,'daily')
       end
-      EmailDigestMailer.new.sendmail(1,'daily')
     end
     if digest_type == 'weekly'
       weekly_digest_participant_ids.each do |participant_id|
         Rails.logger.info "EmailDigestJob: Sending Weekly digest participant: #{participant_id}"
-        #EmailDigestMailer.new.sendmail(1,'weekly')
+        EmailDigestMailer.new.sendmail(participant_id,'weekly')
       end
-      EmailDigestMailer.new.sendmail(1,'weekly')
     end
   end
 

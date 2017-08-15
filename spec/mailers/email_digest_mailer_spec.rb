@@ -26,12 +26,12 @@ RSpec.describe EmailDigestMailer, type: :mailer do
     describe '#build_subject' do
       it 'daily' do
         subj = described_class.new.build_subject('daily')
-        expect(subj).to eq("[crowdAI] daily digest")
+        expect(subj).to eq("[crowdAI] Daily digest")
       end
 
       it 'weekly' do
         subj = described_class.new.build_subject('weekly')
-        expect(subj).to eq("[crowdAI] weekly digest")
+        expect(subj).to eq("[crowdAI] Weekly digest")
       end
     end
 

@@ -1,7 +1,7 @@
-require 'sidekiq/testing'
+#require 'sidekiq/testing'
 
 Rails.application.configure do
-  Sidekiq::Testing.inline!
+  #Sidekiq::Testing.inline!
 
   # load env variables
   figaro_file = File.join(Rails.root, 'config', 'application.yml')

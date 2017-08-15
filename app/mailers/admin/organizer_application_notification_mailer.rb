@@ -20,13 +20,13 @@ class Admin::OrganizerApplicationNotificationMailer < ApplicationMailer
         },
         {
           name:           "BODY",
-          content:        email_body(challenge,organizer_application)
+          content:        email_body(organizer_application)
         }
       ]
     }
   end
 
-  def email_body(challenge,organizer_application)
+  def email_body(organizer_application)
     "<div>" +
       "<h3>A new Organizer Application has been made.</h3>" +
       "<ul>" +

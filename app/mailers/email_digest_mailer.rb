@@ -24,7 +24,7 @@ class EmailDigestMailer < ApplicationMailer
   end
 
   def build_subject(digest_type)
-    "[crowdAI] #{digest_type} digest"
+    "[crowdAI] #{digest_type.capitalize} digest"
   end
 
   def build_body(participant,digest_type,comments,submissions)
@@ -39,13 +39,13 @@ class EmailDigestMailer < ApplicationMailer
   end
 
   def comments(participant,start_dttm)
-    comment_ids = CommentsDigestQuery.new(participant.id,start_dttm).call
+    comment_ids = CommentsDigestQuery.new(participant,start_dttm).call
     comments = Comment.where(id: comment_ids).order('created_at DESC')
   end
 
   def submissions(participant,start_dttm)
     return Submission.none if !participant.admin?
-    submissions = Submission.where('created_at >= ?',start_dttm).order('challenge_id DESC, created_at DESC')
+    submissions = Submission.where('created_at >= ?',start_dttm).order('created_at DESC')
   end
 
   def render_comments(comments)

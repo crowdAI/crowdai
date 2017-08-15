@@ -1,7 +1,11 @@
 class CommentsDigestQuery
 
-  def initialize(participant_id,start_dttm)
-    @participant_id = participant_id
+  def initialize(participant,start_dttm)
+    if participant.is_a?(NullParticipant)
+      @participant_id = 0
+    else
+      @participant_id = participant.id
+    end
     @start_dttm = start_dttm.to_s
   end
 

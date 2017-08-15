@@ -84,6 +84,8 @@ gem 'gibbon'
 gem 'sidekiq'
 gem "sidekiq-cron", "~> 0.6.3"
 gem 'sidekiq-history'
+gem 'sidekiq-failures'
+
 gem 'sinatra', :require => nil
 
 # static pages, sitemap

@@ -5,7 +5,7 @@ class LeaderboardsController < ApplicationController
   respond_to :js, :html
 
   def index
-    @leaderboards = @challenge.leaderboards.page(params[:page]).per(20)
+    @leaderboards = @challenge.leaderboards.page(params[:page]).per(4)
     if @challenge.completed?
       @ongoing_leaderboards = @challenge.ongoing_leaderboards.page(params[:page]).per(20)
     end

@@ -2,26 +2,17 @@
   <%= concept(Challenge::Cell::ChallengeMasthead, @challenge) %>
   <%= concept(Challenge::Cell::ChallengeSubnav, @challenge, tab: 'leaderboard') %>
 
-  <div class="row">
+  <div class="row" id='leaderboard'>
     <table class="leaderboard">
-      <%= concept(Leaderboard::Cell::TableHead, @leaderboard, challenge: @challenge) %>
+      <%= concept(Leaderboard::Cell::TableHead, @leaderboards, challenge: @challenge) %>
       <tbody>
-        <%#= render partial: 'leaderboards' %>
+        <%= render partial: 'leaderboards' %>
       </tbody>
     </table>
   </div>
 
-  <div class="row">
-    <form class="leaderboard">
-      <input type="checkbox" id="switch" name="switch" class="switch">
-      <label for="switch">Show post-challenge submissions</label>
-    </form>
-    <p class="light">Entries column includes entries not yet graded which, when graded, may affect the contents of this leaderboard.</p>
-  </div>
+  <%= render partial: 'leaderboard_footer' %>
+  <%= render partial: 'shared/load_more', locals: { collection: @leaderboards } %>
 
   <div id='modal-anchor'></div>
-
-
-  <%#= concept(Leaderboard::Cell, @leaderboard, challenge: @challenge) %>
-  <%#= render partial: 'shared/load_more', locals: { collection: @leaderboard } %>
 </content>

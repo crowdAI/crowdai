@@ -25,7 +25,7 @@
 
 class EmailPreference < ApplicationRecord
   belongs_to :participant
-  after_initialize :set_defaults
+  after_initialize :set_defaults, unless: :persisted?
 
   def set_defaults
     self.newsletter = true

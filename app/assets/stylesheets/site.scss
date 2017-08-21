@@ -270,6 +270,10 @@ button {
 	}
 }
 
+.btn-min-width {
+	min-width: 110px;
+}
+
 
 /* Dropdown button */
 
@@ -2388,6 +2392,7 @@ header {
 		}
 
 		.details {
+      max-width: 60%;
 			.user {
 				color: $color-grey-54;
 				font-size: 14px;

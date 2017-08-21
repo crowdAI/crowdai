@@ -5,7 +5,7 @@ class TopicsController < ApplicationController
   after_action :verify_authorized, except: [:index]
 
   def index
-    @topics = @challenge.topics
+    @topics = @challenge.topics.page(params[:page]).per(20)
   end
 
   def show

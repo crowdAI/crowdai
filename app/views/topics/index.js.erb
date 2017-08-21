@@ -1,0 +1,9 @@
+$(".list-options").replaceWith("<%= j render partial: 'list_header', locals: { challenge: @challenge, topics: @topics } %>");
+$(".load-more").remove();
+$("ul.list-topics").append("<%= j render partial: 'topics' %>");
+$(".list-topics").last().after("<%= j render partial: 'shared/load_more', locals: { collection: @topics } %>");
+$('html, body').animate({
+   scrollTop: $(document).height()-$(window).height()},
+   1400,
+   "easeOutQuint"
+);

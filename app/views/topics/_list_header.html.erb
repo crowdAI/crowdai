@@ -1,0 +1,4 @@
+<div class="list-options">
+  <p><%= pluralize(((topics.current_page * topics.limit_value ) + (topics.count - topics.limit_value)), 'Topic') %></p>
+  <%= link_to 'New Topic', new_challenge_topic_path(challenge), class: 'btn btn-secondary' %>
+</div>

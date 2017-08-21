@@ -1,0 +1,2 @@
+class OngoingLeaderboardPolicy < LeaderboardPolicy
+end

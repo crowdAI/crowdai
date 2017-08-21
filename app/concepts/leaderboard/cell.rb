@@ -1,27 +1,12 @@
 class Leaderboard::Cell < Template::Cell
 
+=begin
   def show
     render
   end
-
-  def submission_rows
-    render :submission_rows
-  end
-
+  
   def leaderboard
     model
-  end
-
-  def challenge
-    options[:challenge]
-  end
-
-  def post_challenge
-    options[:post_challenge]
-  end
-
-  def submissions
-    options[:submissions]
   end
 
   def table_head
@@ -32,12 +17,25 @@ class Leaderboard::Cell < Template::Cell
     render
   end
 
-  def participant(id)
+  def get_participant(id)
     Participant.find(id)
   end
 
   def submission(id)
     Submission.find(id)
+  end
+=end
+
+  def challenge
+    options[:challenge]
+  end
+
+  def submissions
+    options[:submissions]
+  end
+
+  def post_challenge
+    options[:post_challenge]
   end
 
   def cols
@@ -52,10 +50,22 @@ class Leaderboard::Cell < Template::Cell
   end
 
   def insert_submissions
-    participant_id = submissions.first.participant_id
+    submission = submissions.first
+    participant_id = submission.participant_id
+    challenge_id = submission.challenge_id
     #%{ console.log("#{j(submission_rows)}"); }
-    %{ $("#{j(submission_rows)}").insertAfter("#participant-#{participant_id}"); }
-    # TODO also remove link so multiple rows are not added after more clicks
+    %{
+      $("#{j(submission_rows)}").insertAfter("#participant-#{participant_id}");
+      $("#participant-link-#{participant_id}").replaceWith("#{j(hide_submissions_link(participant_id,challenge_id))}");
+    }
+  end
+
+  def submission_rows
+    render :submission_rows
+  end
+
+  def hide_submissions_link(participant_id,challenge_id)
+    link_to 'close', challenge_leaderboards_path(challenge_id), id: "participant-link-#{ participant_id }"
   end
 
 end

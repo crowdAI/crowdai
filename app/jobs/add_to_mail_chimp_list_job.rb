@@ -15,7 +15,6 @@ class AddToMailChimpListJob < ApplicationJob
     rescue Exception => e
       if e.message =~ /ooks fake or invalid, please enter a real email address/
         participant.disable_account('MailChimp rejected email as a fake address')
-        disable_account(participant_id,'MailChimp rejected email as a fake address')
       end
     end
     logger.info("AddToMailChimpListJob API response: #{resp}")

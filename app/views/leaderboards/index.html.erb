@@ -1,5 +1,27 @@
 <content>
   <%= concept(Challenge::Cell::ChallengeMasthead, @challenge) %>
   <%= concept(Challenge::Cell::ChallengeSubnav, @challenge, tab: 'leaderboard') %>
-  <%= concept(Leaderboard::Cell, @leaderboard, challenge: @challenge) %>
+
+  <div class="row" id='leaderboard'>
+    <table class="leaderboard">
+      <%= concept(Leaderboard::Cell::TableHead, @leaderboards, challenge: @challenge) %>
+      <tbody>
+        <%= render partial: 'leaderboards' %>
+      </tbody>
+    </table>
+  </div>
+
+  xx<%= @post_challenge %>xx
+  <% if @post_challenge == 'off' %>
+    <%= render partial: 'post_challenge_off', locals: { challenge: @challenge } %>
+  <% end %>
+  <% if @post_challenge == 'on' %>
+    <%= render partial: 'post_challenge_on', locals: { challenge: @challenge } %>
+  <% end %>
+
+
+  <span id='more-anchor'></span>
+  <%= render partial: 'shared/load_more', locals: { collection: @leaderboards } %>
+
+  <div id='modal-anchor'></div>
 </content>

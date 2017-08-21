@@ -64,6 +64,7 @@ gem 'include_media_rails'
 # search / pagination
 gem 'ransack'
 gem 'kaminari'
+gem 'kaminari-cells'
 #gem 'searchkick'
 
 # API / Docker
@@ -125,7 +126,7 @@ group :development do
   gem 'guard'
   gem 'rails-erd'
   gem 'sdoc', '~> 0.4.0'
-  gem 'web-console', '~> 2.0'
+  gem 'web-console'
   gem 'scss_lint', require: false
   gem 'shog'
   gem 'meta_request'

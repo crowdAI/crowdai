@@ -8,13 +8,13 @@
     <td class="participant">
       <div class="user-link">
         <%= link_to participant_path(entry.participant_id) do %>
-          <%= concept(Image::Cell,participant(entry.participant_id)) %>
+          <%= concept(Image::Cell,get_participant(entry.participant_id)) %>
         <% end %>
         <p><%= link_to entry.name, participant_path(entry.slug) %>
-           <% if participant(entry.participant_id).admin? %>
+           <% if get_participant(entry.participant_id).admin? %>
             <b>[Admin]</b>
            <% end %>
-           <% if participant(entry.participant_id).organizer_id == entry.organizer_id %>
+           <% if get_participant(entry.participant_id).organizer_id == entry.organizer_id %>
             <b>[Organizer]</b>
            <% end %>
         </p>
@@ -41,8 +41,9 @@
       <td class="entries">
         <%= link_to entry.entries,
             challenge_submission_detail_path(challenge_id: entry.challenge_id,
-                                                          participant_id: entry.participant_id),
-                                                          remote: true %>
+                                             participant_id: entry.participant_id),
+            id: "participant-link-#{ entry.participant_id }",
+            remote: true %>
       </td>
     <% else %>
       <td class="entries"><%= entry.entries %></td>

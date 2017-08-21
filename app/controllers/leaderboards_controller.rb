@@ -5,14 +5,26 @@ class LeaderboardsController < ApplicationController
   respond_to :js, :html
 
   def index
-    @leaderboard = @challenge.leaderboards
     if @challenge.completed?
-      @ongoing_leaderboards = @challenge.ongoing_leaderboards
+      if params[:post_challenge] == 'on'
+        @post_challenge = 'on'
+      else
+        @post_challenge = 'off'
+      end
     end
+    if @post_challenge == 'on'
+      @leaderboards = @challenge.ongoing_leaderboards.page(params[:page]).per(50)
+    else
+      @leaderboards = @challenge.leaderboards.page(params[:page]).per(50)
+    end
+
     if current_participant && (current_participant.admin? || @challenge.organizer_id == current_participant.organizer_id)
       @participant_submissions = ParticipantSubmission.where(challenge_id: @challenge.id)
     end
+    Rails.logger.debug("Leaderboard page: #{@leaderboards.current_page}")
   end
+
+
 
   def video_modal
     @leaderboard = Leaderboard.where(submission_id: params[:submission_id]).first

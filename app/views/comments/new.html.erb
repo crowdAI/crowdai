@@ -24,8 +24,7 @@
           <% else %>
             <%= link_to @author.name, participant_path(@author) %>
           <% end %>
-          <%= time_ago_in_words(@topic.created_at) %> ago |&nbsp;
-          <a href="#">Quote</a>
+          <%= time_ago_in_words(@topic.created_at) %> ago
         </p>
         <div class="comment">
           <p><%= simple_format(@first_comment.comment) %></p>

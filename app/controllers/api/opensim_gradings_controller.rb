@@ -24,7 +24,7 @@ class Api::OpensimGradingsController < Api::BaseController
       raise ActiveRecord::RecordNotFound if participant.nil?
       submission = Submission.create!(participant_id: participant.id,
                                       challenge_id: params[:challenge_id],
-                                      description_markdown: 'Submitted externally.')
+                                      description_markdown: '')
       SubmissionGrade.create!(grading_params(submission))
       notify_admins(submission)
       message = "Participant: #{participant.name}, submission: #{params[:id]} scored"

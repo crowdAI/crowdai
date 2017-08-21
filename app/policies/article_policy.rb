@@ -17,7 +17,7 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def new?
-    participant
+    participant && participant.admin?
   end
 
   def create?

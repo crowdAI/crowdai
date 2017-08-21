@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ArticlesController, type: :controller do
 
-  let(:participant) { create :participant }
+  let(:participant) { create :participant, admin: true }
 
   let(:valid_attributes) {
     FactoryGirl.attributes_for(:article, participant_id: participant.id)
@@ -16,7 +16,7 @@ RSpec.describe ArticlesController, type: :controller do
     let!("article_#{i + 1}") { create :article, participant: participant }
   end
 
-  context 'article owner' do
+  context 'admin' do
     before do
       sign_in participant
     end

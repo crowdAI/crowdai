@@ -2889,9 +2889,10 @@ table.submissions {
 			top: 0;
 			right: 0;
 
-			@media screen and (max-width: 800px) {
-				display: none;
-			}
+      @media screen and (max-width: 800px) {
+	      position: relative;
+	      margin-top: 12px;
+      }
 		}
 	}
 

@@ -19,7 +19,7 @@ $(document).on('turbolinks:load', function() {
         clearTimeout(scrollTimeout);
       }
       scrollTimeout = setTimeout(function() {
-        //startVideoPlayers();
+        startVideoPlayers();
       }, 2000);
     });
   }

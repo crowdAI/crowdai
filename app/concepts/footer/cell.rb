@@ -1,4 +1,4 @@
-class Footer::Cell < Cell::Concept
+class Footer::Cell < Template::Cell
 
   def show
     render
@@ -7,10 +7,11 @@ class Footer::Cell < Cell::Concept
   def footer_class
     if controller.controller_name == 'registrations' ||
        (controller.controller_name == 'challenges' && controller.action_name == 'edit') ||
-       (controller.controller_name == 'organizers' && controller.action_name == 'edit')
-          return 'no-margin-top'
+       (controller.controller_name == 'organizers' && controller.action_name == 'edit') ||
+       (controller.controller_name == 'sessions')
+          return "class='no-margin-top'"
     else
-      return ''
+      return nil
     end
   end
 

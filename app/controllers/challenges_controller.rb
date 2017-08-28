@@ -1,4 +1,5 @@
 class ChallengesController < ApplicationController
+  before_action :authenticate_participant!, except: [:show,:index]
   before_action :terminate_challenge, only: [:show, :index]
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized, except: [:index, :show]

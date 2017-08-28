@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class ApplicationController < ActionController::Base
   include Pundit
-  rescue_from Pundit::NotAuthorizedError, with: :not_authorized
+  rescue_from Pundit::NotAuthorizedError, with: :not_authorized_or_login
   protect_from_forgery with: :exception
   after_action :participant_activity
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -24,9 +24,25 @@ class ApplicationController < ActionController::Base
   end
 
   private
+  def after_sign_in_path_for(resource)
+    session["participant_return_to"] || root_path
+  end
 
   def participant_activity
     current_participant.try :touch
+  end
+
+  def not_authorized_or_login
+    if current_participant
+      not_authorized
+    else
+      request_login
+    end
+  end
+
+  def request_login
+    flash[:info] = 'Please log into crowdAI to perform this action.'
+    redirect_to new_participant_session_path
   end
 
   def not_authorized

@@ -1,5 +1,5 @@
 class Email < ApplicationRecord
-  belongs_to :mailer
+  belongs_to :crowdai_mailer
   belongs_to :participant, optional: true
   has_many :email_transitions, autosave: false
 

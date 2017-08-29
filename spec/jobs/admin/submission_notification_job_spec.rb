@@ -3,10 +3,11 @@ RSpec.describe Admin::SubmissionNotificationJob, type: :job do
   include ActiveJob::TestHelper
 
   let(:submission) { create :submission }
-  let(:mailer) { create :mailer, mailer_classname: 'SubmissionNotificationMailer' }
+  let(:mailer) { create :crowdai_mailer, mailer_classname: 'SubmissionNotificationMailer' }
   subject(:job) { described_class.perform_later(submission) }
 
   describe 'queues the job' do
+
     it 'queues the job' do
       expect { job }.to change(ActiveJob::Base.queue_adapter.enqueued_jobs, :size).by(1)
     end

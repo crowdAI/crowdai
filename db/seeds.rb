@@ -1,12 +1,12 @@
 if Rails.env == 'test'
-  Mailer.create!(mailer_classname: 'Admin::OrganizerApplicationNotificationMailer')
-  Mailer.create!(mailer_classname: 'Admin::SubmissionNotificationMailer')
-  Mailer.create!(mailer_classname: 'CommentNotificationMailer')
-  Mailer.create!(mailer_classname: 'DeviseMandrillMailer')
-  Mailer.create!(mailer_classname: 'EmailDigestMailer')
-  Mailer.create!(mailer_classname: 'LeaderboardNotificationMailer')
-  Mailer.create!(mailer_classname: 'OrganizerApplicationNotificationMailer')
-  Mailer.create!(mailer_classname: 'SubmissionGradedNotificationMailer')
+  CrowdaiMailer.create!(mailer_classname: 'Admin::OrganizerApplicationNotificationMailer')
+  CrowdaiMailer.create!(mailer_classname: 'Admin::SubmissionNotificationMailer')
+  CrowdaiMailer.create!(mailer_classname: 'CommentNotificationMailer')
+  CrowdaiMailer.create!(mailer_classname: 'DeviseMandrillMailer')
+  CrowdaiMailer.create!(mailer_classname: 'EmailDigestMailer')
+  CrowdaiMailer.create!(mailer_classname: 'LeaderboardNotificationMailer')
+  CrowdaiMailer.create!(mailer_classname: 'OrganizerApplicationNotificationMailer')
+  CrowdaiMailer.create!(mailer_classname: 'SubmissionGradedNotificationMailer')
 end
 
 if Rails.env != 'test'

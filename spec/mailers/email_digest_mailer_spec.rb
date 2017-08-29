@@ -5,7 +5,7 @@ RSpec.describe EmailDigestMailer, type: :mailer do
   let(:other_participant) { create :participant }
   let(:comment) { create :comment, participant: other_participant }
   let(:submission) { create :submission, challenge: challenge }
-  let!(:mailer) { create :mailer, mailer_classname: described_class.to_s }
+  let!(:mailer) { create :crowdai_mailer, mailer_classname: described_class.to_s }
 
   context 'methods' do
     before do

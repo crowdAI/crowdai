@@ -10,7 +10,7 @@ RSpec.describe CommentNotificationJob, type: :job do
   let!(:topic) { create :topic, participant: author }
   let!(:comment1) { create :comment, topic: topic, participant: participant1 }
   let!(:comment2) { create :comment, topic: topic, participant: author }
-  let!(:mailer) { create :mailer, mailer_classname: 'CommentNotificationMailer' }
+  let!(:mailer) { create :crowdai_mailer, mailer_classname: 'CommentNotificationMailer' }
 
   subject(:job) { described_class.perform_later(comment2.id) }
 

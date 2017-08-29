@@ -3,7 +3,7 @@ gem 'rails-assets-isInViewport', source: 'https://rails-assets.org'
 gem 'rails-assets-jQuery-File-Upload', source: 'https://rails-assets.org'
 
 ruby "2.3.3"
-gem 'rails', '5.0.4'
+gem 'rails', '5.1.3'
 gem 'pg'
 gem 'puma'
 gem 'puma_worker_killer'
@@ -51,7 +51,7 @@ gem 'turbolinks', '~> 5.0.0'
 gem 'lodash-rails'
 gem 'browser'
 gem 'coffee-rails'
-
+gem 'webpacker', '~> 2.0'
 
 # css
 gem 'sass-rails'
@@ -138,7 +138,7 @@ group :development, :test do
   gem 'ffaker'
   gem 'spring'
   gem 'table_print'
-  gem 'rspec-rails', '~> 3.5.0'
+  gem 'rspec-rails', '~> 3.6'
   gem 'rspec-kickstarter'
   gem 'to_factory'
   gem 'traceroute'

@@ -8,14 +8,14 @@ Devise.setup do |config|
   # by default. You can change it below and use your own secret key.
   config.secret_key = ENV['DEVISE_SECRET_KEY']
 
-  # ==> Mailer Configuration
-  # Configure the e-mail address which will be shown in Devise::Mailer,
+  # ==> CrowdaiMailer Configuration
+  # Configure the e-mail address which will be shown in Devise::CrowdaiMailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = 'info@crowdai.org'
 
   # Configure the class responsible to send e-mails.
-  #config.mailer = 'Devise::Mailer'   # devise erb templates
+  #config.mailer = 'Devise::CrowdaiMailer'   # devise erb templates
   config.mailer = 'DeviseMandrillMailer'  # Mailchimp templates
 
   # ==> ORM configuration

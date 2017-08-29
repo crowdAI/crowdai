@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :organizer, class: Organizer do
-    organizer  FFaker::Lorem.sentence(3)
+    organizer  { FFaker::Lorem.sentence(3) }
     address FFaker::Lorem.sentence(3)
     tagline "Coke is it"
     description FFaker::Lorem.sentence(20)
@@ -17,6 +17,6 @@ FactoryGirl.define do
     trait :invalid do
       organizer nil
     end
-    
+
   end
 end

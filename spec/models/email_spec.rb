@@ -10,11 +10,11 @@ describe Email do
     it { is_expected.to respond_to :email_preferences_token }
     it { is_expected.to respond_to :token_expiration_dttm }
     it { is_expected.to respond_to :options_json }
-    it { is_expected.to respond_to :mailer_id }
+    it { is_expected.to respond_to :crowdai_mailer_id }
   end
 
   context 'associations' do
-    it { is_expected.to belong_to(:mailer) }
+    it { is_expected.to belong_to(:crowdai_mailer) }
     it { is_expected.to belong_to(:participant) }
   end
 

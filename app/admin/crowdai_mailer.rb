@@ -1,11 +1,11 @@
-ActiveAdmin.register Mailer do
+ActiveAdmin.register CrowdaiMailer do
   #config.filters = false
   permit_params :mailer, :paused
 
 
   sidebar "Links", only: [:show, :edit] do
     ul do
-      li link_to "Emails", admin_mailer_emails_path(mailer)
+      li link_to "Emails", admin_crowdai_mailer_emails_path(mailer)
     end
   end
 
@@ -22,6 +22,6 @@ ActiveAdmin.register Mailer do
     actions
   end
 
-  
+
 
 end

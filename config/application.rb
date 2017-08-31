@@ -12,6 +12,7 @@ module Crowdai
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
+    config.assets.version = '1.0'
 
     config.active_job.queue_adapter = :sidekiq
     #config.autoload_paths += Dir[Rails.root.join('app', 'models', '{*/}')]
@@ -21,9 +22,14 @@ module Crowdai
     config.autoload_paths += Dir["#{Rails.root.to_s}/app/queries/**/"]
     config.active_record.time_zone_aware_types = [:datetime]
     config.ssl_options = { hsts: { subdomains: false } }
+    config.assets.precompile += %w( application.scss )
+
 
     config.generators do |g|
       g.test_framework :rspec
+      g.stylesheets false
+      g.helper false
+      g.assets false
     end
   end
 end

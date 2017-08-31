@@ -30,5 +30,5 @@ $(document).on('ajax:error', function(xhr, status, error) {
 });
 
 $(document).on('turbolinks:load', function() {
-  $('[data-remodal-id=modal]').remodal();
+  //$('[data-remodal-id=modal]').remodal();
 });

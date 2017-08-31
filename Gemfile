@@ -11,9 +11,9 @@ gem 'puma_worker_killer'
 # user accounts / admin
 gem 'devise'
 gem 'pundit'
-gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
-gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources.git'
-gem 'active_admin_datetimepicker'
+gem 'activeadmin'
+#gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources.git'
+#gem 'active_admin_datetimepicker'
 
 # monitoring
 #gem "brakeman", :require => false

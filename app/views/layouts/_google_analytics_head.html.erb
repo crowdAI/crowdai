@@ -1,4 +1,4 @@
-<% if Rails.env.production? %>
+<% if Rails.env.production? || Rails.env.staging? %>
   <script data-turbolinks-eval="false">
     (function (i, s, o, g, r, a, m) {
       i['GoogleAnalyticsObject'] = r;
@@ -12,8 +12,12 @@
       a.src = g;
       m.parentNode.insertBefore(a, m)
     })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', '<%= ENV['GOOGLE_ANALYTICS_KEY'] %>', 'auto', {'allowLinker': true, userId: <%= current_user.id if current_user %> });
+    <% if current_user %>
+      ga('create', '<%= ENV['GOOGLE_ANALYTICS_KEY'] %>', 'auto', {'allowLinker': true, userId: <%= current_user.id %> });
+    <% else %>
+      ga('create', '<%= ENV['GOOGLE_ANALYTICS_KEY'] %>', 'auto', {'allowLinker': true });
+    <% end %>
     ga('require', 'linker');
-    ga('linker:autoLink', ['crowdai.github.io']);
+    ga('linker:autoLink', ['crowdai.org']);
   </script>
 <% end %>

@@ -23,3 +23,5 @@ screenshot*
 scripts/challenges/openfood/public_500/images/*
 scripts/dev_from_prd.sh
 scripts/stg_from_prd.sh
+/public/packs
+/node_modules

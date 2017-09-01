@@ -43,11 +43,12 @@ class ApplicationMailer < ActionMailer::Base
 
 
   def email_logger(options,unsubscribe_token)
-    mailer = Mailer.where(mailer_classname: self.class.to_s).first
+    mailer = CrowdaiMailer.where(mailer_classname: self.class.to_s).first
     status = :sent
-    status = :paused if mailer.paused
+    status = :paused if mailer_paused?
 
     Email.create!(model_id: @model_id,
+                  crowdai_mailer_id: mailer.id,
                   mailer_classname: self.class.to_s,
                   recipients: options[:to],
                   options_json: options,
@@ -65,7 +66,7 @@ class ApplicationMailer < ActionMailer::Base
   end
 
   def mailer_paused?
-    mailer = Mailer.where(mailer_classname: self.class.to_s).first.paused
+    mailer = CrowdaiMailer.where(mailer_classname: self.class.to_s).first.paused
   end
 
 

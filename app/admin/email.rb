@@ -1,5 +1,5 @@
 ActiveAdmin.register Email do
-  belongs_to :mailer
+  belongs_to :crowdai_mailer
   navigation_menu :mailer
 
 

@@ -6,7 +6,7 @@ RSpec.describe CommentNotificationMailer, type: :mailer do
     let(:challenge) { create :challenge }
     let(:participant) { create :participant }
     let(:comment) { create :comment, participant: participant }
-    let!(:mailer) { create :mailer, mailer_classname: described_class.to_s }
+    let!(:mailer) { create :crowdai_mailer, mailer_classname: described_class.to_s }
 
     it 'successfully sends a message' do
       res = described_class.new.sendmail(participant.id,comment.id)

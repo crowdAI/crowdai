@@ -1,31 +1,4 @@
 GIT
-  remote: https://github.com/activeadmin/activeadmin
-  revision: be47c415e9f088d8f960eb4dbfeab8320342f44a
-  specs:
-    activeadmin (1.1.0)
-      arbre (>= 1.1.1)
-      formtastic (~> 3.1)
-      formtastic_i18n
-      inherited_resources (~> 1.7)
-      jquery-rails
-      kaminari (>= 1.0.1)
-      railties (>= 4.2, < 5.2)
-      ransack (~> 1.3)
-      sass (~> 3.4)
-      sprockets (>= 3.0, < 4.1)
-      sprockets-es6 (>= 0.9.2)
-
-GIT
-  remote: https://github.com/activeadmin/inherited_resources.git
-  revision: 5d18499877852437f2c058747f07bc80e46557fc
-  specs:
-    inherited_resources (1.7.2)
-      actionpack (>= 4.2, < 5.2)
-      has_scope (~> 0.6)
-      railties (>= 4.2, < 5.2)
-      responders
-
-GIT
   remote: https://github.com/crowdAI/pundit-matchers
   revision: 4cd01555ee0c04c66f02f35d6f8bb4c046b533a0
   specs:
@@ -46,73 +19,79 @@ GEM
   remote: https://rails-assets.org/
   specs:
     CFPropertyList (2.3.5)
-    actioncable (5.0.4)
-      actionpack (= 5.0.4)
-      nio4r (>= 1.2, < 3.0)
+    actioncable (5.1.3)
+      actionpack (= 5.1.3)
+      nio4r (~> 2.0)
       websocket-driver (~> 0.6.1)
-    actionmailer (5.0.4)
-      actionpack (= 5.0.4)
-      actionview (= 5.0.4)
-      activejob (= 5.0.4)
+    actionmailer (5.1.3)
+      actionpack (= 5.1.3)
+      actionview (= 5.1.3)
+      activejob (= 5.1.3)
       mail (~> 2.5, >= 2.5.4)
       rails-dom-testing (~> 2.0)
-    actionpack (5.0.4)
-      actionview (= 5.0.4)
-      activesupport (= 5.0.4)
+    actionpack (5.1.3)
+      actionview (= 5.1.3)
+      activesupport (= 5.1.3)
       rack (~> 2.0)
       rack-test (~> 0.6.3)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    actionview (5.0.4)
-      activesupport (= 5.0.4)
+    actionview (5.1.3)
+      activesupport (= 5.1.3)
       builder (~> 3.1)
-      erubis (~> 2.7.0)
+      erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
-    active_admin_datetimepicker (0.5.0)
-      xdan-datetimepicker-rails (~> 2.5.1)
-    activejob (5.0.4)
-      activesupport (= 5.0.4)
+    activeadmin (1.1.0)
+      arbre (>= 1.1.1)
+      coffee-rails
+      formtastic (~> 3.1)
+      formtastic_i18n
+      inherited_resources (~> 1.7)
+      jquery-rails
+      kaminari (>= 0.15, < 2.0)
+      railties (>= 4.2, < 5.2)
+      ransack (~> 1.3)
+      sass (~> 3.1)
+      sprockets (< 4.1)
+    activejob (5.1.3)
+      activesupport (= 5.1.3)
       globalid (>= 0.3.6)
-    activemodel (5.0.4)
-      activesupport (= 5.0.4)
-    activerecord (5.0.4)
-      activemodel (= 5.0.4)
-      activesupport (= 5.0.4)
-      arel (~> 7.0)
-    activesupport (5.0.4)
+    activemodel (5.1.3)
+      activesupport (= 5.1.3)
+    activerecord (5.1.3)
+      activemodel (= 5.1.3)
+      activesupport (= 5.1.3)
+      arel (~> 8.0)
+    activesupport (5.1.3)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.5.1)
-      public_suffix (~> 2.0, >= 2.0.2)
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     arbre (1.1.1)
       activesupport (>= 3.0.0)
-    arel (7.1.4)
-    aws-sdk (2.10.21)
-      aws-sdk-resources (= 2.10.21)
-    aws-sdk-core (2.10.21)
+    arel (8.0.0)
+    aws-sdk (2.10.34)
+      aws-sdk-resources (= 2.10.34)
+    aws-sdk-core (2.10.34)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.10.21)
-      aws-sdk-core (= 2.10.21)
+    aws-sdk-resources (2.10.34)
+      aws-sdk-core (= 2.10.34)
     aws-sigv4 (1.0.1)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
-    babel-source (5.8.35)
-    babel-transpiler (0.7.0)
-      babel-source (>= 4.0, < 6)
-      execjs (~> 2.0)
     bcrypt (3.1.11)
     benchmark-ips (2.7.2)
     bindex (0.5.0)
-    brakeman (3.7.0)
-    browser (2.4.0)
+    brakeman (3.7.2)
+    browser (2.5.0)
     builder (3.2.3)
-    byebug (9.0.6)
+    byebug (9.1.0)
     callsite (0.0.11)
     capybara (2.12.1)
       addressable
@@ -214,7 +193,7 @@ GEM
     equalizer (0.0.11)
     erbse (0.1.1)
       temple
-    erubis (2.7.0)
+    erubi (1.6.1)
     et-orbi (1.0.5)
       tzinfo
     excon (0.58.0)
@@ -224,7 +203,7 @@ GEM
     factory_girl_rails (4.8.0)
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
-    faraday (0.12.2)
+    faraday (0.13.1)
       multipart-post (>= 1.2, < 3)
     fast_blank (1.0.0)
     ffaker (2.6.0)
@@ -278,7 +257,7 @@ GEM
     fog-atmos (0.1.0)
       fog-core
       fog-xml
-    fog-aws (1.4.0)
+    fog-aws (1.4.1)
       fog-core (~> 1.38)
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
@@ -335,7 +314,7 @@ GEM
       fog-core (~> 1.27)
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
-    fog-profitbricks (3.0.0)
+    fog-profitbricks (4.0.0)
       fog-core (~> 1.42)
       fog-json (~> 1.0)
     fog-rackspace (0.1.5)
@@ -372,7 +351,7 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
-    fog-vsphere (1.11.3)
+    fog-vsphere (1.12.0)
       fog-core
       rbvmomi (~> 1.9)
     fog-xenserver (0.3.0)
@@ -418,7 +397,12 @@ GEM
       railties (>= 3.1, < 6)
       sass (>= 3.3, < 4)
     inflecto (0.0.2)
-    inline_svg (1.2.2)
+    inherited_resources (1.7.2)
+      actionpack (>= 3.2, < 5.2.x)
+      has_scope (~> 0.6)
+      railties (>= 3.2, < 5.2.x)
+      responders
+    inline_svg (1.2.3)
       activesupport (>= 3.0)
       nokogiri (>= 1.6)
     ipaddress (0.8.3)
@@ -443,9 +427,9 @@ GEM
     kaminari-activerecord (1.0.1)
       activerecord
       kaminari-core (= 1.0.1)
-    kaminari-cells (0.0.4)
+    kaminari-cells (1.0.0)
       cells (>= 4.0.0, <= 5.0.0)
-      kaminari (>= 0.16.0)
+      kaminari (~> 1.0.0)
     kaminari-core (1.0.1)
     kramdown (1.14.0)
     launchy (2.4.3)
@@ -482,7 +466,7 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
-    mustermann (1.0.0)
+    mustermann (1.0.1)
     nenv (0.3.0)
     net-ssh (4.1.0)
     nio4r (2.1.0)
@@ -495,7 +479,7 @@ GEM
       shellany (~> 0.0)
     oj (2.12.14)
     orm_adapter (0.5.0)
-    paper_trail (6.0.2)
+    paper_trail (7.1.1)
       activerecord (>= 4.0, < 5.2)
       request_store (~> 1.1)
     pg (0.21.0)
@@ -506,8 +490,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    public_suffix (2.0.5)
-    puma (3.9.1)
+    public_suffix (3.0.0)
+    puma (3.10.0)
     puma_worker_killer (0.1.0)
       get_process_mem (~> 0.2)
       puma (>= 2.7, < 4)
@@ -520,31 +504,31 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
-    rails (5.0.4)
-      actioncable (= 5.0.4)
-      actionmailer (= 5.0.4)
-      actionpack (= 5.0.4)
-      actionview (= 5.0.4)
-      activejob (= 5.0.4)
-      activemodel (= 5.0.4)
-      activerecord (= 5.0.4)
-      activesupport (= 5.0.4)
-      bundler (>= 1.3.0, < 2.0)
-      railties (= 5.0.4)
+    rails (5.1.3)
+      actioncable (= 5.1.3)
+      actionmailer (= 5.1.3)
+      actionpack (= 5.1.3)
+      actionview (= 5.1.3)
+      activejob (= 5.1.3)
+      activemodel (= 5.1.3)
+      activerecord (= 5.1.3)
+      activesupport (= 5.1.3)
+      bundler (>= 1.3.0)
+      railties (= 5.1.3)
       sprockets-rails (>= 2.0.0)
-    rails-assets-blueimp-canvas-to-blob (3.11.0)
-    rails-assets-blueimp-load-image (2.14.0)
-    rails-assets-blueimp-tmpl (3.9.0)
+    rails-assets-blueimp-canvas-to-blob (3.14.0)
+    rails-assets-blueimp-load-image (2.17.0)
+    rails-assets-blueimp-tmpl (3.11.0)
     rails-assets-isInViewport (3.0.0)
-    rails-assets-jQuery-File-Upload (9.18.0)
+    rails-assets-jQuery-File-Upload (9.19.0)
       rails-assets-blueimp-canvas-to-blob (>= 2.1.1)
       rails-assets-blueimp-load-image (>= 1.13.0)
       rails-assets-blueimp-tmpl (>= 2.5.4)
       rails-assets-jquery (>= 1.6)
     rails-assets-jquery (3.2.1)
-    rails-controller-testing (1.0.1)
-      actionpack (~> 5.x)
-      actionview (~> 5.x)
+    rails-controller-testing (1.0.2)
+      actionpack (~> 5.x, >= 5.0.1)
+      actionview (~> 5.x, >= 5.0.1)
       activesupport (~> 5.x)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
@@ -556,9 +540,9 @@ GEM
       ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
-    railties (5.0.4)
-      actionpack (= 5.0.4)
-      activesupport (= 5.0.4)
+    railties (5.1.3)
+      actionpack (= 5.1.3)
+      activesupport (= 5.1.3)
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
@@ -604,30 +588,30 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
-    rollbar (2.15.0)
+    rollbar (2.15.1)
       multi_json
-    rouge (2.1.1)
+    rouge (2.2.1)
     rspec-cells (0.3.4)
       cells (>= 4.0.0, < 6.0.0)
       rspec-rails (~> 3.2)
-    rspec-core (3.5.4)
-      rspec-support (~> 3.5.0)
-    rspec-expectations (3.5.0)
+    rspec-core (3.6.0)
+      rspec-support (~> 3.6.0)
+    rspec-expectations (3.6.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.5.0)
+      rspec-support (~> 3.6.0)
     rspec-kickstarter (1.0.2)
-    rspec-mocks (3.5.0)
+    rspec-mocks (3.6.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.5.0)
-    rspec-rails (3.5.2)
+      rspec-support (~> 3.6.0)
+    rspec-rails (3.6.1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
-      rspec-core (~> 3.5.0)
-      rspec-expectations (~> 3.5.0)
-      rspec-mocks (~> 3.5.0)
-      rspec-support (~> 3.5.0)
-    rspec-support (3.5.0)
+      rspec-core (~> 3.6.0)
+      rspec-expectations (~> 3.6.0)
+      rspec-mocks (~> 3.6.0)
+      rspec-support (~> 3.6.0)
+    rspec-support (3.6.0)
     ruby-graphviz (1.2.3)
     ruby2ruby (2.4.0)
       ruby_parser (~> 3.1)
@@ -671,11 +655,11 @@ GEM
     shoulda-context (1.2.2)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
-    sidekiq (4.2.10)
+    sidekiq (5.0.4)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
-      redis (~> 3.2, >= 3.2.1)
+      redis (~> 3.3, >= 3.3.3)
     sidekiq-cron (0.6.3)
       rufus-scheduler (>= 3.3.0)
       sidekiq (>= 4.2.1)
@@ -688,11 +672,11 @@ GEM
     simple_form (3.5.0)
       actionpack (> 4, < 5.2)
       activemodel (> 4, < 5.2)
-    simplecov (0.14.1)
+    simplecov (0.15.0)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
-    simplecov-html (0.10.1)
+    simplecov-html (0.10.2)
     sinatra (2.0.0)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -704,10 +688,6 @@ GEM
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-es6 (0.9.2)
-      babel-source (>= 5.8.11)
-      babel-transpiler
-      sprockets (>= 3.0.0)
     sprockets-rails (3.2.0)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
@@ -718,7 +698,7 @@ GEM
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)
       ref
-    thor (0.19.4)
+    thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
     timecop (0.9.1)
@@ -765,13 +745,14 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
+    webpacker (2.0)
+      activesupport (>= 4.2)
+      multi_json (~> 1.2)
+      railties (>= 4.2)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
     wisper (2.0.0)
-    xdan-datetimepicker-rails (2.5.4)
-      jquery-rails
-      rails (>= 3.2.16)
     xml-simple (1.1.5)
     xpath (2.1.0)
       nokogiri (~> 1.3)
@@ -780,8 +761,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_admin_datetimepicker
-  activeadmin!
+  activeadmin
   aws-sdk (~> 2.2)
   brakeman
   browser
@@ -816,7 +796,6 @@ DEPENDENCIES
   guard
   httparty
   include_media_rails
-  inherited_resources!
   inline_svg
   jquery-rails
   jquery-ui-rails
@@ -837,7 +816,7 @@ DEPENDENCIES
   puma_worker_killer
   pundit
   pundit-matchers!
-  rails (= 5.0.4)
+  rails (= 5.1.3)
   rails-assets-isInViewport!
   rails-assets-jQuery-File-Upload!
   rails-controller-testing
@@ -850,7 +829,7 @@ DEPENDENCIES
   rouge
   rspec-cells
   rspec-kickstarter
-  rspec-rails (~> 3.5.0)
+  rspec-rails (~> 3.6)
   sanitize
   sass-rails
   scenic (~> 1.3)
@@ -881,9 +860,10 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   validate_url
   web-console
+  webpacker (~> 2.0)
 
 RUBY VERSION
-   ruby 2.3.3p222
+   ruby 2.3.4p301
 
 BUNDLED WITH
-   1.15.1
+   1.15.4

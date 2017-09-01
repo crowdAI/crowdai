@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :email, class: Email do
     model_id 42
     mailer_classname 'SubmissionNotificationMailer'
-    mailer
+    crowdai_mailer
     recipients FFaker::Internet.email
     options '{}'
     status :sent

@@ -6,7 +6,7 @@ RSpec.describe SubmissionGradedNotificationMailer, type: :mailer do
     let(:challenge) { create :challenge }
     let(:participant) { create :participant }
     let(:submission) { create :submission, challenge: challenge, participant: participant }
-    let!(:mailer) { create :mailer, mailer_classname: described_class.to_s }
+    let!(:mailer) { create :crowdai_mailer, mailer_classname: described_class.to_s }
 
 
     it 'successfully sends a message' do

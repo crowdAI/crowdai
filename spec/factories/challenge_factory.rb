@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :challenge, class: Challenge do
-    organizer { FactoryGirl.create :organizer }
+    organizer
     challenge FFaker::Lorem.sentence(3)
     sequence(:challenge_client_name) { |n| "Client_name_#{n}" }
     tagline FFaker::Lorem.sentence(3)

@@ -3,9 +3,9 @@ FactoryGirl.define do
     comment_markdown "### Some markdown"
     comment { FFaker::Lorem.words(4) }
     flagged false
-    topic { FactoryGirl.build :topic }
+    topic
     vote_count 1
     notify false
-    participant { FactoryGirl.build :participant}
+    participant
   end
 end

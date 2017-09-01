@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 gem 'rails-assets-isInViewport', source: 'https://rails-assets.org'
 gem 'rails-assets-jQuery-File-Upload', source: 'https://rails-assets.org'
 
-ruby "2.3.3"
-gem 'rails', '5.0.4'
+ruby "2.3.4"
+gem 'rails', '5.1.3'
 gem 'pg'
 gem 'puma'
 gem 'puma_worker_killer'
@@ -11,9 +11,9 @@ gem 'puma_worker_killer'
 # user accounts / admin
 gem 'devise'
 gem 'pundit'
-gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
-gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources.git'
-gem 'active_admin_datetimepicker'
+gem 'activeadmin'
+#gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources.git'
+#gem 'active_admin_datetimepicker'
 
 # monitoring
 #gem "brakeman", :require => false
@@ -51,7 +51,7 @@ gem 'turbolinks', '~> 5.0.0'
 gem 'lodash-rails'
 gem 'browser'
 gem 'coffee-rails'
-
+gem 'webpacker', '~> 2.0'
 
 # css
 gem 'sass-rails'
@@ -138,7 +138,7 @@ group :development, :test do
   gem 'ffaker'
   gem 'spring'
   gem 'table_print'
-  gem 'rspec-rails', '~> 3.5.0'
+  gem 'rspec-rails', '~> 3.6'
   gem 'rspec-kickstarter'
   gem 'to_factory'
   gem 'traceroute'

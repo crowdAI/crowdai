@@ -3,6 +3,7 @@ require 'sidekiq/cron/web'
 
 Rails.application.routes.draw do
 
+
   admin = lambda do |request|
     request.env['warden'].authenticate? && request.env['warden'].user.admin?
   end
@@ -13,8 +14,6 @@ Rails.application.routes.draw do
   end
 
   devise_for :participants
-  #, ActiveAdmin::Devise.config
-  #ActiveAdmin.routes(self)
   resources :participants, only: [:show, :edit, :update, :destroy] do
     get :sync_mailchimp
     get :regen_api_key

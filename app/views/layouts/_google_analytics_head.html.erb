@@ -12,7 +12,7 @@
       a.src = g;
       m.parentNode.insertBefore(a, m)
     })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', '<%= ENV['GOOGLE_ANALYTICS_KEY'] %>', 'auto', {'allowLinker': true});
+    ga('create', '<%= ENV['GOOGLE_ANALYTICS_KEY'] %>', 'auto', {'allowLinker': true, userId: <%= current_user.id if current_user else nil %> });
     ga('require', 'linker');
     ga('linker:autoLink', ['crowdai.github.io']);
   </script>

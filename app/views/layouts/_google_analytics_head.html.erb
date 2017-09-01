@@ -12,8 +12,8 @@
       a.src = g;
       m.parentNode.insertBefore(a, m)
     })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    <% if current_user %>
-      ga('create', '<%= ENV['GOOGLE_ANALYTICS_KEY'] %>', 'auto', {'allowLinker': true, userId: <%= current_user.id %> });
+    <% if current_participant %>
+      ga('create', '<%= ENV['GOOGLE_ANALYTICS_KEY'] %>', 'auto', {'allowLinker': true, userId: <%= current_participant.id %> });
     <% else %>
       ga('create', '<%= ENV['GOOGLE_ANALYTICS_KEY'] %>', 'auto', {'allowLinker': true });
     <% end %>

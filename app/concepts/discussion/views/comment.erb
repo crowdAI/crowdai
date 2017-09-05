@@ -11,7 +11,6 @@
     <% end %>
   </div>
   <div class="topic-content">
-    <%= concept(Vote::Cell,comment) %>
     <p class="details">Posted by
       <% if author.is_a? NullParticipant %>
         <%= link_to author.name, '#' %>&nbsp;
@@ -25,5 +24,6 @@
     <%= div_for(comment, class: "comment") do %>
       <p><%= comment.comment %></p>
     <% end %>
+    <%= concept(Vote::Cell,comment) %>
   </div>
 </div>

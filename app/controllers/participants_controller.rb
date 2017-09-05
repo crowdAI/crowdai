@@ -6,6 +6,7 @@ class ParticipantsController < ApplicationController
   def show
     @articles = Article.where(participant_id: @participant.id)
     @challenges = @participant.challenges
+    @posts = @participant.comments.order(created_at: :desc)
   end
 
   def edit
@@ -49,14 +50,27 @@ class ParticipantsController < ApplicationController
   end
 
   private
-    def set_participant
-      @participant = Participant.friendly.find(params[:id])
-    end
+  def set_participant
+    @participant = Participant.friendly.find(params[:id])
+  end
 
-    def participant_params
-      params.require(:participant).permit(:email, :password, :password_confirmation,
-        :phone_number, :country, :city, :name, :organizer_id,
-        :email_public, :bio, :website, :github, :linkedin, :twitter, :image_file)
+  def participant_params
+    params.require(:participant)
+          .permit(:email,
+                  :password,
+                  :password_confirmation,
+                  :phone_number,
+                  :country,
+                  :city,
+                  :name,
+                  :organizer_id,
+                  :email_public,
+                  :bio,
+                  :website,
+                  :github,
+                  :linkedin,
+                  :twitter,
+                  :image_file)
     end
 
 end

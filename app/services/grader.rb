@@ -7,7 +7,6 @@ class Grader
     @submission = Submission.find(submission_id)
   end
 
-
   def grade
     @query = api_query
     if @query
@@ -21,7 +20,6 @@ class Grader
     end
   end
 
-
   def call_grader
     begin
       response = self.class.get('/grade',@query)
@@ -33,7 +31,6 @@ class Grader
     end
   end
 
-
   def evaluate_response(submission_id,response)
     if response
       r = response.parsed_response
@@ -42,7 +39,6 @@ class Grader
       Submission.update(submission_id, grading_status: 'failed', grading_message: 'Grading process system error.')
     end
   end
-
 
   private
   def api_query

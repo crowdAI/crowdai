@@ -35,7 +35,15 @@ class EmailPreferencesController < ApplicationController
     end
 
     def email_preference_params
-      params.require(:email_preference).permit(:participant_id, :newsletter, :challenges_followed, :mentions, :receive_every_email, :receive_daily_digest, :receive_weekly_digest, :unsubscribe_token)
+      params.require(:email_preference)
+            .permit(:participant_id,
+                    :newsletter,
+                    :challenges_followed,
+                    :mentions,
+                    :receive_every_email,
+                    :receive_daily_digest,
+                    :receive_weekly_digest,
+                    :unsubscribe_token)
     end
 
     def set_edit_token

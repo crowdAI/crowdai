@@ -1,0 +1,14 @@
+<div class="discussion-comment">
+  <div class="topic-content">
+    <%= link_to new_topic_comment_path(topic) do %>
+      <p class="details">
+        <%= challenge.challenge %> |&nbsp;
+        <%= topic.topic %> |&nbsp; <%= time_ago_in_words(comment.created_at) %> ago
+      </p>
+      <%= div_for(comment, class: "comment") do %>
+        <p><%= comment.comment %></p>
+      <% end %>
+      <%= concept(Vote::Cell,comment) %>
+    <% end %>
+  </div>
+</div>

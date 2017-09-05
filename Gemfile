@@ -12,11 +12,8 @@ gem 'puma_worker_killer'
 gem 'devise'
 gem 'pundit'
 gem 'activeadmin'
-#gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources.git'
-#gem 'active_admin_datetimepicker'
 
 # monitoring
-#gem "brakeman", :require => false
 gem 'mini_magick'
 gem 'rollbar'
 gem 'oj', '~> 2.12.14'
@@ -29,14 +26,11 @@ gem 'paper_trail'
 
 
 # forms / data manipulation / charts
-gem 'simple_form'
 gem 'cocoon'
-gem 'redcarpet', '~> 3.4.0'
 gem 'kramdown'
 gem 'groupdate'
 gem 'rouge'
 gem 'friendly_id', '~> 5.1.0'
-gem "rectify"
 gem 'client_side_validations'
 
 # performance

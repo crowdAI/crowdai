@@ -6,6 +6,7 @@
       <ul class='tabs'>
         <li data-tab='tab-challenges' class="active"><a href="#" onclick="return false;">Challenges <sup><%= @challenges.count unless @challenges.count == 0 %></sup></a></li>
         <li data-tab='tab-articles'><a href="#" onclick="return false;">Tutorials <sup><%= @articles.count unless @articles.count == 0%></sup></a></li>
+        <li data-tab='tab-posts'><a href="#" onclick="return false;">Posts <sup><%= @posts.count unless @posts.count == 0 %></sup></a></li>
         <li data-tab='tab-bio'><a href="#" onclick="return false;">Bio</a></li>
       </ul>
     </div>
@@ -37,6 +38,22 @@
         <div class='article'>
           <p class='light'>
             <%= "#{@participant.name} hasn't authored any tutorials yet..." %>
+          </p>
+        </div>
+        <% end %>
+    </div>
+  </div>
+
+  <div id='tab-posts' class='tab-content'>
+    <div class="row">
+        <% if @posts.any? %>
+          <ul class="list-tutorials">
+            <%= concept(Discussion::Cell::ParticipantComment, collection: @posts) %>
+          </ul>
+        <% else %>
+        <div class='article'>
+          <p class='light'>
+            <%= "#{@participant.name} hasn't made any posts yet..." %>
           </p>
         </div>
         <% end %>

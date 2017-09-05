@@ -48,7 +48,12 @@ class DatasetFilesController < ApplicationController
     end
 
     def dataset_file_params
-      params.require(:dataset_file).permit(:seq, :description, :evaluation, :title, :dataset_file_s3_key)
+      params.require(:dataset_file)
+            .permit(:seq,
+                    :description,
+                    :evaluation,
+                    :title,
+                    :dataset_file_s3_key)
     end
 
     def set_s3_direct_post

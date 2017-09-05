@@ -224,25 +224,6 @@ ActiveRecord::Schema.define(version: 20170829131851) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
-  create_table "old_leaderboard", id: false, force: :cascade do |t|
-    t.integer "id"
-    t.bigint "row_num"
-    t.integer "submission_id"
-    t.integer "challenge_id"
-    t.integer "participant_id"
-    t.string "slug"
-    t.integer "organizer_id"
-    t.string "name"
-    t.bigint "entries"
-    t.float "score"
-    t.float "score_secondary"
-    t.string "media_large"
-    t.string "media_thumbnail"
-    t.string "media_content_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "organizer_applications", id: :serial, force: :cascade do |t|
     t.string "contact_name"
     t.string "email"
@@ -427,77 +408,6 @@ ActiveRecord::Schema.define(version: 20170829131851) do
   add_foreign_key "topics", "participants"
   add_foreign_key "votes", "participants"
 
-  create_view "participant_challenges",  sql_definition: <<-SQL
-      SELECT p.id,
-      pc.challenge_id,
-      pc.participant_id,
-      c.organizer_id,
-      c.challenge,
-      c.description,
-      c.rules,
-      c.prizes,
-      c.resources,
-      c.tagline,
-      p.name,
-      p.email,
-      p.last_sign_in_at,
-      p.bio,
-      p.github,
-      p.linkedin,
-      p.twitter
-     FROM participants p,
-      challenges c,
-      ( SELECT c_1.id,
-              c_1.id AS challenge_id,
-              p_1.id AS participant_id
-             FROM challenges c_1,
-              participants p_1,
-              submissions s_1
-            WHERE ((s_1.challenge_id = c_1.id) AND (s_1.participant_id = p_1.id))
-          UNION
-           SELECT c_1.id,
-              c_1.id AS challenge_id,
-              p_1.id AS participant_id
-             FROM challenges c_1,
-              participants p_1,
-              topics t
-            WHERE ((t.challenge_id = c_1.id) AND (t.participant_id = p_1.id))
-          UNION
-           SELECT t.challenge_id AS id,
-              t.challenge_id,
-              ps.id AS participant_id
-             FROM comments ps,
-              topics t
-            WHERE (t.id = ps.topic_id)
-          UNION
-           SELECT df.challenge_id AS id,
-              df.challenge_id,
-              dfd.participant_id
-             FROM dataset_file_downloads dfd,
-              dataset_files df
-            WHERE (dfd.dataset_file_id = df.id)) pc
-    WHERE ((pc.participant_id = p.id) AND (pc.challenge_id = c.id));
-  SQL
-
-  create_view "participant_submissions",  sql_definition: <<-SQL
-      SELECT s.id,
-      s.challenge_id,
-      s.participant_id,
-      p.name,
-      s.grading_status_cd,
-      s.post_challenge,
-      s.score,
-      s.score_secondary,
-      count(f.*) AS files,
-      s.created_at
-     FROM participants p,
-      (submissions s
-       LEFT JOIN submission_files f ON ((f.submission_id = s.id)))
-    WHERE (s.participant_id = p.id)
-    GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
-    ORDER BY s.created_at DESC;
-  SQL
-
   create_view "leaderboards",  sql_definition: <<-SQL
       SELECT l.id,
       row_number() OVER (PARTITION BY l.challenge_id ORDER BY l.score DESC, l.score_secondary) AS row_num,
@@ -586,6 +496,77 @@ ActiveRecord::Schema.define(version: 20170829131851) do
       challenges c
     WHERE ((l.submission_ranking = 1) AND (c.id = l.challenge_id))
     ORDER BY l.challenge_id, (row_number() OVER (PARTITION BY l.challenge_id ORDER BY l.score DESC, l.score_secondary));
+  SQL
+
+  create_view "participant_challenges",  sql_definition: <<-SQL
+      SELECT p.id,
+      pc.challenge_id,
+      pc.participant_id,
+      c.organizer_id,
+      c.challenge,
+      c.description,
+      c.rules,
+      c.prizes,
+      c.resources,
+      c.tagline,
+      p.name,
+      p.email,
+      p.last_sign_in_at,
+      p.bio,
+      p.github,
+      p.linkedin,
+      p.twitter
+     FROM participants p,
+      challenges c,
+      ( SELECT c_1.id,
+              c_1.id AS challenge_id,
+              p_1.id AS participant_id
+             FROM challenges c_1,
+              participants p_1,
+              submissions s_1
+            WHERE ((s_1.challenge_id = c_1.id) AND (s_1.participant_id = p_1.id))
+          UNION
+           SELECT c_1.id,
+              c_1.id AS challenge_id,
+              p_1.id AS participant_id
+             FROM challenges c_1,
+              participants p_1,
+              topics t
+            WHERE ((t.challenge_id = c_1.id) AND (t.participant_id = p_1.id))
+          UNION
+           SELECT t.challenge_id AS id,
+              t.challenge_id,
+              ps.id AS participant_id
+             FROM comments ps,
+              topics t
+            WHERE (t.id = ps.topic_id)
+          UNION
+           SELECT df.challenge_id AS id,
+              df.challenge_id,
+              dfd.participant_id
+             FROM dataset_file_downloads dfd,
+              dataset_files df
+            WHERE (dfd.dataset_file_id = df.id)) pc
+    WHERE ((pc.participant_id = p.id) AND (pc.challenge_id = c.id));
+  SQL
+
+  create_view "participant_submissions",  sql_definition: <<-SQL
+      SELECT s.id,
+      s.challenge_id,
+      s.participant_id,
+      p.name,
+      s.grading_status_cd,
+      s.post_challenge,
+      s.score,
+      s.score_secondary,
+      count(f.*) AS files,
+      s.created_at
+     FROM participants p,
+      (submissions s
+       LEFT JOIN submission_files f ON ((f.submission_id = s.id)))
+    WHERE (s.participant_id = p.id)
+    GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
+    ORDER BY s.created_at DESC;
   SQL
 
 end

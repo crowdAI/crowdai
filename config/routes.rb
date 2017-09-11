@@ -84,7 +84,7 @@ Rails.application.routes.draw do
   match '/pages/privacy', to: 'pages#privacy', via: :get
   match '/pages/terms',   to: 'pages#terms', via: :get
 
-  resources :markdown_editors, only: [:index] do
+  resources :markdown_editors, only: [:index, :create] do
     put :presign, on: :collection
   end
 

@@ -87,6 +87,7 @@ gem 'sinatra', :require => nil
 
 # images
 gem 'carrierwave', '~> 1.0'
+gem "remotipart"
 gem 'net-ssh'
 gem 'inline_svg'
 gem 'file_validators'

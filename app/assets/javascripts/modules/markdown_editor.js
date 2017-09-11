@@ -43,6 +43,33 @@ function insertText(beforeText, afterText, editor) {
 }
 
 
+function uploadFile() {
+  console.log(event.target);
+  console.log(event.currentTarget);
+
+  var markdownFieldID = $(event.target).closest('.md-tab-content').find('textarea.txt-med')[0].id;
+  var file  = event.target.files[0];
+  var reader  = new FileReader();
+
+  reader.addEventListener("load", function () {
+    console.log('load');
+    var formData = new FormData();
+    formData.append('attachment', file);
+    $.ajax({
+      url: "/markdown_editors?markdown_field_id=" + markdownFieldID,
+      type: "POST",
+      data: formData,
+      processData: false,
+      contentType: false
+    });
+  }, false);
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+}
+
+
 $(document).on('turbolinks:load', function() {
 
   var toolbarButtons = [
@@ -84,43 +111,10 @@ $(document).on('turbolinks:load', function() {
     }
   });
 
-  function s3add(e,data){
-    console.log('add');
-    var filename = data.files[0].name;
-    var contentType = data.files[0].type;
-    var params = [];
 
-    $.ajax({
-      url: '/markdown_editor/presign?filename=' + filename,
-      type: 'PUT',
-      dataType: 'json',
-      headers: {
-        filename: filename
-      },
-      success: function(presign) {
-        data.url = presign.presigned_url,
-        data.submit();
-        //debugger;
-      },
-      error: function(error) {
-        console.log('error ' + error);
-      }
-    });
-
-  }
-
-  function onS3Done(){
-    console.log('done');
-  }
-
-  $('#fileupload').fileupload({
-    // acceptFileTypes: acceptFileType,
-    // maxFileSize: maxFileSize,
-    paramName: 'file',
-    add: s3add,
-    dataType: 'xml',
-    done: onS3Done
+  $('.fileUploadLink').on('click', function(e){
+    e.preventDefault();
+    $(this).closest('.md-tab-content').find('.markdownFileInput').trigger('click');
   });
-
 
 }); // turbolinks

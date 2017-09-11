@@ -5,7 +5,7 @@
   <label>Section sequence</label>
   <%= f.number_field :seq %>
   <label>Submission content</label>
-  <%= markdown_editor("description_markdown") do |m| %>
+  <%= markdown_editor do |m| %>
     <%= f.text_area :description_markdown, class: "txt-med" %>
   <% end %>
 </div>

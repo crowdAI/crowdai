@@ -16,7 +16,6 @@ class Article < ApplicationRecord
 
   validates :participant_id,    presence: true
   validates :article,           presence: true
-  validates :category,          presence: true
   validates :summary,           presence: true
   validates :view_count,        presence: true
   validates :vote_count,        presence: true

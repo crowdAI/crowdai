@@ -9,6 +9,10 @@ RSpec.describe MarkdownEditorsController, type: :routing do
     it "routes to #presign" do
       expect(put: '/markdown_editors/presign').to route_to("markdown_editors#presign")
     end
+
+    it "routes to #create" do
+      expect(:post => "/markdown_editors").to route_to("markdown_editors#create")
+    end
   end
 
   describe "invalid routing" do
@@ -29,9 +33,7 @@ RSpec.describe MarkdownEditorsController, type: :routing do
       expect(:get => "/markdown_editors/1/edit").not_to be_routable
     end
 
-    it "routes to #create" do
-      expect(:post => "/markdown_editors").not_to be_routable
-    end
+
 
     it "routes to #update via PUT" do
       expect(:put => "/markdown_editors/1").not_to be_routable

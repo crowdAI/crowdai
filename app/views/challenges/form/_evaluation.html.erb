@@ -71,7 +71,7 @@
     </div>
   </div>
   <label>Evaluation Criteria</label>
-  <%= markdown_editor("description_markdown") do |m| %>
+  <%= markdown_editor do |m| %>
   <%= f.text_area :evaluation_markdown, class: "txt-med" %>
   <% end %>
   <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>

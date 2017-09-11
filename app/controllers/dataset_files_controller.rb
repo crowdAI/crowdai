@@ -39,27 +39,27 @@ class DatasetFilesController < ApplicationController
   end
 
   private
-    def set_dataset_file
-      @dataset_file = DatasetFile.find(params[:id])
-    end
+  def set_dataset_file
+    @dataset_file = DatasetFile.find(params[:id])
+  end
 
-    def set_challenge
-      @challenge = Challenge.friendly.find(params[:challenge_id])
-    end
+  def set_challenge
+    @challenge = Challenge.friendly.find(params[:challenge_id])
+  end
 
-    def dataset_file_params
-      params.require(:dataset_file)
-            .permit(:seq,
-                    :description,
-                    :evaluation,
-                    :title,
-                    :dataset_file_s3_key)
-    end
+  def dataset_file_params
+    params.require(:dataset_file)
+          .permit(:seq,
+                  :description,
+                  :evaluation,
+                  :title,
+                  :dataset_file_s3_key)
+  end
 
-    def set_s3_direct_post
-      @s3_direct_post = S3_BUCKET.presigned_post(key: "dataset_files/challenge_#{@challenge.id}/#{SecureRandom.uuid}_${filename}",
+  def set_s3_direct_post
+    @s3_direct_post = S3_BUCKET.presigned_post(key: "dataset_files/challenge_#{@challenge.id}/#{SecureRandom.uuid}_${filename}",
                                                success_action_status: '201',
                                                acl: 'private')
-    end
+  end
 
 end

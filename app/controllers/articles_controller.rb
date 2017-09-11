@@ -4,7 +4,6 @@ class ArticlesController < ApplicationController
   after_action :verify_authorized
 
   def index
-    #@articles = Article.search "*", page: params[:page], per_page: 2
     @articles = policy_scope(Article).page(params[:page]).per(10)
     authorize @articles
   end
@@ -39,6 +38,7 @@ class ArticlesController < ApplicationController
     end
 
     if @article.save
+      @article.article_sections.create!(section: 'Introduction')
       redirect_to @article
     else
       render :new

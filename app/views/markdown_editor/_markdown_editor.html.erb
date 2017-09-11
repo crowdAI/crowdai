@@ -9,10 +9,10 @@
   <div id='tab-write' class='md-tab-content active'>
     <%= render partial: 'markdown_editor/toolbar' %>
     <%= capture(&block) %>
+    <input type="file" accept="image/*" class='markdownFileInput' onchange="uploadFile()">
     <div class="mde-img">
-      <input type="file" accept="image/*" id='fileupload'>
       <p>Attach images by
-        <a href="#">selecting them</a>
+        <a href="" class='fileUploadLink'>selecting them</a>
       </p>
     </div>
   </div>

@@ -2,7 +2,7 @@
   <%= form_for @challenge, validate: true, html: { class: "dbl-col" } do |f| %>
       <fieldset>
         <label>Resources</label>
-        <%= markdown_editor("description_markdown") do |m| %>
+        <%= markdown_editor do |m| %>
           <%= f.text_area :resources_markdown, class: "txt-med" %>
         <% end %>
         <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>

@@ -23,7 +23,6 @@ describe Article do
   context 'validations' do
     it { is_expected.to validate_presence_of(:participant_id) }
     it { is_expected.to validate_presence_of(:article) }
-    it { is_expected.to validate_presence_of(:category) }
     it { is_expected.to validate_presence_of(:summary) }
     it { is_expected.to validate_presence_of(:view_count) }
     it { is_expected.to validate_presence_of(:vote_count) }

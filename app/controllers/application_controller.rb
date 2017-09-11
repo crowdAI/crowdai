@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 class ApplicationController < ActionController::Base
+  #protect_from_forgery #prepend: true
   include Pundit
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized_or_login
-  protect_from_forgery with: :exception
   after_action :participant_activity
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_paper_trail_whodunnit

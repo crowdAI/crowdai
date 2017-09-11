@@ -1,5 +1,5 @@
 <% if size == :thumb && ['video','image'].include?(content_type) %>
-  <%= link_to challenge_video_modal_path(submission_id: leaderboard_row.submission_id), remote: true do %>
+  <%= link_to challenge_video_modal_path(submission_id: leaderboard_row.submission_id), remote: true, class: 'modal-link' do %>
     <%= media_asset %>
   <% end %>
 <% else %>

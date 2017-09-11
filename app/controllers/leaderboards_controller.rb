@@ -25,10 +25,12 @@ class LeaderboardsController < ApplicationController
   end
 
 
-
   def video_modal
     @leaderboard = Leaderboard.where(submission_id: params[:submission_id]).first
-    render 'leaderboards/ajax/video_modal' if @leaderboard
+    respond_to do |format|
+      format.html { redirect_to challenge_leaderboards_path(@challenge) }
+      format.js { render 'leaderboards/ajax/video_modal' }
+    end
   end
 
   def submission_detail

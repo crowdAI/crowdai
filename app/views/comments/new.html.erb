@@ -16,7 +16,6 @@
         <% end %>
       </div>
       <div class="topic-content">
-        <%= concept(Vote::Cell,@topic) %>
         <h4><%= @topic.topic %></h4>
         <p class="details">Posted by
           <% if @author.is_a? NullParticipant %>
@@ -29,6 +28,7 @@
         <div class="comment">
           <p><%= simple_format(@first_comment.comment) %></p>
         </div>
+        <%= concept(Vote::Cell,@topic) %>
       </div>
     </div>
 

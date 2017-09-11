@@ -20,3 +20,11 @@
 .markdownFileInput {
   display: none;
 }
+
+p.markdown-instructions {
+  color: $color-grey-54;
+  line-height: 10px;
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
+}

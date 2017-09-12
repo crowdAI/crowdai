@@ -7,6 +7,7 @@ Email Notifications settings are controlled from the participant's account setti
 The following emails are controlled by this page
 
 | Email | Classname | Admin only? |
+| ----- | --------- | ----------- |
 | Organizer Application Notification | Admin::OrganizerApplicationNotificationMailer | Yes |
 | Submission Notification | Admin::SubmissionNotificationMailer | Yes |
 | Comment Notification | CommentNotificationMailer | No |

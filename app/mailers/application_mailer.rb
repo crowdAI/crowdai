@@ -10,7 +10,6 @@ class ApplicationMailer < ActionMailer::Base
     options[:unsubscribe_url] = unsubscribe_url(options[:participant_id],unsubscribe_token)
     options[:global_merge_vars] << { name: 'UNSUBSCRIBE_LINK',
                                      content: build_unsubscribe_link(options) }
-    # TODO needs refactoring
     options[:global_merge_vars] << { name: 'UNSUBSCRIBE_URL',
                                     content: options[:unsubscribe_url] }
     message = {

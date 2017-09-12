@@ -2,7 +2,7 @@
 
 Email Notifications settings are controlled from the participant's account settings page. These settings control which emails are sent to the participant, and the frequency.
 
-![Account Settings](images/account_settings.png)
+![Account Settings](images/account_settings.png){:width="350px"}
 
 The following emails are controlled by this page
 
@@ -35,17 +35,15 @@ Other merge tags sent include:
 - Recipient email address
 - Unsubscribe link (token)
 
-
 ### Email subscription controls
 
 At the bottom of each email sent from Mandrill, there is a link to manage email preferences. This link is embedded with a token that allows the user to manage the preferences without logging into crowdAI.
 
-
 ### crowdAI Newsletter
 
-A Mailchimp list is maintained of all crowdAI newsletter subscribers. When a new account is created the email address is sent to Mailchimp via an API call and the list maintained there.
+The Mailchimp list **CrowdAI Participants** is maintained with all crowdAI newsletter subscribers. When a new account is created the email address is sent to Mailchimp via an API call and the list maintained there.
 
-An unsubscribe link is present on the email, and if this is clicked the person is removed from the mailing list. A webhook call is made to update this setting within the participant's profile, and likewise the participant can opt back in or out of the Mailchimp list from the Email Notifications page.
+An unsubscribe link is present on the email, and if this is clicked the person is marked as unsubscribed on the Mailchimp mailing list. A webhook call is made to update this setting within the participant's profile, and likewise the participant can opt back in or out of the Mailchimp list from the Email Notifications page.
 
 ### Receive email for challenges which I am following
 

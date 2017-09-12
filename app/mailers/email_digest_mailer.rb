@@ -6,7 +6,6 @@ class EmailDigestMailer < ApplicationMailer
     start_dttm = set_start_dttm(digest_type)
     comments = comments(participant,start_dttm)
     submissions = submissions(participant,start_dttm)
-
     return if comments.none? && submissions.none?
 
     subject = build_subject(digest_type)

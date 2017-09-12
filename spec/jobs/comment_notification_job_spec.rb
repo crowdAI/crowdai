@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CommentNotificationJob, type: :job do
+RSpec.describe EveryCommentNotificationJob, type: :job do
   include ActiveJob::TestHelper
 
   let!(:author) { create :participant }

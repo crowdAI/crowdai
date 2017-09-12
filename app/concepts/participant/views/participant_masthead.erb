@@ -35,10 +35,10 @@
           <li><%= link_to '<i class="fa fa-link" aria-hidden="true"></i>', url_for(participant.website) %></li>
         <% end %>
       </ul>
-      <% if current_participant.admin? %>
+      <% if current_participant && current_participant.admin? %>
         <div class="text-w-icon">
           <p class="location">
-            <%= participant.email %> &middot; <%= link_to 'Email Notifications', edit_participant_email_preference_path(participant,participant.email_preferences.first) %> 
+            <%= participant.email %> &middot; <%= link_to 'Email Notifications', edit_participant_email_preference_path(participant,participant.email_preferences.first) %>
           </p>
         </div>
 

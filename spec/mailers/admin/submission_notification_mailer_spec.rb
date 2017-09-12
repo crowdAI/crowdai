@@ -7,10 +7,6 @@ RSpec.describe Admin::SubmissionNotificationMailer, type: :mailer do
     let(:submission) { create :submission, challenge: challenge, participant: participant }
     let!(:mailer) { create :crowdai_mailer, mailer_classname: described_class.to_s }
 
-    it 'is a test' do
-      puts mailer.inspect
-    end
-
     it 'successfully sends a message' do
       res = described_class.new.sendmail(participant.id,submission.id)
       man = MandrillSpecHelper.new(res)

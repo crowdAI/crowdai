@@ -5,7 +5,7 @@ class Participant < ApplicationRecord
   include FriendlyId
   include ApiKey
   friendly_id :name, use: [:slugged, :finders]
-  after_create :set_email_preferences
+  after_create :set_email_preferences unless Rails.env.test?
   before_save :set_api_key
   before_save { self.email = email.downcase }
   before_save :process_urls

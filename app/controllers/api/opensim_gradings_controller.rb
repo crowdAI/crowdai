@@ -46,8 +46,7 @@ class Api::OpensimGradingsController < Api::BaseController
       raise ActiveRecord::RecordNotFound if submission.nil?
       key_valid = validate_s3_key(params[:s3_key])
       raise InvalidS3Key.new(s3_key: params[:s3_key]) if !key_valid
-      #ProcessAiGymGifJob.perform_later(submission.id,params[:s3_key])
-      message = "Animated GIF NOT accepted for processing. This feature is deprecated."
+      message = "Animated GIF NOT accepted for processing. This feature has been removed."
       notify_admins(submission)
     rescue => e
       Rails.logger.error e

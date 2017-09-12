@@ -25,37 +25,12 @@ class ApplicationMailer < ActionMailer::Base
       global_merge_vars:  options[:global_merge_vars]
     }
 
-    if mailer_paused?
-      res = nil
-      message = nil
-    else
-      res = MANDRILL.messages.send_template( options[:template], [], message) unless Rails.env.staging?
-    end
-    email_logger(options,unsubscribe_token)
-
+    res = MANDRILL.messages.send_template( options[:template], [], message) unless Rails.env.staging?
     return [res, message]
 
     rescue Mandrill::UnknownTemplateError => e
       Rails.logger.debug("#{e.class}: #{e.message}")
       raise
-  end
-
-
-  def email_logger(options,unsubscribe_token)
-    mailer = CrowdaiMailer.where(mailer_classname: self.class.to_s).first
-    status = :sent
-    status = :paused if mailer_paused?
-
-    Email.create!(model_id: @model_id,
-                  crowdai_mailer_id: mailer.id,
-                  mailer_classname: self.class.to_s,
-                  recipients: options[:to],
-                  options_json: options,
-                  status: status,
-                  participant_id: options[:participant_id],
-                  email_preferences_token: unsubscribe_token,
-                  token_expiration_dttm: DateTime.current + 7.days)
-    return status
   end
 
   def unsubscribe_url(participant_id,unsubscribe_token)
@@ -64,15 +39,9 @@ class ApplicationMailer < ActionMailer::Base
     url = "#{ENV['HOST']}/participants/#{participant.id}/email_preferences/#{pref.id}/edit?unsubscribe_token=#{unsubscribe_token}"
   end
 
-  def mailer_paused?
-    mailer = CrowdaiMailer.where(mailer_classname: self.class.to_s).first.paused
-  end
-
-
   def generate_unsubscribe_token
     SecureRandom.urlsafe_base64(24)
   end
-
 
   def build_unsubscribe_link(options)
     "<div>" +

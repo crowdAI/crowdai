@@ -21,8 +21,8 @@ class CommentEveryEmailParticipantsQuery
          AND p.participant_id = c.participant_id
          AND p.mentions IS TRUE
          AND p.receive_every_email IS TRUE
-         AND t.id IN (SELECT c2.topic_id
-                        FROM comments c2
+         AND t.id IN (SELECT c1.topic_id
+                        FROM comments c1
                        WHERE c1.id = #{@comment_id})
       UNION
       SELECT p.participant_id AS id

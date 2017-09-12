@@ -14,9 +14,6 @@ RSpec.describe SubmissionGradedNotificationMailer, type: :mailer do
       man = MandrillSpecHelper.new(res)
       expect(man.status).to eq 'sent'
       expect(man.reject_reason).to eq nil
-      expect(Email.count).to eq(1)
-      expect(Email.last.participant_id).to eq(participant.id)
-      expect(Email.last.mailer_classname).to eq(described_class.to_s)
     end
 
     it 'addresses the email to the participant' do

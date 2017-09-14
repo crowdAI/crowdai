@@ -1,5 +1,4 @@
 class Participant < ApplicationRecord
-  #searchkick
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :lockable, :timeoutable
   include FriendlyId
@@ -27,7 +26,7 @@ class Participant < ApplicationRecord
   has_many :challenges,                 through: :participant_challenges
   has_many :dataset_file_downloads,     dependent: :destroy
   has_many :email_preferences,          dependent: :destroy
-  has_many :emails,                     dependent: :destroy
+  has_many :email_preferences_tokens,   dependent: :destroy
   has_many :follows,                    dependent: :destroy
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i

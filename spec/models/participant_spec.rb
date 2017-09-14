@@ -31,6 +31,7 @@ describe Participant do
     it { is_expected.to have_many(:ongoing_leaderboards) }
     it { is_expected.to have_many(:participant_challenges) }
     it { is_expected.to have_many(:dataset_file_downloads) }
+    it { is_expected.to have_many(:email_preferences_tokens) }
   end
 
   context 'validations' do

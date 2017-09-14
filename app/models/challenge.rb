@@ -25,7 +25,6 @@ class Challenge < ApplicationRecord
   has_many :ongoing_leaderboards,         class_name: 'OngoingLeaderboard'
   has_many :participant_challenges,       class_name: 'ParticipantChallenge'
   has_many :topics
-  has_many :emails,                       dependent: :destroy
   has_many :votes,                        as: :votable
   has_many :follows,                      as: :followable
 

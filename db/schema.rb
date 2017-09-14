@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170914074942) do
+ActiveRecord::Schema.define(version: 20170914121625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,13 +132,6 @@ ActiveRecord::Schema.define(version: 20170914074942) do
     t.index ["topic_id"], name: "index_posts_on_topic_id"
   end
 
-  create_table "crowdai_mailers", id: :serial, force: :cascade do |t|
-    t.string "mailer_classname"
-    t.boolean "paused", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "dataset_file_downloads", id: :serial, force: :cascade do |t|
     t.integer "participant_id"
     t.integer "dataset_file_id"
@@ -175,32 +168,13 @@ ActiveRecord::Schema.define(version: 20170914074942) do
     t.index ["participant_id"], name: "index_email_preferences_on_participant_id"
   end
 
-  create_table "email_transitions", id: :serial, force: :cascade do |t|
-    t.string "to_state", null: false
-    t.text "metadata", default: "{}"
-    t.integer "sort_key", null: false
-    t.integer "email_id", null: false
-    t.boolean "most_recent", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email_id", "most_recent"], name: "index_email_transitions_parent_most_recent", unique: true, where: "most_recent"
-    t.index ["email_id", "sort_key"], name: "index_email_transitions_parent_sort", unique: true
-  end
-
-  create_table "emails", id: :serial, force: :cascade do |t|
-    t.integer "model_id"
-    t.string "mailer_classname"
-    t.text "recipients"
-    t.text "options"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "email_preferences_tokens", force: :cascade do |t|
+    t.bigint "participant_id"
     t.string "email_preferences_token"
     t.datetime "token_expiration_dttm"
-    t.integer "participant_id"
-    t.jsonb "options_json"
-    t.integer "crowdai_mailer_id"
-    t.string "status_cd"
-    t.index ["crowdai_mailer_id"], name: "index_emails_on_crowdai_mailer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["participant_id"], name: "index_email_preferences_tokens_on_participant_id"
   end
 
   create_table "follows", id: :serial, force: :cascade do |t|
@@ -415,7 +389,6 @@ ActiveRecord::Schema.define(version: 20170914074942) do
   add_foreign_key "dataset_file_downloads", "dataset_files"
   add_foreign_key "dataset_file_downloads", "participants"
   add_foreign_key "email_preferences", "participants"
-  add_foreign_key "emails", "crowdai_mailers"
   add_foreign_key "follows", "participants"
   add_foreign_key "participants", "organizers"
   add_foreign_key "submission_file_definitions", "challenges"

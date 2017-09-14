@@ -3,7 +3,8 @@ RSpec.describe Admin::SubmissionNotificationJob, type: :job do
   include ActiveJob::TestHelper
 
   let(:submission) { create :submission }
-  let(:mailer) { create :crowdai_mailer, mailer_classname: 'SubmissionNotificationMailer' }
+  let!(:email_preference) { create :email_preference, :every_email, participant: submission.participant }
+
   subject(:job) { described_class.perform_later(submission) }
 
   describe 'queues the job' do

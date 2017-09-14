@@ -4,8 +4,8 @@ RSpec.describe Admin::SubmissionNotificationMailer, type: :mailer do
   describe 'methods' do
     let(:challenge) { create :challenge }
     let(:participant) { create :participant }
+    let!(:email_preference) { create :email_preference, :every_email, participant: participant }
     let(:submission) { create :submission, challenge: challenge, participant: participant }
-    let!(:mailer) { create :crowdai_mailer, mailer_classname: described_class.to_s }
 
     it 'successfully sends a message' do
       res = described_class.new.sendmail(participant.id,submission.id)

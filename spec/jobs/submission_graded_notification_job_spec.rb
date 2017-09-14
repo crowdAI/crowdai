@@ -6,10 +6,11 @@ RSpec.describe SubmissionGradedNotificationJob, type: :job do
   let!(:participant) { create :participant }
   let(:submission) { create :submission, participant: participant }
   let!(:admin) { create :participant, :admin }
-  let!(:mailer) { create :crowdai_mailer, mailer_classname: 'SubmissionGradedNotificationMailer' }
+  let!(:email_preference1) { create :email_preference, :every_email, participant: participant }
+  let!(:email_preference2) { create :email_preference, :every_email, participant: admin }
+
 
   describe 'queues the job' do
-    puts "CrowdaiMailer: #{CrowdaiMailer.count}"
 
     subject(:job) { described_class.perform_later(submission) }
 

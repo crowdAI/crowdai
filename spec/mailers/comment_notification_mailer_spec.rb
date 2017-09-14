@@ -3,9 +3,10 @@ require 'spec_helper'
 RSpec.describe CommentNotificationMailer, type: :mailer do
 
   describe 'methods' do
-    let(:challenge) { create :challenge }
-    let(:participant) { create :participant }
-    let(:comment) { create :comment, participant: participant }
+    let!(:challenge) { create :challenge }
+    let!(:participant) { create :participant }
+    let!(:email_preference) { create :email_preference, :every_email, participant: participant }
+    let!(:comment) { create :comment, participant: participant }
 
     it 'successfully sends a message' do
       res = described_class.new.sendmail(participant.id,comment.id)

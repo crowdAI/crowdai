@@ -30,7 +30,7 @@ RSpec.describe SubmissionGradedNotificationMailer, type: :mailer do
     it 'produces a valid unsubscribe link' do
       res = described_class.new.sendmail(participant.id,submission.id)
       man = MandrillSpecHelper.new(res)
-      expect(man.merge_var('UNSUBSCRIBE_LINK')).to be_a_valid_html_fragment
+      expect(man.merge_var('EMAIL_PREFERENCES_LINK')).to be_a_valid_html_fragment
     end
   end
 

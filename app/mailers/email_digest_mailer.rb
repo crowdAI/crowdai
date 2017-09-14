@@ -79,7 +79,11 @@ class EmailDigestMailer < ApplicationMailer
         {
           name:           "BODY",
           content:        body
-        }
+        },
+        { name:           'EMAIL_PREFERENCES_LINK',
+          content:        EmailPreferencesTokenService
+                            .new(participant)
+                            .email_preferences_link }
       ]
     }
   end

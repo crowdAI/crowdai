@@ -1,7 +1,11 @@
 <h3>Comments Summary</h3>
 
 <% comments.each do |comment| %>
-  <%= link_to comment.topic.topic, new_topic_comment_url(comment.topic) %> by <%= comment.participant.name %>.
+  <div>Comments on <%= link_to comment.topic.topic, new_topic_comment_url(comment.topic) %></div>
+  <div><b><%= comment.participant.name %></b></div>
+  <%= link_to comment.topic.topic do %>
+    <div><%= truncate(strip_tags(comment.comment),length: 50) %>
+  <% end %>
   <br/>
 <% end %>
 <hr/>

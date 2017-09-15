@@ -76,40 +76,5 @@ RSpec.describe EmailDigestMailer, type: :mailer do
     end
   end
 
-  context 'participant - daily digest' do
-    describe 'comment before period' do
-      let!(:challenge) { create :challenge }
-      let!(:participant) { create :participant }
-      let!(:topic_author1) { create :participant }
-      let!(:email_preference) { create :email_preference, :daily, participant: participant }
-      let!(:email_preference) { create :email_preference, :weekly, participant: topic_author1 }
-
-      before do
-        Timecop.freeze(Date.today - 2.days)
-        let!(:topic) { create :topic, challenge: challenge, participant: topic_author1, topic: 'topic1' }
-        let!(:comment1) { create :comment, topic: topic, participant: topic_author1, comment: 'topic1_comment1' }
-        let!(:comment2) { create :comment, topic: topic, participant: participant, comment: 'topic1_comment2' }
-        Timecop.return
-        let!(:comment3) { create :comment, topic: topic, participant: topic_author1, comment: 'topic1_comment3' }
-      end
-
-      it 'should not receive email for topic_1_comment_1' do
-
-        res = described_class.new.sendmail(participant.id,'daily')
-        man = MandrillSpecHelper.new(res)
-        expect(man.status).to eq 'sent'
-        expect(man.reject_reason).to eq nil
-      end
-
-      it 'should not receive email for topic_1_comment_2' do
-
-      end
-
-      it 'should receive email for topic_1_comment_3' do
-
-      end
-    end
-  end
-
 
 end

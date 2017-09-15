@@ -31,8 +31,7 @@ RSpec.describe EveryCommentNotificationJob, type: :job do
     it 'is sent by Mandrill' do
       perform_enqueued_jobs { job }
       man = MandrillMessage.last
-      byebug
-      expect(man.status).to eq('sentx')
+      expect(man.status).to eq('sent')
     end
   end
 
@@ -54,6 +53,11 @@ RSpec.describe EveryCommentNotificationJob, type: :job do
     it 'executes with no errors' do
       perform_enqueued_jobs { job }
     end
+
+    it 'is not sent by Mandrill' do
+      perform_enqueued_jobs { job }
+      expect(MandrillMessage.count).to eq(0)
+    end
   end
 
   describe 'weekly digest' do
@@ -73,6 +77,11 @@ RSpec.describe EveryCommentNotificationJob, type: :job do
 
     it 'executes with no errors' do
       perform_enqueued_jobs { job }
+    end
+
+    it 'is not sent by Mandrill' do
+      perform_enqueued_jobs { job }
+      expect(MandrillMessage.count).to eq(0)
     end
   end
 

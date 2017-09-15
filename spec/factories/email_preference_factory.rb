@@ -11,8 +11,8 @@ FactoryGirl.define do
 
     trait :daily do
       receive_every_email false
-      receive_daily_digest false
-      receive_weekly_digest true
+      receive_daily_digest true
+      receive_weekly_digest false
     end
 
     trait :weekly do

@@ -76,66 +76,40 @@ RSpec.describe EmailDigestMailer, type: :mailer do
     end
   end
 
-=begin
   context 'participant - daily digest' do
-    let!(:participant) { create :participant }
-    let!(:email_preference) { create :email_preference, :daily, participant: participant }
+    describe 'comment before period' do
+      let!(:challenge) { create :challenge }
+      let!(:participant) { create :participant }
+      let!(:topic_author1) { create :participant }
+      let!(:email_preference) { create :email_preference, :daily, participant: participant }
+      let!(:email_preference) { create :email_preference, :weekly, participant: topic_author1 }
 
-    it 'sends the email' do
-      res = described_class.new.sendmail(participant.id,'daily')
-      man = MandrillSpecHelper.new(res)
-      expect(man.status).to eq 'sent'
-      expect(man.reject_reason).to eq nil
-      expect(Email.count).to eq(1)
-      expect(Email.last.participant_id).to eq(participant.id)
-      expect(Email.last.mailer_classname).to eq(described_class.to_s)
+      before do
+        Timecop.freeze(Date.today - 2.days)
+        let!(:topic) { create :topic, challenge: challenge, participant: topic_author1, topic: 'topic1' }
+        let!(:comment1) { create :comment, topic: topic, participant: topic_author1, comment: 'topic1_comment1' }
+        let!(:comment2) { create :comment, topic: topic, participant: participant, comment: 'topic1_comment2' }
+        Timecop.return
+        let!(:comment3) { create :comment, topic: topic, participant: topic_author1, comment: 'topic1_comment3' }
+      end
+
+      it 'should not receive email for topic_1_comment_1' do
+
+        res = described_class.new.sendmail(participant.id,'daily')
+        man = MandrillSpecHelper.new(res)
+        expect(man.status).to eq 'sent'
+        expect(man.reject_reason).to eq nil
+      end
+
+      it 'should not receive email for topic_1_comment_2' do
+
+      end
+
+      it 'should receive email for topic_1_comment_3' do
+
+      end
     end
   end
 
-  context 'participant - weekly digest' do
-    let!(:participant) { create :participant }
-    let!(:email_preference) { create :email_preference, :weekly, participant: participant }
-
-    it 'sends the email' do
-      res = described_class.new.sendmail(participant.id,'weekly')
-      man = MandrillSpecHelper.new(res)
-      expect(man.status).to eq 'sent'
-      expect(man.reject_reason).to eq nil
-      expect(Email.count).to eq(1)
-      expect(Email.last.participant_id).to eq(participant.id)
-      expect(Email.last.mailer_classname).to eq(described_class.to_s)
-    end
-  end
-
-  context 'admin - daily digest' do
-    let!(:participant) { create :participant, :admin }
-    let!(:email_preference) { create :email_preference, :daily, participant: participant }
-
-    it 'sends the email' do
-      res = described_class.new.sendmail(participant.id,'daily')
-      man = MandrillSpecHelper.new(res)
-      expect(man.status).to eq 'sent'
-      expect(man.reject_reason).to eq nil
-      expect(Email.count).to eq(1)
-      expect(Email.last.participant_id).to eq(participant.id)
-      expect(Email.last.mailer_classname).to eq(described_class.to_s)
-    end
-  end
-
-  context 'admin - weekly digest' do
-    let!(:participant) { create :participant, :admin }
-    let!(:email_preference) { create :email_preference, :weekly, participant: participant }
-
-    it 'sends the email' do
-      res = described_class.new.sendmail(participant.id,'weekly')
-      man = MandrillSpecHelper.new(res)
-      expect(man.status).to eq 'sent'
-      expect(man.reject_reason).to eq nil
-      expect(Email.count).to eq(1)
-      expect(Email.last.participant_id).to eq(participant.id)
-      expect(Email.last.mailer_classname).to eq(described_class.to_s)
-    end
-  end
-=end
 
 end

@@ -13,6 +13,9 @@ class CommentsDigestQuery
     ActiveRecord::Base.connection.select_values(sql)
   end
 
+  # participant has receive daily / weekly digest AND
+  # (participant has mentions AND has participated in the thread) OR
+  # there is a comment on a challenge followed by the participant
   def sql
     %Q[
       SELECT c.id AS id
@@ -23,19 +26,21 @@ class CommentsDigestQuery
                              WHERE participant_id = #{@participant_id}
                                AND created_at >= '#{@start_dttm}')
          AND p.participant_id = c.participant_id
+         AND (p.receive_daily_digest IS TRUE
+              OR p.receive_weekly_digest IS TRUE)
          AND p.mentions IS TRUE
       UNION
-      SELECT f.followable_id AS id
-        FROM follows f,
-             email_preferences p
-       WHERE followable_type = 'Challenge'
+      SELECT c.id AS id
+        FROM comments c,
+             email_preferences p,
+             follows f,
+             topics t
+       WHERE f.participant_id = #{@participant_id}
          AND f.participant_id = p.participant_id
-         AND f.followable_id IN (SELECT challenge_id
-                                  FROM topics
-                                 WHERE id IN (SELECT topic_id
-                                                FROM comments
-                                               WHERE participant_id = #{@participant_id}
-                                                 AND created_at >= '#{@start_dttm}'))
+         AND f.followable_type = 'Challenge'
+         AND c.topic_id = t.id
+         AND t.challenge_id = f.followable_id
+         AND c.created_at >= '#{@start_dttm}'
          AND p.challenges_followed IS TRUE
     ]
   end

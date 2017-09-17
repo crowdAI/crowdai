@@ -26,6 +26,10 @@ RSpec.describe CommentsDigestQuery do
       it { expect(subject.sort).to match_array([comment.id].sort) }
     end
 
+    context 'Participant follows' do
+      
+    end
+
   end
 
 end

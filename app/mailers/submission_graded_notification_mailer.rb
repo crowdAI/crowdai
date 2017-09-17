@@ -25,7 +25,11 @@ class SubmissionGradedNotificationMailer < ApplicationMailer
         {
           name:           "BODY",
           content:        email_body(challenge,submission)
-        }
+        },
+        { name:           'EMAIL_PREFERENCES_LINK',
+          content:        EmailPreferencesTokenService
+                            .new(participant)
+                            .email_preferences_link }
       ]
     }
   end

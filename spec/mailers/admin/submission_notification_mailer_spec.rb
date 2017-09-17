@@ -4,12 +4,8 @@ RSpec.describe Admin::SubmissionNotificationMailer, type: :mailer do
   describe 'methods' do
     let(:challenge) { create :challenge }
     let(:participant) { create :participant }
+    let!(:email_preference) { create :email_preference, :every_email, participant: participant }
     let(:submission) { create :submission, challenge: challenge, participant: participant }
-    let!(:mailer) { create :crowdai_mailer, mailer_classname: described_class.to_s }
-
-    it 'is a test' do
-      puts mailer.inspect
-    end
 
     it 'successfully sends a message' do
       res = described_class.new.sendmail(participant.id,submission.id)
@@ -33,7 +29,7 @@ RSpec.describe Admin::SubmissionNotificationMailer, type: :mailer do
     it 'produces a valid unsubscribe link' do
       res = described_class.new.sendmail(participant.id,submission.id)
       man = MandrillSpecHelper.new(res)
-      expect(man.merge_var('UNSUBSCRIBE_LINK')).to be_a_valid_html_fragment
+      expect(man.merge_var('EMAIL_PREFERENCES_LINK')).to be_a_valid_html_fragment
     end
   end
 

@@ -6,7 +6,6 @@ class EmailDigestMailer < ApplicationMailer
     start_dttm = set_start_dttm(digest_type)
     comments = comments(participant,start_dttm)
     submissions = submissions(participant,start_dttm)
-
     return if comments.none? && submissions.none?
 
     subject = build_subject(digest_type)
@@ -80,7 +79,11 @@ class EmailDigestMailer < ApplicationMailer
         {
           name:           "BODY",
           content:        body
-        }
+        },
+        { name:           'EMAIL_PREFERENCES_LINK',
+          content:        EmailPreferencesTokenService
+                            .new(participant)
+                            .email_preferences_link }
       ]
     }
   end

@@ -25,7 +25,11 @@ class CommentNotificationMailer < ApplicationMailer
         {
           name:           "BODY",
           content:        email_body(challenge,topic,comment)
-        }
+        },
+        { name:           'EMAIL_PREFERENCES_LINK',
+          content:        EmailPreferencesTokenService
+                            .new(participant)
+                            .email_preferences_link }
       ]
     }
   end

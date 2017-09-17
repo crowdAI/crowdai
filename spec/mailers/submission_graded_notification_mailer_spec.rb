@@ -5,18 +5,14 @@ RSpec.describe SubmissionGradedNotificationMailer, type: :mailer do
   describe 'methods' do
     let(:challenge) { create :challenge }
     let(:participant) { create :participant }
+    let!(:email_preference) { create :email_preference, :every_email, participant: participant }
     let(:submission) { create :submission, challenge: challenge, participant: participant }
-    let!(:mailer) { create :crowdai_mailer, mailer_classname: described_class.to_s }
-
 
     it 'successfully sends a message' do
       res = described_class.new.sendmail(participant.id,submission.id)
       man = MandrillSpecHelper.new(res)
       expect(man.status).to eq 'sent'
       expect(man.reject_reason).to eq nil
-      expect(Email.count).to eq(1)
-      expect(Email.last.participant_id).to eq(participant.id)
-      expect(Email.last.mailer_classname).to eq(described_class.to_s)
     end
 
     it 'addresses the email to the participant' do
@@ -34,7 +30,7 @@ RSpec.describe SubmissionGradedNotificationMailer, type: :mailer do
     it 'produces a valid unsubscribe link' do
       res = described_class.new.sendmail(participant.id,submission.id)
       man = MandrillSpecHelper.new(res)
-      expect(man.merge_var('UNSUBSCRIBE_LINK')).to be_a_valid_html_fragment
+      expect(man.merge_var('EMAIL_PREFERENCES_LINK')).to be_a_valid_html_fragment
     end
   end
 

@@ -7,10 +7,6 @@ RSpec.describe OrganizerApplicationsController, type: :controller do
     FactoryGirl.attributes_for(:organizer_application)
   }
 
-  before do
-    FactoryGirl.create(:crowdai_mailer, mailer_classname: 'OrganizerApplicationNotificationMailer')
-  end
-
   describe "POST #create" do
     it "creates a new OrganizerApplication" do
       expect {

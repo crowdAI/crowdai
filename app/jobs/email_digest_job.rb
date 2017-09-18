@@ -16,7 +16,8 @@ class EmailDigestJob < ApplicationJob
   end
 
   def daily_digest_participant_ids
-    EmailPreference.where(receive_daily_digest: true).ids
+    return [1]
+    #EmailPreference.where(receive_daily_digest: true).ids
   end
 
   def weekly_digest_participant_ids

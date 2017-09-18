@@ -7,8 +7,14 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_paper_trail_whodunnit
 
+  def append_info_to_payload(payload)
+    super
+    payload[:request_id] = request.uuid
+    payload[:user_id] = current_user.id if current_user
+  end
 
-  protected
+
+  private
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) do |u|
       u.permit(:name, :email, :password, :password_confirmation, :remember_me)
@@ -67,10 +73,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def append_info_to_payload(payload)
-    super
-    payload[:request_id] = request.uuid
-    payload[:user_id] = current_user.id if current_user
-  end
+
 
 end

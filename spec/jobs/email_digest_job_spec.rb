@@ -6,7 +6,7 @@ RSpec.describe EmailDigestJob, type: :job do
   describe 'executes the daily digest' do
     let(:email_preference) { create :email_preference, :daily }
     let(:mailer) { create :crowdai_mailer, mailer_classname: 'EmailDigestMailer' }
-    subject(:job) { described_class.perform_later({"digest_type":"daily"}) }
+    subject(:job) { described_class.perform_later("digest_type" => "daily") }
 
     it 'queues the job' do
       expect { job }.to change(ActiveJob::Base.queue_adapter.enqueued_jobs, :size).by(1)
@@ -23,7 +23,7 @@ RSpec.describe EmailDigestJob, type: :job do
 
   describe 'executes the weekly digest' do
     let(:email_preference) { create :email_preference, :weekly }
-    subject(:job) { described_class.perform_later({"digest_type":"weekly"}) }
+    subject(:job) { described_class.perform_later("digest_type" => "weekly") }
 
     it 'queues the job' do
       expect { job }.to change(ActiveJob::Base.queue_adapter.enqueued_jobs, :size).by(1)
@@ -53,7 +53,7 @@ RSpec.describe EmailDigestJob, type: :job do
         comment2 = FactoryGirl.create :comment, topic: topic, participant: participant, comment: 'topic1_comment2'
       Timecop.return
       comment3 = FactoryGirl.create :comment, topic: topic, participant: topic_author1, comment: 'topic1_comment3'
-      perform_enqueued_jobs { described_class.perform_later({"digest_type":"daily"}) }
+      perform_enqueued_jobs { described_class.perform_later("digest_type" => "daily") }
 
       expect(MandrillMessage.count).to eq(0)
     end
@@ -64,7 +64,7 @@ RSpec.describe EmailDigestJob, type: :job do
       Timecop.return
       comment1 = FactoryGirl.create :comment, topic: topic, participant: topic_author1, comment: 'topic1_comment1'
       comment2 = FactoryGirl.create :comment, topic: topic, participant: participant, comment: 'topic1_comment2'
-      perform_enqueued_jobs { described_class.perform_later({"digest_type":"daily"}) }
+      perform_enqueued_jobs { described_class.perform_later("digest_type" => "daily") }
 
       expect(MandrillMessage.count).to eq(1)
     end
@@ -78,7 +78,7 @@ RSpec.describe EmailDigestJob, type: :job do
       Timecop.freeze(Time.now - 2.days)
         submission = FactoryGirl.create :submission
       Timecop.return
-      perform_enqueued_jobs { described_class.perform_later({"digest_type":"daily"}) }
+      perform_enqueued_jobs { described_class.perform_later("digest_type" => "daily") }
 
       expect(MandrillMessage.count).to eq(0)
     end
@@ -87,7 +87,7 @@ RSpec.describe EmailDigestJob, type: :job do
       Timecop.freeze(Time.now - 12.hours)
         submission = FactoryGirl.create :submission
       Timecop.return
-      perform_enqueued_jobs { described_class.perform_later({"digest_type":"daily"}) }
+      perform_enqueued_jobs { described_class.perform_later("digest_type" => "daily") }
 
       expect(MandrillMessage.count).to eq(1)
     end
@@ -107,7 +107,7 @@ RSpec.describe EmailDigestJob, type: :job do
         comment2 = FactoryGirl.create :comment, topic: topic, participant: participant, comment: 'topic1_comment2'
       Timecop.return
       comment3 = FactoryGirl.create :comment, topic: topic, participant: topic_author1, comment: 'topic1_comment3'
-      perform_enqueued_jobs { described_class.perform_later({"digest_type":"daily"}) }
+      perform_enqueued_jobs { described_class.perform_later("digest_type" => "daily") }
 
       expect(MandrillMessage.count).to eq(0)
     end
@@ -118,7 +118,7 @@ RSpec.describe EmailDigestJob, type: :job do
       Timecop.return
       comment1 = FactoryGirl.create :comment, topic: topic, participant: topic_author1, comment: 'topic1_comment1'
       comment2 = FactoryGirl.create :comment, topic: topic, participant: participant, comment: 'topic1_comment2'
-      perform_enqueued_jobs { described_class.perform_later({"digest_type":"daily"}) }
+      perform_enqueued_jobs { described_class.perform_later("digest_type" => "daily") }
 
       expect(MandrillMessage.count).to eq(1)
     end
@@ -132,7 +132,7 @@ RSpec.describe EmailDigestJob, type: :job do
       Timecop.freeze(Time.now - 8.days)
         submission = FactoryGirl.create :submission
       Timecop.return
-      perform_enqueued_jobs { described_class.perform_later({"digest_type":"weekly"}) }
+      perform_enqueued_jobs { described_class.perform_later("digest_type" => "weekly") }
 
       expect(MandrillMessage.count).to eq(0)
     end
@@ -141,7 +141,7 @@ RSpec.describe EmailDigestJob, type: :job do
       Timecop.freeze(Time.now - 5.days)
         submission = FactoryGirl.create :submission
       Timecop.return
-      perform_enqueued_jobs { described_class.perform_later({"digest_type":"weekly"}) }
+      perform_enqueued_jobs { described_class.perform_later("digest_type" => "weekly") }
 
       expect(MandrillMessage.count).to eq(1)
     end
@@ -161,7 +161,7 @@ RSpec.describe EmailDigestJob, type: :job do
         comment2 = FactoryGirl.create :comment, topic: topic, participant: admin, comment: 'topic1_comment2'
         submission = FactoryGirl.create :submission, challenge: challenge, participant: topic_author1
       Timecop.return
-      perform_enqueued_jobs { described_class.perform_later({"digest_type":"daily"}) }
+      perform_enqueued_jobs { described_class.perform_later("digest_type" => "daily") }
 
       expect(MandrillMessage.count).to eq(1)
     end

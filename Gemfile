@@ -17,6 +17,7 @@ gem 'activeadmin'
 gem 'mini_magick'
 gem 'rollbar'
 gem 'oj', '~> 2.12.14'
+gem 'lograge'
 
 # model
 gem 'simple_enum'

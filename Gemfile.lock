@@ -431,6 +431,11 @@ GEM
       ruby_dep (~> 1.2)
     lodash-rails (4.17.4)
       railties (>= 3.1)
+    lograge (0.6.0)
+      actionpack (>= 4, < 5.2)
+      activesupport (>= 4, < 5.2)
+      railties (>= 4, < 5.2)
+      request_store (~> 1.0)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     lumberjack (1.0.12)
@@ -779,6 +784,7 @@ DEPENDENCIES
   kramdown
   launchy
   lodash-rails
+  lograge
   mandrill-api
   meta_request
   mini_magick

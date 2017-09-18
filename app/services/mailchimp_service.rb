@@ -4,6 +4,24 @@ class MailchimpService
     @participant = Participant.find(participant_id)
   end
 
+  def subscribed?
+    return false if member.nil?
+    status = member['status']
+    if status == 'subscribed'
+      return true
+    else
+      return false
+    end
+  end
+
+  def member
+    begin
+      return gibbon.lists(ENV['MAILCHIMP_LIST_ID']).members(lower_case_md5_hashed_email_address).retrieve.body
+    rescue
+      return nil
+    end
+  end
+
   def subscribe
     lower_case_md5_hashed_email_address = Digest::MD5.hexdigest(@participant.email.downcase)
     begin

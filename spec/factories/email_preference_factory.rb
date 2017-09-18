@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :email_preference, class: EmailPreference do
     participant
     mentions true
+    newsletter true
 
     trait :every_email do
       receive_every_email true

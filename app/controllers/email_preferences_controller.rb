@@ -8,7 +8,16 @@ class EmailPreferencesController < ApplicationController
   end
 
   def update
-    if @email_preference.update(email_preference_params)
+    @email_preference.attributes = email_preference_params
+    if @email_preference.newsletter_change == [false,true]
+      # from off to on
+      MailchimpService.new(@participant.id).subscribe
+    end
+    if @email_preference.newsletter_change == [true,false]
+      # from on to off
+      MailchimpService.new(@participant.id).unsubscribe
+    end
+    if @email_preference.save
       if @token
         redirect_to edit_participant_email_preference_path(@participant, @email_preference, unsubscribe_token: @token),
                                                           notice: 'Your email preferences were successfully updated.'
@@ -74,6 +83,10 @@ class EmailPreferencesController < ApplicationController
     else
       set_email_preference
     end
+  end
+
+  def mailchimp_list_status
+
   end
 
 end

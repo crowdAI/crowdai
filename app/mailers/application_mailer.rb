@@ -21,9 +21,7 @@ class ApplicationMailer < ActionMailer::Base
     }
 
     res = MANDRILL.messages.send_template( options[:template], [], message) unless Rails.env.staging?
-    if Rails.env.test?
-      MandrillMessage.create!(res: res, message: message, meta: options[:meta])
-    end
+    MandrillMessage.create!(res: res, message: message, meta: options[:meta])
     return [res, message]
 
     rescue Mandrill::UnknownTemplateError => e

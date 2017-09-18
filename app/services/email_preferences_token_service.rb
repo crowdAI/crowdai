@@ -41,34 +41,4 @@ class EmailPreferencesTokenService
     return token
   end
 
-
-
-
-=begin
-
-    if
-
-
-    found_token = participant.email_preferences_token.where(email_preferences_token: token)
-    return 'not_found' if
-
-      email = Email.where(participant_id: @participant.id, email_preferences_token: @token)[0]
-      if current_participant && (email.participant_id != current_participant.id)
-        flash[:error] = "The unsubscribe link is not valid for the currently logged in participant."
-        redirect_to '/'
-      end
-      if email.blank?
-        flash[:error] = "The unsubscribe link is invalid."
-        redirect_to new_participant_session_path
-      end
-      if email.present? && email.token_expiration_dttm < DateTime.current
-        flash[:error] = 'The unsubscribe link has expired.'
-        redirect_to new_participant_session_path
-      end
-      @email_preference = @participant.email_preferences.first
-  end
-
-=end
-
-
 end

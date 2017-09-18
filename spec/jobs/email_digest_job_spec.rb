@@ -154,7 +154,7 @@ RSpec.describe EmailDigestJob, type: :job do
     let!(:email_preference2) { create :email_preference, :every_email, participant: topic_author1 }
 
     it 'daily' do
-      Timecop.freeze(Date.today - 12.hours)
+      Timecop.freeze(Time.now - 12.hours)
         challenge = FactoryGirl.create :challenge
         topic = FactoryGirl.create :topic, challenge: challenge, participant: topic_author1, topic: 'topic1'
         comment1 = FactoryGirl.create :comment, topic: topic, participant: topic_author1, comment: 'topic1_comment1'
@@ -163,7 +163,7 @@ RSpec.describe EmailDigestJob, type: :job do
       Timecop.return
       perform_enqueued_jobs { described_class.perform_later({"digest_type":"daily"}) }
 
-      #expect(MandrillMessage.count).to eq(1)
+      expect(MandrillMessage.count).to eq(1)
     end
   end
 

@@ -3,6 +3,8 @@ class EmailDigestJob < ApplicationJob
 
   def perform(digest_params)
     digest_type = digest_params[:digest_type]
+    Rails.logger.info("[CROWDAI] digest_params #{digest_params}")
+
     if digest_type == 'daily'
       Rails.logger.info("[CROWDAI] processing DAILY")
       daily_digest_participant_ids.each do |participant_id|

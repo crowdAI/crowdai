@@ -2,10 +2,13 @@ class EmailDigestMailer < ApplicationMailer
 
   def sendmail(participant_id,digest_type)
     participant = Participant.find(participant_id)
+    Rails.logger.info("[CROWDAI] EmailDigestMailer processing #{participant.inspect}")
+
 
     start_dttm = set_start_dttm(digest_type)
     comments = comments(participant,start_dttm)
     submissions = submissions(participant,start_dttm)
+    Rails.logger.info("[CROWDAI] start_dttm #{start_dttm} / comments #{comments.count} / submissions #{submissions.count}")
     return if comments.none? && submissions.none?
 
     subject = build_subject(digest_type)

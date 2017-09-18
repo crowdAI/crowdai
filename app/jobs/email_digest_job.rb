@@ -4,7 +4,9 @@ class EmailDigestJob < ApplicationJob
   def perform(digest_params)
     digest_type = digest_params[:digest_type]
     if digest_type == 'daily'
+      Rails.logger.info("[CROWDAI] processing DAILY")
       daily_digest_participant_ids.each do |participant_id|
+        Rails.logger.info("[CROWDAI] processing #{participant_id}")
         EmailDigestMailer.new.sendmail(participant_id,'daily')
       end
     end

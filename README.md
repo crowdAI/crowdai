@@ -1,4 +1,4 @@
-![CrowdAI Logo](https://www.crowdai.org/assets/crowdai_logo_smile-e85e52e02f89493e355c1459d0409de859c0a239f7b177fd73731dca9cbf61fb.svg)
+![CrowdAI Logo](app/assets/images/misc/crowdai-logo-smile.svg)
 
 # crowdAI - The open platform for data science challenges
 

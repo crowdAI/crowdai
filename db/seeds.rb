@@ -1,13 +1,4 @@
-if Rails.env == 'test'
-  CrowdaiMailer.create!(mailer_classname: 'Admin::OrganizerApplicationNotificationMailer')
-  CrowdaiMailer.create!(mailer_classname: 'Admin::SubmissionNotificationMailer')
-  CrowdaiMailer.create!(mailer_classname: 'CommentNotificationMailer')
-  CrowdaiMailer.create!(mailer_classname: 'DeviseMandrillMailer')
-  CrowdaiMailer.create!(mailer_classname: 'EmailDigestMailer')
-  CrowdaiMailer.create!(mailer_classname: 'LeaderboardNotificationMailer')
-  CrowdaiMailer.create!(mailer_classname: 'OrganizerApplicationNotificationMailer')
-  CrowdaiMailer.create!(mailer_classname: 'SubmissionGradedNotificationMailer')
-end
+
 
 if Rails.env != 'test'
 

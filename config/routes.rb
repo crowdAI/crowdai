@@ -29,7 +29,8 @@ Rails.application.routes.draw do
       get :challenge_config, on: :collection
     end
     resources :opensim_gradings, only: [:create, :update, :show]
-    get 'mailchimps/webhook' => 'mailchimps#webhook', as: :mailchimp_webhooks
+    get 'mailchimps/webhook' => 'mailchimps#verify', as: :verify_webhook
+    post 'mailchimps/webhook' => 'mailchimps#webhook', as: :update_webhook
   end
 
   resources :landing_page, only: [:index]

@@ -26,6 +26,8 @@ Rails.application.configure do
   config.assets.quiet = false
   config.assets.raise_runtime_errors = true
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  config.web_console.whiny_requests = false
 end
 
 Rails.application.routes.default_url_options[:host] = ENV['HOST']

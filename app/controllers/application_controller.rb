@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
     payload[:user_id] = current_user.id if current_user
   end
 
-
   private
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) do |u|
@@ -26,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    current_participant || NullParticipant.new
+    current_participant #|| NullParticipant.new
   end
 
   private
@@ -72,7 +71,5 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-
-
 
 end

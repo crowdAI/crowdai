@@ -1,7 +1,5 @@
 class EmailPreferencesController < ApplicationController
   before_action :set_participant
-  before_action :set_edit_token, only: [:edit]
-  before_action :set_update_token, only: [:update]
   before_action :email_preferences_token_or_authenticate
 
   def edit
@@ -31,11 +29,6 @@ class EmailPreferencesController < ApplicationController
   end
 
   private
-  def set_email_preference
-    authenticate_participant!
-    @email_preference = EmailPreference.find(params[:id])
-  end
-
   def set_participant
     @participant = Participant.friendly.find(params[:participant_id])
   end
@@ -49,25 +42,16 @@ class EmailPreferencesController < ApplicationController
                   :receive_every_email,
                   :receive_daily_digest,
                   :receive_weekly_digest,
-                  :unsubscribe_token)
+                  :preferences_token)
+          .delete(:preferences_token)
   end
 
-  def set_edit_token
-    @token = params[:unsubscribe_token] if params[:unsubscribe_token]
-  end
-
-  def set_update_token
-    if params[:email_preference][:unsubscribe_token]
-      @token = params[:email_preference][:unsubscribe_token]
-      params[:email_preference].delete(:unsubscribe_token)
-    end
-  end
 
   def email_preferences_token_or_authenticate
-    Rails.logger.info("[EmailPreferencesController#email_preferences_token_or_authenticate] token: #{@token}")
-    Rails.logger.info("params: #{params}")
-    if @token.present?
-      status = EmailPreferencesTokenService.new(current_participant).validate_token(@token)
+    token = params[:preferences_token]
+    Rails.logger.info("[EmailPreferencesController#email_preferences_token_or_authenticate] token: #{token}")
+    if token.present?
+      status = EmailPreferencesTokenService.new(current_participant).validate_token(token)
       case status
       when 'invalid_participant'
         flash[:error] = "The email preferences link is not valid for the currently logged in participant."
@@ -83,12 +67,9 @@ class EmailPreferencesController < ApplicationController
         redirect_to new_participant_session_path
       end
     else
-      set_email_preference
+      authenticate_participant!
+      @email_preference = EmailPreference.find(params[:id])
     end
-  end
-
-  def mailchimp_list_status
-
   end
 
 end

@@ -4,6 +4,70 @@
   <title>Oh dear. The page you were looking for doesn’t exist (404)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
+<style>
+.center-content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	.item {
+		text-align: center;
+	}
+	.xl {
+		font-size: 240px;
+		@media screen and (max-width: 768px) {
+			font-size: 180px;
+		}
+		@media screen and (max-width: 640px) {
+			font-size: 140px;
+		}
+		@media screen and (max-width: 480px) {
+			font-size: 130px;
+		}
+	}
+	.logomark {
+		display: block;
+		background: url('crowdai-logo.svg') no-repeat left center;
+		background-size: 256px 238px;
+		width: 256px;
+		height: 238px;
+		margin: 0 40px;
+		@media screen and (max-width: 768px) {
+			width: 193px;
+			height: 180px;
+			background-size: 193px 180px;
+			margin: 0 30px;
+		}
+		@media screen and (max-width: 640px) {
+			width: 150px;
+			height: 140px;
+			background-size: 150px 140px;
+			margin: 0 30px;
+		}
+		@media screen and (max-width: 480px) {
+			width: 129px;
+			height: 120px;
+			background-size: 129px 120px;
+			margin: 0 20px;
+		}
+	}
+	p {
+		font-size: 20px;
+		margin: 3em 1em 0 1em;
+		@media screen and (max-width: 768px) {
+			font-size: 18px;
+			margin-top: 2em;
+		}
+		@media screen and (max-width: 480px) {
+				margin-top: 1em;
+		}
+	}
+	.btn {
+		margin-top: 10px;
+		width: 240px;
+	}
+}
+</style>
 
 <body>
   <div class="center-content">

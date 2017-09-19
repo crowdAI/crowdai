@@ -64,6 +64,7 @@ class EmailPreferencesController < ApplicationController
   end
 
   def email_preferences_token_or_authenticate
+    Rails.logger.info("[EmailPreferencesController#email_preferences_token_or_authenticate] token: #{@token}")
     if @token.present?
       status = EmailPreferencesTokenService.new(current_participant).validate_token(@token)
       case status

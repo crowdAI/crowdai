@@ -3,6 +3,354 @@
 <head>
   <title>The change you wanted was rejected (422)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Roboto:400,400i,500,500i,700" rel="stylesheet">
+  <style>
+    html,
+    body,
+    div,
+    span,
+    applet,
+    object,
+    iframe,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    a,
+    abbr,
+    acronym,
+    address,
+    big,
+    cite,
+    code,
+    del,
+    dfn,
+    em,
+    img,
+    ins,
+    kbd,
+    q,
+    s,
+    samp,
+    small,
+    strike,
+    strong,
+    sub,
+    sup,
+    tt,
+    var,
+    b,
+    u,
+    i,
+    center,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td,
+    article,
+    aside,
+    canvas,
+    details,
+    embed,
+    figure,
+    figcaption,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    output,
+    ruby,
+    section,
+    summary,
+    time,
+    mark,
+    audio,
+    video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font: inherit;
+      font-size: 100%;
+      vertical-align: baseline;
+    }
+
+    html {
+      height: 100%;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+    }
+
+    *:before,
+    *:after {
+      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+    }
+
+     ::-moz-selection {
+      background: #f0524d;
+      color: #fff;
+    }
+
+     ::selection {
+      background: #f0524d;
+      color: #fff;
+    }
+
+    a {
+      color: rgba(0, 0, 0, 0.87);
+      text-decoration: none;
+      -moz-transition: 0.3s;
+      -o-transition: 0.3s;
+      -webkit-transition: 0.3s;
+      transition: 0.3s;
+    }
+
+    a:hover {
+      color: #d23934;
+    }
+
+    body {
+      background: #fff;
+      min-height: 100%;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      color: rgba(0, 0, 0, 0.87);
+      font-family: 'Roboto', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased !important;
+      -moz-font-smoothing: antialiased !important;
+      text-rendering: optimizelegibility !important;
+    }
+
+    @media screen\0 {
+      body {
+        min-height: none;
+        display: block;
+        flex-direction: none;
+      }
+    }
+
+    content {
+      flex: 1;
+    }
+
+    @media screen\0 {
+      content {
+        flex: none;
+      }
+    }
+
+    .btn {
+      cursor: pointer;
+      display: inline-block;
+      background: #fff;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 36px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      text-align: center;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+      border-radius: 2px;
+      height: 36px;
+      padding: 0 16px;
+      -moz-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.08);
+      -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.08);
+      box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.08);
+      -moz-transition: 0.25s;
+      -o-transition: 0.25s;
+      -webkit-transition: 0.25s;
+      transition: 0.25s;
+    }
+
+    .btn:focus {
+      outline: 0;
+    }
+
+    @media screen and (max-width: 800px) {
+      .btn {
+        font-size: 13px;
+        height: 32px;
+        line-height: 32px;
+      }
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: rgba(0, 0, 0, 0.87);
+      border: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-secondary:hover {
+      color: rgba(0, 0, 0, 0.87);
+      border: 1px solid rgba(0, 0, 0, 0.4);
+      -moz-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.16);
+      -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.16);
+      box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.16);
+    }
+
+    .btn-large {
+      font-size: 16px;
+      line-height: 48px;
+      letter-spacing: 1px;
+      min-width: 140px;
+      height: 48px;
+    }
+
+    @media screen and (max-width: 800px) {
+      .btn-large {
+        font-size: 14px;
+        height: 40px;
+        line-height: 40px;
+        min-width: 100px;
+      }
+    }
+
+    .btn .active {
+      color: #f0524d;
+    }
+
+    .btn .active:hover {
+      color: #d23934;
+    }
+
+    button::-moz-focus-inner {
+      margin-top: -2px;
+      padding: 0;
+      border: 0;
+    }
+
+    .btn-min-width {
+      min-width: 110px;
+    }
+
+    .light {
+      color: rgba(0, 0, 0, 0.54);
+    }
+
+    .center-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .center-content .item {
+      text-align: center;
+    }
+
+    .center-content .xl {
+      font-size: 240px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .center-content .xl {
+        font-size: 180px;
+      }
+    }
+
+    @media screen and (max-width: 640px) {
+      .center-content .xl {
+        font-size: 140px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .center-content .xl {
+        font-size: 130px;
+      }
+    }
+
+    .center-content .logomark {
+      display: block;
+      background: url('crowdai-head.svg') no-repeat left center;
+      background-size: 256px 238px;
+      width: 256px;
+      height: 238px;
+      margin: 0 40px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .center-content .logomark {
+        width: 193px;
+        height: 180px;
+        background-size: 193px 180px;
+        margin: 0 30px;
+      }
+    }
+
+    @media screen and (max-width: 640px) {
+      .center-content .logomark {
+        width: 150px;
+        height: 140px;
+        background-size: 150px 140px;
+        margin: 0 30px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .center-content .logomark {
+        width: 129px;
+        height: 120px;
+        background-size: 129px 120px;
+        margin: 0 20px;
+      }
+    }
+
+    .center-content p {
+      font-size: 20px;
+      margin: 3em 1em 0 1em;
+    }
+
+    @media screen and (max-width: 768px) {
+      .center-content p {
+        font-size: 18px;
+        margin-top: 2em;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .center-content p {
+        margin-top: 1em;
+      }
+    }
+
+    .center-content .btn {
+      margin-top: 10px;
+      width: 240px;
+    }
+  </style>
 </head>
 
 <body>
@@ -14,8 +362,8 @@
         <span class="xl">2</span>
       </div>
       <div>
-        <p class="light">Sorry. The change you wanted was rejected.<br><br></p>
-        <a class="btn btn-secondary btn-large" href="#">View challenges</a>
+        <p class="light">Sorry ... the change you wanted was rejected.<br><br></p>
+        <a class="btn btn-secondary btn-large" href="/challenges">View challenges</a>
       </div>
     </div>
   </div>

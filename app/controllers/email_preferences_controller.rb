@@ -41,9 +41,7 @@ class EmailPreferencesController < ApplicationController
                   :mentions,
                   :receive_every_email,
                   :receive_daily_digest,
-                  :receive_weekly_digest,
-                  :preferences_token)
-          .delete(:preferences_token)
+                  :receive_weekly_digest)
   end
 
 
@@ -51,13 +49,13 @@ class EmailPreferencesController < ApplicationController
     token = params[:preferences_token]
     Rails.logger.info("[EmailPreferencesController#email_preferences_token_or_authenticate] token: #{token}")
     if token.present?
-      status = EmailPreferencesTokenService.new(current_participant).validate_token(token)
+      status = EmailPreferencesTokenService.new(@participant).validate_token(token)
       case status
       when 'invalid_participant'
         flash[:error] = "The email preferences link is not valid for the currently logged in participant."
         redirect_to '/'
       when 'valid_token'
-        #authenticate_participant!
+        sign_in(:participant,@participant)
         @email_preference = current_participant.email_preferences.first
       when 'token_expired'
         flash[:error] = 'The email preferences link has expired.'
@@ -67,7 +65,7 @@ class EmailPreferencesController < ApplicationController
         redirect_to new_participant_session_path
       end
     else
-      #authenticate_participant!
+      authenticate_participant!
       @email_preference = EmailPreference.find(params[:id])
     end
   end

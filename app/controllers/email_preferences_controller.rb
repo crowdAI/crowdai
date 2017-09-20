@@ -57,7 +57,7 @@ class EmailPreferencesController < ApplicationController
         flash[:error] = "The email preferences link is not valid for the currently logged in participant."
         redirect_to '/'
       when 'valid_token'
-        authenticate_participant!
+        #authenticate_participant!
         @email_preference = current_participant.email_preferences.first
       when 'token_expired'
         flash[:error] = 'The email preferences link has expired.'
@@ -67,7 +67,7 @@ class EmailPreferencesController < ApplicationController
         redirect_to new_participant_session_path
       end
     else
-      authenticate_participant!
+      #authenticate_participant!
       @email_preference = EmailPreference.find(params[:id])
     end
   end

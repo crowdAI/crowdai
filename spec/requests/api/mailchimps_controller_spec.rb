@@ -42,8 +42,7 @@ RSpec.describe Api::MailchimpsController, type: :request do
 
   describe "POST #webhook" do
     context 'valid API key' do
-      let!(:participant) { create :participant }
-      let!(:email_preference) { create :email_preference, participant: participant, newsletter: true }
+      let!(:participant) { create :participant, :newsletter_true }
 
       context 'unsubscribe / valid email' do
         before { post "/api/mailchimps/webhook/?api_key=#{ENV['MAILCHIMP_INBOUND_API_KEY']}", params: valid_unsubscribe_params }
@@ -59,8 +58,7 @@ RSpec.describe Api::MailchimpsController, type: :request do
     end
 
     context 'invalid API key' do
-      let!(:participant) { create :participant }
-      let!(:email_preference) { create :email_preference, participant: participant, newsletter: true }
+      let!(:participant) { create :participant, newsletter: true }
 
       before { post "/api/mailchimps/webhook/?api_key=12345678", params: invalid_unsubscribe_params }
       it { expect(response).to have_http_status(401) }

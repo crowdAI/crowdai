@@ -17,7 +17,7 @@ class EmailPreferencesController < ApplicationController
     end
     if @email_preference.save
       if @token
-        redirect_to edit_participant_email_preference_path(@participant, @email_preference, unsubscribe_token: @token),
+        redirect_to edit_participant_email_preference_path(@participant, @email_preference, preferences_token: @token),
                                                           notice: 'Your email preferences were successfully updated.'
       else
         redirect_to edit_participant_email_preference_path(@participant, @email_preference),

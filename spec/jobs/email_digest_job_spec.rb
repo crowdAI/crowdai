@@ -4,8 +4,7 @@ RSpec.describe EmailDigestJob, type: :job do
   include ActiveJob::TestHelper
 
   describe 'executes the daily digest' do
-    let(:email_preference) { create :email_preference, :daily }
-    let(:mailer) { create :crowdai_mailer, mailer_classname: 'EmailDigestMailer' }
+    let(:participant) { create :participant, :daily }
     subject(:job) { described_class.perform_later("digest_type" => "daily") }
 
     it 'queues the job' do
@@ -22,7 +21,7 @@ RSpec.describe EmailDigestJob, type: :job do
   end
 
   describe 'executes the weekly digest' do
-    let(:email_preference) { create :email_preference, :weekly }
+    let(:participant) { create :participant, :weekly }
     subject(:job) { described_class.perform_later("digest_type" => "weekly") }
 
     it 'queues the job' do
@@ -41,10 +40,8 @@ RSpec.describe EmailDigestJob, type: :job do
 
   describe 'participant - daily digest: comments only' do
     let!(:challenge) { create :challenge }
-    let!(:participant) { create :participant }
-    let!(:topic_author1) { create :participant }
-    let!(:email_preference1) { create :email_preference, :daily, participant: participant }
-    let!(:email_preference2) { create :email_preference, :every_email, participant: topic_author1 }
+    let!(:participant) { create :participant, :daily }
+    let!(:topic_author1) { create :participant, :every_email }
 
     it 'should not receive email comment from 2 days ago' do
       Timecop.freeze(Time.now - 2.days)
@@ -72,7 +69,9 @@ RSpec.describe EmailDigestJob, type: :job do
 
   describe 'admin - daily digest: submissions only' do
     let!(:participant) { create :participant, :admin }
-    let!(:email_preference) { create :email_preference, :daily, participant: participant }
+    before do
+      participant.email_preferences.first.update_columns(receive_every_email: false, receive_daily_digest: true, receive_weekly_digest: false)
+    end
 
     it 'should not receive submission info from 2 days ago' do
       Timecop.freeze(Time.now - 2.days)
@@ -95,10 +94,8 @@ RSpec.describe EmailDigestJob, type: :job do
 
   describe 'participant - weekly digest: comments only' do
     let!(:challenge) { create :challenge }
-    let!(:participant) { create :participant }
-    let!(:topic_author1) { create :participant }
-    let!(:email_preference1) { create :email_preference, :daily, participant: participant }
-    let!(:email_preference2) { create :email_preference, :every_email, participant: topic_author1 }
+    let!(:participant) { create :participant, :daily }
+    let!(:topic_author1) { create :participant, :every_email }
 
     it 'should not receive email comment from 8 days ago' do
       Timecop.freeze(Date.today - 8.days)
@@ -126,7 +123,9 @@ RSpec.describe EmailDigestJob, type: :job do
 
   describe 'admin - weekly digest: submissions only' do
     let!(:participant) { create :participant, :admin }
-    let!(:email_preference) { create :email_preference, :weekly, participant: participant }
+    before do
+      participant.email_preferences.first.update_columns(receive_every_email: false, receive_daily_digest: false, receive_weekly_digest: true)
+    end
 
     it 'should not receive submission info from 8 days ago' do
       Timecop.freeze(Time.now - 8.days)
@@ -149,9 +148,10 @@ RSpec.describe EmailDigestJob, type: :job do
 
   describe 'admin - daily digest: comments and submissions' do
     let!(:admin) { create :participant, :admin }
-    let!(:topic_author1) { create :participant }
-    let!(:email_preference1) { create :email_preference, :daily, participant: admin }
-    let!(:email_preference2) { create :email_preference, :every_email, participant: topic_author1 }
+    let!(:topic_author1) { create :participant, :every_email }
+    before do
+      admin.email_preferences.first.update_columns(receive_every_email: false, receive_daily_digest: true, receive_weekly_digest: false)
+    end
 
     it 'daily' do
       Timecop.freeze(Time.now - 12.hours)

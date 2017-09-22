@@ -73,7 +73,7 @@ class EmailDigestMailer < ApplicationMailer
       participant_id:   participant.id,
       subject:          subject,
       to:               participant.email,
-      template:         "crowdAI General Template",
+      template:         "crowdAI Email Digest Template",
       global_merge_vars: [
         {
           name:           "NAME",

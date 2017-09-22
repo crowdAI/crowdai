@@ -127,7 +127,6 @@ describe Participant do
 
     context 'email preference defaults' do
       let!(:participant) { create :participant }
-      let!(:email_preference) { create :email_preference, participant: participant }
       it 'verify preference table is created' do
         expect(participant.email_preferences.count).to eq(1)
       end

@@ -2,8 +2,7 @@ require "rails_helper"
 
 RSpec.describe EmailDigestMailer, type: :mailer do
   let(:challenge) { create :challenge }
-  let(:other_participant) { create :participant }
-  let!(:email_preference) { create :email_preference, :every_email, participant: other_participant }
+  let(:other_participant) { create :participant, :every_email }
   let(:comment) { create :comment, participant: other_participant }
   let(:submission) { create :submission, challenge: challenge }
 
@@ -36,8 +35,7 @@ RSpec.describe EmailDigestMailer, type: :mailer do
     end
 
     describe '#build_body' do
-      let!(:participant) { create :participant }
-      let!(:email_preference) { create :email_preference, :daily, participant: participant }
+      let!(:participant) { create :participant, :daily }
       before do
         @submissions = Submission.all
         @comments = Comment.all

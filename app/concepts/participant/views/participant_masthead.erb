@@ -16,7 +16,7 @@
         <div class="text-w-icon">
           <% if policy(participant).edit? %>
             <p><strong>API key:</strong> <%= participant.api_key %></p>
-              <%= link_to participant_regen_api_key_path(participant) do %>
+              <%= link_to participant_regen_api_key_path(participant_id: participant.id) do %>
                 <i class="fa fa-refresh" aria-hidden="true"></i>
               <% end %>
           <% end %>

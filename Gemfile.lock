@@ -197,7 +197,7 @@ GEM
     faraday (0.13.1)
       multipart-post (>= 1.2, < 3)
     fast_blank (1.0.0)
-    ffaker (2.6.0)
+    ffaker (2.7.0)
     ffi (1.9.18)
     figaro (1.1.1)
       thor (~> 0.14)

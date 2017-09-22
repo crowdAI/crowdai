@@ -70,7 +70,7 @@ RSpec.describe EmailDigestJob, type: :job do
   describe 'admin - daily digest: submissions only' do
     let!(:participant) { create :participant, :admin }
     before do
-      participant.update_columns(receive_every_email: false, receive_daily_digest: false, receive_weekly_digest: true)
+      participant.email_preferences.first.update_columns(receive_every_email: false, receive_daily_digest: true, receive_weekly_digest: false)
     end
 
     it 'should not receive submission info from 2 days ago' do
@@ -124,7 +124,7 @@ RSpec.describe EmailDigestJob, type: :job do
   describe 'admin - weekly digest: submissions only' do
     let!(:participant) { create :participant, :admin }
     before do
-      participant.update_columns(receive_every_email: false, receive_daily_digest: false, receive_weekly_digest: true)
+      participant.email_preferences.first.update_columns(receive_every_email: false, receive_daily_digest: false, receive_weekly_digest: true)
     end
 
     it 'should not receive submission info from 8 days ago' do
@@ -150,7 +150,7 @@ RSpec.describe EmailDigestJob, type: :job do
     let!(:admin) { create :participant, :admin }
     let!(:topic_author1) { create :participant, :every_email }
     before do
-      participant.update_columns(receive_every_email: false, receive_daily_digest: true, receive_weekly_digest: false)
+      admin.email_preferences.first.update_columns(receive_every_email: false, receive_daily_digest: true, receive_weekly_digest: false)
     end
 
     it 'daily' do

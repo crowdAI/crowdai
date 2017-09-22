@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :article, class: Article do
-    article FFaker::Lorem.words(10).join(' ')
-    summary FFaker::Lorem.words(10).join(' ')
+    article { FFaker::Lorem.unique.sentence(3) }
+    summary FFaker::LoremFR.paragraphs(4).join(' ')
     participant
     category 'tensorflow'
     published true

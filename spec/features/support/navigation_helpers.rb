@@ -1,6 +1,5 @@
 module NavigationHelpers
 
-
   def visit_landing_page(participant)
     sign_in(participant)
     visit '/'

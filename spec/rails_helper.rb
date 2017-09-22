@@ -21,6 +21,7 @@ ActiveRecord::Migration.maintain_test_schema!
 Capybara.asset_host = 'http://localhost:3001'
 Capybara.javascript_driver = :webkit
 Capybara.server_port = 52508  # port registered with Amazon S3 CORS config
+Capybara.default_max_wait_time = 5
 Capybara::Screenshot.register_driver(:chrome) do |driver, path|
   filename = File.basename(path)
   driver.browser.save_screenshot("#{Rails.root}/tmp/capybara/#{filename}")

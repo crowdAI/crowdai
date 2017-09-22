@@ -78,3 +78,21 @@ The participant will receive a digest of comment notification email or a submiss
 #### Receive a weekly digest email
 
 The participant will receive the same digest of emails as for the daily digest, sent each Sunday at 2:30am UTC.
+
+#### Ad-hoc digest mailing
+
+To initiate digest mailing for a single recipient, use the Heroku Rails console.
+
+```
+heroku run rails c --app crowdai-prd
+```
+
+Set the daily or weekly digest settings on a participant's profile, then call the mailer. Pass in the participant's id and the digest type.
+
+```
+EmailDigestMailer.sendmail(1,'daily')
+```
+
+```
+EmailDigestMailer.sendmail(1,'weekly')
+```

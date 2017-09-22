@@ -1,5 +1,4 @@
-class Article::Cell::ArticleSubnav < Template::Cell
-  inherit_views Article::Cell
+class Article::Cell::ArticleSubnav < Article::Cell
 
   def show
     render :article_subnav

@@ -1,5 +1,4 @@
 class Challenge < ApplicationRecord
-  #searchkick
   include FriendlyId
   include ApiKey
 
@@ -13,7 +12,6 @@ class Challenge < ApplicationRecord
 
   has_many :dataset_files, dependent: :destroy
   mount_uploader :image_file, ImageUploader
-  #validates :image_file, file_size: { less_than: 5.megabytes }
 
   has_many :submission_file_definitions,  dependent: :destroy, inverse_of: :challenge
   accepts_nested_attributes_for           :submission_file_definitions,
@@ -41,7 +39,7 @@ class Challenge < ApplicationRecord
   #validates_presence_of :grader
   validates_presence_of :primary_sort_order
   validates_presence_of :grading_factor
-  #validates_uniqueness_of :challenge_client_name
+  validates_uniqueness_of :challenge_client_name
   validates :challenge_client_name, format: { with: /\A[a-zA-Z0-9]/ }
   validates_presence_of :challenge_client_name
 

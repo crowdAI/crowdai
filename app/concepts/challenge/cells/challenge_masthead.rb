@@ -1,5 +1,4 @@
-class Challenge::Cell::ChallengeMasthead < Template::Cell
-  inherit_views Challenge::Cell
+class Challenge::Cell::ChallengeMasthead < Challenge::Cell
 
   def show
     render :challenge_masthead

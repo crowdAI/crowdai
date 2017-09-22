@@ -1,5 +1,4 @@
-class Challenge::Cell::ChallengesSubnav < Template::Cell
-  inherit_views Challenge::Cell
+class Challenge::Cell::ChallengesSubnav < Challenge::Cell
 
   def show
     render :challenges_subnav

@@ -1,4 +1,4 @@
-class Challenge::Cell < Cell::Concept
+class Challenge::Cell < Template::Cell
 
   def show
     render

@@ -1,12 +1,18 @@
 <content>
-  <%= concept(Challenge::Cell::ChallengeMasthead, @challenge) %>
-  <%= concept(Challenge::Cell::ChallengeSubnav, @challenge, tab: 'discussion') %>
-
+  <%= concept(Challenge::Cell::ChallengeMasthead,
+                @challenge,
+                current_participant: current_participant) %>
+  <%= concept(Challenge::Cell::ChallengeSubnav,
+                @challenge,
+                tab: 'discussion',
+                current_participant: current_participant) %>
   <div class="row">
-    <%= render partial: 'list_header', locals: { challenge: @challenge, topics: @topics } %>
+    <%= render partial: 'list_header',
+               locals: { challenge: @challenge, topics: @topics } %>
     <ul class="list-topics">
       <%= render partial: 'topics' %>
     </ul>
-    <%= render partial: 'shared/load_more', locals: { collection: @topics } %>
+    <%= render partial: 'shared/load_more',
+               locals: { collection: @topics } %>
   </div>
 </content>

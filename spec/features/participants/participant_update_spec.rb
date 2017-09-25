@@ -1,8 +1,6 @@
-=begin
 require 'rails_helper'
 
-
-
+=begin
 feature 'update participant data', js: true do
 
   let!(:participant) { create(:participant) }
@@ -53,7 +51,7 @@ feature 'update participant data', js: true do
       expect(find('#email_preference_my_topic_post').checked?).to be true
       expect(find('#email_preference_any_leaderboard').checked?).to be true
     end
-
+=end
 
 =begin
     scenario "email preference check boxes uncheck and recheck all" do

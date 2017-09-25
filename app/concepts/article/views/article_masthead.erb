@@ -1,7 +1,7 @@
 <div class="masthead-detailed">
   <div class="row">
     <div class="pic pic-tutorial">
-      <%= concept(Image::Cell,article,size: :medium) %>
+      <%= concept(Image::Cell,article,size: :medium, current_participant: current_participant) %>
     </div>
     <div class="info info-tutorial">
       <div class="heading-w-icon">
@@ -16,7 +16,7 @@
       <div class="user-link">
         <% if article.participant.is_a? NullParticipant %>
           <%= link_to '#' do %>
-            <%= concept(Image::Cell,author) %>
+            <%= concept(Image::Cell,author, current_participant: current_participant) %>
           <% end %>
           <p>By
             <%= link_to author.name, '#' %>
@@ -25,7 +25,7 @@
           </p>
         <% else %>
           <%= link_to participant_path(author) do %>
-            <%= concept(Image::Cell,author) %>
+            <%= concept(Image::Cell,author, current_participant: current_participant) %>
           <% end %>
           <p>By
             <%= link_to author.name, participant_path(author) %>
@@ -35,7 +35,7 @@
         <% end %>
       </div>
       <div class="button-group">
-        <%= concept(Vote::Cell, article) %>
+        <%= concept(Vote::Cell, article, current_participant: current_participant) %>
       </div>
     </div>
   </div>

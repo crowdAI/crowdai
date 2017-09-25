@@ -4,7 +4,10 @@
       <h2>Challenges</h2>
     </div>
   </div>
-  <%= concept(Challenge::Cell::ChallengesSubnav, @all_challenges, challenge_filter: @challenge_filter) %>
+  <%= concept(Challenge::Cell::ChallengesSubnav,
+                @all_challenges,
+                challenge_filter: @challenge_filter,
+                current_participant: current_participant) %>
   <div class="row">
     <ul class="list-challenges">
       <%= render partial: 'challenges' %>

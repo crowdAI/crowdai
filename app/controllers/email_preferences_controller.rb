@@ -67,6 +67,7 @@ class EmailPreferencesController < ApplicationController
     else
       authenticate_participant!
       @email_preference = EmailPreference.find(params[:id])
+      authorize @email_preference
     end
   end
 

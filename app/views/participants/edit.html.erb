@@ -13,7 +13,10 @@
         <%= f.text_field :name %>
         <label>Profile Picture</label>
         <div class="upload">
-          <%= concept(Image::Cell,@participant, klass: 'img-thumb') %>
+          <%= concept(Image::Cell,
+                        @participant,
+                        klass: 'img-thumb',
+                        current_participant: current_participant) %>
           <%= f.file_field :image_file, class: 'file-upload' %>
           <% if @participant.image_file.present? %>
             <%= link_to 'Delete', participant_remove_image_path(@participant) %>

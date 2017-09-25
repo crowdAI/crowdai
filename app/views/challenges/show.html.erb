@@ -1,6 +1,6 @@
 <content>
-  <%= concept(Challenge::Cell::ChallengeMasthead, @challenge) %>
-  <%= concept(Challenge::Cell::ChallengeSubnav, @challenge) %>
+  <%= concept(Challenge::Cell::ChallengeMasthead, @challenge, current_participant: current_participant) %>
+  <%= concept(Challenge::Cell::ChallengeSubnav, @challenge, current_participant: current_participant) %>
 
   <div class="row">
     <div class="article">

@@ -9,10 +9,7 @@ require 'capybara/rails'
 require 'capybara/rspec'
 require 'capybara-screenshot/rspec'
 require 'support/controller_helpers'
-require 'support/login_helper'
-require 'features/support/navigation_helpers'
-require 'features/support/challenge_helpers'
-require 'support/feature_helpers'
+require 'features/support/feature_spec_helpers'
 require 'support/helpers/header_helpers'
 
 
@@ -46,14 +43,12 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :helper
   config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Warden::Test::Helpers, type: :feature
 
   config.include ControllerHelpers, type: :controller
   config.include HeaderHelpers
 
-  config.include LoginHelper, type: :feature
-  config.include NavigationHelpers, type: :feature
-  config.include ChallengeHelpers, type: :feature
-  config.include FeatureHelpers, type: :feature
+  config.include FeatureSpecHelpers, type: :feature
 
   config.use_transactional_fixtures = false
 

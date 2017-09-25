@@ -1,10 +1,18 @@
 <content>
-  <%= concept(Challenge::Cell::ChallengeMasthead, @challenge) %>
-  <%= concept(Challenge::Cell::ChallengeSubnav, @challenge, tab: 'leaderboard') %>
+  <%= concept(Challenge::Cell::ChallengeMasthead,
+                @challenge,
+                current_participant: current_participant) %>
+  <%= concept(Challenge::Cell::ChallengeSubnav,
+                @challenge,
+                tab: 'leaderboard',
+                current_participant: current_participant) %>
 
   <div class="row" id='leaderboard'>
     <table class="leaderboard">
-      <%= concept(Leaderboard::Cell::TableHead, @leaderboards, challenge: @challenge) %>
+      <%= concept(Leaderboard::Cell::TableHead,
+                    @leaderboards,
+                    challenge: @challenge,
+                    current_participant: current_participant) %>
       <tbody>
         <%= render partial: 'leaderboards' %>
       </tbody>

@@ -1,5 +1,7 @@
 <content>
-  <%= concept(Participant::Cell::ParticipantMasthead, @participant,current_participant: current_participant) %>
+  <%= concept(Participant::Cell::ParticipantMasthead,
+                @participant,
+                current_participant: current_participant) %>
 
   <div class="sub-nav">
     <div class="row">
@@ -16,7 +18,9 @@
     <div class="row">
       <% if @challenges.any? %>
         <ul class="list-challenges">
-          <%= concept(Challenge::Cell::ListDetail, collection: @challenges) %>
+          <%= concept(Challenge::Cell::ListDetail,
+                        collection: @challenges,
+                        current_participant: current_participant) %>
         </ul>
       <% else %>
         <div class='article'>
@@ -32,7 +36,9 @@
     <div class="row">
         <% if @articles.any? %>
           <ul class="list-tutorials">
-            <%= concept(Article::Cell::ListDetail, collection: @articles) %>
+            <%= concept(Article::Cell::ListDetail,
+                          collection: @articles,
+                          current_participant: current_participant) %>
           </ul>
         <% else %>
         <div class='article'>
@@ -48,7 +54,9 @@
     <div class="row">
         <% if @posts.any? %>
           <ul class="list-tutorials">
-            <%= concept(Discussion::Cell::ParticipantComment, collection: @posts) %>
+            <%= concept(Discussion::Cell::ParticipantComment,
+                          collection: @posts,
+                          current_participant: current_participant) %>
           </ul>
         <% else %>
         <div class='article'>

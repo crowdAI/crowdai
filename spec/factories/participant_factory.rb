@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :participant, class: Participant do
-    name { FFaker::Name.unique.name }
+    name { FFaker::Name.unique.first_name }
     email { FFaker::Internet.unique.email }
     password 'password12'
     password_confirmation 'password12'

@@ -2,7 +2,7 @@
   <div class="masthead-detailed">
     <div class="row">
       <div class="pic pic-user">
-        <%= concept(Image::Cell,organizer,size: :medium) %>
+        <%= concept(Image::Cell,organizer,size: :medium, current_participant: current_participant) %>
       </div>
       <div class="info info-user">
         <div class="heading-w-icon">
@@ -37,7 +37,7 @@
   <div id='tab-challenges' class='tab-content active'>
     <div class="row">
       <ul class="list-challenges">
-        <%= concept(Challenge::Cell::ListDetail, collection: challenges) %>
+        <%= concept(Challenge::Cell::ListDetail, collection: challenges, current_participant: current_participant) %>
       </ul>
     </div>
   </div>

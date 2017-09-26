@@ -27,15 +27,17 @@ class Api::OpensimGradingsController < Api::BaseController
                                       description_markdown: '')
       SubmissionGrade.create!(grading_params(submission))
       notify_admins(submission)
-      message = "Participant: #{participant.name}, submission: #{params[:id]} scored"
+      message = "Participant: #{participant.name}, participant_id: #{participant.id}, submission: #{params[:id]} scored"
+      submission_id = submission.id
       status = :accepted
     rescue => e
       Rails.logger.error e
       Rails.logger.error params
       status = :bad_request
+      submission_id = nil
       message = e
     ensure
-      render json: { message: message, submission_id: submission.id }, status: status
+      render json: { message: message, submission_id: submission_id }, status: status
     end
   end
 

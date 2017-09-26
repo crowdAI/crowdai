@@ -39,7 +39,7 @@ class Api::ExternalGradersController < Api::BaseController
       message = "No participant could be found for this API key"
       status = :not_found
     end
-    render json: { message: message }, status: status
+    render json: { message: message, participant_id: participant.id }, status: status
   end
 
 

@@ -36,15 +36,11 @@ feature 'Email Preferences', js: true do
     end
 
     scenario "Admin can access email preferences link for other participant" do
-      visit_profile(admin,participant2)
-      expect(page).not_to have_content 'Email Preferences'
-    end
-
-    scenario "Admin can directly access email preferences for other participant" do
-      other_url = "/participants/#{participant2.name}/email_preferences/#{participant2.email_preferences.first.id}/edit"
-      visit_own_profile(admin)
-      visit other_url
-      expect(page).not_to have_content 'Email Preferences'
+      log_in(admin)
+      visit participant_path(participant2.slug)
+      expect(page).to have_content 'Email Notifications'
+      click_link 'Email Notifications'
+      expect(page).to have_content 'Receive the crowdAI Newsletter'
     end
 
   end

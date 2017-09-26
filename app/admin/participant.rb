@@ -1,5 +1,5 @@
 ActiveAdmin.register Participant do
-  permit_params :name, :organizer, :email, :admin, :password, :password_confirmation
+  permit_params :name, :organizer_id, :email, :admin, :password, :password_confirmation
 
   index do
     selectable_column
@@ -17,6 +17,14 @@ ActiveAdmin.register Participant do
   controller do
     def find_resource
       scoped_collection.friendly.find(params[:id])
+    end
+
+    def update
+      model = :participant
+      if params[model][:password].blank?
+        %w(password password_confirmation).each { |p| params[model].delete(p) }
+      end
+      super
     end
   end
 

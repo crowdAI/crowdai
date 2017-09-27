@@ -18,16 +18,36 @@ class Challenge::Cell::ChallengeMasthead < Template::Cell
     100 - pct_remaining
   end
 
+  def remaining_units
+    if challenge.running?
+      if remaining_time_in_days > 0
+        remaining_time_in_days
+      elsif remaining_time_in_hours > 0
+        remaining_time_in_hours
+      elsif remaining_time_in_seconds > 0
+        "Ending #{ending_dttm}"
+      else
+        nil
+      end
+    end
+  end
+
   def remaining_text
     if challenge.running?
       if remaining_time_in_days > 0
         "#{'Day'.pluralize(remaining_time_in_days)} left"
-      else
+      elsif remaining_time_in_hours > 0
         "#{'Hour'.pluralize(remaining_time_in_hours)} left"
+      elsif remaining_time_in_seconds > 0
+        "Less than 1 hour left"
       end
     else
-      challenge.status
+      challenge.status.capitalize
     end
+  end
+
+  def ending_dttm
+    challenge.end_dttm
   end
 
   def duration_in_seconds

@@ -19,11 +19,11 @@ class Challenge::Cell::ChallengeMasthead < Template::Cell
   end
 
   def remaining_text
-    if running?
+    if challenge.running?
       if remaining_time_in_days > 0
-        "#{remaining_time_in_days} days remaining"
+        "#{'Day'.pluralize(remaining_time_in_days)} left"
       else
-        "#{remaining_time_in_hours} hours remaining"
+        "#{'Hour'.pluralize(remaining_time_in_hours)} left"
       end
     else
       challenge.status

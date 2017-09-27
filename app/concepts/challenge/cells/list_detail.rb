@@ -20,14 +20,14 @@ class Challenge::Cell::ListDetail < Template::Cell
   def remaining_text
     case challenge.status
     when :running, :perpetual
-      if remaining_time_in_days > 0
-        "#{remaining_time_in_days} days left"
+      if remaining_time_in_days < 7 and remaining_time_in_days >= 1
+        "#{pluralize(remaining_time_in_days,'day')} left &middot; Ending #{ending_dttm}"
+      elsif remaining_time_in_days >= 1 and remaining_time_in_days != 0
+        "#{pluralize(remaining_time_in_days,'day')} left"
+      elsif remaining_time_in_hours > 0
+        "#{pluralize(remaining_time_in_hours,'hour')} left"
       else
-        if remaining_time_in_hours > 0
-          "#{remaining_time_in_hours} hours left"
-        else
-          "Challenge ended"   # display for perpetual challenges
-        end
+        "Challenge ended"   # display for perpetual challenges
       end
     when :draft
       "Draft"
@@ -36,6 +36,10 @@ class Challenge::Cell::ListDetail < Template::Cell
     when :starting_soon
       "Starting soon"
     end
+  end
+
+  def ending_dttm
+    challenge.end_dttm
   end
 
   def remaining_time_in_hours

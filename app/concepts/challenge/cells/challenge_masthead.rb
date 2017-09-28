@@ -23,9 +23,7 @@ class Challenge::Cell::ChallengeMasthead < Template::Cell
       if remaining_time_in_days > 0
         remaining_time_in_days
       elsif remaining_time_in_hours > 0
-        remaining_time_in_hours
-      elsif remaining_time_in_seconds > 0
-        "Ending #{ending_dttm}"
+        "Ending #{ending_dttm}"        
       else
         nil
       end
@@ -37,7 +35,7 @@ class Challenge::Cell::ChallengeMasthead < Template::Cell
       if remaining_time_in_days > 0
         "#{'Day'.pluralize(remaining_time_in_days)} left"
       elsif remaining_time_in_hours > 0
-        "#{'Hour'.pluralize(remaining_time_in_hours)} left"
+        "#{pluralize(remaining_time_in_hours,'hour')} left"
       elsif remaining_time_in_seconds > 0
         "Less than 1 hour left"
       end

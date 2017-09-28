@@ -46,6 +46,14 @@ class OrganizersController < ApplicationController
     redirect_to edit_organizer_path(@organizer),notice: 'Image removed.'
   end
 
+  def regen_api_key
+    @organizer = Organizer.friendly.find(params[:organizer_id])
+    authorize @organizer
+    @organizer.api_key = @organizer.generate_api_key
+    @organizer.save!
+    redirect_to edit_organizer_path(@organizer),notice: 'API Key regenerated.'
+  end
+
   private
     def set_organizer
       @organizer = Organizer.friendly.find(params[:id])

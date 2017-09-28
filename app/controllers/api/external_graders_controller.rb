@@ -1,45 +1,19 @@
 class Api::ExternalGradersController < Api::BaseController
-
-  class DeveloperAPIKeyInvalid < StandardError
-    def initialize(msg="The API key did not match any participant record.")
-      super
-    end
-  end
-
-  class ChallengeClientNameInvalid < StandardError
-    def initialize(msg="The Challenge Client Name string did not match any challenge.")
-      super
-    end
-  end
-
-  class GradingStatusInvalid < StandardError
-    def initialize(msg="Grading status must be one of (graded|failed)")
-      super
-    end
-  end
-
-  class SubmissionIdInvalid < StandardError
-    def initialize(msg="Submission ID is invalid.")
-      super
-    end
-  end
-
-  class NoSubmissionSlotsRemaining < StandardError
-    def initialize(msg="The participant has no submission slots remaining for today.")
-      super
-    end
-  end
+  before_action :auth_by_api_key, only: [:show, :update]
+  before_action :auth_by_api_key_and_client_id, only: [:create]
 
   def show
     participant = Participant.where(api_key: params[:id]).first
     if participant.present?
       message = "Developer API key is valid"
+      participant_id = participant.id
       status = :ok
     else
       message = "No participant could be found for this API key"
+      participant_id = nil
       status = :not_found
     end
-    render json: { message: message, participant_id: participant.id }, status: status
+    render json: { message: message, participant_id: participant_id }, status: status
   end
 
 
@@ -47,12 +21,14 @@ class Api::ExternalGradersController < Api::BaseController
     message = nil
     status = nil
     submission_id = nil
+    submissions_remaining = nil
+    reset_date = nil
     begin
       participant = Participant.where(api_key: params[:api_key]).first
       raise Api::ExternalGradersController::DeveloperAPIKeyInvalid if participant.nil?
       challenge = Challenge.where(challenge_client_name: params[:challenge_client_name]).first
       raise Api::ExternalGradersController::ChallengeClientNameInvalid if challenge.nil?
-      submissions_remaining = challenge.submissions_remaining(participant.id)
+      submissions_remaining, reset_date = challenge.submissions_remaining(participant.id)
       raise Api::ExternalGradersController::NoSubmissionSlotsRemaining if submissions_remaining < 1
       submission = Submission.create!(participant_id: participant.id,
                                       challenge_id: challenge.id,
@@ -69,7 +45,10 @@ class Api::ExternalGradersController < Api::BaseController
       status = :bad_request
       message = e
     ensure
-      render json: { message: message, submission_id: submission_id }, status: status
+      render json: { message: message,
+                     submission_id: submission_id,
+                     submissions_remaining: submissions_remaining,
+                     reset_date: reset_date }, status: status
     end
   end
 
@@ -77,9 +56,14 @@ class Api::ExternalGradersController < Api::BaseController
     message = nil
     status = nil
     submission_id = params[:id]
+    submissions_remaining = nil
+    reset_date = nil
     begin
       Rails.logger.info("PATCHing submission #{params.inspect}")
       submission = Submission.find(submission_id)
+      raise SubmissionIdInvalid if submission.empty?
+      challenge = submission.challenge
+      submissions_remaining, reset_date = challenge.submissions_remaining(submission.participant_id)
       submission.update({media_large: params[:media_large],
                          media_thumbnail: params[:media_thumbnail],
                          media_content_type: params[:media_content_type]})
@@ -91,7 +75,10 @@ class Api::ExternalGradersController < Api::BaseController
       status = :bad_request
       message = e
     ensure
-      render json: { message: message, submission_id: submission_id }, status: status
+      render json: { message: message,
+                     submission_id: submission_id,
+                     submissions_remaining: submissions_remaining,
+                     reset_date: reset_date }, status: status
     end
   end
 
@@ -137,6 +124,36 @@ class Api::ExternalGradersController < Api::BaseController
         grading_message: params[:grading_message] }
     else
       raise Api::ExternalGradersController::ChallengeClientNameInvalid
+    end
+  end
+
+  class DeveloperAPIKeyInvalid < StandardError
+    def initialize(msg="The API key did not match any participant record.")
+      super
+    end
+  end
+
+  class ChallengeClientNameInvalid < StandardError
+    def initialize(msg="The Challenge Client Name string did not match any challenge.")
+      super
+    end
+  end
+
+  class GradingStatusInvalid < StandardError
+    def initialize(msg="Grading status must be one of (graded|failed)")
+      super
+    end
+  end
+
+  class SubmissionIdInvalid < StandardError
+    def initialize(msg="Submission ID is invalid.")
+      super
+    end
+  end
+
+  class NoSubmissionSlotsRemaining < StandardError
+    def initialize(msg="The participant has no submission slots remaining for today.")
+      super
     end
   end
 

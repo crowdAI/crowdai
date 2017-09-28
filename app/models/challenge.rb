@@ -1,12 +1,10 @@
 class Challenge < ApplicationRecord
   include FriendlyId
-  include ApiKey
 
   friendly_id :challenge, use: [:slugged, :finders]
   before_save :cache_rendered_markdown
   validate :valid_status
   before_save :set_datetimes
-  after_create :set_api_key
 
   belongs_to :organizer
 
@@ -78,8 +76,9 @@ class Challenge < ApplicationRecord
   end
 
   def submissions_remaining(participant_id)
-    submissions_today = self.submissions.where("participant_id = ? and created_at >= ?", participant_id, Time.now - 24.hours).count
-    return (self.daily_submissions - submissions_today)
+    submissions_today = self.submissions.where("participant_id = ? and created_at >= ?", participant_id, Time.now - 24.hours).order(created_at: :asc)
+    reset_time = submissions_today.first.created_at + 1.day
+    return [(self.daily_submissions - submissions_today.count),reset_time]
   end
 
   def cache_rendered_markdown

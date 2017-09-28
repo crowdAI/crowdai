@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   resources :organizers, except: [:new, :index] do
     resources :challenges
     get :remove_image
+    get :regen_api_key
   end
 
   resources :challenges do
@@ -55,7 +56,6 @@ Rails.application.routes.draw do
     get 'leaderboards/submission_detail' => 'leaderboards#submission_detail', as: :submission_detail
     resources :topics
     get :regrade
-    get :regen_api_key
     get :remove_image
     resources :votes, only: [:create, :destroy]
     resources :follows, only: [:create, :destroy]

@@ -1,5 +1,7 @@
 class Organizer < ApplicationRecord
   include FriendlyId
+  include ApiKey
+
   friendly_id :organizer, use: [:slugged, :finders]
   has_many :challenges,   dependent: :destroy
   has_many :participants, dependent: :nullify
@@ -7,6 +9,7 @@ class Organizer < ApplicationRecord
   mount_uploader :image_file, ImageUploader
   validates_length_of :tagline, maximum: 140, allow_blank: true
   validates :tagline, presence: true
+  after_create :set_api_key
 
   def approved?
     self.approved

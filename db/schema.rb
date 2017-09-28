@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170915095659) do
+ActiveRecord::Schema.define(version: 20170928131857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,7 +88,6 @@ ActiveRecord::Schema.define(version: 20170915095659) do
     t.boolean "media_on_leaderboard", default: false
     t.string "challenge_client_name"
     t.boolean "online_grading", default: true
-    t.string "api_key"
     t.integer "vote_count", default: 0
     t.date "start_date"
     t.date "end_date"
@@ -247,6 +246,7 @@ ActiveRecord::Schema.define(version: 20170915095659) do
     t.string "image_file"
     t.string "tagline"
     t.string "challenge_proposal"
+    t.string "api_key"
     t.index ["slug"], name: "index_organizers_on_slug", unique: true
   end
 

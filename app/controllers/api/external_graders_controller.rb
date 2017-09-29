@@ -22,14 +22,15 @@ class Api::ExternalGradersController < Api::BaseController
     status = nil
     submission_id = nil
     submissions_remaining = nil
-    reset_date = nil
+    reset_dttm = nil
     begin
+      raise MediaFieldsIncomplete unless media_fields_complete?
       participant = Participant.where(api_key: params[:api_key]).first
-      raise Api::ExternalGradersController::DeveloperAPIKeyInvalid if participant.nil?
+      raise DeveloperAPIKeyInvalid if participant.nil?
       challenge = Challenge.where(challenge_client_name: params[:challenge_client_name]).first
-      raise Api::ExternalGradersController::ChallengeClientNameInvalid if challenge.nil?
-      submissions_remaining, reset_date = challenge.submissions_remaining(participant.id)
-      raise Api::ExternalGradersController::NoSubmissionSlotsRemaining if submissions_remaining < 1
+      raise ChallengeClientNameInvalid if challenge.nil?
+      submissions_remaining, reset_dttm = challenge.submissions_remaining(participant.id)
+      raise NoSubmissionSlotsRemaining if submissions_remaining < 1
       submission = Submission.create!(participant_id: participant.id,
                                       challenge_id: challenge.id,
                                       description_markdown: params[:comment],
@@ -48,7 +49,7 @@ class Api::ExternalGradersController < Api::BaseController
       render json: { message: message,
                      submission_id: submission_id,
                      submissions_remaining: submissions_remaining,
-                     reset_date: reset_date }, status: status
+                     reset_dttm: reset_dttm }, status: status
     end
   end
 
@@ -59,17 +60,22 @@ class Api::ExternalGradersController < Api::BaseController
     submissions_remaining = nil
     reset_date = nil
     begin
-      Rails.logger.info("PATCHing submission #{params.inspect}")
       submission = Submission.find(submission_id)
-      raise SubmissionIdInvalid if submission.empty?
+      raise SubmissionIdInvalid if submission.blank?
+      post_challenge = submission.post_challenge  # preserve post_challenge status
       challenge = submission.challenge
       submissions_remaining, reset_date = challenge.submissions_remaining(submission.participant_id)
-      submission.update({media_large: params[:media_large],
-                         media_thumbnail: params[:media_thumbnail],
-                         media_content_type: params[:media_content_type]})
+      if media_fields_present?
+        submission.update({media_large: params[:media_large],
+                           media_thumbnail: params[:media_thumbnail],
+                           media_content_type: params[:media_content_type]})
+      end
+      if params[:grading_status].present?
+        submission.submission_grades.create!(grading_params)
+      end
+      submission.post_challenge = post_challenge
       submission.save
-      notify_admins(submission)
-      message = "Submission #{submission.id} for participant #{submission.participant_id} updated"
+      message = "Submission #{submission.id} updated"
       status = :accepted
     rescue => e
       status = :bad_request
@@ -83,24 +89,22 @@ class Api::ExternalGradersController < Api::BaseController
   end
 
 
-  def challenge_config
-    begin
-      challenge = Challenge.where(challenge_client_name: params[:challenge_client_name]).first
-      if challenge.nil?
-        raise Api::ExternalGradersController::ChallengeClientNameInvalid
-      end
-      message = "Configuration for #{challenge.challenge_client_name}"
-      status = :ok
-    rescue => e
-      config = nil
-      status = :bad_request
-      message = e
-    ensure
-      render json: { message: message, config: config }, status: status
+  def media_fields_present?
+    media_large = params[:media_large]
+    media_thumbnail = params[:media_thumbnail]
+    media_content_type = params[:media_content_type]
+    unless (media_large.present? && media_thumbnail.present? && media_content_type.present?) || (media_large.blank? && media_thumbnail.blank? && media_content_type.blank?)
+      raise MediaFieldsIncomplete
+    end
+    if media_large.present? && media_thumbnail.present? && media_content_type.present?
+      true
+    end
+    if media_large.blank? && media_thumbnail.blank? && media_content_type.blank?
+      false
     end
   end
 
-
+  # TODO this needs a rethink
   def validate_s3_key(s3_key)
     S3Service.new(s3_key,shared_bucket=true).valid_key?
   end
@@ -118,12 +122,13 @@ class Api::ExternalGradersController < Api::BaseController
         grading_status_cd: 'graded',
         grading_message: nil }
     when 'failed'
+      raise GradingMessageMissing if params[:grading_message].empty?
       { score: nil,
         score_secondary: nil,
         grading_status_cd: 'failed',
         grading_message: params[:grading_message] }
     else
-      raise Api::ExternalGradersController::ChallengeClientNameInvalid
+      raise GradingStatusInvalid
     end
   end
 
@@ -145,6 +150,12 @@ class Api::ExternalGradersController < Api::BaseController
     end
   end
 
+  class GradingMessageMissing < StandardError
+    def initialize(msg="Grading message must be provided if grading = failed")
+      super
+    end
+  end
+
   class SubmissionIdInvalid < StandardError
     def initialize(msg="Submission ID is invalid.")
       super
@@ -153,6 +164,12 @@ class Api::ExternalGradersController < Api::BaseController
 
   class NoSubmissionSlotsRemaining < StandardError
     def initialize(msg="The participant has no submission slots remaining for today.")
+      super
+    end
+  end
+
+  class MediaFieldsIncomplete < StandardError
+    def initialize(msg='Either all or none of media_large, media_thumbnail and media_content_type must be provided.')
       super
     end
   end

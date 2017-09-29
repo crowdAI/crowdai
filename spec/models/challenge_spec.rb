@@ -39,7 +39,6 @@ describe Challenge do
     it { is_expected.to respond_to :threshold }
     it { is_expected.to respond_to :media_on_leaderboard }
     it { is_expected.to respond_to :vote_count }
-    it { is_expected.to respond_to :api_key }
     it { is_expected.to respond_to :image_file }
     it { is_expected.to respond_to :featured_sequence }
   end
@@ -160,20 +159,6 @@ describe Challenge do
         challenge.challenge = 'a new challenge title'
         challenge.save!
         expect(challenge.slug).to eq('a-new-challenge-title')
-      end
-    end
-
-    context 'API key' do
-      let!(:challenge) { create :challenge }
-      it 'API key is created when account created' do
-        expect(challenge.api_key.length).to eq(32)
-      end
-
-      it 'API key can be updated' do
-        api_key = challenge.api_key
-        challenge.update(api_key: challenge.generate_api_key)
-        expect(challenge.api_key.length).to eq(32)
-        expect(challenge.api_key).not_to eq(api_key)
       end
     end
 

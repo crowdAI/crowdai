@@ -58,6 +58,10 @@ RSpec.describe EmailPreferencesTokenService do
           Timecop.travel(DateTime.current + 50.days )
         end
 
+        after do
+          Timecop.return
+        end
+
         subject { described_class.new(participant) }
         it { expect(subject.validate_token(token)).to eq('token_expired') }
         it 'deletes the token' do

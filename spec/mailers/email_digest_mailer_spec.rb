@@ -11,6 +11,10 @@ RSpec.describe EmailDigestMailer, type: :mailer do
       Timecop.freeze(Time.now)
     end
 
+    after do
+      Timecop.return
+    end
+
     describe '#set_start_dttm' do
       it 'daily' do
         start_dttm = described_class.new.set_start_dttm('daily')

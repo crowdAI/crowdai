@@ -24,7 +24,6 @@ class Api::ExternalGradersController < Api::BaseController
     submissions_remaining = nil
     reset_dttm = nil
     begin
-      raise MediaFieldsIncomplete unless media_fields_complete?
       participant = Participant.where(api_key: params[:api_key]).first
       raise DeveloperAPIKeyInvalid if participant.nil?
       challenge = Challenge.where(challenge_client_name: params[:challenge_client_name]).first
@@ -33,10 +32,12 @@ class Api::ExternalGradersController < Api::BaseController
       raise NoSubmissionSlotsRemaining if submissions_remaining < 1
       submission = Submission.create!(participant_id: participant.id,
                                       challenge_id: challenge.id,
-                                      description_markdown: params[:comment],
-                                      media_large: params[:media_large],
-                                      media_thumbnail: params[:media_thumbnail],
-                                      media_content_type: params[:media_content_type])
+                                      description_markdown: params[:comment])
+      if media_fields_present?
+        submission.update({media_large: params[:media_large],
+                           media_thumbnail: params[:media_thumbnail],
+                           media_content_type: params[:media_content_type]})
+      end
       submission.submission_grades.create!(grading_params)
       submission_id = submission.id
       notify_admins(submission)
@@ -97,10 +98,10 @@ class Api::ExternalGradersController < Api::BaseController
       raise MediaFieldsIncomplete
     end
     if media_large.present? && media_thumbnail.present? && media_content_type.present?
-      true
+      return true
     end
     if media_large.blank? && media_thumbnail.blank? && media_content_type.blank?
-      false
+      return false
     end
   end
 

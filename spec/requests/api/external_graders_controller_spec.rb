@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Api::ExternalGradersController, type: :request do
-  Timecop.freeze(Time.new(2017, 10, 30, 2, 2, 2, "+02:00"))
+  before do
+    Timecop.freeze(DateTime.new(2017, 10, 30, 2, 2, 2, "+02:00"))
+  end
   let!(:organizer) { create :organizer, api_key: '3d1efc2332200314c86d2921dd33434c' }
   let!(:challenge) { create :challenge, :running, organizer: organizer, daily_submissions: 5 }
   let!(:participant) { create :participant, api_key: '5762b9423a01f72662264358f071908c' }
-  Timecop.freeze(Time.new(2017, 10, 31, 2, 2, 2, "+02:00"))
   let!(:submission1) { create :submission, challenge: challenge, participant: participant, created_at: 2.hours.ago }
   let!(:submission2) { create :submission, challenge: challenge, participant: participant, created_at: 18.hours.ago }
   let!(:submission3) { create :submission, challenge: challenge, participant: participant, created_at: 2.days.ago }
@@ -56,10 +57,6 @@ RSpec.describe Api::ExternalGradersController, type: :request do
         it { expect(response).to have_http_status(404) }
         it { expect(response.body).to eq('{"message":"No participant could be found for this API key","participant_id":null}') }
       end
-    end
-
-    context 'team API key validation' do
-
     end
 
   end
@@ -174,7 +171,7 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
       it { expect(json(response.body)[:submission_id]).to be_a Integer }
       it { expect(json(response.body)[:submissions_remaining]).to eq(3) }
-      it { expect(json(response.body)[:reset_dttm]).to eq('2017-10-31T06:02:02.000Z') }
+      it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30T06:02:02.000Z") }
       it { expect(Submission.count).to eq(4)}
       it { expect(Submission.last.participant_id).to eq(participant.id)}
       it { expect(Submission.last.score).to eq(valid_attributes_with_secondary_score[:score])}
@@ -267,7 +264,7 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(json(response.body)[:message]).to eq("Grading status must be one of (graded|failed)") }
       it { expect(json(response.body)[:submission_id]).to be_nil }
       it { expect(json(response.body)[:submissions_remaining]).to eq(3) }
-      it { expect(json(response.body)[:reset_dttm]).to eq('2017-10-31T06:02:02.000Z') }
+      it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30T06:02:02.000Z") }
     end
 
     context 'participant has made their daily limit of submissions' do
@@ -281,7 +278,7 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(json(response.body)[:message]).to eq("The participant has no submission slots remaining for today.") }
       it { expect(json(response.body)[:submission_id]).to be_nil }
       it { expect(json(response.body)[:submissions_remaining]).to eq(0) }
-      it { expect(json(response.body)[:reset_dttm]).to eq('2017-10-31T06:02:02.000Z') }
+      it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30T06:02:02.000Z") }
     end
 
   end  # POST
@@ -313,16 +310,19 @@ RSpec.describe Api::ExternalGradersController, type: :request do
     end
 
     context "with valid_media_attributes" do
-      before {
+      before do
         patch "/api/external_graders/#{submission1.id}",
           params: valid_media_attributes,
-          headers: { 'Authorization': auth_header(organizer.api_key) } }
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+        submission1.reload
+      end
       it { expect(response).to have_http_status(202) }
       it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
       it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
-      it { expect(Submission.find(submission1.id).media_large).to eq(valid_media_attributes[:media_large]) }
-      it { expect(Submission.find(submission1.id).media_thumbnail).to eq(valid_media_attributes[:media_thumbnail]) }
-      it { expect(Submission.find(submission1.id).media_content_type).to eq(valid_media_attributes[:media_content_type]) }
+      it { puts Submission.find(submission1.id).inspect }
+      it { expect(submission1.media_large).to eq(valid_media_attributes[:media_large]) }
+      it { expect(submission1.media_thumbnail).to eq(valid_media_attributes[:media_thumbnail]) }
+      it { expect(submission1.media_content_type).to eq(valid_media_attributes[:media_content_type]) }
     end
 
     context "with invalid submission id" do

@@ -1,11 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe Api::ExternalGradersController, type: :request do
+
   before do
     Timecop.freeze(DateTime.new(2017, 10, 30, 2, 2, 2, "+02:00"))
   end
+
   let!(:organizer) { create :organizer, api_key: '3d1efc2332200314c86d2921dd33434c' }
-  let!(:challenge) { create :challenge, :running, organizer: organizer, daily_submissions: 5 }
+  let!(:challenge) { create :challenge,
+                            :running,
+                            organizer: organizer,
+                            daily_submissions: 5,
+                            start_dttm: 4.weeks.ago,
+                            end_dttm: 4.weeks.since }
   let!(:participant) { create :participant, api_key: '5762b9423a01f72662264358f071908c' }
   let!(:submission1) { create :submission, challenge: challenge, participant: participant, created_at: 2.hours.ago }
   let!(:submission2) { create :submission, challenge: challenge, participant: participant, created_at: 18.hours.ago }
@@ -63,7 +70,6 @@ RSpec.describe Api::ExternalGradersController, type: :request do
 
 
   describe "POST /api/external_graders/ : create submission" do
-
     def valid_attributes
       { challenge_client_name: challenge.challenge_client_name,
         api_key: participant.api_key,
@@ -163,10 +169,11 @@ RSpec.describe Api::ExternalGradersController, type: :request do
     end
 
     context "with valid_attributes" do
-      before {
+      before do
         post '/api/external_graders/',
           params: valid_attributes,
-          headers: { 'Authorization': auth_header(organizer.api_key) } }
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+      end
       it { expect(response).to have_http_status(202) }
       it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
       it { expect(json(response.body)[:submission_id]).to be_a Integer }
@@ -176,6 +183,7 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(Submission.last.participant_id).to eq(participant.id)}
       it { expect(Submission.last.score).to eq(valid_attributes_with_secondary_score[:score])}
       it { expect(Submission.last.grading_status_cd).to eq('graded')}
+      it { expect(Submission.last.post_challenge).to be false }
     end
 
     context "with valid_attributes_failed_grading" do
@@ -201,6 +209,7 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
       it { expect(json(response.body)[:submission_id]).to be_a Integer }
       it { expect(Submission.last.score_secondary).to eq(valid_attributes_with_secondary_score[:score_secondary])}
+      it { expect(Submission.last.post_challenge).to be false }
     end
 
     context "with valid_attributes_with_comment" do
@@ -212,19 +221,22 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
       it { expect(json(response.body)[:submission_id]).to be_a Integer }
       it { expect(Submission.last.description).to eq("<p><strong>My first submission!</strong></p>\n")}
+      it { expect(Submission.last.post_challenge).to be false }
     end
 
     context "with valid_attributes_with_media" do
-      before {
+      before do
         post '/api/external_graders/',
           params: valid_attributes_with_media,
-          headers: { 'Authorization': auth_header(organizer.api_key) } }
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+      end
       it { expect(response).to have_http_status(202) }
       it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
       it { expect(json(response.body)[:submission_id]).to be_a Integer }
       it { expect(Submission.last.media_large).to eq(valid_attributes_with_media[:media_large])}
       it { expect(Submission.last.media_thumbnail).to eq(valid_attributes_with_media[:media_thumbnail])}
       it { expect(Submission.last.media_content_type).to eq(valid_attributes_with_media[:media_content_type])}
+      it { expect(Submission.last.post_challenge).to be false }
     end
 
     context "with invalid developer API key" do
@@ -269,7 +281,7 @@ RSpec.describe Api::ExternalGradersController, type: :request do
 
     context 'participant has made their daily limit of submissions' do
       before do
-        6.times {
+        5.times {
           post '/api/external_graders/',
           params: valid_attributes,
           headers: { 'Authorization': auth_header(organizer.api_key) } }
@@ -281,10 +293,28 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30T06:02:02.000Z") }
     end
 
+    context 'post challenge submission' do
+        before do
+          Timecop.freeze(DateTime.new(2018, 1, 5, 2, 2, 2, "+02:00"))
+          post '/api/external_graders/',
+            params: valid_attributes,
+            headers: { 'Authorization': auth_header(organizer.api_key) }
+        end
+        it { expect(response).to have_http_status(202) }
+        it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
+        it { expect(json(response.body)[:submission_id]).to be_a Integer }
+        it { expect(json(response.body)[:submissions_remaining]).to eq(4) }
+        it { expect(json(response.body)[:reset_dttm]).to eq("2018-01-06T01:02:02.000+01:00") }
+        it { expect(Submission.count).to eq(4)}
+        it { expect(Submission.last.participant_id).to eq(participant.id)}
+        it { expect(Submission.last.score).to eq(valid_attributes_with_secondary_score[:score])}
+        it { expect(Submission.last.grading_status_cd).to eq('graded')}
+        it { expect(Submission.last.post_challenge).to be true }
+      end
+
   end  # POST
 
   describe "PATCH /api/external_graders/:submission_id : update submission score or media" do
-
     def valid_media_attributes
       {
         media_large: '/s3 url',

@@ -1,7 +1,6 @@
 class Submission < ApplicationRecord
   before_validation :cache_rendered_markdown
-  before_save :set_post_challenge
-
+  
   belongs_to :challenge
   belongs_to :participant, optional: true
   has_many :submission_files, dependent: :destroy
@@ -36,13 +35,6 @@ class Submission < ApplicationRecord
   def cache_rendered_markdown
     if self.description_markdown && description_markdown_changed?
       self.description = Kramdown::Document.new(self.description_markdown,{coderay_line_numbers: nil}).to_html
-    end
-  end
-
-  # set flag if challenge has completed
-  def set_post_challenge
-    if Time.now > self.challenge.end_dttm
-      self.post_challenge = true
     end
   end
 

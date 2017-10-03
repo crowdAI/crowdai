@@ -34,7 +34,6 @@ class Challenge < ApplicationRecord
   validates_presence_of :status
   validates_presence_of :challenge
   validates_presence_of :organizer_id
-  #validates_presence_of :grader
   validates_presence_of :primary_sort_order
   validates_presence_of :grading_factor
   validates_uniqueness_of :challenge_client_name
@@ -77,8 +76,13 @@ class Challenge < ApplicationRecord
 
   def submissions_remaining(participant_id)
     submissions_today = self.submissions.where("participant_id = ? and created_at >= ?", participant_id, Time.now - 24.hours).order(created_at: :asc)
-    reset_time = submissions_today.first.created_at + 1.day
-    return [(self.daily_submissions - submissions_today.count),reset_time]
+    if submissions_today.blank?
+      reset_time = DateTime.now + 1.day
+      return [(self.daily_submissions - 1),reset_time]
+    else
+      reset_time = submissions_today.first.created_at + 1.day
+      return [(self.daily_submissions - submissions_today.count),reset_time]
+    end
   end
 
   def cache_rendered_markdown

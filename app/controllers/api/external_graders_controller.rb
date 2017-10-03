@@ -32,7 +32,8 @@ class Api::ExternalGradersController < Api::BaseController
       raise NoSubmissionSlotsRemaining if submissions_remaining < 1
       submission = Submission.create!(participant_id: participant.id,
                                       challenge_id: challenge.id,
-                                      description_markdown: params[:comment])
+                                      description_markdown: params[:comment],
+                                      post_challenge: post_challenge(challenge))
       if media_fields_present?
         submission.update({media_large: params[:media_large],
                            media_thumbnail: params[:media_thumbnail],
@@ -89,6 +90,13 @@ class Api::ExternalGradersController < Api::BaseController
     end
   end
 
+  def post_challenge(challenge)
+    if DateTime.now > challenge.end_dttm
+      return true
+    else
+      return false
+    end
+  end
 
   def media_fields_present?
     media_large = params[:media_large]

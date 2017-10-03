@@ -13,22 +13,21 @@ There are four possible API keys for use with crowdAI:
 
 ## Endpoints
 
-### Verify Developer API Key
+### GET: Verify Developer API Key
 
-#### GET: Individual Developer API Key
-
-**GET - /api/external_graders/:id - individual developer**
+endpoint: /api/external_graders/:id
+verb: GET
 auth: organizer API key OR crowdAI API key
 id: dev_api_key
 returns:
 - status 200
 - participant_id + 200
 
-### GET: Team API Key
 
-** not yet implemented **
+### GET: Verify Team API Key - not yet implemented
 
-**GET - /api/external_graders/:id - team member**
+endpoint: /api/external_graders/:id
+verb: GET
 auth: organizer API key OR crowdAI API key
 id: team_api_key
 returns:
@@ -37,7 +36,8 @@ returns:
 
 ### POST: Graded Submission
 
-**POST - /api/external_graders/**
+endpoint: /api/external_graders
+verb: POST
 auth: organizer API key
 params:
 - dev_api_key (required)
@@ -59,7 +59,8 @@ returns:
 
 ### PATCH: Rescore Submission
 
-**PATCH - /api/external_graders/**
+endpoint: /api/external_graders
+verb: PATCH
 auth: organizer API key
 - submission_id (required)
 - score (required - can be zero)
@@ -75,7 +76,8 @@ auth: organizer API key
 
 ### PATCH: Add Media
 
-**PATCH - /api/external_graders/**
+endpoint: /api/external_graders
+verb: PATCH
 auth: organizer API key
 - submission_id (required)
 - media_large (optional)

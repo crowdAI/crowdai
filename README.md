@@ -22,9 +22,7 @@ Did we you say you are Awesomeee ?
 
 Our Contribution guidelines are available at [CONTRIBUTING.md](CONTRIBUTING.md)
 
-# Documentation
-
-
+[Documentation](doc/documention.md)
 
 ## Contact
 You can always reach out to us at [info@crowdai.org](mailto:info@crowdai.org)

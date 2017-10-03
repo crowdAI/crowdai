@@ -31,7 +31,14 @@ class TopicsController < ApplicationController
   end
 
   def update
+    # https://github.com/norman/friendly_id/issues/185
     if @topic.update(topic_params)
+      byebug
+      nested = params['topic']['comment']
+      if nested.present?
+        comment = Comment.find(nested['id'])
+        comment.update(comment_markdown: nested['comment_markdown'])
+      end
       redirect_to challenge_topics_path(@challenge), notice: 'Topic was successfully updated.'
     else
       render :edit
@@ -62,7 +69,7 @@ class TopicsController < ApplicationController
                 :sticky,
                 :views,
                 :posts_count,
-                comments_attributes: [:comment_markdown, :participant_id])
+                comments_attributes: [:id, :comment_markdown, :participant_id])
     end
 
     def headline_sql

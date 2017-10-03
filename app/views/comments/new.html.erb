@@ -32,6 +32,9 @@
             <%= link_to @author.name, participant_path(@author) %>
           <% end %>
           <%= time_ago_in_words(@topic.created_at) %> ago
+          <%= cell(Discussion::Cell::TopicAdmin,
+                     @topic,
+                     current_participant: current_participant) %>
         </p>
         <div class="comment">
           <p><%= simple_format(@first_comment.comment) %></p>

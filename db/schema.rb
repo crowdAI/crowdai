@@ -335,6 +335,26 @@ ActiveRecord::Schema.define(version: 20170928131857) do
     t.index ["participant_id"], name: "index_submissions_on_participant_id"
   end
 
+  create_table "submissions_backup_290917", id: false, force: :cascade do |t|
+    t.integer "id"
+    t.integer "challenge_id"
+    t.integer "participant_id"
+    t.float "score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text "description"
+    t.float "score_secondary"
+    t.string "grading_message"
+    t.string "grading_status_cd"
+    t.text "description_markdown"
+    t.integer "vote_count"
+    t.boolean "post_challenge"
+    t.string "api"
+    t.string "media_large"
+    t.string "media_thumbnail"
+    t.string "media_content_type"
+  end
+
   create_table "topics", id: :serial, force: :cascade do |t|
     t.integer "challenge_id"
     t.integer "participant_id"

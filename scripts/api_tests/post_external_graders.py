@@ -1,6 +1,6 @@
 """
-GET /api/external_graders
-Verify the Participant's API key
+POST /api/external_graders
+Create a submission record (including failed submission)
 USAGE:
 $ python post_external_graders.py [auth_api_key] [participant_api_key] [challenge_client_name]
 """

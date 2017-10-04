@@ -1,6 +1,6 @@
 """
-GET /api/external_graders
-Verify the Participant's API key
+PATCH /api/external_graders/:submission_id
+Update the media or regrade a previous submission
 USAGE:
 $ python patch_external_graders.py [auth_api_key] [participant_api_key] [challenge_client_name]
 """

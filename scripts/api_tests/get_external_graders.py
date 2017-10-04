@@ -1,5 +1,5 @@
 """
-GET /api/external_graders
+GET /api/external_graders/:id
 Verify the Participant's API key
 USAGE:
 $ python get_external_graders.py [auth_api_key] [participant_api_key]

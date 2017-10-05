@@ -30,5 +30,9 @@ RSpec.describe LandingPageController, type: :controller do
     end
   end
 
+  context 'ordering of challenges' do
+    # TODO
+  end
+
 
 end

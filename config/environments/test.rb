@@ -22,6 +22,8 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :test
   config.active_support.deprecation = :stderr
   config.assets.raise_runtime_errors = true
+  config.assets.debug = true
+
   #   config.assets.quiet = true
 end
 Rails.application.routes.default_url_options[:host] = ENV['HOST']

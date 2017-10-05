@@ -21,7 +21,7 @@
 
   <% if cols.include?(:media) %>
   <td class="video">
-    <%= concept(Leaderboard::Cell::Media,entry, size: :thumb) %>
+    <%= concept(Leaderboard::Cell::Media,entry, size: :thumb, current_participant: current_participant) %>
   </td>
   <% end %>
 

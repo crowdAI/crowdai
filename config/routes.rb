@@ -24,11 +24,9 @@ Rails.application.routes.draw do
 
   # API
   namespace :api do
-    resources :submissions, only: [:update]
     resources :external_graders, only: [:create, :show, :update] do
       get :challenge_config, on: :collection
     end
-    resources :opensim_gradings, only: [:create, :update, :show]
     get 'mailchimps/webhook' => 'mailchimps#verify', as: :verify_webhook
     post 'mailchimps/webhook' => 'mailchimps#webhook', as: :update_webhook
   end
@@ -40,6 +38,7 @@ Rails.application.routes.draw do
   resources :organizers, except: [:new, :index] do
     resources :challenges
     get :remove_image
+    get :regen_api_key
   end
 
   resources :challenges do
@@ -55,7 +54,6 @@ Rails.application.routes.draw do
     get 'leaderboards/submission_detail' => 'leaderboards#submission_detail', as: :submission_detail
     resources :topics
     get :regrade
-    get :regen_api_key
     get :remove_image
     resources :votes, only: [:create, :destroy]
     resources :follows, only: [:create, :destroy]

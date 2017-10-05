@@ -1,6 +1,6 @@
 <content>
-  <%= concept(Challenge::Cell::ChallengeMasthead, @challenge) %>
-  <%= concept(Challenge::Cell::ChallengeSubnav, @challenge) %>
+  <%= concept(Challenge::Cell::ChallengeMasthead, @challenge, current_participant: current_participant) %>
+  <%= concept(Challenge::Cell::ChallengeSubnav, @challenge, current_participant: current_participant) %>
 
   <div class="row">
     <div class="article">
@@ -8,39 +8,38 @@
       <% if @challenge.description %>
         <h2>Overview</h2>
         <div class='markdown-wrap'>
-          <%= @challenge.description.html_safe %>
+          <%= sanitize(@challenge.description) %>
         </div>
       <% end %>
 
       <% if @challenge.evaluation %>
         <h2>Evaluation</h2>
         <div class='markdown-wrap'>
-          <%= @challenge.evaluation.html_safe %>
+          <%= sanitize(@challenge.evaluation) %>
         </div>
       <% end %>
 
       <% if @challenge.rules %>
         <h2>Rules</h2>
         <div class='markdown-wrap'>
-          <%= @challenge.rules.html_safe %>
+          <%= sanitize(@challenge.rules) %>
         </div>
       <% end %>
 
       <% if @challenge.prizes %>
         <h2>Prizes</h2>
         <div class='markdown-wrap'>
-          <%= @challenge.prizes.html_safe %>
+          <%= sanitize(@challenge.prizes) %>
         </div>
       <% end %>
 
       <% if @challenge.resources %>
         <h2>Resources</h2>
         <div class='markdown-wrap'>
-          <%= @challenge.resources.html_safe %>
+          <%= sanitize(@challenge.resources) %>
         </div>
       <% end %>
 
     </div>
   </div>
-
 </content>

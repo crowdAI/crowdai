@@ -63,7 +63,7 @@ RSpec.describe EmailDigestJob, type: :job do
       comment2 = FactoryGirl.create :comment, topic: topic, participant: participant, comment: 'topic1_comment2'
       perform_enqueued_jobs { described_class.perform_later("digest_type" => "daily") }
 
-      expect(MandrillMessage.count).to eq(1)
+      expect(MandrillMessage.count).to eq(2)
     end
   end
 
@@ -163,7 +163,7 @@ RSpec.describe EmailDigestJob, type: :job do
       Timecop.return
       perform_enqueued_jobs { described_class.perform_later("digest_type" => "daily") }
 
-      expect(MandrillMessage.count).to eq(1)
+      expect(MandrillMessage.count).to eq(2)
     end
   end
 

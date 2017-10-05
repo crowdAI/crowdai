@@ -1,5 +1,4 @@
-class Challenge::Cell::Statistic < Template::Cell
-  inherit_views Challenge::Cell
+class Challenge::Cell::Statistic < Challenge::Cell
 
   def show
     render :statistic

@@ -75,13 +75,7 @@ class ChallengesController < ApplicationController
     render 'challenges/form/regrade_status'
   end
 
-  def regen_api_key
-    @challenge = Challenge.friendly.find(params[:challenge_id])
-    authorize @challenge
-    @challenge.api_key = @challenge.generate_api_key
-    @challenge.save!
-    redirect_to edit_challenge_path(@challenge),notice: 'API Key regenerated.'
-  end
+
 
   def remove_image
     @challenge = Challenge.friendly.find(params[:challenge_id])

@@ -1,4 +1,3 @@
-=begin
 require 'rails_helper'
 
 feature 'Email Preferences', js: true do
@@ -10,42 +9,42 @@ feature 'Email Preferences', js: true do
 
   describe "Accessing email preferences" do
 
-    scenario "Participant can see preferences link" do
-      visit_own_profile(participant)
-      expect(page).to have_content 'Email preferences'
+    scenario "Participant can see their own Account Settings" do
+      log_in(participant)
+      visit '/participants/edit'
+      expect(page).to have_content 'Account Settings'
     end
 
-    scenario "Participant access own preferences" do
-      visit_own_profile(participant)
-      click_on 'Email preferences'
-      expect(page).to have_content 'General preferences'
+    scenario "Participant access their Email Notifications preferences" do
+      log_in(participant)
+      visit '/participants/edit'
+      click_link 'Email Notifications'
+      expect(page).to have_content 'Receive the crowdAI Newsletter'
     end
 
     scenario "Participant cannot access email preferences link for other participant" do
-      visit_profile(participant,participant2)
+      log_in(participant)
+      visit participant_path(participant2.slug)
       expect(page).not_to have_content 'Email Preferences'
     end
 
     scenario "Participant cannot directly access email preferences for other participant" do
-      other_url = "/participants/#{participant2.name}/email_preferences/#{participant2.email_preferences.first.id}/edit"
-      visit_own_profile(participant)
+      log_in(participant)
+      other_url = "/participants/#{participant2.slug}/email_preferences/#{participant2.email_preferences.first.id}/edit"
       visit other_url
-      expect(page).not_to have_content 'Email Preferences'
+      expect(page).to have_content 'You are not authorised to access this page.'
     end
 
     scenario "Admin can access email preferences link for other participant" do
-      visit_profile(admin,participant2)
-      expect(page).not_to have_content 'Email Preferences'
-    end
-
-    scenario "Admin can directly access email preferences for other participant" do
-      other_url = "/participants/#{participant2.name}/email_preferences/#{participant2.email_preferences.first.id}/edit"
-      visit_own_profile(admin)
-      visit other_url
-      expect(page).not_to have_content 'Email Preferences'
+      log_in(admin)
+      visit participant_path(participant2.slug)
+      expect(page).to have_content 'Email Notifications'
+      click_link 'Email Notifications'
+      expect(page).to have_content 'Receive the crowdAI Newsletter'
     end
 
   end
+end
 
 =begin
   describe "Preference checkbox interdepencies" do

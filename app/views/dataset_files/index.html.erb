@@ -1,5 +1,12 @@
 <content>
-  <%= concept(Challenge::Cell::ChallengeMasthead, @challenge) %>
-  <%= concept(Challenge::Cell::ChallengeSubnav, @challenge, tab: 'dataset') %>
-  <%= concept(Dataset::Cell::List, @dataset_files) %>
+  <%= concept(Challenge::Cell::ChallengeMasthead,
+                @challenge,
+                current_participant: current_participant) %>
+  <%= concept(Challenge::Cell::ChallengeSubnav,
+                @challenge,
+                tab: 'dataset',
+                current_participant: current_participant) %>
+  <%= concept(Dataset::Cell::List,
+                @dataset_files,
+                current_participant: current_participant) %>
 </content>

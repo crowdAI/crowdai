@@ -1,5 +1,4 @@
-class Article::Cell::ArticleMasthead < Template::Cell
-  inherit_views Article::Cell
+class Article::Cell::ArticleMasthead < Article::Cell
 
   def show
     render :article_masthead

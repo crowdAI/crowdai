@@ -1,4 +1,4 @@
-class Article::Cell < Cell::Concept
+class Article::Cell < Template::Cell
 
   def show
     render

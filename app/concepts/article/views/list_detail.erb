@@ -1,7 +1,7 @@
 <li>
   <div class="pic">
     <%= link_to article_path(article) do %>
-      <%= concept(Image::Cell,article) %>
+      <%= concept(Image::Cell,article, current_participant: current_participant) %>
     <% end %>
   </div>
   <div class="details">

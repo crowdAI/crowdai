@@ -16,4 +16,16 @@ class TopicPolicy < ApplicationPolicy
     new?
   end
 
+  def destroy?
+    participant && participant.admin
+  end
+
+  def edit?
+    destroy?
+  end
+
+  def update?
+    destroy?
+  end
+
 end

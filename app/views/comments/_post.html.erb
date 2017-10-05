@@ -1,6 +1,6 @@
   <li class="list-group-item post">
     <div class='markdown-wrap'>
-      <%= post.post.html_safe if post.post %>
+      <%= sanitize(post.post) if post.post %>
     </div>
     <%= link_to "Quote", new_topic_post_path(@topic, :quote => post), class: 'btn btn-primary' %>
     <% if current_participant.admin? || current_participant == post.participant %>

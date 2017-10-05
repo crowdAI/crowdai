@@ -1,17 +1,25 @@
 <content>
-  <%= concept(Challenge::Cell::ChallengeMasthead, @challenge) %>
-  <%= concept(Challenge::Cell::ChallengeSubnav, @challenge, tab: 'discussion') %>
-
+  <%= concept(Challenge::Cell::ChallengeMasthead,
+                @challenge,
+                current_participant: current_participant) %>
+  <%= concept(Challenge::Cell::ChallengeSubnav,
+                @challenge,
+                tab: 'discussion',
+                current_participant: current_participant) %>
   <div class="row">
     <div class="discussion-topic">
       <div class="pic">
         <% if @author.is_a? NullParticipant %>
           <%= link_to '#' do %>
-            <%= concept(Image::Cell,@author) %>
+            <%= concept(Image::Cell,
+                          @author,
+                          current_participant: current_participant) %>
           <% end %>
         <% else %>
           <%= link_to participant_path(@author) do %>
-            <%= concept(Image::Cell,@author) %>
+            <%= concept(Image::Cell,
+                          @author,
+                          current_participant: current_participant) %>
           <% end %>
         <% end %>
       </div>
@@ -24,17 +32,24 @@
             <%= link_to @author.name, participant_path(@author) %>
           <% end %>
           <%= time_ago_in_words(@topic.created_at) %> ago
+          <%= cell(Discussion::Cell::TopicAdmin,
+                     @topic,
+                     current_participant: current_participant) %>
         </p>
         <div class="comment">
           <p><%= simple_format(@first_comment.comment) %></p>
         </div>
-        <%= concept(Vote::Cell,@topic) %>
+        <%= concept(Vote::Cell,
+                      @topic,
+                      current_participant: current_participant) %>
       </div>
     </div>
 
     <% if current_participant %>
       <%= render partial: 'form', locals: { topic: @topic, comment: @comment } %>
     <% end %>
-    <%= concept(Discussion::Cell::Comment, collection: @comments) %>
+    <%= concept(Discussion::Cell::Comment,
+                  collection: @comments,
+                  current_participant: current_participant) %>
   </div>
 </content>

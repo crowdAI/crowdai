@@ -1,4 +1,3 @@
-=begin
 require 'rails_helper'
 
 RSpec.describe TopicsController, type: :controller do
@@ -11,12 +10,12 @@ RSpec.describe TopicsController, type: :controller do
     FactoryGirl.attributes_for(:topic, :invalid)
   }
 
-  let(:participant) { create :participant }
-  let(:challenge) { create :challenge }
-  let(:topic) { create :topic, challenge_id: challenge.id }
+  let!(:admin) { create :participant, :admin }
+  let!(:challenge) { create :challenge }
+  let!(:topic) { create :topic, challenge_id: challenge.id }
 
   before do
-    sign_in participant
+    sign_in admin
   end
 
   describe "GET #index" do
@@ -55,15 +54,9 @@ RSpec.describe TopicsController, type: :controller do
         }.to change(Topic, :count).by(1)
       end
 
-      it "assigns a newly created topic as @topic" do
-        post :create, params: { challenge_id: challenge.id, topics_controller: valid_attributes}
-        expect(assigns(:topic)).to be_a(Topic)
-        expect(assigns(:topic)).to be_persisted
-      end
-
       it "redirects to the created topics_controller" do
-        post :create, params: { challenge_id: challenge.id, topics_controller: valid_attributes}
-        expect(response).to redirect_to(Topics.last)
+        post :create, params: { challenge_id: challenge.id, topic: valid_attributes}
+        expect(response).to redirect_to "/challenges/#{challenge.slug}/topics"
       end
     end
 
@@ -74,7 +67,7 @@ RSpec.describe TopicsController, type: :controller do
       end
 
       it "re-renders the 'new' template" do
-        post :create, params: { challenge_id: challenge.id, topics_controller: invalid_attributes}
+        post :create, params: { challenge_id: challenge.id, topic: invalid_attributes}
         expect(response).to render_template("new")
       end
     end
@@ -89,9 +82,8 @@ RSpec.describe TopicsController, type: :controller do
 
     it "redirects to the topics list" do
       delete :destroy, params: { challenge_id: challenge.id, id: topic.id }
-      expect(response).to redirect_to(topics_url)
+      expect(response).to redirect_to "/challenges/#{challenge.slug}/topics"
     end
   end
 
 end
-=end

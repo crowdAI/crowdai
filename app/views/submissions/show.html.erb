@@ -6,7 +6,7 @@
 
     <h3>Submission</h3>
     <div class='markdown-wrap'>
-      <%= @submission.description.html_safe if @submission.description %>
+      <%= sanitize(@submission.description) if @submission.description %>
     </div>
     <hr/>
     <ul>

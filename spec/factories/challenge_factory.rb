@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :challenge, class: Challenge do
     organizer
-    challenge FFaker::Lorem.sentence(3)
-    sequence(:challenge_client_name) { |n| "Client_name_#{n}" }
-    tagline FFaker::Lorem.sentence(3)
+    challenge { FFaker::Lorem.unique.sentence(3) }
+    sequence(:challenge_client_name) { |n| "client_name_#{n}" }
+    tagline { FFaker::Lorem.unique.sentence(3) }
     status :draft
     description_markdown "### The description"
     evaluation_markdown "# An evaluation"
@@ -22,7 +22,6 @@ FactoryGirl.define do
 
     trait :running do
       status :running
-      challenge FFaker::Lorem.sentence(3)
       dataset_files {[ build(:dataset_file) ]}
     end
 

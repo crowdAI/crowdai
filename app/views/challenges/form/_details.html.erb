@@ -49,9 +49,7 @@
 
     <label>Challenge Status</label>
     <%= f.select :status, enum_option_pairs(Challenge, :status), include_blank: false %>
-
-
-
+    
     <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>
   </fieldset>
 <% end %>

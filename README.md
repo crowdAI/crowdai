@@ -22,6 +22,8 @@ Did we you say you are Awesomeee ?
 
 Our Contribution guidelines are available at [CONTRIBUTING.md](CONTRIBUTING.md)
 
+[Documentation](doc/documention.md)
+
 ## Contact
 You can always reach out to us at [info@crowdai.org](mailto:info@crowdai.org)
 and you are always welcome to join the CrowdAI Community banter on our Gitter channel at [https://gitter.im/crowdAI/Lobby](https://gitter.im/crowdAI/Lobby)

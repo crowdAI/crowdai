@@ -1,5 +1,4 @@
-class Challenge::Cell::ListDetail < Template::Cell
-  inherit_views Challenge::Cell
+class Challenge::Cell::ListDetail < Challenge::Cell
 
   def show
     render :list_detail

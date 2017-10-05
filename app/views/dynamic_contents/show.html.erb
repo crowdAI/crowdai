@@ -1,1 +1,12 @@
-<h1>show</h1>
+<content>
+  <%= concept(Challenge::Cell::ChallengeMasthead,
+                @challenge,
+                current_participant: current_participant) %>
+  <%= concept(Challenge::Cell::ChallengeSubnav,
+                @challenge,
+                tab: 'dynamic',
+                current_participant: current_participant) %>
+  <div id='dynamic-content'>
+    <%= ERB.new(@challenge.dynamic_content).result(OpenStruct.new({challenge: @challenge}).instance_eval { binding }) %>
+  </div>
+</content>

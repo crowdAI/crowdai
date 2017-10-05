@@ -6,6 +6,10 @@ RSpec.describe Api::ExternalGradersController, type: :request do
     Timecop.freeze(DateTime.new(2017, 10, 30, 2, 2, 2, "+02:00"))
   end
 
+  after do
+    Timecop.return
+  end
+
   let!(:organizer) { create :organizer, api_key: '3d1efc2332200314c86d2921dd33434c' }
   let!(:challenge) { create :challenge,
                             :running,
@@ -299,6 +303,9 @@ RSpec.describe Api::ExternalGradersController, type: :request do
           post '/api/external_graders/',
             params: valid_attributes,
             headers: { 'Authorization': auth_header(organizer.api_key) }
+        end
+        after do
+          Timecop.return
         end
         it { expect(response).to have_http_status(202) }
         it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }

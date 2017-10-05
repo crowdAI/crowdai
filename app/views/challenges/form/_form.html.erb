@@ -18,6 +18,7 @@
         <li data-tab='tab-resources'>Resources</li>
         <li data-tab='tab-submission'>Submission</li>
         <li data-tab='tab-dataset'>Dataset</li>
+        <li data-tab='tab-dynamic'>Dynamic</li>
       </ul>
     </div>
 	</div>
@@ -45,6 +46,9 @@
     </div>
     <div id='tab-dataset' class='tab-content'>
       <%= render partial: 'challenges/form/dataset', locals: { challenge: challenge } %>
+    </div>
+    <div id='tab-dynamic' class='tab-content'>
+      <%= render partial: 'challenges/form/dynamic_content', locals: { challenge: challenge } %>
     </div>
 
   <% if policy(challenge).destroy? %>

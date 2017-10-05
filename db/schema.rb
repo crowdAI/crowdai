@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170928131857) do
+ActiveRecord::Schema.define(version: 20171005145203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,9 @@ ActiveRecord::Schema.define(version: 20170928131857) do
     t.text "dataset_description"
     t.string "image_file"
     t.integer "featured_sequence", default: 0
+    t.boolean "dynamic_content_flag", default: false
+    t.text "dynamic_content"
+    t.string "dynamic_content_tab"
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id"
     t.index ["slug"], name: "index_challenges_on_slug", unique: true
   end

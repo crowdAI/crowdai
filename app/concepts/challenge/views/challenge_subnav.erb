@@ -5,6 +5,7 @@
       <li class=<%= tab_class('leaderboard') %> ><%= link_to 'Leaderboard', challenge_leaderboards_path(challenge), class: tab_class('leaderboard') %></li>
       <li class=<%= tab_class('discussion') %> ><%= link_to 'Discussion', challenge_topics_path(challenge), class: tab_class('discussion') %></li>
       <li class=<%= tab_class('dataset') %> ><%= link_to 'Dataset', challenge_dataset_files_path(challenge), class: tab_class('dataset') %></li>
+      <li class=<%= tab_class('dynamic') %> ><%= link_to challenge.dynamic_content_tab, challenge_dynamic_content_path(challenge), class: tab_class('dynamic') %></li>
     </ul>
     <% if current_tab == 'dataset' && policy(challenge).update? %>
       <%= link_to 'Add File', new_challenge_dataset_file_path(challenge), class: "btn btn-secondary pull-right" %>

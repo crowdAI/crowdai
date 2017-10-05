@@ -33,7 +33,6 @@ class TopicsController < ApplicationController
   def update
     # https://github.com/norman/friendly_id/issues/185
     if @topic.update(topic_params)
-      byebug
       nested = params['topic']['comment']
       if nested.present?
         comment = Comment.find(nested['id'])

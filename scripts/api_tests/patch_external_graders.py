@@ -36,7 +36,6 @@ def patch_media(headers,submission_id):
     url = URL + str(submission_id)
     print 'Calling: PATCH {}'.format(url)
     params = {
-        'submission_id': submission_id,
         'media_large': '/s3 url',
         'media_thumbnail': '/s3_thumbail',
         'media_content_type': 'application/png'

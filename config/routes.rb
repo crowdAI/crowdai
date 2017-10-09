@@ -80,9 +80,10 @@ Rails.application.routes.draw do
   end
   get '/load_more_articles', to: 'articles#load_more', as: :load_more_articles
 
-  match '/pages/contact', to: 'pages#contact', via: :get
-  match '/pages/privacy', to: 'pages#privacy', via: :get
-  match '/pages/terms',   to: 'pages#terms', via: :get
+  match '/contact', to: 'pages#contact', via: :get
+  match '/privacy', to: 'pages#privacy', via: :get
+  match '/terms',   to: 'pages#terms',   via: :get
+  match '/faq',     to: 'pages#faq',     via: :get
 
   resources :markdown_editors, only: [:index, :create] do
     put :presign, on: :collection

@@ -41,6 +41,9 @@ describe Challenge do
     it { is_expected.to respond_to :vote_count }
     it { is_expected.to respond_to :image_file }
     it { is_expected.to respond_to :featured_sequence }
+    it { is_expected.to respond_to :dynamic_content_flag }
+    it { is_expected.to respond_to :dynamic_content_tab}
+    it { is_expected.to respond_to :dynamic_content}
   end
 
   context 'associations' do

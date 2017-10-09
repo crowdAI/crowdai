@@ -49,7 +49,7 @@ Rails.application.routes.draw do
       get :hub
       get :execute
     end
-    resources :dynamic_contents, only: [:show]
+    resources :dynamic_contents, only: [:index]
     resources :leaderboards, only: [:index]
     get 'leaderboards/video_modal' => 'leaderboards#video_modal', as: :video_modal
     get 'leaderboards/submission_detail' => 'leaderboards#submission_detail', as: :submission_detail

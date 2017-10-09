@@ -6,7 +6,7 @@
                 @challenge,
                 tab: 'dynamic',
                 current_participant: current_participant) %>
-  <div id='dynamic-content'>
-    <%= ERB.new(@challenge.dynamic_content).result(OpenStruct.new({challenge: @challenge}).instance_eval { binding }) %>
-  </div>
+    <div id='dynamic-content'>
+      <%= ERB.new(@challenge.dynamic_content).result(OpenStruct.new({challenge: @challenge, current_participant: current_participant}).instance_eval { binding }).html_safe %>
+    </div>
 </content>

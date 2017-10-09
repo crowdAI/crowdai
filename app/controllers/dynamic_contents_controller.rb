@@ -2,7 +2,7 @@ class DynamicContentsController < ApplicationController
   before_action :authenticate_participant!
   before_action :set_challenge
 
-  def show
+  def index
   end
 
   def set_challenge

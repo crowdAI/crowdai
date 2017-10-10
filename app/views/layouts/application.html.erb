@@ -43,6 +43,7 @@
     <%= concept(Header::Cell, nil, current_participant: current_participant) %>
     <%= render 'layouts/flash_messages' %>
     <%= yield %>
+    <%= insert_paloma_hook %>
     <%= concept(Footer::Cell, nil, current_participant: current_participant) %>
     <%= render partial: 'layouts/google_analytics_body' %>
   </body>

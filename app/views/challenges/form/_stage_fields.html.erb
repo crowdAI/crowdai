@@ -2,8 +2,8 @@
 
   <fieldset>
     <div class="switch-container">
-      <%= f.check_box :active, id: 'switch', class: 'switch' %>
-      <label for="switch" data-on="Yes" data-off="No">Active</label>
+      <%= f.check_box :active, class: 'switch' %>
+      <%= f.label :active, 'Active', data: { on: 'Yes', off: 'No' } %>
     </div>
   </fieldset>
 

@@ -26,7 +26,7 @@
 //= require pages/email_preferences_edit
 
 // -------------------- Controllers ------------------- //
-
+//= require controllers/challenges_controller
 
 
 $(document).on('ajax:error', function(xhr, status, error) {
@@ -36,4 +36,8 @@ $(document).on('ajax:error', function(xhr, status, error) {
 
 $(document).on('turbolinks:load', function() {
   $('[data-remodal-id=modal]').remodal();
+});
+
+$(document).on('turbolinks:load', function() {
+  Paloma.start();
 });

@@ -2,6 +2,9 @@
 	<div class="masthead">
 		<div class="row">
 			<div class="info">
+        <% if challenge.persisted? %>
+          <h6><%= challenge.challenge %></h6>
+        <% end %>
 				<h2><%= title %></h2>
 			</div>
 		</div>

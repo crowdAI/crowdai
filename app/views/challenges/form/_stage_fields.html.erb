@@ -1,9 +1,44 @@
 <div class="section-container nested-fields">
-  <a class="ss-icon" href="#"></a>
-  <label>Submission file description</label>
-  <%= f.text_field :submission_file_description %>
-  <label>File type</label>
-  <%= f.select :filetype, enum_option_pairs(SubmissionFileDefinition, :filetype), include_blank: false %>
-  <%= f.check_box :file_required, {}, "true", "false" %>
-  <label>File required</label>
+
+  <fieldset>
+    <div class="switch-container">
+      <%= f.check_box :active, id: 'switch', class: 'switch' %>
+      <label for="switch" data-on="Yes" data-off="No">Active</label>
+    </div>
+  </fieldset>
+
+  <div class="twin-container">
+    <div class="twin-field">
+      <label>Round</label>
+      <%= f.text_field :stage  %>
+    </div>
+    <div class="twin-field">
+      <label>Leaderboard Title</label>
+      <%= f.text_field :leaderboard_title  %>
+    </div>
+  </div>
+
+  <div class="twin-container">
+    <div class="twin-field">
+      <label>Start Date</label>
+      <%= f.text_field :start_date, class: 'datepicker', placeholder: "dd/mm/yyyy"  %>
+    </div>
+    <div class="twin-field">
+      <label>End Date</label>
+      <%= f.text_field :end_date, class: 'datepicker', placeholder: "dd/mm/yyyy"  %>
+    </div>
+  </div>
+
+  <div class="twin-container">
+    <div class="twin-field">
+      <label>Start Time (<abbr title="Coordinated Universal Time">UTC</abbr>)</label>
+      <%= f.text_field :start_time, :value => @challenge.start_time.strftime("%H:%M")  %>
+    </div>
+    <div class="twin-field">
+      <label>End Time (<abbr title="Coordinated Universal Time">UTC</abbr>)</label>
+      <%= f.text_field :end_time, :value => @challenge.end_time.strftime("%H:%M")  %>
+    </div>
+  </div>
+  <%= link_to_remove_association "remove", f, class: 'pull-right' %>
+
 </div>

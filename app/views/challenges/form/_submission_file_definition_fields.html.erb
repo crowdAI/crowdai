@@ -1,4 +1,4 @@
-<div class="section-container nested-fields">
+<div class="section-container">
   <a class="ss-icon" href="#"></a>
   <label>Submission file description</label>
   <%= f.text_field :submission_file_description %>
@@ -6,4 +6,5 @@
   <%= f.select :filetype, enum_option_pairs(SubmissionFileDefinition, :filetype), include_blank: false %>
   <%= f.check_box :file_required, {}, "true", "false" %>
   <label>File required</label>
+  <%= link_to_remove_association "remove", f, class: 'pull-right' %>
 </div>

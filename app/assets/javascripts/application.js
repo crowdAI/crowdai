@@ -9,6 +9,7 @@
 //= require remodal
 //= require isInViewport
 //= require turbolinks
+//= require paloma
 
 // ---------------------- Modules ---------------------- //
 //= require modules/site
@@ -23,6 +24,9 @@
 //= require pages/dataset_files_index
 //= require pages/participants_edit
 //= require pages/email_preferences_edit
+
+// -------------------- Controllers ------------------- //
+
 
 
 $(document).on('ajax:error', function(xhr, status, error) {

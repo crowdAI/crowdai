@@ -23,7 +23,10 @@ class Challenge < ApplicationRecord
   has_many :topics
   has_many :votes,                        as: :votable
   has_many :follows,                      as: :followable
-  has_many :stages,                       dependent: :destroy
+  has_many :stages,                       dependent: :destroy, inverse_of: :challenge
+  accepts_nested_attributes_for           :stages,
+                                          reject_if: :all_blank,
+                                          allow_destroy: true
 
   as_enum :status, [:draft, :running, :completed, :perpetual, :starting_soon], map: :string
   as_enum :grader, [:f1_logloss, :discrete_mean_squared_error, :diff_ratio, :manual, :external], map: :string

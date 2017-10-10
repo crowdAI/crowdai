@@ -5,6 +5,17 @@
       <%= f.text_field :challenge %>
       <label>Tagline</label>
       <%= f.text_field :tagline %>
+      <div class="twin-container">
+        <div class="twin-field">
+          <label>Challenge Status</label>
+          <%= f.select :status, enum_option_pairs(Challenge, :status), include_blank: false %>
+        </div>
+        <div class="twin-field">
+          <label>Featured Sequence</label>
+          <%= f.text_field :featured_sequence %>
+        </div>
+      </div>
+
       <label>Image</label>
       <div class="upload">
         <%= concept(Image::Cell,challenge,klass: 'img-thumb') %>
@@ -18,6 +29,7 @@
       <input type='text' value='<%= @challenge.organizer.organizer %>' disabled>
     </fieldset>
     <div class="twin-container">
+      <h4>Challenge Duration</h4>
       <div class="twin-field">
         <label>Start Date</label>
         <%= f.text_field :start_date, class: 'datepicker', placeholder: "dd/mm/yyyy"  %>
@@ -32,25 +44,25 @@
         <label>Start Time (<abbr title="Coordinated Universal Time">UTC</abbr>)</label>
         <%= f.text_field :start_time, :value => @challenge.start_time.strftime("%H:%M")  %>
       </div>
-
       <div class="twin-field">
         <label>End Time (<abbr title="Coordinated Universal Time">UTC</abbr>)</label>
         <%= f.text_field :end_time, :value => @challenge.end_time.strftime("%H:%M")  %>
       </div>
     </div>
 
-    <div class="twin-container">
-      <div class="twin-field">
-        <label>Featured Sequence</label>
-        <%= f.text_field :featured_sequence %>
+    <fieldset>
+      <h4>Challenge Rounds</h4>
+      <div id='rounds'>
+        <%= f.fields_for :stages do |stage| %>
+          <%= render 'challenges/form/stage_fields', f: stage %>
+        <% end %>
+        <div class='links'>
+          <%= link_to_add_association '+ Challenge Round', f, :stages,
+                                    html_options = { partial: 'challenges/form/stage_fields' } %>
+        </div>
       </div>
-      <div class="twin-field"></div>
-    </div>
+    </fieldset>
 
-    <label>Challenge Status</label>
-    <%= f.select :status, enum_option_pairs(Challenge, :status), include_blank: false %>
-    
     <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>
-  </fieldset>
 <% end %>
 </div>

@@ -1,0 +1,9 @@
+<div class="section-container nested-fields">
+  <a class="ss-icon" href="#"></a>
+  <label>Submission file description</label>
+  <%= f.text_field :submission_file_description %>
+  <label>File type</label>
+  <%= f.select :filetype, enum_option_pairs(SubmissionFileDefinition, :filetype), include_blank: false %>
+  <%= f.check_box :file_required, {}, "true", "false" %>
+  <label>File required</label>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171005145203) do
+ActiveRecord::Schema.define(version: 20171010104709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -281,6 +281,21 @@ ActiveRecord::Schema.define(version: 20171005145203) do
     t.index ["unlock_token"], name: "index_participants_on_unlock_token", unique: true
   end
 
+  create_table "stages", force: :cascade do |t|
+    t.bigint "challenge_id"
+    t.string "stage"
+    t.integer "seq", default: 0
+    t.date "start_date"
+    t.date "end_date"
+    t.time "start_time"
+    t.time "end_time"
+    t.boolean "active", default: false
+    t.string "leaderboard_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_id"], name: "index_stages_on_challenge_id"
+  end
+
   create_table "submission_file_definitions", id: :serial, force: :cascade do |t|
     t.integer "challenge_id"
     t.integer "seq"
@@ -403,6 +418,7 @@ ActiveRecord::Schema.define(version: 20171005145203) do
   add_foreign_key "email_preferences", "participants"
   add_foreign_key "follows", "participants"
   add_foreign_key "participants", "organizers"
+  add_foreign_key "stages", "challenges"
   add_foreign_key "submission_file_definitions", "challenges"
   add_foreign_key "submission_files", "submissions"
   add_foreign_key "submission_grades", "submissions"
@@ -571,6 +587,15 @@ ActiveRecord::Schema.define(version: 20171005145203) do
     WHERE (s.participant_id = p.id)
     GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
     ORDER BY s.created_at DESC;
+  SQL
+
+  create_view "participant_sign_ups",  sql_definition: <<-SQL
+      SELECT count(participants.id) AS count,
+      (date_part('month'::text, participants.created_at))::integer AS mnth,
+      (date_part('year'::text, participants.created_at))::integer AS yr
+     FROM participants
+    GROUP BY ((date_part('month'::text, participants.created_at))::integer), ((date_part('year'::text, participants.created_at))::integer)
+    ORDER BY ((date_part('year'::text, participants.created_at))::integer), ((date_part('month'::text, participants.created_at))::integer);
   SQL
 
 end

@@ -1,5 +1,4 @@
 class Article < ApplicationRecord
-  #searchkick
   include FriendlyId
 
   default_scope { order('updated_at DESC') }

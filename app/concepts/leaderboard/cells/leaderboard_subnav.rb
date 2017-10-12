@@ -1,7 +1,11 @@
 class Leaderboard::Cell::LeaderboardSubnav < Leaderboard::Cell
 
   def show
-    render :leaderboard_subnav
+    if challenge_rounds.count > 1
+      render :leaderboard_subnav
+    else
+      nil
+    end
   end
 
   def challenge
@@ -13,7 +17,7 @@ class Leaderboard::Cell::LeaderboardSubnav < Leaderboard::Cell
   end
 
   def challenge_rounds
-    challenge.stages.where(leaderboard_visible: true).order(seq: :desc)
+    challenge.challenge_rounds.where(leaderboard_visible: true).order(seq: :desc)
   end
 
   def tab_class(challenge_round)

@@ -58,7 +58,7 @@ describe Challenge do
     it { is_expected.to have_many(:topics) }
     it { is_expected.to have_many(:votes) }
     it { is_expected.to have_many(:follows) }
-    it { is_expected.to have_many(:stages) }
+    it { is_expected.to have_many(:challenge_rounds) }
   end
 
   describe 'indexes' do

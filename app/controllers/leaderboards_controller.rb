@@ -52,9 +52,9 @@ class LeaderboardsController < ApplicationController
 
   def current_round
     if params[:challenge_round_id].present?
-      Stage.find(params[:challenge_round_id].to_i)
+      ChallengeRound.find(params[:challenge_round_id].to_i)
     else
-      @challenge.stages.where(active: true).first
+      @challenge.challenge_rounds.where(active: true).first
     end
   end
 

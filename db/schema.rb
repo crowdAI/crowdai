@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012090125) do
+ActiveRecord::Schema.define(version: 20171012150240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,21 @@ ActiveRecord::Schema.define(version: 20171012090125) do
     t.string "image_file"
     t.index ["participant_id"], name: "index_articles_on_participant_id"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
+  end
+
+  create_table "challenge_rounds", force: :cascade do |t|
+    t.bigint "challenge_id"
+    t.string "challenge_round"
+    t.integer "seq", default: 0
+    t.date "start_date"
+    t.date "end_date"
+    t.time "start_time"
+    t.time "end_time"
+    t.boolean "active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "leaderboard_visible", default: false
+    t.index ["challenge_id"], name: "index_challenge_rounds_on_challenge_id"
   end
 
   create_table "challenges", id: :serial, force: :cascade do |t|
@@ -281,22 +296,6 @@ ActiveRecord::Schema.define(version: 20171012090125) do
     t.index ["unlock_token"], name: "index_participants_on_unlock_token", unique: true
   end
 
-  create_table "stages", force: :cascade do |t|
-    t.bigint "challenge_id"
-    t.string "stage"
-    t.integer "seq", default: 0
-    t.date "start_date"
-    t.date "end_date"
-    t.time "start_time"
-    t.time "end_time"
-    t.boolean "active", default: false
-    t.string "leaderboard_title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "leaderboard_visible", default: false
-    t.index ["challenge_id"], name: "index_stages_on_challenge_id"
-  end
-
   create_table "submission_file_definitions", id: :serial, force: :cascade do |t|
     t.integer "challenge_id"
     t.integer "seq"
@@ -350,6 +349,7 @@ ActiveRecord::Schema.define(version: 20171012090125) do
     t.string "media_large"
     t.string "media_thumbnail"
     t.string "media_content_type"
+    t.integer "challenge_round_id"
     t.index ["challenge_id"], name: "index_submissions_on_challenge_id"
     t.index ["participant_id"], name: "index_submissions_on_participant_id"
   end
@@ -411,6 +411,7 @@ ActiveRecord::Schema.define(version: 20171012090125) do
 
   add_foreign_key "article_sections", "articles"
   add_foreign_key "articles", "participants"
+  add_foreign_key "challenge_rounds", "challenges"
   add_foreign_key "challenges", "organizers"
   add_foreign_key "comments", "participants"
   add_foreign_key "comments", "topics"
@@ -419,7 +420,6 @@ ActiveRecord::Schema.define(version: 20171012090125) do
   add_foreign_key "email_preferences", "participants"
   add_foreign_key "follows", "participants"
   add_foreign_key "participants", "organizers"
-  add_foreign_key "stages", "challenges"
   add_foreign_key "submission_file_definitions", "challenges"
   add_foreign_key "submission_files", "submissions"
   add_foreign_key "submission_grades", "submissions"

@@ -1,7 +1,6 @@
 FactoryGirl.define do
-  factory :stage do
+  factory :challenge_round do
     challenge
-    stage 'Round 1'
     seq 0
     start_date 2.weeks.ago
     end_date 4.weeks.since
@@ -10,3 +9,4 @@ FactoryGirl.define do
     active false
   end
 end
+ 

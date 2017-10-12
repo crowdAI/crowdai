@@ -21,8 +21,8 @@ class Challenge < ApplicationRecord
   has_many :topics
   has_many :votes,                        as: :votable
   has_many :follows,                      as: :followable
-  has_many :stages,                       dependent: :destroy, inverse_of: :challenge
-  accepts_nested_attributes_for           :stages,
+  has_many :challenge_rounds,             dependent: :destroy, inverse_of: :challenge
+  accepts_nested_attributes_for           :challenge_rounds,
                                           reject_if: :all_blank,
                                           allow_destroy: true
 

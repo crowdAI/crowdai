@@ -3,7 +3,7 @@
     <ul>
       <% challenge_rounds.each do |challenge_round| %>
         <li class=<%= tab_class(challenge_round) %> >
-          <%= link_to challenge_round.stage,
+          <%= link_to challenge_round.challenge_round,
                       challenge_leaderboards_path(
                         challenge, challenge_round_id: challenge_round.id),
                         class: 'active' %>

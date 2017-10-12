@@ -1,5 +1,4 @@
-class Leaderboard::Cell::Media < Template::Cell
-  inherit_views Leaderboard::Cell
+class Leaderboard::Cell::Media < Leaderboard::Cell
 
   def show
     render :media

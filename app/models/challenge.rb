@@ -1,13 +1,11 @@
 class Challenge < ApplicationRecord
   include FriendlyId
 
-  friendly_id :challenge, use: [:slugged, :finders]
+  friendly_id :challenge, use: [:slugged, :finders, :history]
   before_save :cache_rendered_markdown
   validate :valid_status
   before_save :set_datetimes
-
   belongs_to :organizer
-
   has_many :dataset_files, dependent: :destroy
   mount_uploader :image_file, ImageUploader
 

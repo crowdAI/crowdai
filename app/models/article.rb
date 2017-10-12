@@ -9,7 +9,7 @@ class Article < ApplicationRecord
   has_many :article_sections, dependent: :destroy
   accepts_nested_attributes_for :article_sections, reject_if: :all_blank, allow_destroy: true
 
-  friendly_id :article, use: [:slugged, :finders]
+  friendly_id :article, use: [:slugged, :finders, :history]
 
   scope :published, -> () { where published: true }
 

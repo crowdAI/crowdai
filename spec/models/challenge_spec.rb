@@ -111,7 +111,7 @@ describe Challenge do
       end
       it 'winner_description' do
         challenge.update!(winner_description_markdown: '## A Winner!')
-        expect(challenge.winner_description).to eq("<h2 id=\"winner-description\">A Winner!</h2>\n")
+        expect(challenge.winner_description).to eq("<h2 id=\"a-winner\">A Winner!</h2>\n")
       end
     end
 

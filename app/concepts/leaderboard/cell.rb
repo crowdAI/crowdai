@@ -1,31 +1,5 @@
 class Leaderboard::Cell < Template::Cell
 
-=begin
-  def show
-    render
-  end
-  
-  def leaderboard
-    model
-  end
-
-  def table_head
-    render
-  end
-
-  def table_body
-    render
-  end
-
-  def get_participant(id)
-    Participant.find(id)
-  end
-
-  def submission(id)
-    Submission.find(id)
-  end
-=end
-
   def challenge
     options[:challenge]
   end

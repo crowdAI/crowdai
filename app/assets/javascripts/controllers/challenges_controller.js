@@ -1,8 +1,8 @@
 Paloma.controller('Challenges', {
   edit: function(){
-    $('.switch').click(function(){
+    $('.active-switch').click(function(){
       var self = this;
-      $('.switch').each(function(){
+      $('.active-switch').each(function(){
         this.checked = false;
       });
 
@@ -23,9 +23,6 @@ Paloma.controller('Challenges', {
       $('#challenge_end_date').val(end_date);
       $('#challenge_start_time').val(start_time);
       $('#challenge_end_time').val(end_time);
-
-      //var x = parent.$( "input[name$='start_date']" ).val( "a letter" );
-      //$('#challenge_start_date').val(self.)
     });
   }
 });

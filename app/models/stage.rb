@@ -16,6 +16,8 @@ class Stage < ApplicationRecord
   validates_uniqueness_of :leaderboard_title,
                           scope: :challenge_id, case_sensitive: false
 
+  default_scope { order :seq }
+
   def defaults
     self.stage ||= 'Round 1'
     self.leaderboard_title ||= 'Leaderboard'

@@ -122,6 +122,8 @@ class ChallengesController < ApplicationController
                   :submission_instructions_markdown,
                   :license,
                   :license_markdown,
+                  :winner_description_markdown,
+                  :winners_tab_active,
                   :perpetual_challenge,
                   :automatic_grading,
                   :grader,

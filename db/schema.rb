@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012150240) do
+ActiveRecord::Schema.define(version: 20171012153534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,6 +129,9 @@ ActiveRecord::Schema.define(version: 20171012150240) do
     t.boolean "dynamic_content_flag", default: false
     t.text "dynamic_content"
     t.string "dynamic_content_tab"
+    t.text "winner_description_markdown"
+    t.text "winner_description"
+    t.boolean "winners_tab_active", default: false
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id"
     t.index ["slug"], name: "index_challenges_on_slug", unique: true
   end

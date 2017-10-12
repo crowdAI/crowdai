@@ -109,6 +109,9 @@ class Challenge < ApplicationRecord
     if license_markdown_changed?
       self.license = Kramdown::Document.new(self.license_markdown,{coderay_line_numbers: nil}).to_html
     end
+    if winner_description_markdown_changed?
+      self.winner_description = Kramdown::Document.new(self.winner_description_markdown,{coderay_line_numbers: nil}).to_html
+    end
   end
 
   def should_generate_new_friendly_id?

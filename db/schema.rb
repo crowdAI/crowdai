@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012161948) do
+ActiveRecord::Schema.define(version: 20171013120212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(version: 20171012161948) do
   create_table "challenge_rounds", force: :cascade do |t|
     t.bigint "challenge_id"
     t.string "challenge_round"
-    t.integer "seq", default: 0
     t.date "start_date"
     t.date "end_date"
     t.time "start_time"
@@ -70,7 +69,12 @@ ActiveRecord::Schema.define(version: 20171012161948) do
     t.boolean "active", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "leaderboard_visible", default: false
+    t.integer "submission_limit"
+    t.string "submission_limit_period_cd"
+    t.datetime "start_dttm"
+    t.datetime "end_dttm"
+    t.float "minimum_score"
+    t.float "minimum_score_secondary"
     t.index ["challenge_id"], name: "index_challenge_rounds_on_challenge_id"
   end
 
@@ -132,6 +136,9 @@ ActiveRecord::Schema.define(version: 20171012161948) do
     t.text "winner_description_markdown"
     t.text "winner_description"
     t.boolean "winners_tab_active", default: false
+    t.integer "current_challenge_round_id"
+    t.integer "submission_limit"
+    t.string "submission_limit_period_id"
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id"
     t.index ["slug"], name: "index_challenges_on_slug", unique: true
   end

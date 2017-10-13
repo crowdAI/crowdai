@@ -17,7 +17,8 @@ class Leaderboard::Cell::LeaderboardSubnav < Leaderboard::Cell
   end
 
   def challenge_rounds
-    challenge.challenge_rounds.where(leaderboard_visible: true).order(seq: :desc)
+    active_round = challenge.challenge_rounds.where(active: true).first
+    challenge.challenge_rounds.where("start_dttm <= ?",active_round.start_dttm).order(start_dttm: :desc)
   end
 
   def tab_class(challenge_round)

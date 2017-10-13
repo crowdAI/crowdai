@@ -15,9 +15,9 @@ class LeaderboardsController < ApplicationController
       end
     end
     if @post_challenge == 'on'
-      @leaderboards = @challenge.ongoing_leaderboards.page(params[:page]).per(25)
+      @leaderboards = @challenge.ongoing_leaderboards.where(challenge_round_id: current_round.id).page(params[:page]).per(25)
     else
-      @leaderboards = @challenge.leaderboards.page(params[:page]).per(25)
+      @leaderboards = @challenge.leaderboards.where(challenge_round_id: current_round.id).page(params[:page]).per(25)
     end
 
     if current_participant && (current_participant.admin? || @challenge.organizer_id == current_participant.organizer_id)

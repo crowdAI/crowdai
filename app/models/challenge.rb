@@ -55,7 +55,7 @@ class Challenge < ApplicationRecord
   after_initialize do
     if self.new_record?
       self.submission_license = "Please upload your submissions and include a detailed description of the methodology, techniques and insights leveraged with this submission. After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC)."
-      #self.daily_submissions = 5
+      self.daily_submissions = 5
     end
   end
 

@@ -55,7 +55,7 @@ describe Challenge do
     it { is_expected.to have_many(:submission_file_definitions) }
     it { is_expected.to accept_nested_attributes_for :submission_file_definitions }
     it { is_expected.to have_many(:submissions) }
-    #it { is_expected.to have_many(:leaderboards) }
+    it { is_expected.to have_many(:leaderboards) }
     it { is_expected.to have_many(:ongoing_leaderboards) }
     it { is_expected.to have_many(:participant_challenges) }
     it { is_expected.to have_many(:topics) }

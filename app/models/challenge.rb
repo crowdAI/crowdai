@@ -3,8 +3,8 @@ class Challenge < ApplicationRecord
 
   friendly_id :challenge, use: [:slugged, :finders, :history]
   before_save :cache_rendered_markdown
+  before_save :reset_featured_seq
   validate :valid_status
-  before_save :set_datetimes
   belongs_to :organizer
   has_many :dataset_files, dependent: :destroy
   mount_uploader :image_file, ImageUploader
@@ -25,8 +25,9 @@ class Challenge < ApplicationRecord
   accepts_nested_attributes_for           :challenge_rounds,
                                           reject_if: :all_blank,
                                           allow_destroy: true
+  has_many :challenge_round_summaries
 
-  as_enum :status, [:draft, :running, :completed, :perpetual, :starting_soon], map: :string
+  as_enum :status, [:draft, :running, :completed, :terminated, :starting_soon], map: :string
   as_enum :grader, [:f1_logloss, :discrete_mean_squared_error, :diff_ratio, :manual, :external], map: :string
   as_enum :primary_sort_order, [:ascending, :descending], map: :string
   as_enum :secondary_sort_order, [:ascending, :descending, :not_used], map: :string
@@ -54,11 +55,7 @@ class Challenge < ApplicationRecord
   after_initialize do
     if self.new_record?
       self.submission_license = "Please upload your submissions and include a detailed description of the methodology, techniques and insights leveraged with this submission. After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC)."
-      self.daily_submissions = 5
-      self.start_date = Date.today
-      self.end_date = Date.today + 60.days
-      self.start_time = '09:00'
-      self.end_time = '17:00'
+      #self.daily_submissions = 5
     end
   end
 
@@ -124,18 +121,11 @@ class Challenge < ApplicationRecord
         errors.add(:base, "Challenge cannot start until dataset files are added.")
       end
     end
-    if self.status == :cancelled && self.status_was != :running
-      errors.add(:base, "Only a running challenge may be cancelled.")
-    end
   end
 
-
-  def set_datetimes
-    if start_date_changed? || start_time_changed?
-      self.start_dttm = start_date.to_datetime + start_time.seconds_since_midnight.seconds
-    end
-    if end_date_changed? || end_time_changed?
-      self.end_dttm = end_date.to_datetime + end_time.seconds_since_midnight.seconds
+  def reset_featured_seq
+    if status_changed? && (self.status == :completed || self.status == :terminated)
+      self.featured_sequence = 0
     end
   end
 

@@ -142,3 +142,20 @@ a img:hover {
 .border-bottom {
   border-bottom: 1px solid $color-grey-10;
 }
+
+
+// Added by Sean
+.pull-right {
+  float: right;
+}
+
+.turbolinks-progress-bar {
+  background-color: #f0524d;
+}
+
+.ellipsis {
+  max-width: 640px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

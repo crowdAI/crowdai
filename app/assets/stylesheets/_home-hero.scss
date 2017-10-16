@@ -1,7 +1,7 @@
 /* Home – Hero */
 
 #home {
-  background: url(../img/misc/home.png) no-repeat right 0 top 120px;
+  background: url('misc/home.png') no-repeat right 0 top 120px;
   @media screen and (max-width: 1920px) {
     background-position: right -200px top 120px;
   }

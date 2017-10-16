@@ -1,0 +1,80 @@
+/* Panel (e.g. Log In, Sign Up , etc) */
+
+.panel {
+  margin: 0px auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 35px 0 0;
+  width: 480px;
+  background: #fff;
+  border: 1px solid $color-grey-10;
+  border-radius: 2px;
+  transition: width 0.3s ease, height 0.3s ease;
+
+  @media screen and (max-width: 640px) {
+    margin-top: 35px;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  @media screen and (max-width: 400px) {
+    padding: 1px 0 0;
+  }
+
+  .panel-body {
+    padding: 0 40px 35px;
+
+    @media screen and (max-width: 640px) {
+      padding: 0 0 20px;
+    }
+
+    #login-issues,
+    ul li a {
+      border-bottom: 1px solid transparent;
+      color: $color-accent-dark;
+      line-height: 20px;
+
+      &:hover {
+        border-bottom: 1px solid $color-accent;
+      }
+    }
+
+    h3 {
+      margin: 0 0 30px;
+
+      + input {
+        margin-top: 0;
+      }
+      + p {
+        margin-top: 0px;
+      }
+    }
+    ul {
+      display: none;
+      margin-bottom: -5px;
+    }
+    p {
+      margin-bottom: 25px;
+    }
+    button {
+      width: 100%;
+    }
+  }
+  button {
+    margin: 0 0 5px 0;
+
+    &.btn-login {
+      margin: 0 0 26px 0;
+    }
+  }
+  .panel-footer {
+    padding: 16px 40px 15px;
+    border-top: 1px solid $color-grey-10;
+
+    @media screen and (max-width: 640px) {
+      padding: 1px 0 0;
+      border-top: none;     
+    }
+  }
+}

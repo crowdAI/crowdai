@@ -1,0 +1,275 @@
+/* MOLECULES */
+/* Stats */
+
+.stats {
+  font-size: 13px;
+  line-height: 20px;
+  height: 40px;
+  .stat-fl {
+    float: left;
+    margin-right: 16px;
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+  .stat-fr {
+    float: right;
+    margin-left: 16px;
+    &:last-of-type {
+      margin-left: 0;
+    }
+  }
+  span {
+    color: $color-grey-54;
+  }
+}
+
+/* Avatar + Username */
+
+.user-link {
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+  img {
+    width: 36px;
+    height: 36px;
+    margin-right: 8px;
+    border-radius: 2px;
+    @media screen and (max-width: 400px) {
+      display: none;
+    }
+  }
+}
+
+/* Button group */
+
+.button-group {
+  overflow: hidden;
+  padding-bottom: 4px;
+  .btn {
+    float: left;
+    margin-right: 16px;
+    &:last-of-type {
+      margin-right: 0;
+    }
+    @media screen and (max-width: 800px) {
+      margin-right: 12px;
+    }
+  }
+}
+
+/* Button group – Fluid */
+
+.button-group-fluid {
+  overflow: hidden;
+  padding-bottom: 4px;
+  .btn {
+    float: left;
+    width: calc(50% - 8px);
+    margin-right: 16px;
+    &:last-of-type {
+      margin-right: 0;
+    }
+    @media screen and (max-width: 800px) {
+      width: calc(50% - 6px);
+      margin-right: 12px;
+    }
+  }
+}
+
+
+/* Sub-navigation */
+
+.sub-nav {
+  background: #fff;
+  height: 72px;
+  width: 100%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0px 1px 0px 0px rgba(0,0,0,0.1);
+  @media screen and (max-width: 800px) {
+    height: auto;
+    position: inherit;
+    padding: 8px 0;
+  }
+  ul {
+    float: left;
+    line-height: 72px;
+    @media screen and (max-width: 800px) {
+      line-height: 36px;
+      width: 100%;
+    }
+    li {
+      float: left;
+      margin-right: 24px;
+
+      @media screen and (max-width: 800px) {
+        width: 50%;
+        margin-right: 0;
+      }
+      a {
+        color: $color-grey-87;
+        &:hover {
+          color: $color-accent-dark;
+        }
+      }
+      &.active {
+        color: $color-accent-dark;
+        border-bottom: 1px solid $color-accent;
+
+        @media screen and (max-width: 800px) {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+  .button-group {
+    .btn {
+      &:first-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+  .btn {
+    float: right;
+    margin-top: 18px;
+    @media screen and (max-width: 800px) {
+      display: none;
+    }
+  }
+}
+
+/* Sub nav – Pills */
+
+.sub-nav-pills {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 32px 0 12px 0;
+  font-size: 14px;
+  list-style: none;
+  clear: both;
+  .nav-link {
+    display: block;
+    padding: 8px 12px;
+  }
+  .nav-link.active {
+    background-color: $color-accent;
+    color: #fff;
+    border-radius: 20px;
+  }
+}
+
+/* Heading + Icon link */
+
+.heading-w-icon {
+  display: block;
+
+  h2 {
+    float: left;
+  }
+  .fa {
+    float: left;
+    margin-top: 4px;
+    margin-left: 8px;
+  }
+}
+
+
+/* Icon + Text link */
+
+.icon-w-text {
+  .fa {
+    position: relative;
+    top: 1px;
+    margin-right: 6px;
+  }
+  a {
+    color: $color-accent-dark;
+    &:hover {
+      border-bottom: 1px solid $color-accent;
+    }
+  }
+}
+
+
+/* Text + Icon link */
+
+.text-w-icon {
+  p {
+    float: left;
+    margin-right: 6px;
+  }
+  .fa {
+    float: left;
+    position: relative;
+    top: 2px;
+  }
+}
+
+/* Panel – Message */
+
+.panel-body .message {
+  margin: -14px 0 25px 0;
+}
+
+
+/* Icon group – Social */
+
+.social-links {
+  clear: both;
+  li {
+    float: left;
+    margin-right: 20px;
+    .fa-twitter {
+      color: #55acee;
+    }
+    .fa-github {
+      color: #2b2626;
+    }
+    .fa-linkedin {
+      color: #0077b5;
+    }
+  }
+}
+
+
+/* Like count (Discussion tab) */
+
+.like-count {
+  font-size: 13px;
+  line-height: 20px;
+  text-align: center;
+  width: 40px;
+  @media screen and (max-width: 640px) {
+    line-height: 18px;
+  }
+  .active {
+    color: $color-accent;
+  }
+}
+
+
+/* Load more bar */
+
+.load-more {
+  background: $color-grey-03;
+  border-top: 1px solid $color-grey-10;
+  text-align: center;
+  a {
+    display: block;
+    color: $color-grey-87;
+    font-size: 14px;
+    line-height: 80px;
+    height: 80px;
+    transition: 0.4s;
+    &:hover {
+      color: $color-accent-dark;
+    }
+    @media screen and (max-width: 800px) {
+      line-height: 60px;
+      height: 60px;
+    }
+  }
+}

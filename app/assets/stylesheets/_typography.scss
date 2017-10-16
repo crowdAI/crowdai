@@ -1,0 +1,158 @@
+/* Typography */
+
+a {
+  color: $color-grey-87;
+  text-decoration: none;
+  transition: 0.3s;
+  &:hover {
+    color: $color-accent-dark;
+  }
+}
+
+h1, h2, h3, h4, h5 {
+  color: $color-grey-87;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+h1 {
+  color: $color-grey-80;
+  font-size: 48px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  @media screen and (max-width: 1024px) {
+    font-size: 40px;
+  }
+  @media screen and (max-width: 800px) {
+    font-size: 32px;
+  }
+  @media screen and (max-width: 400px) {
+    color: $color-grey-87;
+    font-size: 24px;
+    letter-spacing: 0;
+  }
+}
+
+h2 {
+  color: $color-grey-80;
+  font-size: 36px;
+  letter-spacing: -1px;
+  @media screen and (max-width: 1024px) {
+    font-size: 32px;
+  }
+  @media screen and (max-width: 800px) {
+    color: $color-grey-87;
+    font-size: 28px;
+    letter-spacing: 0;
+  }
+  @media screen and (max-width: 400px) {
+    color: $color-grey-87;
+    font-size: 24px;
+  }
+
+}
+
+h3 {
+  font-size: 28px;
+  @media screen and (max-width: 1024px) {
+    font-size: 26px;
+  }
+  @media screen and (max-width: 800px) {
+    font-size: 24px;
+  }
+  @media screen and (max-width: 400px) {
+    font-size: 22px;
+  }
+}
+
+h4 {
+  font-size: 22px;
+  @media screen and (max-width: 800px) {
+    font-size: 22px;
+  }
+  @media screen and (max-width: 400px) {
+    font-size: 20px;
+  }
+}
+
+h5 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+h6 {
+  color: $color-grey-54;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+p {
+  line-height: 20px;
+}
+
+span.large,
+p.large {
+  font-size: 17px;
+  line-height: 24px;
+  max-width: 680px;
+
+  @media screen and (max-width: 640px) {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+p a {
+  border-bottom: 1px solid transparent;
+  color: $color-accent-dark;
+  &:hover {
+    border-bottom: 1px solid $color-accent;
+  }
+}
+
+strong {
+  font-weight: 500;
+}
+
+i {
+  font-style: italic;
+}
+
+abbr {
+  border-bottom: 1px dotted $color-grey-80;
+  text-decoration: none;
+}
+
+sup { 
+  color: $color-grey-54;
+  vertical-align: top;
+  position: relative;
+  top: -3px;
+  font-size: 10px;
+}
+
+code {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 14px;
+  padding: 2px 4px;
+  color: $color-accent-dark;
+  background: #f9f2f4;
+  border-radius: 2px;
+}
+
+code.block {
+  display: block;
+  width: 100%;
+  margin-top: 23px;
+  padding: 8px 10px;
+}
+
+.light {
+  color: $color-grey-54;
+}
+
+.color-accent {
+  color: $color-accent;
+}

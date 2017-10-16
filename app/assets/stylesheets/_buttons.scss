@@ -1,0 +1,141 @@
+/* Buttons */
+
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  background: #fff;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 36px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-align: center;
+  border: 1px solid $color-grey-20;
+  border-radius: 2px;
+  height: 36px;
+  padding: 0 16px;
+  box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.08);
+  transition: 0.25s;
+  &:focus {
+    outline: 0;
+  }
+
+  @media screen and (max-width: 800px) {
+    font-size: 13px;
+    height: 32px;
+    line-height: 32px;  
+  }
+}
+
+.btn-primary {
+  background: $color-accent;
+  color: #fff;
+  border: none;
+  &:hover {
+    background: $color-accent-dark;
+    color: #fff;
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.16);
+  }
+}
+
+.btn-secondary {
+  background: #fff;
+  color: $color-grey-87;
+  border: 1px solid $color-grey-20;
+  &:hover {
+    color: $color-grey-87;
+    border: 1px solid $color-grey-40;
+    @box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.16);
+  }
+}
+
+.btn-large {
+  font-size: 16px;
+  line-height: 48px;
+  letter-spacing: 1px;
+  min-width: 140px;
+  height: 48px;
+
+  @media screen and (max-width: 800px) {
+    font-size: 14px;
+    height: 40px;
+    line-height: 40px;  
+    min-width: 100px;
+  }
+}
+
+.btn {
+  .active {
+    color: $color-accent;
+    &:hover {
+      color: $color-accent-dark;
+    }
+  }
+}
+
+button {
+  &::-moz-focus-inner {
+    margin-top: -2px;
+    padding: 0;
+    border: 0;
+  }
+}
+
+/* Social buttons */
+
+.btn-facebook,
+.btn-twitter {
+  i {
+    color: #fff;
+    transition: 0.25s;
+    &:hover {
+      color: #fff !important;
+      opacity: .8;
+    }
+  }
+}
+
+.btn-facebook {
+  background-color: #4267b1;
+}
+
+.btn-twitter {
+  background-color: #1da1f2;
+}
+
+
+/* Dropdown button */
+
+.arrow-down {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 6px;
+  vertical-align: middle;
+  border-top: 4px dashed;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  list-style: none;
+  font-size: 18px;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+  background-clip: padding-box;
+}

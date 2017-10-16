@@ -1,0 +1,589 @@
+/* Labels */
+
+label {
+  overflow: hidden;
+  display: block;
+  margin-bottom: 7px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+/* Inputs & Textareas */
+
+input[type=text],
+input[type=number],
+input[type=email],
+#search-bar,
+textarea {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  text-align: left;
+  padding: 0 10px;
+  width: 100%;
+  height: 36px;
+  background: $color-grey-03;
+  border: 1px solid $color-grey-20;
+  border-radius: 2px;
+  &:focus {
+    outline: 0;
+    border-color: $color-grey-40;
+    &:valid {
+      border-color: $color-grey-40;         
+    }
+    &:required,
+    &:invalid {
+      border-color: $color-accent;
+    }
+  }
+  &::placeholder {
+    color: $color-grey-54;
+  }
+  &::-webkit-input-placeholder {
+    color: $color-grey-54;
+  }
+  &:-moz-placeholder {
+    color: $color-grey-54;
+    opacity: 1;
+  }
+  &::-moz-placeholder {
+    color: $color-grey-54;
+    opacity: 1;
+  }
+  &:-ms-input-placeholder {
+    color: $color-grey-54;
+  }
+}
+
+textarea {
+  padding: 10px;
+  height: 140px;
+
+  &.txt-sml {
+    height: 60px;
+  }
+  &.txt-med {
+    height: 240px;
+  }
+  &.txt-lrg {
+    height: 320px;
+    width: 100%;
+  }
+}
+
+/* Selects */
+
+select {
+  display: block;
+  color: $color-grey-87;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  text-align: left;
+  margin: 5px 0 0;
+  padding: 0 10px;
+  height: 36px;
+  width: 100%;
+  background: #fff;
+  border: 1px solid $color-grey-20;
+  border-radius: 2px;
+  &:focus {
+    outline: 0;
+    border-color: $color-grey-40;
+
+    &:valid {
+      border-color: $color-grey-40;         
+    }
+    &:required,
+    &:invalid {
+      border-color: $color-accent;
+    }
+  }
+}
+
+/* File upload */
+
+.file {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  height: 36px;
+  margin: 0 0 20px;
+}
+
+.file input {
+  min-width: 14rem;
+  margin: 0;
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+
+.file-custom {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 5;
+  height: 36px;
+  padding: 0 10px;
+  background: $color-grey-03;
+  border: 1px solid $color-grey-20;
+  color: $color-grey-87;
+  font-weight: 400;
+  line-height: 36px;
+  border-radius: 2px;
+}
+
+.file-custom:after {
+  content: "Choose file...";
+}
+
+.file-custom:before {
+  position: absolute;
+  top: -.075rem;
+  right: -.075rem;
+  bottom: -.075rem;
+  z-index: 6;
+  display: block;
+  content: "Browse";
+  height: 36px;
+  padding: 0 20px;
+  border: 1px solid $color-grey-20;
+  background: #fff;
+  color: $color-grey-87;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 36px;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 0 2px 2px 0;
+}
+
+/* Legend */
+
+legend {
+  line-height: 20px;
+  font-weight: 500;
+}
+
+/* Checkbox */
+
+fieldset.checkbox {
+  overflow: hidden;
+  legend {
+    margin-bottom: 6px;
+  }
+  div {
+    overflow: hidden;
+    margin: 0 0 18px;
+
+    label {
+      display: table;
+      margin-bottom: 0px;
+      line-height: 20px;
+      font-weight: 400;
+    }
+    
+    input[type=checkbox] {
+      float: left;
+      margin: 4px 10px 0 3px;
+      // transform: scale(1.3848);
+      cursor: pointer;
+      
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+}
+
+/* Radio buttons */
+
+fieldset.radiogroup {
+  overflow: hidden;
+  margin-bottom: 18px;
+
+  legend {
+    margin-bottom: 4px;
+  }
+
+  div {
+    float: left;
+    margin-right: 15px;
+
+    label {
+      display: inline;
+      margin: 0 0 0 5px;
+    }
+    
+    input[type=radio] {
+      float: left;
+    }   
+  } 
+}
+
+
+/* Switch */
+
+input.switch:empty {
+  margin-left: -999px;
+}
+
+input.switch:empty ~ label {
+  position: relative;
+  float: left;
+  line-height: 24px;
+  text-indent: 56px;
+  cursor: pointer;
+  border-radius: 20px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+input.switch:empty ~ label:before, 
+input.switch:empty ~ label:after {
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  content: ' ';
+  width: 48px;
+  background-color: $color-grey-20;
+  border-radius: 14px;
+  -webkit-transition: all 100ms ease-in;
+  transition: all 100ms ease-in;
+}
+
+input.switch:empty ~ label:after {
+  width: 18px;
+  height: 18px;
+  top: 3px;
+  bottom: 3px;
+  margin-left: 3px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+input.switch:checked ~ label:before {
+  background-color: #2eb664;
+}
+
+input.switch:checked ~ label:after {
+  margin-left: 27px;
+}
+
+form.leaderboard {
+  margin-top: 32px;
+  label {
+    font-weight: 400;
+  }
+}
+
+form {
+  overflow: hidden; 
+
+  input[type=email],
+  input[type=text],
+  input[type=number],
+  textarea,
+  select {
+    margin: 0 0 20px 0;
+  }
+
+  select {
+    background: $color-grey-03;
+  }
+
+  p {
+    max-width: 680px;
+  }
+
+  .btn {
+    display: block;
+    min-width: 120px;
+  }
+
+  div.switch-container {
+    overflow: hidden;
+    display: block;
+    margin-bottom: 13px;
+  }
+
+  div.twin-container {
+    overflow: hidden;
+
+    .twin-field {
+      float: left;
+    }
+  }
+
+  div.section-container {
+    background: $color-grey-03;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 19px;
+    padding: 12px;
+    max-width: 680px;
+    border: 1px solid $color-grey-20;
+    border-radius: 2px;
+
+    select {
+      max-width: 330px;
+    }
+    input,
+    textarea,
+    select {
+      background: #fff;
+    }
+
+    input[type=text] {
+      max-width: 100%;
+    }
+
+    a.fa {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 16px;
+      height: 16px;
+      font-size: 14px;
+      color: $color-grey-54;
+      
+      &:hover {
+        border-bottom: none;
+        color: $color-grey-87;
+      }
+
+      &:before {
+        font-family: "SSCommunity";
+        content: 'trash';
+      }
+    }
+  }
+
+  .section-container + a {
+    display: inline-block;
+    margin-bottom: 29px;
+    border-bottom: 1px solid transparent;
+    color: $color-accent-dark;
+    line-height: 20px;
+
+    &:hover {
+      border-bottom: 1px solid $color-accent;
+    }
+  }
+
+  div.btn-icon {
+    overflow: hidden;
+    margin-top: 27px;
+
+    @media screen and (max-width: 800px) {
+      margin-top: 29px;
+    }
+
+    @media screen and (max-width: 480px) {
+      margin-top: 4px;
+      margin-bottom: 23px;
+    }
+
+    button {
+      float: left;
+    }
+    a {
+      float: left;
+      margin: 12px 0 0 10px;
+    }
+  }
+
+  /* Form layout */
+
+  &.sgl-col {
+    margin-top: 36px;
+    input[type=text],
+    input[type=number],
+    input[type=email],
+    textarea,
+    select,
+    .twin-container {
+      max-width: 400px;
+    }
+    .twin-container {
+      .twin-field {
+        width: calc(50% - 4px);
+      
+        &:last-of-type {
+          margin-left: 8px;
+        }
+      }
+      @media screen and (max-width: 480px) {
+        width: 100%;
+
+        &:last-of-type {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+  &.dbl-col {
+    margin-top: 36px;
+    input[type=text],
+    input[type=number],
+    input[type=email],
+    select {
+      max-width: 330px;
+    }
+    textarea {
+      max-width: 680px;
+    }
+    h4 {
+      margin-top: 1px;
+    }
+    .section-container {
+      textarea:last-child {
+        margin: 0;
+      }
+    }
+    .twin-container {
+      max-width: 680px;
+
+      .twin-field {
+        width: calc(50% - 10px);  
+
+        &:last-of-type {
+          margin-left: 20px;
+        }
+
+        @media screen and (max-width: 480px) {
+          width: 100%;
+
+          &:last-of-type {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+
+    p {
+      margin-bottom: 7px;
+      &.margin-bottom {
+        margin-bottom: 20px;
+      }
+    }
+  }
+  > .checkbox {
+    &:first-of-type {
+      margin: 3px 0 9px;
+    }
+    &:last-of-type {
+      margin-bottom: 5px; 
+    }
+  }
+  h4 {
+    margin-bottom: 17px;
+  }
+  &.modal {
+    text-align: left;
+    
+    input[type=text],
+    input[type=number],
+    input[type=email],
+    textarea {
+      margin: 0 0 24px 0;
+      max-width: 100%;
+    }
+    h3 {
+      margin: 0 0 19px;
+    }
+    p {
+      margin: 0 0 15px 0;
+      &:last-of-type {
+        margin: 0 0 25px 0;
+      }
+    }
+    .btn {
+      margin-bottom: 0;
+    }
+  }
+
+  div.upload {
+    overflow: hidden;
+    margin-bottom: 16px;
+    input[type=file] {
+      margin: 0;
+      + span {
+        margin-top: 9px;
+      }
+    }
+
+    .img-thumb {
+      display: block;
+      margin: 0 0 8px;
+      width: 80px;
+      height: 80px;
+    }
+    a {
+      display: inline-block;
+      margin: 0 0 4px;
+      border-bottom: 1px solid transparent;
+      color: $color-accent-dark;
+      line-height: 20px;
+
+      &:hover {
+        border-bottom: 1px solid $color-accent;
+      }
+    }
+    span {
+      display: block;
+      color: $color-grey-54;
+      font-size: 13px;
+      line-height: 16px;
+    } 
+  }
+}
+
+.masthead {
+  form select {
+    background: #fff;
+  }
+}
+
+/* Error message */
+
+form input,
+form select {    
+  &.has-error {
+    border-color: $color-accent;
+    margin-bottom: 9px;
+  }
+}
+
+form p.error {
+  margin: 0 0 15px 0;
+  padding: 0;
+  color: $color-accent-dark;
+}
+
+/* Additional form options */
+
+div.additional {
+  overflow: hidden;
+  border-top: 1px solid $color-grey-10;
+  margin-top: 40px;
+  padding: 30px 0 27px;
+
+  a {
+    line-height: 20px;
+    cursor: pointer;
+    &:before {
+      float: left;
+      margin: 0 8px 0 0;
+      font-family: 'FontAwesome';
+      font-size: 18px;
+      color: $color-grey-54;
+      content: '\f1f8';
+    }
+  }
+}

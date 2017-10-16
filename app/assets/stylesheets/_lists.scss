@@ -1,0 +1,321 @@
+/* Lists */
+
+.list-challenges,
+.list-datasets,
+.list-hosts,
+.list-host-members,
+.list-tutorials, {
+  line-height: 20px;
+  margin-top: 0;
+  li {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid $color-grey-10;
+    @media screen and (max-width: 640px) {
+      padding: 16px 0;
+    }
+    &:after {
+      clear: both;
+      display: table;
+      content: " ";
+    }
+    &:last-of-type {
+      border-bottom: none;
+    }
+    .pic {
+      flex-shrink: 0;
+      height: 80px;
+      width: 80px;
+      margin-right: 20px;
+      @media screen and (max-width: 640px) {
+        height: 60px;
+        width: 60px;
+        margin-right: 12px;
+      }
+      @media screen and (max-width: 480px) {
+        height: 48px;
+        width: 48px;
+        margin-right: 12px;
+      }
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 2px;
+      }
+    }
+    .stats {
+      float: none;
+    }
+  }
+}
+
+/* List - Challenges */
+
+.list-challenges {
+  margin-top: 20px;
+  li {
+    padding: 20px 0;
+    border-bottom: 1px solid $color-grey-10;
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+  .pic {
+    flex: 0 0 auto;
+  }
+  .details {
+    flex: 2 1 auto;
+    h5 {
+      margin-bottom: 17px;
+
+      @media screen and (max-width: 640px) {
+        margin-bottom: 2px;
+      }
+    }
+    .description {
+      @media screen and (max-width: 640px) {
+        display: none;
+      }
+    }
+    .status {
+      color: $color-grey-54;
+      font-size: 14px;
+    }
+    .active {
+      color: $color-accent-dark;
+    } 
+    .draft {
+      color: #2eb664;
+    }
+  }
+  .stats {
+    flex: 0 0 auto;
+    margin: 36px 0 0 20px;
+    @media screen and (max-width: 900px) {
+      display: none;
+    }
+  }
+}
+
+#home .list-challenges {
+  li:last-of-type {
+    border-bottom: none;
+  }
+}
+
+/* List - Datasets */
+
+.list-datasets {
+  margin-top: 21px;
+  li {
+    padding: 17px 0 14px;
+    @media screen and (max-width: 640px) {
+      padding: 13px 0 9px;
+    }
+    .details {
+      flex: 2 1 auto;
+    }
+    .description {
+      color: $color-grey-54;
+      margin-top: 1px;
+    }
+    .stats {
+      flex: 0 0 auto;
+      margin-top: 1px;
+      @media screen and (max-width: 480px) {
+        display: none;
+      } 
+    }
+  }
+}
+
+/* List - Hosts */
+
+.list-hosts {
+  margin-top: 20px;
+
+  li {
+    justify-content: flex-start;
+    .pic {
+      height: 80px;
+      width: 80px;
+      margin-right: 20px;
+      @media screen and (max-width: 640px) {
+        height: 60px;
+        width: 60px;
+        margin-right: 12px;
+      }
+      @media screen and (max-width: 480px) {
+        height: 48px;
+        width: 48px;
+        margin-right: 12px;
+      }
+    }
+    .details {
+      h5 {
+        margin-bottom: 17px;
+        @media screen and (max-width: 640px) {
+          margin-bottom: 2px;
+        }
+      }
+    }
+    .description {
+      @media screen and (max-width: 640px) {
+        display: none;
+      }
+    }
+    .challenges {
+      color: $color-grey-54;
+      font-size: 14px;
+    }
+  }
+}
+
+/* List - Host members */
+
+.list-host-members {
+  margin-top: 20px;
+  li {
+    .pic {
+      flex: 0 0 auto;
+      height: 48px;
+      width: 48px;
+      margin-right: 16px;
+      @media screen and (max-width: 640px) {
+        height: 36px;
+        width: 36px;
+        margin-right: 12px;
+      } 
+    }
+    .details {
+      flex: 2 1 auto;
+    }
+    .stats {
+      flex: 0 0 auto;
+      text-align: right;
+      margin-top: 1px;
+      @media screen and (max-width: 480px) {
+        display: none;
+      } 
+    }
+  }
+}
+
+/* List - Topics */
+
+.list-topics {
+  margin-top: 16px;
+  li {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid $color-grey-10;
+    &:first-of-type {
+      border-top: 1px solid $color-grey-10;
+    }
+    &:last-of-type {
+      border-bottom: none;
+    }
+    .like-count {
+      flex: 0 0 auto;
+      width: 32px;
+      flex-shrink: 0;
+      margin-right: 9px;
+      @media screen and (max-width: 800px) {
+        margin-right: 5px;
+      }
+    }
+    .pic {
+      flex: 0 0 auto;
+      height: 48px;
+      width: 48px;
+      margin-right: 16px;
+      @media screen and (max-width: 640px) {
+        height: 36px;
+        width: 36px;
+        margin-right: 12px;
+      }
+    }
+    .details {
+      flex: 2 1 auto;
+      .user {
+        color: $color-grey-54;
+        font-size: 14px;
+        margin-top: 2px;
+      }
+    }
+    .stats {
+      width: 180px;
+      flex-shrink: 0;
+      a {
+        color: $color-accent-dark;
+        &:hover {
+          border-bottom: 1px solid $color-accent;
+        }
+      }
+      @media screen and (max-width: 800px) {
+        display: none;
+      } 
+    }
+  }
+}
+
+/* List - Tutorials */
+
+.list-tutorials {
+  margin-top: 20px;
+  .pic {
+    flex: 0 0 auto;
+  }
+  .details {
+    flex: 2 1 auto;
+    h5 {
+      margin-bottom: 17px;
+      @media screen and (max-width: 640px) {
+        margin-bottom: 2px;
+      }
+    }
+    .description {
+      @media screen and (max-width: 640px) {
+        display: none;
+      }
+    }
+    .user {
+      color: $color-grey-54;
+      font-size: 14px;
+    }
+  }
+  .stats {
+    flex: 0 0 auto;
+    margin-top: 36px;
+    @media screen and (max-width: 800px) {
+      display: none;
+    }
+  }
+}
+
+/* List options */
+
+.list-options {
+  height: 36px;
+  margin-top: 37px;
+
+  @media screen and (max-width: 800px) {
+    margin-top: 32px;
+  }
+
+  @media screen and (max-width: 640px) {
+    height: 32px;
+    margin-top: 28px;
+  }
+
+  p {
+    float: left;
+    margin-top: 4px;
+  }
+
+  .btn {
+    float: right;
+  }
+}

@@ -1,0 +1,77 @@
+/* Search */
+
+form#search-box {
+  label {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 0px;
+    input {
+      margin-bottom: 0;
+    } 
+
+    span {
+      position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 36px;
+    height: 36px;
+      &:before {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-family: 'FontAwesome';
+        content: '\f002';
+        width: 20px;
+        height: 20px;
+        color: $color-grey-40;
+        z-index: 100;
+        cursor: pointer;
+      }
+      &:hover {
+        span:before {
+          color: $color-grey-54;  
+        }
+      }
+    }
+  }
+  input::-webkit-search-decoration,
+  input::-webkit-search-cancel-button {
+    display: none; 
+  }
+
+  #search-bar {
+    padding: 0 0 0 36px;
+    width: 36px;
+    background: #fff;
+    border-color: #fff;
+    color: $color-grey-87;
+    transition: all .3s ease;
+    -webkit-appearance: textfield;
+
+    &:focus {
+      padding-right: 10px;
+      width: 200px;
+      border-color: $color-grey-40;
+    }
+    &:focus + span:before {
+      color: $color-grey-54!important;
+    }
+    &::placeholder,
+    &::-webkit-input-placeholder,
+    &:-moz-placeholder,
+    &::-moz-placeholder,
+    &:-ms-input-placeholder {
+      opacity: 0;
+    }
+    &:focus::placeholder,
+    &:focus::-webkit-input-placeholder,
+    &:focus:-moz-placeholder,
+    &:focus::-moz-placeholder,
+    &:focus:-ms-input-placeholder {
+      opacity: 1; 
+    }
+    &::-webkit-input-placeholder {
+      vertical-align: middle;
+    }
+  }
+}

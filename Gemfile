@@ -25,7 +25,6 @@ gem 'scenic', '~> 1.3'
 gem 'validate_url'
 gem 'paper_trail'
 
-
 # forms / data manipulation / charts
 gem 'cocoon'
 gem 'kramdown'
@@ -33,6 +32,7 @@ gem 'groupdate'
 gem 'rouge'
 gem 'friendly_id', '~> 5.1.0'
 gem 'client_side_validations'
+
 
 # performance
 gem 'fast_blank'
@@ -47,6 +47,7 @@ gem 'lodash-rails'
 gem 'browser'
 gem 'coffee-rails'
 gem 'webpacker', '~> 2.0'
+gem 'paloma', '~> 5.1.0'
 
 # css
 gem 'sass-rails'
@@ -60,13 +61,11 @@ gem 'include_media_rails'
 gem 'ransack'
 gem 'kaminari'
 gem 'kaminari-cells'
-#gem 'searchkick'
 
 # API / Docker
 # gem 'rack-attack'
 gem 'httparty'
 gem 'excon'
-gem 'docker-api'
 
 # heroku / production
 gem 'figaro'
@@ -80,11 +79,7 @@ gem 'sidekiq'
 gem "sidekiq-cron", "~> 0.6.3"
 gem 'sidekiq-history'
 gem 'sidekiq-failures'
-
 gem 'sinatra', :require => nil
-
-# static pages, sitemap
-#gem 'sitemap_generator'
 
 # images
 gem 'carrierwave', '~> 1.0'

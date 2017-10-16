@@ -1,0 +1,15 @@
+<div class="row">
+  <%= form_for @challenge, validate: true, html: { class: "dbl-col" } do |f| %>
+    <fieldset class="checkbox">
+      <div>
+        <%= f.check_box :winners_tab_active, {}, "true", "false" %>
+        <label for="">Winner's Tab Active?</label>
+      </div>
+      <label>Winner's Tab (Markdown)</label>
+      <%= markdown_editor do |m| %>
+        <%= f.text_area :winner_description_markdown, class: "txt-med" %>
+      <% end %>
+    </fieldset>
+    <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>
+  <% end %>
+</div>

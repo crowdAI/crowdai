@@ -1,0 +1,14 @@
+<content>
+  <%= concept(Challenge::Cell::ChallengeMasthead,
+                @challenge,
+                current_participant: current_participant) %>
+  <%= concept(Challenge::Cell::ChallengeSubnav,
+                @challenge,
+                tab: 'dataset',
+                current_participant: current_participant) %>
+  <div class="row">
+    <div class='markdown-wrap'>
+      <%= sanitize(@challenge.winner_description) %>
+    </div>
+  </div>
+</content>

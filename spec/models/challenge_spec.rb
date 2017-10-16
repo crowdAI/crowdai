@@ -44,6 +44,9 @@ describe Challenge do
     it { is_expected.to respond_to :dynamic_content_flag }
     it { is_expected.to respond_to :dynamic_content_tab}
     it { is_expected.to respond_to :dynamic_content}
+    it { is_expected.to respond_to :winner_description_markdown }
+    it { is_expected.to respond_to :winner_description }
+    it { is_expected.to respond_to :winners_tab_active }
   end
 
   context 'associations' do
@@ -52,12 +55,13 @@ describe Challenge do
     it { is_expected.to have_many(:submission_file_definitions) }
     it { is_expected.to accept_nested_attributes_for :submission_file_definitions }
     it { is_expected.to have_many(:submissions) }
-    #it { is_expected.to have_many(:leaderboards) }
+    it { is_expected.to have_many(:leaderboards) }
     it { is_expected.to have_many(:ongoing_leaderboards) }
     it { is_expected.to have_many(:participant_challenges) }
     it { is_expected.to have_many(:topics) }
     it { is_expected.to have_many(:votes) }
     it { is_expected.to have_many(:follows) }
+    it { is_expected.to have_many(:challenge_rounds) }
   end
 
   describe 'indexes' do
@@ -104,6 +108,10 @@ describe Challenge do
       it 'submission_instructions' do
         challenge.update!(submission_instructions_markdown: "## Submission instructions")
         expect(challenge.submission_instructions).to eq("<h2 id=\"submission-instructions\">Submission instructions</h2>\n")
+      end
+      it 'winner_description' do
+        challenge.update!(winner_description_markdown: '## A Winner!')
+        expect(challenge.winner_description).to eq("<h2 id=\"a-winner\">A Winner!</h2>\n")
       end
     end
 

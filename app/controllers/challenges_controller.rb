@@ -28,7 +28,6 @@ class ChallengesController < ApplicationController
     end
   end
 
-
   def new
     @challenge = Challenge.new
     authorize @challenge
@@ -122,6 +121,8 @@ class ChallengesController < ApplicationController
                   :submission_instructions_markdown,
                   :license,
                   :license_markdown,
+                  :winner_description_markdown,
+                  :winners_tab_active,
                   :perpetual_challenge,
                   :automatic_grading,
                   :grader,
@@ -147,7 +148,8 @@ class ChallengesController < ApplicationController
                   dataset_attributes: [:id, :challenge_id, :description, :_destroy],
                   submissions_attributes: [:id, :challenge_id, :participant_id, :_destroy ],
                   image_attributes: [:id, :image, :_destroy ],
-                  submission_file_definitions_attributes: [:id, :challenge_id, :seq, :submission_file_description, :filetype, :file_required, :submission_file_help_text, :_destroy]
+                  submission_file_definitions_attributes: [:id, :challenge_id, :seq, :submission_file_description, :filetype, :file_required, :submission_file_help_text, :_destroy],
+                  challenge_rounds_attributes: [:id, :challenge_round, :seq, :start_date, :end_date, :start_time, :end_time, :active, :minimum_score, :minimum_score_secondary, :_destroy]
                 )
     end
 

@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   resources :challenges do
     resources :dataset_files, only: [:new, :show, :index, :destroy, :create]
     resources :events
+    resources :winners, only: [:index]
     resources :submissions do
       get :grade
       get :hub

@@ -3,7 +3,7 @@ class Participant < ApplicationRecord
          :recoverable, :rememberable, :trackable, :lockable, :timeoutable
   include FriendlyId
   include ApiKey
-  friendly_id :name, use: [:slugged, :finders]
+  friendly_id :name, use: [:slugged, :finders, :history]
   after_create :set_email_preferences
   before_save :set_api_key
   before_save { self.email = email.downcase }

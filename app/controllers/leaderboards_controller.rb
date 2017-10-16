@@ -5,6 +5,8 @@ class LeaderboardsController < ApplicationController
   respond_to :js, :html
 
   def index
+    @current_round = current_round
+    Rails.logger.debug("current_round: #{@current_round.id}")
     if @challenge.completed?
       if params[:post_challenge] == 'on'
         @post_challenge = 'on'
@@ -13,9 +15,9 @@ class LeaderboardsController < ApplicationController
       end
     end
     if @post_challenge == 'on'
-      @leaderboards = @challenge.ongoing_leaderboards.page(params[:page]).per(25)
+      @leaderboards = @challenge.ongoing_leaderboards.where(challenge_round_id: current_round.id).page(params[:page]).per(25)
     else
-      @leaderboards = @challenge.leaderboards.page(params[:page]).per(25)
+      @leaderboards = @challenge.leaderboards.where(challenge_round_id: current_round.id).page(params[:page]).per(25)
     end
 
     if current_participant && (current_participant.admin? || @challenge.organizer_id == current_participant.organizer_id)
@@ -46,6 +48,14 @@ class LeaderboardsController < ApplicationController
 
   def set_challenge
     @challenge = Challenge.friendly.find(params[:challenge_id])
+  end
+
+  def current_round
+    if params[:challenge_round_id].present?
+      ChallengeRound.find(params[:challenge_round_id].to_i)
+    else
+      @challenge.challenge_rounds.where(active: true).first
+    end
   end
 
 end

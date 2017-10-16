@@ -1,0 +1,74 @@
+<div class="section-container nested-fields">
+
+  <div class="twin-container">
+    <div class="twin-field">
+      <div class="switch-container">
+        <%= f.check_box :active, class: 'switch active-switch' %>
+        <%= f.label :active, 'Current Round', data: { on: 'Yes', off: 'No' } %>
+      </div>
+    </div>
+    <div class="twin-field"></div>
+  </div>
+
+  <div class="twin-container">
+    <div class="twin-field">
+      <label>Round</label>
+      <%= f.text_field :challenge_round %>
+    </div>
+    <div class="twin-field"></div>
+  </div>
+
+  <div class="twin-container">
+    <div class="twin-field">
+      <label>Prior Round Min Score</label>
+      <%= f.text_field :minimum_score, placeholder: 'No limitations' %>
+    </div>
+    <div class="twin-field">
+      <% unless @challenge.secondary_sort_order == :not_used %>
+        <label>Prior Round Min Sec Score</label>
+        <%= f.text_field :minimum_score_secondary, placeholder: 'No limitations' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="twin-container">
+    <div class="twin-field">
+      <label>Submission Limit</label>
+      <%= f.text_field :submission_limit, placeholder: 'Unlimited' %>
+    </div>
+    <div class="twin-field">
+      <label>Period</label>
+      <%= f.select :submission_limit_period, enum_option_pairs(ChallengeRound, :submission_limit_period), include_blank: true %>
+    </div>
+  </div>
+
+  <div class="twin-container">
+    <div class="twin-field">
+      <label>Start Date</label>
+      <%= f.text_field :start_date, class: 'datepicker', placeholder: "dd/mm/yyyy"  %>
+    </div>
+    <div class="twin-field">
+      <label>End Date</label>
+      <%= f.text_field :end_date, class: 'datepicker', placeholder: "dd/mm/yyyy"  %>
+    </div>
+  </div>
+
+  <div class="twin-container">
+    <div class="twin-field">
+      <label>Start Time (<abbr title="Coordinated Universal Time">UTC</abbr>)</label>
+      <%= f.text_field :start_time, :value => @challenge.start_time.strftime("%H:%M")  %>
+    </div>
+    <div class="twin-field">
+      <label>End Time (<abbr title="Coordinated Universal Time">UTC</abbr>)</label>
+      <%= f.text_field :end_time, :value => @challenge.end_time.strftime("%H:%M")  %>
+    </div>
+  </div>
+  <% if f.object.persisted? && @challenge.submissions.where(challenge_round_id: f.object.id).present? %>
+    <span class='pull-right'>
+      <%= pluralize(@challenge.submissions.count,'submission') %>
+    </span>
+  <% else %>
+    <%= link_to_remove_association "remove", f, class: 'pull-right' %>
+  <% end %>
+
+</div>

@@ -19,6 +19,7 @@ module Crowdai
     config.secret_key_base = ENV["SECRET_KEY_BASE"]
     #config.action_controller.default_url_options = {:host => ENV['HOST']}
     config.autoload_paths << Rails.root.join('lib')
+    config.autoload_paths += Dir["#{Rails.root.to_s}/app/models/**/"]
     config.autoload_paths += Dir["#{Rails.root.to_s}/app/queries/**/"]
     config.active_record.time_zone_aware_types = [:datetime]
     config.ssl_options = { hsts: { subdomains: false } }

@@ -9,6 +9,7 @@
 //= require remodal
 //= require isInViewport
 //= require turbolinks
+//= require paloma
 
 // ---------------------- Modules ---------------------- //
 //= require modules/site
@@ -24,6 +25,9 @@
 //= require pages/participants_edit
 //= require pages/email_preferences_edit
 
+// -------------------- Controllers ------------------- //
+//= require controllers/challenges_controller
+
 
 $(document).on('ajax:error', function(xhr, status, error) {
   console.log(status.responseText);
@@ -32,4 +36,8 @@ $(document).on('ajax:error', function(xhr, status, error) {
 
 $(document).on('turbolinks:load', function() {
   $('[data-remodal-id=modal]').remodal();
+});
+
+$(document).on('turbolinks:load', function() {
+  Paloma.start();
 });

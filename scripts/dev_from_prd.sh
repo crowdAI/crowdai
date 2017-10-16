@@ -24,7 +24,7 @@ pg_restore --no-acl --no-owner -d crowdai_development tmp/crowdai-prd.dmp
 echo "Resetting Participant account passwords"
 echo "Participant.find_each do |p|; p.password = 'password'; p.save; end" | rails c > /dev/null 2>&1
 EOF
-rm tmp/crowdai-prd.dmp
+#rm tmp/crowdai-prd.dmp
 set +x
 echo "DEV database refresh completed"
 

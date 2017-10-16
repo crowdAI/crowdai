@@ -1,6 +1,6 @@
 class Topic < ApplicationRecord
   include FriendlyId
-  friendly_id :topic, use: [:slugged, :finders]
+  friendly_id :topic, use: [:slugged, :finders, :history]
   include ActionView::Helpers::DateHelper
   belongs_to :challenge
   belongs_to :participant, optional: true

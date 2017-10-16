@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171005145203) do
+ActiveRecord::Schema.define(version: 20171016135657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,25 @@ ActiveRecord::Schema.define(version: 20171005145203) do
     t.string "image_file"
     t.index ["participant_id"], name: "index_articles_on_participant_id"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
+  end
+
+  create_table "challenge_rounds", force: :cascade do |t|
+    t.bigint "challenge_id"
+    t.string "challenge_round"
+    t.date "start_date"
+    t.date "end_date"
+    t.time "start_time"
+    t.time "end_time"
+    t.boolean "active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "submission_limit"
+    t.string "submission_limit_period_cd"
+    t.datetime "start_dttm"
+    t.datetime "end_dttm"
+    t.float "minimum_score"
+    t.float "minimum_score_secondary"
+    t.index ["challenge_id"], name: "index_challenge_rounds_on_challenge_id"
   end
 
   create_table "challenges", id: :serial, force: :cascade do |t|
@@ -114,6 +133,12 @@ ActiveRecord::Schema.define(version: 20171005145203) do
     t.boolean "dynamic_content_flag", default: false
     t.text "dynamic_content"
     t.string "dynamic_content_tab"
+    t.text "winner_description_markdown"
+    t.text "winner_description"
+    t.boolean "winners_tab_active", default: false
+    t.integer "current_challenge_round_id"
+    t.integer "submission_limit"
+    t.string "submission_limit_period_id"
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id"
     t.index ["slug"], name: "index_challenges_on_slug", unique: true
   end
@@ -334,6 +359,7 @@ ActiveRecord::Schema.define(version: 20171005145203) do
     t.string "media_large"
     t.string "media_thumbnail"
     t.string "media_content_type"
+    t.integer "challenge_round_id"
     t.index ["challenge_id"], name: "index_submissions_on_challenge_id"
     t.index ["participant_id"], name: "index_submissions_on_participant_id"
   end
@@ -395,6 +421,7 @@ ActiveRecord::Schema.define(version: 20171005145203) do
 
   add_foreign_key "article_sections", "articles"
   add_foreign_key "articles", "participants"
+  add_foreign_key "challenge_rounds", "challenges"
   add_foreign_key "challenges", "organizers"
   add_foreign_key "comments", "participants"
   add_foreign_key "comments", "topics"
@@ -411,51 +438,6 @@ ActiveRecord::Schema.define(version: 20171005145203) do
   add_foreign_key "topics", "challenges"
   add_foreign_key "topics", "participants"
   add_foreign_key "votes", "participants"
-
-  create_view "leaderboards",  sql_definition: <<-SQL
-      SELECT l.id,
-      row_number() OVER (PARTITION BY l.challenge_id ORDER BY l.score DESC, l.score_secondary) AS row_num,
-      l.id AS submission_id,
-      l.challenge_id,
-      l.participant_id,
-      l.slug,
-      c.organizer_id,
-      l.name,
-      l.entries,
-      l.score,
-      l.score_secondary,
-      l.media_large,
-      l.media_thumbnail,
-      l.media_content_type,
-      l.created_at,
-      l.updated_at
-     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS submission_ranking,
-              s.id,
-              s.challenge_id,
-              s.participant_id,
-              p.slug,
-              p.name,
-              cnt.entries,
-              s.score,
-              s.score_secondary,
-              s.media_large,
-              s.media_thumbnail,
-              s.media_content_type,
-              s.created_at,
-              s.updated_at
-             FROM submissions s,
-              participants p,
-              ( SELECT c_1.challenge_id,
-                      c_1.participant_id,
-                      count(c_1.*) AS entries
-                     FROM submissions c_1
-                    WHERE (c_1.post_challenge = false)
-                    GROUP BY c_1.challenge_id, c_1.participant_id) cnt
-            WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l,
-      challenges c
-    WHERE ((l.submission_ranking = 1) AND (c.id = l.challenge_id))
-    ORDER BY l.challenge_id, (row_number() OVER (PARTITION BY l.challenge_id ORDER BY l.score DESC, l.score_secondary));
-  SQL
 
   create_view "ongoing_leaderboards",  sql_definition: <<-SQL
       SELECT l.id,
@@ -571,6 +553,118 @@ ActiveRecord::Schema.define(version: 20171005145203) do
     WHERE (s.participant_id = p.id)
     GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
     ORDER BY s.created_at DESC;
+  SQL
+
+  create_view "participant_sign_ups",  sql_definition: <<-SQL
+      SELECT count(participants.id) AS count,
+      (date_part('month'::text, participants.created_at))::integer AS mnth,
+      (date_part('year'::text, participants.created_at))::integer AS yr
+     FROM participants
+    GROUP BY ((date_part('month'::text, participants.created_at))::integer), ((date_part('year'::text, participants.created_at))::integer)
+    ORDER BY ((date_part('year'::text, participants.created_at))::integer), ((date_part('month'::text, participants.created_at))::integer);
+  SQL
+
+  create_view "leaderboards",  sql_definition: <<-SQL
+      SELECT l.id,
+      row_number() OVER (PARTITION BY l.challenge_id ORDER BY l.score DESC, l.score_secondary) AS row_num,
+      l.id AS submission_id,
+      l.challenge_id,
+      l.challenge_round_id,
+      l.participant_id,
+      l.slug,
+      c.organizer_id,
+      l.name,
+      l.entries,
+      l.score,
+      l.score_secondary,
+      l.media_large,
+      l.media_thumbnail,
+      l.media_content_type,
+      l.created_at,
+      l.updated_at
+     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS submission_ranking,
+              s.id,
+              s.challenge_id,
+              s.challenge_round_id,
+              s.participant_id,
+              p.slug,
+              p.name,
+              cnt.entries,
+              s.score,
+              s.score_secondary,
+              s.media_large,
+              s.media_thumbnail,
+              s.media_content_type,
+              s.created_at,
+              s.updated_at
+             FROM submissions s,
+              participants p,
+              ( SELECT c_1.challenge_id,
+                      c_1.participant_id,
+                      count(c_1.*) AS entries
+                     FROM submissions c_1
+                    WHERE (c_1.post_challenge = false)
+                    GROUP BY c_1.challenge_id, c_1.participant_id) cnt
+            WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l,
+      challenges c
+    WHERE ((l.submission_ranking = 1) AND (c.id = l.challenge_id))
+    ORDER BY l.challenge_id, (row_number() OVER (PARTITION BY l.challenge_id ORDER BY l.score DESC, l.score_secondary));
+  SQL
+
+  create_view "challenge_round_views",  sql_definition: <<-SQL
+      SELECT cr.id,
+      cr.challenge_round,
+      cr.row_num,
+      cr.active,
+      cr.challenge_id,
+      cr.start_dttm,
+      cr.end_dttm,
+      cr.submission_limit,
+      cr.submission_limit_period_cd,
+      cr.minimum_score,
+      cr.minimum_score_secondary
+     FROM ( SELECT r1.id,
+              r1.challenge_id,
+              r1.challenge_round,
+              r1.start_date,
+              r1.end_date,
+              r1.start_time,
+              r1.end_time,
+              r1.active,
+              r1.created_at,
+              r1.updated_at,
+              r1.submission_limit,
+              r1.submission_limit_period_cd,
+              r1.start_dttm,
+              r1.end_dttm,
+              r1.minimum_score,
+              r1.minimum_score_secondary,
+              row_number() OVER (PARTITION BY r1.challenge_id ORDER BY r1.challenge_id, r1.start_dttm) AS row_num
+             FROM challenge_rounds r1) cr;
+  SQL
+
+  create_view "challenge_round_summaries",  sql_definition: <<-SQL
+      SELECT cr.id,
+      cr.challenge_round,
+      cr.row_num,
+      acr.row_num AS active_row_num,
+          CASE
+              WHEN (cr.row_num < acr.row_num) THEN 'history'::text
+              WHEN (cr.row_num = acr.row_num) THEN 'current'::text
+              WHEN (cr.row_num > acr.row_num) THEN 'future'::text
+              ELSE NULL::text
+          END AS round_status_cd,
+      cr.active,
+      cr.challenge_id,
+      cr.start_dttm,
+      cr.end_dttm,
+      cr.submission_limit,
+      cr.submission_limit_period_cd,
+      c.status_cd
+     FROM challenge_round_views cr,
+      challenge_round_views acr,
+      challenges c
+    WHERE ((c.id = cr.challenge_id) AND (c.id = acr.challenge_id) AND (acr.active IS TRUE));
   SQL
 
 end

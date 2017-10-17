@@ -1,0 +1,35 @@
+<div class="discussion-comment">
+  <div class="pic">
+    <%= link_to participant_path(current_participant) do %>
+      <%= concept(Image::Cell,current_participant) %>
+    <% end %>
+  </div>
+  <%= form_for [entry, comment], html: { class: "add-comment", id: "new_comment" } do |f| %>
+    <%= f.text_area :comment_markdown, placeholder: "Add a comment..." %>
+    <%= f.hidden_field :participant_id, value: current_participant.id %>
+    <%= f.submit 'Add comment', class: 'btn btn-primary pull-right' %>
+    <p class='markdown-instructions'>You can use
+      <a href="https://kramdown.gettalong.org/">Kramdown</a> in this field.
+    </p>
+  <% end %>
+</div>
+
+
+<!--Detail add comment start-->
+<div class="discussion-comment">
+  <div class="pic">
+    <a href="#">
+      <img src="https://dnczkxd1gcfu5.cloudfront.net/images/participants/image_file/690/large.jpg" alt="Large">
+    </a>
+  </div>
+  <form class="add-comment" id="new_comment" action="/topics/submission-error/comments" accept-charset="UTF-8" method="post">
+    <input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="b1UzqXnJlaMiTxNXxsyPeDekmInDF45bRjd9pTTGkueDjfjd4l91oAu7s9BNPFxTADyOn/A4CBfhLqcpFKU/kQ==">
+    <textarea placeholder="Add a comment..." name="comment[comment_markdown]" id="comment_comment_markdown"></textarea>
+   <input value="690" type="hidden" name="comment[participant_id]" id="comment_participant_id">
+    <input type="submit" name="commit" value="Add comment" class="btn btn-primary pull-right" data-disable-with="Add comment">
+    <p class="markdown-instructions">You can use
+      <a href="https://kramdown.gettalong.org/">Kramdown</a> in this field.
+    </p>
+  </form>
+</div>
+<!--Detail add comment end-->

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171016135657) do
+ActiveRecord::Schema.define(version: 20171017112642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -306,6 +306,18 @@ ActiveRecord::Schema.define(version: 20171016135657) do
     t.index ["unlock_token"], name: "index_participants_on_unlock_token", unique: true
   end
 
+  create_table "submission_comments", force: :cascade do |t|
+    t.bigint "submission_id"
+    t.bigint "participant_id"
+    t.text "comment_markdown"
+    t.text "comment"
+    t.integer "vote_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["participant_id"], name: "index_submission_comments_on_participant_id"
+    t.index ["submission_id"], name: "index_submission_comments_on_submission_id"
+  end
+
   create_table "submission_file_definitions", id: :serial, force: :cascade do |t|
     t.integer "challenge_id"
     t.integer "seq"
@@ -430,6 +442,8 @@ ActiveRecord::Schema.define(version: 20171016135657) do
   add_foreign_key "email_preferences", "participants"
   add_foreign_key "follows", "participants"
   add_foreign_key "participants", "organizers"
+  add_foreign_key "submission_comments", "participants"
+  add_foreign_key "submission_comments", "submissions"
   add_foreign_key "submission_file_definitions", "challenges"
   add_foreign_key "submission_files", "submissions"
   add_foreign_key "submission_grades", "submissions"
@@ -438,6 +452,62 @@ ActiveRecord::Schema.define(version: 20171016135657) do
   add_foreign_key "topics", "challenges"
   add_foreign_key "topics", "participants"
   add_foreign_key "votes", "participants"
+
+  create_view "challenge_round_views",  sql_definition: <<-SQL
+      SELECT cr.id,
+      cr.challenge_round,
+      cr.row_num,
+      cr.active,
+      cr.challenge_id,
+      cr.start_dttm,
+      cr.end_dttm,
+      cr.submission_limit,
+      cr.submission_limit_period_cd,
+      cr.minimum_score,
+      cr.minimum_score_secondary
+     FROM ( SELECT r1.id,
+              r1.challenge_id,
+              r1.challenge_round,
+              r1.start_date,
+              r1.end_date,
+              r1.start_time,
+              r1.end_time,
+              r1.active,
+              r1.created_at,
+              r1.updated_at,
+              r1.submission_limit,
+              r1.submission_limit_period_cd,
+              r1.start_dttm,
+              r1.end_dttm,
+              r1.minimum_score,
+              r1.minimum_score_secondary,
+              row_number() OVER (PARTITION BY r1.challenge_id ORDER BY r1.challenge_id, r1.start_dttm) AS row_num
+             FROM challenge_rounds r1) cr;
+  SQL
+
+  create_view "challenge_round_summaries",  sql_definition: <<-SQL
+      SELECT cr.id,
+      cr.challenge_round,
+      cr.row_num,
+      acr.row_num AS active_row_num,
+          CASE
+              WHEN (cr.row_num < acr.row_num) THEN 'history'::text
+              WHEN (cr.row_num = acr.row_num) THEN 'current'::text
+              WHEN (cr.row_num > acr.row_num) THEN 'future'::text
+              ELSE NULL::text
+          END AS round_status_cd,
+      cr.active,
+      cr.challenge_id,
+      cr.start_dttm,
+      cr.end_dttm,
+      cr.submission_limit,
+      cr.submission_limit_period_cd,
+      c.status_cd
+     FROM challenge_round_views cr,
+      challenge_round_views acr,
+      challenges c
+    WHERE ((c.id = cr.challenge_id) AND (c.id = acr.challenge_id) AND (acr.active IS TRUE));
+  SQL
 
   create_view "ongoing_leaderboards",  sql_definition: <<-SQL
       SELECT l.id,
@@ -536,6 +606,15 @@ ActiveRecord::Schema.define(version: 20171016135657) do
     WHERE ((pc.participant_id = p.id) AND (pc.challenge_id = c.id));
   SQL
 
+  create_view "participant_sign_ups",  sql_definition: <<-SQL
+      SELECT count(participants.id) AS count,
+      (date_part('month'::text, participants.created_at))::integer AS mnth,
+      (date_part('year'::text, participants.created_at))::integer AS yr
+     FROM participants
+    GROUP BY ((date_part('month'::text, participants.created_at))::integer), ((date_part('year'::text, participants.created_at))::integer)
+    ORDER BY ((date_part('year'::text, participants.created_at))::integer), ((date_part('month'::text, participants.created_at))::integer);
+  SQL
+
   create_view "participant_submissions",  sql_definition: <<-SQL
       SELECT s.id,
       s.challenge_id,
@@ -555,15 +634,6 @@ ActiveRecord::Schema.define(version: 20171016135657) do
     ORDER BY s.created_at DESC;
   SQL
 
-  create_view "participant_sign_ups",  sql_definition: <<-SQL
-      SELECT count(participants.id) AS count,
-      (date_part('month'::text, participants.created_at))::integer AS mnth,
-      (date_part('year'::text, participants.created_at))::integer AS yr
-     FROM participants
-    GROUP BY ((date_part('month'::text, participants.created_at))::integer), ((date_part('year'::text, participants.created_at))::integer)
-    ORDER BY ((date_part('year'::text, participants.created_at))::integer), ((date_part('month'::text, participants.created_at))::integer);
-  SQL
-
   create_view "leaderboards",  sql_definition: <<-SQL
       SELECT l.id,
       row_number() OVER (PARTITION BY l.challenge_id ORDER BY l.score DESC, l.score_secondary) AS row_num,
@@ -580,6 +650,8 @@ ActiveRecord::Schema.define(version: 20171016135657) do
       l.media_large,
       l.media_thumbnail,
       l.media_content_type,
+      l.description,
+      l.description_markdown,
       l.created_at,
       l.updated_at
      FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS submission_ranking,
@@ -595,6 +667,8 @@ ActiveRecord::Schema.define(version: 20171016135657) do
               s.media_large,
               s.media_thumbnail,
               s.media_content_type,
+              s.description,
+              s.description_markdown,
               s.created_at,
               s.updated_at
              FROM submissions s,
@@ -609,62 +683,6 @@ ActiveRecord::Schema.define(version: 20171016135657) do
       challenges c
     WHERE ((l.submission_ranking = 1) AND (c.id = l.challenge_id))
     ORDER BY l.challenge_id, (row_number() OVER (PARTITION BY l.challenge_id ORDER BY l.score DESC, l.score_secondary));
-  SQL
-
-  create_view "challenge_round_views",  sql_definition: <<-SQL
-      SELECT cr.id,
-      cr.challenge_round,
-      cr.row_num,
-      cr.active,
-      cr.challenge_id,
-      cr.start_dttm,
-      cr.end_dttm,
-      cr.submission_limit,
-      cr.submission_limit_period_cd,
-      cr.minimum_score,
-      cr.minimum_score_secondary
-     FROM ( SELECT r1.id,
-              r1.challenge_id,
-              r1.challenge_round,
-              r1.start_date,
-              r1.end_date,
-              r1.start_time,
-              r1.end_time,
-              r1.active,
-              r1.created_at,
-              r1.updated_at,
-              r1.submission_limit,
-              r1.submission_limit_period_cd,
-              r1.start_dttm,
-              r1.end_dttm,
-              r1.minimum_score,
-              r1.minimum_score_secondary,
-              row_number() OVER (PARTITION BY r1.challenge_id ORDER BY r1.challenge_id, r1.start_dttm) AS row_num
-             FROM challenge_rounds r1) cr;
-  SQL
-
-  create_view "challenge_round_summaries",  sql_definition: <<-SQL
-      SELECT cr.id,
-      cr.challenge_round,
-      cr.row_num,
-      acr.row_num AS active_row_num,
-          CASE
-              WHEN (cr.row_num < acr.row_num) THEN 'history'::text
-              WHEN (cr.row_num = acr.row_num) THEN 'current'::text
-              WHEN (cr.row_num > acr.row_num) THEN 'future'::text
-              ELSE NULL::text
-          END AS round_status_cd,
-      cr.active,
-      cr.challenge_id,
-      cr.start_dttm,
-      cr.end_dttm,
-      cr.submission_limit,
-      cr.submission_limit_period_cd,
-      c.status_cd
-     FROM challenge_round_views cr,
-      challenge_round_views acr,
-      challenges c
-    WHERE ((c.id = cr.challenge_id) AND (c.id = acr.challenge_id) AND (acr.active IS TRUE));
   SQL
 
 end

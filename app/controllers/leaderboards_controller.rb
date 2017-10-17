@@ -5,6 +5,7 @@ class LeaderboardsController < ApplicationController
   respond_to :js, :html
 
   def show
+    @participant = @entry.participant
   end
 
   def index
@@ -46,7 +47,7 @@ class LeaderboardsController < ApplicationController
 
   private
   def set_leaderboard
-    @leaderboard = Leaderboard.find(params[:id])
+    @entry = Leaderboard.find(params[:id])
   end
 
   def set_challenge

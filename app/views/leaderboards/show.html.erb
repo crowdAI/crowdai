@@ -1,14 +1,18 @@
 <div class="detail">
   <div class="detail-header-bg"></div>
-  <a href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
+  <%= link_to challenge_leaderboards_path(@entry.challenge_id) do %>
+    <i class="fa fa-times" aria-hidden="true"></i>
+  <% end %>
   <div class="row">
     <!--Detail header start-->
     <div class="detail-header">
       <div class="text-badge">
-        <a class="color-accent" href="#">spMohanty</a>
-        <span class="badge badge-accent">Admin</span>
+        <%= link_to @participant.name, participant_path(@participant.id), class: "color-accent" %>
+        <% if @participant.admin? %>
+          <span class="badge badge-accent">Admin</span>
+        <% end %>
       </div>
-      <h4>Submission: Learning How to Walk</h4>
+      <h4>Submission: <%= @entry.challenge.challenge %></h4>
     </div>
     <!--Detail header end-->
 
@@ -18,7 +22,7 @@
     </div>
     <!--Detail media end-->
 
-    <!--Detail share start-->
+    <!--Detail share start
     <div class="detail-share">
       <div>
         <span>Share</span>
@@ -29,9 +33,36 @@
         <a class="btn btn-secondary btn-twitter" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
       </div>
     </div>
-    <!--Detail share end-->
+    Detail share end-->
 
     <!--Detail user comment start-->
+
+    <% if @entry.description.present? %>
+      <div class="discussion-comment">
+        <div class="pic">
+          <a href="#"><img src="assets/img/users/user-1.jpg" alt=""></a>
+        </div>
+        <div class="topic-content">
+          <p class="details">
+            Posted by <%= link_to @participant.name, participant_path(@participant.id) %> <%= time_ago_in_words(@entry.created_at) %> | <a href="#">Quote</a>
+          </p>
+          <div class="comment">
+            <p><%= sanitize(@entry.description) %></p>
+          </div>
+        </div>
+        <a class="btn btn-secondary" href="#"><i class="fa fa-heart active" aria-hidden="true"></i> 47</a>
+      </div>
+      <!--Detail user comment end-->
+    <% end %>
+
+
+    <% if current_participant %>
+      <%#= render partial: 'submission_comments/form', locals: { submission: @entry.submission, comment: @comment } %>
+    <% end %>
+
+
+
+    <!--Detail user comment start
     <div class="discussion-comment">
       <div class="pic">
         <a href="#"><img src="assets/img/users/user-1.jpg" alt=""></a>
@@ -44,43 +75,7 @@
       </div>
       <a class="btn btn-secondary" href="#"><i class="fa fa-heart active" aria-hidden="true"></i> 47</a>
     </div>
-    <!--Detail user comment end-->
 
-    <!--Detail add comment start-->
-    <div class="discussion-comment">
-      <div class="pic">
-        <a href="#">
-          <img src="https://dnczkxd1gcfu5.cloudfront.net/images/participants/image_file/690/large.jpg" alt="Large">
-        </a>
-      </div>
-      <form class="add-comment" id="new_comment" action="/topics/submission-error/comments" accept-charset="UTF-8" method="post">
-        <input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="b1UzqXnJlaMiTxNXxsyPeDekmInDF45bRjd9pTTGkueDjfjd4l91oAu7s9BNPFxTADyOn/A4CBfhLqcpFKU/kQ==">
-        <textarea placeholder="Add a comment..." name="comment[comment_markdown]" id="comment_comment_markdown"></textarea>
-       <input value="690" type="hidden" name="comment[participant_id]" id="comment_participant_id">
-        <input type="submit" name="commit" value="Add comment" class="btn btn-primary pull-right" data-disable-with="Add comment">
-        <p class="markdown-instructions">You can use
-          <a href="https://kramdown.gettalong.org/">Kramdown</a> in this field.
-        </p>
-      </form>
-    </div>
-    <!--Detail add comment end-->
-
-    <!--Detail user comment start-->
-    <div class="discussion-comment">
-      <div class="pic">
-        <a href="#"><img src="assets/img/users/user-1.jpg" alt=""></a>
-      </div>
-      <div class="topic-content">
-        <p class="details">Posted by <a href="#">joonho</a> 9 days ago | <a href="#">Quote</a></p>
-        <div class="comment">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque mauris lorem, eleifend quis orci nec, posuere lobortis neque. Cras aliquet augue ex, id varius neque tincidunt eget.</p>
-        </div>
-      </div>
-      <a class="btn btn-secondary" href="#"><i class="fa fa-heart active" aria-hidden="true"></i> 47</a>
-    </div>
-    <!--Detail user comment end-->
-
-    <!--Detail user comment start-->
     <div class="discussion-comment">
       <div class="pic">
         <a href="#"><img src="assets/img/users/user-2.jpg" alt=""></a>
@@ -93,9 +88,7 @@
       </div>
       <a class="btn btn-secondary" href="#"><i class="fa fa-heart active" aria-hidden="true"></i> 47</a>
     </div>
-    <!--Detail user comment end-->
 
-    <!--Detail user comment start-->
     <div class="discussion-comment">
       <div class="pic">
         <a href="#"><img src="assets/img/users/user-1.jpg" alt=""></a>
@@ -108,7 +101,7 @@
       </div>
       <a class="btn btn-secondary" href="#"><i class="fa fa-heart active" aria-hidden="true"></i> 47</a>
     </div>
-    <!--Detail user comment end-->
+    Detail user comment end-->
 
   </div>
 </div>

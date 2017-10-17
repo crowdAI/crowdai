@@ -8,6 +8,19 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
     model
   end
 
+  def size
+    options[:size]
+  end
+
+  def dimensions
+    if size == :thumb
+      return "100x75"
+    end
+    if size == :large
+      return "800x600"
+    end
+  end
+
   def content_type
     return nil if leaderboard_row.media_content_type.nil?
 
@@ -19,8 +32,8 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
   def media_asset
     case content_type
     when nil
-      return "<em></em>".html_safe
-      #return image_tag(default_image_url, size: dimensions)
+      #return "<em></em>".html_safe
+      return image_tag(default_image_url, size: dimensions)
     when 'video'
       return video
     when 'image'
@@ -38,7 +51,7 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
 
   def video
     if expiring_url.present?
-      return video_tag(expiring_url)
+      return video_tag(expiring_url, size: dimensions)
     else
       if size == :large
         return video_tag(default_image_url, autoplay: false)

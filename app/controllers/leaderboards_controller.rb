@@ -4,6 +4,9 @@ class LeaderboardsController < ApplicationController
   before_action :set_challenge
   respond_to :js, :html
 
+  def show
+  end
+
   def index
     @current_round = current_round
     Rails.logger.debug("current_round: #{@current_round.id}")

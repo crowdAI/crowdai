@@ -1,12 +1,12 @@
-<div class="sub-nav">
-  <div class="row">
-    <ul>
+<div class="row">
+  <div class="border-bottom">
+    <ul class="sub-nav-pills">
       <% challenge_rounds.each do |challenge_round| %>
-        <li class=<%= tab_class(challenge_round) %> >
+        <li class='sub-nav-item'>
           <%= link_to challenge_round.challenge_round,
                       challenge_leaderboards_path(
                         challenge, challenge_round_id: challenge_round.id),
-                        class: 'active' %>
+                        class: tab_class(challenge_round) %>
         </li>
       <% end %>
     </ul>

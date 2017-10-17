@@ -8,19 +8,6 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
     model
   end
 
-  def size
-    options[:size]
-  end
-
-  def dimensions
-    if size == :thumb
-      return "134x100"
-    end
-    if size == :large
-      return "800x600"
-    end
-  end
-
   def content_type
     return nil if leaderboard_row.media_content_type.nil?
 
@@ -43,30 +30,26 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
 
   def image
     if expiring_url.present?
-      return image_tag(expiring_url, size: dimensions)
+      return image_tag(expiring_url)
     else
-      return image_tag(default_image_url, size: dimensions)
+      return image_tag(default_image_url)
     end
   end
 
   def video
     if expiring_url.present?
-      return video_tag(expiring_url, size: dimensions)
+      return video_tag(expiring_url)
     else
       if size == :large
-        return video_tag(default_image_url, size: dimensions, autoplay: false)
+        return video_tag(default_image_url, autoplay: false)
       else
-        return video_tag(default_image_url, controls: true, size: dimensions, autoplay: true, loop: true)
+        return video_tag(default_image_url, controls: true, autoplay: true, loop: true)
       end
     end
   end
 
   def expiring_url
-    if size == :thumb
-      url = S3Service.new(leaderboard_row.media_thumbnail).expiring_url
-    else
-      url = S3Service.new(leaderboard_row.media_large).expiring_url
-    end
+    url = S3Service.new(leaderboard_row.media_thumbnail).expiring_url
   end
 
   def audio

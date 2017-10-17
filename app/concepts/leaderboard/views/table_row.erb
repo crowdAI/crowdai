@@ -6,22 +6,23 @@
   <td class="participant">
     <div class="user-link">
       <%= link_to participant_path(participant) do %>
-      <%= concept(Image::Cell,participant) %>
+        <%= concept(Image::Cell,participant) %>
       <% end %>
-      <p><%= link_to entry.name, participant_path(entry.slug) %>
-        <% if participant.admin? %>
-        <b>[Admin]</b>
-        <% end %>
-        <% if participant.organizer_id == entry.organizer_id %>
-        <b>[Organizer]</b>
-        <% end %>
-      </p>
+      <div class='text-badge'>
+        <%= link_to entry.name, participant_path(entry.slug) %>
+          <% if participant.admin? %>
+            <span class='badge badge-accent'>Admin</span>
+          <% end %>
+          <% if participant.organizer_id == entry.organizer_id %>
+            <span class='badge'>Organizer</span>
+          <% end %>
+      </div>
     </div>
   </td>
 
   <% if cols.include?(:media) %>
   <td class="video">
-    <%= concept(Leaderboard::Cell::Media,entry, size: :thumb, current_participant: current_participant) %>
+    <%= concept(Leaderboard::Cell::Media, entry, current_participant: current_participant) %>
   </td>
   <% end %>
 
@@ -48,4 +49,9 @@
   <% end %>
 
   <td class="last-submission"><%= entry.created_at.strftime("%a, %e %b %Y %R") %></td>
+  <td class='action'>
+    <%= link_to '#', class: 'btn btn-secondary' do %>
+      <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+    <% end %>
+  </td>
 </tr>

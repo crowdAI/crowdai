@@ -12,15 +12,20 @@
           <% end %>
         <% end %>
       </div>
+      <% if participant.affiliation.present? %>
+        <p class="location">
+          <%=  participant.affiliation %>
+        </p>
+      <% end %>
       <p class="location"><%= location_organization %></p>
-        <div class="text-w-icon">
-          <% if policy(participant).edit? %>
-            <p><strong>API key:</strong> <%= participant.api_key %></p>
-              <%= link_to participant_regen_api_key_path(participant_id: participant.id) do %>
-                <i class="fa fa-refresh" aria-hidden="true"></i>
-              <% end %>
-          <% end %>
-        </div>
+      <div class="text-w-icon">
+        <% if policy(participant).edit? %>
+          <p><strong>API key:</strong> <%= participant.api_key %></p>
+            <%= link_to participant_regen_api_key_path(participant_id: participant.id) do %>
+              <i class="fa fa-refresh" aria-hidden="true"></i>
+            <% end %>
+        <% end %>
+      </div>
       <ul class="social-links">
         <% if participant.twitter.present? %>
           <li><%= link_to '<i class="fa fa-twitter" aria-hidden="true"></i>', url_for(participant.twitter) %></li>

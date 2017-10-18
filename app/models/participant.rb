@@ -43,6 +43,7 @@ class Participant < ApplicationRecord
   validates :twitter, :url => { allow_blank: true }
   validates :name, presence: true
   validates :name, length: { minimum: 2 }, allow_blank: false, uniqueness: { case_sensitive: false }
+  validates :affiliation, length:{ minimum:2}, allow_blank: true
 
 
   def disable_account(reason)

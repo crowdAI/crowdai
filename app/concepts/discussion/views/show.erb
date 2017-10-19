@@ -12,7 +12,7 @@
       <% end %>
     </div>
     <div class="topic-content">
-      <%= concept(Vote::Cell,topic) %>
+      <%= concept(Vote::Cell, topic, current_participant: current_participant) %>
       <h4><%= topic.topic %></h4>
       <p class="details">Posted by
         <% if topic.participant.is_a? NullParticipant %>
@@ -29,6 +29,6 @@
     </div>
   </div>
 
-  <%= concept(Discussion::Cell::CommentForm,topic) %>
-  <%= concept(Discussion::Cell::Comment, collection: comments) %>
+  <%= concept(Discussion::Cell::CommentForm, topic, current_participant: current_participant) %>
+  <%= concept(Discussion::Cell::Comment, collection: comments, current_participant: current_participant) %>
 </div>

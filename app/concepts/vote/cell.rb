@@ -53,9 +53,7 @@ class Vote::Cell < Template::Cell
   end
 
   def create_vote_path
-    x = "#{votable.model_name.param_key}_votes_path(#{votable.id})"
-    Rails.logger.debug("PATH: #{x}")
-    return x
+    "#{votable.model_name.param_key}_votes_path(#{votable.id})"
   end
 
   def destroy_vote_path(votable, vote_id)

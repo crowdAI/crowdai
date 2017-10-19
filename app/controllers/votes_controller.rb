@@ -9,14 +9,14 @@ class VotesController < ApplicationController
     @vote.save
     @votable.update(vote_count: @votable.votes.count)
     Rails.logger.debug("updated: #{@votable.id}")
-    render js: concept(Vote::Cell,@votable).(:refresh)
+    render js: concept(Vote::Cell, @votable, current_participant: current_participant).(:refresh)
   end
 
   def destroy #unvote
     Vote.destroy(params[:id])
     @votable.update(vote_count: @votable.votes.count)
     Rails.logger.debug "rendering destroy #{@votable}"
-    render js: concept(Vote::Cell,@votable).(:refresh)
+    render js: concept(Vote::Cell, @votable, current_participant: current_participant).(:refresh)
   end
 
   private

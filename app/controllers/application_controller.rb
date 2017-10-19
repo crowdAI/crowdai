@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class ApplicationController < ActionController::Base
-  #protect_from_forgery #prepend: true
+  protect_from_forgery #prepend: true
   include Pundit
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized_or_login
   after_action :participant_activity

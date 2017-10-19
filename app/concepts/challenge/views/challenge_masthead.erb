@@ -39,8 +39,8 @@
         </div>
       </div>
       <div class="button-group">
-        <%= concept(Vote::Cell, challenge) %>
-        <%= concept(Follow::Cell, challenge) %>
+        <%= concept(Vote::Cell, challenge, current_participant: current_participant) %>
+        <%= concept(Follow::Cell, challenge, current_participant: current_participant) %>
       </div>
     </div>
   </div>

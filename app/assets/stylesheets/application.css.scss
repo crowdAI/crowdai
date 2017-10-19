@@ -1,11 +1,151 @@
-@import "compass";
-@import "remodal";
-@import "remodal-default-theme";
-@import "site";
-@import "subnav_tabs";
-@import "inline_validations";
-@import "markdown";
+// Variables
 
+$color-accent:      #f0524d;
+$color-accent-dark: #d23934;
+$color-grey-03:     rgba(0,0,0,0.03);
+$color-grey-10:     rgba(0,0,0,0.1);
+$color-grey-20:     rgba(0,0,0,0.2);
+$color-grey-40:     rgba(0,0,0,0.4);
+$color-grey-54:     rgba(0,0,0,0.54);
+$color-grey-80:     rgba(0,0,0,0.8);
+$color-grey-87:     rgba(0,0,0,0.87);
+$color-black:       rgba(0,0,0,1);
+
+// Imports
+
+@import 'reset';
+@import 'article';
+@import 'badges';
+@import 'buttons';
+@import 'detail';
+@import 'discussion';
+@import 'dropdowns';
+@import 'footer';
+@import 'forms';
+@import 'header';
+@import 'home-hero';
+@import 'inline_validations';
+@import 'layout-atoms';
+@import 'layout-molecules';
+@import 'lists';
+@import 'loader';
+@import 'markdown';
+@import 'mastheads';
+@import 'md-editor';
+@import 'panel';
+@import 'progress-bar';
+@import 'remodal-default-theme';
+@import 'search';
+@import 'section-header';
+@import 'subnav_tabs';
+@import 'tables';
+@import 'tooltips';
+@import 'typography';
+@import '404';
+
+// General styles
+
+::-moz-selection {
+  background: $color-accent;
+  color: #fff;
+}
+
+::selection {
+  background: $color-accent;
+  color: #fff;
+}
+
+body {
+  background: #fff;
+  min-height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: $color-grey-87;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-font-smoothing: antialiased !important;
+  text-rendering: optimizelegibility !important;
+  @media screen\0 {
+    min-height: none;
+    display: block;
+    flex-direction: none;
+  }
+}
+
+.content {
+  flex: 1;
+  @media screen\0 {
+    flex: none;
+  }
+}
+
+.row {
+  max-width: 1196px;
+  padding: 0 48px;
+  margin: 0 auto;
+  @media screen and (max-width: 1024px) {
+    padding: 0 40px;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 0 32px;
+  }
+  @media screen and (max-width: 640px) {
+    padding: 0 24px;
+  }
+  @media screen and (max-width: 480px) {
+    padding: 0 16px;
+  }
+  @media screen and (max-width: 400px) {
+    padding: 0 12px;
+  }
+}
+
+.row:before {
+  display: table;
+  content: " ";
+}
+
+.row:after {
+  clear: both;
+  display: table;
+  content: " ";
+}
+
+.detail .row {
+  max-width: 800px;
+}
+
+a img {
+  width: 100%;
+  opacity: 1;
+  transition: 0.4s;
+}
+
+a img:hover {
+   opacity: 0.8;
+}
+
+.background-grey {
+  background: $color-grey-03;
+  @media screen and (max-width: 640px) {
+    background: #fff;
+  }
+}
+
+.border-top {
+  border-top: 1px solid $color-grey-10;
+}
+
+.border-bottom {
+  border-bottom: 1px solid $color-grey-10;
+}
+
+
+// Added by Sean
 .pull-right {
   float: right;
 }

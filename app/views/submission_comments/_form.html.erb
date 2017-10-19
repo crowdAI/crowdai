@@ -1,0 +1,14 @@
+<div class="discussion-comment">
+  <div class="pic">
+    <%= link_to participant_path(current_participant) do %>
+      <%= concept(Image::Cell,current_participant) %>
+    <% end %>
+  </div>
+  <%= form_for [@submission, @submission_comment], html: { class: "add-comment", id: "new_comment" } do |f| %>
+    <%= f.text_area :comment_markdown, placeholder: "Add a comment..." %>
+    <%= f.submit 'Add comment', class: 'btn btn-primary pull-right' %>
+    <p class='markdown-instructions'>You can use
+      <a href="https://kramdown.gettalong.org/">Kramdown</a> in this field.
+    </p>
+  <% end %>
+</div>

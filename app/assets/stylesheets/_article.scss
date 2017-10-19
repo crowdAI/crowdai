@@ -1,0 +1,86 @@
+/* Article (e.g., Challenge/Tutorial text) */
+
+.article {
+  font-size: 16px;
+  line-height: 24px;
+  max-width: 680px;
+  padding-top: 12px;
+  @media screen and (max-width: 800px) {
+    padding-top: 8px;
+  }
+  @media screen and (max-width: 480px) {
+    padding-top: 4px;
+  }
+  p a, li a {
+    color: $color-accent-dark;
+    &:hover {
+      border-bottom: 1px solid $color-accent;
+    }
+  }
+  h1, h2, h3 {
+    letter-spacing: 0;
+    margin-top: 33px;
+  }
+  h1 {
+    font-size: 28px;
+    @media screen and (max-width: 1024px) {
+      font-size: 26px;
+    }
+    @media screen and (max-width: 800px) {
+      font-size: 24px;
+    }
+    @media screen and (max-width: 400px) {
+      font-size: 22px;
+    }
+  }
+  h2 {
+    font-size: 22px;
+    @media screen and (max-width: 800px) {
+      font-size: 22px;
+    }
+    @media screen and (max-width: 400px) {
+      font-size: 20px;
+    }
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  p {
+    font-size: 16px;
+    line-height: 24px;
+    margin-top: 24px;
+  }
+  ul.bullets {
+    display: block;
+    list-style-type: disc;
+    line-height: 24px;
+    padding-left: 40px;
+  }
+  ul.partners {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: flex-start;
+    align-items: center;
+    margin-top: 0;
+    li {
+      flex: 0 0 auto;
+      margin: 0 20px 20px 0;
+      height: 100px;
+      width: 100px;
+
+      a:hover {
+        border-bottom: none;
+      }
+    }
+  }
+  img {
+    height: auto;
+    width: 100%;
+    margin-top: 24px;
+  }
+  .btn {
+    margin-top: 23px;
+  }
+}

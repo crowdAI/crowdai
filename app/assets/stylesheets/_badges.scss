@@ -1,0 +1,32 @@
+/* Badges */
+
+.badge {
+  display: inline-block;
+  background-color: $color-grey-40;
+  color: #fff;
+  padding: 3px 4px 2px 4px;
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 2px;
+
+  // Empty badges collapse automatically
+  &:empty {
+    display: none;
+  }
+}
+
+.badge-accent {
+  background-color: $color-accent;
+}
+
+.text-badge {
+  display: flex;
+  align-items: center;
+  .badge {
+    margin-left: 4px;
+  }
+}

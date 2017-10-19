@@ -1,0 +1,232 @@
+/* Mastheads */
+
+.masthead,
+.masthead-detailed {
+  background: $color-grey-03;
+  padding: 60px 0 40px;
+  border-bottom: 1px solid $color-grey-10;
+
+  @media screen and (max-width: 800px) {
+    padding: 40px 0 28px;
+  }
+
+  @media screen and (max-width: 640px) {
+    padding: 28px 0 28px;
+  }
+
+  h6 {
+    margin-bottom: 8px;
+  }
+
+  .info {
+    float: left;
+
+    p.large,
+    p.location {
+      clear: both;
+    }
+  }
+
+  .large {
+    color: $color-grey-54;
+    margin-top: 5px;
+  }
+}
+
+.masthead {
+  .row:nth-of-type(2) {
+    margin-top: 16px;
+
+    @media screen and (max-width: 800px) {
+      margin-top: 8px;
+    }
+  }
+
+  .options {
+    float: right;
+
+    @media screen and (max-width: 800px) {
+      display: none;
+    }
+
+    select {
+      float: right;
+      margin: 0 0 0 16px;
+    }
+
+    .btn {
+      float: left;
+      margin-right: 16px;
+      &:last-of-type {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.masthead-detailed {
+  .pic {
+    float: left;
+    margin-right: 24px;
+
+    @media screen and (max-width: 800px) {
+      margin-right: 20px;
+    }
+
+    @media screen and (max-width: 640px) {
+      margin-right: 12px;
+    }
+
+    img {
+      border-radius: 2px;
+      width: 100%;
+    }
+  }
+
+  .user-link {
+    display: block;
+    margin-top: 13px;
+
+    @media screen and (max-width: 800px) {
+      display: none;
+    }
+  }
+
+  progress {
+    margin-top: 28px;
+
+    @media screen and (max-width: 1024px) {
+      margin-top: 20px;
+    }
+  }
+
+  .pic-challenge {
+    width: 300px;
+    height: 300px;
+    
+    @media screen and (max-width: 1024px) {
+      width: 200px;
+      height: 200px;
+    }
+
+    @media screen and (max-width: 640px) {
+      display: none;
+    }
+  }
+
+  .info-challenge {
+    width: calc(100% - 324px);
+
+    @media screen and (max-width: 1024px) {
+      width: calc(100% - 224px);
+    }
+
+    @media screen and (max-width: 640px) {
+      width: 100%;
+    }
+
+    .button-group {
+      margin-top: 60px;
+
+      @media screen and (max-width: 1024px) {
+        margin-top: 20px;
+      }
+
+      .like {
+        @media screen and (max-width: 360px) {
+          display: none;
+        } 
+      }
+
+      .share {
+        @media screen and (max-width: 800px) {
+          display: none;
+        } 
+      }
+    }
+  }
+
+  .pic-user {
+    width: 140px;
+    height: 140px;
+    
+    @media screen and (max-width: 800px) {
+      width: 120px;
+      height: 120px;
+    }
+
+    @media screen and (max-width: 640px) {
+      width: 80px;
+      height: 80px;
+    }
+
+    @media screen and (max-width: 480px) {
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+  .info-user {
+    width: calc(100% - 164px);
+
+    @media screen and (max-width: 800px) {
+      width: calc(100% - 144px);
+    }
+
+    @media screen and (max-width: 640px) {
+      width: calc(100% - 104px);
+    }
+
+    .location {
+      color: $color-grey-54;
+      margin-top: 18px;
+    }
+
+    .text-w-icon {
+      height: 20px;
+      margin-top: 12px;
+    }
+
+    .social-links {
+      margin-top: 20px;
+    }
+  }
+
+  .pic-tutorial {
+    width: 200px;
+    height: 200px;
+    
+    @media screen and (max-width: 1024px) {
+      width: 200px;
+      height: 200px;
+    }
+
+    @media screen and (max-width: 640px) {
+      display: none;
+    }
+  }
+
+  .info-tutorial {
+    width: calc(100% - 224px);
+
+    @media screen and (max-width: 1024px) {
+      width: calc(100% - 224px);
+    }
+
+    @media screen and (max-width: 640px) {
+      width: 100%;
+    }
+
+    .button-group {
+      margin-top: 43px;
+
+      @media screen and (max-width: 1024px) {
+        margin-top: 48px;
+      }
+
+      @media screen and (max-width: 800px) {
+        margin-top: 18px;
+      }
+    }
+  }
+}

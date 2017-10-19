@@ -1,0 +1,163 @@
+/* Search Dropdown List */
+
+#search-dropdown {
+  overflow-y: auto;
+  width: 400px;
+  max-height: 350px;
+  border: 1px solid $color-grey-40;
+  border-radius: 2px;
+
+  @media screen and (max-width: 640px) {
+    width: 100%;
+    height: auto;
+    max-height: none;
+  }
+  ul {
+    display: block;
+    padding: 15px 15px 0;
+    border-bottom: 1px solid $color-grey-10;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+    h6 {
+      margin: 0 0 8px;
+    }
+    li {
+      overflow: hidden;
+      display: flex;
+      margin-bottom: 15px;
+
+      img {
+        float: left;
+        margin-right: 10px;
+        width: 36px !important;
+        height: 36px !important;
+      }
+      a {
+        overflow: hidden;
+        display: inline;
+        float: left;
+        margin: 10px 0 0;
+        max-width: 300px;
+        height: 18px;
+        border-bottom: 1px solid transparent;
+        font-size: 14px;
+        line-height: 18px;
+        white-space: nowrap;
+        text-overflow: ellipsis;  
+        transition: 0.3s ease;
+
+        &:hover {
+          border-bottom: 1px solid $color-accent;
+        }
+        @media screen and (max-width: 380px) {
+          max-width: 240px;
+        }
+        @media screen and (min-width: 381px) and (max-width: 640px) {
+          max-width: 520px;
+        }
+      }
+    }
+  }
+}
+
+
+/* Notifications & user dropdowns */
+
+.notifications,
+.user {
+  position: relative;
+  div {
+    overflow: hidden;
+    position: absolute;
+    z-index: 150;
+    height: 0;
+    opacity: 0;
+    transition: height 0.3s ease, opacity 0.3s ease;
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.16);
+    &.open {
+      height: auto;
+      opacity: 1;
+    }
+    ul {
+      display: block;
+      background: #fff;
+      border: 1px solid $color-grey-40;
+      border-radius: 2px;
+    }
+    li a {
+      color: $color-grey-87;
+      transition: .3s;
+      &:hover {
+        color: $color-accent-dark;
+      }
+    } 
+  }
+}
+
+.notifications {
+  div {
+    top: 72px;
+    right: -56px;
+    @media screen and (min-width: 1025px) {
+      right: -60px;
+    }
+    ul {
+      width: 320px;
+      li {
+        border-bottom: 1px solid $color-grey-10;
+        
+        &:last-of-type {
+          border-bottom: none;
+        }
+        a {
+          overflow: hidden;
+          display: flex;
+          padding: 12px 15px;
+
+          &:hover {
+            background: $color-grey-03;
+          }
+          img {
+            float: left;
+            width: 36px;
+            height: 36px;
+            border-radius: 2px;
+          }
+          span {
+            float: left;
+            margin-left: 10px;
+            font-size: 14px;
+            line-height: 18px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.user {
+  div {
+    top: 51px;
+    right: 0px;
+    ul {
+      width: 260px;
+      padding: 12px 0 0;
+      li {
+        font-size: 14px;
+        padding: 0 0 14px 15px;
+        &:last-of-type {
+          background: $color-grey-03;
+          margin-top: 4px;
+          padding-top: 12px;
+          padding-bottom: 12px;
+          border-top: 1px solid $color-grey-10;
+        }
+        a {
+          transition: 0.4s;
+        } 
+      }
+    }
+  }
+}

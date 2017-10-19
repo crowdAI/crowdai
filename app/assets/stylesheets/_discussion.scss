@@ -1,0 +1,131 @@
+/* Discussion – Topic & comments*/
+
+.discussion-topic,
+.discussion-comment {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 36px 0 30px 0;
+  border-bottom: 1px solid $color-grey-10;
+  &:last-of-type {
+    border-bottom: none;
+  }
+  @media screen and (max-width: 640px) {
+    padding: 28px 0 24px 0;
+  }
+  @media screen and (max-width: 480px) {
+    padding: 28px 0 20px 0;
+  }
+  .pic {
+    flex: 0 0 auto;
+    height: 80px;
+    width: 80px;
+    margin-right: 20px;
+    @media screen and (max-width: 800px) {
+      height: 60px;
+      width: 60px;
+      margin-right: 16px;
+    }
+    @media screen and (max-width: 640px) {
+      height: 48px;
+      width: 48px;
+      margin-right: 16px;
+    }
+    @media screen and (max-width: 480px) {
+      height: 36px;
+      width: 36px;
+      margin-right: 12px;
+    }
+    img {
+      border-radius: 2px;
+    }
+  }
+  .topic-content{
+    flex: 2 1 auto;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    .details {
+      color: $color-grey-54;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+    .comment p {
+      font-size: 16px;
+      line-height: 22px;
+      max-width: 600px;
+      margin-top: 14px;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      @media screen and (max-width: 640px) {
+        font-size: 15px;
+        line-height: 20px;
+      }
+    }
+  }
+  .btn {
+    flex: 0 0 auto;
+    margin: 0 0 4px 8px;
+  }
+  form.add-comment {
+    flex: 2 1 auto;
+    .details {
+      color: $color-grey-54;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+    .btn {
+      flex: 0 0 auto;
+    }
+    textarea {
+      margin-bottom: 20px !important;
+    }
+  }
+  &:after {
+    clear: both;
+    display: table;
+    content: " ";
+  }
+}
+
+.discussion-comment {
+  padding: 30px 0;
+  @media screen and (max-width: 640px) {
+    padding: 20px 0;
+  }
+  @media screen and (max-width: 480px) {
+    padding: 16px 0;
+  }
+  .pic {
+    height: 60px;
+    width: 60px;
+    margin-left: 20px;
+      @media screen and (max-width: 800px) {
+        height: 48px;
+        width: 48px;
+        margin-left: 12px;
+      }
+      @media screen and (max-width: 640px) {
+        height: 36px;
+        width: 36px;
+        margin-left: 0;
+      }
+
+  }
+  .topic-content {
+    .details {
+      margin-top: 0;
+    }
+  }
+  form.add-comment {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    textarea {
+      height: 60px;
+      margin-bottom: 0;
+      padding-bottom: 0;
+      @media screen and (max-width: 800px) {
+        height: 48px;
+      }
+    }
+  }
+}

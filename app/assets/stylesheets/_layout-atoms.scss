@@ -1,0 +1,55 @@
+/* ATOMS */
+/* Logo */
+
+.logo {
+  display: block;
+  background: url('misc/crowdai-logo.svg') no-repeat left center;
+  width: 129px;
+  height: 24px;
+  @media screen and (max-width: 800px) {
+    width: 108px;
+    height: 20px;
+  }
+  @media screen and (max-width: 640px) {
+    background: url('misc/crowdai-logomark.svg') no-repeat left center;
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Icons */
+
+.fa {
+  color: $color-grey-40;
+  font-size: 18px;
+  transition: 0.4s;
+}
+
+a .fa:hover {
+  color: $color-grey-54;
+}
+
+
+/* Flash bars */
+
+.flash-bar,
+.flash-bar-error {
+  background: #fffbed;
+  color: #69634d;
+  font-size: 14px;
+  height: 48px;
+  border-bottom: 1px solid #e6e6e6;
+  p {
+    float: left;
+    margin-top: 14px;
+  }
+  .fa {
+    float: right;
+    margin-top: 16px;
+  }
+}
+
+.flash-bar-error {
+  background: #f9f2f4;
+  color: $color-accent-dark;;
+}

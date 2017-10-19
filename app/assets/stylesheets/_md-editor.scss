@@ -1,0 +1,142 @@
+/* Markdown editor */
+
+form .md-editor {
+  overflow: hidden;
+  max-width: 680px;
+  margin-bottom: 20px;
+  .sub-nav {
+    position: static;
+    height: 40px;
+
+    @media screen and (max-width: 800px) {
+      height: 40px;
+      position: static;
+      padding: 0;
+    }
+    ul {
+      overflow: hidden;
+      float: none;
+      line-height: 40px;
+
+      @media screen and (max-width: 800px) {
+        line-height: 40px;
+        width: auto;
+      }
+      li {
+        @media screen and (max-width: 800px) {
+          width: auto;
+          margin-right: 20px;
+        }
+        &.active {
+          @media screen and (max-width: 800px) {
+            border-bottom: 1px solid $color-accent;
+          }
+        }
+      }
+    }
+  }
+
+  .md-editor-btns {
+    overflow: hidden;
+    display: block;
+    margin: 9px 0 0;
+    background: #fff;
+    ul {
+      overflow: hidden;
+      float: left;
+      margin: 0 8px 8px 0;
+      height: 36px;
+      border: 1px solid $color-grey-20;
+      border-radius: 2px;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+      li {
+        float: left;
+        border-right: 1px solid $color-grey-20;
+        font-size: 0;
+
+        &:last-of-type {
+          border-right: none;
+        }
+        button {
+          margin: 0;
+          padding: 0;
+          width: 38px;
+          height: 34px;
+          background: $color-grey-03;
+          border: none;
+          font-family: 'Roboto', sans-serif;
+          font-size: 14px;
+          line-height: 36px;
+          font-weight: 700;
+          text-align: center;
+          transition: background 0.3s ease;
+
+          .fa {
+            color: $color-grey-87;
+          }
+          
+          &:hover {
+            cursor: pointer;
+            background: #fff;
+          }
+          &:focus {
+            outline: 0;
+          }
+        }
+      }
+    }
+  }
+  textarea {
+    margin: 0;
+    max-width: 100%;
+    background: $color-grey-03;
+    border-bottom: 1px dashed $color-grey-20;
+    border-radius: 2px 2px 0 0;
+  }
+  div.mde-img {
+    padding-left: 10px;
+    background: $color-grey-03;
+    border: 1px solid $color-grey-20;
+    border-top: none;
+    border-radius: 0 0 2px 2px;
+
+    input[type=file] {
+      display: none;
+    }
+    p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 38px;
+    }
+  }
+}
+
+div.section-container {
+  .md-editor {
+    .sub-nav {
+      background: transparent;
+    }
+    .md-editor-btns {
+      background: transparent;
+
+      ul li button {
+        background: #fff;
+        &:hover {
+          background: $color-grey-03;
+        }
+      }
+    }
+    textarea {
+      background: #fff;   
+    }
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+    .mde-img {
+      background: #fff;
+    }
+  }
+}

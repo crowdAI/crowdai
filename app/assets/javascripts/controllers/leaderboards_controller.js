@@ -2,17 +2,14 @@ function startVideoPlayers(){
   var $videos = $('video');
   if ($videos.is(':in-viewport')) {
     $videos.each(function(){
+      console.log('starting video: ' + this);
       var playPromise = this.play();
     });
   }
 }
 
-
-$(document).on('turbolinks:load', function() {
-  var controller = $('#controller-action').data('controller');
-  var action = $('#controller-action').data('action');
-
-  if (controller === 'leaderboards' && action === 'index') {
+Paloma.controller('Leaderboards', {
+  index: function(){
     var scrollTimeout = null;
     $(window).scroll(function(){
       if (scrollTimeout) {
@@ -22,5 +19,8 @@ $(document).on('turbolinks:load', function() {
         startVideoPlayers();
       }, 2000);
     });
+  },
+  show: function(){
+    console.log('show');
   }
 });

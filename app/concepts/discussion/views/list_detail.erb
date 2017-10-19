@@ -26,10 +26,7 @@
     <div class="stat-fl">
       Last comment<br>
       <span>
-        <% if last_comment %>
-          <%= link_to last_comment_author.name, participant_path(last_comment_author) %>&nbsp;
-          <%= time_ago_in_words(last_comment.created_at) %> ago
-        <% end %>
+          <%= time_ago_in_words(last_comment.created_at).gsub('about','') %> ago
       </span>
     </div>
   </div>

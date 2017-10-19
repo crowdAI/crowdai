@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171016135657) do
+ActiveRecord::Schema.define(version: 20171019065734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -306,6 +306,18 @@ ActiveRecord::Schema.define(version: 20171016135657) do
     t.index ["unlock_token"], name: "index_participants_on_unlock_token", unique: true
   end
 
+  create_table "submission_comments", force: :cascade do |t|
+    t.bigint "submission_id"
+    t.bigint "participant_id"
+    t.text "comment_markdown"
+    t.text "comment"
+    t.integer "vote_count", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["participant_id"], name: "index_submission_comments_on_participant_id"
+    t.index ["submission_id"], name: "index_submission_comments_on_submission_id"
+  end
+
   create_table "submission_file_definitions", id: :serial, force: :cascade do |t|
     t.integer "challenge_id"
     t.integer "seq"
@@ -430,6 +442,8 @@ ActiveRecord::Schema.define(version: 20171016135657) do
   add_foreign_key "email_preferences", "participants"
   add_foreign_key "follows", "participants"
   add_foreign_key "participants", "organizers"
+  add_foreign_key "submission_comments", "participants"
+  add_foreign_key "submission_comments", "submissions"
   add_foreign_key "submission_file_definitions", "challenges"
   add_foreign_key "submission_files", "submissions"
   add_foreign_key "submission_grades", "submissions"
@@ -564,53 +578,6 @@ ActiveRecord::Schema.define(version: 20171016135657) do
     ORDER BY ((date_part('year'::text, participants.created_at))::integer), ((date_part('month'::text, participants.created_at))::integer);
   SQL
 
-  create_view "leaderboards",  sql_definition: <<-SQL
-      SELECT l.id,
-      row_number() OVER (PARTITION BY l.challenge_id ORDER BY l.score DESC, l.score_secondary) AS row_num,
-      l.id AS submission_id,
-      l.challenge_id,
-      l.challenge_round_id,
-      l.participant_id,
-      l.slug,
-      c.organizer_id,
-      l.name,
-      l.entries,
-      l.score,
-      l.score_secondary,
-      l.media_large,
-      l.media_thumbnail,
-      l.media_content_type,
-      l.created_at,
-      l.updated_at
-     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS submission_ranking,
-              s.id,
-              s.challenge_id,
-              s.challenge_round_id,
-              s.participant_id,
-              p.slug,
-              p.name,
-              cnt.entries,
-              s.score,
-              s.score_secondary,
-              s.media_large,
-              s.media_thumbnail,
-              s.media_content_type,
-              s.created_at,
-              s.updated_at
-             FROM submissions s,
-              participants p,
-              ( SELECT c_1.challenge_id,
-                      c_1.participant_id,
-                      count(c_1.*) AS entries
-                     FROM submissions c_1
-                    WHERE (c_1.post_challenge = false)
-                    GROUP BY c_1.challenge_id, c_1.participant_id) cnt
-            WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l,
-      challenges c
-    WHERE ((l.submission_ranking = 1) AND (c.id = l.challenge_id))
-    ORDER BY l.challenge_id, (row_number() OVER (PARTITION BY l.challenge_id ORDER BY l.score DESC, l.score_secondary));
-  SQL
-
   create_view "challenge_round_views",  sql_definition: <<-SQL
       SELECT cr.id,
       cr.challenge_round,
@@ -665,6 +632,57 @@ ActiveRecord::Schema.define(version: 20171016135657) do
       challenge_round_views acr,
       challenges c
     WHERE ((c.id = cr.challenge_id) AND (c.id = acr.challenge_id) AND (acr.active IS TRUE));
+  SQL
+
+  create_view "leaderboards",  sql_definition: <<-SQL
+      SELECT l.id,
+      row_number() OVER (PARTITION BY l.challenge_id ORDER BY l.score DESC, l.score_secondary) AS row_num,
+      l.id AS submission_id,
+      l.challenge_id,
+      l.challenge_round_id,
+      l.participant_id,
+      l.slug,
+      c.organizer_id,
+      l.name,
+      l.entries,
+      l.score,
+      l.score_secondary,
+      l.media_large,
+      l.media_thumbnail,
+      l.media_content_type,
+      l.description,
+      l.description_markdown,
+      l.created_at,
+      l.updated_at
+     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.participant_id ORDER BY s.score DESC, s.score_secondary) AS submission_ranking,
+              s.id,
+              s.challenge_id,
+              s.challenge_round_id,
+              s.participant_id,
+              p.slug,
+              p.name,
+              cnt.entries,
+              s.score,
+              s.score_secondary,
+              s.media_large,
+              s.media_thumbnail,
+              s.media_content_type,
+              s.description,
+              s.description_markdown,
+              s.created_at,
+              s.updated_at
+             FROM submissions s,
+              participants p,
+              ( SELECT c_1.challenge_id,
+                      c_1.participant_id,
+                      count(c_1.*) AS entries
+                     FROM submissions c_1
+                    WHERE (c_1.post_challenge = false)
+                    GROUP BY c_1.challenge_id, c_1.participant_id) cnt
+            WHERE ((p.id = s.participant_id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.participant_id = s.participant_id))) l,
+      challenges c
+    WHERE ((l.submission_ranking = 1) AND (c.id = l.challenge_id))
+    ORDER BY l.challenge_id, (row_number() OVER (PARTITION BY l.challenge_id ORDER BY l.score DESC, l.score_secondary));
   SQL
 
 end

@@ -1,0 +1,135 @@
+/* Tables */
+
+table {
+	display: table;
+	font-size: 14px;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: left;
+  font-weight: normal;
+	a {
+		color: $color-accent-dark;
+	}
+	thead {
+		color: $color-grey-54;
+		tr {
+			height: 40px;
+		}
+	}
+	th {
+		font-weight: 400;
+	}
+	tr {
+		border-bottom: 1px solid #e6e6e6;
+	}
+	td {
+		padding: 16px 0;
+		vertical-align: middle;
+	}
+}
+
+
+/* Table - Leaderboard */
+
+table.leaderboard {
+	margin-top: 35px;
+	@media screen and (max-width: 800px) {
+		margin-top: 31px;
+	}
+	@media screen and (max-width: 640px) {
+		margin-top: 27px;
+	}
+	.change {
+		width: 24px;
+	}
+	.participant {
+		img {
+			@media screen and (max-width: 640px) {
+				display: none;
+			}
+		}
+	}
+	.video {
+		width: 120px;
+		@media screen and (max-width: 560px) {
+			display: none;
+		}
+	}
+	.entries {
+		@media screen and (max-width: 800px) {
+			display: none;
+		}	
+	}
+	.post-challenge {
+		@media screen and (max-width: 640px) {
+			display: none;
+		}
+	}
+	.last-submission {
+		text-align: right;
+		@media screen and (max-width: 1024px) {
+			display: none;
+		}	
+	}
+	.action {
+		text-align: right;
+	}
+	// Add to first position & user's own submission(s)
+	tr.highlight {
+		font-weight: 700;
+		.badge {
+			font-weight: 500;
+		}
+	}
+}
+
+/* Table - Submissions */
+
+table.submissions {
+	margin-top: 35px;
+	@media screen and (max-width: 800px) {
+		margin-top: 31px;
+	}
+	@media screen and (max-width: 640px) {
+		margin-top: 27px;
+	}
+	.status,
+	.score {
+		font-weight: 500;
+	}
+	.files {
+		@media screen and (max-width: 480px) {
+			display: none;
+		}
+	}
+	.participant {
+		a {
+			&:hover {
+				border-bottom: 1px solid $color-accent-dark;
+			}
+		}
+	}
+	.secondary {
+		@media screen and (max-width: 640px) {
+			display: none;
+		}
+	}
+	.post-challenge {
+		@media screen and (max-width: 800px) {
+			display: none;
+		}
+	}
+	.last-submission {
+		text-align: right;
+		@media screen and (max-width: 1024px) {
+			display: none;
+		}	
+	}
+}
+
+/* Load more bar */
+
+td.load-more {
+	padding: 0;
+	border-top: none;
+}

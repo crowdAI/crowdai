@@ -1,0 +1,87 @@
+<div class="detail">
+  <div class="detail-header-bg"></div>
+  <%= link_to challenge_leaderboards_path(@entry.challenge_id) do %>
+    <i class="fa fa-times" aria-hidden="true"></i>
+  <% end %>
+  <div class="row">
+    <!--Detail header start-->
+    <div class="detail-header">
+      <div class="text-badge">
+        <%= link_to @participant.name, participant_path(@participant.id), class: "color-accent" %>
+        <% if @participant.admin? %>
+          <span class="badge badge-accent">Admin</span>
+        <% end %>
+      </div>
+      <h4>Submission: <%= @entry.challenge.challenge %></h4>
+    </div>
+    <!--Detail header end-->
+
+    <!--Detail media start-->
+    <div class="detail-media">
+      <video src="https://crowdai-prd.s3.eu-central-1.amazonaws.com/submission_files/submission_359/b96d5629-e27f-4df0-bafb-e2de88e5091c_gif.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAILFF3ZEGG7Y4HXEQ%2F20171016%2Feu-central-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20171016T084820Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=c163d56858799c6206a46d7d66f3b69eacb5471190a8631b0837589e7bca2dbb" loop=""></video>
+    </div>
+    <!--Detail media end-->
+
+    <!--Detail share start
+    <div class="detail-share">
+      <div>
+        <span>Share</span>
+        <a class="btn btn-secondary" href="#">Get URL</a>
+      </div>
+      <div>
+        <a class="btn btn-secondary btn-facebook" href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+        <a class="btn btn-secondary btn-twitter" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    Detail share end-->
+
+    <!--Detail user comment start-->
+
+    <% if @entry.description.present? %>
+      <div class="discussion-comment">
+        <div class="pic">
+          <%= link_to participant_path(@submission.participant) do %>
+            <%= concept(Image::Cell,@submission.participant) %>
+          <% end %>
+        </div>
+        <div class="topic-content">
+          <p class="details">
+            Posted by <%= link_to @submission.participant.name, participant_path(@submission.participant.id) %> <%= time_ago_in_words(@entry.created_at) %> | <a href="#">Quote</a>
+          </p>
+          <div class="comment">
+            <p><%= sanitize(@entry.description) %></p>
+          </div>
+        </div>
+        <a class="btn btn-secondary" href="#"><i class="fa fa-heart active" aria-hidden="true"></i> 47</a>
+      </div>
+      <!--Detail user comment end-->
+    <% end %>
+
+
+    <% if current_participant %>
+      <%= render partial: 'submission_comments/form', locals: { submission: @submission, submission_comment: @submission_comment } %>
+    <% end %>
+
+    <% @submission.submission_comments.each do |submission_comment| %>
+      <% if submission_comment.persisted? %>
+        <div class="discussion-comment">
+          <div class="pic">
+            <%= link_to participant_path(submission_comment.participant) do %>
+              <%= concept(Image::Cell,submission_comment.participant) %>
+            <% end %>
+          </div>
+          <div class="topic-content">
+            <p class="details">Posted by <%= link_to submission_comment.participant.name, participant_path(submission_comment.participant.id) %> <%= time_ago_in_words(@entry.created_at) %> ago | <a href="#">Quote</a>
+              <div class="comment">
+                <p><%= sanitize(submission_comment.comment) %></p>
+              </div>
+            </div>
+            <%= concept(Vote::Cell,
+                      submission_comment,
+                      current_participant: current_participant) %>
+          </div>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>

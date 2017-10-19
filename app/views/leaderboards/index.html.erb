@@ -1,4 +1,4 @@
-<content>
+<div class='content'>
   <%= concept(Challenge::Cell::ChallengeMasthead,
                 @challenge,
                 current_participant: current_participant) %>
@@ -11,7 +11,7 @@
                 current_round: @current_round,
                 current_participant: current_participant) %>
 
-  <div class="row" id='leaderboard'>
+  <div class="row">
     <table class="leaderboard">
       <%= concept(Leaderboard::Cell::TableHead,
                     @leaderboards,
@@ -35,4 +35,4 @@
   <%= render partial: 'shared/load_more', locals: { collection: @leaderboards } %>
 
   <div id='modal-anchor'></div>
-</content>
+</div>

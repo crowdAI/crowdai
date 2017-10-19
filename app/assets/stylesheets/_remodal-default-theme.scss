@@ -289,3 +289,43 @@
 .lt-ie9 .remodal {
   width: 700px;
 }
+
+/* Styles originally from site.scss */
+
+.remodal-overlay {
+  background: rgba(0,0,0,0.3);
+}
+
+.remodal-wrapper {
+  overflow: visible;
+  padding: 0;
+}
+
+.remodal {
+  overflow-y: auto;
+  margin-bottom: 0;
+  padding: 36px 40px;
+  width: 480px;
+  height: auto;
+  border-radius: 2px;
+  text-align: left;
+
+  @media screen and (max-width: 640px) {
+    padding: 35px 20px 36px;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media screen and (max-width: 400px) {
+    padding: 36px 20px;
+  }
+}
+
+.remodal-lrg {
+  width: 600px;
+
+  @media screen and (max-width: 640px) {
+    width: 100%;
+    height: 100%;
+  }
+}

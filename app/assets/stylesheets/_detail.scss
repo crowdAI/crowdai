@@ -1,0 +1,49 @@
+/* Submission detail */
+
+.detail {
+  .fa-times {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  .detail-header-bg {
+    background-color: $color-grey-03;
+    position: absolute;
+    height: 200px;
+    width: 100%;
+    border-bottom: 1px solid $color-grey-10;
+    z-index: -1;
+  }
+  .detail-header {
+    padding: 59px 0 35px 0;
+    h4 {
+      padding: 4px 0 0 0;
+    }
+  }
+  video {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+  }
+  .detail-share {
+    display: flex;
+    justify-content: space-between;
+    padding: 17px 0 32px 0;
+    border-bottom: 1px solid $color-grey-10;
+    .btn {
+      margin-left: 12px;
+    }
+  }
+  .discussion-comment {
+    .pic {
+      margin-left: 0;
+      img {
+        float: left;
+      }
+    }
+    .add-comment {
+
+    }
+  }
+}

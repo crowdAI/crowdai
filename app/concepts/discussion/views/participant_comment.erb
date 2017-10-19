@@ -8,7 +8,7 @@
       <%= div_for(comment, class: "comment") do %>
         <p><%= comment.comment %></p>
       <% end %>
-      <%= concept(Vote::Cell,comment) %>
+      <%= concept(Vote::Cell, comment, current_participant: current_participant) %>
     <% end %>
   </div>
 </div>

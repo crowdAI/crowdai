@@ -3,6 +3,15 @@ class LeaderboardsController < ApplicationController
   before_action :set_leaderboard, only: [:show]
   before_action :set_challenge
   respond_to :js, :html
+  layout :set_layout
+
+  def show
+    @participant = @entry.participant
+    @submission = Submission.find(@entry.id)
+    if current_participant
+      @submission_comment = @submission.submission_comments.build
+    end
+  end
 
   def index
     @current_round = current_round
@@ -43,7 +52,7 @@ class LeaderboardsController < ApplicationController
 
   private
   def set_leaderboard
-    @leaderboard = Leaderboard.find(params[:id])
+    @entry = Leaderboard.find(params[:id])
   end
 
   def set_challenge
@@ -56,6 +65,11 @@ class LeaderboardsController < ApplicationController
     else
       @challenge.challenge_rounds.where(active: true).first
     end
+  end
+
+  def set_layout
+    return 'bare' if action_name == 'show'
+    return 'application'
   end
 
 end

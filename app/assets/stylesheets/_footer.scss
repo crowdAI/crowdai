@@ -1,0 +1,78 @@
+/* Footer */
+
+.logo-footer {
+  width: 120px;
+  height: auto;
+  @media screen and (max-width: 700px) {
+    display: none;
+  }
+}
+
+footer {
+  background: #202020;
+  font-size: 14px;
+  line-height: 60px;
+  padding: 60px 0 35px 0;
+  margin-top: 60px;
+  @media screen and (max-width: 1024px) {
+    padding: 48px 0 23px 0;
+  }
+  @media screen and (max-width: 700px) {
+    line-height: inherit;
+    padding: 40px 0 33px 0;
+  }
+  @media screen and (max-width: 640px) {
+    margin-top: 48px;
+  }
+  .logo-footer {
+    float: left;
+    @media screen and (max-width: 700px) {
+      display: none;
+    }
+  }
+  p {
+    float: left;
+    color: rgba(255,255,255,0.3);
+    margin-left: 20px;
+    line-height: 60px;
+    @media screen and (max-width: 700px) {
+      display: none;
+    }
+  }
+  ul {
+    float: right;
+    font-size: 14px;
+    @media screen and (max-width: 700px) {
+      float: none;
+    }
+    li {
+      float: left;
+      margin-right: 24px;
+      a {
+        color: rgba(255,255,255,0.5); 
+        transition: 0.25s;
+      }
+      a:hover {
+        color: rgba(255,255,255,0.8);
+      }
+      .fa {
+        color: rgba(255,255,255,0.5); 
+        transition: 0.25s;
+      }
+      .fa:hover {
+        color: rgba(255,255,255,0.8);
+      }
+    }
+  }
+  ul.social li:last-of-type {
+    margin-right: 0;
+
+    @media screen and (max-width: 700px) {
+      margin-right: 24px;
+    }
+  }
+}
+
+footer.no-margin-top {
+  margin-top: 0;
+}

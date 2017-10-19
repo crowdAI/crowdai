@@ -1,4 +1,4 @@
-<content>
+<div class='content'>
   <%= concept(Challenge::Cell::ChallengeMasthead,
                 @challenge,
                 current_participant: current_participant) %>
@@ -37,7 +37,7 @@
                      current_participant: current_participant) %>
         </p>
         <div class="comment">
-          <p><%= simple_format(@first_comment.comment) %></p>
+          <p><%= sanitize(@first_comment.comment) %></p>
         </div>
         <%= concept(Vote::Cell,
                       @topic,
@@ -52,4 +52,4 @@
                   collection: @comments,
                   current_participant: current_participant) %>
   </div>
-</content>
+</div>

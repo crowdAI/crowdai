@@ -22,9 +22,9 @@ class Leaderboard::Cell::LeaderboardSubnav < Leaderboard::Cell
 
   def tab_class(challenge_round)
     if challenge_round.id == current_round.id
-      return 'active'
+      return 'nav-link active'
     else
-      return ''
+      return 'nav-link'
     end
   end
 

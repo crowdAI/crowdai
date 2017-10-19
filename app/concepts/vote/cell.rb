@@ -49,17 +49,17 @@ class Vote::Cell < Template::Cell
   end
 
   def vote_link_id
-    "vote-link-#{model.class.to_s.downcase}-#{model.id}"
+    "vote-link-#{votable.model_name.param_key}-#{model.id}"
   end
 
   def create_vote_path
-    classname = votable.class.to_s
-    "#{classname.downcase}_votes_path(#{votable.id})"
+    x = "#{votable.model_name.param_key}_votes_path(#{votable.id})"
+    Rails.logger.debug("PATH: #{x}")
+    return x
   end
 
   def destroy_vote_path(votable, vote_id)
-    classname = votable.class.to_s
-    "#{classname.downcase}_vote_path(#{votable.id},#{vote_id})"
+    "#{votable.model_name.param_key}_vote_path(#{votable.id},#{vote_id})"
   end
 
   def disabled_vote_link

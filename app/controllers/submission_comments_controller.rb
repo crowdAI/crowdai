@@ -1,32 +1,18 @@
 class SubmissionCommentsController < ApplicationController
   before_action :authenticate_participant!, only: [:create, :update, :destroy]
-  before_action :set_comment, only: [:edit, :update, :destroy]
-  before_action :set_topic_and_challenge
+  before_action :set_submission_comment, only: [:edit, :update, :destroy]
+  before_action :set_submission
   respond_to :html, :js
 
-  def new
-    @challenge = @topic.challenge
-    @author = @topic.participant
-
-    @first_comment = @topic.comments.order(created_at: :asc).first
-    @comments = @topic.comments.where.not(id: @first_comment.id).order(created_at: :asc)
-    @comment = Comment.new(topic_id: @topic_id)
-    if params[:quoted_comment_id]
-      quoted_comment = Comment.find(params[:quoted_comment_id])
-      @comment.comment_markdown = "> #{quoted_comment.comment_markdown}"
-    end
-    authorize @comment
-   end
-
   def create
-    @comment = @topic.comments.new(comment_params)
-    if @comment.save
-      EveryCommentNotificationJob.set(wait: 5.minutes).perform_later(@comment.id)
-      redirect_to new_topic_comment_path(@topic), notice: 'Comment was successfully created.'
+    @submission_comment = @submission.submission_comments.new(submission_comment_params)
+    if @submission_comment.save
+      #EveryCommentNotificationJob.set(wait: 5.minutes).perform_later(@comment.id)
+      redirect_to challenge_leaderboard_path(@submission.challenge_id,@submission.id), notice: 'Comment was successfully created.'
     else
       render :new
     end
-    authorize @comment
+    authorize @submission_comment
   end
 
   def edit
@@ -47,23 +33,19 @@ class SubmissionCommentsController < ApplicationController
   end
 
   private
-    def set_comment
+    def set_submission_comment
       @comment = Comment.find(params[:id])
     end
 
-    def set_topic_and_challenge
-      @topic = Topic.friendly.find(params[:topic_id])
-      @challenge = @topic.challenge
+    def set_submission
+      @submission = Submission.find(params[:submission_id])
     end
 
-    def comment_params
-      params.require(:comment)
-            .permit(:topic_id,
-                    :participant_id,
-                    :comment_markdown,
-                    :votes,
-                    :flagged,
-                    :notify)
+    def submission_comment_params
+      params.require(:submission_comment)
+            .permit(:submission_id,
+                    :comment_markdown)
+            .merge(participant_id: current_participant.id)
     end
 
 end

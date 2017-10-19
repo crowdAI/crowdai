@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171017112642) do
+ActiveRecord::Schema.define(version: 20171019065734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -311,7 +311,7 @@ ActiveRecord::Schema.define(version: 20171017112642) do
     t.bigint "participant_id"
     t.text "comment_markdown"
     t.text "comment"
-    t.integer "vote_count"
+    t.integer "vote_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["participant_id"], name: "index_submission_comments_on_participant_id"

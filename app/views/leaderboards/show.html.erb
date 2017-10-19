@@ -40,11 +40,13 @@
     <% if @entry.description.present? %>
       <div class="discussion-comment">
         <div class="pic">
-          <a href="#"><img src="assets/img/users/user-1.jpg" alt=""></a>
+          <%= link_to participant_path(@submission.participant) do %>
+            <%= concept(Image::Cell,@submission.participant) %>
+          <% end %>
         </div>
         <div class="topic-content">
           <p class="details">
-            Posted by <%= link_to @participant.name, participant_path(@participant.id) %> <%= time_ago_in_words(@entry.created_at) %> | <a href="#">Quote</a>
+            Posted by <%= link_to @submission.participant.name, participant_path(@submission.participant.id) %> <%= time_ago_in_words(@entry.created_at) %> | <a href="#">Quote</a>
           </p>
           <div class="comment">
             <p><%= sanitize(@entry.description) %></p>
@@ -57,51 +59,29 @@
 
 
     <% if current_participant %>
-      <%#= render partial: 'submission_comments/form', locals: { submission: @entry.submission, comment: @comment } %>
+      <%= render partial: 'submission_comments/form', locals: { submission: @submission, submission_comment: @submission_comment } %>
     <% end %>
 
-
-
-    <!--Detail user comment start
-    <div class="discussion-comment">
-      <div class="pic">
-        <a href="#"><img src="assets/img/users/user-1.jpg" alt=""></a>
-      </div>
-      <div class="topic-content">
-        <p class="details">Posted by <a href="#">joonho</a> 9 days ago | <a href="#">Quote</a></p>
-        <div class="comment">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque mauris lorem, eleifend quis orci nec, posuere lobortis neque. Cras aliquet augue ex, id varius neque tincidunt eget.</p>
-        </div>
-      </div>
-      <a class="btn btn-secondary" href="#"><i class="fa fa-heart active" aria-hidden="true"></i> 47</a>
-    </div>
-
-    <div class="discussion-comment">
-      <div class="pic">
-        <a href="#"><img src="assets/img/users/user-2.jpg" alt=""></a>
-      </div>
-      <div class="topic-content">
-        <p class="details">Posted by <a href="#">joonho</a> 9 days ago | <a href="#">Quote</a></p>
-        <div class="comment">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque mauris lorem, eleifend quis orci nec, posuere lobortis neque. Cras aliquet augue ex, id varius neque tincidunt eget.</p>
-        </div>
-      </div>
-      <a class="btn btn-secondary" href="#"><i class="fa fa-heart active" aria-hidden="true"></i> 47</a>
-    </div>
-
-    <div class="discussion-comment">
-      <div class="pic">
-        <a href="#"><img src="assets/img/users/user-1.jpg" alt=""></a>
-      </div>
-      <div class="topic-content">
-        <p class="details">Posted by <a href="#">joonho</a> 9 days ago | <a href="#">Quote</a></p>
-        <div class="comment">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque mauris lorem, eleifend quis orci nec, posuere lobortis neque. Cras aliquet augue ex, id varius neque tincidunt eget.</p>
-        </div>
-      </div>
-      <a class="btn btn-secondary" href="#"><i class="fa fa-heart active" aria-hidden="true"></i> 47</a>
-    </div>
-    Detail user comment end-->
+    <% @submission.submission_comments.each do |submission_comment| %>
+      <% if submission_comment.persisted? %>
+        <div class="discussion-comment">
+          <div class="pic">
+            <%= link_to participant_path(submission_comment.participant) do %>
+              <%= concept(Image::Cell,submission_comment.participant) %>
+            <% end %>
+          </div>
+          <div class="topic-content">
+            <p class="details">Posted by <%= link_to submission_comment.participant.name, participant_path(submission_comment.participant.id) %> <%= time_ago_in_words(@entry.created_at) %> ago | <a href="#">Quote</a>
+              <div class="comment">
+                <p><%= sanitize(submission_comment.comment) %></p>
+              </div>
+            </div>
+            <%= concept(Vote::Cell,
+                      submission_comment,
+                      current_participant: current_participant) %>
+          </div>
+      <% end %>
+    <% end %>
 
   </div>
 </div>

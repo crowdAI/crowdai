@@ -37,7 +37,7 @@
                      current_participant: current_participant) %>
         </p>
         <div class="comment">
-          <p><%= simple_format(@first_comment.comment) %></p>
+          <p><%= sanatize(@first_comment.comment) %></p>
         </div>
         <%= concept(Vote::Cell,
                       @topic,

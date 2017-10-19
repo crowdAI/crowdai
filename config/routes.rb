@@ -62,6 +62,13 @@ Rails.application.routes.draw do
   end
   get '/load_more_challenges', to: 'challenges#load_more', as: :load_more_challenges
 
+  resources :submissions, only: [] do
+    resources :submission_comments, only: [:create, :delete, :edit, :update]
+  end
+
+  resources :submission_comments, only: [] do
+    resources :votes, only: [:create, :destroy]
+  end
 
   resources :topics do
     resources :comments, only: [:new, :create, :edit, :destroy, :update] do

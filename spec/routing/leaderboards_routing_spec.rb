@@ -5,16 +5,16 @@ RSpec.describe LeaderboardsController, type: :routing do
     it "routes to #index" do
       expect(:get => "/challenges/1/leaderboards").to route_to("leaderboards#index", challenge_id: "1")
     end
+
+    it "routes to #show" do
+      expect(:get => "/challenges/1/leaderboards/2").to route_to('leaderboards#show', challenge_id: "1", id: "2")
+    end
   end
 
   describe 'invalid routing with challenge' do
 
     it "does not route to #new" do
-      expect(:get => "/challenges/1/leaderboards/new").not_to be_routable
-    end
-
-    it "does not route to #show" do
-      expect(:get => "/challenges/1/leaderboards/1").not_to be_routable
+      #expect(:get => "/challenges/1/leaderboards/new").not_to be_routable
     end
 
     it "does not route to #edit" do

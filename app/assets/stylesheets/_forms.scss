@@ -13,6 +13,7 @@ label {
 input[type=text],
 input[type=number],
 input[type=email],
+input[type=password],
 #search-bar,
 textarea {
   display: block;
@@ -29,7 +30,7 @@ textarea {
     outline: 0;
     border-color: $color-grey-40;
     &:valid {
-      border-color: $color-grey-40;         
+      border-color: $color-grey-40;
     }
     &:required,
     &:invalid {
@@ -91,7 +92,7 @@ select {
     border-color: $color-grey-40;
 
     &:valid {
-      border-color: $color-grey-40;         
+      border-color: $color-grey-40;
     }
     &:required,
     &:invalid {
@@ -183,13 +184,13 @@ fieldset.checkbox {
       line-height: 20px;
       font-weight: 400;
     }
-    
+
     input[type=checkbox] {
       float: left;
       margin: 4px 10px 0 3px;
       // transform: scale(1.3848);
       cursor: pointer;
-      
+
       &:focus {
         outline: 0;
       }
@@ -215,11 +216,11 @@ fieldset.radiogroup {
       display: inline;
       margin: 0 0 0 5px;
     }
-    
+
     input[type=radio] {
       float: left;
-    }   
-  } 
+    }
+  }
 }
 
 
@@ -242,7 +243,7 @@ input.switch:empty ~ label {
   user-select: none;
 }
 
-input.switch:empty ~ label:before, 
+input.switch:empty ~ label:before,
 input.switch:empty ~ label:after {
   position: absolute;
   display: block;
@@ -283,11 +284,12 @@ form.leaderboard {
 }
 
 form {
-  overflow: hidden; 
+  overflow: hidden;
 
   input[type=email],
   input[type=text],
   input[type=number],
+  input[type=password],
   textarea,
   select {
     margin: 0 0 20px 0;
@@ -351,7 +353,7 @@ form {
       height: 16px;
       font-size: 14px;
       color: $color-grey-54;
-      
+
       &:hover {
         border-bottom: none;
         color: $color-grey-87;
@@ -405,6 +407,7 @@ form {
     input[type=text],
     input[type=number],
     input[type=email],
+    input[type=password],
     textarea,
     select,
     .twin-container {
@@ -413,7 +416,7 @@ form {
     .twin-container {
       .twin-field {
         width: calc(50% - 4px);
-      
+
         &:last-of-type {
           margin-left: 8px;
         }
@@ -432,6 +435,7 @@ form {
     input[type=text],
     input[type=number],
     input[type=email],
+    input[type=password],
     select {
       max-width: 330px;
     }
@@ -450,7 +454,7 @@ form {
       max-width: 680px;
 
       .twin-field {
-        width: calc(50% - 10px);  
+        width: calc(50% - 10px);
 
         &:last-of-type {
           margin-left: 20px;
@@ -478,7 +482,7 @@ form {
       margin: 3px 0 9px;
     }
     &:last-of-type {
-      margin-bottom: 5px; 
+      margin-bottom: 5px;
     }
   }
   h4 {
@@ -486,10 +490,11 @@ form {
   }
   &.modal {
     text-align: left;
-    
+
     input[type=text],
     input[type=number],
     input[type=email],
+    input[type=password],
     textarea {
       margin: 0 0 24px 0;
       max-width: 100%;
@@ -540,7 +545,7 @@ form {
       color: $color-grey-54;
       font-size: 13px;
       line-height: 16px;
-    } 
+    }
   }
 }
 
@@ -553,7 +558,7 @@ form {
 /* Error message */
 
 form input,
-form select {    
+form select {
   &.has-error {
     border-color: $color-accent;
     margin-bottom: 9px;

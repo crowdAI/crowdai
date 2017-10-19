@@ -51,22 +51,25 @@
     line-height: 24px;
     margin-top: 24px;
   }
-  ul.bullets { 
+  ul.bullets {
     display: block;
     list-style-type: disc;
     line-height: 24px;
     padding-left: 40px;
   }
   ul.partners {
-    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: flex-start;
+    align-items: center;
     margin-top: 0;
     li {
-      display: block;
-      float: left;
+      flex: 0 0 auto;
+      margin: 0 20px 20px 0;
       height: 100px;
       width: 100px;
-      margin: 0 28px 28px 0;
-      
+
       a:hover {
         border-bottom: none;
       }

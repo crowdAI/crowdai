@@ -44,7 +44,7 @@ class Participant < ApplicationRecord
   validates :twitter, :url => { allow_blank: true }
   validates :name, presence: true
   validates :name, length: { minimum: 2 }, allow_blank: false, uniqueness: { case_sensitive: false }
-  validates :affiliation, length:{ minimum:2}, allow_blank: true
+  validates :affiliation, length:{ in:2...100}, allow_blank: true
   validates :country_cd, inclusion: { in: ISO3166::Country::codes}, allow_blank: true
   validates :address, length:{ in: 10...255 }, allow_blank: true
 
@@ -116,6 +116,12 @@ class Participant < ApplicationRecord
 
   def should_generate_new_friendly_id?
     name_changed?
+  end
+
+  def access_to_contact_info?(participant_to_view)
+    participant_to_view && (participant_to_view == self ||
+      self.organizer.present? ||
+        self.admin?)
   end
 
   def self.find_by(args)

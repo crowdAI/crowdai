@@ -6,6 +6,7 @@
   <div class="sub-nav">
     <div class="row">
       <ul class='tabs'>
+<<<<<<< 6199476c0f362f35d15fe83e7a70adfdb3d81329
         <li data-tab='tab-challenges' class="active">
           <a href="#" onclick="return false;">Challenges
             <sup><%= @challenges.count unless @challenges.count == 0 %></sup>
@@ -30,6 +31,11 @@
         <li data-tab='tab-contact-info'>
           <a href="#" onclick="return false;">Contact info</a>
         </li>
+        <% if current_participant.access_to_contact_info?(@participant) %>
+          <li data-tab='tab-contact-info'>
+            <a href="#" onclick="return false;">Contact info</a>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
@@ -102,8 +108,7 @@
     </div>
   </div>
 
-  <% if current_participant && (@participant == current_participant ||
-      current_participant.admin? || current_participant.organizer.present?) %>
+  <% if current_participant.access_to_contact_info?(@participant) %>
       <div id='tab-contact-info' class='tab-content'>
         <div class="row">
           <div class="article">
@@ -137,3 +142,7 @@
         </div>
       </div>
   <% end %>
+<<<<<<< 6199476c0f362f35d15fe83e7a70adfdb3d81329
+=======
+</content>
+>>>>>>> Minor fixes for validation and access right check

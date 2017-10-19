@@ -17,7 +17,6 @@
           <%=  participant.affiliation %>
         </p>
       <% end %>
-      <p class="location"><%= location_organization %></p>
       <div class="text-w-icon">
         <% if policy(participant).edit? %>
           <p><strong>API key:</strong> <%= participant.api_key %></p>

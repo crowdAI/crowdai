@@ -3,6 +3,7 @@ class Participant < ApplicationRecord
          :recoverable, :rememberable, :trackable, :lockable, :timeoutable
   include FriendlyId
   include ApiKey
+  include Countries
   friendly_id :name, use: [:slugged, :finders, :history]
   after_create :set_email_preferences
   before_save :set_api_key
@@ -44,6 +45,7 @@ class Participant < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { minimum: 2 }, allow_blank: false, uniqueness: { case_sensitive: false }
   validates :affiliation, length:{ minimum:2}, allow_blank: true
+  validates :country_cd, inclusion: { in: ISO3166::Country::codes}, allow_blank: true
 
 
   def disable_account(reason)

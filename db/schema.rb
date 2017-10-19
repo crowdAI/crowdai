@@ -315,9 +315,9 @@ ActiveRecord::Schema.define(version: 20171020085025) do
     t.datetime "account_disabled_dttm"
     t.string "slug"
     t.string "api_key"
-    t.string "location"
     t.string "image_file"
     t.string "affiliation"
+    t.string "country_cd"
     t.index ["confirmation_token"], name: "index_participants_on_confirmation_token", unique: true
     t.index ["email"], name: "index_participants_on_email", unique: true
     t.index ["organizer_id"], name: "index_participants_on_organizer_id"

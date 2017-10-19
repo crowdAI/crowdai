@@ -71,7 +71,8 @@ class ParticipantsController < ApplicationController
                   :linkedin,
                   :twitter,
                   :image_file,
-                  :affiliation)
+                  :affiliation,
+                  :country_cd)
     end
 
 end

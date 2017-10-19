@@ -46,6 +46,7 @@ class Participant < ApplicationRecord
   validates :name, length: { minimum: 2 }, allow_blank: false, uniqueness: { case_sensitive: false }
   validates :affiliation, length:{ minimum:2}, allow_blank: true
   validates :country_cd, inclusion: { in: ISO3166::Country::codes}, allow_blank: true
+  validates :address, length:{ in: 10...255 }, allow_blank: true
 
 
   def disable_account(reason)

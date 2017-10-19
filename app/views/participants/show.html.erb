@@ -26,7 +26,10 @@
         </li>
         <li data-tab='tab-contact-info'>
           <a href="#" onclick="return false;">Contact info</a>
-        </li
+        </li>
+        <li data-tab='tab-contact-info'>
+          <a href="#" onclick="return false;">Contact info</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -108,6 +111,16 @@
               <tr>
                 <td>E-mail:</td>
                 <td><%= @participant.email %></td>
+              </tr>
+              <tr>
+                <td>Address:</td>
+                <td>
+                  <% if @participant.address.present? %>
+                    <%= @participant.address %>
+                  <% else %>
+                    <span class="light">Not specified yet</span>
+                  <% end %>
+                </td>
               </tr>
               <tr>
                 <td>Country:</td>

@@ -1,4 +1,5 @@
 class WinnersController < ApplicationController
+  before_action :authenticate_participant!
   before_action :set_challenge
 
   def index

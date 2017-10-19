@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171019065734) do
+ActiveRecord::Schema.define(version: 20171019142402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -225,6 +225,25 @@ ActiveRecord::Schema.define(version: 20171019065734) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
+  create_table "job_postings", force: :cascade do |t|
+    t.string "title"
+    t.string "organisation"
+    t.string "contact_name"
+    t.string "contact_email"
+    t.string "contact_phone"
+    t.date "posting_date"
+    t.date "closing_date"
+    t.string "status_cd"
+    t.text "description_markdown"
+    t.text "description"
+    t.boolean "remote", default: true
+    t.string "location"
+    t.string "country"
+    t.integer "page_views"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "mandrill_messages", force: :cascade do |t|
     t.jsonb "res"
     t.jsonb "message"
@@ -304,6 +323,12 @@ ActiveRecord::Schema.define(version: 20171019065734) do
     t.index ["reset_password_token"], name: "index_participants_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_participants_on_slug", unique: true
     t.index ["unlock_token"], name: "index_participants_on_unlock_token", unique: true
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.boolean "jobs_visible", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "submission_comments", force: :cascade do |t|

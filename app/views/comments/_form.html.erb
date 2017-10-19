@@ -4,7 +4,7 @@
       <%= concept(Image::Cell,current_participant) %>
     <% end %>
   </div>
-  <%= form_for [topic, comment] do |f| %>
+  <%= form_for [topic, comment], html: { class: 'add-comment', id: 'new_comment' } do |f| %>
     <%= f.text_area :comment_markdown, placeholder: "Add a comment..." %>
     <%= f.hidden_field :participant_id, value: current_participant.id %>
     <%= f.submit 'Add comment', class: 'btn btn-primary pull-right' %>

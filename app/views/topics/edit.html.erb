@@ -13,7 +13,7 @@
         <%= concept(Image::Cell,current_participant) %>
         <% end %>
       </div>
-      <%= form_for [@challenge,@topic] do |f| %>
+      <%= form_for [@challenge,@topic], html: { class: 'add-comment', id: 'new_comment' } do |f| %>
       <fieldset>
         <label>Topic</label>
         <%= f.text_field :topic %>

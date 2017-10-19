@@ -27,11 +27,15 @@ class Api::ExternalGradersController < Api::BaseController
       participant = Participant.where(api_key: params[:api_key]).first
       raise DeveloperAPIKeyInvalid if participant.nil?
       challenge = Challenge.where(challenge_client_name: params[:challenge_client_name]).first
+      challenge_round_id = get_challenge_round_id(challenge)
       raise ChallengeClientNameInvalid if challenge.nil?
+      raise ChallengeRoundNotOpen unless challenge_round_open?(challenge)
+      raise ParticipantNotQualified unless participant_qualified?(challenge,participant)
       submissions_remaining, reset_dttm = challenge.submissions_remaining(participant.id)
       raise NoSubmissionSlotsRemaining if submissions_remaining < 1
       submission = Submission.create!(participant_id: participant.id,
                                       challenge_id: challenge.id,
+                                      challenge_round_id: challenge_round_id,
                                       description_markdown: params[:comment],
                                       post_challenge: post_challenge(challenge))
       if media_fields_present?
@@ -113,6 +117,28 @@ class Api::ExternalGradersController < Api::BaseController
     end
   end
 
+  def get_challenge_round_id(challenge)
+    round = ChallengeRoundSummary.where(challenge_id: challenge.id, round_status_cd: 'current').first
+    #raise ChallengeRoundNotOpen if round.empty?
+    if round.present?
+      return round.id
+    else
+      return nil
+    end
+  end
+
+  def challenge_round_open?(challenge)
+    return true
+    round = ChallengeRoundSummary
+              .where(challenge_id: challenge.id, round_status_cd: 'current')
+              .where("current_timestamp between start_dttm and end_dttm")
+    return false if round.empty?
+  end
+
+  def participant_qualified?(challenge,participant)
+    return true
+  end
+
   # TODO this needs a rethink
   def validate_s3_key(s3_key)
     S3Service.new(s3_key,shared_bucket=true).valid_key?
@@ -182,6 +208,19 @@ class Api::ExternalGradersController < Api::BaseController
       super
     end
   end
+
+  class ChallengeRoundNotOpen < StandardError
+    def initialize(msg='The challenge is not open for submissions at this time. Please check the challenge page at www.crowdai.org')
+      super
+    end
+  end
+
+  class ParticipantNotQualified < StandardError
+    def initialize(msg='You have not qualified for this round. Please review the challenge rules at www.crowdai.org')
+      super
+    end
+  end
+
 
 end
 

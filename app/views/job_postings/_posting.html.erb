@@ -3,12 +3,4 @@
     <h5 class="wrapper"><%= link_to job.title, job_posting_path(job.id) %></h5>
     <p class="description ellipsis"><%= job.organisation %></p>
   </div>
-  <div class="stats">
-    <div class="stat-fr">
-      <%= job.page_views %><br>
-      <span>
-        <%= "View".pluralize(job.page_views) %>
-      </span>
-    </div>
-  </div>
 </li>

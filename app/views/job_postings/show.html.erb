@@ -1,73 +1,42 @@
-<p id="notice"><%= notice %></p>
+<div class="content">
+        <div class="masthead-detailed">
+            <div class="row">
+                <div class="info info-tutorial">
+                    <h2><%= @job_posting.title %></h2>
+                    <p class="large"><%= @job_posting.organisation %></p>
+                    <div class="user-link">
+                        <p>
+                          <% if @job_posting.contact_email.present? || @job_posting.contact_phone.present? || @job_posting.contact_name.present? %>
+                            Contact
+                          <% end %>
+                        <b><%= @job_posting.contact_name %></b><br/>
+                           <%= @job_posting.contact_email %>
+                           <% if @job_posting.contact_email.present? && @job_posting.contact_phone.present? %>
+                              &middot;
+                           <% end %>
+                           <%= @job_posting.contact_phone %>
+                        </p>
+                    </div>
+                    <div class="stats">
+                      <div class="stat-fr">
+                        <span>
+                          <% if @job_posting.posting_date.present? %>
+                            Posted <%= @job_posting.posting_date %><br/>
+                          <% end %>
+                          <% if @job_posting.closing_date.present? %>
+                            Closes <%= @job_posting.closing_date %>
+                          <% end %>
+                        </span>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @job_posting.title %>
-</p>
 
-<p>
-  <strong>Organisation:</strong>
-  <%= @job_posting.organisation %>
-</p>
-
-<p>
-  <strong>Contact name:</strong>
-  <%= @job_posting.contact_name %>
-</p>
-
-<p>
-  <strong>Contact email:</strong>
-  <%= @job_posting.contact_email %>
-</p>
-
-<p>
-  <strong>Contact phone:</strong>
-  <%= @job_posting.contact_phone %>
-</p>
-
-<p>
-  <strong>Posting date:</strong>
-  <%= @job_posting.posting_date %>
-</p>
-
-<p>
-  <strong>Closing date:</strong>
-  <%= @job_posting.closing_date %>
-</p>
-
-<p>
-  <strong>Status cd:</strong>
-  <%= @job_posting.status_cd %>
-</p>
-
-<p>
-  <strong>Description markdown:</strong>
-  <%= @job_posting.description_markdown %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @job_posting.description %>
-</p>
-
-<p>
-  <strong>Remote:</strong>
-  <%= @job_posting.remote %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @job_posting.location %>
-</p>
-
-<p>
-  <strong>Country:</strong>
-  <%= @job_posting.country %>
-</p>
-
-<p>
-  <strong>Page views:</strong>
-  <%= @job_posting.page_views %>
-</p>
-
-<%= link_to 'Back', job_postings_path %>
+        <div class="row">
+            <div class="article">
+                <p><%= sanitize(@job_posting.description) %></p>
+            </div>
+        </div>
+    </div>

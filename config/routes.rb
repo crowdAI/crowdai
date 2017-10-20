@@ -3,7 +3,6 @@ require 'sidekiq/cron/web'
 
 Rails.application.routes.draw do
 
-
   admin = lambda do |request|
     request.env['warden'].authenticate? && request.env['warden'].user.admin?
   end
@@ -20,7 +19,7 @@ Rails.application.routes.draw do
     get :remove_image
     resources :email_preferences, only: [:edit, :update]
   end
-
+  resources :job_postings, only: [:index, :show]
 
   # API
   namespace :api do

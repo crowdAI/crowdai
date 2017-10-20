@@ -151,6 +151,14 @@ GEM
       sprockets (< 4.0)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
+    countries (2.1.2)
+      i18n_data (~> 0.8.0)
+      money (~> 6.9)
+      sixarm_ruby_unaccent (~> 1.1)
+      unicode_utils (~> 1.4)
+    country_select (3.1.1)
+      countries (~> 2.0)
+      sort_alphabetical (~> 1.0)
     crass (1.0.2)
     database_cleaner (1.6.1)
     declarative (0.0.9)
@@ -380,6 +388,7 @@ GEM
     httparty (0.15.6)
       multi_xml (>= 0.5.2)
     i18n (0.8.6)
+    i18n_data (0.8.0)
     include_media_rails (1.4.9)
       railties (>= 3.1, < 6)
       sass (>= 3.3, < 4)
@@ -455,6 +464,8 @@ GEM
     minitest (5.10.3)
     momentjs-rails (2.17.1)
       railties (>= 3.1)
+    money (6.9.0)
+      i18n (>= 0.6.4, < 0.9)
     multi_json (1.12.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
@@ -666,7 +677,10 @@ GEM
       rack (~> 2.0)
       rack-protection (= 2.0.0)
       tilt (~> 2.0)
+    sixarm_ruby_unaccent (1.2.0)
     slop (3.6.0)
+    sort_alphabetical (1.1.0)
+      unicode_utils (>= 1.2.2)
     spring (2.0.2)
       activesupport (>= 4.2)
     sprockets (3.7.1)
@@ -714,6 +728,7 @@ GEM
     uber (0.1.0)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
+    unicode_utils (1.4.0)
     validate_url (1.0.2)
       activemodel (>= 3.0.0)
       addressable
@@ -756,6 +771,7 @@ DEPENDENCIES
   cocoon
   coffee-rails
   compass-rails
+  country_select
   database_cleaner
   derailed_benchmarks
   devise

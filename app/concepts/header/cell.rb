@@ -22,12 +22,29 @@ class Header::Cell < Template::Cell
     end
   end
 
+  def jobs_link(target)
+    setting = Setting.first
+    if setting && setting.jobs_visible
+      if target == 'desktop'
+        "<li>#{ link_to 'Jobs', job_postings_path }</li>"
+      else
+        "<li><h3>#{ link_to 'Jobs', job_postings_path }</h3></li>"
+      end
+    else
+      nil
+    end
+  end
+
   def desktop_links
     links = [
       "<ul>",
       "<li>#{ link_to "Challenges", challenges_path }</li>",
       "<li>#{ link_to "Knowledge Base", articles_path }</li>"
     ]
+
+    unless jobs_link('desktop').nil?
+      links << jobs_link('desktop')
+    end
 
     if current_participant && current_participant.admin?
       links << "<li>#{ link_to "Admin", '/admin' }</li>"
@@ -47,6 +64,7 @@ class Header::Cell < Template::Cell
     "<ul>
       <li><h3>#{ link_to "Challenges", challenges_path }</h3></li>
       <li><h3>#{ link_to "Knowledge Base", articles_path }</h3></li>
+      #{ jobs_link('mobile') }
     </ul>" ]
 
     if current_participant.nil?

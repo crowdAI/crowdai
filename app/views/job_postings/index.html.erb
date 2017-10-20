@@ -1,0 +1,15 @@
+<div class='content'>
+  <div class="masthead">
+    <div class="row">
+      <h2>Jobs</h2>
+    </div>
+  </div>
+  <div class="row">
+    <ul class="list-challenges">
+      <% @job_postings.each do |job| %>
+        <%= render partial: 'posting', locals: { job: job } %>
+      <% end %>
+    </ul>
+  </div>
+  <%#= render partial: 'shared/load_more', locals: { collection: @challenges } %>
+</div>

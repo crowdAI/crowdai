@@ -39,7 +39,11 @@
 
           <p>
             <% if @job_posting.job_url %>
-              <%= link_to @job_posting.job_url %>
+              <% if @job_posting.job_url.include?("http") %>
+                <%= link_to URI.parse(@job_posting.job_url).host, @job_posting.job_url %>
+              <% else %>
+                <%= link_to @job_posting.job_url, URI::HTTP.build({:host => @job_posting.job_url}).to_s %>
+              <% end %>
             <% end %>
           </p>
         </div>

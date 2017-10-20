@@ -28,6 +28,16 @@
             <% end %>
           </p>
           <p>
+            <% if @job_posting.remote.present? %>
+              <b>Remote</b><br/>
+            <% end %>
+            <% if @job_posting.location.present? && @job_posting.country.present? %>
+                <%= @job_posting.location %>,&nbsp;
+                <%= @job_posting.country_name %>
+            <% end %>
+          </p>
+
+          <p>
             <% if @job_posting.job_url %>
               <%= link_to @job_posting.job_url %>
             <% end %>

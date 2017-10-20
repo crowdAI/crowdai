@@ -26,9 +26,9 @@ class Header::Cell < Template::Cell
     setting = Setting.first
     if setting && setting.jobs_visible
       if target == 'desktop'
-        "<li>#{ link_to 'Jobs', job_postings_path }</li>"
+        "<li>#{ link_to 'Job Board', job_postings_path }</li>"
       else
-        "<li><h3>#{ link_to 'Jobs', job_postings_path }</h3></li>"
+        "<li><h3>#{ link_to 'Job Board', job_postings_path }</h3></li>"
       end
     else
       nil

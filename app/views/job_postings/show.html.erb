@@ -1,42 +1,46 @@
 <div class="content">
-        <div class="masthead-detailed">
-            <div class="row">
-                <div class="info info-tutorial">
-                    <h2><%= @job_posting.title %></h2>
-                    <p class="large"><%= @job_posting.organisation %></p>
-                    <div class="user-link">
-                        <p>
-                          <% if @job_posting.contact_email.present? || @job_posting.contact_phone.present? || @job_posting.contact_name.present? %>
-                            Contact
-                          <% end %>
-                        <b><%= @job_posting.contact_name %></b><br/>
-                           <%= @job_posting.contact_email %>
-                           <% if @job_posting.contact_email.present? && @job_posting.contact_phone.present? %>
-                              &middot;
-                           <% end %>
-                           <%= @job_posting.contact_phone %>
-                        </p>
-                    </div>
-                    <div class="stats">
-                      <div class="stat-fr">
-                        <span>
-                          <% if @job_posting.posting_date.present? %>
-                            Posted <%= @job_posting.posting_date %><br/>
-                          <% end %>
-                          <% if @job_posting.closing_date.present? %>
-                            Closes <%= @job_posting.closing_date %>
-                          <% end %>
-                        </span>
-                      </div>
-                    </div>
-                </div>
-            </div>
+  <div class="masthead-detailed">
+    <div class="row">
+      <div class="info info-tutorial">
+        <h2><%= @job_posting.title %></h2>
+        <p class="large"><%= @job_posting.organisation %></p>
+        <div class="user-link">
+          <p>
+            <% if @job_posting.contact_email.present? || @job_posting.contact_phone.present? || @job_posting.contact_name.present? %>
+              Contact:<br/>
+            <% end %>
+            <% if  @job_posting.contact_name.present? %>
+              <b><%= @job_posting.contact_name %></b><br/>
+            <% end %>
+            <%= @job_posting.contact_email %>
+            <% if @job_posting.contact_email.present? && @job_posting.contact_phone.present? %>
+              &middot;
+            <% end %>
+            <%= @job_posting.contact_phone %>
+
+            <% if @job_posting.posting_date.present? %>
+              <br/>Posted
+              <%= @job_posting.posting_date %>
+            <% end %>
+            <% if @job_posting.closing_date.present? %>
+              <br/>Closes
+              <%= @job_posting.closing_date %>
+            <% end %>
+          </p>
+          <p>
+            <% if @job_posting.job_url %>
+              <%= link_to @job_posting.job_url %>
+            <% end %>
+          </p>
         </div>
 
-
-        <div class="row">
-            <div class="article">
-                <p><%= sanitize(@job_posting.description) %></p>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
+
+  <div class="row">
+    <div class="article">
+      <p><%= simple_format(@job_posting.description) %></p>
+    </div>
+  </div>
+</div>

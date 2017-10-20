@@ -8,7 +8,7 @@ FactoryGirl.define do
     posting_date 2.weeks.ago
     closing_date 2.weeks.since
     status_cd 'open'
-    description_markdown "# A cool job"
+    description { FFaker::Lorem.unique.paragraph(6) }
     remote false
     location 'Geneva'
     country 'Switzerland'

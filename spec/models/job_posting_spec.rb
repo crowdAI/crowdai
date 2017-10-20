@@ -11,12 +11,12 @@ RSpec.describe JobPosting, type: :model do
     it { is_expected.to respond_to :closing_date }
     it { is_expected.to respond_to :status_cd }
     it { is_expected.to respond_to :status }
-    it { is_expected.to respond_to :description_markdown }
     it { is_expected.to respond_to :description }
     it { is_expected.to respond_to :remote }
     it { is_expected.to respond_to :location }
     it { is_expected.to respond_to :country }
     it { is_expected.to respond_to :page_views }
+    it { is_expected.to respond_to :job_url }
   end
 
 end

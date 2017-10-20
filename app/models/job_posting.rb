@@ -1,5 +1,7 @@
 class JobPosting < ApplicationRecord
 
+  default_scope { order('created_at DESC') }
+
   def record_page_view
     self.page_views ||= 0
     self.page_views += 1

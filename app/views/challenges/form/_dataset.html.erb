@@ -5,8 +5,20 @@
     <%= markdown_editor do |m| %>
     <%= f.text_area :dataset_description_markdown, class: "txt-med" %>
     <% end %>
-
+    <label>End User Agreement file</label>
+    <div class="upload">
+      <% if @challenge.eua_file.file.present? %>
+        <span>You have already uploaded an EUA. If you wish to replace it, you can upload a new file</span>
+        <%= link_to 'Current EUA', @challenge.eua_file.file.url %>
+      <% else %>
+        <span>If this dataset requires an End User Agreement, you can upload it here</span>
+      <% end %>
+      <br/><br/>
+      <%= f.file_field :eua_file, class: 'file-upload' %>
+      <span>PDF only, 5MB limit</span>
+    </div>
     <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>
   </fieldset>
+
   <% end %>
 </div>

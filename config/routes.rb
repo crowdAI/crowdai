@@ -75,6 +75,8 @@ Rails.application.routes.draw do
     end
     resources :votes, only: [:create, :destroy]
   end
+  match '/topics/:topic_id/discussion', to: 'comments#new', via: :get, as: :new_topic_discussion
+
 
   resources :comments, only: [] do
     resources :votes, only: [:create, :destroy]

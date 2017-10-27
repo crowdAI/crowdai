@@ -5,9 +5,14 @@ FactoryGirl.define do
     tagline "Coke is it"
     description FFaker::Lorem.sentence(20)
     approved true
+    clef_organizer false
 
     trait :unapproved do
       approved false
+    end
+
+    trait :clef do
+      clef_organizer true
     end
 
     trait :second_organizer do

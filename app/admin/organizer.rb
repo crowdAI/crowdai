@@ -11,6 +11,7 @@ ActiveAdmin.register Organizer do
     column :id
     column :organizer
     column :approved
+    column :clef_organizer
     actions
   end
 

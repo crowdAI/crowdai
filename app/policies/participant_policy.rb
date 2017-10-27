@@ -25,15 +25,19 @@ class ParticipantPolicy < ApplicationPolicy
   end
 
   def destroy?
-    participant
+    edit?
   end
 
   def regen_api_key?
-    update?
+    edit?
   end
 
   def remove_image?
-    update?
+    edit?
+  end
+
+  def clef_access?
+    participant && (participant.admin? || participant.id == @record.id || participant.organizer && participant.organizer.clef_organizer == true)
   end
 
   class Scope

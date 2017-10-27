@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
     @comment = @topic.comments.new(comment_params)
     if @comment.save
       EveryCommentNotificationJob.set(wait: 5.minutes).perform_later(@comment.id)
-      redirect_to new_topic_comment_path(@topic), notice: 'Comment was successfully created.'
+      redirect_to new_topic_discussion_path(@topic), notice: 'Comment was successfully created.'
     else
       render :new
     end

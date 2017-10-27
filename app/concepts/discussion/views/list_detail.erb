@@ -12,7 +12,7 @@
     <% end %>
   </div>
   <div class="details">
-    <h5><%= link_to topic.topic, new_topic_comment_path(topic) %></h5>
+    <h5><%= link_to topic.topic, new_topic_discussion_path(topic) %></h5>
     <p class="user">
       <%= participant_link %>
       <%= time_ago_in_words(topic.created_at) %> ago

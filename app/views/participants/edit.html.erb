@@ -23,8 +23,12 @@
         <% end %>
         <span>Your image will be cropped if necessary. 5MB limit</span>
       </div>
-      <label>Location</label>
-      <%= f.text_field :location %>
+      <label>Affiliation</label>
+      <%= f.text_field :affiliation %>
+      <label>Address</label>
+      <%= f.text_field :address %>
+      <label>Country</label>
+      <%= f.country_select :country_cd, { include_blank: '--- Select a country ---'}, { class: 'country-select-box' }  %>
       <label>Bio</label>
       <%= f.text_area :bio %>
       <label>Github</label>

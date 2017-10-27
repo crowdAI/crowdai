@@ -101,6 +101,9 @@ gem "cells"
 gem "cells-erb"
 gem 'record_tag_helper', '~> 1.0'
 
+# Select box for countries
+gem 'country_select'
+
 group :development, :test do
   gem "rspec-cells"
 end

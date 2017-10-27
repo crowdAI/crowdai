@@ -70,7 +70,10 @@ class ParticipantsController < ApplicationController
                   :github,
                   :linkedin,
                   :twitter,
-                  :image_file)
+                  :image_file,
+                  :affiliation,
+                  :country_cd,
+                  :address)
     end
 
 end

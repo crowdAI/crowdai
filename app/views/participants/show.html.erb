@@ -24,6 +24,11 @@
         <li data-tab='tab-bio'>
           <a href="#" onclick="return false;">Bio</a>
         </li>
+        <% if current_participant.access_to_contact_info?(@participant) %>
+          <li data-tab='tab-contact-info'>
+            <a href="#" onclick="return false;">Contact info</a>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
@@ -96,4 +101,38 @@
     </div>
   </div>
 
+  <% if current_participant.access_to_contact_info?(@participant) %>
+      <div id='tab-contact-info' class='tab-content'>
+        <div class="row">
+          <div class="article">
+            <table>
+              <tr>
+                <td>E-mail:</td>
+                <td><%= @participant.email %></td>
+              </tr>
+              <tr>
+                <td>Address:</td>
+                <td>
+                  <% if @participant.address.present? %>
+                    <%= @participant.address %>
+                  <% else %>
+                    <span class="light">Not specified yet</span>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td>Country:</td>
+                <td>
+                  <% if @participant.country_cd.present? %>
+                    <%= "#{ISO3166::Country.find_country_by_alpha2(@participant.country_cd)} (#{@participant.country_cd})" %>
+                  <% else %>
+                    <span class="light">Not specified yet</span>
+                  <% end %>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+  <% end %>
 </div>

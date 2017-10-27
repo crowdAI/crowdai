@@ -6,6 +6,10 @@ FactoryGirl.define do
     password_confirmation 'password12'
     confirmed_at Time.now
     api_key SecureRandom.hex
+    affiliation FFaker::Company.name
+    address FFaker::Address.street_address
+    city FFaker::Address.city
+    country_cd FFaker::Address.country_code
 
     trait :admin do
       admin true

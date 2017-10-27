@@ -16,7 +16,9 @@ describe Participant do
     it { is_expected.to respond_to :account_disabled_dttm }
     it { is_expected.to respond_to :slug }
     it { is_expected.to respond_to :api_key }
-    it { is_expected.to respond_to :location }
+    it { is_expected.to respond_to :affiliation }
+    it { is_expected.to respond_to :address }
+    it { is_expected.to respond_to :country_cd }
     it { is_expected.to respond_to :image_file }
   end
 

@@ -118,12 +118,6 @@ class Participant < ApplicationRecord
     name_changed?
   end
 
-  def access_to_contact_info?(participant_to_view)
-    participant_to_view && (participant_to_view == self ||
-      self.organizer.present? ||
-        self.admin?)
-  end
-
   def self.find_by(args)
     super || NullParticipant.new
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171027115142) do
+ActiveRecord::Schema.define(version: 20171027131154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -275,6 +275,7 @@ ActiveRecord::Schema.define(version: 20171027115142) do
     t.string "tagline"
     t.string "challenge_proposal"
     t.string "api_key"
+    t.boolean "clef_organizer", default: false
     t.index ["slug"], name: "index_organizers_on_slug", unique: true
   end
 

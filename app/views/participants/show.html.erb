@@ -24,9 +24,9 @@
         <li data-tab='tab-bio'>
           <a href="#" onclick="return false;">Bio</a>
         </li>
-        <% if current_participant && current_participant.access_to_contact_info?(@participant) %>
+        <% if policy(@participant).clef_access? %>
           <li data-tab='tab-contact-info'>
-            <a href="#" onclick="return false;">Contact info</a>
+            <a href="#" onclick="return false;">Contact</a>
           </li>
         <% end %>
       </ul>
@@ -101,7 +101,7 @@
     </div>
   </div>
 
-  <% if current_participant && current_participant.access_to_contact_info?(@participant) %>
+  <% if policy(@participant).clef_access? %>
       <div id='tab-contact-info' class='tab-content'>
         <div class="row">
           <div class="article">
@@ -115,6 +115,16 @@
                 <td>
                   <% if @participant.address.present? %>
                     <%= @participant.address %>
+                  <% else %>
+                    <span class="light">Not specified yet</span>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td>City:</td>
+                <td>
+                  <% if @participant.city.present? %>
+                    <%= @participant.city %>
                   <% else %>
                     <span class="light">Not specified yet</span>
                   <% end %>

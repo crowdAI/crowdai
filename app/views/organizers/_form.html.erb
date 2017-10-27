@@ -39,6 +39,12 @@
         <%= f.text_area :description %>
         <label>Address</label>
         <%= f.text_area :address %>
+        <fieldset class="checkbox">
+          <div>
+            <%= f.check_box :clef_organizer %>
+            <label for="">CLEF Organizer</label>
+          </div>
+        </fieldset>
         <%= render partial: 'submit_buttons', locals: { f: f  } %>
       </fieldset>
     <% end %>

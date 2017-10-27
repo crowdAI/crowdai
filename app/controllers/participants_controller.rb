@@ -60,8 +60,6 @@ class ParticipantsController < ApplicationController
                   :password,
                   :password_confirmation,
                   :phone_number,
-                  :country,
-                  :city,
                   :name,
                   :organizer_id,
                   :email_public,
@@ -72,8 +70,9 @@ class ParticipantsController < ApplicationController
                   :twitter,
                   :image_file,
                   :affiliation,
-                  :country_cd,
-                  :address)
+                  :address,
+                  :city,
+                  :country_cd)
     end
 
 end

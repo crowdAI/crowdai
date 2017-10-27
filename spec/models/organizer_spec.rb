@@ -7,6 +7,7 @@ describe Organizer do
     it { is_expected.to respond_to :description }
     it { is_expected.to respond_to :approved }
     it { is_expected.to respond_to :api_key }
+    it { is_expected.to respond_to :clef_organizer }
   end
 
   context 'associations' do

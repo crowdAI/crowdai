@@ -10,9 +10,18 @@ FactoryGirl.define do
     address FFaker::Address.street_address
     city FFaker::Address.city
     country_cd FFaker::Address.country_code
+    organizer nil
 
     trait :admin do
       admin true
+    end
+
+    trait :organizer do
+      organizer { FactoryGirl.create(:organizer) }
+    end
+
+    trait :clef_organizer do
+      organizer { FactoryGirl.create(:organizer, :clef) }
     end
 
     trait :invalid do

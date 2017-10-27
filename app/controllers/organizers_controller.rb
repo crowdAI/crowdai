@@ -69,6 +69,7 @@ class OrganizersController < ApplicationController
                     :organizer_id,
                     :status,
                     :tagline,
-                    :image_file)
+                    :image_file,
+                    :clef_organizer)
     end
 end

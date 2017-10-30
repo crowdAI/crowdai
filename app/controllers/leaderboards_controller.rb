@@ -15,7 +15,6 @@ class LeaderboardsController < ApplicationController
 
   def index
     @current_round = current_round
-    Rails.logger.debug("current_round: #{@current_round.id}")
     if @challenge.completed?
       if params[:post_challenge] == 'on'
         @post_challenge = 'on'
@@ -24,15 +23,22 @@ class LeaderboardsController < ApplicationController
       end
     end
     if @post_challenge == 'on'
-      @leaderboards = @challenge.ongoing_leaderboards.where(challenge_round_id: current_round.id).page(params[:page]).per(25)
+      @leaderboards = @challenge
+                        .ongoing_leaderboards
+                        .where(challenge_round_id: current_round.id)
+                        .page(params[:page])
+                        .per(10)
     else
-      @leaderboards = @challenge.leaderboards.where(challenge_round_id: current_round.id).page(params[:page]).per(25)
+      @leaderboards = @challenge
+                        .leaderboards
+                        .where(challenge_round_id: current_round.id)
+                        .page(params[:page])
+                        .per(10)
     end
 
     if current_participant && (current_participant.admin? || @challenge.organizer_id == current_participant.organizer_id)
       @participant_submissions = ParticipantSubmission.where(challenge_id: @challenge.id)
     end
-    Rails.logger.debug("Leaderboard page: #{@leaderboards.current_page}")
   end
 
 

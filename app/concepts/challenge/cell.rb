@@ -10,7 +10,12 @@ class Challenge::Cell < Template::Cell
 
   def ending_dttm
     return nil if current_challenge_round.nil?
-    current_challenge_round.end_dttm
+    current_challenge_round.end_dttm.strftime("%d %b %H:%M UTC")
+  end
+
+  def ending_time
+    return nil if current_challenge_round.nil?
+    current_challenge_round.end_dttm.strftime("%H:%M UTC")
   end
 
   def duration_in_seconds

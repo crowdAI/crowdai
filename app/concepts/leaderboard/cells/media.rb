@@ -42,16 +42,16 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
   end
 
   def image
-    if expiring_url.present?
-      return image_tag(expiring_url)
+    if media_url.present?
+      return image_tag(media_url)
     else
       return image_tag(default_image_url)
     end
   end
 
   def video
-    if expiring_url.present?
-      return video_tag(expiring_url, size: dimensions)
+    if media_url.present?
+      return video_tag(media_url, size: dimensions)
     else
       if size == :large
         return video_tag(default_image_url, autoplay: false)
@@ -61,8 +61,13 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
     end
   end
 
+  # deprecated
   def expiring_url
     url = S3Service.new(leaderboard_row.media_thumbnail).expiring_url
+  end
+
+  def media_url
+    url = S3Service.new(leaderboard_row.media_thumbnail).url
   end
 
   def audio

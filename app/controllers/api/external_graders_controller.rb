@@ -75,6 +75,10 @@ class Api::ExternalGradersController < Api::BaseController
         submission.update({media_large: params[:media_large],
                            media_thumbnail: params[:media_thumbnail],
                            media_content_type: params[:media_content_type]})
+        unless Rails.env.test?
+          S3Service.new(params[:media_large]).make_public_read
+          S3Service.new(params[:media_thumbnail]).make_public_read
+        end
       end
       if params[:grading_status].present?
         submission.submission_grades.create!(grading_params)

@@ -41,4 +41,13 @@ class S3Service
     Aws::S3::Client.new.get_object(bucket: ENV['AWS_S3_BUCKET'], key: s3_key, response_target: filename)
   end
 
+  def make_public_read
+    resp = Aws::S3::Client.new.put_object_acl({
+      acl: "public-read",
+      bucket: @bucket_name,
+      key: @s3_key
+    })
+    puts resp
+  end
+
 end

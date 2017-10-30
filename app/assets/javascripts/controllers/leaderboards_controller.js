@@ -8,19 +8,24 @@ function startVideoPlayers(){
   }
 }
 
+function pauseAndPlay(){
+  var scrollTimeout = null;
+  $(window).scroll(function(){
+    if (scrollTimeout) {
+      clearTimeout(scrollTimeout);
+    }
+    scrollTimeout = setTimeout(function() {
+      startVideoPlayers();
+    }, 2000);
+  });
+}
+
+
 Paloma.controller('Leaderboards', {
   index: function(){
-    var scrollTimeout = null;
-    $(window).scroll(function(){
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
-      }
-      scrollTimeout = setTimeout(function() {
-        startVideoPlayers();
-      }, 2000);
-    });
+    pauseAndPlay();
   },
   show: function(){
-    console.log('show');
+    pauseAndPlay();
   }
 });

@@ -23,6 +23,14 @@ class S3Service
     end
   end
 
+  def public_url
+    if s3_file_obj && s3_file_obj.key && !s3_file_obj.key.blank?
+      return s3_file_obj.public_url
+    else
+      return nil
+    end
+  end
+
   def s3_filename(s3_key)
     return nil if @s3_key.nil?
     @s3_key.split('/')[-1]
@@ -47,7 +55,6 @@ class S3Service
       bucket: @bucket_name,
       key: @s3_key
     })
-    puts resp
   end
 
 end

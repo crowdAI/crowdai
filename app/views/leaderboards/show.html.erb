@@ -18,7 +18,7 @@
 
     <!--Detail media start-->
     <div class="detail-media">
-      <video src="https://crowdai-prd.s3.eu-central-1.amazonaws.com/submission_files/submission_359/b96d5629-e27f-4df0-bafb-e2de88e5091c_gif.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAILFF3ZEGG7Y4HXEQ%2F20171016%2Feu-central-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20171016T084820Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=c163d56858799c6206a46d7d66f3b69eacb5471190a8631b0837589e7bca2dbb" loop=""></video>
+      <%= concept(Leaderboard::Cell::Media, @entry, size: :large, current_participant: current_participant) %>
     </div>
     <!--Detail media end-->
 

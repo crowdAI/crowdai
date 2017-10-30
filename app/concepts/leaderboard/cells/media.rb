@@ -32,7 +32,6 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
   def media_asset
     case content_type
     when nil
-      #return "<em></em>".html_safe
       return image_tag(default_image_url, size: dimensions)
     when 'video'
       return video
@@ -42,32 +41,27 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
   end
 
   def image
-    if media_url.present?
-      return image_tag(media_url)
+    if public_url.present?
+      return image_tag(public_url, size: dimensions)
     else
-      return image_tag(default_image_url)
+      return image_tag(default_image_url, size: dimensions)
     end
   end
 
   def video
-    if media_url.present?
-      return video_tag(media_url, size: dimensions)
+    if public_url.present?
+      return video_tag(public_url, size: dimensions)
     else
-      if size == :large
-        return video_tag(default_image_url, autoplay: false)
-      else
-        return video_tag(default_image_url, controls: true, autoplay: true, loop: true)
-      end
+      return video_tag(default_image_url, size: dimensions)
     end
   end
 
-  # deprecated
-  def expiring_url
-    url = S3Service.new(leaderboard_row.media_thumbnail).expiring_url
-  end
-
-  def media_url
-    url = S3Service.new(leaderboard_row.media_thumbnail).url
+  def public_url
+    if size == :large
+      url = S3Service.new(leaderboard_row.media_large).public_url
+    else
+      url = S3Service.new(leaderboard_row.media_thumbnail).public_url
+    end
   end
 
   def audio

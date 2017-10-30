@@ -40,6 +40,14 @@ class ChallengePolicy < ApplicationPolicy
     update?
   end
 
+  def participants_list_access?
+    edit?
+  end
+
+  def participants_list_email_access?
+    edit?
+  end
+
   class Scope
     attr_reader :participant, :scope
 

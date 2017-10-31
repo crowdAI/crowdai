@@ -69,7 +69,6 @@ RSpec.describe Api::ExternalGradersController, type: :request do
         it { expect(response.body).to eq('{"message":"No participant could be found for this API key","participant_id":null}') }
       end
     end
-
   end
 
 
@@ -378,8 +377,45 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(response).to have_http_status(400) }
       it { expect(json(response.body)[:message]).to eq("Couldn't find Submission with 'id'=999999") }
     end
-
   end
+
+  describe "GET /api/external_graders/presign : get presigned S3 url" do
+    context 'individual developer API key validation' do
+      describe "with valid organizer auth key" do
+        before {
+          get "/api/external_graders/presign/#{participant.api_key}",
+            headers: {
+              'Accept': 'application/vnd.api+json',
+              'Content-Type': 'application/vnd.api+json'
+            }
+        it { expect(response).to have_http_status(200) }
+        it { expect(response.body).to eq('{"message":"Developer API key is valid","participant_id":' + participant.id.to_s + '}') }
+      end
+
+      describe "with invalid auth key" do
+        before {
+          get "/api/external_graders/#{participant.api_key}",
+            headers: {
+              'Accept': 'application/vnd.api+json',
+              'Content-Type': 'application/vnd.api+json',
+              'Authorization': auth_header('8f071908c5762b94dsc23a0a2e3asdesd1f726') } }
+        it { expect(response).to have_http_status(401) }
+        it { expect(response.body).to eq("HTTP Token: Access denied.\n") }
+      end
+
+      describe "with invalid developer key" do
+        before {
+          get "/api/external_graders/264358f071908c5762b9423a01f72662",
+            headers: {
+              'Accept': 'application/vnd.api+json',
+              'Content-Type': 'application/vnd.api+json',
+              'Authorization': auth_header(organizer.api_key) } }
+        it { expect(response).to have_http_status(404) }
+        it { expect(response.body).to eq('{"message":"No participant could be found for this API key","participant_id":null}') }
+      end
+    end
+  end
+
 
   Timecop.return
 

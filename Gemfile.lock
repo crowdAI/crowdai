@@ -73,14 +73,14 @@ GEM
     arbre (1.1.1)
       activesupport (>= 3.0.0)
     arel (8.0.0)
-    aws-sdk (2.10.34)
-      aws-sdk-resources (= 2.10.34)
-    aws-sdk-core (2.10.34)
+    aws-sdk (2.10.74)
+      aws-sdk-resources (= 2.10.74)
+    aws-sdk-core (2.10.74)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.10.34)
-      aws-sdk-core (= 2.10.34)
-    aws-sigv4 (1.0.1)
+    aws-sdk-resources (2.10.74)
+      aws-sdk-core (= 2.10.74)
+    aws-sigv4 (1.0.2)
     bcrypt (3.1.11)
     benchmark-ips (2.7.2)
     bindex (0.5.0)
@@ -859,4 +859,4 @@ RUBY VERSION
    ruby 2.3.4p301
 
 BUNDLED WITH
-   1.16.0.pre.1
+   1.16.0.pre.3

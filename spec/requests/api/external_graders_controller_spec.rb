@@ -392,6 +392,7 @@ RSpec.describe Api::ExternalGradersController, type: :request do
         it { expect(response).to have_http_status(200) }
         it { expect(json(response.body)[:message]).to eq('Presigned url generated') }
         it { expect(json(response.body)[:presigned_url]).to be_a_valid_url }
+        it { expect(json(response.body)[:s3_key]).not_to be_nil }
       end
 
       describe "with invalid developer API key" do
@@ -405,6 +406,7 @@ RSpec.describe Api::ExternalGradersController, type: :request do
         it { expect(response).to have_http_status(404) }
         it { expect(json(response.body)[:message]).to eq('No participant could be found for this API key') }
         it { expect(json(response.body)[:presigned_url]).to be_nil }
+        it { expect(json(response.body)[:s3_key]).to be_nil }
       end
 
     end

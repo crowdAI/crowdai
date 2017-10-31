@@ -101,9 +101,9 @@ class Api::ExternalGradersController < Api::BaseController
   def presign
     participant = Participant.where(api_key: params[:id]).first
     if participant.present?
-      key = "submissions/#{SecureRandom.uuid}"
+      s3_key = "submissions/#{SecureRandom.uuid}"
       signer = Aws::S3::Presigner.new
-      presigned_url = signer.presigned_url(:get_object, bucket: ENV['AWS_S3_SHARED_BUCKET'], key: key)
+      presigned_url = signer.presigned_url(:get_object, bucket: ENV['AWS_S3_SHARED_BUCKET'], key: s3_key)
       message = "Presigned url generated"
       participant_id = participant.id
       status = :ok
@@ -113,7 +113,7 @@ class Api::ExternalGradersController < Api::BaseController
       presigned_url = nil
       status = :not_found
     end
-    render json: { message: message, participant_id: participant_id, presigned_url: presigned_url }, status: status
+    render json: { message: message, participant_id: participant_id, s3_key: s3_key, presigned_url: presigned_url }, status: status
   end
 
   def post_challenge(challenge)

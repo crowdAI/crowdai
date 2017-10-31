@@ -98,6 +98,25 @@ class Api::ExternalGradersController < Api::BaseController
     end
   end
 
+  def presign
+    participant = Participant.where(api_key: params[:id]).first
+    if participant.present?
+      key = SecureRandom.uuid
+      presigned_url = S3_BUCKET.presigned_post(key: "submissions/#{key}",
+                               success_action_status: '201',
+                               acl: 'private')
+      message = "Presigned url generated"
+      participant_id = participant.id
+      status = :ok
+    else
+      message = "No participant could be found for this API key"
+      participant_id = nil
+      presigned_url = nil
+      status = :not_found
+    end
+    render json: { message: message, participant_id: participant_id, presigned_url: presigned_url }, status: status
+  end
+
   def post_challenge(challenge)
     if DateTime.now > challenge.end_dttm
       return true

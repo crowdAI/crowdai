@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :external_graders, only: [:create, :show, :update] do
       get :challenge_config, on: :collection
-      get :presign, on: :collection
+      get :presign, on: :member
     end
     get 'mailchimps/webhook' => 'mailchimps#verify', as: :verify_webhook
     post 'mailchimps/webhook' => 'mailchimps#webhook', as: :update_webhook

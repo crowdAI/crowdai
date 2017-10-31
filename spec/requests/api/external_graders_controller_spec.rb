@@ -383,36 +383,30 @@ RSpec.describe Api::ExternalGradersController, type: :request do
     context 'individual developer API key validation' do
       describe "with valid organizer auth key" do
         before {
-          get "/api/external_graders/presign/#{participant.api_key}",
+          get "/api/external_graders/#{participant.api_key}/presign/",
             headers: {
               'Accept': 'application/vnd.api+json',
               'Content-Type': 'application/vnd.api+json'
             }
+          }
         it { expect(response).to have_http_status(200) }
-        it { expect(response.body).to eq('{"message":"Developer API key is valid","participant_id":' + participant.id.to_s + '}') }
+        it { expect(json(response.body)[:message]).to eq('Presigned url generated') }
+        it { expect(json(response.body)[:presigned_url]).to be_a_valid_url }
       end
 
-      describe "with invalid auth key" do
+      describe "with invalid developer API key" do
         before {
-          get "/api/external_graders/#{participant.api_key}",
+          get "/api/external_graders/#{SecureRandom.uuid}/presign/",
             headers: {
               'Accept': 'application/vnd.api+json',
-              'Content-Type': 'application/vnd.api+json',
-              'Authorization': auth_header('8f071908c5762b94dsc23a0a2e3asdesd1f726') } }
-        it { expect(response).to have_http_status(401) }
-        it { expect(response.body).to eq("HTTP Token: Access denied.\n") }
-      end
-
-      describe "with invalid developer key" do
-        before {
-          get "/api/external_graders/264358f071908c5762b9423a01f72662",
-            headers: {
-              'Accept': 'application/vnd.api+json',
-              'Content-Type': 'application/vnd.api+json',
-              'Authorization': auth_header(organizer.api_key) } }
+              'Content-Type': 'application/vnd.api+json'
+            }
+        }
         it { expect(response).to have_http_status(404) }
-        it { expect(response.body).to eq('{"message":"No participant could be found for this API key","participant_id":null}') }
+        it { expect(json(response.body)[:message]).to eq('No participant could be found for this API key') }
+        it { expect(json(response.body)[:presigned_url]).to be_nil }
       end
+
     end
   end
 

@@ -157,4 +157,6 @@ if Rails.env != 'test'
 
 
 end
-Participant.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password', admin: true) if Rails.env.development?
+Participant.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password', admin: true, name: 'Admin1',confirmed_at: Time.now) if Rails.env.development?
+Participant.create!(email: 'participant1@example.com', password: 'password', password_confirmation: 'password', name: 'Participant1',confirmed_at: Time.now) if Rails.env.development?
+Participant.create!(email: 'participant2@example.com', password: 'password', password_confirmation: 'password', name: 'Participant2',confirmed_at: Time.now) if Rails.env.development?

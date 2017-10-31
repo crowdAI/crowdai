@@ -45,7 +45,7 @@ class ChallengePolicy < ApplicationPolicy
   end
 
   def participants_list_email_access?
-    edit?
+    participants_list_access?
   end
 
   class Scope

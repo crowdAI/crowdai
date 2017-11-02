@@ -119,6 +119,16 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       }
     end
 
+    def valid_attributes_with_meta
+      {
+        challenge_client_name: challenge.challenge_client_name,
+        api_key: participant.api_key,
+        grading_status: 'graded',
+        score: 0.9763,
+        meta: '{"ips": 31.331645067121766, "impwt": 1.0393851837488273, "impwt_std": 0.43150587404424956, "file_key": "submissions/askdhajskhdkhaskdhkjashdkjhas", "ips_std": 15.590452873518474, "snips": 30.144402245677206, "snips_std": 0.1953088286389569, "message": "", "max_instances": 10000}'
+      }
+    end
+
     def invalid_api_key_attributes
       { challenge_client_name: challenge.challenge_client_name,
         api_key: '264358f071908c5762b9423a01f72662',
@@ -244,6 +254,19 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(Submission.last.post_challenge).to be false }
     end
 
+    context "with valid_attributes_with_meta" do
+      before do
+        post '/api/external_graders/',
+          params: valid_attributes_with_meta,
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+      end
+      it { expect(response).to have_http_status(202) }
+      it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
+      it { expect(json(response.body)[:submission_id]).to be_a Integer }
+      it { expect(Submission.last.meta).to eq(valid_attributes_with_meta[:meta]) }
+      it { expect(Submission.last.post_challenge).to be false }
+    end
+
     context "with invalid developer API key" do
       before {
         post '/api/external_graders/',
@@ -345,6 +368,12 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       }
     end
 
+    def valid_meta_attributes
+      {
+        meta: '{"ips": 31.331645067121766, "impwt": 1.0393851837488273, "impwt_std": 0.43150587404424956, "file_key": "submissions/askdhajskhdkhaskdhkjashdkjhas", "ips_std": 15.590452873518474, "snips": 30.144402245677206, "snips_std": 0.1953088286389569, "message": "", "max_instances": 10000}'
+      }
+    end
+
     def invalid_incomplete_media_attributes
       {
         media_large: '/s3 url',
@@ -363,10 +392,22 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(response).to have_http_status(202) }
       it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
       it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
-      it { puts Submission.find(submission1.id).inspect }
       it { expect(submission1.media_large).to eq(valid_media_attributes[:media_large]) }
       it { expect(submission1.media_thumbnail).to eq(valid_media_attributes[:media_thumbnail]) }
       it { expect(submission1.media_content_type).to eq(valid_media_attributes[:media_content_type]) }
+    end
+
+    context "with valid_meta_attributes" do
+      before do
+        patch "/api/external_graders/#{submission1.id}",
+          params: valid_meta_attributes,
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+        submission1.reload
+      end
+      it { expect(response).to have_http_status(202) }
+      it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
+      it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
+      it { expect(submission1.meta).to eq(valid_meta_attributes[:meta]) }
     end
 
     context "with invalid submission id" do
@@ -379,11 +420,12 @@ RSpec.describe Api::ExternalGradersController, type: :request do
     end
   end
 
+  # PRESIGN
   describe "GET /api/external_graders/presign : get presigned S3 url" do
     context 'individual developer API key validation' do
       describe "with valid organizer auth key" do
         before {
-          get "/api/external_graders/#{participant.api_key}/presign/",
+          get "/api/external_graders/#{participant.api_key}/presign",
             headers: {
               'Accept': 'application/vnd.api+json',
               'Content-Type': 'application/vnd.api+json'
@@ -408,10 +450,43 @@ RSpec.describe Api::ExternalGradersController, type: :request do
         it { expect(json(response.body)[:presigned_url]).to be_nil }
         it { expect(json(response.body)[:s3_key]).to be_nil }
       end
-
     end
   end
 
+=begin
+  # SUBMISSION INFO
+  describe "GET /api/external_graders/:id/submission_info : Submission Info" do
+    describe "with valid organizer auth key" do
+      before {
+        get "/api/external_graders/:id/submission_info",
+          headers: {
+            'Accept': 'application/vnd.api+json',
+            'Content-Type': 'application/vnd.api+json'
+          },
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+        }
+        it { expect(response).to have_http_status(200) }
+        it { expect(json(response.body)[:message]).to eq('Presigned url generated') }
+        it { expect(json(response.body)[:presigned_url]).to be_a_valid_url }
+        it { expect(json(response.body)[:s3_key]).not_to be_nil }
+      end
+
+      describe "with invalid developer API key" do
+        before {
+          get "/api/external_graders/#{SecureRandom.uuid}/presign/",
+            headers: {
+              'Accept': 'application/vnd.api+json',
+              'Content-Type': 'application/vnd.api+json'
+            }
+        }
+        it { expect(response).to have_http_status(404) }
+        it { expect(json(response.body)[:message]).to eq('No participant could be found for this API key') }
+        it { expect(json(response.body)[:presigned_url]).to be_nil }
+        it { expect(json(response.body)[:s3_key]).to be_nil }
+      end
+    end
+  end
+=end
   Timecop.return
 
 end

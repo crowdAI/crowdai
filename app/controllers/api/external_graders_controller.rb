@@ -37,7 +37,8 @@ class Api::ExternalGradersController < Api::BaseController
                                       challenge_id: challenge.id,
                                       challenge_round_id: challenge_round_id,
                                       description_markdown: params[:comment],
-                                      post_challenge: post_challenge(challenge))
+                                      post_challenge: post_challenge(challenge),
+                                      meta: params[:meta])
       if media_fields_present?
         submission.update({media_large: params[:media_large],
                            media_thumbnail: params[:media_thumbnail],
@@ -80,6 +81,9 @@ class Api::ExternalGradersController < Api::BaseController
           S3Service.new(params[:media_thumbnail]).make_public_read
         end
       end
+      if params[:meta].present?
+        submission.update({meta: params[:meta]})
+      end
       if params[:grading_status].present?
         submission.submission_grades.create!(grading_params)
       end
@@ -95,6 +99,23 @@ class Api::ExternalGradersController < Api::BaseController
                      submission_id: submission_id,
                      submissions_remaining: submissions_remaining,
                      reset_date: reset_date }, status: status
+    end
+  end
+
+  def submission_info
+    begin
+      submission = Submission.find(params[:id])
+      raise SubmissionIdInvalid if submission.blank?
+      message = 'Submission details found.'
+      body = submission.to_json
+      status = :ok
+    rescue => e
+      status = :bad_request
+      body = nil
+      message = e
+    ensure
+      render json: { message: message,
+                     body: body }, status: status
     end
   end
 

@@ -24,4 +24,10 @@ class Organizer::Cell < Template::Cell
     render :members_tab
   end
 
+  def clef_organizer_text
+    if organizer.clef_organizer == true
+      "<div>CLEF Organizer</div>"
+    end
+  end
+
 end

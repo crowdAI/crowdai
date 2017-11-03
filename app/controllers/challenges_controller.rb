@@ -4,6 +4,7 @@ class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized, except: [:index, :show]
   before_action :set_s3_direct_post, only: [:edit, :update]
+  before_action :set_organizer, only: [:new, :create, :edit, :update]
   after_action :update_stats_job
   respond_to :html, :js
 
@@ -20,7 +21,6 @@ class ChallengesController < ApplicationController
     end
   end
 
-
   def show
     authorize @challenge
     if !params[:version]  # dont' record page views on history pages
@@ -29,7 +29,7 @@ class ChallengesController < ApplicationController
   end
 
   def new
-    @challenge = Challenge.new
+    @challenge = @organizer.challenges.new
     authorize @challenge
   end
 
@@ -38,25 +38,23 @@ class ChallengesController < ApplicationController
   end
 
   def create
-    @challenge = Challenge.new(challenge_params)
+    @challenge = @organizer.challenges.new(challenge_params)
     authorize @challenge
 
     if @challenge.save
-      redirect_to @challenge, notice: 'Challenge was successfully created.'
+      redirect_to edit_organizer_challenge_path(@organizer,@challenge), notice: 'Challenge was successfully created.'
     else
       render :new
     end
   end
 
-
   def update
     if @challenge.update(challenge_params)
-      redirect_to @challenge, notice: 'Challenge was successfully updated.'
+      redirect_to [@organizer,@challenge], notice: 'Challenge was successfully updated.'
     else
       render :edit
     end
   end
-
 
   def destroy
     @challenge.destroy
@@ -154,6 +152,9 @@ class ChallengesController < ApplicationController
                 )
     end
 
+    def set_organizer
+      @organizer = Organizer.friendly.find(params[:organizer_id])
+    end
 
     def set_s3_direct_post
       @s3_direct_post = S3_BUCKET.presigned_post(key: "answer_files/#{@challenge.slug}_#{SecureRandom.uuid}/${filename}",

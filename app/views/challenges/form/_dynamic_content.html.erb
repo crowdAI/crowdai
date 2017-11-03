@@ -1,5 +1,5 @@
 <div class="row">
-  <%= form_for @challenge, validate: true, html: { class: "dbl-col" } do |f| %>
+  <%= form_for [@organizer,@challenge], validate: true, html: { class: "dbl-col" } do |f| %>
     <fieldset class="checkbox">
       <div>
         <%= f.check_box :dynamic_content_flag, {}, "true", "false" %>

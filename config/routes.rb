@@ -42,7 +42,7 @@ Rails.application.routes.draw do
     get :regen_api_key
   end
 
-  resources :challenges do
+  resources :challenges, except: [:new, :create, :update, :edit] do
     resources :dataset_files, only: [:new, :show, :index, :destroy, :create]
     resources :participant_challenges, only:[:index]
     resources :events

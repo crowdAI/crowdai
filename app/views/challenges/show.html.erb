@@ -40,6 +40,13 @@
         </div>
       <% end %>
 
+      <% if @challenge.eua_file.file.present? %>
+        <h2>End User Agreement</h2>
+        <div class='markdown-wrap'>
+          <%= link_to image_tag("misc/pdf-icon.png",:class => 'pdf-icon'), @challenge.eua_file.file.url %>
+        </div>
+      <% end %>
+
     </div>
   </div>
 </div>

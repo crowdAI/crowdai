@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(version: 20171102155217) do
     t.integer "current_challenge_round_id"
     t.integer "submission_limit"
     t.string "submission_limit_period_id"
+    t.string "eua_file"
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id"
     t.index ["slug"], name: "index_challenges_on_slug", unique: true
   end

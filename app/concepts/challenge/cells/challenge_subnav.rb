@@ -18,6 +18,8 @@ class Challenge::Cell::ChallengeSubnav < Challenge::Cell
       'discussion'
     when 'dataset_files'
       'dataset'
+    when 'participant_challenges'
+      'participants'
     when 'winners'
       'winner'
     when 'dynamic_contents'

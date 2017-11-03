@@ -56,11 +56,19 @@
   <div class="twin-container">
     <div class="twin-field">
       <label>Start Time (<abbr title="Coordinated Universal Time">UTC</abbr>)</label>
-      <%= f.text_field :start_time, :value => @challenge.start_time.strftime("%H:%M")  %>
+      <% if @challenge.start_time.present? %>
+        <%= f.text_field :start_time, :value => @challenge.start_time.strftime("%H:%M")  %>
+      <% else %>
+        <%= f.text_field :start_time  %>
+      <% end %>
     </div>
     <div class="twin-field">
       <label>End Time (<abbr title="Coordinated Universal Time">UTC</abbr>)</label>
-      <%= f.text_field :end_time, :value => @challenge.end_time.strftime("%H:%M")  %>
+      <% if @challenge.end_time.present? %>
+        <%= f.text_field :end_time, :value => @challenge.end_time.strftime("%H:%M")  %>
+      <% else %>
+        <%= f.text_field :end_time  %>
+      <% end %>
     </div>
   </div>
   <% if f.object.persisted? && @challenge.submissions.where(challenge_round_id: f.object.id).present? %>

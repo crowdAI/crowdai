@@ -40,6 +40,7 @@ class ChallengePolicy < ApplicationPolicy
     update?
   end
 
+
   class Scope
     attr_reader :participant, :scope
 

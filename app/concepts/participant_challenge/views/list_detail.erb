@@ -1,0 +1,15 @@
+<li>
+  <div class="details">
+    <h5>
+      <%= link_to participant_challenge.name, participant_path(participant_challenge) %>
+    </h5>
+  </div>
+  <% if policy(challenge).edit? %>
+    <div class="stats">
+      <div class="stat-fr">
+        Email<br>
+        <span><%= participant_challenge.email %></span>
+      </div>
+    </div>
+  <% end %>
+</li>

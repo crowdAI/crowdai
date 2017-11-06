@@ -24,6 +24,7 @@ class Participant < ApplicationRecord
   has_many :leaderboards,               class_name: 'Leaderboard'
   has_many :ongoing_leaderboards,       class_name: 'OngoingLeaderboard'
   has_many :participant_challenges,     class_name: 'ParticipantChallenge'
+  has_many :participant_challenge_counts, class_name: 'ParticipantChallengeCount'
   has_many :challenges,                 through: :participant_challenges
   has_many :dataset_file_downloads,     dependent: :destroy
   has_many :email_preferences,          dependent: :destroy

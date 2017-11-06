@@ -1,8 +1,7 @@
 class ParticipantChallengePolicy < ApplicationPolicy
 
   def index?
-    record.first &&  ChallengePolicy.new(participant, record.first).participants_list_access?
+    participant && (participant.admin? || @record.organizer_id == participant.organizer_id)
   end
-
 
 end

@@ -42,9 +42,12 @@ Rails.application.routes.draw do
     get :regen_api_key
   end
 
-  resources :challenges, except: [:new, :create, :update, :edit] do
+  resources :challenges do
     resources :dataset_files, only: [:new, :show, :index, :destroy, :create]
-    resources :participant_challenges, only:[:index]
+    resources :participant_challenges, only: [:index] do
+      get :approve, on: :collection
+      get :deny, on: :collection
+    end
     resources :events
     resources :winners, only: [:index]
     resources :submissions do

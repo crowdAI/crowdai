@@ -3,6 +3,10 @@
     <h5>
       <%= link_to participant_challenge.name, participant_path(participant_challenge) %>
     </h5>
+    <% if policy(challenge).edit? %>
+      <%= clef_status %>
+    <% end %>
+
   </div>
   <% if policy(challenge).edit? %>
     <div class="stats">

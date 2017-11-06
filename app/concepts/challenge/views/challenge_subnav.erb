@@ -5,7 +5,7 @@
       <li class=<%= tab_class('leaderboard') %> ><%= link_to 'Leaderboard', challenge_leaderboards_path(challenge), class: tab_class('leaderboard') %></li>
       <li class=<%= tab_class('discussion') %> ><%= link_to 'Discussion', challenge_topics_path(challenge), class: tab_class('discussion') %></li>
       <li class=<%= tab_class('dataset') %> ><%= link_to 'Dataset', challenge_dataset_files_path(challenge), class: tab_class('dataset') %></li>
-      <% if policy(challenge).edit? %>
+      <% if policy(challenge).edit? && challenge.organizer.clef_organizer == true %>
         <li class=<%= tab_class('participants') %> ><%= link_to 'Participants', challenge_participant_challenges_path(challenge), class: tab_class('participants') %></li>
       <% end %>
       <% if challenge.winners_tab_active.present? %>

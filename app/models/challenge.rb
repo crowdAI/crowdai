@@ -19,6 +19,9 @@ class Challenge < ApplicationRecord
   has_many :leaderboards,                 class_name: 'Leaderboard'
   has_many :ongoing_leaderboards,         class_name: 'OngoingLeaderboard'
   has_many :participant_challenges,       class_name: 'ParticipantChallenge'
+  has_many :participant_challenge_counts, class_name: 'ParticipantChallengeCount'
+  has_many :challenge_registrations,      dependent: :destroy
+
   has_many :topics
   has_many :votes,                        as: :votable
   has_many :follows,                      as: :followable

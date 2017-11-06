@@ -28,6 +28,14 @@
   }
 }
 
+.btn-small {
+  line-height: 20px;
+  height: 20px;
+  padding: 0 16px;
+  margin-right: 10px;
+  font-size: 12px;
+}
+
 .btn-primary {
   background: $color-accent;
   color: #fff;

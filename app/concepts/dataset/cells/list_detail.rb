@@ -1,5 +1,4 @@
-class Dataset::Cell::ListDetail < Template::Cell
-  inherit_views Dataset::Cell
+class Dataset::Cell::ListDetail < Dataset::Cell
 
   def show
     render :list_detail

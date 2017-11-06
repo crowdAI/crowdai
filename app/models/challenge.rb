@@ -19,6 +19,9 @@ class Challenge < ApplicationRecord
   has_many :leaderboards,                 class_name: 'Leaderboard'
   has_many :ongoing_leaderboards,         class_name: 'OngoingLeaderboard'
   has_many :participant_challenges,       class_name: 'ParticipantChallenge'
+  has_many :participant_challenge_counts, class_name: 'ParticipantChallengeCount'
+  has_many :challenge_registrations,      dependent: :destroy
+
   has_many :topics
   has_many :votes,                        as: :votable
   has_many :follows,                      as: :followable
@@ -58,6 +61,7 @@ class Challenge < ApplicationRecord
     if self.new_record?
       self.submission_license = "Please upload your submissions and include a detailed description of the methodology, techniques and insights leveraged with this submission. After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC)."
       self.daily_submissions = 5
+      self.challenge_client_name = "challenge_#{SecureRandom.hex}"
     end
   end
 

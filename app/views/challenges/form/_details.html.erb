@@ -1,5 +1,5 @@
 <div class="row">
-  <%= form_for @challenge, validate: true, html: { class: "sgl-col", multipart: true } do |f| %>
+  <%= form_for [@organizer,@challenge], validate: true, html: { class: "sgl-col", multipart: true } do |f| %>
     <fieldset>
       <label>Challenge Title</label>
       <%= f.text_field :challenge %>
@@ -33,6 +33,7 @@
     <%= f.hidden_field :end_date %>
     <%= f.hidden_field :start_time %>
     <%= f.hidden_field :end_time %>
+    <%= f.hidden_field :organizer_id %>
 
     <fieldset>
       <h4>Challenge Rounds</h4>

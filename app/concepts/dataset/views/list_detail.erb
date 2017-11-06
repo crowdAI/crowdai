@@ -1,9 +1,13 @@
 <li data-cell='Dataset::Cell::ListDetail'>
   <div class="details">
-    <h5><%= link_to file_title, expiring_url %></h5>
+    <h5><%= link_to file_title, expiring_url, class: 'dataset-file-download', data: { :'dataset-file-id' => dataset_file.id } %></h5>
     <p class="description"><%= file_description %></p>
-    <% if policy(dataset_file).destroy? %>
-      <p class='status active'><%= link_to 'delete', challenge_dataset_file_path(challenge,dataset_file), method: :delete, data: {confirm: 'Are you sure?'} %></p>
+    <% if Pundit.policy(current_participant,dataset_file).destroy? %>
+      <p class='status active'>
+        <%= link_to 'delete',
+                    challenge_dataset_file_path(challenge,dataset_file),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } %></p>
     <% end %>
   </div>
   <div class="stats">

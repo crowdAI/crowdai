@@ -67,6 +67,11 @@ Rails.application.routes.draw do
   end
   get '/load_more_challenges', to: 'challenges#load_more', as: :load_more_challenges
 
+  resources :dataset_files, only: [] do
+    resources :dataset_file_downloads, only: [:create]
+  end
+
+
   resources :submissions, only: [] do
     resources :submission_comments, only: [:create, :delete, :edit, :update]
   end

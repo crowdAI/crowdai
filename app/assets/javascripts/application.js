@@ -27,6 +27,7 @@
 // -------------------- Controllers ------------------- //
 //= require controllers/challenges_controller
 //= require controllers/leaderboards_controller
+//= require controllers/dataset_files_controller
 
 
 $(document).on('ajax:error', function(xhr, status, error) {

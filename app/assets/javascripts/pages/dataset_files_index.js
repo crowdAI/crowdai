@@ -1,3 +1,4 @@
+/*
 $(document).on('turbolinks:load', function() {
   $('.expiring-url').on('click', function (e) {
     var self = this;
@@ -10,7 +11,7 @@ $(document).on('turbolinks:load', function() {
     })
   });
 });
-
+ */
 
 $(document).on('turbolinks:load', function() {
   $('.s3File').each(function(i, elem) {

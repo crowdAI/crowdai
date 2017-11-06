@@ -72,7 +72,9 @@ class ParticipantsController < ApplicationController
                   :affiliation,
                   :address,
                   :city,
-                  :country_cd)
+                  :country_cd,
+                  :first_name,
+                  :last_name)
     end
 
 end

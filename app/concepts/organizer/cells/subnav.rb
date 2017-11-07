@@ -8,6 +8,10 @@ class Organizer::Cell::Subnav < Organizer::Cell
     model
   end
 
+  def challenges
+    options[:challenges]
+  end
+
   def current_tab
     if controller.controller_name == 'organizers' && controller.action_name == 'show'
       return 'challenges'

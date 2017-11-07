@@ -1,5 +1,10 @@
 <div class="row">
-  <%= form_for [@organizer,@task], validate: true, html: { class: "sgl-col" } do |f| %>
+  <%= form_for [@organizer,@task],
+        validate: true,
+        html: { class: "sgl-col directUpload",
+                'data-form-data' => @s3_direct_post.fields.to_json.html_safe,
+                'data-url' => @s3_direct_post.url,
+                'data-host' => URI.parse(@s3_direct_post.url).host } do |f| %>
     <fieldset>
       <label>Task</label>
       <%= f.text_field :task %>

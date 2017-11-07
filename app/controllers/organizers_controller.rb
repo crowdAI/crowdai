@@ -42,6 +42,7 @@ class OrganizersController < ApplicationController
 
   def members
     @organizer = Organizer.friendly.find(params[:organizer_id])
+    @challenges = @organizer.challenges
     authorize @organizer
     @members = @organizer.participants
   end

@@ -6,9 +6,6 @@ class Organizer < ApplicationRecord
   has_many :challenges,   dependent: :destroy
   has_many :participants, dependent: :nullify
   has_many :tasks, dependent: :destroy
-  accepts_nested_attributes_for :tasks,
-                                reject_if: :all_blank,
-                                allow_destroy: true
   validates :organizer, presence: true
   mount_uploader :image_file, ImageUploader
   validates_length_of :tagline, maximum: 140, allow_blank: true

@@ -1,0 +1,30 @@
+<div class='content'>
+  <%= render partial: 'masthead', locals: { organizer: @organizer } %>
+  <%= concept(Organizer::Cell::Subnav, @organizer, current_participant: current_participant) %>
+
+  <div class="row">
+    <ul class="list-host-members">
+      <% @members.each do |member| %>
+      <li>
+        <div class="pic">
+          <%= link_to participant_path(member) do %>
+            <%= concept(Image::Cell,member,size: :thumb) %>
+          <% end %>
+        </div>
+        <div class="details">
+          <h5>
+            <%= link_to member.name, participant_path(member) %>
+          </h5>
+        </div>
+        <div class="stats">
+          <div class="stat-fr">
+            Email<br>
+            <span><%= member.email %></span>
+          </div>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>

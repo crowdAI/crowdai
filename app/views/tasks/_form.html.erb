@@ -1,0 +1,23 @@
+<div class="row">
+  <%= form_for [@organizer,@task], validate: true, html: { class: "sgl-col" } do |f| %>
+    <fieldset>
+      <label>Task</label>
+      <%= f.text_field :task %>
+      <div id='task-dataset-files'>
+        <%= f.fields_for :task_dataset_files do |task_dataset_file| %>
+          <%= render 'task_dataset_file_fields', f: task_dataset_file %>
+        <% end %>
+        <div class='links'>
+          <%= link_to_add_association 'add file', f, :task_dataset_files %>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <%= f.button (@task.new_record? ? 'Add Task' : 'Update Task'), class: 'btn btn-primary' %>
+        <%= link_to organizer_path(@organizer), class: "btn btn-secondary", validate: false do %>
+          Cancel
+        <% end %>
+      </div>
+    </fieldset>
+  <% end %>
+</div>

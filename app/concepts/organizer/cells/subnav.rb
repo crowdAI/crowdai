@@ -1,5 +1,4 @@
-class Organizer::Cell::Subnav < Template::Cell
-  inherit_views Organizer::Cell
+class Organizer::Cell::Subnav < Organizer::Cell
 
   def show
     render :subnav
@@ -10,7 +9,15 @@ class Organizer::Cell::Subnav < Template::Cell
   end
 
   def current_tab
-    options[:tab] ||= 'challenges'
+    if controller.controller_name == 'organizers' && controller.action_name == 'show'
+      return 'challenges'
+    end
+    if controller.controller_name == 'organizers' && controller.action_name == 'members'
+      return 'members'
+    end
+    if controller.controller_name == 'tasks'
+      return 'tasks'
+    end
   end
 
   def tab_class(tab)

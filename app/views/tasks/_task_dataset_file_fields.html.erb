@@ -1,0 +1,10 @@
+<div class='nested-fields'>
+  <fieldset>
+    <label>File Title</label>
+    <%= f.text_field :title %>
+    <label>File Description</label>
+    <%= f.text_field :description %>
+    <label>Dataset file</label>
+    <%= f.file_field :dataset_file_s3_key, class: 'file-upload s3File' %>
+  </fieldset>
+</div>

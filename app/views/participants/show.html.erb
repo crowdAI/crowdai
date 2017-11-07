@@ -107,6 +107,26 @@
           <div class="article">
             <table>
               <tr>
+                <td>First name:</td>
+                <td>
+                <% if @participant.first_name.present? %>
+                  <%= @participant.first_name %>
+                <% else %>
+                  <span class="light">Not specified yet</span>
+                <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td>Last name:</td>
+                <td>
+                <% if @participant.last_name.present? %>
+                  <%= @participant.last_name %>
+                <% else %>
+                  <span class="light">Not specified yet</span>
+                <% end %>
+                </td>
+              </tr>
+              <tr>
                 <td>Email:</td>
                 <td><%= @participant.email %></td>
               </tr>

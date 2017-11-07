@@ -339,6 +339,8 @@ ActiveRecord::Schema.define(version: 20171107121203) do
     t.string "country_cd"
     t.text "address"
     t.string "city"
+    t.string "first_name"
+    t.string "last_name"
     t.index ["confirmation_token"], name: "index_participants_on_confirmation_token", unique: true
     t.index ["email"], name: "index_participants_on_email", unique: true
     t.index ["organizer_id"], name: "index_participants_on_organizer_id"

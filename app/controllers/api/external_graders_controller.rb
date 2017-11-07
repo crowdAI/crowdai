@@ -199,6 +199,11 @@ class Api::ExternalGradersController < Api::BaseController
         score_secondary: params[:score_secondary],
         grading_status_cd: 'graded',
         grading_message: nil }
+    when 'submitted'
+      { score: nil,
+        score_secondary: nil,
+        grading_status_cd: 'submitted',
+        grading_message: nil }
     when 'failed'
       raise GradingMessageMissing if params[:grading_message].empty?
       { score: nil,

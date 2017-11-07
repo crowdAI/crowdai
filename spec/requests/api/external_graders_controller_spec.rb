@@ -90,6 +90,13 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       }
     end
 
+    def valid_attributes_grading_submitted
+      { challenge_client_name: challenge.challenge_client_name,
+        api_key: participant.api_key,
+        grading_status: 'submitted'
+      }
+    end
+
     def valid_attributes_with_secondary_score
       { challenge_client_name: challenge.challenge_client_name,
         api_key: participant.api_key,
@@ -213,6 +220,19 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(Submission.last.score).to eq(nil)}
       it { expect(Submission.last.grading_status_cd).to eq('failed')}
       it { expect(Submission.last.grading_message).to eq(valid_attributes_failed_grading[:grading_message])}
+    end
+
+    context "with valid_attributes_grading_submitted" do
+      before {
+        post '/api/external_graders/',
+          params: valid_attributes_grading_submitted,
+          headers: { 'Authorization': auth_header(organizer.api_key) } }
+      it { expect(response).to have_http_status(202) }
+      it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
+      it { expect(json(response.body)[:submission_id]).to be_a Integer }
+      it { expect(Submission.last.participant_id).to eq(participant.id)}
+      it { expect(Submission.last.score).to eq(nil)}
+      it { expect(Submission.last.grading_status_cd).to eq('submitted')}
     end
 
     context "with valid_attributes_with_secondary_score" do
@@ -455,7 +475,7 @@ RSpec.describe Api::ExternalGradersController, type: :request do
 
 =begin
   # SUBMISSION INFO
-  describe "GET /api/external_graders/:id/submission_info : Submission Info" do
+  describe "GET /api/external_graders/:submission_id/submission_info : Submission Info" do
     describe "with valid organizer auth key" do
       before {
         get "/api/external_graders/:id/submission_info",

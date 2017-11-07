@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171107081358) do
+ActiveRecord::Schema.define(version: 20171107144829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -339,8 +339,6 @@ ActiveRecord::Schema.define(version: 20171107081358) do
     t.string "country_cd"
     t.text "address"
     t.string "city"
-    t.string "first_name"
-    t.string "last_name"
     t.index ["confirmation_token"], name: "index_participants_on_confirmation_token", unique: true
     t.index ["email"], name: "index_participants_on_email", unique: true
     t.index ["organizer_id"], name: "index_participants_on_organizer_id"
@@ -446,14 +444,6 @@ ActiveRecord::Schema.define(version: 20171107081358) do
     t.string "media_content_type"
   end
 
-  create_table "tasks", force: :cascade do |t|
-    t.bigint "organizer_id"
-    t.string "task"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["organizer_id"], name: "index_tasks_on_organizer_id"
-  end
-
   create_table "topics", id: :serial, force: :cascade do |t|
     t.integer "challenge_id"
     t.integer "participant_id"
@@ -509,7 +499,6 @@ ActiveRecord::Schema.define(version: 20171107081358) do
   add_foreign_key "submission_grades", "submissions"
   add_foreign_key "submissions", "challenges"
   add_foreign_key "submissions", "participants"
-  add_foreign_key "tasks", "organizers"
   add_foreign_key "topics", "challenges"
   add_foreign_key "topics", "participants"
   add_foreign_key "votes", "participants"

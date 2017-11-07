@@ -1,71 +1,53 @@
-<%= render partial: 'challenges/sidebar' %>
-<%= render partial: 'challenges/header', challenge: @challenge %>
+<div class='content'>
+  <%= concept(Challenge::Cell::ChallengeMasthead,
+                @challenge,
+                current_participant: current_participant) %>
+  <%= concept(Challenge::Cell::ChallengeSubnav,
+                @challenge,
+                tab: 'submissions',
+                current_participant: current_participant) %>
 
-<div class="page-content-container">
   <div class="row">
-    <div class="col-md-10">
-      <% if @participant %>
-        <%= render partial: 'submissions/index/participant_profile_header' %>
-      <% else %>
-        <%= render partial: 'submissions/index/challenges_submission_header'  %>
-      <% end %>
-
-      <div class='table-responsive'>
-        <table class='table table-hover table-striped table-bordered leaderboard sortable'>
-          <thead>
-            <tr>
-              <% if @challenge.api_required  %>
-                <th>API</th>
+    <table class="leaderboard">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th class="participant">Participant</th>
+          <th>Status</th>
+          <th>Message</th>
+          <th class="last-submission">Submission (UTC)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @submissions.where(challenge_round_id: @challenge_round_id).each do |submission| %>
+        <tr id='participant-<%= submission.participant_id %>'>
+          <td><%= submission.id %></td>
+          <td class="participant">
+            <div class="user-link">
+              <%= link_to participant_path(submission.participant) do %>
+                <%= concept(Image::Cell,submission.participant, current_participant: current_participant) %>
               <% end %>
-              <% if @challenge.secondary_sort_order == :not_used %>
-                <th><%= @challenge.score_title %></th>
-              <% else %>
-                <th><%= @challenge.score_title %></th>
-                <th><%= @challenge.score_secondary_title %></th>
-              <% end %>
-              <th>Submitted</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @submissions.each do |submission| %>
-            <tr>
-              <% if @challenge.api_required %>
-                <td><%= Submission::APIS[submission.api] %></td>
-              <% end %>
-
-              <% if @challenge.secondary_sort_order == :not_used %>
-                <% if submission.failed? %>
-                  <td><%= submission.grading_message %></td>
-                <% else %>
-                  <td>
-                    <% if submission.graded? %>
-                      <%= link_to submission.score, challenge_submission_path(@challenge, submission) %>
-                    <% end %>
-                  </td>
-                <% end %>
-              <% else %>
-                <% if submission.failed? %>
-                  <td colspan="2"><%= submission.grading_message %></td>
-                <% else %>
-                  <td>
-                    <% if submission.graded? %>
-                      <%= link_to submission.score, challenge_submission_path(@challenge, submission) %>
-                    <% end %>
-                  </td>
-                  <td>
-                    <% if submission.graded? %>
-                      <%= link_to submission.score_secondary, challenge_submission_path(@challenge, submission) %>
-                    <% end %>
-                  </td>
-                <% end %>
-              <% end %>
-              <td><%= link_to submission.created_at, challenge_submission_path(@challenge, submission) %></td>
-            </tr>
+              <div class='text-badge'>
+                <%= link_to submission.participant.name, participant_path(submission.participant.slug) %>
+                  <% if submission.participant.admin? %>
+                    <span class='badge badge-accent'>Admin</span>
+                  <% end %>
+                  <% if submission.participant.organizer_id == submission.challenge.organizer_id %>
+                    <span class='badge'>Organizer</span>
+                  <% end %>
+              </div>
+            </div>
+          </td>
+          <td><%= submission.grading_status_cd %></td>
+          <td>
+            <% if current_participant.admin? || submission.participant == current_participant %>
+              <%= submission.grading_message %>
             <% end %>
-          </tbody>
-        </table>
-      </div><!-- table-responsive -->
-    </div>
+            </td>
+          <td class='pull-right'><%= submission.created_at %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

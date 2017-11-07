@@ -1,0 +1,34 @@
+<div class='content'>
+  <%= render partial: 'organizers/masthead', locals: { organizer: @organizer } %>
+  <%= concept(Organizer::Cell::Subnav,
+                @organizer,
+                challenges: @challenges,
+                current_participant: current_participant) %>
+
+  <div class="row">
+    <ul class="list-host-members">
+      <% @tasks.each do |task| %>
+      <li>
+        <div class="details">
+          <h5><%= link_to task.task, edit_organizer_task_path(@organizer,task) %></h5>
+          <% if policy(task).destroy? %>
+            <p class='status active'>
+              <%= link_to 'delete',
+                          organizer_task_path(@organizer,task),
+                          method: :delete,
+                          data: { confirm: 'Are you sure?' } %>
+            </p>
+          <% end %>
+        </div>
+        <div class="stats">
+          <div class="stat-fr">
+            <%= task.task_dataset_files.count %><br>
+            <span>Dataset Files</span>
+          </div>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>

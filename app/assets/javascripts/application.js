@@ -18,15 +18,16 @@
 //= require modules/rangy_inputs
 //= require modules/markdown_editor
 //= require modules/flash_messages
+//= require modules/direct_s3_upload
 
 // ---------------------- Pages ---------------------- //
-//= require pages/dataset_files_index
 //= require pages/participants_edit
 //= require pages/email_preferences_edit
 
 // -------------------- Controllers ------------------- //
 //= require controllers/challenges_controller
 //= require controllers/leaderboards_controller
+//= require controllers/dataset_files_controller
 
 
 $(document).on('ajax:error', function(xhr, status, error) {

@@ -1,18 +1,4 @@
 $(document).on('turbolinks:load', function() {
-  $('.expiring-url').on('click', function (e) {
-    var self = this;
-    var dataset_file_id = $(this).data('dataset-file-id');
-    $.ajax({
-      url: '/dataset_files/' + dataset_file_id + '/dataset_file_downloads',
-      type: 'POST',
-      complete: function() { console.log('file download logged')},
-      error: function() { console.log('file download errored ' + status)}
-    })
-  });
-});
-
-
-$(document).on('turbolinks:load', function() {
   $('.s3File').each(function(i, elem) {
     var fileInput     = $(elem);
     var form          = $(fileInput.parents('form:first'));

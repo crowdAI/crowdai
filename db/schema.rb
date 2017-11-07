@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171106131532) do
+ActiveRecord::Schema.define(version: 20171107121203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -444,6 +444,26 @@ ActiveRecord::Schema.define(version: 20171106131532) do
     t.string "media_content_type"
   end
 
+  create_table "task_dataset_files", force: :cascade do |t|
+    t.bigint "task_id"
+    t.integer "seq", default: 0
+    t.string "description"
+    t.boolean "evaluation", default: false
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "dataset_file_s3_key"
+    t.index ["task_id"], name: "index_task_dataset_files_on_task_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.bigint "organizer_id"
+    t.string "task"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organizer_id"], name: "index_tasks_on_organizer_id"
+  end
+
   create_table "topics", id: :serial, force: :cascade do |t|
     t.integer "challenge_id"
     t.integer "participant_id"
@@ -499,6 +519,8 @@ ActiveRecord::Schema.define(version: 20171106131532) do
   add_foreign_key "submission_grades", "submissions"
   add_foreign_key "submissions", "challenges"
   add_foreign_key "submissions", "participants"
+  add_foreign_key "task_dataset_files", "tasks"
+  add_foreign_key "tasks", "organizers"
   add_foreign_key "topics", "challenges"
   add_foreign_key "topics", "participants"
   add_foreign_key "votes", "participants"

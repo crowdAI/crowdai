@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171106131532) do
+ActiveRecord::Schema.define(version: 20171107081358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -339,6 +339,8 @@ ActiveRecord::Schema.define(version: 20171106131532) do
     t.string "country_cd"
     t.text "address"
     t.string "city"
+    t.string "first_name"
+    t.string "last_name"
     t.index ["confirmation_token"], name: "index_participants_on_confirmation_token", unique: true
     t.index ["email"], name: "index_participants_on_email", unique: true
     t.index ["organizer_id"], name: "index_participants_on_organizer_id"
@@ -444,6 +446,14 @@ ActiveRecord::Schema.define(version: 20171106131532) do
     t.string "media_content_type"
   end
 
+  create_table "tasks", force: :cascade do |t|
+    t.bigint "organizer_id"
+    t.string "task"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organizer_id"], name: "index_tasks_on_organizer_id"
+  end
+
   create_table "topics", id: :serial, force: :cascade do |t|
     t.integer "challenge_id"
     t.integer "participant_id"
@@ -499,6 +509,7 @@ ActiveRecord::Schema.define(version: 20171106131532) do
   add_foreign_key "submission_grades", "submissions"
   add_foreign_key "submissions", "challenges"
   add_foreign_key "submissions", "participants"
+  add_foreign_key "tasks", "organizers"
   add_foreign_key "topics", "challenges"
   add_foreign_key "topics", "participants"
   add_foreign_key "votes", "participants"
@@ -655,32 +666,47 @@ ActiveRecord::Schema.define(version: 20171106131532) do
     ORDER BY l.challenge_id, (row_number() OVER (PARTITION BY l.challenge_id ORDER BY l.score DESC, l.score_secondary));
   SQL
 
-  create_view "participant_sign_ups",  sql_definition: <<-SQL
-      SELECT count(participants.id) AS count,
-      (date_part('month'::text, participants.created_at))::integer AS mnth,
-      (date_part('year'::text, participants.created_at))::integer AS yr
-     FROM participants
-    GROUP BY ((date_part('month'::text, participants.created_at))::integer), ((date_part('year'::text, participants.created_at))::integer)
-    ORDER BY ((date_part('year'::text, participants.created_at))::integer), ((date_part('month'::text, participants.created_at))::integer);
-  SQL
-
-  create_view "participant_submissions",  sql_definition: <<-SQL
-      SELECT s.id,
-      s.challenge_id,
-      s.participant_id,
-      p.name,
-      s.grading_status_cd,
-      s.post_challenge,
-      s.score,
-      s.score_secondary,
-      count(f.*) AS files,
-      s.created_at
-     FROM participants p,
-      (submissions s
-       LEFT JOIN submission_files f ON ((f.submission_id = s.id)))
-    WHERE (s.participant_id = p.id)
-    GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
-    ORDER BY s.created_at DESC;
+  create_view "participant_challenge_counts",  sql_definition: <<-SQL
+      SELECT row_number() OVER () AS row_number,
+      y.challenge_id,
+      y.participant_id,
+      y.registration_type
+     FROM ( SELECT DISTINCT x.challenge_id,
+              x.participant_id,
+              x.registration_type
+             FROM ( SELECT s.challenge_id,
+                      s.participant_id,
+                      'submission'::text AS registration_type
+                     FROM submissions s
+                  UNION
+                   SELECT s.votable_id,
+                      s.participant_id,
+                      'heart'::text AS registration_type
+                     FROM votes s
+                    WHERE ((s.votable_type)::text = 'Challenge'::text)
+                  UNION
+                   SELECT df.challenge_id,
+                      dfd.participant_id,
+                      'dataset_download'::text AS text
+                     FROM dataset_file_downloads dfd,
+                      dataset_files df
+                    WHERE (dfd.dataset_file_id = df.id)
+                  UNION
+                   SELECT c_1.id AS challenge_id,
+                      p_1.id AS participant_id,
+                      'forum'::text AS registration_type
+                     FROM challenges c_1,
+                      participants p_1,
+                      topics t
+                    WHERE ((t.challenge_id = c_1.id) AND (t.participant_id = p_1.id))
+                  UNION
+                   SELECT t.challenge_id,
+                      ps.participant_id,
+                      'forum'::text AS registration_type
+                     FROM comments ps,
+                      topics t
+                    WHERE (t.id = ps.topic_id)) x
+            ORDER BY x.challenge_id, x.participant_id) y;
   SQL
 
   create_view "participant_challenges",  sql_definition: <<-SQL
@@ -735,47 +761,32 @@ ActiveRecord::Schema.define(version: 20171106131532) do
     WHERE ((pc.participant_id = p.id) AND (pc.challenge_id = c.id));
   SQL
 
-  create_view "participant_challenge_counts",  sql_definition: <<-SQL
-      SELECT row_number() OVER () AS row_number,
-      y.challenge_id,
-      y.participant_id,
-      y.registration_type
-     FROM ( SELECT DISTINCT x.challenge_id,
-              x.participant_id,
-              x.registration_type
-             FROM ( SELECT s.challenge_id,
-                      s.participant_id,
-                      'submission'::text AS registration_type
-                     FROM submissions s
-                  UNION
-                   SELECT s.votable_id,
-                      s.participant_id,
-                      'heart'::text AS registration_type
-                     FROM votes s
-                    WHERE ((s.votable_type)::text = 'Challenge'::text)
-                  UNION
-                   SELECT df.challenge_id,
-                      dfd.participant_id,
-                      'dataset_download'::text
-                     FROM dataset_file_downloads dfd,
-                      dataset_files df
-                    WHERE (dfd.dataset_file_id = df.id)
-                  UNION
-                   SELECT c_1.id AS challenge_id,
-                      p_1.id AS participant_id,
-                      'forum'::text AS registration_type
-                     FROM challenges c_1,
-                      participants p_1,
-                      topics t
-                    WHERE ((t.challenge_id = c_1.id) AND (t.participant_id = p_1.id))
-                  UNION
-                   SELECT t.challenge_id,
-                      ps.participant_id,
-                      'forum'::text AS registration_type
-                     FROM comments ps,
-                      topics t
-                    WHERE (t.id = ps.topic_id)) x
-            ORDER BY x.challenge_id, x.participant_id) y;
+  create_view "participant_sign_ups",  sql_definition: <<-SQL
+      SELECT count(participants.id) AS count,
+      (date_part('month'::text, participants.created_at))::integer AS mnth,
+      (date_part('year'::text, participants.created_at))::integer AS yr
+     FROM participants
+    GROUP BY ((date_part('month'::text, participants.created_at))::integer), ((date_part('year'::text, participants.created_at))::integer)
+    ORDER BY ((date_part('year'::text, participants.created_at))::integer), ((date_part('month'::text, participants.created_at))::integer);
+  SQL
+
+  create_view "participant_submissions",  sql_definition: <<-SQL
+      SELECT s.id,
+      s.challenge_id,
+      s.participant_id,
+      p.name,
+      s.grading_status_cd,
+      s.post_challenge,
+      s.score,
+      s.score_secondary,
+      count(f.*) AS files,
+      s.created_at
+     FROM participants p,
+      (submissions s
+       LEFT JOIN submission_files f ON ((f.submission_id = s.id)))
+    WHERE (s.participant_id = p.id)
+    GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
+    ORDER BY s.created_at DESC;
   SQL
 
 end

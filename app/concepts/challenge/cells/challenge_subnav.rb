@@ -24,6 +24,8 @@ class Challenge::Cell::ChallengeSubnav < Challenge::Cell
       'winner'
     when 'dynamic_contents'
       'dynamic'
+    when 'submissions'
+      'submissions'
     end
   end
 

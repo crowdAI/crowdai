@@ -11,7 +11,7 @@ FactoryGirl.define do
     description { FFaker::Lorem.unique.paragraph(6) }
     remote false
     location 'Geneva'
-    country 'Switzerland'
+    country 'CH'
     page_views 33
   end
 end

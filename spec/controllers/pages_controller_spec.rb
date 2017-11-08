@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PagesController, type: :controller do
+  render_views
 
   describe "pages#contact" do
     before { get :contact }

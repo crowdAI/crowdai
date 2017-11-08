@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe MarkdownEditorsController, type: :controller do
+  render_views
 
   let!(:participant) { create :participant }
 

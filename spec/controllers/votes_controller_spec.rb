@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe VotesController, type: :controller do
+  render_views
 
   let!(:challenge) { create :challenge, :running }
   let!(:article) { create :article }

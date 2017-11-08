@@ -23,6 +23,18 @@ FactoryGirl.define do
     trait :running do
       status :running
       dataset_files {[ build(:dataset_file) ]}
+      after(:create) do |challenge|
+        FactoryGirl.create(:challenge_round, challenge: challenge)
+      end
+    end
+
+    trait :previous_round do
+      status :running
+      dataset_files {[ build(:dataset_file) ]}
+      after(:create) do |challenge|
+        FactoryGirl.create(:challenge_round, :historical, challenge: challenge, challenge_round: 'round 1')
+        FactoryGirl.create(:challenge_round, challenge: challenge, challenge_round: 'round 2')
+      end
     end
 
     trait :draft do

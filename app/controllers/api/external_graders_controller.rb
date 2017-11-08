@@ -161,17 +161,16 @@ class Api::ExternalGradersController < Api::BaseController
   end
 
   def get_challenge_round_id(challenge)
-    round = ChallengeRoundSummary.where(challenge_id: challenge.id, round_status_cd: 'current').first
-    #raise ChallengeRoundNotOpen if round.empty?
+    round = challenge.current_round
     if round.present?
       return round.id
     else
-      return nil
+      raise ChallengeRoundNotOpen
     end
   end
 
   def challenge_round_open?(challenge)
-    return true
+    return true if challenge.current_round.present?
     round = ChallengeRoundSummary
               .where(challenge_id: challenge.id, round_status_cd: 'current')
               .where("current_timestamp between start_dttm and end_dttm")
@@ -179,7 +178,19 @@ class Api::ExternalGradersController < Api::BaseController
   end
 
   def participant_qualified?(challenge,participant)
-    return true
+    return true if challenge.previous_round.nil?
+    min_score = challenge.previous_round.minimum_score
+    return true if min_score.nil?
+    participant_leaderboard = challenge
+                          .leaderboards
+                          .where(participant_id: participant.id,
+                                 challenge_round_id: challenge.previous_round.id).first
+    return false if participant_leaderboard.nil?
+    if participant_leaderboard.score >= min_score
+      return true
+    else
+      return false
+    end
   end
 
   # TODO this needs a rethink
@@ -269,17 +280,4 @@ class Api::ExternalGradersController < Api::BaseController
     end
   end
 
-
 end
-
-# curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "https://crowdai-stg.herokuapp.com/api/external_graders/4f2b61e1aaf03d3283f135febbe225a4" -H 'Authorization: Token token="427e6d98d38bb0613cc0f7a9bed26c0d"'
-
-# curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X POST "https://crowdai-stg.herokuapp.com/api/external_graders/?api_key=4f2b61e1aaf03d3283f135febbe225a4&challenge_id=4&comment=test&grading_status=graded&score=0.99" -H 'Authorization: Token token="427e6d98d38bb0613cc0f7a9bed26c0d"'
-
-
-# local
-#curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X POST "localhost:3000/api/external_graders/?api_key=4f2b61e1aaf03d3283f135febbe225a4&challenge_id=4&comment=test&grading_status=graded&score=0.99" -H 'Authorization: Token token="427e6d98d38bb0613cc0f7a9bed26c0d"'
-
-# patch
-#curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X PATCH "localhost:3000/api/external_graders/385?media_large=testlarge&media_thumb=test2&media_content_type=videomp4&challenge_id=4&comment=test&grading_status=graded&score=0.99" -H 'Authorization: Token token="427e6d98d38bb0613cc0f7a9bed26c0d"'
-#curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X PATCH "localhost:3000/api/external_graders/385?media_content_type=video/mp4&media_large=challenge_8/4f2b61e1aaf03d3283f135febbe225a4___26a21687bc.mp4&media_thumbnail=challenge_8/4f2b61e1aaf03d3283f135febbe225a4___26a21687bc_134x100.mp4"

@@ -160,8 +160,6 @@ describe Challenge do
           challenge.update!(status: :cancelled)
         }.to raise_error(ActiveRecord::RecordInvalid)
       end
-
-
     end
 
     describe "friendly_id" do
@@ -170,6 +168,44 @@ describe Challenge do
         challenge.challenge = 'a new challenge title'
         challenge.save!
         expect(challenge.slug).to eq('a-new-challenge-title')
+      end
+    end
+
+    describe '#current_round' do
+      context 'single open round' do
+        let(:challenge) { create :challenge, :running }
+        it { expect(challenge.current_round.round_status_cd).to eq('current') }
+        it { expect(challenge.current_round.active).to be true }
+        it { expect(challenge.current_round.challenge_id).to eq(challenge.id) }
+      end
+      context 'previous and current round' do
+        let(:challenge) { create :challenge, :previous_round }
+        it { expect(challenge.current_round.round_status_cd).to eq('current') }
+        it { expect(challenge.current_round.active).to be true }
+        it { expect(challenge.current_round.challenge_id).to eq(challenge.id) }
+      end
+    end
+
+    describe '#round_open?' do
+      context 'single open round' do
+        let(:challenge) { create :challenge, :running }
+        it { expect(challenge.round_open?).to be true }
+      end
+      context 'previous and current round' do
+        let(:challenge) { create :challenge, :previous_round }
+        it { expect(challenge.round_open?).to be true }
+      end
+    end
+
+    describe '#previous_round' do
+      context 'single open round' do
+        let(:challenge) { create :challenge, :running }
+        it { expect(challenge.previous_round).to be_nil }
+      end
+      context 'previous and current round' do
+        let(:challenge) { create :challenge, :previous_round }
+        it { expect(challenge.previous_round.challenge_round).to eq('round 1') }
+        it { expect(challenge.current_round.challenge_round).to eq('round 2') }
       end
     end
 

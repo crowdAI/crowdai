@@ -6,9 +6,9 @@ class Challenge < ApplicationRecord
   before_save :reset_featured_seq
   validate :valid_status
   belongs_to :organizer
+  belongs_to :clef_task, optional: true
   has_many :dataset_files, dependent: :destroy
   mount_uploader :image_file, ImageUploader
-  mount_uploader :eua_file, EuaUploader
 
   has_many :submission_file_definitions,  dependent: :destroy, inverse_of: :challenge
   accepts_nested_attributes_for           :submission_file_definitions,

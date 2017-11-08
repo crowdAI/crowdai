@@ -76,15 +76,35 @@ class Challenge < ApplicationRecord
     return status.capitalize
   end
 
+  def current_round
+    @current_round ||= self.challenge_round_summaries.where(round_status_cd: 'current').first
+  end
+
+  def previous_round
+    return nil if current_round.row_num == 1
+    self.challenge_round_summaries.where(row_num: current_round.row_num - 1).first
+  end
+
+  def round_open?
+    @round_open ||= self.current_round.present?
+  end
+
   def submissions_remaining(participant_id)
-    submissions_today = self.submissions.where("participant_id = ? and created_at >= ?", participant_id, Time.now - 24.hours).order(created_at: :asc)
-    if submissions_today.blank?
-      reset_time = DateTime.now + 1.day
-      return [(self.daily_submissions - 1),reset_time]
-    else
-      reset_time = submissions_today.first.created_at + 1.day
-      return [(self.daily_submissions - submissions_today.count),reset_time]
+    case current_round.submission_limit_period
+    when :day
+      submissions_today = self.submissions.where("participant_id = ? and created_at >= ?", participant_id, Time.now - 24.hours).order(created_at: :asc)
+      if submissions_today.blank?
+        reset_time = DateTime.now + 1.day
+        return [(self.daily_submissions - 1),reset_time]
+      else
+        reset_time = submissions_today.first.created_at + 1.day
+        return [(self.daily_submissions - submissions_today.count),reset_time]
+      end
+    when :round
+      submissions_in_round = self.submissions.where("participant_id = ? and challenge_round_id = ? and grading_status_cd = 'graded'", participant_id, current_round.id).count
+      return [(self.daily_submissions - submissions_in_round), nil]
     end
+
   end
 
   def cache_rendered_markdown

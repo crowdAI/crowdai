@@ -8,6 +8,19 @@
     <fieldset>
       <label>Task</label>
       <%= f.text_field :task %>
+
+      <label>End User Agreement file</label>
+      <div class="upload">
+        <% if @clef_task.eua_file.file.present? %>
+          <span>You have already uploaded an EUA. If you wish to replace it, you can upload a new file</span>
+          <%= link_to 'Current EUA', @clef_task.eua_file.file.url %>
+        <% else %>
+          <span>If this dataset requires an End User Agreement, you can upload it here</span>
+        <% end %>
+        <%= f.file_field :eua_file, class: 'file-upload' %>
+        <span>PDF only, 5MB limit</span>
+      </div>
+
       <div id='task-dataset-files'>
         <%= f.fields_for :task_dataset_files do |task_dataset_file| %>
           <%= render 'task_dataset_file_fields', f: task_dataset_file %>

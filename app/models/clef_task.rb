@@ -7,4 +7,5 @@ class ClefTask < ApplicationRecord
                                 allow_destroy: true
   validates_presence_of :task
   mount_uploader :eua_file, EuaUploader
+  validates :eua_file, file_size: { less_than: 10.megabytes }
 end

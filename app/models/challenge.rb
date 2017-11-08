@@ -44,7 +44,6 @@ class Challenge < ApplicationRecord
   validates_uniqueness_of :challenge_client_name
   validates :challenge_client_name, format: { with: /\A[a-zA-Z0-9]/ }
   validates_presence_of :challenge_client_name
-  validates :eua_file, file_size: { less_than: 10.megabytes }
 
 
   default_scope { order("featured_sequence DESC,

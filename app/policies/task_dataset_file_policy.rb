@@ -1,0 +1,2 @@
+class TaskDatasetFilePolicy < DatasetFilePolicy
+end

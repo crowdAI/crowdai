@@ -161,6 +161,14 @@ ActiveRecord::Schema.define(version: 20171107144829) do
     t.index ["slug"], name: "index_challenges_on_slug", unique: true
   end
 
+  create_table "clef_tasks", force: :cascade do |t|
+    t.bigint "organizer_id"
+    t.string "task"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organizer_id"], name: "index_clef_tasks_on_organizer_id"
+  end
+
   create_table "comments", id: :serial, force: :cascade do |t|
     t.integer "topic_id"
     t.integer "participant_id"
@@ -339,6 +347,8 @@ ActiveRecord::Schema.define(version: 20171107144829) do
     t.string "country_cd"
     t.text "address"
     t.string "city"
+    t.string "first_name"
+    t.string "last_name"
     t.index ["confirmation_token"], name: "index_participants_on_confirmation_token", unique: true
     t.index ["email"], name: "index_participants_on_email", unique: true
     t.index ["organizer_id"], name: "index_participants_on_organizer_id"
@@ -444,6 +454,18 @@ ActiveRecord::Schema.define(version: 20171107144829) do
     t.string "media_content_type"
   end
 
+  create_table "task_dataset_files", force: :cascade do |t|
+    t.bigint "clef_task_id"
+    t.integer "seq", default: 0
+    t.string "description"
+    t.boolean "evaluation", default: false
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "dataset_file_s3_key"
+    t.index ["clef_task_id"], name: "index_task_dataset_files_on_clef_task_id"
+  end
+
   create_table "topics", id: :serial, force: :cascade do |t|
     t.integer "challenge_id"
     t.integer "participant_id"
@@ -485,6 +507,7 @@ ActiveRecord::Schema.define(version: 20171107144829) do
   add_foreign_key "challenge_registrations", "participants"
   add_foreign_key "challenge_rounds", "challenges"
   add_foreign_key "challenges", "organizers"
+  add_foreign_key "clef_tasks", "organizers"
   add_foreign_key "comments", "participants"
   add_foreign_key "comments", "topics"
   add_foreign_key "dataset_file_downloads", "dataset_files"
@@ -499,6 +522,7 @@ ActiveRecord::Schema.define(version: 20171107144829) do
   add_foreign_key "submission_grades", "submissions"
   add_foreign_key "submissions", "challenges"
   add_foreign_key "submissions", "participants"
+  add_foreign_key "task_dataset_files", "clef_tasks"
   add_foreign_key "topics", "challenges"
   add_foreign_key "topics", "participants"
   add_foreign_key "votes", "participants"

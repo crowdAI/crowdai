@@ -40,6 +40,8 @@ Rails.application.routes.draw do
     resources :challenges
     get :remove_image
     get :regen_api_key
+    get :members
+    resources :clef_tasks
   end
 
   resources :challenges do

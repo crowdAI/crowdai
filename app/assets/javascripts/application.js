@@ -18,9 +18,9 @@
 //= require modules/rangy_inputs
 //= require modules/markdown_editor
 //= require modules/flash_messages
+//= require modules/direct_s3_upload
 
 // ---------------------- Pages ---------------------- //
-//= require pages/dataset_files_index
 //= require pages/participants_edit
 //= require pages/email_preferences_edit
 

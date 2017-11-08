@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171108221341) do
+ActiveRecord::Schema.define(version: 20171108232046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,8 +155,8 @@ ActiveRecord::Schema.define(version: 20171108221341) do
     t.integer "current_challenge_round_id"
     t.integer "submission_limit"
     t.string "submission_limit_period_id"
-    t.bigint "clef_tasks_id"
-    t.index ["clef_tasks_id"], name: "index_challenges_on_clef_tasks_id"
+    t.bigint "clef_task_id"
+    t.index ["clef_task_id"], name: "index_challenges_on_clef_task_id"
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id"
     t.index ["slug"], name: "index_challenges_on_slug", unique: true
   end

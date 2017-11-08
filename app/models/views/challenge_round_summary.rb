@@ -6,5 +6,4 @@ class ChallengeRoundSummary < ApplicationRecord
   as_enum :status, [:draft, :running, :completed, :terminated, :starting_soon], map: :string
   as_enum :round_status, [:history, :current, :future], map: :string
   as_enum :submission_limit_period, [:day, :round], map: :string
-
 end

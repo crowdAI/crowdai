@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe LandingPageController, type: :controller do
+  render_views
 
   let!(:challenge_draft) { create :challenge, :draft, challenge: 'challenge_draft' }
   let!(:challenge_running) { create :challenge, :running, challenge: 'challenge_running' }

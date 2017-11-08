@@ -4,6 +4,7 @@ class OrganizersController < ApplicationController
   after_action :verify_authorized
 
   def show
+    @challenges = @organizer.challenges
   end
 
   def edit
@@ -39,6 +40,13 @@ class OrganizersController < ApplicationController
     redirect_to organizers_url, notice: 'Hosting organizer was successfully destroyed.'
   end
 
+  def members
+    @organizer = Organizer.friendly.find(params[:organizer_id])
+    @challenges = @organizer.challenges
+    authorize @organizer
+    @members = @organizer.participants
+  end
+
   def remove_image
     @organizer = Organizer.friendly.find(params[:organizer_id])
     @organizer.remove_image_file!
@@ -70,6 +78,9 @@ class OrganizersController < ApplicationController
                     :status,
                     :tagline,
                     :image_file,
-                    :clef_organizer)
+                    :clef_organizer,
+                    clef_tasks_attributes: [
+                      :id, :_delete, :task
+                    ])
     end
 end

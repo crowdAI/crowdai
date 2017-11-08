@@ -36,6 +36,10 @@ class OrganizerPolicy < ApplicationPolicy
     update?
   end
 
+  def members?
+    edit?
+  end
+
   class Scope
     attr_reader :participant, :scope
 

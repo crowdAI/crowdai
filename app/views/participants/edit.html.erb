@@ -9,8 +9,12 @@
   <div class="row">
     <%= form_for @participant, validate: true, html: { class: "sgl-col" } do |f| %>
     <fieldset>
-      <label>Name</label>
+      <label>Username</label>
       <%= f.text_field :name %>
+      <label>First name</label>
+      <%= f.text_field :first_name %>
+      <label>Last name</label>
+      <%= f.text_field :last_name %>
       <label>Profile Picture</label>
       <div class="upload">
         <%= concept(Image::Cell,

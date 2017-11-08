@@ -1,24 +1,29 @@
 <div class="sub-nav">
   <div class="row">
     <ul>
-      <li <%= tab_class('challenges') %>><%= link_to 'Challenges', challenge_path(challenge) %></li>
-      <li <%= tab_class('leaderboard') %>><%= link_to 'Members', challenge_leaderboards_path(challenge) %></li>
-      <%= link_to 'Submit Entry', challenge_submissions_path(challenge), class: "btn btn-secondary" %>
-    </div>
-  </div>
-
-  <div class="sub-nav">
-    <div class="row">
-      <ul>
-        <li class="active">Challenges
-          <sup>3</sup>
+      <li class=<%= tab_class('challenges') %> >
+        <%= link_to 'Challenges', organizer_path(organizer), class: tab_class('challenges') %>
+        <sup><%= challenges.count %></sup>
+      </li>
+      <li class=<%= tab_class('members') %> >
+        <%= link_to 'Members', organizer_members_path(organizer), class: tab_class('members') %>
+        <sup><%= organizer.participants.count %></sup>
+      </li>
+      <% if organizer.clef? %>
+        <li class=<%= tab_class('tasks') %> >
+          <%= link_to 'Tasks', organizer_clef_tasks_path(organizer), class: tab_class('tasks') %>
+          <sup><%= organizer.clef_tasks.count %></sup>
         </li>
-        <li>
-          <a href="#">Members
-            <sup>2</sup>
-          </a>
-        </li>
-      </ul>
-      <a class="btn btn-primary" data-remodal-target="modal">Add Members</a>
-    </div>
+      <% end %>
+    </ul>
+    <% if current_tab == 'challenges' %>
+      <%= link_to 'Create Challenge', new_organizer_challenge_path(organizer), class: "btn btn-secondary pull-right" %>
+    <% end %>
+    <% if current_tab == 'members' %>
+      <%= link_to 'Invite Member', '#', class: "btn btn-secondary pull-right" %>
+    <% end %>
+    <% if current_tab == 'tasks' %>
+      <%= link_to 'Create Task', new_organizer_clef_task_path(organizer), class: "btn btn-secondary pull-right" %>
+    <% end %>
   </div>
+</div>

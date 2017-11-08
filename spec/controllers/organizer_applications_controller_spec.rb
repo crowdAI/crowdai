@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe OrganizerApplicationsController, type: :controller do
   include ActiveJob::TestHelper
+  render_views
 
   let(:valid_attributes) {
     FactoryGirl.attributes_for(:organizer_application)

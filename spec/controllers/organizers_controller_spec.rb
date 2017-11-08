@@ -1,6 +1,7 @@
   require 'rails_helper'
 
 RSpec.describe OrganizersController, type: :controller do
+  render_views
 
   let(:valid_attributes) {
     FactoryGirl.attributes_for(:organizer)

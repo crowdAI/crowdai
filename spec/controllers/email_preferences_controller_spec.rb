@@ -1,5 +1,6 @@
 require 'rails_helper'
 RSpec.describe EmailPreferencesController, type: :controller do
+  render_views
 
   let(:participant) { create :participant }
   let(:email_preference) { participant.email_preferences.first }

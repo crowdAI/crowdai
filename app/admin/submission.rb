@@ -31,4 +31,5 @@ ActiveAdmin.register Submission do
     end
   end
 
+
 end

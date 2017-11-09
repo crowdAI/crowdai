@@ -51,8 +51,14 @@ class LeaderboardsController < ApplicationController
   end
 
   def submission_detail
+    leaderboard = Leaderboard.find(params[:leaderboard_id])
     @leaderboard = @challenge.leaderboards
-    @submissions = Submission.where(participant_id: params[:participant_id],challenge_id: params[:challenge_id]).order(created_at: :desc)
+    @submissions = Submission
+                     .where(
+                        participant_id: params[:participant_id],
+                        challenge_id: params[:challenge_id],
+                        challenge_round_id: leaderboard.challenge_round_id)
+                     .order(created_at: :desc)
     render js: concept(Leaderboard::Cell,@leaderboard, challenge: @challenge, submissions: @submissions).(:insert_submissions)
   end
 

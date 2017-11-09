@@ -97,6 +97,14 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       }
     end
 
+    def valid_attributes_grading_submitted_with_message
+      { challenge_client_name: challenge.challenge_client_name,
+        api_key: participant.api_key,
+        grading_status: 'submitted',
+        grading_message: 'in progress'
+      }
+    end
+
     def valid_attributes_with_secondary_score
       { challenge_client_name: challenge.challenge_client_name,
         api_key: participant.api_key,
@@ -233,6 +241,20 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(Submission.last.participant_id).to eq(participant.id)}
       it { expect(Submission.last.score).to eq(nil)}
       it { expect(Submission.last.grading_status_cd).to eq('submitted')}
+    end
+
+    context "with valid_attributes_grading_submitted_with_message" do
+      before {
+        post '/api/external_graders/',
+          params: valid_attributes_grading_submitted_with_message,
+          headers: { 'Authorization': auth_header(organizer.api_key) } }
+      it { expect(response).to have_http_status(202) }
+      it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
+      it { expect(json(response.body)[:submission_id]).to be_a Integer }
+      it { expect(Submission.last.participant_id).to eq(participant.id)}
+      it { expect(Submission.last.score).to eq(nil)}
+      it { expect(Submission.last.grading_status_cd).to eq('submitted')}
+      it { expect(Submission.last.grading_message).to eq('in progress')}
     end
 
     context "with valid_attributes_with_secondary_score" do
@@ -402,6 +424,14 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       }
     end
 
+    def valid_attributes_grading_submitted_with_message
+      { challenge_client_name: challenge.challenge_client_name,
+        api_key: participant.api_key,
+        grading_status: 'submitted',
+        grading_message: 'in progress'
+      }
+    end
+
     context "with valid_media_attributes" do
       before do
         patch "/api/external_graders/#{submission1.id}",
@@ -428,6 +458,20 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
       it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
       it { expect(submission1.meta).to eq(valid_meta_attributes[:meta]) }
+    end
+
+    context "valid_attributes_grading_submitted_with_message" do
+      before do
+        patch "/api/external_graders/#{submission1.id}",
+          params: valid_attributes_grading_submitted_with_message,
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+        submission1.reload
+      end
+      it { expect(response).to have_http_status(202) }
+      it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
+      it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
+      it { expect(submission1.grading_status_cd).to eq('submitted') }
+      it { expect(submission1.grading_message).to eq('in progress') }
     end
 
     context "with invalid submission id" do

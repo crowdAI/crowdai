@@ -1,0 +1,23 @@
+<li data-cell='TaskDataset::Cell::ListDetail'>
+  <div class="details">
+    <h5><%= link_to file_title, expiring_url, class: 'dataset-file-download', data: { :'dataset-file-id' => task_dataset_file.id } %></h5>
+    <p class="description"><%= file_description %></p>
+    <% if Pundit.policy(current_participant,task_dataset_file).destroy? %>
+      <p class='status active'>
+        <%= link_to 'delete',
+                    clef_task_task_dataset_file_path(clef_task,task_dataset_file),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } %></p>
+    <% end %>
+  </div>
+  <div class="stats">
+    <div class="stat-fr">
+      File Size<br>
+      <span><%= file_size %></span>
+    </div>
+    <div class="stat-fr">
+      File Format<br>
+      <span><%= file_type %></span>
+    </div>
+  </div>
+</li>

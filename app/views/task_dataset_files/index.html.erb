@@ -1,0 +1,15 @@
+<div class='content'>
+  <%= concept(Challenge::Cell::ChallengeMasthead,
+                @challenge,
+                current_participant: current_participant) %>
+  <%= concept(Challenge::Cell::ChallengeSubnav,
+                @challenge,
+                tab: 'dataset',
+                current_participant: current_participant) %>
+
+  <div class="row">
+    <ul class="list-datasets">
+        <%= concept(Dataset::Cell::ListDetail, collection: @dataset_files, current_participant: current_participant) %>
+    </ul>
+  </div>
+</div>

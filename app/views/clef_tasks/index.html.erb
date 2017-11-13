@@ -10,7 +10,7 @@
       <% @clef_tasks.each do |task| %>
       <li>
         <div class="details">
-          <h5><%= link_to task.task, edit_organizer_clef_task_path(@organizer,task) %></h5>
+          <h5><%= link_to task.task, organizer_clef_task_path(@organizer,task) %></h5>
           <% if policy(task).destroy? %>
             <p class='status active'>
               <%= link_to 'delete',

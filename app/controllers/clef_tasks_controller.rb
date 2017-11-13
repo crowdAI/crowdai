@@ -1,12 +1,15 @@
 class ClefTasksController < ApplicationController
   before_action :authenticate_participant!
   before_action :set_organizer
-  before_action :set_clef_task, only: [:edit, :update, :destroy]
+  before_action :set_clef_task, only: [:edit, :update, :destroy, :show]
   before_action :set_s3_direct_post, only: [:new, :create, :edit]
 
   def index
     @clef_tasks = @organizer.clef_tasks
     @challenges = @organizer.challenges
+  end
+
+  def show
   end
 
   def new

@@ -1,0 +1,25 @@
+<div class='content'>
+  <div class="masthead">
+    <div class="row">
+      <h2>Add Dataset File</h2>
+    </div>
+  </div>
+  <div class="row">
+    <%= form_for [@clef_task,@task_dataset_file], validate: true,
+                    html: { class: "sgl-col directUpload", 'data-form-data' => @s3_direct_post.fields.to_json.html_safe, 'data-url' => @s3_direct_post.url, 'data-host' => URI.parse(@s3_direct_post.url).host } do |f| %>
+      <fieldset>
+        <label>File Title</label>
+        <%= f.text_field :title %>
+        <label>Dataset file</label>
+        <%= f.file_field :task_dataset_file_s3_key, class: 'file-upload s3File' %>
+
+        <div class="button-group">
+          <%= f.button "Add file", class: 'btn btn-primary', id: 'submitS3' %>
+          <%= link_to clef_task_path(@clef_task), class: "btn btn-secondary", validate: false do %>
+            Cancel
+          <% end %>
+        </div>
+      </fieldset>
+    <% end %>
+  </div>
+</div>

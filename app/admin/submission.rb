@@ -7,7 +7,9 @@ ActiveAdmin.register Submission do
   filter :media_content_type
   filter :score
   filter :score_secondary
+  filter :post_challenge
   filter :grading_status_cd
+  filter :grading_message
 
   index do
     selectable_column
@@ -16,8 +18,10 @@ ActiveAdmin.register Submission do
     column :score
     column :score_secondary
     column :grading_status_cd
+    column :grading_message
     column :post_challenge
     column :media_content_type
+    column :created_at
     column :updated_at
     actions
   end
@@ -31,5 +35,22 @@ ActiveAdmin.register Submission do
     end
   end
 
+  form do |f|
+    f.inputs "Submission" do
+      f.input :challenge, :as => :select, :collection => Challenge.all.collect {|challenge| [challenge.challenge, challenge.id] }
+      f.input :challenge_round_id
+      f.input :score
+      f.input :score_secondary
+      f.input :description_markdown
+      f.input :grading_status_cd
+      f.input :grading_message
+      f.input :post_challenge
+      f.input :media_large
+      f.input :media_thumbnail
+      f.input :media_content_type
+      f.input :vote_count
+    end
+    f.actions
+  end
 
 end

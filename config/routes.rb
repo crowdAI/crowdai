@@ -48,6 +48,8 @@ Rails.application.routes.draw do
     resources :task_dataset_files
   end
 
+  resources :participant_clef_tasks
+
   resources :task_dataset_files do
     resources :task_dataset_file_downloads
   end

@@ -20,22 +20,6 @@ class TaskDataset::Cell::ListDetail < TaskDataset::Cell
     end
   end
 
-  def file_title
-    if task_dataset_file.title.present?
-      task_dataset_file.title
-    else
-      task_dataset_file.description
-    end
-  end
-
-  def file_description
-    if task_dataset_file.title.present?
-      task_dataset_file.description
-    else
-      nil
-    end
-  end
-
   def file_size
     return 0 if s3_file_obj.nil? || !s3_file_obj.exists?
     number_to_human_size(s3_file_obj.content_length)

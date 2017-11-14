@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113145639) do
+ActiveRecord::Schema.define(version: 20171114094218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -156,6 +156,7 @@ ActiveRecord::Schema.define(version: 20171113145639) do
     t.integer "submission_limit"
     t.string "submission_limit_period_id"
     t.bigint "clef_task_id"
+    t.boolean "clef_challenge", default: false
     t.index ["clef_task_id"], name: "index_challenges_on_clef_task_id"
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id"
     t.index ["slug"], name: "index_challenges_on_slug", unique: true
@@ -304,6 +305,18 @@ ActiveRecord::Schema.define(version: 20171113145639) do
     t.string "api_key"
     t.boolean "clef_organizer", default: false
     t.index ["slug"], name: "index_organizers_on_slug", unique: true
+  end
+
+  create_table "participant_clef_tasks", force: :cascade do |t|
+    t.bigint "participant_id"
+    t.bigint "clef_task_id"
+    t.boolean "approved"
+    t.string "eua_file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "status_cd"
+    t.index ["clef_task_id"], name: "index_participant_clef_tasks_on_clef_task_id"
+    t.index ["participant_id"], name: "index_participant_clef_tasks_on_participant_id"
   end
 
   create_table "participants", id: :serial, force: :cascade do |t|
@@ -525,6 +538,8 @@ ActiveRecord::Schema.define(version: 20171113145639) do
   add_foreign_key "dataset_file_downloads", "participants"
   add_foreign_key "email_preferences", "participants"
   add_foreign_key "follows", "participants"
+  add_foreign_key "participant_clef_tasks", "clef_tasks"
+  add_foreign_key "participant_clef_tasks", "participants"
   add_foreign_key "participants", "organizers"
   add_foreign_key "submission_comments", "participants"
   add_foreign_key "submission_comments", "submissions"

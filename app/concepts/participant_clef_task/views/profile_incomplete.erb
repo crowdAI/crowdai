@@ -1,0 +1,19 @@
+<div class='row'>
+  <div class='article markdown-wrap'>
+    <h2>Complete your profile</h2>
+    <p>This challenge belongs to the <%= link_to organizer.organizer, organizer_path(organizer), target: :_blank %> lab which in turn is part of the Conference and Labs of the Evaluation Forum: CLEF 2018. In order to be compliant with the CLEF registration requirements, please <%= link_to 'edit your profile', participant_path(current_participant), target: :_blank %>  by providing the following information:</p>
+    <p>
+    <ul>
+      <li>First name</li>
+      <li>Last name </li>
+      <li>Affiliation</li>
+      <li>Address</li>
+      <li>City</li>
+      <li>Country</li>
+    </ul>
+  </p>
+    <p><b>Regarding the username, please choose a name that represents your team</b></p>
+    <p>This information will not be publicly visible (except the username) and will be exclusively used to contact you and to send the registration data to CLEF, which is the main organizer of all CLEF labs.</p>
+    <p>After the completion of this information, you will be asked to fill in and sign an End User Agreement (EUA) document.</p>
+  </div>
+</div>

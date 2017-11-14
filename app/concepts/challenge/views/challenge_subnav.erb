@@ -4,7 +4,12 @@
       <li class=<%= tab_class('overview') %> ><%= link_to 'Overview', challenge_path(challenge), class: tab_class('overview') %></li>
       <li class=<%= tab_class('leaderboard') %> ><%= link_to 'Leaderboard', challenge_leaderboards_path(challenge), class: tab_class('leaderboard') %></li>
       <li class=<%= tab_class('discussion') %> ><%= link_to 'Discussion', challenge_topics_path(challenge), class: tab_class('discussion') %></li>
-      <li class=<%= tab_class('dataset') %> ><%= link_to 'Dataset', challenge_dataset_files_path(challenge), class: tab_class('dataset') %></li>
+      <% if clef_task.present? %>
+        <li class=<%= tab_class('dataset') %> ><%= link_to 'Dataset', clef_task_task_dataset_files_path(clef_task, challenge_id: challenge.id), class: tab_class('dataset') %></li>
+      <% else %>
+        <li class=<%= tab_class('dataset') %> ><%= link_to 'Dataset', challenge_dataset_files_path(challenge), class: tab_class('dataset') %></li>
+      <% end %>
+
       <li class=<%= tab_class('submissions') %> ><%= link_to 'Submissions', challenge_submissions_path(challenge), class: tab_class('submissions') %></li>
       <% if policy(challenge).edit? && challenge.organizer.clef_organizer == true %>
         <li class=<%= tab_class('participants') %> ><%= link_to 'Participants', challenge_participant_challenges_path(challenge), class: tab_class('participants') %></li>

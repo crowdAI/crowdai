@@ -39,6 +39,9 @@ class ChallengesController < ApplicationController
 
   def create
     @challenge = @organizer.challenges.new(challenge_params)
+    if @organizer.clef_organizer
+      @challenge.clef_challenge = true
+    end
     authorize @challenge
 
     if @challenge.save

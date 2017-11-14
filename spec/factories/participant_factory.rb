@@ -58,5 +58,13 @@ FactoryGirl.define do
       end
     end
 
+    trait :clef_incomplete do
+      address nil
+    end
+
+    trait :clef_complete do
+      address 'test test test'
+    end
+
   end
 end

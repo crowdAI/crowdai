@@ -5,11 +5,8 @@ class TaskDatasetFilesController < ApplicationController
   before_action :set_s3_direct_post, only: [:new, :create]
 
   def index
-    if current_participant.admin?
-      @task_dataset_files = @clef_task.task_dataset_files
-    else
-      @task_dataset_files = @clef_task.task_dataset_files.where(evaluation: false)
-    end
+    @challenge = Challenge.find(params[:challenge_id])
+    @task_dataset_files = @clef_task.task_dataset_files
   end
 
   def show

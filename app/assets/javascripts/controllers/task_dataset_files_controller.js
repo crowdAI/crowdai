@@ -1,5 +1,6 @@
 Paloma.controller('TaskDatasetFiles', {
   index: function(){
+    var himself = this;
     $('.dataset-file-download').on('click', function (e) {
       var self = this;
       var dataset_file_id = $(self).data('dataset-file-id');
@@ -17,7 +18,7 @@ Paloma.controller('TaskDatasetFiles', {
       $.ajax({
         url: '/participant_clef_tasks/',
         type: 'POST',
-        data: { "participant_clef_task": { "clef_task_id": clefTaskId } },
+        data: { "participant_clef_task": { "clef_task_id": clefTaskId, "challenge_id": himself.params.challenge_id } },
         complete: function() { console.log('download of eua logged')},
         error: function() { console.log('download logging of eua errored ' + status)}
       });

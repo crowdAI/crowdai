@@ -7,6 +7,7 @@ class TaskDatasetFilesController < ApplicationController
   def index
     @challenge = Challenge.find(params[:challenge_id])
     @task_dataset_files = @clef_task.task_dataset_files
+    js challenge_id: @challenge.id
   end
 
   def show

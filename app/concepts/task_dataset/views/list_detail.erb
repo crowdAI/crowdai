@@ -1,7 +1,6 @@
 <li data-cell='TaskDataset::Cell::ListDetail'>
   <div class="details">
     <h5><%= link_to task_dataset_file.title, expiring_url, class: 'dataset-file-download', data: { :'dataset-file-id' => task_dataset_file.id } %></h5>
-    <p class="description"><%= file_description %></p>
     <% if Pundit.policy(current_participant,task_dataset_file).destroy? %>
       <p class='status active'>
         <%= link_to 'delete',

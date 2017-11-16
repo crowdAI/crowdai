@@ -64,6 +64,11 @@ class ChallengesController < ApplicationController
     redirect_to challenges_url, notice: 'Challenge was successfully destroyed.'
   end
 
+  def clef_task
+    @challenge = Challenge.friendly.find(params[:challenge_id])
+    authorize @challenge
+    @clef_task = @challenge.clef_task
+  end
 
   def regrade
     challenge = Challenge.friendly.find(params[:challenge_id])

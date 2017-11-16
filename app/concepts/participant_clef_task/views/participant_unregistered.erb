@@ -14,11 +14,13 @@
 </div>
 
 <div class="row">
-  <%= form_for participant_clef_task,
+  <%= form_for form_obj,
         url: participant_clef_tasks_path,
         validate: true,
         html: { class: 'sgl-col' },
         method: :post do |f| %>
+      <%= f.hidden_field :clef_task_id, value: clef_task.id %>
+      <%= f.hidden_field :challenge_id, value: challenge_id %>
     <fieldset>
       <label>End User Agreement file</label>
       <% if clef_task.eua_file.present? %>
@@ -33,7 +35,7 @@
       <% end %>
       <br/><br/>
       <div class="upload">
-        <% if participant_clef_task.eua_file.present? %>
+        <% if participant_clef_task && participant_clef_task.eua_file.present? %>
           <span>You have already uploaded an EUA. If you wish to replace it, you can upload a new file</span>
           <%= link_to 'Current EUA', participant_clef_task.eua_file.file.url %>
         <% else %>

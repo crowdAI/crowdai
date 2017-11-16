@@ -11,8 +11,12 @@
       <% end %>
 
       <li class=<%= tab_class('submissions') %> ><%= link_to 'Submissions', challenge_submissions_path(challenge), class: tab_class('submissions') %></li>
-      <% if policy(challenge).edit? && challenge.organizer.clef_organizer == true %>
-        <li class=<%= tab_class('participants') %> ><%= link_to 'Participants', challenge_participant_challenges_path(challenge), class: tab_class('participants') %></li>
+      <% if policy(challenge).edit? %>
+        <% if challenge.clef_task && challenge.clef_task.eua_required? %>
+          <li class=<%= tab_class('participants') %> ><%= link_to 'Participants', challenge_clef_task_path(challenge), class: tab_class('participants') %></li>
+        <% else %>
+          <li class=<%= tab_class('participants') %> ><%= link_to 'Participants', challenge_participant_challenges_path(challenge), class: tab_class('participants') %></li>
+        <% end %>
       <% end %>
       <% if challenge.winners_tab_active.present? %>
         <li class=<%= tab_class('winner') %> ><%= link_to 'Winner', challenge_winners_path(challenge), class: tab_class('winner') %></li>

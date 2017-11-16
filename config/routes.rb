@@ -76,6 +76,7 @@ Rails.application.routes.draw do
     resources :topics
     get :regrade
     get :remove_image
+    get :clef_task
     resources :votes, only: [:create, :destroy]
     resources :follows, only: [:create, :destroy]
   end

@@ -1,0 +1,11 @@
+<div class='content'>
+  <%= concept(Challenge::Cell::ChallengeMasthead, @challenge, current_participant: current_participant) %>
+  <%= concept(Challenge::Cell::ChallengeSubnav, @challenge, current_participant: current_participant) %>
+
+  <div class="row">
+    <ul class="list-challenge-participants">
+        <%= render partial: 'clef_participants' %>
+    </ul>
+    <%#= render partial: 'shared/load_more',
+               locals: { collection: @clef_task.participant_clef_tasks } %>
+  </div>

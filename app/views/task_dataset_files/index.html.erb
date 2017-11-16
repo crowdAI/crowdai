@@ -6,8 +6,8 @@
                 @challenge,
                 tab: 'dataset',
                 current_participant: current_participant) %>
-
   <%= concept(ParticipantClefTask::Cell,
                 @clef_task,
-                current_participant: current_participant) %>
+                current_participant: current_participant,
+                challenge_id: @challenge.id) %>
 </div>

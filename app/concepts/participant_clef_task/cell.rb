@@ -19,6 +19,10 @@ class ParticipantClefTask::Cell < Template::Cell
     @organizer ||= clef_task.organizer
   end
 
+  def challenge_id
+    options[:challenge_id]
+  end
+
   def clef_task
     model
   end
@@ -36,17 +40,16 @@ class ParticipantClefTask::Cell < Template::Cell
     end
   end
 
-
   def eua_required?
-    true
-    #@eua_required ||= clef_task.eua_file.present?
+    @eua_required ||= clef_task.eua_file.present?
   end
 
   def participant_clef_task
-    @participant_clef_task ||= participant_clef_task = clef_task.participant_clef_tasks.where(participant_id: current_participant.id).first
-    #if participant_clef_task.blank? && ['unregistered','requested'].include?(participant_status)
-    #  participant_clef_task = ParticipantClefTask.new
-    #end
+    @participant_clef_task ||= clef_task.participant_clef_tasks.where(participant_id: current_participant.id).first
+  end
+
+  def form_obj
+    ParticipantClefTask.new(clef_task_id: clef_task.id)
   end
 
   def profile_incomplete?

@@ -40,6 +40,10 @@ class ChallengePolicy < ApplicationPolicy
     update?
   end
 
+  def clef_task?
+    update?
+  end
+
 
   class Scope
     attr_reader :participant, :scope

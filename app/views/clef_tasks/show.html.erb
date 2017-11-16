@@ -1,0 +1,41 @@
+<div class="content">
+  <div class="masthead-detailed">
+    <div class="row">
+      <div class="info info-challenge">
+        <div class="heading-w-icon">
+          <h6><%= @clef_task.organizer.organizer %></h6>
+          <h2><%= @clef_task.task %></h2>
+          <% if policy(@clef_task).edit? %>
+            <%= link_to edit_organizer_clef_task_path(@organizer,@clef_task), title: "Edit task" do %>
+              <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+            <% end %>
+          <% end %>
+        </div>
+			</div>
+    </div>
+  </div>
+
+  <div class="sub-nav">
+    <div class="row">
+      <ul>
+        <li>
+          <% if @clef_task.eua_file.present? %>
+            <%= link_to @clef_task.eua_file.url do %>
+              <i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i>
+            <% end %>
+          <% end %>
+        </li>
+      </ul>
+      <%= link_to 'Add Dataset File',
+            new_clef_task_task_dataset_file_path(@clef_task),
+            class: 'btn btn-primary' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <ul class="list-datasets">
+        <%= concept(TaskDataset::Cell::ListDetail, collection: @clef_task.task_dataset_files, current_participant: current_participant) %>
+    </ul>
+  </div>
+
+</div>

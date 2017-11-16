@@ -18,6 +18,8 @@ class Challenge::Cell::ChallengeSubnav < Challenge::Cell
       'discussion'
     when 'dataset_files'
       'dataset'
+    when 'task_dataset_files'
+      'dataset'
     when 'participant_challenges'
       'participants'
     when 'winners'
@@ -27,6 +29,10 @@ class Challenge::Cell::ChallengeSubnav < Challenge::Cell
     when 'submissions'
       'submissions'
     end
+  end
+
+  def clef_task
+    @clef_task ||= challenge.clef_task
   end
 
   def tab_class(tab)

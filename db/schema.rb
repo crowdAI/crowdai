@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113113900) do
+ActiveRecord::Schema.define(version: 20171116084335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -156,6 +156,7 @@ ActiveRecord::Schema.define(version: 20171113113900) do
     t.integer "submission_limit"
     t.string "submission_limit_period_id"
     t.bigint "clef_task_id"
+    t.boolean "clef_challenge", default: false
     t.index ["clef_task_id"], name: "index_challenges_on_clef_task_id"
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id"
     t.index ["slug"], name: "index_challenges_on_slug", unique: true
@@ -304,6 +305,18 @@ ActiveRecord::Schema.define(version: 20171113113900) do
     t.string "api_key"
     t.boolean "clef_organizer", default: false
     t.index ["slug"], name: "index_organizers_on_slug", unique: true
+  end
+
+  create_table "participant_clef_tasks", force: :cascade do |t|
+    t.bigint "participant_id"
+    t.bigint "clef_task_id"
+    t.boolean "approved", default: false
+    t.string "eua_file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "status_cd"
+    t.index ["clef_task_id"], name: "index_participant_clef_tasks_on_clef_task_id"
+    t.index ["participant_id"], name: "index_participant_clef_tasks_on_participant_id"
   end
 
   create_table "participants", id: :serial, force: :cascade do |t|
@@ -455,6 +468,16 @@ ActiveRecord::Schema.define(version: 20171113113900) do
     t.string "media_content_type"
   end
 
+  create_table "task_dataset_file_downloads", force: :cascade do |t|
+    t.bigint "participant_id"
+    t.bigint "task_dataset_file_id"
+    t.string "ip_address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["participant_id"], name: "index_task_dataset_file_downloads_on_participant_id"
+    t.index ["task_dataset_file_id"], name: "index_task_dataset_file_downloads_on_task_dataset_file_id"
+  end
+
   create_table "task_dataset_files", force: :cascade do |t|
     t.bigint "clef_task_id"
     t.integer "seq", default: 0
@@ -515,6 +538,8 @@ ActiveRecord::Schema.define(version: 20171113113900) do
   add_foreign_key "dataset_file_downloads", "participants"
   add_foreign_key "email_preferences", "participants"
   add_foreign_key "follows", "participants"
+  add_foreign_key "participant_clef_tasks", "clef_tasks"
+  add_foreign_key "participant_clef_tasks", "participants"
   add_foreign_key "participants", "organizers"
   add_foreign_key "submission_comments", "participants"
   add_foreign_key "submission_comments", "submissions"

@@ -39,6 +39,9 @@ class ChallengesController < ApplicationController
 
   def create
     @challenge = @organizer.challenges.new(challenge_params)
+    if @organizer.clef_organizer
+      @challenge.clef_challenge = true
+    end
     authorize @challenge
 
     if @challenge.save
@@ -61,6 +64,11 @@ class ChallengesController < ApplicationController
     redirect_to challenges_url, notice: 'Challenge was successfully destroyed.'
   end
 
+  def clef_task
+    @challenge = Challenge.friendly.find(params[:challenge_id])
+    authorize @challenge
+    @clef_task = @challenge.clef_task
+  end
 
   def regrade
     challenge = Challenge.friendly.find(params[:challenge_id])

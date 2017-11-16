@@ -44,6 +44,16 @@ Rails.application.routes.draw do
     resources :clef_tasks
   end
 
+  resources :clef_tasks do
+    resources :task_dataset_files
+  end
+
+  resources :participant_clef_tasks
+
+  resources :task_dataset_files do
+    resources :task_dataset_file_downloads
+  end
+
   resources :challenges do
     resources :dataset_files, only: [:new, :show, :index, :destroy, :create]
     resources :participant_challenges, only: [:index] do
@@ -66,6 +76,7 @@ Rails.application.routes.draw do
     resources :topics
     get :regrade
     get :remove_image
+    get :clef_task
     resources :votes, only: [:create, :destroy]
     resources :follows, only: [:create, :destroy]
   end

@@ -1,5 +1,4 @@
-class Discussion::Cell::TopicLikesListDetail < Template::Cell
-  inherit_views Discussion::Cell
+class Discussion::Cell::TopicLikesListDetail < Discussion::Cell
   
   def show
     render :topic_likes_list_detail

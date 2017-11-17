@@ -30,15 +30,18 @@ class TaskDatasetFilesController < ApplicationController
 
   def destroy
     s3 = Aws::S3::Client.new
-    s3.delete_object(key: @task_dataset_file.dataset_file_s3_key, bucket: ENV['AWS_S3_BUCKET'])
+    unless @task_dataset_file.dataset_file_s3_key.nil?
+      s3.delete_object(key: @task_dataset_file.dataset_file_s3_key, bucket: ENV['AWS_S3_BUCKET'])
+    end
     @task_dataset_file.destroy
+
     redirect_to organizer_clef_tasks_path(@clef_task.organizer),
         notice: "Dataset file #{@task_dataset_file.title} was deleted."
   end
 
   private
   def set_task_dataset_file
-    @task_dataset_file = DatasetFile.find(params[:id])
+    @task_dataset_file = TaskDatasetFile.find(params[:id])
   end
 
   def set_clef_task

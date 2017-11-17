@@ -156,3 +156,9 @@ code.block {
 .color-accent {
   color: $color-accent;
 }
+
+.list-topics h5 {
+  &:visited {
+    font-weight: 400;
+  }
+}

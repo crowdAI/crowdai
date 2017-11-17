@@ -1,5 +1,9 @@
 class DatasetFilePolicy < ApplicationPolicy
 
+  def index?
+    participant
+  end
+
   def new?
     participant && (participant.admin? || @record.challenge.organizer_id == participant.organizer_id)
   end
@@ -10,10 +14,6 @@ class DatasetFilePolicy < ApplicationPolicy
 
   def destroy?
     new?
-  end
-
-  def index?
-    participant
   end
 
 end

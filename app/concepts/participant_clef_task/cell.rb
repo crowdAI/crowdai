@@ -54,7 +54,12 @@ class ParticipantClefTask::Cell < Template::Cell
 
   def profile_incomplete?
     @profile_incomplete ||= begin
-      if current_participant.address.blank?
+      if (current_participant.first_name.blank?   ||
+          current_participant.last_name.blank?    ||
+          current_participant.affiliation.blank?  ||
+          current_participant.address.blank?      ||
+          current_participant.city.blank?         ||
+          current_participant.country_cd.blank?)
         profile_incomplete = true
       else
         profile_incomplete = false

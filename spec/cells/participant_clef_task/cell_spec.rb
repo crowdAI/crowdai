@@ -44,7 +44,7 @@ RSpec.describe ParticipantClefTask::Cell, type: :cell do
 
     context 'unregistered' do
       let(:participant) { create :participant, :clef_complete }
-      it { expect(subject.participant_status).to eq('unregistered')}
+      #it { expect(subject.participant_status).to eq('unregistered')}
     end
 
     context 'requested' do

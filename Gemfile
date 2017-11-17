@@ -137,7 +137,6 @@ group :development, :test do
   gem 'traceroute'
 end
 
-
 group :test do
   gem "factory_girl_rails"
   gem 'simplecov', :require => false

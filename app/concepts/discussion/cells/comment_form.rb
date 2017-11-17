@@ -1,5 +1,4 @@
-class Discussion::Cell::CommentForm < Template::Cell
-  inherit_views Discussion::Cell
+class Discussion::Cell::CommentForm < Discussion::Cell
 
   def show
     render :comment_form

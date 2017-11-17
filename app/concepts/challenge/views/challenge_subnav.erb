@@ -1,11 +1,11 @@
-<div class="sub-nav">
+<div class="sub-nav" data-cell='Challenge::Cell::ChallengeSubnav'>
   <div class="row">
     <ul>
       <li class=<%= tab_class('overview') %> ><%= link_to 'Overview', challenge_path(challenge), class: tab_class('overview') %></li>
       <li class=<%= tab_class('leaderboard') %> ><%= link_to 'Leaderboard', challenge_leaderboards_path(challenge), class: tab_class('leaderboard') %></li>
       <li class=<%= tab_class('discussion') %> ><%= link_to 'Discussion', challenge_topics_path(challenge), class: tab_class('discussion') %></li>
       <% if clef_task.present? %>
-        <li class=<%= tab_class('dataset') %> ><%= link_to 'Dataset', clef_task_task_dataset_files_path(clef_task, challenge_id: challenge.id), class: tab_class('dataset') %></li>
+        <li class=<%= tab_class('clef_dataset') %> ><%= link_to 'Dataset', clef_task_task_dataset_files_path(clef_task, challenge_id: challenge.id), class: tab_class('clef_dataset') %></li>
       <% else %>
         <li class=<%= tab_class('dataset') %> ><%= link_to 'Dataset', challenge_dataset_files_path(challenge), class: tab_class('dataset') %></li>
       <% end %>

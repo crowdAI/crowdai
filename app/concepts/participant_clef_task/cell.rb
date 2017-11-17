@@ -33,10 +33,14 @@ class ParticipantClefTask::Cell < Template::Cell
 
   def participant_status
     return 'profile_incomplete' if profile_incomplete?
-    if participant_clef_task.present?
-      return participant_clef_task.status_cd
+    if eua_required?
+      if participant_clef_task.present?
+        return participant_clef_task.status_cd
+      else
+        return 'unregistered'
+      end
     else
-      return 'unregistered'
+      return 'registered'
     end
   end
 
@@ -54,7 +58,12 @@ class ParticipantClefTask::Cell < Template::Cell
 
   def profile_incomplete?
     @profile_incomplete ||= begin
-      if current_participant.address.blank?
+      if (current_participant.first_name.blank?   ||
+          current_participant.last_name.blank?    ||
+          current_participant.affiliation.blank?  ||
+          current_participant.address.blank?      ||
+          current_participant.city.blank?         ||
+          current_participant.country_cd.blank?)
         profile_incomplete = true
       else
         profile_incomplete = false

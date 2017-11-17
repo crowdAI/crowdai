@@ -64,6 +64,11 @@ FactoryGirl.define do
 
     trait :clef_complete do
       address 'test test test'
+      affiliation 'test'
+      first_name 'sean'
+      last_name 'carroll'
+      country_cd 'AU'
+      city 'melbourne'
     end
 
   end

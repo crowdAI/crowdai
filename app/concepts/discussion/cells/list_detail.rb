@@ -1,5 +1,4 @@
-class Discussion::Cell::ListDetail < Template::Cell
-  inherit_views Discussion::Cell
+class Discussion::Cell::ListDetail < Discussion::Cell
 
   def show
     render :list_detail

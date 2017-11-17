@@ -19,7 +19,7 @@ class Challenge::Cell::ChallengeSubnav < Challenge::Cell
     when 'dataset_files'
       'dataset'
     when 'task_dataset_files'
-      'dataset'
+      'task_dataset'
     when 'participant_challenges'
       'participants'
     when 'winners'

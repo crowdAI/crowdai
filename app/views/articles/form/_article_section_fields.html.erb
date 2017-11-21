@@ -7,5 +7,8 @@
   <label>Submission content</label>
   <%= markdown_editor do |m| %>
     <%= f.text_area :description_markdown, class: "txt-med" %>
+    <p class='markdown-instructions'>You can use
+      <a href="https://kramdown.gettalong.org/">kramdown</a> in this field.
+    </p>
   <% end %>
 </div>

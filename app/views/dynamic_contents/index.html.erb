@@ -7,6 +7,14 @@
                 tab: 'dynamic',
                 current_participant: current_participant) %>
   <div id='dynamic-content'>
-    <%= ERB.new(@challenge.dynamic_content).result(OpenStruct.new({challenge: @challenge, current_participant: current_participant}).instance_eval { binding }).html_safe %>
+    <%#= ERB.new(@challenge.dynamic_content).result(OpenStruct.new({challenge: @challenge, current_participant: current_participant}).instance_eval { binding }).html_safe %>
   </div>
+
 </div>
+
+<div id='music-root' data-participant_id='<%= current_participant.id %>'></div>
+
+
+  <%= javascript_pack_tag 'application' %>
+  <%= stylesheet_pack_tag 'application' %>
+  <%#= javascript_pack_tag 'hello_react' %>

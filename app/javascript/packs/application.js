@@ -8,3 +8,29 @@
 // layout file, like app/views/layouts/application.html.erb
 
 console.log('Hello World from Webpacker')
+
+import React from 'react'
+import { render } from 'react-dom';
+import {CrowdAIMusicEvaluationInterface} from 'crowdai-music-evaluation-interface';
+
+/*
+document.addEventListener('DOMContentLoaded', () => {
+  render(
+    <CrowdAIMusicEvaluationInterface name="React" />
+    )
+  }
+)
+*/
+
+document.addEventListener('DOMContentLoaded', () => {
+  const musicRoot = document.getElementById('music-root');
+  if (musicRoot) {
+    const participantId = musicRoot.dataset.participantId;
+    render(
+      <CrowdAIMusicEvaluationInterface
+      name="React" participantId={participantId}
+      />,
+      document.getElementById('music-root')
+    )
+  }
+})

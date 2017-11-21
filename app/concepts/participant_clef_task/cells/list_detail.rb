@@ -12,6 +12,10 @@ class ParticipantClefTask::Cell::ListDetail < ParticipantClefTask::Cell
     @clef_task ||= participant_clef_task.clef_task
   end
 
+  def eua_required?
+    @eua_required ||= clef_task.eua_file.present?
+  end
+
   def challenge_id
     @challenge_id ||= options[:challenge_id]
   end

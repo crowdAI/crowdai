@@ -6,5 +6,8 @@
   </div>
   <%= form_for topic_comments_path(topic, comment) do |f| %>
     <%= f.text_area :comment_markdown, placeholder: "Add a comment...", autofocus: true %>
+    <p class='markdown-instructions'>You can use
+      <a href="https://kramdown.gettalong.org/">kramdown</a> in this field.
+    </p>
   <% end %>
 </div>

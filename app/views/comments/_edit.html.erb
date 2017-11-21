@@ -2,5 +2,8 @@
   <%= form_for [@topic, @comment], html: { class: 'add-comment', id: 'new_comment' } do |f| %>
     <%= f.text_area :comment_markdown, value: @comment.comment_markdown, autofocus: true %>
     <%= f.submit 'Update comment', class: 'btn btn-primary pull-right' %>
+    <p class='markdown-instructions'>You can use
+      <a href="https://kramdown.gettalong.org/">kramdown</a> in this field.
+    </p>
   <% end %>
 </div>

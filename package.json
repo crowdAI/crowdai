@@ -11,6 +11,7 @@
     "coffee-loader": "^0.8.0",
     "coffee-script": "^1.12.7",
     "compression-webpack-plugin": "^1.0.0",
+    "crowdai-music-evaluation-interface": "^0.1.5",
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",

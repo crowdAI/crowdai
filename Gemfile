@@ -80,6 +80,7 @@ gem 'sidekiq'
 gem "sidekiq-cron", "~> 0.6.3"
 gem 'sidekiq-history'
 gem 'sidekiq-failures'
+gem 'sidekiq-unique-jobs'
 gem 'sinatra', :require => nil
 
 # images

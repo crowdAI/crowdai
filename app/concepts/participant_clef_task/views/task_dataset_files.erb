@@ -3,6 +3,8 @@
     <%= concept(TaskDataset::Cell::ListDetail,
                   collection: task_dataset_files,
                   current_participant: current_participant) %>
-    <p>Your signed End User Agreement (EUA) has been approved. You are now permitted to access this challenge's dataset.</p>
-  </ul>
+    <% if eua_required? %>
+      <p>Your signed End User Agreement (EUA) has been approved. You are now permitted to access this challenge's dataset.</p>
+    <% end %>
+</ul>
 </div>

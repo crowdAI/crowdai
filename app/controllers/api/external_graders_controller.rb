@@ -13,6 +13,7 @@ class Api::ExternalGradersController < Api::BaseController
       participant_id = nil
       status = :not_found
     end
+    Rails.logger.info "API: #{message}"
     render json: { message: message, participant_id: participant_id }, status: status
   end
 
@@ -53,6 +54,7 @@ class Api::ExternalGradersController < Api::BaseController
       status = :bad_request
       message = e
     ensure
+      Rails.logger.info "API: #{message}"
       render json: { message: message,
                      submission_id: submission_id,
                      submissions_remaining: submissions_remaining,
@@ -95,6 +97,7 @@ class Api::ExternalGradersController < Api::BaseController
       status = :bad_request
       message = e
     ensure
+      Rails.logger.info "API: #{message}"
       render json: { message: message,
                      submission_id: submission_id,
                      submissions_remaining: submissions_remaining,
@@ -114,6 +117,7 @@ class Api::ExternalGradersController < Api::BaseController
       body = nil
       message = e
     ensure
+      Rails.logger.info message
       render json: { message: message,
                      body: body }, status: status
     end

@@ -30,7 +30,7 @@ ActiveAdmin.register Participant do
 
   filter :email
   filter :name
-  filter :organizer
+  filter :organizer, :as => :select, :collection => Organizer.all.collect {|organizer| [organizer.organizer, organizer.id] }
   filter :admin
   filter :current_sign_in_at
   filter :sign_in_count

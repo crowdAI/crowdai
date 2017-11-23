@@ -213,7 +213,7 @@ class Api::ExternalGradersController < Api::BaseController
       { score: params[:score],
         score_secondary: params[:score_secondary],
         grading_status_cd: 'graded',
-        grading_message: nil }
+        grading_message: params[:grading_message] }
     when 'submitted'
       { score: nil,
         score_secondary: nil,

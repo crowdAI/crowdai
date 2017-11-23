@@ -6,6 +6,16 @@
                 @challenge,
                 tab: 'dynamic',
                 current_participant: current_participant) %>
+
+  <div class='row'>
+    <div class='article'>
+      <h1>test</h1>
+      <%#= javascript_pack_tag 'hello_react' %>
+      <%= javascript_pack_tag 'music' %>
+    </div>
+  </div>
+
+
   <div id='dynamic-content'>
     <%#= ERB.new(@challenge.dynamic_content).result(OpenStruct.new({challenge: @challenge, current_participant: current_participant}).instance_eval { binding }).html_safe %>
   </div>

@@ -1,0 +1,272 @@
+$red: #D95D55;
+$gray: #595E72;
+$white: #ffffff;
+
+.btn {
+  box-sizing: border-box;
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid $red;
+  border-radius: 0.6em;
+  color: $red;
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+  font-size: 8px;
+  line-height: 1;
+  margin: 20px;
+  padding: 10px;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  outline: 0;
+
+  &:hover {
+    color: #fff;
+    outline: 0;
+  }
+  &:disabled {
+    color: $gray;
+    border: 2px solid $gray;
+    outline: 0;
+    cursor: not-allowed;
+  }
+}
+// button
+
+.crowdai_btns {
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+  &:hover:enabled {
+    box-shadow: 0 0 80px 80px $red inset;
+  }
+}
+.share_button{
+  margin-right: 10px;
+}
+
+// .play_pause {
+//   display: inline-block;
+//   width: 10%;
+//   float: left;
+//   padding-top: 1px;
+// }
+// .progress_bar {
+//   display: inline-block;
+//   width: 80%;
+//   float: left;
+// }
+// .time_marker {
+//   display: inline-block;
+//   width: 10%;
+//   float: left;
+//   padding-top: 2px;
+// }
+// .midi-player{
+//   display: inline-block;
+//   width: 100%
+// }
+.controlsWrapper {
+  padding: 10px;
+  border: 1px solid $red;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.TimeMarker {
+  text-align: center;
+}
+
+$icon-size: 20px;
+
+// $color-hover: saturate(lighten($red, 10%), 20%);
+// $color-active: desaturate(darken($red, 20%), 20%);
+
+$color-hover: desaturate(darken($red, 20%), 10%);
+$color-active: fade-out($color-hover, 0.5);
+
+
+//
+// Buttons
+//
+
+.PlayButton,
+.PauseButton,
+.PrevButton,
+.NextButton,
+.SoundOnButton,
+.SoundOffButton {
+  margin-right: 10px;
+  padding: 8px;
+  background: $white;
+  border: 2px solid $red;
+  border-radius: 100%;
+  outline: none;
+
+  &[disabled] {
+    opacity: 0.5;
+  }
+
+  &.isEnabled {
+    cursor: pointer;
+
+    &:hover {
+      border-color: $color-hover;
+
+      .Icon-shape {
+        fill: $color-hover;
+      }
+    }
+
+    &:active {
+      border-color: $color-active;
+
+      .Icon-shape {
+        fill: $color-active;
+      }
+    }
+  }
+}
+
+.Icon {
+  width: $icon-size;
+  height: $icon-size;
+}
+
+.Icon-shape {
+  fill: $red;
+}
+
+
+//
+// Sliders
+//
+
+.ProgressBar,
+.VolumeSlider {
+  position: relative;
+  background: #eee;
+  border-radius: 4px;
+
+  &-elapsed,
+  &-value {
+    background: $gray;
+    border-radius: 4px;
+  }
+
+  &-seek {
+    position: absolute;
+    cursor: pointer;
+  }
+
+  &-handle {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: $red;
+    border-radius: 100%;
+    transform: scale(0);
+    transition: transform 0.2s;
+  }
+
+  &.isSeekable,
+  &.isEnabled {
+    &:hover {
+      .ProgressBar-handle,
+      .VolumeSlider-handle {
+        transform: scale(1);
+      }
+
+      .ProgressBar-intent,
+      .VolumeSlider-intent {
+        position: absolute;
+        background: rgba(0,0,0,0.05);
+      }
+    }
+
+    .ProgressBar-elapsed,
+    .VolumeSlider-value {
+      background: $red;
+    }
+  }
+}
+
+.ProgressBar {
+  height: 8px;
+  margin: 10px 0;
+
+  &-elapsed {
+    height: 100%;
+  }
+
+  &-seek {
+    top: -6px;
+    right: 0;
+    bottom: -6px;
+    left: 0;
+  }
+
+  &-handle {
+    top: 0;
+    margin: -4px 0 0 -8px;
+  }
+
+  &.isSeekable {
+    &:hover {
+      .ProgressBar-handle {
+        transform: scale(1);
+      }
+
+      .ProgressBar-intent {
+        top: 0;
+        left: 0;
+        height: 100%;
+      }
+    }
+  }
+
+  &.isLoading {
+    opacity: 0.5;
+    background: #ccc;
+    animation: barLoading 2s infinite;
+  }
+}
+
+.VolumeSlider {
+  width: 8px;
+  height: 100px;
+  // margin: 10px 0;
+
+  &-value {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
+  &-seek {
+    left: -6px;
+    top: 0;
+    right: -6px;
+    bottom: 0;
+  }
+
+  &-handle {
+    left: 0;
+    margin: 0 0 -8px -4px;
+  }
+
+  &.isEnabled {
+    &:hover {
+      .VolumeSlider-handle {
+        transform: scale(1);
+      }
+
+      .VolumeSlider-intent {
+        bottom: 0;
+        left: 0;
+        width: 100%;
+      }
+    }
+  }
+}

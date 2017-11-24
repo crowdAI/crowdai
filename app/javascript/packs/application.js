@@ -11,7 +11,7 @@ console.log('Hello World from Webpacker')
 
 import React from 'react'
 import { render } from 'react-dom';
-import {CrowdAIMusicEvaluationInterface} from 'crowdai-music-evaluation-interface';
+//import {CrowdAIMusicEvaluationInterface} from 'crowdai-music-evaluation-interface';
 
 /*
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 )
 */
-
+/*
 document.addEventListener('DOMContentLoaded', () => {
   const musicRoot = document.getElementById('music-root');
   if (musicRoot) {
@@ -34,3 +34,4 @@ document.addEventListener('DOMContentLoaded', () => {
     )
   }
 })
+*/

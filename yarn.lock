@@ -1712,9 +1712,9 @@ cross-spawn@^3.0.0:
     lru-cache "^4.0.1"
     which "^1.2.9"
 
-crowdai-music-evaluation-interface@^0.1.8:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/crowdai-music-evaluation-interface/-/crowdai-music-evaluation-interface-0.1.8.tgz#f61e1970e3d1da0c4e08b594d29d079a4fc78dfa"
+crowdai-music-evaluation-interface@^0.1.9:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/crowdai-music-evaluation-interface/-/crowdai-music-evaluation-interface-0.1.9.tgz#1994df0fab651d4f96da03df23cb26cde5f18e29"
   dependencies:
     autoprefixer "7.1.6"
     axios "^0.17.1"

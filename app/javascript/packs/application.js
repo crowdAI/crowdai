@@ -22,15 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
 )
 */
 
-document.addEventListener('DOMContentLoaded', () => {
-  const musicRoot = document.getElementById('music-root');
+document.addEventListener('turbolinks:load', () => {
+  const musicRoot = document.getElementById('music-root2');
   if (musicRoot) {
     const participantId = musicRoot.dataset.participantId;
     render(
       <CrowdAIMusicEvaluationInterface
       name="React" participantId={participantId}
       />,
-      document.getElementById('music-root')
+    musicRoot
     )
   }
 })

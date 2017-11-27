@@ -32,7 +32,6 @@
     <script src="https://use.fontawesome.com/bee91422da.js"></script>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <%= render partial: 'layouts/google_analytics_head' %>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}});</script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
@@ -48,5 +47,11 @@
     <%= insert_paloma_hook %>
     <%= concept(Footer::Cell, nil, current_participant: current_participant) %>
     <%= render partial: 'layouts/google_analytics_body' %>
+    <script type="text/x-mathjax-config">
+      document.addEventListener('turbolinks:load',function(){
+        MathJax.Hub.Config({tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}});
+      });
+    </script>
+
   </body>
 </html>

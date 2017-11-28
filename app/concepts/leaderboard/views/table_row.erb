@@ -56,8 +56,10 @@
 
   <td class="last-submission"><%= entry.created_at.strftime("%a, %e %b %Y %R") %></td>
   <td class='action'>
-    <%= link_to challenge_leaderboard_path(entry.challenge, entry.id), class: 'btn btn-secondary' do %>
-      <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+    <% if challenge.media_on_leaderboard %>
+      <%= link_to challenge_leaderboard_path(entry.challenge, entry.id), class: 'btn btn-secondary' do %>
+        <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+      <% end %>
     <% end %>
   </td>
 </tr>

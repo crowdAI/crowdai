@@ -8,6 +8,10 @@ class Leaderboard::Cell::TableRow < Leaderboard::Cell
     model
   end
 
+  def challenge
+    @challenge ||= model.challenge
+  end
+
   def participant
     @participant ||= entry.participant
   end

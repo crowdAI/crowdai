@@ -19,8 +19,16 @@
     </td>
     <td><%= submission.grading_status_cd %></td>
     <td>
-      <% if current_participant.admin? || submission.participant == current_participant %>
+      <% if submission.grading_message.present? %>
         <%= submission.grading_message %>
+      <% else %>
+        <% if submission.grading_status_cd == 'graded' %>
+          <% if @challenge.secondary_sort_order_cd == 'not_used' %>
+            <%= "#{@challenge.score_title}: #{submission.score}" %>
+          <% else %>
+            <%= "#{@challenge.score_title}: #{submission.score}, #{@challenge.score_secondary_title}: #{submission.score_secondary}" %>
+          <% end %>
+        <% end %>
       <% end %>
     </td>
     <td class='pull-right'><%= submission.created_at %></td>

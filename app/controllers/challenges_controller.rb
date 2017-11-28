@@ -152,6 +152,7 @@ class ChallengesController < ApplicationController
                   :dynamic_content_tab,
                   :dynamic_content,
                   :clef_task_id,
+                  :submissions_page,
                   dataset_attributes: [:id, :challenge_id, :description, :_destroy],
                   submissions_attributes: [:id, :challenge_id, :participant_id, :_destroy ],
                   image_attributes: [:id, :image, :_destroy ],

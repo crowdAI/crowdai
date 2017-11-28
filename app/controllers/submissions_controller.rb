@@ -7,7 +7,11 @@ class SubmissionsController < ApplicationController
   respond_to :html, :js
 
   def index
-    @submissions = @challenge.submissions.order('created_at desc')
+    @submissions = @challenge
+                     .submissions
+                     .order('created_at desc')
+                     .page(params[:page])
+                     .per(10)
     @challenge_round_id = @challenge.challenge_rounds.where(active: true)
     #if params[:participant_id] && @challenge.completed?
     #  @participant = Participant.find(params[:participant_id])

@@ -10,7 +10,9 @@
         <li class=<%= tab_class('dataset') %> ><%= link_to 'Dataset', challenge_dataset_files_path(challenge), class: tab_class('dataset') %></li>
       <% end %>
 
-      <li class=<%= tab_class('submissions') %> ><%= link_to 'Submissions', challenge_submissions_path(challenge), class: tab_class('submissions') %></li>
+      <% if challenge.submissions_page.present? %>
+        <li class=<%= tab_class('submissions') %> ><%= link_to 'Submissions', challenge_submissions_path(challenge), class: tab_class('submissions') %></li>
+      <% end %>
       <% if policy(challenge).edit? %>
         <% if challenge.clef_task && challenge.clef_task.eua_required? %>
           <li class=<%= tab_class('participants') %> ><%= link_to 'Participants', challenge_clef_task_path(challenge), class: tab_class('participants') %></li>

@@ -1,0 +1,8 @@
+$(".load-more").remove();
+$("table.leaderboard").append("<%= j render partial: 'submissions' %>");
+$("#more-anchor").after("<%= j render partial: 'shared/load_more', locals: { collection: @submissions } %>");
+$('html, body').animate({
+   scrollTop: $(document).height()-$(window).height()},
+   1400,
+   "easeOutQuint"
+);

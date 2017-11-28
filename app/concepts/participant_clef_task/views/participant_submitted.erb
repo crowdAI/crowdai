@@ -1,8 +1,27 @@
 <div class='row' data-cell='ParticipantClefTask::Cell::ListDetail'>
   <div class='article'>
     <h2>EUA approval pending</h2>
-    <p>The approval of your completed End User Agreement (EUA) document is pending. As soon as an ImageCLEF organizer approves the document, you will get access to the dataset.</p>
+    <p>The approval of <%= link_to 'your completed End User Agreement (EUA)', participant_clef_task.eua_file.file.url %> document is pending. As soon as an ImageCLEF organizer approves the document, you will get access to the dataset.</p>
+    <p>You will also be automatically registered with CLEF, the main organizer of all CLEF labs.</p>
+    <p>You can redownload the task's EUA <%= link_to 'here' , clef_task.eua_file.url,
+          target: :_blank,
+          id: 'eua-file',
+          data: { :'clef-task-id' => clef_task.id } %>.
+    <p>In case you wish to replace your EUA, you can upload a new file:</p>
 
-    <p>After the approval of your completed EUA document by an ImageCLEF organizer, you will get access to the dataset. You will also be automatically registered with CLEF, the main organizer of all CLEF labs.</p>
+    <%= form_for participant_clef_task,
+          url: participant_clef_tasks_path,
+          validate: true,
+          html: { class: 'sgl-col' },
+          method: :post do |f| %>
+      <%= f.hidden_field :clef_task_id, value: clef_task.id %>
+      <%= f.hidden_field :challenge_id, value: challenge_id %>
+      <div class="upload">
+        <%= f.file_field :eua_file, class: 'file-upload' %>
+        <span>PDF only, 10MB limit</span>
+        <%= f.submit 'Resubmit', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+
   </div>
 </div>

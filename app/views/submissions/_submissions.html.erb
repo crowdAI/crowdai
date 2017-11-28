@@ -1,0 +1,28 @@
+<% @submissions.where(challenge_round_id: @challenge_round_id).each do |submission| %>
+  <tr id='participant-<%= submission.participant_id %>'>
+    <td><%= submission.id %></td>
+    <td class="participant">
+      <div class="user-link">
+        <%= link_to participant_path(submission.participant) do %>
+          <%= concept(Image::Cell,submission.participant, current_participant: current_participant) %>
+        <% end %>
+        <div class='text-badge'>
+          <%= link_to submission.participant.name, participant_path(submission.participant.slug) %>
+          <% if submission.participant.admin? %>
+            <span class='badge badge-accent'>Admin</span>
+          <% end %>
+          <% if submission.participant.organizer_id == submission.challenge.organizer_id %>
+            <span class='badge'>Organizer</span>
+          <% end %>
+        </div>
+      </div>
+    </td>
+    <td><%= submission.grading_status_cd %></td>
+    <td>
+      <% if current_participant.admin? || submission.participant == current_participant %>
+        <%= submission.grading_message %>
+      <% end %>
+    </td>
+    <td class='pull-right'><%= submission.created_at %></td>
+  </tr>
+<% end %>

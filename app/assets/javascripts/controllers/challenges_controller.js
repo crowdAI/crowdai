@@ -2,6 +2,18 @@ Paloma.controller('Challenges', {
   edit: function(){
     $('.active-switch').click(function(){
       var self = this;
+      console.log(this);
+    });
+
+    $('.active-switch').each(function(){
+      this.checked = false;
+    });
+
+  /*
+    $('.active-switch').click(function(){
+      var self = this;
+      console.log('go');
+
       $('.active-switch').each(function(){
         this.checked = false;
       });
@@ -10,10 +22,10 @@ Paloma.controller('Challenges', {
       self.checked = true;
       // array of all fields
       var parent = self.closest('.nested-fields');
-      var start_dates = $("input[name$='[start_date]']");
-      var end_dates = $("input[name$='[end_date]']");
-      var start_times = $("input[name$='[start_time]']");
-      var end_times = $("input[name$='[end_time]']");
+      var start_dates = $("input[name$='[start_dttm_date]']");
+      var end_dates = $("input[name$='[end_dttm_date]']");
+      var start_times = $("input[name$='[start_dttm_time]']");
+      var end_times = $("input[name$='[end_dttm_time]']");
 
       // target the actual fields
       var start_date = $(parent).find(start_dates).val();
@@ -22,10 +34,10 @@ Paloma.controller('Challenges', {
       var end_time = $(parent).find(end_times).val();
 
       // update hidden fields
-      $('#challenge_start_date').val(start_date);
-      $('#challenge_end_date').val(end_date);
-      $('#challenge_start_time').val(start_time);
-      $('#challenge_end_time').val(end_time);
-    });
+      $('#challenge_start_dttm_date').val(start_date);
+      $('#challenge_end_dttm_date').val(end_date);
+      $('#challenge_start_dttm_time').val(start_time);
+      $('#challenge_end_dttm_time').val(end_time);
+    }); */
   }
 });

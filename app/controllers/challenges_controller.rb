@@ -52,6 +52,8 @@ class ChallengesController < ApplicationController
   end
 
   def update
+    #@challenge.attributes = challenge_params
+    #if @challenge.save
     if @challenge.update(challenge_params)
       redirect_to [@organizer,@challenge], notice: 'Challenge was successfully updated.'
     else
@@ -157,7 +159,7 @@ class ChallengesController < ApplicationController
                   submissions_attributes: [:id, :challenge_id, :participant_id, :_destroy ],
                   image_attributes: [:id, :image, :_destroy ],
                   submission_file_definitions_attributes: [:id, :challenge_id, :seq, :submission_file_description, :filetype, :file_required, :submission_file_help_text, :_destroy],
-                  challenge_rounds_attributes: [:id, :challenge_round, :seq, :start_date, :end_date, :start_time, :end_time, :active, :minimum_score, :minimum_score_secondary, :_destroy]
+                  challenge_rounds_attributes: [:id, :challenge_round, :seq, :start_dttm_date, :end_dttm_date, :start_dttm_time, :end_dttm_time, :active, :minimum_score, :minimum_score_secondary, :submission_limit, :submission_limit_period, :_destroy]
                 )
     end
 

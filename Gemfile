@@ -35,7 +35,6 @@ gem 'client_side_validations'
 gem 'country_select'
 gem 'time_splitter'
 
-
 # performance
 gem 'fast_blank'
 

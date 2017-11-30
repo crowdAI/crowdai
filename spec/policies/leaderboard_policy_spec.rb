@@ -3,9 +3,9 @@ require 'rails_helper'
 describe LeaderboardPolicy do
   subject { described_class.new(participant, leaderboard) }
 
-  let(:challenge) { create(:challenge)}
+  let(:challenge) { build(:challenge)}
   3.times do |i|
-    let!("submission_#{i + 1}") { create :submission }
+    let!("submission_#{i + 1}") { build :submission }
   end
   let(:leaderboard) { Leaderboard.where(challenge_id: challenge.id).first }
 
@@ -22,7 +22,7 @@ describe LeaderboardPolicy do
   end
 
   context 'for a participant' do
-    let(:participant) { create(:participant) }
+    let(:participant) { build(:participant) }
     it { is_expected.to forbid_action(:show) }
     it { is_expected.to permit_action(:index) }
     it { is_expected.to forbid_action(:create) }

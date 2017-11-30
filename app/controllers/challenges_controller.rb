@@ -1,6 +1,6 @@
 class ChallengesController < ApplicationController
   before_action :authenticate_participant!, except: [:show,:index]
-  #before_action :terminate_challenge, only: [:show, :index]
+  before_action :terminate_challenge, only: [:show, :index]
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized, except: [:index, :show]
   before_action :set_s3_direct_post, only: [:edit, :update]
@@ -52,8 +52,6 @@ class ChallengesController < ApplicationController
   end
 
   def update
-    #@challenge.attributes = challenge_params
-    #if @challenge.save
     if @challenge.update(challenge_params)
       redirect_to [@organizer,@challenge], notice: 'Challenge was successfully updated.'
     else
@@ -81,8 +79,6 @@ class ChallengesController < ApplicationController
     @submission_count = challenge.submissions.count
     render 'challenges/form/regrade_status'
   end
-
-
 
   def remove_image
     @challenge = Challenge.friendly.find(params[:challenge_id])

@@ -5,9 +5,9 @@ describe DatasetFilePolicy do
   subject { described_class.new(participant, dataset_file) }
 
   let(:challenge) { create(:challenge, organizer: organizer)}
-  let(:dataset_file) { create(:dataset_file, challenge: challenge) }
+  let(:dataset_file) { build(:dataset_file, challenge: challenge) }
   let(:organizer) { create(:organizer) }
-  let(:organizer_person) { create(:participant, organizer: organizer) }
+  let(:organizer_person) { build(:participant, organizer: organizer) }
 
   context 'for a public participant' do
     let(:participant) { nil }
@@ -21,7 +21,7 @@ describe DatasetFilePolicy do
   end
 
   context 'for a participant' do
-    let(:participant) { create(:participant) }
+    let(:participant) { build(:participant) }
     it { is_expected.to forbid_action(:show) }
     it { is_expected.to permit_action(:index) }
     it { is_expected.to forbid_action(:create) }
@@ -43,7 +43,7 @@ describe DatasetFilePolicy do
   end
 
   context 'for an admin' do
-    let(:participant) { create(:participant, :admin )}
+    let(:participant) { build(:participant, :admin )}
     it { is_expected.to forbid_action(:show) }
     it { is_expected.to permit_action(:index) }
     it { is_expected.to permit_action(:create) }

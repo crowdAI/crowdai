@@ -4,8 +4,8 @@ require 'rails_helper'
 describe ParticipantPolicy do
   subject { described_class.new(user, participant) }
 
-  let(:participant)                 { create(:participant) }
-  let(:admin)                       { create(:participant, :admin)}
+  let(:participant)                 { build(:participant) }
+  let(:admin)                       { build(:participant, :admin)}
   let(:organizer_participant)       { create(:participant, :organizer) }
   let(:clef_organizer_participant)  { create(:participant, :clef_organizer) }
 

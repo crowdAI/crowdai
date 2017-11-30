@@ -8,15 +8,14 @@
       </div>
       <div>
         <%= f.check_box :challenges_followed %>
-        <%= f.label :challenges_followed, 'Receive email for challenges which I am following
-' %>
+        <%= f.label :challenges_followed, 'Receive email for challenges which I am following' %>
       </div>
       <div>
         <%= f.check_box :mentions %>
         <%= f.label :mentions, 'Receive emails when someone mentions me in a comment/post' %>
       </div>
     </fieldset>
-    <fieldset class="checkbox">
+    <fieldset class="checkbox" id='email-frequency'>
 		  <h4>Email Frequency</h4>
 		  <div>
         <%= f.check_box :receive_every_email %>

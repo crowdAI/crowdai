@@ -75,6 +75,20 @@ class Challenge < ApplicationRecord
     return status.capitalize
   end
 
+  def start_dttm
+    @start_dttm ||= begin
+      nil if current_round.nil?
+      current_round.start_dttm
+    end
+  end
+
+  def end_dttm
+    @end_dttm ||= begin
+      nil if current_round.nil?
+      current_round.end_dttm
+    end
+  end
+
   def current_round
     @current_round ||= self.challenge_round_summaries.where(round_status_cd: 'current').first
   end

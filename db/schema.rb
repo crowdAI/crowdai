@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171130140414) do
+ActiveRecord::Schema.define(version: 20171130144545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,8 +114,6 @@ ActiveRecord::Schema.define(version: 20171130140414) do
     t.boolean "api_required", default: false
     t.integer "daily_submissions"
     t.float "threshold"
-    t.datetime "start_dttm"
-    t.datetime "end_dttm"
     t.boolean "media_on_leaderboard", default: false
     t.string "challenge_client_name"
     t.boolean "online_grading", default: true

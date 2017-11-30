@@ -702,6 +702,7 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
+    time_splitter (1.1.0)
     timecop (0.9.1)
     to_factory (2.1.0)
       activerecord (> 4.0)
@@ -848,6 +849,7 @@ DEPENDENCIES
   stackprof
   table_print
   therubyracer
+  time_splitter
   timecop
   to_factory
   traceroute
@@ -863,4 +865,4 @@ RUBY VERSION
    ruby 2.3.4p301
 
 BUNDLED WITH
-   1.16.0.pre.3
+   1.16.0

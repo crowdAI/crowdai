@@ -1,6 +1,6 @@
 class ChallengesController < ApplicationController
   before_action :authenticate_participant!, except: [:show,:index]
-  #before_action :terminate_challenge, only: [:show, :index]
+  before_action :terminate_challenge, only: [:show, :index]
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized, except: [:index, :show]
   before_action :set_s3_direct_post, only: [:edit, :update]
@@ -80,8 +80,6 @@ class ChallengesController < ApplicationController
     render 'challenges/form/regrade_status'
   end
 
-
-
   def remove_image
     @challenge = Challenge.friendly.find(params[:challenge_id])
     authorize @challenge
@@ -157,7 +155,7 @@ class ChallengesController < ApplicationController
                   submissions_attributes: [:id, :challenge_id, :participant_id, :_destroy ],
                   image_attributes: [:id, :image, :_destroy ],
                   submission_file_definitions_attributes: [:id, :challenge_id, :seq, :submission_file_description, :filetype, :file_required, :submission_file_help_text, :_destroy],
-                  challenge_rounds_attributes: [:id, :challenge_round, :seq, :start_date, :end_date, :start_time, :end_time, :active, :minimum_score, :minimum_score_secondary, :_destroy]
+                  challenge_rounds_attributes: [:id, :challenge_round, :seq, :start_dttm_date, :end_dttm_date, :start_dttm_time, :end_dttm_time, :active, :minimum_score, :minimum_score_secondary, :submission_limit, :submission_limit_period, :_destroy]
                 )
     end
 

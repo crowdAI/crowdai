@@ -56,7 +56,7 @@ class ApplicationController < ActionController::Base
   end
 
   def terminate_challenge
-    #TerminateChallenges.new.call
+    TerminateChallenges.new.call
   end
 
   def search_params

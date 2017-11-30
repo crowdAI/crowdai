@@ -1,8 +1,11 @@
 class TerminateChallenges
 
   def call
-    challenges = Challenge.where(status_cd: :running).where("end_dttm <= current_timestamp")
-    challenges.each do |c|
+    expiring_challenges = Challenge
+                   .where(status_cd: :running)
+                   .where.not(end_dttm: nil)
+                   .where("end_dttm <= current_timestamp")
+    expiring_challenges.each do |c|
       c.update(status: :completed)
     end
   end

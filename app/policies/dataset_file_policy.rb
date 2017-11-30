@@ -12,8 +12,18 @@ class DatasetFilePolicy < ApplicationPolicy
     new?
   end
 
+  def edit?
+    false
+  end
+
+  def update?
+    false
+  end
+
   def destroy?
     new?
   end
+
+
 
 end

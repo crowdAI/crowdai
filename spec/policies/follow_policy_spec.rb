@@ -3,7 +3,7 @@ require 'rails_helper'
 describe FollowPolicy do
   subject { described_class.new(participant, follow) }
 
-  let(:follow) { create(:follow, participant: participant) }
+  let(:follow) { build(:follow, participant: participant) }
 
   context 'for a public participant' do
     let(:participant) { nil }
@@ -17,7 +17,7 @@ describe FollowPolicy do
   end
 
   context 'for a participant' do
-    let(:participant) { create(:participant) }
+    let(:participant) { build(:participant) }
     it { is_expected.to forbid_action(:show) }
     it { is_expected.to forbid_action(:index) }
     it { is_expected.to permit_action(:create) }

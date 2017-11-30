@@ -103,7 +103,6 @@ class Challenge < ApplicationRecord
       submissions_in_round = self.submissions.where("participant_id = ? and challenge_round_id = ? and grading_status_cd = 'graded'", participant_id, current_round.id).count
       return [(self.daily_submissions - submissions_in_round), nil]
     end
-
   end
 
   def cache_rendered_markdown

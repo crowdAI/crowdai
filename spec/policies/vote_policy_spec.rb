@@ -3,7 +3,7 @@ require 'rails_helper'
 describe VotePolicy do
   subject { described_class.new(participant, vote) }
 
-  let(:vote) { create(:vote, participant: participant) }
+  let(:vote) { build(:vote, participant: participant) }
 
   context 'for a public participant' do
     let(:participant) { nil }
@@ -17,7 +17,7 @@ describe VotePolicy do
   end
 
   context 'for a participant' do
-    let(:participant) { create(:participant) }
+    let(:participant) { build(:participant) }
     it { is_expected.to forbid_action(:show) }
     it { is_expected.to forbid_action(:index) }
     it { is_expected.to permit_action(:create) }
@@ -26,6 +26,5 @@ describe VotePolicy do
     it { is_expected.to forbid_action(:edit) }
     it { is_expected.to forbid_action(:destroy) }
   end
-
 
 end

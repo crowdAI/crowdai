@@ -16,7 +16,7 @@ describe MarkdownEditorPolicy do
   end
 
   context 'for a participant' do
-    let(:participant) { create(:participant) }
+    let(:participant) { build(:participant) }
     it { is_expected.to forbid_action(:show) }
     it { is_expected.to permit_action(:index) }
     it { is_expected.to forbid_action(:create) }

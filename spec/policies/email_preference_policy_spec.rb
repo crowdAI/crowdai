@@ -3,7 +3,7 @@ require 'rails_helper'
 describe EmailPreferencePolicy do
   subject { described_class.new(participant, email_preference) }
 
-  let(:email_preference) { create(:email_preference, participant: user) }
+  let(:email_preference) { build(:email_preference, participant: user) }
   let(:user) { create(:participant) }
 
   context 'for a public participant' do
@@ -33,7 +33,7 @@ describe EmailPreferencePolicy do
   end
 
   context 'for another participant' do
-    let(:participant) { create(:participant) }
+    let(:participant) { build(:participant) }
     it { is_expected.to forbid_action(:show) }
     it { is_expected.to forbid_action(:index) }
     it { is_expected.to forbid_action(:create) }
@@ -44,7 +44,7 @@ describe EmailPreferencePolicy do
   end
 
   context 'for an admin' do
-    let(:participant) { create(:participant, :admin) }
+    let(:participant) { build(:participant, :admin) }
     it { is_expected.to forbid_action(:show) }
     it { is_expected.to forbid_action(:index) }
     it { is_expected.to forbid_action(:create) }

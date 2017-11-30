@@ -4,9 +4,9 @@ require 'rails_helper'
 describe TopicPolicy do
   subject { described_class.new(participant, topic) }
 
-  let(:topic) { create(:topic, participant: author) }
-  let(:author) { create(:participant) }
-  let(:admin) { create(:participant, :admin) }
+  let(:topic) { build(:topic, participant: author) }
+  let(:author) { build(:participant) }
+  let(:admin) { build(:participant, :admin) }
 
   context 'for a public participant' do
     let(:participant) { nil }
@@ -20,7 +20,7 @@ describe TopicPolicy do
   end
 
   context 'for a participant' do
-    let(:participant) { create(:participant) }
+    let(:participant) { build(:participant) }
     it { is_expected.to permit_action(:show) }
     it { is_expected.to permit_action(:index) }
     it { is_expected.to permit_action(:create) }

@@ -3,8 +3,8 @@ require 'rails_helper'
 describe SubmissionCommentPolicy do
   subject { described_class.new(participant, submission_comment) }
 
-  let(:submission_comment) { create(:submission_comment) }
-  let(:user) { create(:participant) }
+  let(:submission_comment) { build(:submission_comment) }
+  let(:user) { build(:participant) }
 
   context 'for a public participant' do
     let(:participant) { nil }

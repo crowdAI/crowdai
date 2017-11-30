@@ -33,7 +33,7 @@ gem 'rouge'
 gem 'friendly_id', '~> 5.1.0'
 gem 'client_side_validations'
 gem 'country_select'
-
+gem 'time_splitter'
 
 # performance
 gem 'fast_blank'

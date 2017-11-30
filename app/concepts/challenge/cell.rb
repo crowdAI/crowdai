@@ -24,7 +24,7 @@ class Challenge::Cell < Template::Cell
   end
 
   def remaining_time_in_seconds
-    return 0 if current_challenge_round.nil?
+    return 0 if current_challenge_round.nil? || current_challenge_round.end_dttm.nil?
     seconds = current_challenge_round.end_dttm - Time.now
     if seconds.nil? || seconds < 0
       seconds = 0

@@ -14,10 +14,11 @@
     <h5>
       <%= link_to participant_challenge.name, participant_path(participant_challenge) %>
     </h5>
+    <p class='user'></p>
   </div>
   <% if policy(challenge).edit? %>
     <div class="stats">
-      <div class="stat-fr">
+      <div class="stat-fl">
         Email<br>
         <span><%= participant_challenge.email %></span>
       </div>

@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="row">
-    <ul class="list-challenges">
+    <ul class="list-jobs">
       <% @job_postings.each do |job| %>
         <%= render partial: 'posting', locals: { job: job } %>
       <% end %>

@@ -1,4 +1,11 @@
-
-<%= concept(ParticipantChallenge::Cell::ListDetail,
+<% if @participant_challenges.blank? %>
+  <li>
+    <div class="details">
+      <h5>No participants yet...</h5>
+    </div>
+  </li>
+<% else %>
+  <%= concept(ParticipantChallenge::Cell::ListDetail,
               collection: @participant_challenges,
               current_participant: current_participant) %>
+<% end %>

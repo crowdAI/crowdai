@@ -1,0 +1,331 @@
+/*!
+ * Copyright (c) 2017 kf (7kfpun@gmail.com)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+ * OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+@mixin flag($alpha3, $alpha2, $numeric, $ioc: null, $fifa: null) {
+  @if $ioc == null and $fifa == null {
+    .flag-#{$alpha3}, .flag-#{$alpha2}, .flag-#{$numeric} {
+      background-image: unquote("url(#{$flag-css-png-path}/#{$alpha3}.png)");
+      background-image: unquote("url(#{$flag-css-path}/#{$alpha3}.svg)");
+    }
+  }
+  @else if $ioc != null and $fifa == null {
+    .flag-#{$alpha3}, .flag-#{$alpha2}, .flag-#{$numeric}, .flag-ioc-#{$ioc} {
+      background-image: unquote("url(#{$flag-css-png-path}/#{$alpha3}.png)");
+      background-image: unquote("url(#{$flag-css-path}/#{$alpha3}.svg)");
+    }
+  } @else if $ioc == null and $fifa == null {
+    .flag-#{$alpha3}, .flag-#{$alpha2}, .flag-#{$numeric}, .flag-fifa-#{$fifa} {
+      background-image: unquote("url(#{$flag-css-png-path}/#{$alpha3}.png)");
+      background-image: unquote("url(#{$flag-css-path}/#{$alpha3}.svg)");
+    }
+  } @else {
+    .flag-#{$alpha3}, .flag-#{$alpha2}, .flag-#{$numeric}, .flag-ioc-#{$ioc}, .flag-fifa-#{$fifa} {
+      background-image: unquote("url(#{$flag-css-png-path}/#{$alpha3}.png)");
+      background-image: unquote("url(#{$flag-css-path}/#{$alpha3}.svg)");
+    }
+  }
+}
+
+@include flag(abw, aw, 533, aru, aru);
+@include flag(afg, af, 4, afg, afg);
+@include flag(ago, ao, 24, ang, ang);
+@include flag(aia, ai, 660, aia, aia);
+@include flag(ala, ax, 248, null, ald);
+@include flag(alb, al, 8, alb, alb);
+@include flag('and', ad, 20, 'and', 'and');
+@include flag(are, ae, 784, uae, uae);
+@include flag(arg, ar, 32, arg, arg);
+@include flag(arm, am, 51, arm, arm);
+@include flag(asm, as, 16, asa, asa);
+@include flag(ata, aq, 10, null, ros);
+@include flag(atf, tf, 260, null, null);
+@include flag(atg, ag, 28, ant, atg);
+@include flag(aus, au, 36, aus, aus);
+@include flag(aut, at, 40, aut, aut);
+@include flag(aze, az, 31, aze, aze);
+@include flag(bdi, bi, 108, bdi, bdi);
+@include flag(bel, be, 56, bel, bel);
+@include flag(ben, bj, 204, ben, ben);
+@include flag(bes, bq, 535, aho, ant);
+@include flag(bfa, bf, 854, bur, bfa);
+@include flag(bgd, bd, 50, ban, ban);
+@include flag(bgr, bg, 100, bul, bul);
+@include flag(bhr, bh, 48, brn, bhr);
+@include flag(bhs, bs, 44, bah, bah);
+@include flag(bih, ba, 70, bih, bih);
+@include flag(blm, bl, 652, null, null);
+@include flag(blr, by, 112, blr, blr);
+@include flag(blz, bz, 84, biz, blz);
+@include flag(bmu, bm, 60, ber, ber);
+@include flag(bol, bo, 68, bol, bol);
+@include flag(bra, br, 76, bra, bra);
+@include flag(brb, bb, 52, bar, brb);
+@include flag(brn, bn, 96, bru, bru);
+@include flag(btn, bt, 64, bhu, bhu);
+@include flag(bvt, bv, 74, null, null);
+@include flag(bwa, bw, 72, bot, bot);
+@include flag(caf, cf, 140, caf, cta);
+@include flag(can, ca, 124, can, can);
+@include flag(cck, cc, 166, null, cck);
+@include flag(che, ch, 756, sui, sui);
+@include flag(chl, cl, 152, chi, chi);
+@include flag(chn, cn, 156, chn, chn);
+@include flag(civ, ci, 384, civ, civ);
+@include flag(cmr, cm, 120, cmr, cmr);
+@include flag(cod, cd, 180, cod, cod);
+@include flag(cog, cg, 178, cgo, cgo);
+@include flag(cok, ck, 184, cok, cok);
+@include flag(col, co, 170, col, col);
+@include flag(com, km, 174, com, com);
+@include flag(cpv, cv, 132, cpv, cpv);
+@include flag(cri, cr, 188, crc, crc);
+@include flag(cub, cu, 192, cub, cub);
+@include flag(cuw, cw, 531, null, null);
+@include flag(cxr, cx, 162, null, cxr);
+@include flag(cym, ky, 136, cay, cay);
+@include flag(cyp, cy, 196, cyp, cyp);
+@include flag(cze, cz, 203, cze, cze);
+@include flag(deu, de, 276, ger, ger);
+@include flag(dji, dj, 262, dji, dji);
+@include flag(dma, dm, 212, dma, dma);
+@include flag(dnk, dk, 208, den, den);
+@include flag(dom, do, 214, dom, dom);
+@include flag(dza, dz, 12, alg, alg);
+@include flag(ecu, ec, 218, ecu, ecu);
+@include flag(egy, eg, 818, egy, egy);
+@include flag(eri, er, 232, eri, eri);
+@include flag(esh, eh, 732, null, sah);
+@include flag(esp, es, 724, esp, esp);
+@include flag(est, ee, 233, est, est);
+@include flag(eth, et, 231, eth, eth);
+@include flag(fin, fi, 246, fin, fin);
+@include flag(fji, fj, 242, fij, fij);
+@include flag(flk, fk, 238, flk, flk);
+@include flag(fra, fr, 250, fra, fra);
+@include flag(fro, fo, 234, far, fro);
+@include flag(fsm, fm, 583, fsm, fsm);
+@include flag(gab, ga, 266, gab, gab);
+@include flag(gbr, gb, 826, gbr, null);
+@include flag(geo, ge, 268, geo, geo);
+@include flag(ggy, gg, 831, null, gbg);
+@include flag(gha, gh, 288, gha, gha);
+@include flag(gib, gi, 292, gib, gbz);
+@include flag(gin, gn, 324, gui, gui);
+@include flag(glp, gp, 312, gud, glp);
+@include flag(gmb, gm, 270, gam, gam);
+@include flag(gnb, gw, 624, gbs, gnb);
+@include flag(gnq, gq, 226, geq, eqg);
+@include flag(grc, gr, 300, gre, gre);
+@include flag(grd, gd, 308, grn, grn);
+@include flag(grl, gl, 304, grl, grl);
+@include flag(gtm, gt, 320, gua, gua);
+@include flag(guf, gf, 254, fgu, guf);
+@include flag(gum, gu, 316, gum, gum);
+@include flag(guy, gy, 328, guy, guy);
+@include flag(hkg, hk, 344, hkg, hkg);
+@include flag(hmd, hm, 334, null, null);
+@include flag(hnd, hn, 340, hon, hon);
+@include flag(hrv, hr, 191, cro, cro);
+@include flag(hti, ht, 332, hai, hai);
+@include flag(hun, hu, 348, hun, hun);
+@include flag(idn, id, 360, ina, idn);
+@include flag(imn, im, 833, null, gbm);
+@include flag(ind, in, 356, ind, ind);
+@include flag(iot, io, 86, null, null);
+@include flag(irl, ie, 372, irl, irl);
+@include flag(irn, ir, 364, iri, irn);
+@include flag(irq, iq, 368, irq, irq);
+@include flag(isl, is, 352, isl, isl);
+@include flag(isr, il, 376, isr, isr);
+@include flag(ita, it, 380, ita, ita);
+@include flag(jam, jm, 388, jam, jam);
+@include flag(jey, je, 832, null, gbj);
+@include flag(jor, jo, 400, jor, jor);
+@include flag(jpn, jp, 392, jpn, jpn);
+@include flag(kaz, kz, 398, kaz, kaz);
+@include flag(ken, ke, 404, ken, ken);
+@include flag(kgz, kg, 417, kgz, kgz);
+@include flag(khm, kh, 116, cam, cam);
+@include flag(kir, ki, 296, kir, kir);
+@include flag(kna, kn, 659, skn, skn);
+@include flag(kor, kr, 410, kor, kor);
+@include flag(kwt, kw, 414, kuw, kuw);
+@include flag(lao, la, 418, lao, lao);
+@include flag(lbn, lb, 422, lib, lib);
+@include flag(lbr, lr, 430, lbr, lbr);
+@include flag(lby, ly, 434, lba, lby);
+@include flag(lca, lc, 662, lca, lca);
+@include flag(lie, li, 438, lie, lie);
+@include flag(lka, lk, 144, sri, sri);
+@include flag(lso, ls, 426, les, les);
+@include flag(ltu, lt, 440, ltu, ltu);
+@include flag(lux, lu, 442, lux, lux);
+@include flag(lva, lv, 428, lat, lva);
+@include flag(mac, mo, 446, mac, mac);
+@include flag(maf, mf, 663, null, null);
+@include flag(mar, ma, 504, mar, mar);
+@include flag(mco, mc, 492, mon, mon);
+@include flag(mda, md, 498, mda, mda);
+@include flag(mdg, mg, 450, mad, mad);
+@include flag(mdv, mv, 462, mdv, mdv);
+@include flag(mex, mx, 484, mex, mex);
+@include flag(mhl, mh, 584, msh, mhl);
+@include flag(mkd, mk, 807, mkd, mkd);
+@include flag(mli, ml, 466, mli, mli);
+@include flag(mlt, mt, 470, mlt, mlt);
+@include flag(mmr, mm, 104, mya, mya);
+@include flag(mne, me, 499, mgo, mne);
+@include flag(mng, mn, 496, mgl, mng);
+@include flag(mnp, mp, 580, nma, nmi);
+@include flag(moz, mz, 508, moz, moz);
+@include flag(mrt, mr, 478, mtn, mtn);
+@include flag(msr, ms, 500, mnt, msr);
+@include flag(mtq, mq, 474, mrt, mtq);
+@include flag(mus, mu, 480, mri, mri);
+@include flag(mwi, mw, 454, maw, mwi);
+@include flag(mys, my, 458, mas, mas);
+@include flag(myt, yt, 175, may, myt);
+@include flag(nam, na, 516, nam, nam);
+@include flag(ncl, nc, 540, ncd, ncl);
+@include flag(ner, ne, 562, nig, nig);
+@include flag(nfk, nf, 574, nfi, nfk);
+@include flag(nga, ng, 566, ngr, nga);
+@include flag(nic, ni, 558, nca, nca);
+@include flag(niu, nu, 570, niu, niu);
+@include flag(nld, nl, 528, ned, ned);
+@include flag(nor, no, 578, nor, nor);
+@include flag(npl, np, 524, nep, nep);
+@include flag(nru, nr, 520, nru, nru);
+@include flag(nzl, nz, 554, nzl, nzl);
+@include flag(omn, om, 512, oma, oma);
+@include flag(pak, pk, 586, pak, pak);
+@include flag(pan, pa, 591, pan, pan);
+@include flag(pcn, pn, 612, null, pcn);
+@include flag(per, pe, 604, per, per);
+@include flag(phl, ph, 608, phi, phi);
+@include flag(plw, pw, 585, plw, plw);
+@include flag(png, pg, 598, png, png);
+@include flag(pol, pl, 616, pol, pol);
+@include flag(pri, pr, 630, pur, pur);
+@include flag(prk, kp, 408, prk, prk);
+@include flag(prt, pt, 620, por, por);
+@include flag(pry, py, 600, par, par);
+@include flag(pse, ps, 275, ple, ple);
+@include flag(pyf, pf, 258, fpo, tah2);
+@include flag(qat, qa, 634, qat, qat);
+@include flag(reu, re, 638, reu, reu);
+@include flag(rou, ro, 642, rou, rou);
+@include flag(rus, ru, 643, rus, rus);
+@include flag(rwa, rw, 646, rwa, rwa);
+@include flag(sau, sa, 682, ksa, ksa);
+@include flag(sdn, sd, 729, sud, sud);
+@include flag(sen, sn, 686, sen, sen);
+@include flag(sgp, sg, 702, 'sin', 'sin');
+@include flag(sgs, gs, 239, null, null);
+@include flag(shn, sh, 654, hel, shn);
+@include flag(sjm, sj, 744, null, null);
+@include flag(slb, sb, 90, sol, sol);
+@include flag(sle, sl, 694, sle, sle);
+@include flag(slv, sv, 222, esa, slv);
+@include flag(smr, sm, 674, smr, smr);
+@include flag(som, so, 706, som, som);
+@include flag(spm, pm, 666, spm, spm);
+@include flag(srb, rs, 688, srb, srb);
+@include flag(ssd, ss, 728, null, null);
+@include flag(stp, st, 678, stp, stp);
+@include flag(sur, sr, 740, sur, sur);
+@include flag(svk, sk, 703, svk, svk);
+@include flag(svn, si, 705, slo, svn);
+@include flag(swe, se, 752, swe, swe);
+@include flag(swz, sz, 748, swz, swz);
+@include flag(sxm, sx, 534, null, null);
+@include flag(syc, sc, 690, sey, sey);
+@include flag(syr, sy, 760, syr, syr);
+@include flag(tca, tc, 796, tks, tca);
+@include flag(tcd, td, 148, cha, cha);
+@include flag(tgo, tg, 768, tog, tog);
+@include flag(tha, th, 764, tha, tha);
+@include flag(tjk, tj, 762, tjk, tjk);
+@include flag(tkl, tk, 772, null, tkl);
+@include flag(tkm, tm, 795, tkm, tkm);
+@include flag(tls, tl, 626, tls, tls);
+@include flag(ton, to, 776, tga, tga);
+@include flag(tto, tt, 780, tto, tri);
+@include flag(tun, tn, 788, tun, tun);
+@include flag(tur, tr, 792, tur, tur);
+@include flag(tuv, tv, 798, tuv, tuv);
+@include flag(twn, tw, 158, null, null);
+@include flag(tza, tz, 834, 'tan', 'tan');
+@include flag(uga, ug, 800, uga, uga);
+@include flag(ukr, ua, 804, ukr, ukr);
+@include flag(umi, um, 581, null, null);
+@include flag(ury, uy, 858, uru, uru);
+@include flag(usa, us, 840, usa, usa);
+@include flag(uzb, uz, 860, uzb, uzb);
+@include flag(vat, va, 336, null, vat);
+@include flag(vct, vc, 670, vin, vin);
+@include flag(ven, ve, 862, ven, ven);
+@include flag(vgb, vg, 92, ivb, vgb);
+@include flag(vir, vi, 850, isv, vir);
+@include flag(vnm, vn, 704, vie, vie);
+@include flag(vut, vu, 548, van, van);
+@include flag(wlf, wf, 876, waf, wlf);
+@include flag(wsm, ws, 882, sam, sam);
+@include flag(yem, ye, 887, yem, yem);
+@include flag(zaf, za, 710, rsa, rsa);
+@include flag(zmb, zm, 894, zam, zam);
+@include flag(zwe, zw, 716, zim, zim);
+
+// Exceptions
+.flag-fifa-eng {
+  background-image: unquote("url(#{$flag-css-png-path}/eng.png)");
+  background-image: unquote("url(#{$flag-css-path}/eng.svg)");
+}
+
+.flag-eur, .flag-eu {
+  background-image: unquote("url(#{$flag-css-png-path}/eur.png)");
+  background-image: unquote("url(#{$flag-css-path}/eur.svg)");
+}
+
+.flag-ioc-kos {
+  background-image: unquote("url(#{$flag-css-png-path}/kos.png)");
+  background-image: unquote("url(#{$flag-css-path}/kos.svg)");
+}
+
+.flag-fifa-nir {
+  background-image: unquote("url(#{$flag-css-png-path}/nir.png)");
+  background-image: unquote("url(#{$flag-css-path}/nir.svg)");
+}
+
+.flag-ico-tpe, .flag-fifa-tpe {
+  background-image: unquote("url(#{$flag-css-png-path}/tpe.png)");
+  background-image: unquote("url(#{$flag-css-path}/tpe.svg)");
+}
+
+.flag-fifa-sco {
+  background-image: unquote("url(#{$flag-css-png-path}/sco.png)");
+  background-image: unquote("url(#{$flag-css-path}/sco.svg)");
+}
+
+.flag-fifa-wal {
+  background-image: unquote("url(#{$flag-css-png-path}/wal.png)");
+  background-image: unquote("url(#{$flag-css-path}/wal.svg)");
+}

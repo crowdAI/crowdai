@@ -14,9 +14,9 @@
           <% if policy(task).destroy? %>
             <p class='status active'>
               <%= link_to 'delete',
-                          organizer_clef_task_path(@organizer,task),
-                          method: :delete,
-                          data: { confirm: 'Are you sure?' } %>
+                    organizer_clef_task_path(@organizer,task),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } %>
             </p>
           <% end %>
         </div>

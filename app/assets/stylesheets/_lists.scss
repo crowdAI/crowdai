@@ -51,6 +51,12 @@
   }
 }
 
+.list-participants {
+  &:first-of-type {
+
+  }
+}
+
 /* List - Challenges */
 
 .list-challenges {
@@ -85,7 +91,7 @@
     }
     .active {
       color: $color-accent-dark;
-    } 
+    }
     .draft {
       color: #2eb664;
     }
@@ -126,7 +132,7 @@
       margin-top: 1px;
       @media screen and (max-width: 480px) {
         display: none;
-      } 
+      }
     }
   }
 }
@@ -187,7 +193,7 @@
         height: 36px;
         width: 36px;
         margin-right: 12px;
-      } 
+      }
     }
     .details {
       flex: 2 1 auto;
@@ -198,7 +204,7 @@
       margin-top: 1px;
       @media screen and (max-width: 480px) {
         display: none;
-      } 
+      }
     }
   }
 }
@@ -257,7 +263,7 @@
       }
       @media screen and (max-width: 800px) {
         display: none;
-      } 
+      }
     }
   }
 }

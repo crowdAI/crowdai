@@ -10,6 +10,11 @@ $color-grey-54:     rgba(0,0,0,0.54);
 $color-grey-80:     rgba(0,0,0,0.8);
 $color-grey-87:     rgba(0,0,0,0.87);
 $color-black:       rgba(0,0,0,1);
+// Flags
+$flag-width: 1.333333333333em !default;
+$flag-line-height: 1em !default;
+$flag-css-path: 'flags' !default;
+$flag-css-png-path: 'flags/png' !default;
 
 // Imports
 
@@ -20,6 +25,8 @@ $color-black:       rgba(0,0,0,1);
 @import 'detail';
 @import 'discussion';
 @import 'dropdowns';
+@import 'flag-core';
+@import 'flag-list';
 @import 'footer';
 @import 'forms';
 @import 'header';
@@ -163,4 +170,8 @@ a img:hover {
 
 .wrapper {
   word-wrap: break-word;
+}
+
+.fa-2x {
+  font-size: 2em !important;
 }

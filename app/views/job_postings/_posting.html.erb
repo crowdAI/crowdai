@@ -1,6 +1,17 @@
 <li>
   <div class="details">
-    <h5 class="wrapper"><%= link_to job.title, job_posting_path(job.id) %></h5>
-    <p class="description ellipsis"><%= job.organisation %></p>
+    <h5><%= link_to job.title, job_posting_path(job.id) %></h5>
+    <span class="ellipsis"><%= job.organisation %></p>
+  </div>
+  <div class="location">
+    <% if job.remote.present? %>
+      <span>Remote (anywhere)</span>
+    <% else %>
+      <% if job.location.present? && job.country.present? %>
+        <%= flag(job.country) %>
+        <%= job.location %>,&nbsp;
+        <%= job.country_name %>
+      <% end %>
+    <% end %>
   </div>
 </li>

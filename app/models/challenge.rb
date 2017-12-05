@@ -4,7 +4,6 @@ class Challenge < ApplicationRecord
   friendly_id :challenge, use: [:slugged, :finders, :history]
   before_save :cache_rendered_markdown
   before_save :reset_featured_seq
-  #validate :valid_status
   belongs_to :organizer
   belongs_to :clef_task, optional: true
   has_many :dataset_files, dependent: :destroy

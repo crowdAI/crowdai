@@ -77,14 +77,14 @@ class Challenge < ApplicationRecord
 
   def start_dttm
     @start_dttm ||= begin
-      nil if current_round.nil?
+      return nil if current_round.nil? || current_round.start_dttm.nil?
       current_round.start_dttm
     end
   end
 
   def end_dttm
     @end_dttm ||= begin
-      nil if current_round.nil?
+      return nil if current_round.nil? || current_round.end_dttm.nil?
       current_round.end_dttm
     end
   end

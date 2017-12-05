@@ -4,7 +4,6 @@ class Challenge < ApplicationRecord
   friendly_id :challenge, use: [:slugged, :finders, :history]
   before_save :cache_rendered_markdown
   before_save :reset_featured_seq
-  #validate :valid_status
   belongs_to :organizer
   belongs_to :clef_task, optional: true
   has_many :dataset_files, dependent: :destroy
@@ -77,14 +76,14 @@ class Challenge < ApplicationRecord
 
   def start_dttm
     @start_dttm ||= begin
-      nil if current_round.nil?
+      return nil if current_round.nil? || current_round.start_dttm.nil?
       current_round.start_dttm
     end
   end
 
   def end_dttm
     @end_dttm ||= begin
-      nil if current_round.nil?
+      return nil if current_round.nil? || current_round.end_dttm.nil?
       current_round.end_dttm
     end
   end

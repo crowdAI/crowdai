@@ -1,5 +1,5 @@
 class LeaderboardsController < ApplicationController
-  before_action :authenticate_participant!, except: [:index, :video_modal]
+  before_action :authenticate_participant!, except: [:index, :show, :video_modal]
   before_action :set_leaderboard, only: [:show]
   before_action :set_challenge
   respond_to :js, :html

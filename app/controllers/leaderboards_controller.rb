@@ -26,14 +26,12 @@ class LeaderboardsController < ApplicationController
       @leaderboards = @challenge
                         .ongoing_leaderboards
                         .where(challenge_round_id: current_round.id)
-                        .order(sort_order)
                         .page(params[:page])
                         .per(10)
     else
       @leaderboards = @challenge
                         .leaderboards
                         .where(challenge_round_id: current_round.id)
-                        .order(sort_order)
                         .page(params[:page])
                         .per(10)
     end
@@ -84,22 +82,6 @@ class LeaderboardsController < ApplicationController
   def set_layout
     return 'bare' if action_name == 'show'
     return 'application'
-  end
-
-  def sort_order
-    sort_order = ''
-    if @challenge.primary_sort_order_cd == 'ascending'
-      sort_order << 'score asc'
-    else
-      sort_order << 'score desc'
-    end
-    case @challenge.secondary_sort_order_cd
-    when 'ascending'
-      sort_order << ', score_secondary asc'
-    when 'descending'
-      sort_order << ', score_secondary desc'
-    end
-    return sort_order
   end
 
 end

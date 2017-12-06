@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171206143858) do
+ActiveRecord::Schema.define(version: 20171206152930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -799,7 +799,15 @@ ActiveRecord::Schema.define(version: 20171206143858) do
 
   create_view "leaderboards",  sql_definition: <<-SQL
       SELECT l.id,
-      row_number() OVER (PARTITION BY l.challenge_id, l.challenge_round_id ORDER BY l.score DESC, l.score_secondary) AS row_num,
+      row_number() OVER (PARTITION BY l.challenge_id, l.challenge_round_id ORDER BY
+          CASE
+              WHEN ((c.primary_sort_order_cd)::text = 'ascending'::text) THEN l.score
+              ELSE NULL::double precision
+          END,
+          CASE
+              WHEN ((c.primary_sort_order_cd)::text = 'descending'::text) THEN l.score
+              ELSE NULL::double precision
+          END DESC) AS row_num,
       l.id AS submission_id,
       l.challenge_id,
       l.challenge_round_id,
@@ -819,10 +827,13 @@ ActiveRecord::Schema.define(version: 20171206143858) do
       l.updated_at
      FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.challenge_round_id, s.participant_id ORDER BY
                   CASE
-                      WHEN ((c_1.primary_sort_order_cd)::text = 'ascending'::text) THEN 's.score ASC'::text
-                      WHEN ((c_1.primary_sort_order_cd)::text = 'descending'::text) THEN 's.score DESC'::text
-                      ELSE NULL::text
-                  END) AS submission_ranking,
+                      WHEN ((c_1.primary_sort_order_cd)::text = 'ascending'::text) THEN s.score
+                      ELSE NULL::double precision
+                  END,
+                  CASE
+                      WHEN ((c_1.primary_sort_order_cd)::text = 'descending'::text) THEN s.score
+                      ELSE NULL::double precision
+                  END DESC) AS submission_ranking,
               s.id,
               s.challenge_id,
               s.challenge_round_id,
@@ -852,7 +863,15 @@ ActiveRecord::Schema.define(version: 20171206143858) do
             WHERE ((p.id = s.participant_id) AND (s.challenge_id = c_1.id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (cnt.challenge_id = s.challenge_id) AND (cnt.challenge_round_id = s.challenge_round_id) AND (cnt.participant_id = s.participant_id))) l,
       challenges c
     WHERE ((l.submission_ranking = 1) AND (c.id = l.challenge_id))
-    ORDER BY l.challenge_id, (row_number() OVER (PARTITION BY l.challenge_id, l.challenge_round_id ORDER BY l.score DESC, l.score_secondary));
+    ORDER BY l.challenge_id, (row_number() OVER (PARTITION BY l.challenge_id, l.challenge_round_id ORDER BY
+          CASE
+              WHEN ((c.primary_sort_order_cd)::text = 'ascending'::text) THEN l.score
+              ELSE NULL::double precision
+          END,
+          CASE
+              WHEN ((c.primary_sort_order_cd)::text = 'descending'::text) THEN l.score
+              ELSE NULL::double precision
+          END DESC));
   SQL
 
 end

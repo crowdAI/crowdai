@@ -9,8 +9,6 @@ class ChallengeRound < ApplicationRecord
                             only_integer: true,
                             greater_than_or_equal_to: 1,
                             allow_nil: true
-  validates_uniqueness_of :challenge_round,
-                          scope: :challenge_id, case_sensitive: false
 
   as_enum :submission_limit_period, [:day, :round], map: :string
 

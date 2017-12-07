@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   constraints admin do
     mount Sidekiq::Web => '/sidekiq'
-    ActiveAdmin.routes(self)
+    ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
   end
 
   devise_for :participants

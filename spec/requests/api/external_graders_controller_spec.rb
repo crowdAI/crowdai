@@ -14,9 +14,11 @@ RSpec.describe Api::ExternalGradersController, type: :request do
   let!(:challenge) { create :challenge,
                             :running,
                             organizer: organizer,
-                            daily_submissions: 5,
-                            start_dttm: 4.weeks.ago,
-                            end_dttm: 4.weeks.since }
+                            daily_submissions: 5 }
+  let!(:challenge_round) { create :challenge_round,
+                                  challenge_id: challenge.id,
+                                  start_dttm: 4.weeks.ago,
+                                  end_dttm: 4.weeks.since }
   let!(:participant) { create :participant, api_key: '5762b9423a01f72662264358f071908c' }
   let!(:submission1) { create :submission, challenge: challenge, participant: participant, created_at: 2.hours.ago }
   let!(:submission2) { create :submission, challenge: challenge, participant: participant, created_at: 18.hours.ago }

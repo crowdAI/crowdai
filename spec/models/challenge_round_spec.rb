@@ -17,7 +17,6 @@ RSpec.describe ChallengeRound, type: :model do
 
   context 'validations' do
     it { is_expected.to validate_presence_of(:challenge_round) }
-    it { should validate_uniqueness_of(:challenge_round).scoped_to(:challenge_id).case_insensitive }
   end
 
   context 'defaults' do

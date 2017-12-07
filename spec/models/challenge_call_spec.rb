@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ChallengeCall, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'associations' do
+    it { is_expected.to have_many :challenge_call_responses }
+  end
 end

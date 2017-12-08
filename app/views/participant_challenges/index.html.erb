@@ -11,6 +11,7 @@
     <ul class="list-host-members">
         <%= render partial: 'participant_challenges' %>
     </ul>
+    <span id='more-anchor'></span>
     <%= render partial: 'shared/load_more',
                locals: { collection: @participant_challenges } %>
   </div>

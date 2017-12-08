@@ -1,6 +1,6 @@
 $(".load-more").remove();
-$("ul.list-challenge-participants").append("<%= j render partial: 'participant_challenges' %>");
-$(".list-challenge-participants").last().after("<%= j render partial: 'shared/load_more', locals: { collection: @participant_challenges } %>");
+$("ul.list-host-members").append("<%= j render partial: 'participant_challenges' %>");
+$("#more-anchor").after("<%= j render partial: 'shared/load_more', locals: { collection: @participant_challenges } %>");
 $('html, body').animate({
    scrollTop: $(document).height()-$(window).height()},
    1400,

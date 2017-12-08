@@ -124,5 +124,9 @@ Rails.application.routes.draw do
     put :presign, on: :collection
   end
 
+  resources :challenge_calls, only: [] do
+    resources :challenge_call_responses, only: [:new, :create, :show]
+  end
+
   root 'landing_page#index'
 end

@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :challenge_call do
+    organizer
     title 'MyString'
     website 'MyString'
     active true

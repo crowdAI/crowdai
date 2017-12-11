@@ -14,11 +14,17 @@
       <p>Fill out the form below and someone from our team will get in touch with you.</p>
     </div>
       <%= form_for [@challenge_call,@challenge_call_response], validate: true, html: { class: "sgl-col" } do |f| %>
+        <%= f.text_field :organization, placeholder: "Organization name", required: true %>
         <%= f.text_field :contact_name, placeholder: "Contact name", required: true %>
         <%= f.text_field :email, placeholder: "Email address", required: true %>
         <%= f.text_field :phone, placeholder: "Phone number", required: true %>
-        <%= f.text_field :organization, placeholder: "Organization name", required: true %>
+        <%= f.text_field :challenge_title, placeholder: 'Challenge Title' %>
+        <%= f.text_area :motivation, placeholder: 'What are the reasons why the challenge should happen?' %>
         <%= f.text_area :challenge_description, placeholder: "Brief description of challenge", required: true %>
+        <%= f.text_area :timeline, placeholder: 'Overview of the challenge timeline and key dates.' %>
+        <%= f.text_area :organizers_bio, placeholder: 'Short bio of each of the organisers in relation to the challenge.' %>
+        <%= f.text_area :other, placeholder: 'Other' %>
+
         <div class="button-group">
           <%= f.button :submit, class: "btn btn-primary" %>
           <button class="btn btn-secondary" data-remodal-action="cancel">Cancel</button>

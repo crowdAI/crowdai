@@ -124,6 +124,7 @@ group :development do
   gem 'scss_lint', require: false
   gem 'shog'
   gem 'meta_request'
+  gem 'model_2_factory-rails'
 end
 
 

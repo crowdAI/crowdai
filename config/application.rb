@@ -31,6 +31,7 @@ module Crowdai
       g.stylesheets false
       g.helper false
       g.assets false
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
   end
 end

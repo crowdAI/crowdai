@@ -29,7 +29,13 @@ class ChallengeCallResponsesController < ApplicationController
                   :email,
                   :phone,
                   :organization,
-                  :challenge_description)
+                  :challenge_title,
+                  :challenge_description,
+                  :motivation,
+                  :organizers_bio,
+                  :timeline,
+                  :other,
+                  :evaluation_criteria)
   end
 
   def set_challenge_call

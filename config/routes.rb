@@ -125,8 +125,11 @@ Rails.application.routes.draw do
   end
 
   resources :challenge_calls, only: [] do
-    resources :challenge_call_responses, only: [:new, :create, :show]
+    resources :challenge_call_responses, only: [:create]
   end
+  get '/call-for-challenges/:challenge_call_id/apply' => 'challenge_call_responses#new', as: 'challenge_call_apply'
+  get '/call-for-challenges/:challenge_call_id/applications/:id' => 'challenge_call_responses#show', as: 'challenge_call_show'
+
 
   root 'landing_page#index'
 end

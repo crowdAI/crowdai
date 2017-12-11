@@ -2,22 +2,22 @@ class ChallengeCallResponsesController < ApplicationController
   before_action :set_challenge_call
 
   def new
-    @challenge_call_reponse = @challenge_call.challenge_call_responses.new
+    @challenge_call_response = @challenge_call.challenge_call_responses.new
   end
 
   def create
-    @challenge_call_reponse = @challenge_call
+    @challenge_call_response = @challenge_call
                                 .challenge_call_responses
                                 .new(challenge_call_response_params)
-    if @challenge_call_reponse.save
-      redirect_to challenge_call_challenge_call_response_path(@organizer,@challenge), notice: 'Challenge was successfully created.'
+    if @challenge_call_response.save
+      redirect_to challenge_call_show_path(@challenge_call,@challenge_call_response)
     else
       render :new
     end
   end
 
   def show
-    @challenge_call_response = ChallengeCallResponse.find(:id)
+    @challenge_call_response = ChallengeCallResponse.find(params[:id])
   end
 
   private
@@ -25,12 +25,11 @@ class ChallengeCallResponsesController < ApplicationController
 
   def challenge_call_response_params
     params.require(:challenge_call_response)
-          .permit(:first_name,
-                  :family_name,
+          .permit(:contact_name,
                   :email,
                   :phone,
                   :organization,
-                  :description)
+                  :challenge_description)
   end
 
   def set_challenge_call

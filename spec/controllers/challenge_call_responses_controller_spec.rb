@@ -8,6 +8,9 @@ RSpec.describe ChallengeCallResponsesController, type: :controller do
   let(:valid_attributes) {
     FactoryGirl.attributes_for(:challenge_call_response)
   }
+  let(:invalid_attributes) {
+    FactoryGirl.attributes_for(:challenge_call_response, :invalid)
+  }
 
   describe 'GET #show' do
     before { get :show, params: { challenge_call_id: challenge_call_response.challenge_call_id, id: challenge_call_response.id } }
@@ -37,18 +40,18 @@ RSpec.describe ChallengeCallResponsesController, type: :controller do
 
       it "redirects to the created challenge_call_response" do
         post :create, params: { challenge_call_id: challenge_call.id, challenge_call_response: valid_attributes }
-        expect(response).to redirect_to(ChallengeCallResponse.last)
+        expect(response).to redirect_to challenge_call_show_url(challenge_call,ChallengeCallResponse.last)        
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved challenge_call_response as @challenge_call_response" do
-        post :create, params: { article: invalid_attributes}
-        expect(assigns(:article)).to be_a_new(Article)
+        post :create, params: { challenge_call_id: challenge_call.id, challenge_call_response: invalid_attributes }
+        expect(assigns(:challenge_call_response)).to be_a_new(ChallengeCallResponse)
       end
 
       it "re-renders the 'new' template" do
-        post :create, params: { article: invalid_attributes}
+        post :create, params: { challenge_call_id: challenge_call.id, challenge_call_response: invalid_attributes }
         expect(response).to render_template("new")
       end
     end

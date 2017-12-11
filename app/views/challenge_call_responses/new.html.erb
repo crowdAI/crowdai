@@ -1,1 +1,29 @@
-<h1>new</h1>
+<div class='content'>
+  <div class="masthead">
+    <div class="row">
+      <div class="info">
+        <h2><%= @challenge_call.title %></h2>
+        <p class='color-accent'>Closing date: <%= @challenge_call.closing_date.strftime("%d %b %H:%M UTC") %></p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class='article'>
+      <p><%= @challenge_call.description %></p>
+      <h3>Interested in hosting a challenge?</h3>
+      <p>Fill out the form below and someone from our team will get in touch with you.</p>
+    </div>
+      <%= form_for [@challenge_call,@challenge_call_response], validate: true, html: { class: "sgl-col" } do |f| %>
+        <%= f.text_field :contact_name, placeholder: "Contact name", required: true %>
+        <%= f.text_field :email, placeholder: "Email address", required: true %>
+        <%= f.text_field :phone, placeholder: "Phone number", required: true %>
+        <%= f.text_field :organization, placeholder: "Organization name", required: true %>
+        <%= f.text_area :challenge_description, placeholder: "Brief description of challenge", required: true %>
+        <div class="button-group">
+          <%= f.button :submit, class: "btn btn-primary" %>
+          <button class="btn btn-secondary" data-remodal-action="cancel">Cancel</button>
+        </div>
+      <% end %>
+
+  </div>
+</div>

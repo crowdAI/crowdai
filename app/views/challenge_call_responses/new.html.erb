@@ -19,11 +19,19 @@
         <%= f.text_field :email, placeholder: "Email address", required: true %>
         <%= f.text_field :phone, placeholder: "Phone number", required: true %>
         <%= f.text_field :challenge_title, placeholder: 'Challenge Title' %>
-        <%= f.text_area :motivation, placeholder: 'What are the reasons why the challenge should happen?' %>
-        <%= f.text_area :challenge_description, placeholder: "Brief description of challenge", required: true %>
-        <%= f.text_area :timeline, placeholder: 'Overview of the challenge timeline and key dates.' %>
-        <%= f.text_area :organizers_bio, placeholder: 'Short bio of each of the organisers in relation to the challenge.' %>
-        <%= f.text_area :other, placeholder: 'Other' %>
+        <%= f.text_area :challenge_description,
+                        placeholder: "Description of the task and general overview of the way the challenge will be run.", required: true %>
+        <%= f.text_area :motivation,
+                        placeholder: 'Description of the reasons why the challenge should be hosted on crowdAI, including assessment of the significance of the task and of the potential impact of the challenge. This should also include a brief overview of existing work in the area of the challenge (e.g. what is the current baseline solution to the problem addressed, which research groups are doing research in this area and can be expected to participate in the challenge).',
+                        style: "height: 200px;" %>
+        <%= f.text_area :timeline,
+                        placeholder: 'Simple description of the structure of the challenge, including what is being submitted by participants when (e.g. solution software, evaluation results), and what is being provided by the organisers when (e.g. benchmark data, evaluation framework).' %>
+        <%= f.text_area :evaluation_criteria,
+                        placeholder: 'A clear description of the way the evaluation will be conducted, i.e. what will be measured, in what way, and for what purpose. Qualitative evaluations are acceptable, but challenge organisers will have to explain how such an evaluation can be used as a basis to assess the solutions proposed by challenge participants against each other.' %>
+        <%= f.text_area :organizers_bio,
+                        placeholder: 'Short bio of each of the organisers in relation to the challenge.' %>
+        <%= f.text_area :other,
+                        placeholder: 'Please indicate here if you will need specific resources for the organisation of the challenge, and if you already have plans regarding prizes or sponsors for your challenge. Also indicate if the challenge is part of a series of challenges, is related to another event (e.g. an existing workshop) or to a project.' %>
 
         <div class="button-group">
           <%= f.button :submit, class: "btn btn-primary" %>

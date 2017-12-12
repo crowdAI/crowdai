@@ -1,5 +1,5 @@
 require "rails_helper"
-
+=begin
 feature "host a challenge" do
   scenario "user vists host a challenge" do
     visit '/'
@@ -29,3 +29,4 @@ feature "host a challenge" do
 
   end
 end
+=end

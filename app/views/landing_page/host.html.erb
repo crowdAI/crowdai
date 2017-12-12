@@ -21,11 +21,11 @@
       <p>A not-for-profit entity, crowdAI is developed at
         <a href="https://www.epfl.ch">EPFL</a>, one of the world’s leading technical universities.</p>
 
-      <a data-remodal-target="modal" class="btn btn-primary btn-large" href=''>Get Started</a>
+      <% if @crowdai.present? %>
+        <%= link_to 'Get Started', challenge_call_apply_path(@crowdai), class: 'btn btn-primary btn-large' %>
+      <% end %>
       <br/>
     </div>
   </div>
   <br/>
 </div>
-
-<%= render partial: 'modal' %>

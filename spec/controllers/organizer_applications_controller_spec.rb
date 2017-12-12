@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+=begin TODO remove this completely
 RSpec.describe OrganizerApplicationsController, type: :controller do
   include ActiveJob::TestHelper
   render_views
@@ -34,3 +34,4 @@ RSpec.describe OrganizerApplicationsController, type: :controller do
   end
 
 end
+=end

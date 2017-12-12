@@ -6,6 +6,6 @@ class LandingPageController < ApplicationController
   end
 
   def host
-    @organizer_application = OrganizerApplication.new
+    @crowdai = ChallengeCall.where(crowdai: true).first
   end
 end

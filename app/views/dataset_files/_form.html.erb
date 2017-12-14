@@ -1,0 +1,62 @@
+<div class='content'>
+  <div class="masthead">
+    <div class="row">
+      <h2><%= @dataset_file.persisted? ? "Update File" : "Add File" %></h2>
+    </div>
+  </div>
+  <div class="row">
+    <%= form_for [@challenge,@dataset_file], validate: true,
+                    html: { class: "sgl-col directUpload", 'data-form-data' => @s3_direct_post.fields.to_json.html_safe, 'data-url' => @s3_direct_post.url, 'data-host' => URI.parse(@s3_direct_post.url).host } do |f| %>
+      <fieldset>
+        <label>File Title</label>
+        <%= f.text_field :title %>
+        <label>File Description</label>
+        <%= f.text_field :description %>
+        <fieldset class="checkbox">
+          <div>
+            <%= f.check_box :evaluation, {}, "true", "false" %>
+            <label for="file-evalution">Evaluation</label>
+          </div>
+        </fieldset>
+        <fieldset class="checkbox">
+          <div>
+            <%= f.check_box :visible, {}, "true", "false" %>
+            <%= f.label :visible, 'Visible ?' %>
+          </div>
+        </fieldset>
+
+        <fieldset class="radiogroup">
+          <legend>Dataset File Storage</legend>
+          <div>
+            <%= f.radio_button :hosting_location, 'crowdAI', :checked => true %>
+            <%= f.label :hosting_location, 'crowdAI S3' %>
+          </div>
+          <div>
+            <%= f.radio_button :hosting_location, 'External' %>
+            <%= f.label :hosting_location, 'External' %>
+          </div>
+        </fieldset>
+
+        <fieldset id='dataset-file-s3-key'>
+          <label>Dataset file</label>
+          <%= f.file_field :dataset_file_s3_key, class: 'file-upload s3File' %>
+          <% if f.object.dataset_file_s3_key.present? %>
+            <span><%= link_to f.object.dataset_file_s3_key, f.object.dataset_file_s3_key %></span>
+          <% end %>
+        </fieldset>
+        <fieldset id='external-url'>
+          <label>External Dataset Url</label>
+          <%= f.text_field :external_url %>
+          <label>File Size</label>
+          <%= f.text_field :external_file_size %>
+        </fieldset>
+
+        <div class="button-group">
+          <%= f.button (f.object.new_record? ? "Add File" : "Update File"), class: 'btn btn-primary', id: 'submitS3' %>
+          <%= button_to challenge_path(@challenge), class: "btn btn-secondary", validate: false do %>
+            Cancel
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+</div>

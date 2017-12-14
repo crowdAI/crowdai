@@ -4,7 +4,7 @@
       <div class="info">
         <h2><%= @challenge_call.title %></h2>
         <p>by <%= link_to @challenge_call.organizer.organizer, organizer_path(@challenge_call.organizer) %></p>
-        <p class='color-accent'>Closing date: <%= @challenge_call.closing_date.strftime("%d %b %H:%M UTC") %></p>
+        <p class='light'>Closing date: <%= @challenge_call.closing_date.strftime("%d %b %H:%M UTC") %></p>
       </div>
     </div>
   </div>
@@ -12,28 +12,38 @@
     <div class='article'>
       <h2><%= @challenge_call.headline %></h2>
       <p><%= @challenge_call.description %></p>
-      <h3>Interested in hosting a challenge?</h3>
+      <h2>Interested in hosting a challenge?</h2>
       <p>Fill out the form below and someone from our team will get in touch with you.</p>
     </div>
       <%= form_for [@challenge_call,@challenge_call_response], validate: true, html: { class: "sgl-col" } do |f| %>
-        <%= f.text_field :organization, placeholder: "Organization name", required: true %>
-        <%= f.text_field :contact_name, placeholder: "Contact name", required: true %>
-        <%= f.text_field :email, placeholder: "Email address", required: true %>
-        <%= f.text_field :phone, placeholder: "Phone number", required: true %>
-        <%= f.text_field :challenge_title, placeholder: 'Challenge Title' %>
-        <%= f.text_area :challenge_description,
-                        placeholder: "Description of the task and general overview of the way the challenge will be run.", required: true %>
-        <%= f.text_area :motivation,
-                        placeholder: 'Description of the reasons why the challenge should be hosted on crowdAI, including assessment of the significance of the task and of the potential impact of the challenge. This should also include a brief overview of existing work in the area of the challenge (e.g. what is the current baseline solution to the problem addressed, which research groups are doing research in this area and can be expected to participate in the challenge).',
-                        style: "height: 200px;" %>
-        <%= f.text_area :timeline,
-                        placeholder: 'Simple description of the structure of the challenge, including what is being submitted by participants when (e.g. solution software, evaluation results), and what is being provided by the organisers when (e.g. benchmark data, evaluation framework).' %>
-        <%= f.text_area :evaluation_criteria,
-                        placeholder: 'A clear description of the way the evaluation will be conducted, i.e. what will be measured, in what way, and for what purpose. Qualitative evaluations are acceptable, but challenge organisers will have to explain how such an evaluation can be used as a basis to assess the solutions proposed by challenge participants against each other.' %>
-        <%= f.text_area :organizers_bio,
-                        placeholder: 'Short bio of each of the organisers in relation to the challenge.' %>
-        <%= f.text_area :other,
-                        placeholder: 'Please indicate here if you will need specific resources for the organisation of the challenge, and if you already have plans regarding prizes or sponsors for your challenge. Also indicate if the challenge is part of a series of challenges, is related to another event (e.g. an existing workshop) or to a project.' %>
+        <label>Organization name</label>
+        <%= f.text_field :organization, label: "Organization name" %>
+        <label>Contact name</label>
+        <%= f.text_field :contact_name %>
+        <label>Contact email address</label>
+        <%= f.text_field :email %>
+        <label>Contact phone number</label>
+        <%= f.text_field :phone %>
+        <label>Challenge title</label>
+        <%= f.text_field :challenge_title %>
+        <label>Challenge description</label>
+        <p class="description">Describe the task and general overview of the way the challenge will be run.</p>
+        <%= f.text_area :challenge_description %>
+        <label>Why should the challenge be hosted on crowdAI?</label>
+        <p class="description">Describe why the challenge should be hosted on crowdAI, including assessment of the significance of the task and of the potential impact of the challenge. This should also include a brief overview of existing work in the area of the challenge (e.g. what is the current baseline solution to the problem addressed, which research groups are doing research in this area and can be expected to participate in the challenge).</p>
+        <%= f.text_area :motivation %>
+        <label>Challenge structure</label>
+        <p class="description">Briefly describe the structure of the challenge, including what is being submitted by participants when (e.g. solution software, evaluation results), and what is being provided by the organisers when (e.g. benchmark data, evaluation framework).</p>
+        <%= f.text_area :timeline %>
+        <label>Challenge evaluation</label>
+        <p class="description">A clear description of the way the evaluation will be conducted, i.e. what will be measured, in what way, and for what purpose. Qualitative evaluations are acceptable, but challenge organisers will have to explain how such an evaluation can be used as a basis to assess the solutions proposed by challenge participants against each other.</p>
+        <%= f.text_area :evaluation_criteria %>
+        <label>Organiser bio(s)</label>
+        <p class="description">Please add a short bio of each of the organisers in relation to the challenge.</p>
+        <%= f.text_area :organizers_bio %>
+        <label>Resources</label>
+        <p class="description">Please indicate here if you will need specific resources for the organisation of the challenge, and if you already have plans regarding prizes or sponsors for your challenge. Also indicate if the challenge is part of a series of challenges, is related to another event (e.g. an existing workshop) or to a project.</p>
+        <%= f.text_area :other %>
 
         <div class="button-group">
           <%= f.button :submit, class: "btn btn-primary" %>

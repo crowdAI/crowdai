@@ -13,17 +13,32 @@ class DatasetFilePolicy < ApplicationPolicy
   end
 
   def edit?
-    false
+    new?
   end
 
   def update?
-    false
+    new?
   end
 
   def destroy?
     new?
   end
 
+  class Scope
+    attr_reader :participant, :scope
 
+    def initialize(participant, scope)
+      @participant = participant
+      @scope = scope
+    end
+
+    def resolve
+      if participant && (participant.admin? || participant.organizer_id.present?)
+        scope.all
+      else
+        scope.where("visible is true and evaluation is false")
+      end
+    end
+  end
 
 end

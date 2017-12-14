@@ -1,15 +1,11 @@
 class DatasetFilesController < ApplicationController
   before_action :authenticate_participant!
-  before_action :set_dataset_file, only: [:destroy]
+  before_action :set_dataset_file, only: [:destroy, :edit, :update]
   before_action :set_challenge
-  before_action :set_s3_direct_post, only: [:new, :create]
+  before_action :set_s3_direct_post, only: [:new, :create, :edit]
 
   def index
-    if current_participant.admin?
-      @dataset_files = @challenge.dataset_files
-    else
-      @dataset_files = @challenge.dataset_files.where(evaluation: false)
-    end
+    @dataset_files = policy_scope(DatasetFile).where(challenge_id: @challenge.id)
   end
 
   def show
@@ -30,9 +26,23 @@ class DatasetFilesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @dataset_file.update(dataset_file_params)
+      redirect_to challenge_dataset_files_path(@challenge),
+                  notice: 'Dataset file was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
   def destroy
-    s3 = Aws::S3::Client.new
-    s3.delete_object(key: @dataset_file.dataset_file_s3_key, bucket: ENV['AWS_S3_BUCKET'])
+    if @dataset_file.dataset_file_s3_key.present?
+      s3 = Aws::S3::Client.new
+      s3.delete_object(key: @dataset_file.dataset_file_s3_key, bucket: ENV['AWS_S3_BUCKET'])
+    end
     @dataset_file.destroy
     redirect_to challenge_dataset_files_path(@challenge),
                 notice: "Dataset file #{@dataset_file.title} was deleted."
@@ -41,6 +51,7 @@ class DatasetFilesController < ApplicationController
   private
   def set_dataset_file
     @dataset_file = DatasetFile.find(params[:id])
+    authorize @dataset_file
   end
 
   def set_challenge
@@ -52,8 +63,13 @@ class DatasetFilesController < ApplicationController
           .permit(:seq,
                   :description,
                   :evaluation,
+                  :visible,
                   :title,
-                  :dataset_file_s3_key)
+                  :file_size,
+                  :external_url,
+                  :external_file_size,
+                  :dataset_file_s3_key,
+                  :hosting_location)
   end
 
   def set_s3_direct_post

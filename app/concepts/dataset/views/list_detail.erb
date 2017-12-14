@@ -4,11 +4,13 @@
             class: 'dataset-file-download',
               data: { :'dataset-file-id' => dataset_file.id } %></h5>
     <p class='light'>
-    <% if dataset_file.visible %>
-      <span class='light'>visible</span>
-    <% end %>
-    <% if dataset_file.evaluation %>
-      <span class='light'>evaluation</span>
+    <% if Pundit.policy(current_participant,dataset_file).destroy? %>
+      <% if dataset_file.visible %>
+        <span class='light'>visible</span>
+      <% end %>
+      <% if dataset_file.evaluation %>
+        <span class='light'>evaluation</span>
+      <% end %>
     <% end %>
     <p class="description"><%= file_description %></p>
 

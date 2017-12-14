@@ -592,3 +592,10 @@ div.additional {
     }
   }
 }
+
+/* Form description */
+
+form p.description {
+  color: $color-grey-54;
+  margin: -6px 0 10px 0;
+}

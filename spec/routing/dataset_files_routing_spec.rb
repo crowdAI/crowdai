@@ -21,19 +21,17 @@ RSpec.describe DatasetFilesController, type: :routing do
     it "routes to #destroy" do
       expect(:delete => "/challenges/1/dataset_files/1").to route_to("dataset_files#destroy", :id => "1", challenge_id: "1")
     end
-  end
 
-  describe "invalid routing with challenges" do
-    it "does not route to #edit" do
-      expect(:get => "/challenges/1/dataset_files/1/edit").not_to be_routable
+    it "routes to #edit" do
+      expect(:get => "/challenges/1/dataset_files/1/edit").to route_to("dataset_files#edit", challenge_id: "1")
     end
 
-    it "does not route to #update via PUT" do
-      expect(:put => "/challenges/1/dataset_files/1").not_to be_routable
+    it "routes to #update via PUT" do
+      expect(:put => "/challenges/1/dataset_files/1").to route_to("dataset_files#update", challenge_id: "1")
     end
 
     it "does not route to #update via PATCH" do
-      expect(:patch => "/challenges/1/dataset_files/1").not_to be_routable
+      expect(:patch => "/challenges/1/dataset_files/1").to route_to("dataset_files#update", challenge_id: "1")
     end
 
   end

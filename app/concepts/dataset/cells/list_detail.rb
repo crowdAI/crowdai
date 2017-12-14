@@ -13,10 +13,14 @@ class Dataset::Cell::ListDetail < Dataset::Cell
   end
 
   def expiring_url
-    if s3_file_obj
-      return s3_file_obj.presigned_url(:get, expires_in: 7.days.to_i)
+    if dataset_file.hosting_location == 'External'
+      return dataset_file.external_url
     else
-      return '#'
+      if s3_file_obj
+        return s3_file_obj.presigned_url(:get, expires_in: 7.days.to_i)
+      else
+        return '#'
+      end
     end
   end
 
@@ -37,8 +41,12 @@ class Dataset::Cell::ListDetail < Dataset::Cell
   end
 
   def file_size
-    return 0 if s3_file_obj.nil? || !s3_file_obj.exists?
-    number_to_human_size(s3_file_obj.content_length)
+    if dataset_file.hosting_location == 'External'
+      dataset_file.external_file_size
+    else
+      return 0 if s3_file_obj.nil? || !s3_file_obj.exists?
+      number_to_human_size(s3_file_obj.content_length)
+    end
   end
 
   def file_name
@@ -48,10 +56,19 @@ class Dataset::Cell::ListDetail < Dataset::Cell
   end
 
   def file_type
-    s3_key = dataset_file.dataset_file_s3_key
-    return nil if s3_key.nil?
-    ext = s3_key.split('/')[-1].split('.')[-1]
-    ext && ext.upcase
+    if dataset_file.hosting_location == 'External'
+      if dataset_file.external_url.present?
+        ext = dataset_file.external_url.split('/')[-1].split('.')[-1]
+        ext && ext.upcase
+      else
+        "N/A"
+      end
+    else
+      s3_key = dataset_file.dataset_file_s3_key
+      return nil if s3_key.nil?
+      ext = s3_key.split('/')[-1].split('.')[-1]
+      ext && ext.upcase
+    end
   end
 
   def s3_file_obj

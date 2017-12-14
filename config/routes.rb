@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   end
 
   resources :challenges do
-    resources :dataset_files, only: [:new, :show, :index, :destroy, :create]
+    resources :dataset_files
     resources :participant_challenges, only: [:index] do
       get :approve, on: :collection
       get :deny, on: :collection

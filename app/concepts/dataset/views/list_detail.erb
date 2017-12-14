@@ -1,14 +1,17 @@
 <li data-cell='Dataset::Cell::ListDetail'>
   <div class="details">
-    <h5><%= link_to file_title, expiring_url, class: 'dataset-file-download', data: { :'dataset-file-id' => dataset_file.id } %></h5>
-    <p class="description"><%= file_description %></p>
-    <% if Pundit.policy(current_participant,dataset_file).destroy? %>
-      <p class='status active'>
-        <%= link_to 'delete',
-                    challenge_dataset_file_path(challenge,dataset_file),
-                    method: :delete,
-                    data: { confirm: 'Are you sure?' } %></p>
+    <h5><%= link_to file_title, expiring_url,
+            class: 'dataset-file-download',
+              data: { :'dataset-file-id' => dataset_file.id } %></h5>
+    <p class='light'>
+    <% if dataset_file.visible %>
+      <span class='light'>visible</span>
     <% end %>
+    <% if dataset_file.evaluation %>
+      <span class='light'>evaluation</span>
+    <% end %>
+    <p class="description"><%= file_description %></p>
+
   </div>
   <div class="stats">
     <div class="stat-fr">
@@ -19,5 +22,18 @@
       File Format<br>
       <span><%= file_type %></span>
     </div>
+    <% if Pundit.policy(current_participant,dataset_file).destroy? %>
+      <div class='stat-fr'>
+        <br/>
+        <%= link_to 'edit',
+              edit_challenge_dataset_file_path(challenge,dataset_file),
+              class: 'light' %>&nbsp;
+        <%= link_to 'delete',
+              challenge_dataset_file_path(challenge,dataset_file),
+              method: :delete,
+              class: 'color-accent',
+              data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
   </div>
 </li>

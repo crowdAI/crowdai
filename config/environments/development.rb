@@ -30,4 +30,5 @@ Rails.application.configure do
   config.web_console.whiny_requests = false
 end
 
+
 Rails.application.routes.default_url_options[:host] = ENV['HOST']

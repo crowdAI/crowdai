@@ -86,6 +86,12 @@ Rails.application.routes.draw do
     resources :dataset_file_downloads, only: [:create]
   end
 
+  resources :notifications, only: [:index] do
+    post :mark_as_touched, on: :collection
+    post :mark_all_as_read, on: :collection
+    post :mark_as_read, on: :member
+  end
+
 
   resources :submissions, only: [] do
     resources :submission_comments, only: [:create, :delete, :edit, :update]

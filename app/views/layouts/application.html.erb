@@ -40,7 +40,8 @@
 
   <body id='controller-action', data-controller="<%= controller.controller_name %>" data-action="<%= controller.action_name %>">
     <div data-behavior="progress-bar" class="progress-bar"></div>
-    <%= concept(Header::Cell, nil, current_participant: current_participant) %>
+    <%= render partial: 'layouts/header' %>
+    <%#= concept(Header::Cell, nil, current_participant: current_participant) %>
     <%= render 'layouts/flash_messages' %>
     <%= yield %>
     <%= insert_paloma_hook %>

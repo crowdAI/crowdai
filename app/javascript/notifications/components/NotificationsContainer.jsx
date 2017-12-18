@@ -23,6 +23,40 @@ class NotificationsContainer extends React.Component {
 
   render () {
     return (
+        <div class="notifications">
+          <a id="toggle-notifications" href="#"><i className="fa fa-bell fa-lg" aria-hidden="true"></i></a>
+          <div id="notification-container">
+            <ul>
+              <li>
+                <a href="#">
+                  <img src="assets/img/users/user-1.jpg" alt="">
+                  <span>David Hendry mentioned you in a post</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="assets/img/challenges/challenge-2.jpg" alt="">
+                  <span>Your Learning how to walk submission has been graded with a score of 34.22</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="assets/img/users/user-1.jpg" alt="">
+                  <span>Your OpenFood Ingredients List Challenge submission has failed grading</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="assets/img/challenges/challenge-2.jpg" alt="">
+                  <span>You have moved from 3rd place to 5th place on the Learning to walk</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      );
+    }
+      /*
       <div className="notification-container">
         <a className={`dropdown-toggle ${this.state.newNotificationCount > 0 ? 'active' : ''}`}
           onClick={() => this.handleMarkAsTouched()}
@@ -52,7 +86,7 @@ class NotificationsContainer extends React.Component {
         </div>
       </div>
     );
-  }
+  }  */
 
   fetchNotifications() {
     $.ajax({

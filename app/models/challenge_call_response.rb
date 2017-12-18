@@ -1,9 +1,16 @@
 class ChallengeCallResponse < ApplicationRecord
   belongs_to :challenge_call
 
-  validates :organization,          presence: true
-  validates :contact_name,          presence: true
-  validates :email,                 presence: true
-  validates :challenge_title,       presence: true
-  validates :challenge_description, presence: true
+  validates :organization,
+            :contact_name,
+            :challenge_title,
+            :challenge_description,
+            :motivation,
+            :timeline,
+            :evaluation_criteria,
+            :organizers_bio,
+            :other,
+    presence: true
+
+    validates :email, presence: true, 'valid_email_2/email': true
 end

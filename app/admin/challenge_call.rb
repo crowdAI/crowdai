@@ -2,7 +2,7 @@ ActiveAdmin.register ChallengeCall do
 
   sidebar "Details", only: [:show, :edit] do
     ul do
-      li link_to "Responses", admin_challenge_call_challenge_call_responses_path(challenge_call.id)
+      li link_to "Responses", admin_challenge_call_challenge_call_responses_path(challenge_call)
     end
   end
 
@@ -12,6 +12,58 @@ ActiveAdmin.register ChallengeCall do
     end
     def permitted_params
       params.permit!
+    end
+  end
+
+  filter :organizer, :as => :select, :collection => Organizer.all.collect {|organizer| [organizer.organizer, organizer.id] }
+  filter :headline
+
+  index do
+    selectable_column
+    column :id
+    column :title
+    column 'organizer' do |res|
+      res.organizer.organizer
+    end
+    column :headline
+    column :active
+    column :closing_date
+    column :website
+    column 'link' do |res|
+      "https://www.crowdai.org/call-for-challenges/#{res.slug}/apply"
+    end
+    actions
+  end
+
+  form do |f|
+    f.inputs "Challenge Call" do
+      f.input :title
+      f.input :organizer, :as => :select, member_label: :organizer
+      f.input :headline
+      f.input :description
+      f.input :active
+      f.input :closing_date
+      f.input :website
+      f.input :slug, :input_html => { :disabled => true }
+    end
+    f.actions
+  end
+
+  show do
+    attributes_table do
+      row :title
+      row 'organizer' do |res|
+        res.organizer.organizer
+      end
+      row :headline
+      row :description
+      row :active
+      row :closing_date
+      row :website
+      row :slug
+      row 'link' do |res|
+        "https://www.crowdai.org/call-for-challenges/#{res.slug}/apply"
+      end
     end
   end
 

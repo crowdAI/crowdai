@@ -17,7 +17,7 @@ class Challenge::Cell::ChallengeMasthead < Challenge::Cell
   end
 
   def remaining_units
-    if challenge.running?
+    if challenge.running? && remaining_time_in_days < 1
       "Ending"
     else
       nil

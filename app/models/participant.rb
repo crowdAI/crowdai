@@ -34,13 +34,11 @@ class Participant < ApplicationRecord
   has_many :follows,                      dependent: :destroy
   has_many :participant_clef_tasks,       dependent: :destroy
 
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   VALID_URL_REGEX = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/
-
 
   validates :email,
             presence: true,
-            format: { with: VALID_EMAIL_REGEX },
+            'valid_email_2/email': true,
             uniqueness: { case_sensitive: false }
   validates :website, :url => { allow_blank: true }
   validates :github, :url => { allow_blank: true }

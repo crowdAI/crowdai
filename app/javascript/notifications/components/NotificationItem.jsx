@@ -42,7 +42,6 @@ class NotificationItem extends React.Component {
     }
   }
 
-  // FIXME: this is tightly coupled to action.
   notificationIcon() {
     switch(this.props.action) {
       case 'liked your':

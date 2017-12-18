@@ -12,10 +12,9 @@
     <div class='article'>
       <h2><%= @challenge_call.headline %></h2>
       <p><%= @challenge_call.description %></p>
-      <h2>Interested in hosting a challenge?</h2>
-      <p>Fill out the form below and someone from our team will get in touch with you.</p>
     </div>
-      <%= form_for [@challenge_call,@challenge_call_response], validate: true, html: { class: "sgl-col" } do |f| %>
+      <%= form_for [@challenge_call,@challenge_call_response], html: { class: "sgl-col" } do |f| %>
+      <fieldset>
         <label>Organization name</label>
         <%= f.text_field :organization, label: "Organization name" %>
         <label>Contact name</label>
@@ -44,6 +43,7 @@
         <label>Resources</label>
         <p class="description">Please indicate here if you will need specific resources for the organisation of the challenge, and if you already have plans regarding prizes or sponsors for your challenge. Also indicate if the challenge is part of a series of challenges, is related to another event (e.g. an existing workshop) or to a project.</p>
         <%= f.text_area :other %>
+      </fieldset>
 
         <div class="button-group">
           <%= f.button :submit, class: "btn btn-primary" %>

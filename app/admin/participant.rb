@@ -1,5 +1,10 @@
 ActiveAdmin.register Participant do
-  permit_params :name, :organizer_id, :email, :admin, :password, :password_confirmation
+  permit_params :name,
+                :organizer_id,
+                :email,
+                :admin,
+                :password,
+                :password_confirmation
 
   index do
     selectable_column

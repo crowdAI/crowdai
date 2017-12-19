@@ -12,16 +12,6 @@ Rails.application.routes.draw do
     ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
   end
 
-  devise_for :participants
-  resources :participants, only: [:show, :edit, :update, :destroy] do
-    get :sync_mailchimp
-    get :regen_api_key
-    get :remove_image
-    resources :email_preferences, only: [:edit, :update]
-  end
-  resources :job_postings, only: [:index, :show]
-
-  # API
   namespace :api do
     resources :external_graders, only: [:create, :show, :update] do
       get :challenge_config, on: :collection
@@ -31,6 +21,23 @@ Rails.application.routes.draw do
     get 'mailchimps/webhook' => 'mailchimps#verify', as: :verify_webhook
     post 'mailchimps/webhook' => 'mailchimps#webhook', as: :update_webhook
   end
+
+  namespace :components do
+    resources :notifications, only: [:index] do
+      post :mark_as_touched, on: :collection
+      post :mark_all_as_read, on: :collection
+      post :mark_as_read, on: :member
+    end
+  end
+
+  devise_for :participants
+  resources :participants, only: [:show, :edit, :update, :destroy] do
+    get :sync_mailchimp
+    get :regen_api_key
+    get :remove_image
+    resources :email_preferences, only: [:edit, :update]
+  end
+  resources :job_postings, only: [:index, :show]
 
   resources :landing_page, only: [:index]
   match '/landing_page/host', to: 'landing_page#host', via: :get
@@ -135,6 +142,8 @@ Rails.application.routes.draw do
   end
   get '/call-for-challenges/:challenge_call_id/apply' => 'challenge_call_responses#new', as: 'challenge_call_apply'
   get '/call-for-challenges/:challenge_call_id/applications/:id' => 'challenge_call_responses#show', as: 'challenge_call_show'
+
+
 
 
   root 'landing_page#index'

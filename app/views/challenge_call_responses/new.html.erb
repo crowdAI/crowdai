@@ -26,22 +26,22 @@
         <label>Challenge title</label>
         <%= f.text_field :challenge_title %>
         <label>Challenge description</label>
-        <p class="description">Describe the task and general overview of the way the challenge will be run.</p>
+        <p class="description">Give a general overview of the challenge, what problem it should solve, and how it will be run.</p>
         <%= f.text_area :challenge_description %>
-        <label>Why should the challenge be hosted on crowdAI?</label>
-        <p class="description">Describe why the challenge should be hosted on crowdAI, including assessment of the significance of the task and of the potential impact of the challenge. This should also include a brief overview of existing work in the area of the challenge (e.g. what is the current baseline solution to the problem addressed, which research groups are doing research in this area and can be expected to participate in the challenge).</p>
+        <label>Impact of the challenge</label>
+        <p class="description">Explain the significance of the task and describe the potential impact of the challenge. Please also provide a brief overview of existing work in the area of the challenge, and describe the current baseline solution to the problem addressed. How can the challenge improve this baseline?</p>
         <%= f.text_area :motivation %>
         <label>Challenge structure</label>
-        <p class="description">Briefly describe the structure of the challenge, including what is being submitted by participants when (e.g. solution software, evaluation results), and what is being provided by the organisers when (e.g. benchmark data, evaluation framework).</p>
+        <p class="description">Describe the structure of the challenge, i.e. what (if anything) do you provide in terms of data, and what do you provide in terms of the evaluation framework? What do the participants have to submit?</p>
         <%= f.text_area :timeline %>
         <label>Challenge evaluation</label>
-        <p class="description">A clear description of the way the evaluation will be conducted, i.e. what will be measured, in what way, and for what purpose. Qualitative evaluations are acceptable, but challenge organisers will have to explain how such an evaluation can be used as a basis to assess the solutions proposed by challenge participants against each other.</p>
+        <p class="description">How will the submissions be evaluated, and why? Please give as much detail as possible - this is usually where most of the work lies, and a clear evaluation scheme helps a lot.</p>
         <%= f.text_area :evaluation_criteria %>
-        <label>Organiser bio(s)</label>
-        <p class="description">Please add a short bio of each of the organisers in relation to the challenge.</p>
+        <label>Organiser details</label>
+        <p class="description">Please tell us something about the organizer(s), in particular with respect to the challenge? Have you already run challenges before?</p>
         <%= f.text_area :organizers_bio %>
         <label>Resources</label>
-        <p class="description">Please indicate here if you will need specific resources for the organisation of the challenge, and if you already have plans regarding prizes or sponsors for your challenge. Also indicate if the challenge is part of a series of challenges, is related to another event (e.g. an existing workshop) or to a project.</p>
+        <p class="description">What prizes can you provide for the winners of the challenge? Do you have additional sponsorships secured? Is this challenge part of a workshop, a series, or anything else that is important to know?</p>
         <%= f.text_area :other %>
       </fieldset>
 

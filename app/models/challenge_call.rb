@@ -7,4 +7,8 @@ class ChallengeCall < ApplicationRecord
   def should_generate_new_friendly_id?
     title_changed?
   end
+
+  def call_closed?
+    self.closing_date.present? && self.closing_date < Time.now.utc 
+  end
 end

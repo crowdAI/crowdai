@@ -16,17 +16,20 @@
           </ul>
         </div>
       </div>
+      <%= render partial: 'layouts/notifications' %>
     <% end %>
-    <%= render partial: 'layouts/notifications' %>
-
     <nav class="primary">
       <ul>
-        <li>
-          <a href="#">Challenges</a>
-        </li>
-        <li>
-          <a href="#">Knowledge Base</a>
-        </li>
+        <li><%= link_to 'Challenges', challenges_path %></li>
+        <li><%= link_to 'Knowledge Base', articles_path %></li>
+        <li><%= link_to 'Job Board', job_postings_path %></li>
+        <% if current_participant && current_participant.admin? %>
+          <li><%= link_to "Admin", '/admin' %></li>
+        <% end %>
+        <% if current_participant.nil? %>
+          <li><%= link_to "Sign up", new_participant_registration_path %></li>
+          <li><%= link_to "Log in", new_participant_session_path %></li>
+        <% end %>
       </ul>
     </nav>
     <div class="menu">
@@ -45,33 +48,17 @@
       </div>
     </div>
     <ul>
-      <li>
-        <h3>
-          <a href="#">Challenges</a>
-        </h3>
-      </li>
-      <li>
-        <h3>
-          <a href="#">Knowledge Base</a>
-        </h3>
-      </li>
+      <li><h3><%= link_to 'Challenges', challenges_path %></h3></li>
+      <li><h3><%= link_to 'Knowledge Base', articles_path %></h3></li>
+      <li><h3><%= link_to 'Job Board', job_postings_path %></h3></li>
     </ul>
-    <ul>
-      <li>
-        <h4>
-          <a href="#">Jason Reynolds</a>
-        </h4>
-      </li>
-      <li>
-        <h4>
-          <a href="#">Account Settings</a>
-        </h4>
-      </li>
-      <li>
-        <h4>
-          <a href="#">Log Out</a>
-        </h4>
-      </li>
-    </ul>
+    <% if current_participant %>
+      <ul>
+        <li><h4><%= link_to current_participant.name, participant_path(current_participant) %></h4></li>
+        <li><h4><%= link_to 'Profile', edit_participant_path(current_participant) %></h4></li>
+        <li><h4><%= link_to 'Account Settings', edit_participant_registration_path %></h4></li>
+        <li><h4><%= link_to 'Log Out', destroy_participant_session_path, :method => :delete %></h4></li>
+      </ul>
+    <% end %>
   </nav>
 </header>

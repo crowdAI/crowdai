@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :notification do
     participant
-    notification "Someone commented on your post"
+    notification "comment"
     association :notifiable, factory: :comment
     read_at nil
     is_new true

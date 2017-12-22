@@ -5,7 +5,7 @@ class EveryCommentNotificationJob < ApplicationJob
     comment = Comment.find(comment_id)
     participant_ids(comment_id).each do |participant_id|
       CommentNotificationMailer.new.sendmail(participant_id, comment_id)
-      NotificationService.new(participant_id,comment).call
+      NotificationService.new(participant_id,comment,'comment').call
     end
   end
 

@@ -20,4 +20,14 @@ RSpec.describe ChallengeCall, type: :model do
     end
   end
 
+  context 'methods' do
+    describe 'validate markdown fields' do
+      let(:call) { create :challenge_call }
+      it 'description' do
+        call.update!(description_markdown: '### The description')
+        expect(call.description).to eq("<h3 id=\"the-description\">The description</h3>\n")
+      end
+    end
+  end
+
 end

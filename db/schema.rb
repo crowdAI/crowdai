@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171214151954) do
+ActiveRecord::Schema.define(version: 20171222084410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,7 +80,6 @@ ActiveRecord::Schema.define(version: 20171214151954) do
   create_table "challenge_calls", force: :cascade do |t|
     t.string "title"
     t.string "website"
-    t.boolean "active", default: false
     t.datetime "closing_date"
     t.text "description"
     t.datetime "created_at", null: false
@@ -89,6 +88,7 @@ ActiveRecord::Schema.define(version: 20171214151954) do
     t.bigint "organizer_id"
     t.string "headline"
     t.boolean "crowdai", default: false
+    t.text "description_markdown"
     t.index ["organizer_id"], name: "index_challenge_calls_on_organizer_id"
   end
 
@@ -289,6 +289,19 @@ ActiveRecord::Schema.define(version: 20171214151954) do
     t.jsonb "meta"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "participant_id"
+    t.string "notification"
+    t.string "notifiable_type"
+    t.bigint "notifiable_id"
+    t.datetime "read_at"
+    t.boolean "is_new", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable_type_and_notifiable_id"
+    t.index ["participant_id"], name: "index_notifications_on_participant_id"
   end
 
   create_table "organizer_applications", id: :serial, force: :cascade do |t|
@@ -548,6 +561,7 @@ ActiveRecord::Schema.define(version: 20171214151954) do
   add_foreign_key "dataset_file_downloads", "participants"
   add_foreign_key "email_preferences", "participants"
   add_foreign_key "follows", "participants"
+  add_foreign_key "notifications", "participants"
   add_foreign_key "participant_clef_tasks", "clef_tasks"
   add_foreign_key "participant_clef_tasks", "participants"
   add_foreign_key "participants", "organizers"

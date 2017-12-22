@@ -26,7 +26,6 @@ ActiveAdmin.register ChallengeCall do
       res.organizer.organizer
     end
     column :headline
-    column :active
     column :closing_date
     column :website
     column 'link' do |res|
@@ -40,8 +39,7 @@ ActiveAdmin.register ChallengeCall do
       f.input :title
       f.input :organizer, :as => :select, member_label: :organizer
       f.input :headline
-      f.input :description
-      f.input :active
+      f.input :description_markdown
       f.input :closing_date
       f.input :website
       f.input :slug, :input_html => { :disabled => true }
@@ -56,8 +54,9 @@ ActiveAdmin.register ChallengeCall do
         res.organizer.organizer
       end
       row :headline
-      row :description
-      row :active
+      row 'description' do |res|
+        simple_format(res.description)
+      end
       row :closing_date
       row :website
       row :slug

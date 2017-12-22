@@ -10,7 +10,9 @@
   </div>
   <div class="row">
     <div class='article'>
-      <p><%= @challenge_call.description %></p>
+      <div class='markdown-wrap'>
+        <%= simple_format(@challenge_call.description) %>
+      </div>
       <h2>Thank you</h2>
       <p>Your submisson has been received, and you will contacted by a member of our team.</p>
     </div>

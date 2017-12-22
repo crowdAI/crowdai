@@ -28,14 +28,14 @@ RSpec.describe Notification, type: :model do
     end
 
     context 'notifiable: Comment' do
-      let(:participant) { create :participant }
-      let(:comment) { create :comment }
-      let(:notification) { create :notification, notifiable: comment, participant: participant }
+      let!(:participant) { create :participant }
+      let!(:comment) { create :comment }
+      let!(:notification) { create :notification, notifiable: comment, participant: participant }
       describe '#link' do
-        it { expect(notification.link).to eq(comment_path(comment)) }
+        it { expect(notification.link).to eq("/topics/#{comment.topic.slug}/discussion") }
       end
       describe '#thumb' do
-        it { expect(notification.thumb).to eq(comment.participant.image.image.url(:medium)) }
+        it { expect(notification.thumb).to eq(comment.participant.image_file.url) }
       end
     end
 

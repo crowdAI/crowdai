@@ -9,18 +9,18 @@ class Components::NotificationsController < ApplicationController
   def mark_as_touched
     notifications = Notification.where(participant: current_participant).pristine
     notifications.update_all(is_new: false)
-    render nothing: true, status: 204
+    head :ok
   end
 
   def mark_all_as_read
     notifications = Notification.where(participant: current_participant).unread
     notifications.update_all(read_at: Time.zone.now)
-    render nothing: true, status: 204
+    head :ok
   end
 
   def mark_as_read
-    notification = Notification.find_by(id: params[:id], participant: current_participant)
+    notification = Notification.find(params[:id])
     notification.update(read_at: Time.zone.now)
-    render nothing: true, status: 204
+    head :ok
   end
 end

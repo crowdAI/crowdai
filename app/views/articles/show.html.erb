@@ -1,5 +1,9 @@
 <div class="content">
-  <%= concept(Article::Cell::ArticleMasthead, @article, article_section: @article_section,current_participant: current_participant) %>
-  <%= concept(Article::Cell::ArticleSubnav, @article, article_section: @article_section,current_participant: current_participant) %>
-  <%= concept(Article::Cell, @article, article_section: @article_section,current_participant: current_participant) %>
+  <%= render partial: 'masthead', locals: { article: @article, article_section: @article_section } %>
+  <%= render partial: 'subnav', locals: { article: @article, article_section: @article_section } %>
+  <div class="row">
+    <div class="article">
+      <%= sanitize(@article_section.description) if @article_section.present? %>
+    </div>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-<li data-cell='Article::Cell::ListDetail'>
+<li data-partial='articles/article'>
   <div class="pic">
     <%= link_to article_path(article) do %>
       <%= concept(Image::Cell,article, current_participant: current_participant) %>
@@ -9,11 +9,11 @@
     <p class="description"><%= article.summary %></p>
     <% if article.participant.is_a? NullParticipant %>
       <p class="user">By
-        <%= link_to author.name, '#' %>
+        <%= link_to article.participant.name, '#' %>
       </p>
     <% else %>
       <p class="user">By
-        <%= link_to author.name, participant_path(author) %>
+        <%= link_to article.participant.name, participant_path(article.participant) %>
       </p>
     <% end %>
   </div>

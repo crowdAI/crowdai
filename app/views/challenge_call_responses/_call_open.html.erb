@@ -1,6 +1,8 @@
 <div class='article'>
   <h2><%= @challenge_call.headline %></h2>
-  <p><%= @challenge_call.description %></p>
+  <div class='markdown-wrap'>
+    <%= simple_format(@challenge_call.description) %>
+  </div>
 </div>
 
 <%= form_for [@challenge_call,@challenge_call_response], html: { class: "sgl-col" } do |f| %>

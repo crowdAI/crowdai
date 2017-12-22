@@ -12,8 +12,10 @@
 
   <div class="row">
     <ul class="list-tutorials">
-      <%= render partial: 'articles' %>
+      <% @articles.each do |article| %>
+        <%= render partial: 'article', locals: { article: article } %>
+      <% end %>
     </ul>
   </div>
-  <%= render partial: 'shared/load_more', locals: { collection: @articles } %>
+  <%#= render partial: 'shared/load_more', locals: { collection: @articles } %>
 </div>

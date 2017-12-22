@@ -16,21 +16,21 @@
       <div class="user-link">
         <% if article.participant.is_a? NullParticipant %>
           <%= link_to '#' do %>
-            <%= concept(Image::Cell,author, current_participant: current_participant) %>
+            <%= concept(Image::Cell,article.participant, current_participant: current_participant) %>
           <% end %>
           <p>By
-            <%= link_to author.name, '#' %>
+            <%= link_to article.participant.name, '#' %>
             &nbsp;
-            <%= created_at %>
+            <%= article.created_at.strftime(Crowdai::DATE_FORMAT) %>
           </p>
         <% else %>
-          <%= link_to participant_path(author) do %>
-            <%= concept(Image::Cell,author, current_participant: current_participant) %>
+          <%= link_to participant_path(article.participant) do %>
+            <%= concept(Image::Cell,article.participant, current_participant: current_participant) %>
           <% end %>
           <p>By
-            <%= link_to author.name, participant_path(author) %>
+            <%= link_to article.participant.name, participant_path(article.participant) %>
             &nbsp;
-            <%= created_at %>
+            <%= article.created_at.strftime(Crowdai::DATE_FORMAT) %>
           </p>
         <% end %>
       </div>

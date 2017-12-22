@@ -26,5 +26,18 @@ RSpec.describe Notification, type: :model do
         expect(Notification.unread.count).to eq(3)
       end
     end
+
+    context 'notifiable: Comment' do
+      let(:participant) { create :participant }
+      let(:comment) { create :comment }
+      let(:notification) { create :notification, notifiable: comment, participant: participant }
+      describe '#link' do
+        it { expect(notification.link).to eq(comment_path(comment)) }
+      end
+      describe '#thumb' do
+        it { expect(notification.thumb).to eq(comment.participant.image.image.url(:medium)) }
+      end
+    end
+
   end
 end

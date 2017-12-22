@@ -8,4 +8,12 @@ module ImagesHelper
     end
   end
 
+  def image_url(model,size)
+    if model.image
+      model.image.image.url(size)
+    else
+      image_path 'image_not_found.png'
+    end
+  end
+
 end

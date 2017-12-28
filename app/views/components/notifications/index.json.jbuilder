@@ -4,6 +4,8 @@ json.notifications do |json|
     json.participant_id notification.participant_id
     json.notification notification.notification
     json.message notification.message
+    json.thumb image_url(notification.notifiable.topic.challenge,:thumb)
+    json.link new_topic_discussion_path(notification.notifiable.topic)
   end
 end
 

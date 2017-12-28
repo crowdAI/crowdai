@@ -3,6 +3,7 @@ json.notifications do |json|
     json.id notification.id
     json.participant_id notification.participant_id
     json.notification notification.notification
+    json.message notification.message
   end
 end
 

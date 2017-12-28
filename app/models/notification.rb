@@ -28,8 +28,8 @@ class Notification < ApplicationRecord
       case self.notification
       when 'comment'
         message = "#{notifiable.participant.name} commented on a discussion thread you are participating in."
-        thumb = image_url(notifiable.participant,:thumb)
-        link = new_topic_discussion_path(notifiable.topic)
+        thumb = 'abc' #ActionController::Base.helpers.image_url(notifiable.participant,'thumb')
+        link = Rails.application.routes.url_helpers.new_topic_discussion_path(notifiable.topic)
       when 'mention'
         message = "#{notifiable.participant.name} mentioned you in a post."
         thumb = image_url(notifiable.participant,:thumb)
@@ -48,9 +48,9 @@ class Notification < ApplicationRecord
         link = challenge_url(notifiable.challenge)
       end
       details = { message: message, thumb: thumb, link: link }
-      require 'byebug'
-      byebug
     end
   end
+
+
 
 end

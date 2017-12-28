@@ -7,64 +7,16 @@ class NotificationItem extends React.Component {
     this.state = { unread: this.props.unread };
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      unread: nextProps.unread
-    });
-  }
 
   render () {
     return (
-      <li
-        className={this.state.unread ? 'unread-notification' : ''}
-        onClick={() => this.handleMarkAsRead()}>
-        <a href={this.props.url}>
-          <img src='https://i.stack.imgur.com/z9Y3u.jpg?s=48&g=1' width="32" height="32" />
-          <div className="notification-metadata">
-            {this.notificationContent()}
-            <br/>
-            <small>{this.notificationIcon()} {this.props.time_ago}</small>
-          </div>
+      <li>
+        <a href="#">
+          <img src="" alt="" />
+          <span>{ this.props.notification.message }</span>
         </a>
       </li>
-    );
-  }
-
-  notificationContent() {
-    const { actor, action, type } = this.props;
-    switch (type) {
-      case 'post':
-        return `${actor} ${action} ${type}`;
-      case 'user':
-        return `${actor} ${action}`;
-      case 'response':
-        return `${actor} ${action} ${type}`;
-    }
-  }
-
-  notificationIcon() {
-    switch(this.props.action) {
-      case 'liked your':
-        return <i className="fa fa-heart-o"></i>;
-      case 'started following you':
-        return <i className="fa fa-user"></i>;
-      case 'responded to your':
-      case 'also commented on a':
-        return <i className="fa fa-commenting-o"></i>;
-    }
-  }
-
-  handleMarkAsRead(id) {
-    $.ajax({
-      url: `/components/notifications/${this.props.id}/mark_as_read`,
-      method: 'POST',
-      dataType: 'json',
-      success: () => {
-        this.setState({
-          unread: false
-        });
-      }
-    });
+    )
   }
 }
 

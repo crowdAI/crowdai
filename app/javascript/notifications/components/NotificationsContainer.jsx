@@ -22,43 +22,18 @@ class NotificationsContainer extends React.Component {
 
   render () {
     return (
-        <div className="notifications">
-          <a id="toggle-notifications" href="#">{ this.renderNotificationIcon() }</a>
-          { this.renderNotificationItems() }
-        </div>
-      );
-    }
-      /*
-      <div className="notification-container">
-        <a className={`dropdown-toggle ${this.state.newNotificationCount > 0 ? 'active' : ''}`}
-          onClick={() => this.handleMarkAsTouched()}
-          data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          {this.renderNotificationIcon()}
+      <div className="notifications">
+        <a id="toggle-notifications" href="#">
+          { this.renderNotificationIcon() }
         </a>
-        <div
-          className="dropdown-menu"
-          ref={(ref) => {this.dropdownRef = ref}}
-        >
-          <span className="dropdown-arrow-top"></span>
-          <span className="dropdown-arrow-bottom"></span>
-          <div className="notification-header">
-            <span>Notifications</span>
-            <a className="pull-right mark-all-as-read"
-              onClick={(e) => this.handleMarkAllAsRead(e)}>
-              Mark All as Read
-            </a>
-          </div>
-          <ul
-            onScroll={() => this.handleScroll()}
-            ref={(ref) => {this.notificationsListRef = ref}}
-            className="notifications-list">
-            {this.renderNotificationItems()}
-            {this.loadMoreButton()}
+        <div id="notification-container">
+          <ul>
+            { this.renderNotificationList() }
           </ul>
         </div>
       </div>
     );
-  }  */
+  }
 
   fetchNotifications() {
     $.ajax({
@@ -72,7 +47,7 @@ class NotificationsContainer extends React.Component {
           notifications: data.notifications
         });
         console.log('data');
-        console.log(data);
+        console.log(this.state);
       }
     });
   }
@@ -104,8 +79,19 @@ class NotificationsContainer extends React.Component {
   }
 
 
-  renderNotificationItems() {
-  if (!this.state.notifications.length) {
+  renderPoolItems() {
+    return this.state.poolItems.map((poolItem) => {
+      return <PoolItem
+                key={poolItem.index}
+                poolItem={poolItem}
+                poolItemHandler={this.pushItem} />
+    });
+  }
+
+
+
+  renderNotificationList() {
+    if (!this.state.notifications.length) {
       return (
         <div id="notification-container">
           <ul>
@@ -119,7 +105,19 @@ class NotificationsContainer extends React.Component {
         </div>
       )
     }
+    return this.renderNotificationItems();
+  }
 
+  renderNotificationItems(){
+    return this.state.notifications.map((notification) => {
+      return <NotificationItem key={notification.id} notification={notification} />
+    });
+  }
+  
+}
+
+
+/*
     return (
     <div id="notification-container">
       <ul>
@@ -150,72 +148,7 @@ class NotificationsContainer extends React.Component {
       </ul>
     </div>
     )
-
-    //return this.state.notifications.map(notification => {
-    //  return (<NotificationItem key={notification.id} {...notification} />);
-    //});
   }
-
-  // Keep this as a fallack fro handleScroll
-  loadMoreButton() {
-    if (this.state.nextPage === null) {
-      return;
-    }
-    return (
-      <li className="load-more">
-        <a onMouseOver={() => this.handleLoadMore()}>
-          <i className="fa fa-spinner fa-pulse"></i>
-        </a>
-      </li>
-    );
-  }
-
-  handleMarkAsTouched() { return; }
-
-
-  handleScroll() {
-    let scrollHeight = $(this.notificationsListRef)[0].scrollHeight;
-    const OFFSET = 50;
-    let scrollTop = $(this.notificationsListRef).scrollTop();
-    if (scrollHeight - (scrollTop + OFFSET) < $(this.notificationsListRef).innerHeight()) {
-      this.handleLoadMore();
-    }
-  }
-
-  handleMarkAllAsRead() { }
-  /*
-    $(this.dropdownRef).parent().addClass('open'); // workaround jquery dropdown
-    $.ajax({
-      url: '/components/notifications/mark_all_as_read',
-      method: 'POST',
-      dataType: 'json',
-      success: function() {
-        this.setState({
-          //notifications: this.state.notifications.map(notification => {
-          //  return { ...notification, unread: false };
-        });
-      }
-    });
-  }
-*/
-  handleLoadMore() {
-    if (this.fetching || !this.state.nextPage) { return; }
-    this.fetching = true;
-    $.ajax({
-      url: `/components/notifications.json/?page=${this.state.nextPage}`,
-      method: 'GET',
-      dataType: 'json',
-      success: (data) => {
-        //this.fetching = false;
-        //this.setState({
-        //  newNotificationCount: data.new_notification_count,
-        //  nextPage: nil,
-        //  notifications: []
-        //});
-      }
-    });
-  }
-
-}
+} */
 
 export default NotificationsContainer

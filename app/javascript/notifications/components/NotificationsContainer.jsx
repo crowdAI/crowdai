@@ -18,36 +18,35 @@ class NotificationsContainer extends React.Component {
     //this.setActionCableSubscription();
     console.log('go');
     console.log(this.state.currentUserID);
-    //console.log(document.querySelector("meta[name='current-user']").getAttribute('data-id'));
   }
 
   render () {
     return (
-        <div class="notifications">
-          <a id="toggle-notifications" href="#"><i className="fa fa-bell fa-lg" aria-hidden="true"></i></a>
+        <div className="notifications">
+          <a id="toggle-notifications" href="#">{ this.notificationIcon() }</a>
           <div id="notification-container">
             <ul>
               <li>
                 <a href="#">
-                  <img src="assets/img/users/user-1.jpg" alt="">
+                  <img src="assets/img/users/user-1.jpg" alt="" />
                   <span>David Hendry mentioned you in a post</span>
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <img src="assets/img/challenges/challenge-2.jpg" alt="">
+                  <img src="assets/img/challenges/challenge-2.jpg" alt="" />
                   <span>Your Learning how to walk submission has been graded with a score of 34.22</span>
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <img src="assets/img/users/user-1.jpg" alt="">
+                  <img src="assets/img/users/user-1.jpg" alt="" />
                   <span>Your OpenFood Ingredients List Challenge submission has failed grading</span>
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <img src="assets/img/challenges/challenge-2.jpg" alt="">
+                  <img src="assets/img/challenges/challenge-2.jpg" alt="" />
                   <span>You have moved from 3rd place to 5th place on the Learning to walk</span>
                 </a>
               </li>
@@ -117,16 +116,14 @@ class NotificationsContainer extends React.Component {
     });
   }
 
-  renderNotificationIcon() {
+  notificationIcon() {
     if (this.state.newNotificationCount > 0) {
       return (
-        <span id="new-notifications-count">
-          {this.state.newNotificationCount}
-        </span>
+        <i className="fa fa-bell fa-lg"></i>
       );
     } else {
       return (
-        <i className="fa fa-bell-o notification-bell" id="bell"></i>
+        <i className="fa fa-bell fa-lg active"></i>
       );
     }
   }
@@ -184,22 +181,22 @@ class NotificationsContainer extends React.Component {
     }
   }
 
-  handleMarkAllAsRead() {
+  handleMarkAllAsRead() { }
+  /*
     $(this.dropdownRef).parent().addClass('open'); // workaround jquery dropdown
     $.ajax({
       url: '/components/notifications/mark_all_as_read',
       method: 'POST',
       dataType: 'json',
-      success: () => {
+      success: function() {
         this.setState({
-          notifications: this.state.notifications.map(notification => {
-            return { ...notification, unread: false };
-          })
+          //notifications: this.state.notifications.map(notification => {
+          //  return { ...notification, unread: false };
         });
       }
     });
   }
-
+*/
   handleLoadMore() {
     if (this.fetching || !this.state.nextPage) { return; }
     this.fetching = true;
@@ -208,12 +205,12 @@ class NotificationsContainer extends React.Component {
       method: 'GET',
       dataType: 'json',
       success: (data) => {
-        this.fetching = false;
-        this.setState({
-          newNotificationCount: data.new_notification_count,
-          nextPage: data.next_page,
-          notifications: [ ...this.state.notifications, ...data.notifications ]
-        });
+        //this.fetching = false;
+        //this.setState({
+        //  newNotificationCount: data.new_notification_count,
+        //  nextPage: nil,
+        //  notifications: []
+        //});
       }
     });
   }

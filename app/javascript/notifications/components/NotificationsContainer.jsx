@@ -23,35 +23,8 @@ class NotificationsContainer extends React.Component {
   render () {
     return (
         <div className="notifications">
-          <a id="toggle-notifications" href="#">{ this.notificationIcon() }</a>
-          <div id="notification-container">
-            <ul>
-              <li>
-                <a href="#">
-                  <img src="assets/img/users/user-1.jpg" alt="" />
-                  <span>David Hendry mentioned you in a post</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <img src="assets/img/challenges/challenge-2.jpg" alt="" />
-                  <span>Your Learning how to walk submission has been graded with a score of 34.22</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <img src="assets/img/users/user-1.jpg" alt="" />
-                  <span>Your OpenFood Ingredients List Challenge submission has failed grading</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <img src="assets/img/challenges/challenge-2.jpg" alt="" />
-                  <span>You have moved from 3rd place to 5th place on the Learning to walk</span>
-                </a>
-              </li>
-            </ul>
-          </div>
+          <a id="toggle-notifications" href="#">{ this.renderNotificationIcon() }</a>
+          { this.renderNotificationItems() }
         </div>
       );
     }
@@ -98,6 +71,8 @@ class NotificationsContainer extends React.Component {
           nextPage: data.next_page,
           notifications: data.notifications
         });
+        console.log('data');
+        console.log(data);
       }
     });
   }
@@ -116,43 +91,69 @@ class NotificationsContainer extends React.Component {
     });
   }
 
-  notificationIcon() {
+  renderNotificationIcon() {
     if (this.state.newNotificationCount > 0) {
       return (
-        <i className="fa fa-bell fa-lg"></i>
+        <i className="fa fa-bell fa-lg active"></i>
       );
     } else {
       return (
-        <i className="fa fa-bell fa-lg active"></i>
+        <i className="fa fa-bell fa-lg"></i>
       );
     }
   }
 
 
   renderNotificationItems() {
-    if (!this.state.notifications.length) {
+  if (!this.state.notifications.length) {
       return (
-      <div className="no-notifications">
-        <div className="speech-bubble">Nothing to see here...</div>
-        <span className="speech-arrow-top"></span>
-        <span className="speech-arrow-bottom"></span>
-
-        <div className="ringer">
-        <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 119.4 128.6">
-        	<circle className="eye blink" cx="41.8" cy="72.2" r="4.5"/>
-        	<circle className="eye blink" cx="78.2" cy="72.2" r="4.5"/>
-        	<path className="mouth smile" d="M43.3 84.2c4.8 4.2 10.5 6.6 16.8 6.6s12-2.4 16.8-6.6H43.3z"/>
-        	<g><path className="bell-jar" d="M118.7 100.3c0 2.4-.9 4.6-2.7 6.3-1.8 1.8-3.9 2.7-6.3 2.7H78.1c0 5-1.8 9.2-5.3 12.8-3.5 3.5-7.8 5.3-12.8 5.3-5 0-9.2-1.8-12.8-5.3s-5.3-7.8-5.3-12.8H10.4c-2.4 0-4.6-.9-6.3-2.7-1.8-1.8-2.7-3.9-2.7-6.3 2.4-2 4.5-4 6.4-6.2 1.9-2.2 3.9-5 6-8.4 2.1-3.5 3.8-7.2 5.3-11.2 1.4-4 2.6-8.8 3.5-14.5.9-5.7 1.4-11.8 1.4-18.3 0-7.1 2.8-13.8 8.3-19.9C37.8 15.7 45 11.9 54 10.6c-.4-.9-.6-1.8-.6-2.8 0-1.9.7-3.5 2-4.8 1.3-1.3 2.9-2 4.8-2s3.5.7 4.8 2c1.3 1.3 2 2.9 2 4.8 0 .9-.2 1.9-.6 2.8 8.9 1.3 16.2 5 21.7 11.2 5.5 6.1 8.3 12.8 8.3 19.9 0 6.5.5 12.6 1.4 18.3.9 5.7 2.1 10.5 3.5 14.5s3.2 7.7 5.3 11.2c2.1 3.5 4.1 6.3 6 8.4 1.6 2.2 3.7 4.2 6.1 6.2zm-104.5 0h91.7C93.4 86.2 87.1 66.6 87.1 41.6c0-2.4-.6-4.9-1.7-7.4s-2.8-5-4.9-7.3c-2.1-2.3-5-4.2-8.6-5.7-3.6-1.5-7.6-2.2-12-2.2s-8.4.7-12 2.2-6.5 3.4-8.6 5.7c-2.1 2.3-3.7 4.7-4.9 7.3s-1.7 5-1.7 7.4c.2 25-6 44.6-18.5 58.7zm46.9 20.3c0-.8-.4-1.1-1.1-1.1-2.8 0-5.2-1-7.2-3s-3-4.4-3-7.2c0-.8-.4-1.1-1.1-1.1-.8 0-1.1.4-1.1 1.1 0 3.4 1.2 6.4 3.6 8.8 2.4 2.4 5.3 3.6 8.8 3.6.8 0 1.1-.3 1.1-1.1z"/></g>
-        </svg>
-
+        <div id="notification-container">
+          <ul>
+            <li>
+              <a href="#">
+                <img src="" alt="" />
+                <span><h5>No notifications yet</h5></span>
+              </a>
+            </li>
+          </ul>
         </div>
-
-      </div>);
+      )
     }
 
-    return this.state.notifications.map(notification => {
-      return (<NotificationItem key={notification.id} {...notification} />);
-    });
+    return (
+    <div id="notification-container">
+      <ul>
+        <li>
+          <a href="#">
+            <img src="" alt="" />
+            <span>David Hendry mentioned you in a post</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="" alt="" />
+            <span>Your Learning how to walk submission has been graded with a score of 34.22</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="" alt="" />
+            <span>Your OpenFood Ingredients List Challenge submission has failed grading</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="" alt="" />
+            <span>You have moved from 3rd place to 5th place on the Learning to walk</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    )
+
+    //return this.state.notifications.map(notification => {
+    //  return (<NotificationItem key={notification.id} {...notification} />);
+    //});
   }
 
   // Keep this as a fallack fro handleScroll

@@ -3,7 +3,7 @@ class Components::NotificationsController < ApplicationController
 
   def index
     @notifications = Notification.where(participant: current_participant).recent.page(params[:page]).per(3)
-    @new_notification_count = Notification.where(participant: current_participant, is_new: true).count
+    @new_notification_count = 0
   end
 
   def mark_as_touched

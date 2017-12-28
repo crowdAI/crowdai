@@ -50,6 +50,7 @@ gem 'browser'
 gem 'coffee-rails'
 gem 'webpacker', '~> 2.0'
 gem 'paloma', '~> 5.1.0'
+gem 'jbuilder'
 
 # css
 gem 'sass-rails'

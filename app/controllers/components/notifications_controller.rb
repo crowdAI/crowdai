@@ -23,4 +23,5 @@ class Components::NotificationsController < ApplicationController
     notification.update(read_at: Time.zone.now)
     head :ok
   end
+
 end

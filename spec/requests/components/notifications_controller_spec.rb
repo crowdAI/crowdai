@@ -8,7 +8,7 @@ RSpec.describe Components::NotificationsController do
   let(:freds_post2) { create(:comment, participant: fred) }
 
   describe "POST #mark_as_touched" do
-    let!(:notification) { create(:notification, participant: sally, notifiable: freds_post1freds_post1) }
+    let!(:notification) { create(:notification, participant: sally, notifiable: freds_post1) }
     before :each do
       sign_in sally
     end

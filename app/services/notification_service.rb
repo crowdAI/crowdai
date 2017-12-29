@@ -24,6 +24,7 @@ class NotificationService
         thumbnail_url: thumbnail_url,
         notification_url: notification_url,
         is_new: true)
+    return true
   end
 
   def mention

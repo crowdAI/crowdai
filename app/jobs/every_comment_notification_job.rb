@@ -12,5 +12,4 @@ class EveryCommentNotificationJob < ApplicationJob
   def participant_ids(comment_id)
     CommentEveryEmailParticipantsQuery.new(comment_id).call
   end
-
 end

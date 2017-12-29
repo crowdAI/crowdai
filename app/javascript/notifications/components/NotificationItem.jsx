@@ -11,7 +11,7 @@ class NotificationItem extends React.Component {
   render () {
     return (
       <li>
-        <a href="#">
+        <a href={this.props.notification.link}>
           <img src="" alt="" />
           <span>{ this.props.notification.message }</span>
         </a>

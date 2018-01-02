@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :participants
-  resources :participants, only: [:show, :edit, :update, :destroy] do
+  resources :participants, only: [:show, :edit, :update, :destroy, :index] do
     get :sync_mailchimp
     get :regen_api_key
     get :remove_image

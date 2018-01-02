@@ -16,7 +16,6 @@ class NotificationsContainer extends React.Component {
   componentWillMount() {
     this.fetchNotifications();
     //this.setActionCableSubscription();
-    console.log('go');
     console.log(this.state.currentUserID);
   }
 
@@ -41,13 +40,13 @@ class NotificationsContainer extends React.Component {
       dataType: "JSON",
       method: "GET",
       success: (data) => {
+        console.log('data');
+        console.log(data);
         this.setState({
           newNotificationCount: data.new_notification_count,
           nextPage: data.next_page,
           notifications: data.notifications
         });
-        console.log('data');
-        console.log(this.state);
       }
     });
   }
@@ -113,42 +112,7 @@ class NotificationsContainer extends React.Component {
       return <NotificationItem key={notification.id} notification={notification} />
     });
   }
-  
+
 }
-
-
-/*
-    return (
-    <div id="notification-container">
-      <ul>
-        <li>
-          <a href="#">
-            <img src="" alt="" />
-            <span>David Hendry mentioned you in a post</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src="" alt="" />
-            <span>Your Learning how to walk submission has been graded with a score of 34.22</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src="" alt="" />
-            <span>Your OpenFood Ingredients List Challenge submission has failed grading</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src="" alt="" />
-            <span>You have moved from 3rd place to 5th place on the Learning to walk</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-    )
-  }
-} */
 
 export default NotificationsContainer

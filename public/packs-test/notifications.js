@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/packs-test/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 286);
+/******/ 	return __webpack_require__(__webpack_require__.s = 287);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -3441,40 +3441,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-if (true) {
-  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
-    Symbol.for &&
-    Symbol.for('react.element')) ||
-    0xeac7;
-
-  var isValidElement = function(object) {
-    return typeof object === 'object' &&
-      object !== null &&
-      object.$$typeof === REACT_ELEMENT_TYPE;
-  };
-
-  // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
-  var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(85)(isValidElement, throwOnDirectAccess);
-} else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = require('./factoryWithThrowingShims')();
-}
-
-
-/***/ }),
+/* 25 */,
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22118,46 +22085,288 @@ module.exports = ReactDOMInvalidARIAHook;
 /* 283 */,
 /* 284 */,
 /* 285 */,
-/* 286 */
+/* 286 */,
+/* 287 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_notifications__ = __webpack_require__(288);
+
+
+/***/ }),
+/* 288 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
-// Run this example by adding <%= javascript_pack_tag 'hello_react' %> to the head of your layout file,
-// like app/views/layouts/application.html.erb. All it does is render <div>Hello React</div> at the bottom
-// of the page.
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_NotificationsContainer__ = __webpack_require__(289);
 
 
 
 
+var notificationAnchor = document.querySelector('#notification-anchor');
+__WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_NotificationsContainer__["a" /* default */], null), notificationAnchor);
 
-var Hello = function Hello(props) {
-  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-    'div',
-    null,
-    'Hello ',
-    props.name,
-    '!'
-  );
-};
+/***/ }),
+/* 289 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-Hello.defaultProps = {
-  name: 'David'
-};
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__NotificationItem__ = __webpack_require__(290);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-Hello.propTypes = {
-  name: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-document.addEventListener('DOMContentLoaded', function () {
-  __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Hello, { name: 'React' }), document.body.appendChild(document.createElement('div')));
-});
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var NotificationsContainer = function (_React$Component) {
+  _inherits(NotificationsContainer, _React$Component);
+
+  function NotificationsContainer(props) {
+    _classCallCheck(this, NotificationsContainer);
+
+    var _this = _possibleConstructorReturn(this, (NotificationsContainer.__proto__ || Object.getPrototypeOf(NotificationsContainer)).call(this, props));
+
+    _this.state = {
+      newNotificationCount: 0,
+      notifications: [],
+      nextPage: null,
+      currentUserID: _this.props.currentUserID
+    };
+    return _this;
+  }
+
+  _createClass(NotificationsContainer, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      this.fetchNotifications();
+      //this.setActionCableSubscription();
+      console.log('go');
+      console.log(this.state.currentUserID);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'notifications' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'a',
+          { id: 'toggle-notifications', href: '#' },
+          this.renderNotificationIcon()
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { id: 'notification-container' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'ul',
+            null,
+            this.renderNotificationList()
+          )
+        )
+      );
+    }
+  }, {
+    key: 'fetchNotifications',
+    value: function fetchNotifications() {
+      var _this2 = this;
+
+      $.ajax({
+        url: "/components/notifications.json",
+        dataType: "JSON",
+        method: "GET",
+        success: function success(data) {
+          _this2.setState({
+            newNotificationCount: data.new_notification_count,
+            nextPage: data.next_page,
+            notifications: data.notifications
+          });
+          console.log('data');
+          console.log(_this2.state);
+        }
+      });
+    }
+  }, {
+    key: 'setActionCableSubscription',
+    value: function setActionCableSubscription() {
+      App.cable.subscriptions.create("NotificationsChannel", {
+        connected: function connected() {},
+        disconnected: function disconnected() {},
+        received: function received(data) {
+          console.log("new message");
+          console.log(data);
+          //this.appendNewMessage(data);
+        } //,
+        //appendNewMessage: this.appendNewMessage
+
+      });
+    }
+  }, {
+    key: 'renderNotificationIcon',
+    value: function renderNotificationIcon() {
+      if (this.state.newNotificationCount > 0) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-bell fa-lg active' });
+      } else {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-bell fa-lg' });
+      }
+    }
+  }, {
+    key: 'renderPoolItems',
+    value: function renderPoolItems() {
+      var _this3 = this;
+
+      return this.state.poolItems.map(function (poolItem) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(PoolItem, {
+          key: poolItem.index,
+          poolItem: poolItem,
+          poolItemHandler: _this3.pushItem });
+      });
+    }
+  }, {
+    key: 'renderNotificationList',
+    value: function renderNotificationList() {
+      if (!this.state.notifications.length) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { id: 'notification-container' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'ul',
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'li',
+              null,
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'a',
+                { href: '#' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '', alt: '' }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'span',
+                  null,
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'h5',
+                    null,
+                    'No notifications yet'
+                  )
+                )
+              )
+            )
+          )
+        );
+      }
+      return this.renderNotificationItems();
+    }
+  }, {
+    key: 'renderNotificationItems',
+    value: function renderNotificationItems() {
+      return this.state.notifications.map(function (notification) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__NotificationItem__["a" /* default */], { key: notification.id, notification: notification });
+      });
+    }
+  }]);
+
+  return NotificationsContainer;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+/*
+    return (
+    <div id="notification-container">
+      <ul>
+        <li>
+          <a href="#">
+            <img src="" alt="" />
+            <span>David Hendry mentioned you in a post</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="" alt="" />
+            <span>Your Learning how to walk submission has been graded with a score of 34.22</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="" alt="" />
+            <span>Your OpenFood Ingredients List Challenge submission has failed grading</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="" alt="" />
+            <span>You have moved from 3rd place to 5th place on the Learning to walk</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    )
+  }
+} */
+
+/* harmony default export */ __webpack_exports__["a"] = (NotificationsContainer);
+
+/***/ }),
+/* 290 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var NotificationItem = function (_React$Component) {
+  _inherits(NotificationItem, _React$Component);
+
+  function NotificationItem(props) {
+    _classCallCheck(this, NotificationItem);
+
+    var _this = _possibleConstructorReturn(this, (NotificationItem.__proto__ || Object.getPrototypeOf(NotificationItem)).call(this, props));
+
+    _this.state = { unread: _this.props.unread };
+    return _this;
+  }
+
+  _createClass(NotificationItem, [{
+    key: "render",
+    value: function render() {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "li",
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "a",
+          { href: this.props.notification.link },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: "", alt: "" }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "span",
+            null,
+            this.props.notification.message
+          )
+        )
+      );
+    }
+  }]);
+
+  return NotificationItem;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["a"] = (NotificationItem);
 
 /***/ })
 /******/ ]);

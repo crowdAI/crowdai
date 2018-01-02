@@ -1,0 +1,1 @@
+rails g model Notification participant:references notification:string notifiable:references{polymorphic}:index read_at:datetime

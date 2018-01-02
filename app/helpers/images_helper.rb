@@ -23,4 +23,8 @@ module ImagesHelper
     image_path 'users/avatar-default.png'
   end
 
+  def image_test(notifications)
+    image_path 'users/avatar-default.png'
+  end
+
 end

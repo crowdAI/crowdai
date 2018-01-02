@@ -1,5 +1,6 @@
 class NotificationService
   include Rails.application.routes.url_helpers
+  include ActionView::Helpers::AssetTagHelper
 
   def initialize(participant_id, notifiable, notification_type)
     @participant = Participant.find(participant_id)
@@ -13,8 +14,12 @@ class NotificationService
 
   def comment
     message = "#{@notifiable.participant.name} commented on a discussion thread you are participating in."
-    thumbnail_url = ApplicationController.helpers.image_url(@notifiable.participant)
-    notification_url = new_topic_discussion_path(@notifiable.topic)
+    if @notifiable.participant.image_file.file.present?
+      thumbnail_url = @notifiable.participant.image_file.url
+    else
+      thumbnail_url = 'users/avatar-default.png'
+    end
+    notification_url = new_topic_discussion_url(@notifiable.topic)
     Notification
       .create!(
         participant: @participant,

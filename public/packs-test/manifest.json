@@ -1,5 +1,6 @@
 {
   "application.css": "/packs-test/application.css",
   "application.js": "/packs-test/application.js",
-  "hello_react.js": "/packs-test/hello_react.js"
+  "hello_react.js": "/packs-test/hello_react.js",
+  "notifications.js": "/packs-test/notifications.js"
 }

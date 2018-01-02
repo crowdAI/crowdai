@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Email Preferences', js: true do
+feature 'Email Preferences' do
 
   let!(:challenge) { create :challenge, :running }
   let!(:participant) { create :participant }

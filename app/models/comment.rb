@@ -3,6 +3,8 @@ class Comment < ApplicationRecord
   belongs_to :topic
   belongs_to :participant, optional: true
   has_many :votes, as: :votable
+  has_many :notifications, as: :notifiable
+
   before_validation :cache_rendered_markdown
 
   #default_scope { order('created_at desc') }

@@ -10,6 +10,7 @@
 //= require isInViewport
 //= require turbolinks
 //= require paloma
+//= require jquery.atwho
 
 // ---------------------- Modules ---------------------- //
 //= require modules/site

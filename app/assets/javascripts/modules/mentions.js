@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function() {
-  $('[data-behavior="autocomplete"]').atwho({
+  $('[data-behavior="mentions"]').atwho({
     at: "@",
     'data': "/participants.json"
   });

@@ -1,5 +1,6 @@
 $(document).on('turbolinks:load', function() {
 
+
  	// Mobile Nav
  	$('a#mobile-nav').click(function(e) {
  	  e.preventDefault();
@@ -26,11 +27,13 @@ $(document).on('turbolinks:load', function() {
 		}
 	});
 
+/*
  	// Notifications & User Dropdowns
 	$('a#toggle-notifications').click(function(e) {
    e.preventDefault();
    	$('#notification-container').toggleClass("open");
  	});
+*/
 
 	$('a#toggle-user').click(function(e) {
    e.preventDefault();

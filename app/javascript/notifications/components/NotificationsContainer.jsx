@@ -19,7 +19,6 @@ class NotificationsContainer extends React.Component {
     this.fetchNotifications();
   }
 
-
   render () {
     return (
       <div className="notifications">
@@ -57,21 +56,6 @@ class NotificationsContainer extends React.Component {
       }
     }
   }
-
-/* TBD
-  setActionCableSubscription() {
-    App.cable.subscriptions.create("NotificationsChannel", {
-      connected() {},
-      disconnected() {},
-      received(data) {
-        console.log("new message");
-        console.log(data);
-        //this.appendNewMessage(data);
-      }//,
-      //appendNewMessage: this.appendNewMessage
-    });
-  }
-*/
 
   renderDropdown(){
     if (this.state.dropdownOpened){
@@ -136,3 +120,19 @@ class NotificationsContainer extends React.Component {
 }
 
 export default NotificationsContainer
+
+
+/* TBD
+  setActionCableSubscription() {
+    App.cable.subscriptions.create("NotificationsChannel", {
+      connected() {},
+      disconnected() {},
+      received(data) {
+        console.log("new message");
+        console.log(data);
+        //this.appendNewMessage(data);
+      }//,
+      //appendNewMessage: this.appendNewMessage
+    });
+  }
+*/

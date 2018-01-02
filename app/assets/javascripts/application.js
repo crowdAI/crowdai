@@ -20,6 +20,7 @@
 //= require modules/markdown_editor
 //= require modules/flash_messages
 //= require modules/direct_s3_upload
+//= require modules/mentions
 
 // ---------------------- Pages ---------------------- //
 // require pages/participants_edit

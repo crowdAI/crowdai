@@ -6,30 +6,27 @@ class NotificationsContainer extends React.Component {
     super(props);
 
     this.state = {
+      dropdownOpened: false,
       newNotificationCount: 0,
       notifications: [],
       nextPage: null,
-      currentUserID: this.props.currentUserID
+      currentParticipantID: null
     };
+    this.handleDropdownClick = this.handleDropdownClick.bind(this);
   }
 
   componentWillMount() {
     this.fetchNotifications();
-    //this.setActionCableSubscription();
-    console.log(this.state.currentUserID);
   }
+
 
   render () {
     return (
       <div className="notifications">
-        <a id="toggle-notifications" href="#">
+        <a id="toggle-notifications" href="#" onClick={this.handleDropdownClick}>
           { this.renderNotificationIcon() }
         </a>
-        <div id="notification-container">
-          <ul>
-            { this.renderNotificationList() }
-          </ul>
-        </div>
+        { this.renderDropdown() }
       </div>
     );
   }
@@ -40,18 +37,28 @@ class NotificationsContainer extends React.Component {
       dataType: "JSON",
       method: "GET",
       success: (data) => {
-        console.log('data');
-        console.log(data);
         this.setState({
           newNotificationCount: data.new_notification_count,
           nextPage: data.next_page,
-          notifications: data.notifications
+          notifications: data.notifications,
+          currentParticipantID: data.current_participant_id
         });
       }
     });
   }
 
+  handleDropdownClick(e) {
+    e.preventDefault();
+    if(this.state.notifications.length > 0){
+      if(this.state.dropdownOpened){
+        this.setState({dropdownOpened: false});
+      } else {
+        this.setState({dropdownOpened: true});
+      }
+    }
+  }
 
+/* TBD
   setActionCableSubscription() {
     App.cable.subscriptions.create("NotificationsChannel", {
       connected() {},
@@ -63,6 +70,19 @@ class NotificationsContainer extends React.Component {
       }//,
       //appendNewMessage: this.appendNewMessage
     });
+  }
+*/
+
+  renderDropdown(){
+    if (this.state.dropdownOpened){
+      return(
+        <div id="notification-container" className='open'>
+          <ul>
+            { this.renderNotificationList() }
+          </ul>
+        </div>
+      );
+    }
   }
 
   renderNotificationIcon() {

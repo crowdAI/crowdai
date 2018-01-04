@@ -45,7 +45,11 @@ class Participant < ApplicationRecord
   validates :linkedin, :url => { allow_blank: true }
   validates :twitter, :url => { allow_blank: true }
   validates :name, presence: true
-  validates :name, length: { minimum: 2 }, allow_blank: false, uniqueness: { case_sensitive: false }
+  validates :name,
+    length: { minimum: 2 },
+    allow_blank: false,
+    uniqueness: { case_sensitive: false },
+    format: { without: /\s/ }
   #validates :affiliation, length:{ in:2...100}, allow_blank: true
   #validates :country_cd, inclusion: { in: ISO3166::Country::codes}, allow_blank: true
   #validates :address, length:{ in: 10...255 }, allow_blank: true
@@ -92,6 +96,14 @@ class Participant < ApplicationRecord
       image.image.url(:medium)
     else
       "//#{ENV['HOST']}/assets/image_not_found.png"
+    end
+  end
+
+  def image_url
+    if image_file.file.present?
+      image_url = image_file.url
+    else
+      image_url = 'users/avatar-default.png'
     end
   end
 

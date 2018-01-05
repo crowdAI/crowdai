@@ -24,14 +24,20 @@ describe Comment do
   end
 
   context 'mentions' do
-    describe 'single mention' do
-      let!(:comment) { create :comment }
-      before do
-        comment.comment_markdown = '@sean'
+    describe 'mentions_to_links' do
+      let!(:mentions) { [{id: 1, name: 'Sean'},{id: '2', 'joe'}] }
+      let!(:comment) { create :comment, comment_markdown: '@sean blah blah @joe asda' }
+      it do
+        mentioned_participants = double("mentioned_participants", message: 'Sean|joe|kim')
+        expect(comment.mentions_to_links(comment_text: comment_text, mentions: mentions)).to eq('a2333')
       end
-      it { expect(comment.mentions('comment_markdown')).to eq(['sean'])}
     end
 
+    describe 'single mention' do
+      let!(:comment) { create :comment, comment_markdown: 'test @Sean', mentions_cache: '[{\"id\":1,\"name\":\"Sean\"}]' } }
+      it { expect(comment.comment).to eq(['sean'])}
+    end
+=begin
     describe 'multiple mentions' do
       let!(:comment) { create :comment }
       before do
@@ -58,16 +64,9 @@ describe Comment do
         it { expect(comment.mentioned_participants(mentioned_names: [participant.name,'wrong'] )).to eq("#{participant.name}") }
       end
     end
+=end
 
 
-    describe 'mentions_to_links' do
-      let!(:mentions) { ['Sean','joe']}
-      let!(:comment) { create :comment, comment_markdown: '@sean blah blah @joe asda' }
-      it do
-        mentioned_participants = double("mentioned_participants", message: 'Sean|joe|kim')
-        expect(comment.mentions_to_links(comment_text: comment_text, mentions: mentions)).to eq('a2333')
-      end
-    end
 
   end
 

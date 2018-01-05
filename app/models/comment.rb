@@ -1,5 +1,4 @@
 class Comment < ApplicationRecord
-  include Mentions
   has_paper_trail
   belongs_to :topic
   belongs_to :participant, optional: true
@@ -16,26 +15,25 @@ class Comment < ApplicationRecord
     super || NullParticipant.new
   end
 
-
   def cache_rendered_markdown
     if comment_markdown_changed?
-      new_mentions = mentions('comment_markdown') - mentions('comment_markdown_before_last_save')
       rendered_html = Kramdown::Document.new(self.comment_markdown,{coderay_line_numbers: nil}).to_html
-      self.comment = mentions_to_links(comment_text: rendered_html, mentions: new_mentions)
-      #MentionsNotificationsJob.perform_later(mentioned_names: new_mentions, comment_id: self.id)
+      new_mentions = JSON.parse(self.mentions_cache)
+      self.mentions_cache = nil
+      self.comment, mentioned_participant_ids = mentions_to_links(rendered_html: rendered_html, mentions: new_mentions)
+      MentionsNotificationsJob.perform_later(mentioned_participant_ids: mentioned_participant_ids, comment_id: self.id)
     end
   end
 
-  def mentioned_participants(mentioned_names:)
-    Participant.where(name: mentioned_names).pluck(:name).join('|')
-  end
-
-  def mentions_to_links(comment_text:,mentions:)
-    comment_text.gsub! /@(#{mentions})/ do |match|
-      participant = Participant.find_by(name: match)
-      "<a href='/participants/#{participant.slug}'>@#{$1}</a>"
+  def mentions_to_links(rendered_html:,mentions:)
+    mention_participant_ids = []
+    mentions.each do |mention|
+      rendered_html.gsub! /@(#{mention['name']})/ do |match|
+        mention_participant_ids << mention['id']
+        "<a href='/participants/#{mention['id']}' target='_blank'>@#{$1}</a>"
+      end
     end
-    return comment_text
+    return [rendered_html, mention_participant_ids]
   end
 
 end

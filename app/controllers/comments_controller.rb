@@ -63,7 +63,8 @@ class CommentsController < ApplicationController
                     :comment_markdown,
                     :votes,
                     :flagged,
-                    :notify)
+                    :notify,
+                    :mentions_cache)
     end
 
 end

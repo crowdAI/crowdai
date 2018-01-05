@@ -7,6 +7,7 @@
   <%= form_for [topic, comment], html: { class: 'add-comment', id: 'new_comment' } do |f| %>
     <%= f.text_area :comment_markdown, placeholder: "Add a comment...", data: { behavior: "mentions" } %>
     <%= f.hidden_field :participant_id, value: current_participant.id %>
+    <%= f.hidden_field :mentions_cache %>
     <%= f.submit 'Add comment', class: 'btn btn-primary pull-right' %>
     <p class='markdown-instructions'>You can use
       <a href="https://kramdown.gettalong.org/">kramdown</a> and <b>@mentions</b> in this field.

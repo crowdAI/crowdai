@@ -16,7 +16,6 @@ class Topic < ApplicationRecord
     topic_changed?
   end
 
-
   def last_activity
     sql = %Q[
       select p.updated_at

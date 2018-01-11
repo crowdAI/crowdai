@@ -80,7 +80,7 @@ Rails.application.routes.draw do
     end
     get 'leaderboards/video_modal' => 'leaderboards#video_modal', as: :video_modal
     #get 'leaderboards/submission_detail' => 'leaderboards#submission_detail', as: :submission_detail
-    resources :topics
+    resources :topics, except: [:show]
     get :regrade
     get :remove_image
     get :clef_task

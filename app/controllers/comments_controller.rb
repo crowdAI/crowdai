@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @challenge = @topic.challenge
     @author = @topic.participant
 
-    #@first_comment = @topic.comments.order(created_at: :asc).first
+    @first_comment = @topic.comments.order(created_at: :asc).first
     @comments = @topic.comments.where.not(id: @first_comment.id).order(created_at: :asc)
     @comment = Comment.new(topic_id: @topic_id)
     if params[:quoted_comment_id]

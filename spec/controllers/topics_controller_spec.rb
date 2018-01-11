@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe TopicsController, type: :controller do
-  #render_views
+  render_views
 
   let(:valid_attributes) {
     FactoryGirl.attributes_for(:topic)
@@ -23,13 +23,6 @@ RSpec.describe TopicsController, type: :controller do
     it "assigns all topics as @topics" do
       get :index, params: { challenge_id: challenge.id }
       expect(assigns(:topics)).to eq([topic])
-    end
-  end
-
-  describe "GET #show" do
-    it "assigns the requested topic as @topic" do
-      get :show, params: {challenge_id: challenge.id, id: topic.id }
-      expect(assigns(:topic)).to eq(topic)
     end
   end
 

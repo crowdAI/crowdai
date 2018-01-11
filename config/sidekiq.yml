@@ -3,4 +3,5 @@
 :queues:
   - default
   - digest
+  - notifications
   - [high_priority, 2]

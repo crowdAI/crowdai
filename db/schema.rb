@@ -190,6 +190,7 @@ ActiveRecord::Schema.define(version: 20180111141757) do
     t.integer "vote_count", default: 0
     t.string "slug"
     t.text "comment_markdown"
+    t.string "mentions_cache"
     t.index ["participant_id"], name: "index_posts_on_participant_id"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
     t.index ["topic_id"], name: "index_posts_on_topic_id"

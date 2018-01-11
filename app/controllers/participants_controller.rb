@@ -12,6 +12,10 @@ class ParticipantsController < ApplicationController
   def edit
   end
 
+  def index
+    @participants = Participant.all
+  end
+
   def update
     @participant = Participant.friendly.find(params[:id])
     if @participant.update_attributes(participant_params)

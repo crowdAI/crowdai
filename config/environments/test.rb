@@ -23,6 +23,7 @@ Rails.application.configure do
   config.active_support.deprecation = :stderr
   config.assets.raise_runtime_errors = true
   config.assets.debug = true
+  
 
   #   config.assets.quiet = true
 end

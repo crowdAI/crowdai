@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe MarkdownService do
-
   describe 'simple markdown string' do
     let(:markdown) { '### Some markdown' }
     it { expect(MarkdownService.new(markdown: markdown).call).to eq(["<h3 id=\"some-markdown\">Some markdown</h3>\n",nil]) }
@@ -40,5 +39,4 @@ RSpec.describe MarkdownService do
     let(:markdown) { nil }
     it { expect(MarkdownService.new(markdown: markdown).call).to eq([nil,nil]) }
   end
-
 end

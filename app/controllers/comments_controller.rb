@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
    end
 
   def create
-    rendered_html, mentioned_participant_ids = MarkdownService.new(markdown: params[:comment_markdown], mentions_cache: params[:mentions_cache]).call
+    rendered_html, mentioned_participant_ids = MarkdownService.new(markdown: comment_params[:comment_markdown], mentions_cache: params[:comment][:mentions_cache]).call
     @comment = @topic.comments.new(comment_params)
     @comment.comment = rendered_html
     if @comment.save

@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @challenge = @topic.challenge
     @author = @topic.participant
 
-    @first_comment = @topic.comments.order(created_at: :asc).first
+    #@first_comment = @topic.comments.order(created_at: :asc).first
     @comments = @topic.comments.where.not(id: @first_comment.id).order(created_at: :asc)
     @comment = Comment.new(topic_id: @topic_id)
     if params[:quoted_comment_id]
@@ -19,9 +19,14 @@ class CommentsController < ApplicationController
    end
 
   def create
+    rendered_html, mentioned_participant_ids = MarkdownService.new(markdown: params[:comment_markdown], mentions_cache: params[:mentions_cache]).call
     @comment = @topic.comments.new(comment_params)
+    @comment.comment = rendered_html
     if @comment.save
       EveryCommentNotificationJob.set(wait: 5.minutes).perform_later(@comment.id)
+      if mentioned_participant_ids.present?
+        MentionsNotificationsJob.set(wait: 5.minutes).perform_later(mentioned_participant_ids: mentioned_participant_ids, comment_id: @comment.id)
+      end
       redirect_to new_topic_discussion_path(@topic), notice: 'Comment was successfully created.'
     else
       render :new
@@ -63,8 +68,7 @@ class CommentsController < ApplicationController
                     :comment_markdown,
                     :votes,
                     :flagged,
-                    :notify,
-                    :mentions_cache)
+                    :notify)
     end
 
 end

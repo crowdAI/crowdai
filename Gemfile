@@ -143,6 +143,7 @@ group :development, :test do
 end
 
 group :test do
+  # gem 'rspec-sidekiq'
   gem "factory_girl_rails"
   gem 'simplecov', :require => false
   gem 'capybara'

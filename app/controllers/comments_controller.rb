@@ -22,6 +22,8 @@ class CommentsController < ApplicationController
     rendered_html, mentioned_participant_ids = MarkdownService.new(markdown: comment_params[:comment_markdown], mentions_cache: params[:comment][:mentions_cache]).call
     @comment = @topic.comments.new(comment_params)
     @comment.comment = rendered_html
+    Rails.logger.debug("called with: #{params[:comment][:mentions_cache]}")
+    Rails.logger.debug("mentioned_participant_ids: #{mentioned_participant_ids}" )
     if @comment.save
       EveryCommentNotificationJob.set(wait: 5.minutes).perform_later(@comment.id)
       if mentioned_participant_ids.present?

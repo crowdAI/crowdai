@@ -11,7 +11,7 @@ $(document).on('turbolinks:load', function() {
         name: $li.data('item-data')['name']
       }
       var cacheArr = [];
-      let mentionsCache = $('#comment_mentions_cache').val();
+      var mentionsCache = $('#comment_mentions_cache').val();
       if(mentionsCache){
         cacheArr = JSON.parse(mentionsCache);
         cacheArr.push(cacheEntry);

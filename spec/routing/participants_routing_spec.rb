@@ -34,6 +34,10 @@ RSpec.describe ParticipantsController, type: :routing do
     it 'routes to #destroy' do
       expect(delete: '/participants/1').to route_to('participants#destroy', id: '1')
     end
+
+    it 'does not route to #index' do
+      expect(get: '/participants').to be_routable
+    end
   end
 
   describe 'devise routes' do
@@ -46,9 +50,4 @@ RSpec.describe ParticipantsController, type: :routing do
     end
   end
 
-  describe 'invalid routes' do
-    it 'does not route to #index' do
-      expect(get: '/participants').not_to be_routable
-    end
-  end
 end

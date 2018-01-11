@@ -1,13 +1,4 @@
 module ParticipantsHelper
-  # TODO refactor image attachments
-  def avatar_medium_url(participant)
-    if participant.avatar
-      participant.avatar.url(:medium)
-    else
-      'https://www.gravatar.com/avatar/?d=mm&s=200'
-    end
-  end
-
 
   def avatar_url(participant, size)
     if participant.avatar
@@ -22,4 +13,8 @@ module ParticipantsHelper
   end
   # usage:  <%= image_tag avatar_url(user,'medium'), class: "img-responsive" %>
   #         <%= image_tag avatar_url(user,'thumbnail') %>
+
+  def participant_link(participant)
+    participant.is_a?(NullParticipant) ? '#' : participant_path(participant)
+  end
 end

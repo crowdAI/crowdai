@@ -13,7 +13,7 @@
   <div class="topic-content">
     <p class="details">Posted by
       <% if author.is_a? NullParticipant %>
-        <%= link_to author.name, '#' %>&nbsp;
+        <%= author.name %>&nbsp;
       <% else %>
         <%= link_to author.name, participant_path(author) %>&nbsp;
       <% end %>

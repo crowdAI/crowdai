@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :participants
-  resources :participants, only: [:show, :edit, :update, :destroy] do
+  resources :participants, only: [:show, :edit, :update, :destroy, :index] do
     get :sync_mailchimp
     get :regen_api_key
     get :remove_image
@@ -80,7 +80,7 @@ Rails.application.routes.draw do
     end
     get 'leaderboards/video_modal' => 'leaderboards#video_modal', as: :video_modal
     #get 'leaderboards/submission_detail' => 'leaderboards#submission_detail', as: :submission_detail
-    resources :topics
+    resources :topics, except: [:show]
     get :regrade
     get :remove_image
     get :clef_task

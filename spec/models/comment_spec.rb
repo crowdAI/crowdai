@@ -22,4 +22,5 @@ describe Comment do
   context 'validations' do
     it { is_expected.to validate_presence_of(:vote_count) }
   end
+
 end

@@ -55,9 +55,9 @@
     <div class="row">
       <% if @articles.any? %>
       <ul class="list-tutorials">
-        <%= concept(Article::Cell::ListDetail,
-                          collection: @articles,
-                          current_participant: current_participant) %>
+        <% @articles.each do |article| %>
+          <%= render partial: 'articles/article', locals: { article: article } %>
+        <% end %>
       </ul>
     <% else %>
       <div class='article'>

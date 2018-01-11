@@ -5,9 +5,9 @@ FactoryGirl.define do
     topic FFaker::Lorem.sentence(3)
     sticky false
     views 1
-    #after(:create) do |topic|
-    #  topic.comments << FactoryGirl.create(:comment, topic: topic)
-    #end
+    after(:create) do |topic|
+      topic.comments << FactoryGirl.create(:comment, topic: topic)
+    end
 
     trait :with_comments do
       after(:create) do |topic|

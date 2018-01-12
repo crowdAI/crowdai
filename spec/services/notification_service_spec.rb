@@ -13,4 +13,13 @@ RSpec.describe NotificationService do
     end
   end
 
+  context 'mention' do
+    let!(:comment) { create :comment }
+    it 'creates a notification' do
+      expect {
+        described_class.new(participant.id,comment,'mention').call
+      }.to change(Notification, :count).by(1)
+    end
+  end
+
 end

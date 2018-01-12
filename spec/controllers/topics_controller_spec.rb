@@ -26,13 +26,6 @@ RSpec.describe TopicsController, type: :controller do
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested topic as @topic" do
-      #get :show, params: {challenge_id: challenge.id, id: topic.id }
-      #expect(assigns(:topic)).to eq(topic)
-    end
-  end
-
   describe "GET #new" do
     it "assigns a new topic as @topic" do
       get :new, params: { challenge_id: challenge.id }

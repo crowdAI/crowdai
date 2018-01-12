@@ -51,6 +51,7 @@ gem 'coffee-rails'
 gem 'webpacker', '~> 2.0'
 gem 'paloma', '~> 5.1.0'
 gem 'jbuilder'
+gem 'jquery-atwho-rails'
 
 # css
 gem 'sass-rails'
@@ -142,6 +143,7 @@ group :development, :test do
 end
 
 group :test do
+  # gem 'rspec-sidekiq'
   gem "factory_girl_rails"
   gem 'simplecov', :require => false
   gem 'capybara'

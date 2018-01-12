@@ -85,4 +85,9 @@ RSpec.describe EveryCommentNotificationJob, type: :job do
     end
   end
 
+  after do
+    clear_enqueued_jobs
+    clear_performed_jobs
+  end
+
 end

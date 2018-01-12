@@ -1,14 +1,11 @@
 class TopicsController < ApplicationController
   before_action :authenticate_participant!, except: [:index, :show]
-  before_action :set_topic, only: [:show, :edit, :update, :destroy]
+  before_action :set_topic, only: [:edit, :update, :destroy]
   before_action :set_challenge
   after_action :verify_authorized, except: [:index]
 
   def index
     @topics = @challenge.topics.page(params[:page]).per(20)
-  end
-
-  def show
   end
 
   def new

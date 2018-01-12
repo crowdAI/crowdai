@@ -20,11 +20,19 @@
         <%= f.fields_for @topic.comments.first do |comment| %>
         <label>Comment</label>
         <%= comment.text_area :comment_markdown, placeholder: "Add a comment..." %>
-        <%= comment.hidden_field :participant_id %>
+        <% if comment.object.persisted? %>
+          <%= comment.hidden_field :participant_id, value: comment.object.participant.id %>
+        <% else %>
+          <%= comment.hidden_field :participant_id, value: current_participant.id %>
+        <% end %>
         <%= comment.hidden_field :id %>
         <% end %>
       </fieldset>
-      <%= f.hidden_field :participant_id, value: current_participant.id %>
+      <% if @topic.persisted? %>
+        <%= f.hidden_field :participant_id, value: @topic.participant.id %>
+      <% else %>
+        <%= f.hidden_field :participant_id, value: current_participant.id %>
+      <% end %>
       <%= f.submit 'Update topic', class: 'btn btn-primary pull-right' %>
       <% end %>
     </div>

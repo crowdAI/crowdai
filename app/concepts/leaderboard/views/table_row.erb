@@ -9,7 +9,7 @@
         <%= concept(Image::Cell,participant) %>
       <% end %>
       <div class='text-badge'>
-        <%= link_to entry.name, participant_path(entry.slug) %>
+        <%= link_to truncate(entry.name, length: 10), participant_path(entry.slug) %>
           <% if participant.admin? %>
             <span class='badge badge-accent'>Admin</span>
           <% end %>
@@ -27,12 +27,12 @@
   <% end %>
 
   <td class="score">
-    <strong><%= entry.score %></strong>
+    <strong><%= number_with_precision(entry.score) %></strong>
   </td>
 
   <% if cols.include?(:score_secondary) %>
   <td class="score">
-    <strong><%= entry.score_secondary %></strong>
+    <strong><%= number_with_precision(entry.score_secondary) %></strong>
   </td>
   <% end %>
 

@@ -48,15 +48,18 @@ footer {
     li {
       float: left;
       margin-right: 24px;
+      @media screen and (max-width: 700px) {
+        margin-right: 12px;
+      }
       a {
-        color: rgba(255,255,255,0.5); 
+        color: rgba(255,255,255,0.5);
         transition: 0.25s;
       }
       a:hover {
         color: rgba(255,255,255,0.8);
       }
       .fa {
-        color: rgba(255,255,255,0.5); 
+        color: rgba(255,255,255,0.5);
         transition: 0.25s;
       }
       .fa:hover {
@@ -64,11 +67,16 @@ footer {
       }
     }
   }
+  ul.social {
+    @media screen and (max-width: 700px) {
+      width: 100%;
+      height: 32px;
+    }
+  }
   ul.social li:last-of-type {
     margin-right: 0;
-
     @media screen and (max-width: 700px) {
-      margin-right: 24px;
+      margin-right: 12px;
     }
   }
 }

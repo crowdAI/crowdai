@@ -4,7 +4,7 @@
 
     <td class="participant">
       <div class="user-link">
-        <p><%= link_to submission.participant.name, participant_path(submission.participant_id) %></p>
+        <p><%= link_to truncate(submission.participant.name, length: 10), participant_path(submission.participant_id) %></p>
       </div>
     </td>
 
@@ -15,12 +15,12 @@
     <% end %>
 
     <td class="score">
-      <strong><%= submission.score %></strong>
+      <strong><%= number_with_precision(submission.score) %></strong>
     </td>
 
     <% if cols.include?(:score_secondary) %>
       <td class="score">
-        <strong><%= submission.score_secondary %></strong>
+        <strong><%= number_with_precision(submission.score_secondary) %></strong>
       </td>
     <% end %>
 

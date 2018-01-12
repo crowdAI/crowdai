@@ -39,6 +39,12 @@ table.leaderboard {
 	@media screen and (max-width: 640px) {
 		margin-top: 27px;
 	}
+	td {
+		padding-right: 4px;
+	}
+	td:last-of-type {
+		padding-right: 0;
+	}
 	.change {
 		width: 24px;
 	}
@@ -58,7 +64,7 @@ table.leaderboard {
 	.entries {
 		@media screen and (max-width: 800px) {
 			display: none;
-		}	
+		}
 	}
 	.post-challenge {
 		@media screen and (max-width: 640px) {
@@ -69,7 +75,7 @@ table.leaderboard {
 		text-align: right;
 		@media screen and (max-width: 1024px) {
 			display: none;
-		}	
+		}
 	}
 	.action {
 		text-align: right;
@@ -123,7 +129,7 @@ table.submissions {
 		text-align: right;
 		@media screen and (max-width: 1024px) {
 			display: none;
-		}	
+		}
 	}
 }
 

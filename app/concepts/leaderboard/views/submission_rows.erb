@@ -4,7 +4,7 @@
 
     <td class="participant">
       <div class="user-link">
-        <p><%= link_to submission.participant.name, participant_path(submission.participant_id) %></p>
+        <p><%= link_to truncate(submission.participant.name, length: 10), participant_path(submission.participant_id) %></p>
       </div>
     </td>
 

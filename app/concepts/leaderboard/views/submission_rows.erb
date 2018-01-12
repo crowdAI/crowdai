@@ -15,12 +15,12 @@
     <% end %>
 
     <td class="score">
-      <strong><%= submission.score %></strong>
+      <strong><%= number_with_precision(submission.score) %></strong>
     </td>
 
     <% if cols.include?(:score_secondary) %>
       <td class="score">
-        <strong><%= submission.score_secondary %></strong>
+        <strong><%= number_with_precision(submission.score_secondary) %></strong>
       </td>
     <% end %>
 

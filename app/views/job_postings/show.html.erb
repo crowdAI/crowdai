@@ -52,7 +52,7 @@
 
   <div class="row">
     <div class="article">
-      <p><%= simple_format(@job_posting.description) %></p>
+      <p><%= simple_format(sanitize(@job_posting.description, attributes: ["href", "target"]), {}, sanitize: false) %>
     </div>
   </div>
 </div>

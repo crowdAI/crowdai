@@ -18,6 +18,8 @@ class ChallengesController < ApplicationController
       @challenges = policy_scope(Challenge).where(status_cd: ['running','starting_soon']).page(params[:page]).per(20)
     when 'completed'
       @challenges = policy_scope(Challenge).where(status_cd: 'completed').page(params[:page]).per(20)
+    when 'draft'
+      @challenges = policy_scope(Challenge).where(status_cd: 'draft').page(params[:page]).per(20)
     end
   end
 

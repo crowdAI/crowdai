@@ -5,7 +5,19 @@
     <%= markdown_editor do |m| %>
       <%= f.text_area :description_markdown, class: "txt-med" %>
     <% end %>
-    <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>
   </fieldset>
+  <fieldset>
+    <h4>Partner Logos</h4>
+    <div id='partner-logos'>
+      <%= f.fields_for :challenge_partners do |partner| %>
+        <%= render 'challenges/form/challenge_partner_fields', f: partner %>
+      <% end %>
+      <div class='links'>
+        <%= link_to_add_association '+ Partner Logo', f, :challenge_partners,
+                                  html_options = { partial: 'challenges/form/challenge_partner_fields' } %>
+      </div>
+    </div>
+  </fieldset>
+  <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>
   <% end %>
 </div>

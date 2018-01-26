@@ -13,6 +13,10 @@ class Challenge < ApplicationRecord
   accepts_nested_attributes_for           :submission_file_definitions,
                                           reject_if: :all_blank,
                                           allow_destroy: true
+  has_many :challenge_partners, dependent: :destroy
+  accepts_nested_attributes_for           :challenge_partners,
+                                          reject_if: :all_blank,
+                                          allow_destroy: true
 
   has_many :submissions,                  dependent: :destroy
   has_many :leaderboards,                 class_name: 'Leaderboard'

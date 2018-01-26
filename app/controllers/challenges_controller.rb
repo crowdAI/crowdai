@@ -153,11 +153,48 @@ class ChallengesController < ApplicationController
                   :dynamic_content,
                   :clef_task_id,
                   :submissions_page,
-                  dataset_attributes: [:id, :challenge_id, :description, :_destroy],
-                  submissions_attributes: [:id, :challenge_id, :participant_id, :_destroy ],
-                  image_attributes: [:id, :image, :_destroy ],
-                  submission_file_definitions_attributes: [:id, :challenge_id, :seq, :submission_file_description, :filetype, :file_required, :submission_file_help_text, :_destroy],
-                  challenge_rounds_attributes: [:id, :challenge_round, :seq, :start_dttm_date, :end_dttm_date, :start_dttm_time, :end_dttm_time, :active, :minimum_score, :minimum_score_secondary, :submission_limit, :submission_limit_period, :_destroy]
+                  dataset_attributes: [
+                    :id,
+                    :challenge_id,
+                    :description,
+                    :_destroy],
+                  submissions_attributes: [
+                    :id,
+                    :challenge_id,
+                    :participant_id,
+                    :_destroy ],
+                  image_attributes: [
+                    :id,
+                    :image,
+                    :_destroy ],
+                  submission_file_definitions_attributes: [
+                    :id,
+                    :challenge_id,
+                    :seq,
+                    :submission_file_description,
+                    :filetype,
+                    :file_required,
+                    :submission_file_help_text,
+                    :_destroy],
+                  challenge_rounds_attributes: [
+                    :id,
+                    :challenge_round,
+                    :seq,
+                    :start_dttm_date,
+                    :end_dttm_date,
+                    :start_dttm_time,
+                    :end_dttm_time,
+                    :active,
+                    :minimum_score,
+                    :minimum_score_secondary,
+                    :submission_limit,
+                    :submission_limit_period,
+                    :_destroy],
+                  challenge_partners_attributes: [
+                    :id,
+                    :image_file,
+                    :partner_url,
+                    :_destroy]
                 )
     end
 

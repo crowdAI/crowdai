@@ -10,6 +10,7 @@ gem 'puma_worker_killer'
 
 # user accounts / admin
 gem 'devise'
+gem 'authtrail'
 gem 'pundit'
 gem 'activeadmin'
 

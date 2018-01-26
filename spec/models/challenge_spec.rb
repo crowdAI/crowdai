@@ -54,6 +54,8 @@ describe Challenge do
     it { is_expected.to have_many(:dataset_files) }
     it { is_expected.to have_many(:submission_file_definitions) }
     it { is_expected.to accept_nested_attributes_for :submission_file_definitions }
+    it { is_expected.to have_many(:challenge_partners) }
+    it { is_expected.to accept_nested_attributes_for :challenge_partners }
     it { is_expected.to have_many(:submissions) }
     it { is_expected.to have_many(:leaderboards) }
     it { is_expected.to have_many(:ongoing_leaderboards) }

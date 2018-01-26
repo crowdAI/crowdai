@@ -12,6 +12,17 @@
         </div>
       <% end %>
 
+      <% if @challenge.challenge_partners.any? %>
+        <h2>Partners</h2>
+        <div class='markdown-wrap'>
+          <% @challenge.challenge_partners.each do |partner|%>
+            <%= link_to partner.partner_url, target: :_blank do %>
+              <%= image_tag partner.image_file.url, class: 'img-logo' %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+
       <% if @challenge.evaluation.present? %>
         <h2>Evaluation</h2>
         <div class='markdown-wrap'>
@@ -40,7 +51,7 @@
         </div>
       <% end %>
 
-    
+
 
     </div>
   </div>

@@ -1,21 +1,23 @@
 <div class="sub-nav" data-cell='Challenge::Cell::ChallengesSubnav'>
   <div class="row">
     <ul>
-      <% ['All','Active','Completed'].each do |filt| %>
-        <% if challenge_filter == filt.downcase %>
-          <li class="active">
-            <%= link_to challenges_path(challenge_filter: filt.downcase), class: 'active' do %>
-              <%= filt %>
-              <sup><%= challenges_count(filt.downcase) %></sup>
-            <% end %>
-          </li>
-        <% else %>
-          <li>
-            <%= link_to challenges_path(challenge_filter: filt.downcase) do %>
-              <%= filt %>
-              <sup><%= challenges_count(filt.downcase) %></sup>
-            <% end %>
-          </li>
+      <% ['All','Active','Completed','Draft'].each do |filt| %>
+        <% if challenges_count(filt.downcase).present? %>
+          <% if challenge_filter == filt.downcase %>
+            <li class="active">
+              <%= link_to challenges_path(challenge_filter: filt.downcase), class: 'active' do %>
+                <%= filt %>
+                <sup><%= challenges_count(filt.downcase) %></sup>
+              <% end %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to challenges_path(challenge_filter: filt.downcase) do %>
+                <%= filt %>
+                <sup><%= challenges_count(filt.downcase) %></sup>
+                <% end %>
+              </li>
+          <% end %>
         <% end %>
       <% end %>
     </ul>

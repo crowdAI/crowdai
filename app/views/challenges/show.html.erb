@@ -8,7 +8,7 @@
       <% if @challenge.description.present? %>
         <h2>Overview</h2>
         <div class='markdown-wrap'>
-          <%= sanitize(@challenge.description) %>
+          <%= @challenge.description.html_safe %>
         </div>
       <% end %>
 

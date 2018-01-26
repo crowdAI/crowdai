@@ -3,7 +3,9 @@
     <div class="twin-field">
       <label>Image</label>
       <div class="upload">
-        <%= concept(Image::Cell,f.object,klass: 'img-thumb') %>
+        <div class='markdown-wrap'>
+          <%= concept(Image::Cell,f.object,klass: 'img-logo') %>
+        </div>
         <%= f.file_field :image_file, class: 'file-upload' %>
         <% if f.object.image_file.present? %>
           <%#= link_to 'Delete', challenge_remove_image_path(@challenge) %>

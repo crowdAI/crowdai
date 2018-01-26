@@ -20,6 +20,8 @@ class Challenge::Cell::ChallengesSubnav < Challenge::Cell
       challenges_count = active_challenges_count
     when 'completed'
       challenges_count = completed_challenges_count
+    when 'draft'
+      challenges_count = draft_challenges_count
     end
     challenges_count = nil if challenges_count == 0
     return challenges_count
@@ -36,6 +38,12 @@ class Challenge::Cell::ChallengesSubnav < Challenge::Cell
 
   def completed_challenges_count
     statuses = [:completed, :perpetual]
+    challenges.select { |c| statuses.include?(c.status) }.count
+  end
+
+  def draft_challenges_count
+    return 0 unless current_participant &&  current_participant.admin?
+    statuses = [:draft]
     challenges.select { |c| statuses.include?(c.status) }.count
   end
 

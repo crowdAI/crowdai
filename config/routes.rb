@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
   resources :landing_page, only: [:index]
   match '/landing_page/host', to: 'landing_page#host', via: :get
+  match '/SDSC', to: '/call-for-challenges/SDSC/apply', via: :get
 
   resources :organizer_applications, only: [:create]
   resources :organizers, except: [:new, :index] do

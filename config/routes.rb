@@ -41,7 +41,6 @@ Rails.application.routes.draw do
 
   resources :landing_page, only: [:index]
   match '/landing_page/host', to: 'landing_page#host', via: :get
-  match '/SDSC', to: '/call-for-challenges/SDSC/apply', via: :get
 
   resources :organizer_applications, only: [:create]
   resources :organizers, except: [:new, :index] do
@@ -136,7 +135,7 @@ Rails.application.routes.draw do
   end
   get '/call-for-challenges/:challenge_call_id/apply' => 'challenge_call_responses#new', as: 'challenge_call_apply'
   get '/call-for-challenges/:challenge_call_id/applications/:id' => 'challenge_call_responses#show', as: 'challenge_call_show'
-
+  get 'SDSC' => 'challenge_call_responses#new', challenge_call_id: 3
 
 
 

@@ -53,4 +53,18 @@ ActiveAdmin.register Submission do
     f.actions
   end
 
+  csv do
+    column :id
+    column :participant_id
+    column(:participant) { |submission| submission.participant.name }
+    column :score
+    column :score_secondary
+    column :grading_status_cd
+    column :grading_message
+    column :post_challenge
+    column :media_content_type
+    column :created_at
+    column :updated_at
+  end
+
 end

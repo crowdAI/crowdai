@@ -10,7 +10,10 @@ class ChallengeCallResponsesController < ApplicationController
                                 .challenge_call_responses
                                 .new(challenge_call_response_params)
     if @challenge_call_response.save
-      redirect_to challenge_call_show_path(@challenge_call,@challenge_call_response)
+      Admin::ChallengeCallResponseNotificationJob
+          .perform_later(@challenge_call_response)
+      redirect_to challenge_call_show_path(
+          @challenge_call,@challenge_call_response)
     else
       render :new
     end

@@ -28,6 +28,7 @@ ActiveAdmin.register ChallengeCall do
     column :headline
     column :closing_date
     column :website
+    column :crowdai
     column 'link' do |res|
       "https://www.crowdai.org/call-for-challenges/#{res.slug}/apply"
     end
@@ -42,6 +43,7 @@ ActiveAdmin.register ChallengeCall do
       f.input :description_markdown
       f.input :closing_date
       f.input :website
+      f.input :crowdai
       f.input :slug, :input_html => { :disabled => true }
     end
     f.actions
@@ -60,6 +62,7 @@ ActiveAdmin.register ChallengeCall do
       row :closing_date
       row :website
       row :slug
+      row :crowdai
       row 'link' do |res|
         "https://www.crowdai.org/call-for-challenges/#{res.slug}/apply"
       end

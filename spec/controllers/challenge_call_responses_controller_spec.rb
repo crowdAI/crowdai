@@ -25,6 +25,8 @@ RSpec.describe ChallengeCallResponsesController, type: :controller do
   end
 
   describe "POST #create" do
+    ActiveJob::Base.queue_adapter = :test
+
     context "with valid params" do
       it "creates a new ChallengeCallResponse" do
         expect {
@@ -40,7 +42,17 @@ RSpec.describe ChallengeCallResponsesController, type: :controller do
 
       it "redirects to the created challenge_call_response" do
         post :create, params: { challenge_call_id: challenge_call.id, challenge_call_response: valid_attributes }
-        expect(response).to redirect_to challenge_call_show_url(challenge_call,ChallengeCallResponse.last)        
+        expect(response).to redirect_to challenge_call_show_url(challenge_call,ChallengeCallResponse.last)
+      end
+    end
+
+    context "queues Admin::ChallengeCallResponseNotificationJob" do
+      it do
+        expect {
+          post :create,
+               params: {
+                 challenge_call_id: challenge_call.id, challenge_call_response: valid_attributes }
+        }.to have_enqueued_job(Admin::ChallengeCallResponseNotificationJob)
       end
     end
 

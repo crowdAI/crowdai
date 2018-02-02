@@ -40,6 +40,18 @@ class OrganizersController < ApplicationController
     redirect_to organizers_url, notice: 'Hosting organizer was successfully destroyed.'
   end
 
+  def clef_email
+    @organizer = Organizer.friendly.find(params[:organizer_id])
+    authorize @organizer
+    @participant = Participant.friendly.find(params[:participant_id])
+    if @participant.clef_email
+      @participant.update(clef_email: false)
+    else
+      @participant.update(clef_email: true)
+    end
+    redirect_to organizer_members_path(@organizer)
+  end
+
   def members
     @organizer = Organizer.friendly.find(params[:organizer_id])
     @challenges = @organizer.challenges

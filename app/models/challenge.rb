@@ -33,6 +33,7 @@ class Challenge < ApplicationRecord
                                           reject_if: :all_blank,
                                           allow_destroy: true
   has_many :challenge_round_summaries
+  has_many :invitations, dependent: :destroy
 
   as_enum :status, [:draft, :running, :completed, :terminated, :starting_soon], map: :string
   as_enum :grader, [:f1_logloss, :discrete_mean_squared_error, :diff_ratio, :manual, :external], map: :string

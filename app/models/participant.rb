@@ -33,6 +33,7 @@ class Participant < ApplicationRecord
   has_many :email_preferences_tokens,     dependent: :destroy
   has_many :follows,                      dependent: :destroy
   has_many :participant_clef_tasks,       dependent: :destroy
+  has_many :invitations, dependent: :destroy
 
   VALID_URL_REGEX = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/
 

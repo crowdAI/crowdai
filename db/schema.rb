@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180126133748) do
+ActiveRecord::Schema.define(version: 20180202081136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -174,6 +174,7 @@ ActiveRecord::Schema.define(version: 20180126133748) do
     t.bigint "clef_task_id"
     t.boolean "clef_challenge", default: false
     t.boolean "submissions_page"
+    t.boolean "private_challenge", default: false
     t.index ["clef_task_id"], name: "index_challenges_on_clef_task_id"
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id"
     t.index ["slug"], name: "index_challenges_on_slug", unique: true
@@ -274,6 +275,16 @@ ActiveRecord::Schema.define(version: 20180126133748) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
+  create_table "invitations", force: :cascade do |t|
+    t.bigint "challenge_id"
+    t.bigint "participant_id"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_id"], name: "index_invitations_on_challenge_id"
+    t.index ["participant_id"], name: "index_invitations_on_participant_id"
+  end
+
   create_table "job_postings", force: :cascade do |t|
     t.string "title"
     t.string "organisation"
@@ -299,8 +310,8 @@ ActiveRecord::Schema.define(version: 20180126133748) do
     t.text "identity"
     t.boolean "success"
     t.text "failure_reason"
-    t.string "user_type"
-    t.bigint "user_id"
+    t.string "participant_type"
+    t.bigint "participant_id"
     t.text "context"
     t.text "ip"
     t.text "user_agent"
@@ -311,8 +322,8 @@ ActiveRecord::Schema.define(version: 20180126133748) do
     t.datetime "created_at"
     t.index ["identity"], name: "index_login_activities_on_identity"
     t.index ["ip"], name: "index_login_activities_on_ip"
-    t.index ["user_id"], name: "index_login_activities_on_user_id"
-    t.index ["user_type", "user_id"], name: "index_login_activities_on_user_type_and_user_id"
+    t.index ["participant_id"], name: "index_login_activities_on_participant_id"
+    t.index ["participant_type", "participant_id"], name: "index_login_activities_on_participant_type_and_participant_id"
   end
 
   create_table "mandrill_messages", force: :cascade do |t|
@@ -484,19 +495,6 @@ ActiveRecord::Schema.define(version: 20180126133748) do
     t.index ["submission_id"], name: "index_submission_grades_on_submission_id"
   end
 
-  create_table "submission_grades_backup_120218", id: false, force: :cascade do |t|
-    t.integer "id"
-    t.integer "submission_id"
-    t.string "grading_status_cd"
-    t.string "grading_message"
-    t.float "grading_factor"
-    t.float "score"
-    t.float "score_secondary"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "slug"
-  end
-
   create_table "submissions", id: :serial, force: :cascade do |t|
     t.integer "challenge_id"
     t.integer "participant_id"
@@ -518,28 +516,6 @@ ActiveRecord::Schema.define(version: 20180126133748) do
     t.json "meta", default: {}
     t.index ["challenge_id"], name: "index_submissions_on_challenge_id"
     t.index ["participant_id"], name: "index_submissions_on_participant_id"
-  end
-
-  create_table "submissions_backup_120218", id: false, force: :cascade do |t|
-    t.integer "id"
-    t.integer "challenge_id"
-    t.integer "participant_id"
-    t.float "score"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text "description"
-    t.float "score_secondary"
-    t.string "grading_message"
-    t.string "grading_status_cd"
-    t.text "description_markdown"
-    t.integer "vote_count"
-    t.boolean "post_challenge"
-    t.string "api"
-    t.string "media_large"
-    t.string "media_thumbnail"
-    t.string "media_content_type"
-    t.integer "challenge_round_id"
-    t.json "meta"
   end
 
   create_table "submissions_backup_290917", id: false, force: :cascade do |t|
@@ -632,6 +608,8 @@ ActiveRecord::Schema.define(version: 20180126133748) do
   add_foreign_key "dataset_file_downloads", "participants"
   add_foreign_key "email_preferences", "participants"
   add_foreign_key "follows", "participants"
+  add_foreign_key "invitations", "challenges"
+  add_foreign_key "invitations", "participants"
   add_foreign_key "notifications", "participants"
   add_foreign_key "participant_clef_tasks", "clef_tasks"
   add_foreign_key "participant_clef_tasks", "participants"

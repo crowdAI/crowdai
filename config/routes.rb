@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     end
     get 'mailchimps/webhook' => 'mailchimps#verify', as: :verify_webhook
     post 'mailchimps/webhook' => 'mailchimps#webhook', as: :update_webhook
+    resources :clef_tasks, only: [:show]
   end
 
   namespace :components do

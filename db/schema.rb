@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180202081136) do
+ActiveRecord::Schema.define(version: 20180202124013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -310,8 +310,8 @@ ActiveRecord::Schema.define(version: 20180202081136) do
     t.text "identity"
     t.boolean "success"
     t.text "failure_reason"
-    t.string "participant_type"
-    t.bigint "participant_id"
+    t.string "user_type"
+    t.bigint "user_id"
     t.text "context"
     t.text "ip"
     t.text "user_agent"
@@ -322,8 +322,8 @@ ActiveRecord::Schema.define(version: 20180202081136) do
     t.datetime "created_at"
     t.index ["identity"], name: "index_login_activities_on_identity"
     t.index ["ip"], name: "index_login_activities_on_ip"
-    t.index ["participant_id"], name: "index_login_activities_on_participant_id"
-    t.index ["participant_type", "participant_id"], name: "index_login_activities_on_participant_type_and_participant_id"
+    t.index ["user_id"], name: "index_login_activities_on_user_id"
+    t.index ["user_type", "user_id"], name: "index_login_activities_on_user_type_and_user_id"
   end
 
   create_table "mandrill_messages", force: :cascade do |t|
@@ -433,6 +433,7 @@ ActiveRecord::Schema.define(version: 20180202081136) do
     t.string "city"
     t.string "first_name"
     t.string "last_name"
+    t.boolean "clef_email", default: false
     t.index ["confirmation_token"], name: "index_participants_on_confirmation_token", unique: true
     t.index ["email"], name: "index_participants_on_email", unique: true
     t.index ["organizer_id"], name: "index_participants_on_organizer_id"
@@ -495,6 +496,19 @@ ActiveRecord::Schema.define(version: 20180202081136) do
     t.index ["submission_id"], name: "index_submission_grades_on_submission_id"
   end
 
+  create_table "submission_grades_backup_120218", id: false, force: :cascade do |t|
+    t.integer "id"
+    t.integer "submission_id"
+    t.string "grading_status_cd"
+    t.string "grading_message"
+    t.float "grading_factor"
+    t.float "score"
+    t.float "score_secondary"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "slug"
+  end
+
   create_table "submissions", id: :serial, force: :cascade do |t|
     t.integer "challenge_id"
     t.integer "participant_id"
@@ -516,6 +530,28 @@ ActiveRecord::Schema.define(version: 20180202081136) do
     t.json "meta", default: {}
     t.index ["challenge_id"], name: "index_submissions_on_challenge_id"
     t.index ["participant_id"], name: "index_submissions_on_participant_id"
+  end
+
+  create_table "submissions_backup_120218", id: false, force: :cascade do |t|
+    t.integer "id"
+    t.integer "challenge_id"
+    t.integer "participant_id"
+    t.float "score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text "description"
+    t.float "score_secondary"
+    t.string "grading_message"
+    t.string "grading_status_cd"
+    t.text "description_markdown"
+    t.integer "vote_count"
+    t.boolean "post_challenge"
+    t.string "api"
+    t.string "media_large"
+    t.string "media_thumbnail"
+    t.string "media_content_type"
+    t.integer "challenge_round_id"
+    t.json "meta"
   end
 
   create_table "submissions_backup_290917", id: false, force: :cascade do |t|

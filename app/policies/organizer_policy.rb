@@ -40,6 +40,10 @@ class OrganizerPolicy < ApplicationPolicy
     edit?
   end
 
+  def clef_email?
+    participant && participant.admin? || participant && @record.id == participant.organizer_id
+  end
+
   class Scope
     attr_reader :participant, :scope
 

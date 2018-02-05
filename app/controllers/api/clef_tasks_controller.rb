@@ -18,8 +18,7 @@ class Api::ClefTasksController < Api::BaseController
   end
 
   def clef_participants(clef_task)
-    return "abcd"
-    clef_task.participant_clef_tasks
+    return clef_task.participant_clef_tasks
   end
 
   class ClefTaskNotFound < StandardError

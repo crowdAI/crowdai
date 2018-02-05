@@ -1,0 +1,26 @@
+<% if @challenge.invitations.any? %>
+  <div class='row'>
+    <table class='submissions'>
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Name</th>
+          <th>Invited (UTC)</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% @challenge.invitations.each do |invitation| %>
+          <td><%= invitation.email %></td>
+          <td><%= invitation.participant.name %></td>
+          <td><%= link_to '#', 'x' %></td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+    <strong>No Participants invited yet</strong>
+    <br/><br/><br/>
+<% end %>

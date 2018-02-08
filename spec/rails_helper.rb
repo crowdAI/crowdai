@@ -46,6 +46,8 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Warden::Test::Helpers, type: :feature
 
+  Capybara.ignore_hidden_elements = true
+
   config.include ControllerHelpers, type: :controller
   config.include HeaderHelpers
 

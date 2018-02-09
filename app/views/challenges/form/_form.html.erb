@@ -13,7 +13,8 @@
   <div class="sub-nav">
     <div class="row">
       <ul class='tabs'>
-        <li data-tab='tab-details' class='active'>Details</sup></li>
+        <li data-tab='tab-details' class='active'>Details</li>
+        <li data-tab='tab-type'>Type</li>
         <li data-tab='tab-overview'>Overview</li>
         <li data-tab='tab-evaluation'>Evaluation</li>
         <li data-tab='tab-rules'>Rules</li>
@@ -31,6 +32,9 @@
 
     <div id='tab-details' class='tab-content active'>
       <%= render partial: 'challenges/form/details', locals: { challenge: challenge } %>
+    </div>
+    <div id='tab-type' class='tab-content'>
+      <%= render partial: 'challenges/form/type', locals: { challenge: challenge } %>
     </div>
     <div id='tab-overview' class='tab-content'>
       <%= render partial: 'challenges/form/overview', locals: { challenge: challenge } %>

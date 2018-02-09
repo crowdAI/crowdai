@@ -153,6 +153,7 @@ class ChallengesController < ApplicationController
                   :dynamic_content,
                   :clef_task_id,
                   :submissions_page,
+                  :private_challenge,
                   dataset_attributes: [
                     :id,
                     :challenge_id,
@@ -194,6 +195,10 @@ class ChallengesController < ApplicationController
                     :id,
                     :image_file,
                     :partner_url,
+                    :_destroy],
+                  invitations_attributes: [
+                    :id,
+                    :email,
                     :_destroy]
                 )
     end

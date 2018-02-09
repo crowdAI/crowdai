@@ -1,0 +1,20 @@
+<div class="row">
+  <%= form_for [@organizer,@challenge], html: { class: "dbl-col" } do |f| %>
+    <% @challenge.errors.full_messages.each do |error| %>
+      <p><%= error %></p>
+    <% end %>
+
+    <fieldset class="checkbox">
+      <div>
+        <%= f.check_box :private_challenge, {}, "true", "false" %>
+        <label for="">Private challenge</label>
+      </div>
+    </fieldset>
+
+    <%= render partial: 'challenges/form/invitations_table',
+            locals: { challenge: @challenge, f: f } %>
+
+    <%= render partial: 'challenges/form/submit_buttons',
+          locals: { f: f } %>
+  <% end %>
+</div>

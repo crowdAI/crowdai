@@ -24,8 +24,6 @@ class ChallengeCallResponsesController < ApplicationController
   end
 
   private
-
-
   def challenge_call_response_params
     params.require(:challenge_call_response)
           .permit(:contact_name,

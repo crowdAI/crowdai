@@ -194,6 +194,10 @@ class ChallengesController < ApplicationController
                     :id,
                     :image_file,
                     :partner_url,
+                    :_destroy],
+                  invitations_attributes: [
+                    :id,
+                    :email,
                     :_destroy]
                 )
     end

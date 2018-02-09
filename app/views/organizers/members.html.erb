@@ -18,7 +18,7 @@
           <h5>
             <%= link_to member.name, participant_path(member) %>
           </h5>
-          <% if @organizer.clef_tasks.first.eua_required? %>
+          <% if @organizer.clef_tasks.any? &&  @organizer.clef_tasks.first.eua_required? %>
             <% if member.clef_email %>
               <%= link_to 'Email', organizer_clef_email_path(@organizer, participant_id: member.id), class: 'btn btn-primary btn-small' %>
             <% else %>

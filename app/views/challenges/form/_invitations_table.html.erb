@@ -1,4 +1,3 @@
-<% if @challenge.invitations.any? %>
   <div class='row'>
     <table class='submissions'>
       <thead>
@@ -10,17 +9,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <% @challenge.invitations.each do |invitation| %>
-          <td><%= invitation.email %></td>
-          <td><%= invitation.participant.name %></td>
-          <td><%= link_to '#', 'x' %></td>
-          <% end %>
-        </tr>
+        <%= f.fields_for :invitations do |invitation| %>
+          <tr>
+            <td><%= invitation.object.email %></td>
+            <td><%= participant_invitation(email: invitation.object.email) %></td>
+            <td><%= invitation.object.created_at %></td>
+            <td><%= link_to_remove_association "remove", f %>
+</td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
+    <br/><br/>
+    <div class='links'>
+      <%= link_to_add_association '+ Invite participant', f, :invitations,
+                              html_options = { partial: 'challenges/form/invitation_fields' } %>
+    </div>
+    <br/><br/>
+
   </div>
-<% else %>
-    <strong>No Participants invited yet</strong>
-    <br/><br/><br/>
-<% end %>

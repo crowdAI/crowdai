@@ -1,6 +1,6 @@
 <div class="row">
-  <%= form_for @challenge_invitation, html: { class: "dbl-col" } do |f| %>
-    <% @challenge_invitation.errors.full_messages.each do |error| %>
+  <%= form_for [@organizer,@challenge], html: { class: "dbl-col" } do |f| %>
+    <% @challenge.errors.full_messages.each do |error| %>
       <p><%= error %></p>
     <% end %>
 
@@ -12,12 +12,7 @@
     </fieldset>
 
     <%= render partial: 'challenges/form/invitations_table',
-            locals: { challenge: @challenge } %>
-
-    <fieldset>
-      <label>Invitee's email</label>
-      <%= f.text_field :email %>
-    </fieldset>
+            locals: { challenge: @challenge, f: f } %>
 
     <%= render partial: 'challenges/form/submit_buttons',
           locals: { f: f } %>

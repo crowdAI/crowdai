@@ -1,13 +1,12 @@
 <div class="nested-fields">
+  <fieldset>
   <div class="twin-container">
     <div class="twin-field">
-      <label>Invitee's Email</label>
-      <%= f.text_field :email %>
-      <%= link_to 'Invite', '#', class: 'btn btn-primary' %>
+      <%= f.text_field :email, placeholder: 'Enter email address' %>
     </div>
     <div class="twin-field">
+      <label></label>
+      <%= link_to_remove_association "remove", f %>
     </div>
   </div>
-  <%#= link_to_remove_association "remove", f, class: 'pull-right' %>
-
 </div>

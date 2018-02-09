@@ -43,4 +43,9 @@ describe ChallengePolicy do
     end
   end
 
+  context 'for a private challenge' do
+    #subject { described_class.new(participant, challenge) }
+
+  end
+
 end

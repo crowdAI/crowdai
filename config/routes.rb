@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     request.env['warden'].authenticate? && request.env['warden'].user.admin?
   end
 
+
+
   constraints admin do
     mount Sidekiq::Web => '/sidekiq'
     ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
@@ -139,7 +141,8 @@ Rails.application.routes.draw do
   get '/call-for-challenges/:challenge_call_id/applications/:id' => 'challenge_call_responses#show', as: 'challenge_call_show'
   get 'SDSC' => 'challenge_call_responses#new', challenge_call_id: 3
 
-
-
   root 'landing_page#index'
+
+  # catch all
+  get '*short', to: 'short_urls#show'
 end

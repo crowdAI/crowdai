@@ -3,11 +3,8 @@
     <td><%= submission.id %></td>
     <td class="participant">
       <div class="user-link">
-        <%= link_to participant_path(submission.participant) do %>
-          <%= concept(Image::Cell,submission.participant, current_participant: current_participant) %>
-        <% end %>
         <div class='text-badge'>
-          <%= link_to submission.participant.name, participant_path(submission.participant.slug) %>
+          <%= link_to submission.participant.name, participant_path(submission.participant.slug), target: :_blank %>
           <% if submission.participant.admin? %>
             <span class='badge badge-accent'>Admin</span>
           <% end %>
@@ -24,9 +21,9 @@
       <% else %>
         <% if submission.grading_status_cd == 'graded' %>
           <% if @challenge.secondary_sort_order_cd == 'not_used' %>
-            <%= "#{@challenge.score_title}: #{submission.score}" %>
+            <%= "#{@challenge.score_title}: #{number_with_precision(submission.score)}" %>
           <% else %>
-            <%= "#{@challenge.score_title}: #{submission.score}, #{@challenge.score_secondary_title}: #{submission.score_secondary}" %>
+            <%= "#{@challenge.score_title}: #{submission.score}, #{@challenge.score_secondary_title}: #{number_with_precision(submission.score_secondary)}" %>
           <% end %>
         <% end %>
       <% end %>

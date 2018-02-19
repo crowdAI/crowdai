@@ -3,9 +3,7 @@
     <td><%= submission.id %></td>
     <td class="participant">
       <div class="user-link">
-        <%= link_to participant_path(submission.participant) do %>
-          <%= concept(Image::Cell,submission.participant, current_participant: current_participant) %>
-        <% end %>
+        <%= link_to participant_path(submission.participant), target: :_blank %>
         <div class='text-badge'>
           <%= link_to submission.participant.name, participant_path(submission.participant.slug) %>
           <% if submission.participant.admin? %>

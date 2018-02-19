@@ -99,37 +99,29 @@ table.submissions {
 	@media screen and (max-width: 640px) {
 		margin-top: 27px;
 	}
-	.status,
-	.score {
+	th,
+	td {
+		padding-right: 8px;
+		vertical-align: top;
+	}
+	th:last-of-type,
+	td:last-of-type {
+		padding-right: 0;
+	}
+	th.id,
+	td.id {
 		font-weight: 500;
 	}
-	.files {
-		@media screen and (max-width: 480px) {
-			display: none;
-		}
-	}
-	.participant {
+	td.participant {
 		a {
 			&:hover {
 				border-bottom: 1px solid $color-accent-dark;
 			}
 		}
 	}
-	.secondary {
-		@media screen and (max-width: 640px) {
-			display: none;
-		}
-	}
-	.post-challenge {
-		@media screen and (max-width: 800px) {
-			display: none;
-		}
-	}
-	.last-submission {
+	th.submission,
+	td.submission {
 		text-align: right;
-		@media screen and (max-width: 1024px) {
-			display: none;
-		}
 	}
 }
 

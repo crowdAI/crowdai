@@ -11,6 +11,7 @@ describe Submission do
     it { is_expected.to respond_to :description_markdown }
     it { is_expected.to respond_to :vote_count }
     it { is_expected.to respond_to :post_challenge }
+    it { is_expected.to respond_to :short_url }
   end
 
   context 'associations' do
@@ -91,6 +92,13 @@ describe Submission do
        it 'works' do
          submission = create(:submission, grading_status: :ready)
          expect(submission.ready?).to be true
+       end
+     end
+
+     describe '#short_url' do
+       it 'works' do
+         submission = create(:submission)
+         expect(submission.short_url).not_to be_nil
        end
      end
    end

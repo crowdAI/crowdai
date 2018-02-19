@@ -20,22 +20,4 @@ RSpec.describe Api::ExternalGradersController, type: :routing do
 
   end
 
-  describe "invalid routing" do
-    it "#index" do
-      expect(:get => "/api/external_graders").not_to be_routable
-    end
-
-    #it "#new" do
-    #  expect(:get => "/api/external_graders/new").not_to be_routable
-    #end
-
-    it "routes to #edit" do
-      expect(:get => "/api/external_graders/1/edit").not_to be_routable
-    end
-
-
-    it "routes to #destroy" do
-      expect(:delete => "/api/external_graders/1").not_to be_routable
-    end
-  end
 end

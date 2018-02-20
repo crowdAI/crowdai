@@ -484,7 +484,7 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
-    mustermann (1.0.1)
+    mustermann (1.0.2)
     nenv (0.3.0)
     net-ssh (4.1.0)
     nio4r (2.1.0)
@@ -516,10 +516,10 @@ GEM
       puma (>= 2.7, < 4)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
-    rack (2.0.3)
+    rack (2.0.4)
     rack-contrib (1.2.0)
       rack (>= 0.9.1)
-    rack-protection (2.0.0)
+    rack-protection (2.0.1)
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -583,7 +583,7 @@ GEM
     rdoc (4.3.0)
     record_tag_helper (1.0.0)
       actionview (~> 5.x)
-    redis (3.3.3)
+    redis (4.0.1)
     ref (2.0.0)
     reform (2.2.4)
       disposable (>= 0.4.1)
@@ -668,11 +668,11 @@ GEM
     shoulda-context (1.2.2)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
-    sidekiq (5.0.4)
+    sidekiq (5.1.1)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
-      redis (~> 3.3, >= 3.3.3)
+      redis (>= 3.3.5, < 5)
     sidekiq-cron (0.6.3)
       rufus-scheduler (>= 3.3.0)
       sidekiq (>= 4.2.1)
@@ -690,10 +690,10 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
-    sinatra (2.0.0)
+    sinatra (2.0.1)
       mustermann (~> 1.0)
       rack (~> 2.0)
-      rack-protection (= 2.0.0)
+      rack-protection (= 2.0.1)
       tilt (~> 2.0)
     sixarm_ruby_unaccent (1.2.0)
     slop (3.6.0)
@@ -862,14 +862,14 @@ DEPENDENCIES
   shog
   shoulda
   shoulda-matchers
-  sidekiq
+  sidekiq (~> 5.1.1)
   sidekiq-cron (~> 0.6.3)
   sidekiq-failures
   sidekiq-history
   sidekiq-unique-jobs
   simple_enum
   simplecov
-  sinatra
+  sinatra (~> 2.0.1)
   social-share-button
   spring
   stackprof

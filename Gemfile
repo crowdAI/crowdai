@@ -53,6 +53,7 @@ gem 'webpacker', '~> 2.0'
 gem 'paloma', '~> 5.1.0'
 gem 'jbuilder'
 gem 'jquery-atwho-rails'
+gem 'social-share-button'
 
 # css
 gem 'sass-rails'

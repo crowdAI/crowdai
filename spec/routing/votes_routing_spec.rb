@@ -15,39 +15,4 @@ RSpec.describe VotesController, type: :routing do
     end
   end
 
-
-  describe "invalid routing" do
-    it "does not route  to #index" do
-      expect(:get => "/votes").not_to be_routable
-    end
-
-    it "does not route  to #new" do
-      expect(:get => "/votes/new").not_to be_routable
-    end
-
-    it "does not route  to #show" do
-      expect(:get => "/votes/1").not_to be_routable
-    end
-
-    it "does not route  to #edit" do
-      expect(:get => "/votes/1/edit").not_to be_routable
-    end
-
-    it "does not route  to #create" do
-      expect(:post => "/votes").not_to be_routable
-    end
-
-    it "does not route  to #update via PUT" do
-      expect(:put => "/votes/1").not_to be_routable
-    end
-
-    it "does not route  to #update via PATCH" do
-      expect(:patch => "/votes/1").not_to be_routable
-    end
-
-    it "does not route  to #destroy" do
-      expect(:delete => "/votes/1").not_to be_routable
-    end
-
-  end
 end

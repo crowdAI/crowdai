@@ -21,6 +21,16 @@ function pauseAndPlay(){
 }
 
 
+function copyLink() {
+  var hiddenInput = document.getElementById("shortUrl");
+  hiddenInput.style.display = 'block';
+  hiddenInput.select();
+  document.execCommand("copy");
+  hiddenInput.style.display = 'none';
+  return false;
+}
+
+
 Paloma.controller('Leaderboards', {
   index: function(){
     pauseAndPlay();

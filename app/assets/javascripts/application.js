@@ -11,6 +11,7 @@
 //= require turbolinks
 //= require paloma
 //= require jquery.atwho
+//= require social-share-button
 
 // ---------------------- Modules ---------------------- //
 //= require modules/site

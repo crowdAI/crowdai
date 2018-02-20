@@ -21,56 +21,6 @@ RSpec.describe SubmissionsController, type: :routing do
     it "routes to #update via PATCH" do
       expect(:patch => "/challenges/1/submissions/1").to route_to("submissions#update", :id => "1", challenge_id: "1")
     end
-
   end
 
-  describe "invalid routing with challenge" do
-    it "routes to #new" do
-      expect(:get => "/submissions/new").not_to be_routable
-    end
-
-    it "routes to #create" do
-      expect(:post => "/submissions").not_to be_routable
-    end
-
-    it "routes to #update via PUT" do
-      expect(:put => "/submissions/1").not_to be_routable
-    end
-  end
-
-
-  describe "invalid routing" do
-    it "routes to #index" do
-      expect(:get => "/submissions").not_to be_routable
-    end
-
-    it "routes to #show" do
-      expect(:get => "/submissions/1").not_to be_routable
-    end
-
-    it "routes to #destroy" do
-      expect(:delete => "/submissions/1").not_to be_routable
-    end
-
-    it "routes to #edit" do
-      expect(:get => "/submissions/1/edit").not_to be_routable
-    end
-
-    it "routes to #update via PATCH" do
-      expect(:patch => "/submissions/1").not_to be_routable
-    end
-
-    it "routes to #new" do
-      expect(:get => "/submissions/new").not_to be_routable
-    end
-
-    it "routes to #create" do
-      expect(:post => "/submissions").not_to be_routable
-    end
-
-    it "routes to #update via PUT" do
-      expect(:put => "/submissions/1").not_to be_routable
-    end
-
-  end
 end

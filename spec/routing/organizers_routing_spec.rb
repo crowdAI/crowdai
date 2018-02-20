@@ -27,13 +27,4 @@ RSpec.describe OrganizersController, type: :routing do
     end
   end
 
-  context 'not routable' do
-    it "does not route to #index" do
-      expect(:get => "/organizers").not_to be_routable
-    end
-
-    #it "does not route to #new" do
-    # TODO  expect(:get => "/organizers/new").not_to be_routable
-    #end
-  end
 end

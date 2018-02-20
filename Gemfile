@@ -20,6 +20,7 @@ gem 'rollbar'
 gem 'oj', '~> 2.12.14'
 gem 'lograge'
 
+
 # model
 gem 'simple_enum'
 gem 'scenic', '~> 1.3'
@@ -81,12 +82,12 @@ gem 'mandrill-api'
 gem 'gibbon'
 
 # background processing
-gem 'sidekiq'
+gem 'sidekiq', '~> 5.1.1'
 gem "sidekiq-cron", "~> 0.6.3"
 gem 'sidekiq-history'
 gem 'sidekiq-failures'
 gem 'sidekiq-unique-jobs'
-gem 'sinatra', :require => nil
+gem 'sinatra', '~> 2.0.1', :require => nil
 
 # images
 gem 'carrierwave', '~> 1.0'

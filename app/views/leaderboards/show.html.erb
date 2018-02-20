@@ -22,66 +22,14 @@
     </div>
     <!--Detail media end-->
 
-    <!--Detail share start
-    <div class="detail-share">
-      <div>
-        <span>Share</span>
-        <a class="btn btn-secondary" href="#">Get URL</a>
-      </div>
-      <div>
-        <a class="btn btn-secondary btn-facebook" href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
-        <a class="btn btn-secondary btn-twitter" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-      </div>
-    </div>
-    Detail share end-->
+    <%= render partial: 'leaderboards/show/share',
+          locals: { submission: @submission }%>
 
-    <!--Detail user comment start-->
+    <%= render partial: 'leaderboards/show/entry_description',
+          locals: { entry: @entry, submission: @submission }  %>
 
-    <% if @entry.description.present? %>
-      <div class="discussion-comment">
-        <div class="pic">
-          <%= link_to participant_path(@submission.participant) do %>
-            <%= concept(Image::Cell,@submission.participant) %>
-          <% end %>
-        </div>
-        <div class="topic-content">
-          <p class="details">
-            Posted by <%= link_to @submission.participant.name, participant_path(@submission.participant.id) %> <%= time_ago_in_words(@entry.created_at) %> | <a href="#">Quote</a>
-          </p>
-          <div class="comment">
-            <p><%= sanitize(@entry.description) %></p>
-          </div>
-        </div>
-        <a class="btn btn-secondary" href="#"><i class="fa fa-heart active" aria-hidden="true"></i> 47</a>
-      </div>
-      <!--Detail user comment end-->
-    <% end %>
-
-
-    <% if current_participant %>
-      <%= render partial: 'submission_comments/form', locals: { submission: @submission, submission_comment: @submission_comment } %>
-    <% end %>
-
-    <% @submission.submission_comments.each do |submission_comment| %>
-      <% if submission_comment.persisted? %>
-        <div class="discussion-comment">
-          <div class="pic">
-            <%= link_to participant_path(submission_comment.participant) do %>
-              <%= concept(Image::Cell,submission_comment.participant) %>
-            <% end %>
-          </div>
-          <div class="topic-content">
-            <p class="details">Posted by <%= link_to submission_comment.participant.name, participant_path(submission_comment.participant.id) %> <%= time_ago_in_words(@entry.created_at) %> ago | <a href="#">Quote</a>
-              <div class="comment">
-                <p><%= sanitize(submission_comment.comment) %></p>
-              </div>
-            </div>
-            <%= concept(Vote::Cell,
-                      submission_comment,
-                      current_participant: current_participant) %>
-          </div>
-      <% end %>
-    <% end %>
+    <%= render partial: 'leaderboards/show/comments',
+          locals: { submission: @submission } %>
 
   </div>
 </div>

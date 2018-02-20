@@ -12,7 +12,7 @@
         <% end %>
       </div>
       <div class="topic-content">
-        <p class="details">Posted by <%= link_to submission_comment.participant.name, participant_path(submission_comment.participant.id) %> <%= time_ago_in_words(@entry.created_at) %> ago | <a href="#">Quote</a>
+        <p class="details">Posted by <%= link_to submission_comment.participant.name, participant_path(submission_comment.participant.id) %> <%= time_ago_in_words(@entry.created_at) %> ago 
         <div class="comment">
           <p><%= sanitize(submission_comment.comment) %></p>
         </div>

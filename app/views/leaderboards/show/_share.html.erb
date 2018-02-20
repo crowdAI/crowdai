@@ -11,9 +11,27 @@
       onclick="copyLink()"
       class='btn btn-secondary'>Get URL</button>
   </div>
-  <div>
-    <a class="btn btn-secondary btn-facebook" href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
-    <a class="btn btn-secondary btn-twitter" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  <div
+    data-title="Check out this link on crowdAI "
+    data-url='<%= "#{request.base_url}/#{submission.short_url}" %>' >
+    <a
+      class="btn btn-secondary btn-facebook"
+      rel="nofollow"
+      data-site="facebook"
+      onclick="return SocialShareButton.share(this)"
+      title="Share to Facebook"
+      href="#">
+        <i class="fa fa-facebook-official" aria-hidden="true"></i>
+    </a>
+    <a
+      class="btn btn-secondary btn-twitter"
+      rel="nofollow"
+      data-site="twitter"
+      onclick="return SocialShareButton.share(this)"
+      title="Share to Twitter"
+      href="#">
+        <i class="fa fa-twitter" aria-hidden="true"></i>
+    </a>
   </div>
 </div>
 <!--Detail add comment end-->

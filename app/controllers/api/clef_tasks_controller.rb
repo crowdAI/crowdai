@@ -15,7 +15,7 @@ class Api::ClefTasksController < Api::BaseController
     ensure
       Rails.logger.info "API: #{message}"
       render :json => {message:message}, :include =>
-        {:participant => {:only => [:email,:affiliation,:first_name,:last_name,:address,:city,:country_cd]}},
+        {:participant => {:only => [:email,:name,:affiliation,:first_name,:last_name,:address,:city,:country_cd]}},
           :except => [:created_at, :updated_at, :eua_file, :id, :approved], status:status
     end
   end

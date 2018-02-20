@@ -2,6 +2,7 @@
 <div class="detail-share">
   <div>
     <span>Share</span>
+    <%= social_share_button_tag('Share to Facebook', :url => "#{request.base_url}/#{submission.short_url}", desc: 'Share to Facebook') %>
     <input
       id="shortUrl"
       type="text"
@@ -13,6 +14,7 @@
   </div>
   <div
     data-title="Check out this link on crowdAI "
+    data-desc='Share to Facebook'
     data-url='<%= "#{request.base_url}/#{submission.short_url}" %>' >
     <a
       class="btn btn-secondary btn-facebook"

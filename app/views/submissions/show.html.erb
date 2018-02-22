@@ -1,58 +1,63 @@
-<%= render partial: 'challenges/sidebar' %>
-<%= render partial: 'challenges/header', challenge: @challenge %>
+<div class="detail">
+  <div class="detail-header-bg"></div>
+  <%= link_to challenge_submissions_path(@submission.challenge_id) do %>
+    <i class="fa fa-times" aria-hidden="true"></i>
+  <% end %>
 
-<div class="row">
-  <div class="col-md-10">
+  <div class="row">
+    <%= render partial: 'leaderboards/show/header',
+          locals: { participant: @participant, entry: @submission } %>
 
-    <h3>Submission</h3>
-    <div class='markdown-wrap'>
-      <%= sanitize(@submission.description) if @submission.description %>
-    </div>
-    <hr/>
-    <ul>
-      <li>Submitted
-        <%= @submission.created_at %></li>
-      <%= score(@submission) %>
-    </ul>
-    <br/><br/>
+    <%= render partial: 'leaderboards/show/share',
+          locals: { submission: @submission }%>
 
-<% unless @submission.challenge_id == 6 %>
-    <div class='table-responsive'>
-      <table class="table table-condensed table-bordered leaderboard">
-        <thead>
-          <tr>
-            <th>File</th>
-            <th>Filename</th>
-          </tr>
-        </thead>
+    <%= render partial: 'leaderboards/show/entry_description',
+          locals: { entry: @submission, submission: @submission }  %>
 
-        <tbody>
-          <% @submission.submission_files.each do |file| %>
-          <tr>
-            <td>
-              <% if file.seq == 0 %>
-                <b><%= link_to 'Prediction file', s3_expiring_url(file.submission_file_s3_key) %></b>
-              <% else %>
-                <b><%= link_to 'Archive of model and script', s3_expiring_url(file.submission_file_s3_key) %></b>
-              <% end %>
-            </td>
-            <td><%= link_to s3_filesize(file.submission_file_s3_key), s3_expiring_url(file.submission_file_s3_key) %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div><!-- table-responsive -->
-<% end %>
+    <%= render partial: 'leaderboards/show/comments',
+          locals: { submission: @submission } %>
+  </div>
+</div>
 
-    <% if @participant %>
-      <div class="pull-right">
-        <%= render partial: 'votes/vote_link', locals: { votable: @submission } %>
+
+
+
+
+
+
+
+<div class="detail">
+  <div class="detail-header-bg"></div>
+  <%= link_to challenge_submissions_path(@submission.challenge_id) do %>
+    <i class="fa fa-times" aria-hidden="true"></i>
+  <% end %>
+  <div class="row">
+    <!--Detail header start-->
+    <div class="detail-header">
+      <div class="text-badge">
+        <%= link_to @participant.name, participant_path(@participant.id), class: "color-accent" %>
+        <% if @participant.admin? %>
+          <span class="badge badge-accent">Admin</span>
+        <% end %>
       </div>
-    <% end %>
+      <h4>Submission: <%= @entry.challenge.challenge %></h4>
+    </div>
+    <!--Detail header end-->
+
+    <!--Detail media start-->
+    <div class="detail-media">
+      <%= concept(Leaderboard::Cell::Media, @entry, size: :large, current_participant: current_participant) %>
+    </div>
+    <!--Detail media end-->
+
+    <%= render partial: 'leaderboards/show/share',
+          locals: { submission: @submission }%>
+
+    <%= render partial: 'leaderboards/show/entry_description',
+          locals: { entry: @entry, submission: @submission }  %>
+
+    <%= render partial: 'leaderboards/show/comments',
+          locals: { submission: @submission } %>
 
   </div>
-</div><!-- row -->
-
-<% if current_participant && current_participant.admin? %>
-  <%= render partial: 'submissions/show/grading_history', locals: { challenge: @challenge, submission: @submission } %>
-<% end %>
+</div>

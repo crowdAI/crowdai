@@ -1,0 +1,58 @@
+<%= render partial: 'challenges/sidebar' %>
+<%= render partial: 'challenges/header', challenge: @challenge %>
+
+<div class="row">
+  <div class="col-md-10">
+
+    <h3>Submission</h3>
+    <div class='markdown-wrap'>
+      <%= sanitize(@submission.description) if @submission.description %>
+    </div>
+    <hr/>
+    <ul>
+      <li>Submitted
+        <%= @submission.created_at %></li>
+      <%= score(@submission) %>
+    </ul>
+    <br/><br/>
+
+<% unless @submission.challenge_id == 6 %>
+    <div class='table-responsive'>
+      <table class="table table-condensed table-bordered leaderboard">
+        <thead>
+          <tr>
+            <th>File</th>
+            <th>Filename</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @submission.submission_files.each do |file| %>
+          <tr>
+            <td>
+              <% if file.seq == 0 %>
+                <b><%= link_to 'Prediction file', s3_expiring_url(file.submission_file_s3_key) %></b>
+              <% else %>
+                <b><%= link_to 'Archive of model and script', s3_expiring_url(file.submission_file_s3_key) %></b>
+              <% end %>
+            </td>
+            <td><%= link_to s3_filesize(file.submission_file_s3_key), s3_expiring_url(file.submission_file_s3_key) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div><!-- table-responsive -->
+<% end %>
+
+    <% if @participant %>
+      <div class="pull-right">
+        <%= render partial: 'votes/vote_link', locals: { votable: @submission } %>
+      </div>
+    <% end %>
+
+  </div>
+</div><!-- row -->
+
+<% if current_participant && current_participant.admin? %>
+  <%= render partial: 'submissions/show/grading_history', locals: { challenge: @challenge, submission: @submission } %>
+<% end %>

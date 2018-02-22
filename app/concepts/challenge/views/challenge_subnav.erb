@@ -16,7 +16,7 @@
         <li class=<%= tab_class('submissions') %> ><%= link_to 'Submissions', challenge_submissions_path(challenge), class: tab_class('submissions') %></li>
       <% end %>
       <% if policy(challenge).edit? %>
-        <% if challenge.clef_task && challenge.clef_task.eua_required? %>
+        <% if challenge.clef_task #&& challenge.clef_task.eua_required? %>
           <li class=<%= tab_class('participants') %> ><%= link_to 'Participants', challenge_clef_task_path(challenge), class: tab_class('participants') %></li>
         <% else %>
           <li class=<%= tab_class('participants') %> ><%= link_to 'Participants', challenge_participant_challenges_path(challenge), class: tab_class('participants') %></li>

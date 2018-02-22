@@ -31,16 +31,29 @@ class ParticipantClefTask::Cell < Template::Cell
     clef_task.task_dataset_files
   end
 
+  # def participant_status
+  #   return 'profile_incomplete' if profile_incomplete?
+  #   if eua_required?
+  #     if participant_clef_task.present?
+  #       return participant_clef_task.status_cd
+  #     else
+  #       return 'unregistered'
+  #     end
+  #   else
+  #     return 'registered'
+  #   end
+  # end
+
+  def registered?
+    return participant_status == 'registered'
+  end
+
   def participant_status
     return 'profile_incomplete' if profile_incomplete?
-    if eua_required?
-      if participant_clef_task.present?
-        return participant_clef_task.status_cd
-      else
-        return 'unregistered'
-      end
+    if participant_clef_task.present?
+      return participant_clef_task.status_cd
     else
-      return 'registered'
+      return 'unregistered'
     end
   end
 

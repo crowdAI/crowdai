@@ -8,9 +8,6 @@ class LeaderboardsController < ApplicationController
   def show
     @participant = @entry.participant
     @submission = Submission.find(@entry.id)
-    if current_participant
-      @submission_comment = @submission.submission_comments.build
-    end
   end
 
   def index

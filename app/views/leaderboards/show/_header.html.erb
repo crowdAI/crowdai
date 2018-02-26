@@ -1,17 +1,19 @@
 <!--Detail header start-->
 <div class="detail-header">
   <div class="text-badge">
-    <%= link_to @participant.name, participant_path(@participant.id), class: "color-accent" %>
-    <% if @participant.admin? %>
+    <%= link_to participant.name,
+          participant_path(participant.id),
+          class: "color-accent" %>
+    <% if participant.admin? %>
       <span class="badge badge-accent">Admin</span>
     <% end %>
   </div>
-  <h4>Submission: <%= @entry.challenge.challenge %></h4>
+  <h4>Submission: <%= entry.challenge.challenge %></h4>
 </div>
 <!--Detail header end-->
 
 <!--Detail media start-->
 <div class="detail-media">
-  <%= concept(Leaderboard::Cell::Media, @entry, size: :large, current_participant: current_participant) %>
+  <%= concept(Leaderboard::Cell::Media, entry, size: :large, current_participant: current_participant) %>
 </div>
 <!--Detail media end-->

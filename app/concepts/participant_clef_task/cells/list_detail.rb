@@ -25,14 +25,15 @@ class ParticipantClefTask::Cell::ListDetail < ParticipantClefTask::Cell
   end
 
   def clef_status
+    return if !eua_required? #Do not show any additional button/link if eua is not required
     case participant_clef_task.status_cd
-    when 'requested'
-      "<button class='btn btn-small btn-default'>EUA downloaded</button>"
-    when 'submitted'
-      "#{ link_to 'Approve', participant_clef_task_path(clef_task,participant_id: participant.id,challenge_id: challenge_id), method: :patch, remote: true, class: 'btn btn-small btn-primary' }"
-    when 'registered'
-      "<button class='btn btn-small btn-default'>Approved</button>"
-    end
+      when 'requested'
+        "<button class='btn btn-small btn-default'>EUA downloaded</button>"
+      when 'submitted'
+        "#{ link_to 'Approve', participant_clef_task_path(clef_task,participant_id: participant.id,challenge_id: challenge_id), method: :patch, remote: true, class: 'btn btn-small btn-primary' }"
+      when 'registered'
+        "<button class='btn btn-small btn-default'>Approved</button>"
+      end
   end
 
 end

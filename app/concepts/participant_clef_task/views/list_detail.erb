@@ -15,9 +15,11 @@
       <%= link_to participant.name, participant_path(participant) %>
     </h5>
     <%= clef_status %>
-    <%= link_to participant_clef_task.eua_file.url,
-          target: :_blank do %>
-      <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+    <% if eua_required? %>
+      <%= link_to participant_clef_task.eua_file.url,
+            target: :_blank do %>
+        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+      <% end %>
     <% end %>
   </div>
     <div class="stats">

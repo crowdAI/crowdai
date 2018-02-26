@@ -1,9 +1,10 @@
 <!--Detail add comment start-->
 <% if current_participant %>
-  <%= render partial: 'submission_comments/form', locals: { submission: @submission, submission_comment: @submission_comment } %>
+  <%= render partial: 'submission_comments/form',
+      locals: { submission: submission } %>
 <% end %>
 
-<% @submission.submission_comments.each do |submission_comment| %>
+<% submission.submission_comments.each do |submission_comment| %>
   <% if submission_comment.persisted? %>
     <div class="discussion-comment">
       <div class="pic">
@@ -12,7 +13,7 @@
         <% end %>
       </div>
       <div class="topic-content">
-        <p class="details">Posted by <%= link_to submission_comment.participant.name, participant_path(submission_comment.participant.id) %> <%= time_ago_in_words(@entry.created_at) %> ago 
+        <p class="details">Posted by <%= link_to submission_comment.participant.name, participant_path(submission_comment.participant.id) %> <%= time_ago_in_words(entry.created_at) %> ago
         <div class="comment">
           <p><%= sanitize(submission_comment.comment) %></p>
         </div>

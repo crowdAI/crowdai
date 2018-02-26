@@ -46,7 +46,10 @@
     </div>
 
     <% if current_participant %>
-      <%= render partial: 'form', locals: { topic: @topic, comment: @comment } %>
+      <%= render partial: 'form',
+            locals: {
+              topic: @topic,
+              comment: @comment } %>
     <% end %>
     <%= concept(Discussion::Cell::Comment,
                   collection: @comments,

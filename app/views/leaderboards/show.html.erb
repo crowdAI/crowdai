@@ -15,6 +15,8 @@
           locals: { entry: @entry, submission: @submission }  %>
 
     <%= render partial: 'leaderboards/show/comments',
-          locals: { submission: @submission } %>
+          locals: {
+            submission: @submission,
+            entry: @entry } %>
   </div>
 </div>

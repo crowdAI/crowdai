@@ -10,7 +10,7 @@ services:
     - redis-server
 
 rvm:
-  - 2.3.4
+  - 2.5.0
 
 env:
   - DB=postgres
@@ -24,6 +24,5 @@ before_install:
   - sleep 3 # give xvfb some time to start
 
 script:
-  - bundle exec rake db:schema:load
-  - bundle exec rake db:test:prepare
-  - bundle exec rspec
+  - bundle exec rake parallel:setup
+  - bundle exec rake parallel:spec

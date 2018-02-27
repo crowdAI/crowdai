@@ -2,6 +2,7 @@ require 'sidekiq/web'
 require 'sidekiq/cron/web'
 
 Rails.application.routes.draw do
+  get '/robots.txt' => RobotsTxt
 
   admin = lambda do |request|
     request.env['warden'].authenticate? && request.env['warden'].user.admin?

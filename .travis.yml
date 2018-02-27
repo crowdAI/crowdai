@@ -24,7 +24,5 @@ before_install:
   - sleep 3 # give xvfb some time to start
 
 script:
-  - bundle exec rake parallel:create
-  - bundle exec rake parallel:prepare
   - bundle exec rake parallel:setup
-  - bundle exec rake parallel:spec 
+  - bundle exec rake parallel:spec

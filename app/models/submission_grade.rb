@@ -4,7 +4,7 @@ class SubmissionGrade < ApplicationRecord
   #after_save :schedule_leaderboard_email
   default_scope { order('created_at DESC') }
 
-  as_enum :grading_status, [:ready, :submitted, :graded, :failed], map: :string, accessor: :whiny
+  as_enum :grading_status, [:ready, :submitted, :graded, :failed, :initiated], map: :string, accessor: :whiny
 
   validates :submission_id, presence: true
   validates :grading_status, presence: true

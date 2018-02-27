@@ -218,6 +218,11 @@ class Api::ExternalGradersController < Api::BaseController
         score_secondary: params[:score_secondary],
         grading_status_cd: 'graded',
         grading_message: params[:grading_message] }
+    when 'initiated'
+      { score: nil,
+        score_secondary: nil,
+        grading_status_cd: 'initiated',
+        grading_message: params[:grading_message] }
     when 'submitted'
       { score: nil,
         score_secondary: nil,
@@ -247,7 +252,7 @@ class Api::ExternalGradersController < Api::BaseController
   end
 
   class GradingStatusInvalid < StandardError
-    def initialize(msg="Grading status must be one of (graded|failed)")
+    def initialize(msg="Grading status must be one of (graded|failed|initiated)")
       super
     end
   end

@@ -83,6 +83,13 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       }
     end
 
+    def valid_attributes_initiated
+      { challenge_client_name: challenge.challenge_client_name,
+        api_key: participant.api_key,
+        grading_status: 'initiated'
+      }
+    end
+
     def valid_attributes_failed_grading
       { challenge_client_name: challenge.challenge_client_name,
         api_key: participant.api_key,
@@ -222,6 +229,27 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(Submission.last.grading_status_cd).to eq('graded')}
       it { expect(Submission.last.post_challenge).to be false }
     end
+
+    context "with valid_attributes_initiated" do
+      before do
+        post '/api/external_graders/',
+          params: valid_attributes_initiated,
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+      end
+      it { expect(response).to have_http_status(202) }
+      it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
+      it { expect(json(response.body)[:submission_id]).to be_a Integer }
+      it { expect(json(response.body)[:submissions_remaining]).to eq(3) }
+      if not ENV['TRAVIS']
+        it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30T06:02:02.000Z") }
+      end
+      it { expect(Submission.count).to eq(4)}
+      it { expect(Submission.last.participant_id).to eq(participant.id)}
+      it { expect(Submission.last.score).to be_nil}
+      it { expect(Submission.last.grading_status_cd).to eq('initiated')}
+      it { expect(Submission.last.post_challenge).to be false }
+    end
+
 
     context "with valid_attributes_failed_grading" do
       before {

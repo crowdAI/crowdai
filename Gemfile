@@ -2,14 +2,14 @@ source 'https://rubygems.org'
 gem 'rails-assets-isInViewport', source: 'https://rails-assets.org'
 gem 'rails-assets-jQuery-File-Upload', source: 'https://rails-assets.org'
 
-ruby "2.3.4"
-gem 'rails', '5.1.3'
+ruby "2.5.0"
+gem 'rails', '5.1.5'
 gem 'pg'
 gem 'puma'
 gem 'puma_worker_killer'
 
 # user accounts / admin
-gem 'devise'
+gem 'devise', '~> 4.4.1'
 gem 'authtrail'
 gem 'pundit'
 gem 'activeadmin'
@@ -17,7 +17,7 @@ gem 'activeadmin'
 # monitoring
 gem 'mini_magick'
 gem 'rollbar'
-gem 'oj', '~> 2.12.14'
+gem 'oj', '~> 3.0'
 gem 'lograge'
 
 
@@ -143,6 +143,7 @@ group :development, :test do
   gem 'rspec-kickstarter'
   gem 'to_factory'
   gem 'traceroute'
+  gem 'parallel_tests'
 end
 
 group :test do
@@ -152,8 +153,8 @@ group :test do
   gem 'capybara'
   gem 'capybara-email'
   gem 'capybara-screenshot'
-  gem 'capybara-webkit', '1.12.0'
-  gem 'nokogiri', '~> 1.8'
+  gem 'capybara-webkit' #, '1.12.0'
+  gem 'nokogiri' #, '~> 1.8'
   gem 'database_cleaner'
   gem "launchy"
   gem 'shoulda'

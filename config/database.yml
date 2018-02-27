@@ -9,7 +9,7 @@ development:
 
 test:
   <<: *default
-  database: crowdai_test
+  database: crowdai_test<%= ENV['TEST_ENV_NUMBER'] %>
 
 production:
   <<: *default

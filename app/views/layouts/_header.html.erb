@@ -59,6 +59,15 @@
         <li><h4><%= link_to 'Account Settings', edit_participant_registration_path %></h4></li>
         <li><h4><%= link_to 'Log Out', destroy_participant_session_path, :method => :delete %></h4></li>
       </ul>
+    <% else %>
+      <ul>
+        <li>
+          <h4><%= link_to "Sign up", new_participant_registration_path %></h4>
+        </li>
+        <li>
+          <h4><%= link_to "Log in", new_participant_session_path %></h4>
+        </li>
+      </ul>
     <% end %>
   </nav>
 </header>

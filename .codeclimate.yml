@@ -33,3 +33,5 @@ exclude_paths:
 - db/
 - spec/
 - vendor/
+- coverage/
+- node_modules/

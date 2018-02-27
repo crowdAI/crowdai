@@ -3,12 +3,11 @@ require 'sidekiq/cron/web'
 
 Rails.application.routes.draw do
   get '/robots.txt' => RobotsTxt
+  use_doorkeeper
 
   admin = lambda do |request|
     request.env['warden'].authenticate? && request.env['warden'].user.admin?
   end
-
-
 
   constraints admin do
     mount Sidekiq::Web => '/sidekiq'

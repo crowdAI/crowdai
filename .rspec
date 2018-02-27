@@ -2,3 +2,5 @@
 --require spec_helper
 --require rails_helper
 --format documentation
+--format progress
+--format ParallelTests::RSpec::FailuresLogger --out tmp/failing_specs.log

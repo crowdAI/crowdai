@@ -63,3 +63,11 @@ function loadMathJax() {
 $(document).on('turbolinks:load', function() {
   loadMathJax();
 });
+
+$(document).on('turbolinks:click', function() {
+  console.log('spinner starts');
+});
+
+$(document).on('turbolinks:load', function() {
+  console.log('spinner stops');
+});

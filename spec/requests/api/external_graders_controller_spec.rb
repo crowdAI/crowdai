@@ -83,6 +83,13 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       }
     end
 
+    def valid_attributes_initiated
+      { challenge_client_name: challenge.challenge_client_name,
+        api_key: participant.api_key,
+        grading_status: 'initiated'
+      }
+    end
+
     def valid_attributes_failed_grading
       { challenge_client_name: challenge.challenge_client_name,
         api_key: participant.api_key,
@@ -142,7 +149,12 @@ RSpec.describe Api::ExternalGradersController, type: :request do
         api_key: participant.api_key,
         grading_status: 'graded',
         score: 0.9763,
-        meta: '{"ips": 31.331645067121766, "impwt": 1.0393851837488273, "impwt_std": 0.43150587404424956, "file_key": "submissions/askdhajskhdkhaskdhkjashdkjhas", "ips_std": 15.590452873518474, "snips": 30.144402245677206, "snips_std": 0.1953088286389569, "message": "", "max_instances": 10000}'
+        meta: {
+          impwt_std: "0.020956583416961033",
+          ips_std: "2.0898337641716487",
+          snips: "45.69345202998776",
+          file_key: "submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"
+        }
       }
     end
 
@@ -217,6 +229,27 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(Submission.last.grading_status_cd).to eq('graded')}
       it { expect(Submission.last.post_challenge).to be false }
     end
+
+    context "with valid_attributes_initiated" do
+      before do
+        post '/api/external_graders/',
+          params: valid_attributes_initiated,
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+      end
+      it { expect(response).to have_http_status(202) }
+      it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
+      it { expect(json(response.body)[:submission_id]).to be_a Integer }
+      it { expect(json(response.body)[:submissions_remaining]).to eq(3) }
+      if not ENV['TRAVIS']
+        it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30T06:02:02.000Z") }
+      end
+      it { expect(Submission.count).to eq(4)}
+      it { expect(Submission.last.participant_id).to eq(participant.id)}
+      it { expect(Submission.last.score).to be_nil}
+      it { expect(Submission.last.grading_status_cd).to eq('initiated')}
+      it { expect(Submission.last.post_challenge).to be false }
+    end
+
 
     context "with valid_attributes_failed_grading" do
       before {
@@ -307,7 +340,9 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(response).to have_http_status(202) }
       it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
       it { expect(json(response.body)[:submission_id]).to be_a Integer }
-      it { expect(Submission.last.meta).to eq(valid_attributes_with_meta[:meta]) }
+      it { expect(Submission.last.meta).to eq({
+        "impwt_std"=>"0.020956583416961033", "ips_std"=>"2.0898337641716487",
+        "snips"=>"45.69345202998776", "file_key"=>"submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"}) }
       it { expect(Submission.last.post_challenge).to be false }
     end
 
@@ -345,7 +380,7 @@ RSpec.describe Api::ExternalGradersController, type: :request do
           params: invalid_grading_status_attributes,
           headers: { 'Authorization': auth_header(organizer.api_key) } }
       it { expect(response).to have_http_status(400) }
-      it { expect(json(response.body)[:message]).to eq("Grading status must be one of (graded|failed)") }
+      it { expect(json(response.body)[:message]).to eq("Grading status must be one of (graded|failed|initiated)") }
       it { expect(json(response.body)[:submission_id]).to be_nil }
       it { expect(json(response.body)[:submissions_remaining]).to eq(3) }
       if not ENV['TRAVIS']
@@ -412,9 +447,47 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       }
     end
 
-    def valid_meta_attributes
+    def valid_meta_attributes_update
       {
-        meta: '{"ips": 31.331645067121766, "impwt": 1.0393851837488273, "impwt_std": 0.43150587404424956, "file_key": "submissions/askdhajskhdkhaskdhkjashdkjhas", "ips_std": 15.590452873518474, "snips": 30.144402245677206, "snips_std": 0.1953088286389569, "message": "", "max_instances": 10000}'
+        meta: {
+          impwt_std: "0.01",
+          ips_std: "3.5",
+          snips: "45.69345202998776",
+          file_key: "submissions/eeeeee-a525-4e5e-97a8-8ff7199be43c"
+        }
+      }
+    end
+
+    def valid_meta_attributes_partial_update
+      {
+        meta: {
+          impwt_std: "0.01",
+          ips_std: "3.5",
+          snips: "45.69345202998776",
+          file_key: "submissions/eeeeee-a525-4e5e-97a8-8ff7199be43c"
+        }
+      }
+    end
+
+    def valid_meta_attributes_add
+      {
+        meta: {
+          impwt_std: "0.020956583416961033",
+          ips_std: "2.0898337641716487",
+          new_key: "hello",
+          file_key: "submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"
+        }
+      }
+    end
+
+    def valid_meta_attributes_multi
+      {
+        meta: {
+          impwt_std: "0.020956583416961033",
+          ips_std: "2.0898337641716487",
+          snips: "45.69345202998776",
+          file_key: "submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"
+        }
       }
     end
 
@@ -449,17 +522,48 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(submission1.media_content_type).to eq(valid_media_attributes[:media_content_type]) }
     end
 
-    context "with valid_meta_attributes" do
+    context "with valid_meta_attributes - update" do
       before do
         patch "/api/external_graders/#{submission1.id}",
-          params: valid_meta_attributes,
+          params: valid_meta_attributes_update,
           headers: { 'Authorization': auth_header(organizer.api_key) }
         submission1.reload
       end
       it { expect(response).to have_http_status(202) }
       it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
       it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
-      it { expect(submission1.meta).to eq(valid_meta_attributes[:meta]) }
+      it { expect(submission1.meta.symbolize_keys).to eq(valid_meta_attributes_update[:meta]) }
+    end
+
+    context "with valid_meta_attributes - partial update" do
+      before do
+        patch "/api/external_graders/#{submission1.id}",
+          params: valid_meta_attributes_partial_update,
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+        submission1.reload
+      end
+      it { expect(response).to have_http_status(202) }
+      it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
+      it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
+      it { expect(submission1.meta.symbolize_keys).to eq({
+        :impwt_std=>"0.01",
+        :ips_std=>"3.5",
+        :snips=>"45.69345202998776", :file_key=>"submissions/eeeeee-a525-4e5e-97a8-8ff7199be43c"}) }
+    end
+
+    context "with valid_meta_attributes - add" do
+      before do
+        patch "/api/external_graders/#{submission1.id}",
+          params: valid_meta_attributes_add,
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+        submission1.reload
+      end
+      it { expect(response).to have_http_status(202) }
+      it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
+      it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
+      it { expect(submission1.meta.symbolize_keys).to eq({
+        :impwt_std=>"0.020956583416961033", :ips_std=>"2.0898337641716487",
+        :new_key=>"hello", :file_key=>"submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"}) }
     end
 
     context "valid_attributes_grading_submitted_with_message" do

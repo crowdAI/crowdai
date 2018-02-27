@@ -29,5 +29,13 @@
       <% end %>
     </td>
     <td class='pull-right'><%= submission.created_at %></td>
+    <td class='action'>
+      <% if submission.challenge.media_on_leaderboard %>
+        <%= link_to challenge_submission_path(submission.challenge_id,submission),
+              class: 'btn btn-secondary' do %>
+                <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
+    </td>
   </tr>
 <% end %>

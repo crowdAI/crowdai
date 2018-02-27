@@ -10,7 +10,7 @@ class Submission < ApplicationRecord
   accepts_nested_attributes_for :submission_files, reject_if: lambda { |f| f[:submission_file_s3_key].blank? }, allow_destroy: true
   has_many :votes, as: :votable
 
-  as_enum :grading_status, [:ready, :submitted, :graded, :failed], map: :string
+  as_enum :grading_status, [:ready, :submitted, :graded, :failed, :initiated], map: :string
 
   validates :participant_id,            presence: true
   validates :challenge_id,              presence: true
@@ -30,6 +30,10 @@ class Submission < ApplicationRecord
 
   def failed?
     self.grading_status == :failed
+  end
+
+  def initiated?
+    self.grading_status == :initiated
   end
 
 

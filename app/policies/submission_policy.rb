@@ -1,15 +1,13 @@
 class SubmissionPolicy < ApplicationPolicy
 
   def index?
-    participant
+    participant && (participant.admin? ||
+      @record.participant_id == participant.id ||
+      @record.challenge.organizer_id == participant.organizer_id )
   end
 
   def show?
-    participant
-  end
-
-  def destroy?
-    participant && participant.admin?
+    true
   end
 
 end

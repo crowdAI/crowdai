@@ -380,7 +380,7 @@ RSpec.describe Api::ExternalGradersController, type: :request do
           params: invalid_grading_status_attributes,
           headers: { 'Authorization': auth_header(organizer.api_key) } }
       it { expect(response).to have_http_status(400) }
-      it { expect(json(response.body)[:message]).to eq("Grading status must be one of (graded|failed)") }
+      it { expect(json(response.body)[:message]).to eq("Grading status must be one of (graded|failed|initiated)") }
       it { expect(json(response.body)[:submission_id]).to be_nil }
       it { expect(json(response.body)[:submissions_remaining]).to eq(3) }
       if not ENV['TRAVIS']

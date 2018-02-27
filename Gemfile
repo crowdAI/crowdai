@@ -3,7 +3,7 @@ gem 'rails-assets-isInViewport', source: 'https://rails-assets.org'
 gem 'rails-assets-jQuery-File-Upload', source: 'https://rails-assets.org'
 
 ruby "2.3.4"
-gem 'rails', '5.1.3'
+gem 'rails', '5.1.5'
 gem 'pg'
 gem 'puma'
 gem 'puma_worker_killer'

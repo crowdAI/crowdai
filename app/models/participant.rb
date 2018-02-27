@@ -1,6 +1,4 @@
 class Participant < ApplicationRecord
-  devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :lockable, :timeoutable
   include FriendlyId
   include ApiKey
   include Countries
@@ -12,7 +10,7 @@ class Participant < ApplicationRecord
   mount_uploader :image_file, ImageUploader
   validates :image_file, file_size: { less_than: 5.megabytes }
 
-  devise :database_authenticatable,  :confirmable,
+  devise :database_authenticatable,  :confirmable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 
   belongs_to :organizer,                  optional: true
@@ -34,8 +32,12 @@ class Participant < ApplicationRecord
   has_many :follows,                      dependent: :destroy
   has_many :participant_clef_tasks,       dependent: :destroy
   has_many :invitations, dependent: :destroy
-
-  #VALID_URL_REGEX = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/
+  has_many :access_grants, class_name: "Doorkeeper::AccessGrant",
+                          foreign_key: :resource_owner_id,
+                          dependent: :destroy
+  has_many :access_tokens, class_name: "Doorkeeper::AccessToken",
+                          foreign_key: :resource_owner_id,
+                          dependent: :destroy
 
   validates :email,
             presence: true,

@@ -13,12 +13,6 @@ class SubmissionsController < ApplicationController
                      .page(params[:page])
                      .per(10)
     @challenge_round_id = @challenge.challenge_rounds.where(active: true)
-    #if params[:participant_id] && @challenge.completed?
-    #  @participant = Participant.find(params[:participant_id])
-    #  @submissions = Submission.where(challenge_id: @challenge.id, participant_id: params[:participant_id], grading_status_cd: 'graded')
-    #else
-    #  @submissions = current_participant.submissions.where(challenge_id: @challenge.id)
-    #end
   end
 
 

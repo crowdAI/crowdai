@@ -84,7 +84,12 @@ class Api::ExternalGradersController < Api::BaseController
         end
       end
       if params[:meta].present?
-        submission.update({meta: params[:meta]})
+        if submission.meta.nil?
+          meta = params[:meta]
+        else
+          meta = submission.meta.deep_merge(params[:meta])
+        end
+        submission.update({meta: meta})
       end
       if params[:grading_status].present?
         submission.submission_grades.create!(grading_params)
@@ -213,6 +218,11 @@ class Api::ExternalGradersController < Api::BaseController
         score_secondary: params[:score_secondary],
         grading_status_cd: 'graded',
         grading_message: params[:grading_message] }
+    when 'initiated'
+      { score: nil,
+        score_secondary: nil,
+        grading_status_cd: 'initiated',
+        grading_message: params[:grading_message] }
     when 'submitted'
       { score: nil,
         score_secondary: nil,
@@ -242,7 +252,7 @@ class Api::ExternalGradersController < Api::BaseController
   end
 
   class GradingStatusInvalid < StandardError
-    def initialize(msg="Grading status must be one of (graded|failed)")
+    def initialize(msg="Grading status must be one of (graded|failed|initiated)")
       super
     end
   end

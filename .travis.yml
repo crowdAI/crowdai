@@ -10,7 +10,7 @@ services:
     - redis-server
 
 rvm:
-  - 2.3.4
+  - 2.5.0
 
 env:
   - DB=postgres

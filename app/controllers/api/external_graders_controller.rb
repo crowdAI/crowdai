@@ -84,7 +84,12 @@ class Api::ExternalGradersController < Api::BaseController
         end
       end
       if params[:meta].present?
-        submission.update({meta: params[:meta]})
+        if submission.meta.nil?
+          meta = params[:meta]
+        else
+          meta = submission.meta.deep_merge(params[:meta])
+        end
+        submission.update({meta: meta})
       end
       if params[:grading_status].present?
         submission.submission_grades.create!(grading_params)

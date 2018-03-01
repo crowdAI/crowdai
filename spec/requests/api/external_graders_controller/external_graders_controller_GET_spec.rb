@@ -74,5 +74,4 @@ RSpec.describe Api::ExternalGradersController, type: :request do
   end
 
   Timecop.return
-
 end

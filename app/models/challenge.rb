@@ -114,13 +114,22 @@ class Challenge < ApplicationRecord
   def submissions_remaining(participant_id)
     case current_round.submission_limit_period
     when :day
-      submissions_today = self.submissions.where("participant_id = ? and created_at >= ?", participant_id, Time.now - 24.hours).order(created_at: :asc)
+      submissions = self.submissions.where("participant_id = ? and created_at >= ?", participant_id, Time.now - 24.hours).order(created_at: :asc)
+      if submissions.blank?
+        reset_time = DateTime.now + 1.day
+        return [(self.daily_submissions - 1),reset_time]
+      else
+        reset_time = submissions.first.created_at + 1.day
+        return [(self.daily_submissions - submissions.count),reset_time]
+      end
+    when :week
+      submissions = self.submissions.where("participant_id = ? and created_at >= ?", participant_id, Time.now - 24.hours).order(created_at: :asc)
       if submissions_today.blank?
         reset_time = DateTime.now + 1.day
         return [(self.daily_submissions - 1),reset_time]
       else
-        reset_time = submissions_today.first.created_at + 1.day
-        return [(self.daily_submissions - submissions_today.count),reset_time]
+        reset_time = submissions.first.created_at + 1.day
+        return [(self.daily_submissions - submissions.count),reset_time]
       end
     when :round
       submissions_in_round = self.submissions.where("participant_id = ? and challenge_round_id = ? and grading_status_cd = 'graded'", participant_id, current_round.id).count

@@ -25,40 +25,35 @@ RSpec.describe Api::ExternalGradersController, type: :request do
   let!(:submission3) { create :submission, challenge: challenge, participant: participant, created_at: 2.days.ago }
 
 
-=begin
   # SUBMISSION INFO
   describe "GET /api/external_graders/:submission_id/submission_info : Submission Info" do
-    describe "with valid organizer auth key" do
+    context "with valid organizer auth key" do
       before {
-        get "/api/external_graders/:id/submission_info",
+        get "/api/external_graders/#{submission1.id}/submission_info",
           headers: {
             'Accept': 'application/vnd.api+json',
             'Content-Type': 'application/vnd.api+json'
           },
           headers: { 'Authorization': auth_header(organizer.api_key) }
         }
-        it { expect(response).to have_http_status(200) }
-        it { expect(json(response.body)[:message]).to eq('Presigned url generated') }
-        it { expect(json(response.body)[:presigned_url]).to be_a_valid_url }
-        it { expect(json(response.body)[:s3_key]).not_to be_nil }
-      end
+      it { expect(response).to have_http_status(200) }
+      it { expect(json(response.body)[:message]).to eq('Submission details found.') }
+      it { expect(json(response.body)[:score]).to eq(submission1.score) }
+    end
 
-      describe "with invalid developer API key" do
-        before {
-          get "/api/external_graders/#{SecureRandom.uuid}/presign/",
+    context "with invalid developer API key" do
+      before {
+        get "/api/external_graders/#{SecureRandom.uuid}/presign/",
             headers: {
               'Accept': 'application/vnd.api+json',
               'Content-Type': 'application/vnd.api+json'
             }
         }
-        it { expect(response).to have_http_status(404) }
-        it { expect(json(response.body)[:message]).to eq('No participant could be found for this API key') }
-        it { expect(json(response.body)[:presigned_url]).to be_nil }
-        it { expect(json(response.body)[:s3_key]).to be_nil }
+      it { expect(response).to have_http_status(404) }
+      it { expect(json(response.body)[:message]).to eq('No participant could be found for this API key') }
+      it { expect(json(response.body)[:id]).to be_nil }
       end
-    end
   end
-=end
-  Timecop.return
 
+  Timecop.return
 end

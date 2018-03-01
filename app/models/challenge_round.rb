@@ -10,7 +10,7 @@ class ChallengeRound < ApplicationRecord
                             greater_than_or_equal_to: 1,
                             allow_nil: true
 
-  as_enum :submission_limit_period, [:day, :round], map: :string
+  as_enum :submission_limit_period, [:day, :week, :round], map: :string
 
   default_scope { order :start_dttm }
 

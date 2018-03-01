@@ -11,10 +11,11 @@
       onclick="copyLink()"
       class='btn btn-secondary'>Copy URL</button>
   </div>
-  <div
-    data-title="Check out this link on crowdAI "
-    data-desc='Share to Facebook'
-    data-url='<%= "#{request.base_url}/#{submission.short_url}" %>' >
+  <div>
+    <span
+      data-title="Check out this link on crowdAI "
+      data-desc='Share to Facebook'
+      data-url='<%= "#{request.base_url}/#{submission.short_url}?utm_source=crowdAI&utm_medium=Facebook" %>'>
     <a
       class="btn btn-secondary btn-facebook"
       rel="nofollow"
@@ -24,7 +25,13 @@
       href="#">
         <i class="fa fa-facebook-official" aria-hidden="true"></i>
     </a>
+  </span>
+  <span
+    data-title="Check out this link on crowdAI "
+    data-desc='Share to Twitter'
+    data-url='<%= "#{request.base_url}/#{submission.short_url}?utm_source=crowdAI&utm_medium=Twitter" %>'>
     <a
+      data-url='<%= "#{request.base_url}/#{submission.short_url}?utm_source=crowdAI&utm_medium=Twitter" %>'
       class="btn btn-secondary btn-twitter"
       rel="nofollow"
       data-site="twitter"
@@ -33,6 +40,7 @@
       href="#">
         <i class="fa fa-twitter" aria-hidden="true"></i>
     </a>
+  </span>
   </div>
 </div>
 <!--Detail add comment end-->

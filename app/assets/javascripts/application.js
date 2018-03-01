@@ -63,3 +63,23 @@ function loadMathJax() {
 $(document).on('turbolinks:load', function() {
   loadMathJax();
 });
+
+// Remove default Turbolinks loader
+Turbolinks.ProgressBar.prototype.refresh = function() {}
+Turbolinks.ProgressBar.defaultCSS = ""
+var loaderTimer;
+
+$(document).on('turbolinks:click', function() {
+  loaderTimer = setTimeout(function(){
+    console.log('spinner starts');
+    $('#page-content').hide();
+    $('#loader-container').show();
+  }, 500);
+});
+
+$(document).on('turbolinks:load', function() {
+  clearTimeout(loaderTimer);
+  console.log('spinner stops');
+  $('#page-content').show();
+  $('#loader-container').hide();
+});

@@ -39,12 +39,14 @@
   </head>
 
   <body id='controller-action', data-controller="<%= controller.controller_name %>" data-action="<%= controller.action_name %>">
-    <div data-behavior="progress-bar" class="progress-bar"></div>
-    <%= render partial: 'layouts/header' %>
-    <%= render 'layouts/flash_messages' %>
-    <%= yield %>
-    <%= insert_paloma_hook %>
-    <%= concept(Footer::Cell, nil, current_participant: current_participant) %>
+    <%= render partial: 'layouts/loader' %>
+    <div id='page-content'>
+      <%= render partial: 'layouts/header' %>
+      <%= render 'layouts/flash_messages' %>
+      <%= yield %>
+      <%= insert_paloma_hook %>
+      <%= concept(Footer::Cell, nil, current_participant: current_participant) %>
+    </div>
     <%= render partial: 'layouts/google_analytics_body' %>
   </body>
 </html>

@@ -52,7 +52,10 @@ class Participant < ApplicationRecord
     length: { minimum: 2 },
     allow_blank: false,
     uniqueness: { case_sensitive: false },
-    format: { without: /\s/ }
+    format: {
+      without: /\s/,
+      message: 'cannot contain spaces'
+    }
   validates :affiliation, length:{ in:2...100}, allow_blank: true
   validates :country_cd, inclusion: { in: ISO3166::Country::codes}, allow_blank: true
   validates :address, length:{ in: 10...255 }, allow_blank: true

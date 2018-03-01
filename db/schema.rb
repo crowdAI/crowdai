@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180227141703) do
+ActiveRecord::Schema.define(version: 20180301113445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -536,19 +536,6 @@ ActiveRecord::Schema.define(version: 20180227141703) do
     t.index ["submission_id"], name: "index_submission_grades_on_submission_id"
   end
 
-  create_table "submission_grades_backup_120218", id: false, force: :cascade do |t|
-    t.integer "id"
-    t.integer "submission_id"
-    t.string "grading_status_cd"
-    t.string "grading_message"
-    t.float "grading_factor"
-    t.float "score"
-    t.float "score_secondary"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "slug"
-  end
-
   create_table "submissions", id: :serial, force: :cascade do |t|
     t.integer "challenge_id"
     t.integer "participant_id"
@@ -571,48 +558,6 @@ ActiveRecord::Schema.define(version: 20180227141703) do
     t.string "short_url"
     t.index ["challenge_id"], name: "index_submissions_on_challenge_id"
     t.index ["participant_id"], name: "index_submissions_on_participant_id"
-  end
-
-  create_table "submissions_backup_120218", id: false, force: :cascade do |t|
-    t.integer "id"
-    t.integer "challenge_id"
-    t.integer "participant_id"
-    t.float "score"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text "description"
-    t.float "score_secondary"
-    t.string "grading_message"
-    t.string "grading_status_cd"
-    t.text "description_markdown"
-    t.integer "vote_count"
-    t.boolean "post_challenge"
-    t.string "api"
-    t.string "media_large"
-    t.string "media_thumbnail"
-    t.string "media_content_type"
-    t.integer "challenge_round_id"
-    t.json "meta"
-  end
-
-  create_table "submissions_backup_290917", id: false, force: :cascade do |t|
-    t.integer "id"
-    t.integer "challenge_id"
-    t.integer "participant_id"
-    t.float "score"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text "description"
-    t.float "score_secondary"
-    t.string "grading_message"
-    t.string "grading_status_cd"
-    t.text "description_markdown"
-    t.integer "vote_count"
-    t.boolean "post_challenge"
-    t.string "api"
-    t.string "media_large"
-    t.string "media_thumbnail"
-    t.string "media_content_type"
   end
 
   create_table "task_dataset_file_downloads", force: :cascade do |t|

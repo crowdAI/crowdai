@@ -1,5 +1,14 @@
 /* Loader */
 
+.loader-container {
+	background-color: $color-grey-03;
+	display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loader,
 .loader-video {
 	background-color: $color-grey-03;
   height: 75px;
@@ -9,4 +18,15 @@
   margin: 0 auto;
   display: inline-block;
   vertical-align: top;
+}
+
+.loader {
+	background-color: transparent;
+	width: 400px;
+	padding: 0;
+	span {
+		display: block;
+		color: $color-grey-54;
+		padding-top: 1em;
+	}
 }

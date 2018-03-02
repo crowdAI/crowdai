@@ -30,8 +30,53 @@ FactoryGirl.define do
       status :running
       dataset_files {[ build(:dataset_file) ]}
       after(:create) do |challenge|
-        FactoryGirl.create(:challenge_round, :historical, challenge: challenge, challenge_round: 'round 1')
-        FactoryGirl.create(:challenge_round, challenge: challenge, challenge_round: 'round 2')
+        FactoryGirl.create(
+          :challenge_round,
+          :historical,
+          challenge: challenge,
+          challenge_round: 'round 1')
+        FactoryGirl.create(
+          :challenge_round,
+          challenge: challenge,
+          challenge_round: 'round 2')
+      end
+    end
+
+    trait :day do
+      status :running
+      dataset_files {[ build(:dataset_file) ]}
+      after(:create) do |challenge|
+        FactoryGirl.create(
+          :challenge_round,
+          challenge: challenge,
+          submission_limit_period: :day)
+      end
+    end
+
+    trait :week do
+      status :running
+      dataset_files {[ build(:dataset_file) ]}
+      after(:create) do |challenge|
+        FactoryGirl.create(
+          :challenge_round,
+          challenge: challenge,
+          submission_limit_period: :week)
+      end
+    end
+
+    trait :round do
+      status :running
+      dataset_files {[ build(:dataset_file) ]}
+      after(:create) do |challenge|
+        FactoryGirl.create(
+          :challenge_round,
+          :historical,
+          challenge: challenge,
+          challenge_round: 'round 1')
+        FactoryGirl.create(
+          :challenge_round,
+          challenge: challenge,
+          challenge_round: 'round 2')
       end
     end
 

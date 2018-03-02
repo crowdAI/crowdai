@@ -40,10 +40,18 @@ class Challenge < ApplicationRecord
                                 reject_if: :all_blank,
                                 allow_destroy: true
 
-  as_enum :status, [:draft, :running, :completed, :terminated, :starting_soon], map: :string
-  as_enum :grader, [:f1_logloss, :discrete_mean_squared_error, :diff_ratio, :manual, :external], map: :string
-  as_enum :primary_sort_order, [:ascending, :descending], map: :string
-  as_enum :secondary_sort_order, [:ascending, :descending, :not_used], map: :string
+  as_enum :status,
+    [:draft, :running, :completed, :terminated, :starting_soon],
+    map: :string
+  as_enum :grader,
+    [:f1_logloss, :discrete_mean_squared_error, :diff_ratio, :manual, :external],
+    map: :string
+  as_enum :primary_sort_order,
+    [:ascending, :descending],
+    map: :string
+  as_enum :secondary_sort_order,
+    [:ascending, :descending, :not_used],
+    map: :string
 
   validates_presence_of :status
   validates_presence_of :challenge
@@ -54,21 +62,22 @@ class Challenge < ApplicationRecord
   validates :challenge_client_name, format: { with: /\A[a-zA-Z0-9]/ }
   validates_presence_of :challenge_client_name
 
-
-  default_scope { order("featured_sequence DESC,
-                         CASE status_cd
-                          WHEN 'running' THEN 1
-                          WHEN 'starting_soon' THEN 2
-                          WHEN 'completed' THEN 3
-                          WHEN 'cancelled' THEN 4
-                          WHEN 'draft' THEN 5
-                          ELSE 6
-                        END, created_at DESC") }
+  default_scope {
+    order("featured_sequence DESC,
+            CASE status_cd
+              WHEN 'running' THEN 1
+              WHEN 'starting_soon' THEN 2
+              WHEN 'completed' THEN 3
+              WHEN 'cancelled' THEN 4
+              WHEN 'draft' THEN 5
+              ELSE 6
+            END, created_at DESC")
+  }
 
   after_initialize do
     if self.new_record?
       self.submission_license = "Please upload your submissions and include a detailed description of the methodology, techniques and insights leveraged with this submission. After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC)."
-      self.daily_submissions = 5
+      #self.daily_submissions = 5
       self.challenge_client_name = "challenge_#{SecureRandom.hex}"
     end
   end
@@ -98,43 +107,28 @@ class Challenge < ApplicationRecord
     end
   end
 
+  def submissions_remaining(participant_id)
+    SubmissionsRemainingQuery
+      .new(challenge: self, participant_id: participant_id).call
+  end
+
   def current_round
-    @current_round ||= self.challenge_round_summaries.where(round_status_cd: 'current').first
+    @current_round ||= self
+                         .challenge_round_summaries
+                         .where(round_status_cd: 'current')
+                         .first
   end
 
   def previous_round
     return nil if current_round.row_num == 1
-    self.challenge_round_summaries.where(row_num: current_round.row_num - 1).first
+    self
+      .challenge_round_summaries
+      .where(row_num: current_round.row_num - 1)
+      .first
   end
 
   def round_open?
     @round_open ||= self.current_round.present?
-  end
-
-  def submissions_remaining(participant_id)
-    case current_round.submission_limit_period
-    when :day
-      submissions = self.submissions.where("participant_id = ? and created_at >= ?", participant_id, Time.now - 24.hours).order(created_at: :asc)
-      if submissions.blank?
-        reset_time = DateTime.now + 1.day
-        return [(self.daily_submissions - 1),reset_time]
-      else
-        reset_time = submissions.first.created_at + 1.day
-        return [(self.daily_submissions - submissions.count),reset_time]
-      end
-    when :week
-      submissions = self.submissions.where("participant_id = ? and created_at >= ?", participant_id, Time.now - 24.hours).order(created_at: :asc)
-      if submissions_today.blank?
-        reset_time = DateTime.now + 1.day
-        return [(self.daily_submissions - 1),reset_time]
-      else
-        reset_time = submissions.first.created_at + 1.day
-        return [(self.daily_submissions - submissions.count),reset_time]
-      end
-    when :round
-      submissions_in_round = self.submissions.where("participant_id = ? and challenge_round_id = ? and grading_status_cd = 'graded'", participant_id, current_round.id).count
-      return [(self.daily_submissions - submissions_in_round), nil]
-    end
   end
 
   def cache_rendered_markdown
@@ -169,14 +163,6 @@ class Challenge < ApplicationRecord
 
   def should_generate_new_friendly_id?
     challenge_changed?
-  end
-
-  def valid_status
-    if self.status == :running
-      if self.dataset_files.none?
-        errors.add(:base, "Challenge cannot start until dataset files are added.")
-      end
-    end
   end
 
   def reset_featured_seq

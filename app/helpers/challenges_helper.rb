@@ -9,4 +9,13 @@ module ChallengesHelper
     end
   end
 
+  def status_dropdown_helper(builder:)
+    challenge = builder.object
+    statuses = Challenge.statuses.hash
+    if challenge.challenge_rounds.none? || challenge.dataset_files.none?
+      statuses = statuses.except(:running,:completed,:terminated)
+    end
+    return builder.select :status, statuses.map {|k,v| [v.humanize,k]}, include_blank: false
+  end
+
 end

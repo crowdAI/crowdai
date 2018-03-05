@@ -6,6 +6,7 @@ class Challenge < ApplicationRecord
   before_save :reset_featured_seq
   belongs_to :organizer
   belongs_to :clef_task, optional: true
+  belongs_to :challenge_round, optional: true
   has_many :dataset_files, dependent: :destroy
   mount_uploader :image_file, ImageUploader
 
@@ -77,7 +78,6 @@ class Challenge < ApplicationRecord
   after_initialize do
     if self.new_record?
       self.submission_license = "Please upload your submissions and include a detailed description of the methodology, techniques and insights leveraged with this submission. After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC)."
-      #self.daily_submissions = 5
       self.challenge_client_name = "challenge_#{SecureRandom.hex}"
     end
   end
@@ -132,31 +132,31 @@ class Challenge < ApplicationRecord
   end
 
   def cache_rendered_markdown
-    if evaluation_markdown_changed?
+    if saved_change_to_attribute?(:evaluation_markdown)
       self.evaluation = Kramdown::Document.new(self.evaluation_markdown,{coderay_line_numbers: nil}).to_html
     end
-    if description_markdown_changed?
+    if saved_change_to_attribute?(:description_markdown)
       self.description = Kramdown::Document.new(self.description_markdown,{coderay_line_numbers: nil}).to_html
     end
-    if rules_markdown_changed?
+    if saved_change_to_attribute?(:rules_markdown)
       self.rules = Kramdown::Document.new(self.rules_markdown,{coderay_line_numbers: nil}).to_html
     end
-    if prizes_markdown_changed?
+    if saved_change_to_attribute?(:prizes_markdown)
       self.prizes = Kramdown::Document.new(self.prizes_markdown,{coderay_line_numbers: nil}).to_html
     end
-    if resources_markdown_changed?
+    if saved_change_to_attribute?(:resources_markdown)
       self.resources = Kramdown::Document.new(self.resources_markdown,{coderay_line_numbers: nil}).to_html
     end
-    if dataset_description_markdown_changed?
+    if saved_change_to_attribute?(:dataset_description_markdown)
       self.dataset_description = Kramdown::Document.new(self.dataset_description_markdown,{coderay_line_numbers: nil}).to_html
     end
-    if submission_instructions_markdown_changed?
+    if saved_change_to_attribute?(:submission_instructions_markdown)
       self.submission_instructions = Kramdown::Document.new(self.submission_instructions_markdown,{coderay_line_numbers: nil}).to_html
     end
-    if license_markdown_changed?
+    if saved_change_to_attribute?(:license_markdown)
       self.license = Kramdown::Document.new(self.license_markdown,{coderay_line_numbers: nil}).to_html
     end
-    if winner_description_markdown_changed?
+    if saved_change_to_attribute?(:winner_description_markdown)
       self.winner_description = Kramdown::Document.new(self.winner_description_markdown,{coderay_line_numbers: nil}).to_html
     end
   end

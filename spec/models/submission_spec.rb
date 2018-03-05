@@ -1,19 +1,6 @@
 require 'rails_helper'
 
 describe Submission do
-  context 'fields' do
-    it { is_expected.to respond_to :score }
-    it { is_expected.to respond_to :description }
-    it { is_expected.to respond_to :score_secondary }
-    it { is_expected.to respond_to :score }
-    it { is_expected.to respond_to :grading_message }
-    it { is_expected.to respond_to :grading_status_cd }
-    it { is_expected.to respond_to :description_markdown }
-    it { is_expected.to respond_to :vote_count }
-    it { is_expected.to respond_to :post_challenge }
-    it { is_expected.to respond_to :short_url }
-  end
-
   context 'associations' do
     it { is_expected.to belong_to(:challenge) }
     it { is_expected.to have_many(:submission_files).dependent(:destroy) }

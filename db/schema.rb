@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180301113445) do
+ActiveRecord::Schema.define(version: 20180305133457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -168,9 +168,6 @@ ActiveRecord::Schema.define(version: 20180301113445) do
     t.text "winner_description_markdown"
     t.text "winner_description"
     t.boolean "winners_tab_active", default: false
-    t.integer "current_challenge_round_id"
-    t.integer "submission_limit"
-    t.string "submission_limit_period_id"
     t.bigint "clef_task_id"
     t.boolean "clef_challenge", default: false
     t.boolean "submissions_page"

@@ -170,9 +170,9 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(response).to have_http_status(202) }
       it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
       it { expect(json(response.body)[:submission_id]).to be_a Integer }
-      it { expect(json(response.body)[:submissions_remaining]).to eq(3) }
+      it { expect(json(response.body)[:submissions_remaining]).to eq(2) }
       if not ENV['TRAVIS']
-        it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30T06:02:02.000Z") }
+        it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30 06:02:02 UTC") }
       end
       it { expect(Submission.count).to eq(4)}
       it { expect(Submission.last.participant_id).to eq(participant.id)}
@@ -190,9 +190,9 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(response).to have_http_status(202) }
       it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
       it { expect(json(response.body)[:submission_id]).to be_a Integer }
-      it { expect(json(response.body)[:submissions_remaining]).to eq(3) }
+      it { expect(json(response.body)[:submissions_remaining]).to eq(2) }
       if not ENV['TRAVIS']
-        it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30T06:02:02.000Z") }
+        it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30 06:02:02 UTC") }
       end
       it { expect(Submission.count).to eq(4)}
       it { expect(Submission.last.participant_id).to eq(participant.id)}
@@ -335,7 +335,7 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(json(response.body)[:submission_id]).to be_nil }
       it { expect(json(response.body)[:submissions_remaining]).to eq(3) }
       if not ENV['TRAVIS']
-        it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30T06:02:02.000Z") }
+        it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30 06:02:02 UTC") }
       end
     end
 
@@ -351,7 +351,7 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(json(response.body)[:submission_id]).to be_nil }
       it { expect(json(response.body)[:submissions_remaining]).to eq(0) }
       if not ENV['TRAVIS']
-        it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30T06:02:02.000Z") }
+        it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30 06:02:02 UTC") }
       end
     end
 
@@ -391,20 +391,16 @@ RSpec.describe Api::ExternalGradersController, type: :request do
 
     context 'post challenge submission' do
         before do
-          Timecop.freeze(DateTime.new(2018, 1, 5, 2, 2, 2, "+02:00"))
           post '/api/external_graders/',
             params: valid_attributes,
             headers: { 'Authorization': auth_header(organizer.api_key) }
         end
-        after do
-          Timecop.return
-        end
         it { expect(response).to have_http_status(202) }
         it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
         it { expect(json(response.body)[:submission_id]).to be_a Integer }
-        it { expect(json(response.body)[:submissions_remaining]).to eq(4) }
+        it { expect(json(response.body)[:submissions_remaining]).to eq(2) }
         if not ENV['TRAVIS']
-          it { expect(json(response.body)[:reset_dttm]).to eq("2018-01-06T01:02:02.000+01:00") }
+          it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30 06:02:02 UTC") }
         end
         it { expect(Submission.count).to eq(4)}
         it { expect(Submission.last.participant_id).to eq(participant.id)}

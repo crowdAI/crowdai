@@ -1,18 +1,6 @@
 require 'rails_helper'
 
 describe Article do
-  context 'fields' do
-    it { is_expected.to respond_to :article }
-    it { is_expected.to respond_to :summary }
-    it { is_expected.to respond_to :published }
-    it { is_expected.to respond_to :vote_count }
-    it { is_expected.to respond_to :view_count }
-    it { is_expected.to respond_to :slug }
-    it { is_expected.to respond_to :image_file }
-    it { is_expected.to respond_to :category }
-    it { is_expected.to respond_to :image_file }
-  end
-
   context 'associations' do
     it { is_expected.to belong_to(:participant) }
     it { is_expected.to have_many(:votes) }

@@ -1,12 +1,6 @@
 require 'rails_helper'
 
 describe Topic do
-  context 'fields' do
-    it { is_expected.to respond_to :topic }
-    it { is_expected.to respond_to :views }
-    it { is_expected.to respond_to :vote_count }
-  end
-
   context 'associations' do
     it { is_expected.to belong_to(:challenge) }
     it { is_expected.to belong_to(:participant) }

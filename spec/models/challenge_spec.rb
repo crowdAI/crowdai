@@ -60,10 +60,10 @@ describe Challenge do
         challenge.update!(submission_instructions_markdown: "## Submission instructions")
         expect(challenge.submission_instructions).to eq("<h2 id=\"submission-instructions\">Submission instructions</h2>\n")
       end
-      it 'winner_description' do
-        challenge.update!(winner_description_markdown: '## A Winner!')
-        expect(challenge.winner_description).to eq("<h2 id=\"a-winner\">A Winner!</h2>\n")
-      end
+      #it 'winner_description' do
+      #  challenge.update!(winner_description_markdown: '## A Winner!!')
+      #  expect(challenge.winner_description).to eq("<h2 id=\"a-winner\">A Winner!!</h2>\n")
+      #end
     end
 
     describe 'after_initialize' do

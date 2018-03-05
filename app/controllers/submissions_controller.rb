@@ -125,8 +125,7 @@ class SubmissionsController < ApplicationController
 
 
     def set_submissions_remaining
-      submissions_today = Submission.where("participant_id = ? and created_at >= ?", current_participant.id, Time.now - 24.hours).count
-      @submissions_remaining = (@challenge.daily_submissions - submissions_today)
+      @submissions_remaining = @challenge.submissions_remaining(current_participant.id)
     end
 
     def notify_admins

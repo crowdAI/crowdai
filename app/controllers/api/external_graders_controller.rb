@@ -2,7 +2,7 @@ class Api::ExternalGradersController < Api::BaseController
   before_action :auth_by_api_key, only: [:show, :update]
   before_action :auth_by_api_key_and_client_id, only: [:create]
 
-  def show
+  def show #GET
     participant = Participant.where(api_key: params[:id]).first
     if participant.present?
       message = "Developer API key is valid"
@@ -18,7 +18,7 @@ class Api::ExternalGradersController < Api::BaseController
   end
 
 
-  def create
+  def create #POST
     message = nil
     status = nil
     submission_id = nil
@@ -27,19 +27,23 @@ class Api::ExternalGradersController < Api::BaseController
     begin
       participant = Participant.where(api_key: params[:api_key]).first
       raise DeveloperAPIKeyInvalid if participant.nil?
-      challenge = Challenge.where(challenge_client_name: params[:challenge_client_name]).first
+      challenge = Challenge.where(
+                    challenge_client_name: params[:challenge_client_name]).first
       challenge_round_id = get_challenge_round_id(challenge)
       raise ChallengeClientNameInvalid if challenge.nil?
       raise ChallengeRoundNotOpen unless challenge_round_open?(challenge)
       raise ParticipantNotQualified unless participant_qualified?(challenge,participant)
+
       submissions_remaining, reset_dttm = challenge.submissions_remaining(participant.id)
       raise NoSubmissionSlotsRemaining if submissions_remaining < 1
-      submission = Submission.create!(participant_id: participant.id,
-                                      challenge_id: challenge.id,
-                                      challenge_round_id: challenge_round_id,
-                                      description_markdown: params[:comment],
-                                      post_challenge: post_challenge(challenge),
-                                      meta: params[:meta])
+      submission = Submission
+                     .create!(
+                       participant_id: participant.id,
+                       challenge_id: challenge.id,
+                       challenge_round_id: challenge_round_id,
+                       description_markdown: params[:comment],
+                       post_challenge: post_challenge(challenge),
+                       meta: params[:meta])
       if media_fields_present?
         submission.update({media_large: params[:media_large],
                            media_thumbnail: params[:media_thumbnail],
@@ -48,6 +52,8 @@ class Api::ExternalGradersController < Api::BaseController
       submission.submission_grades.create!(grading_params)
       submission_id = submission.id
       notify_admins(submission)
+
+      submissions_remaining, reset_dttm = challenge.submissions_remaining(participant.id)
       message = "Participant #{participant.name} scored"
       status = :accepted
     rescue => e
@@ -62,7 +68,7 @@ class Api::ExternalGradersController < Api::BaseController
     end
   end
 
-  def update
+  def update #PATCH
     message = nil
     status = nil
     submission_id = params[:id]
@@ -181,7 +187,9 @@ class Api::ExternalGradersController < Api::BaseController
   def challenge_round_open?(challenge)
     return true if challenge.current_round.present?
     round = ChallengeRoundSummary
-              .where(challenge_id: challenge.id, round_status_cd: 'current')
+              .where(challenge_id:
+                challenge.id,
+                round_status_cd: 'current')
               .where("current_timestamp between start_dttm and end_dttm")
     return false if round.empty?
   end

@@ -1,14 +1,6 @@
 require 'rails_helper'
 
 describe ArticleSection do
-  context 'fields' do
-    it { is_expected.to respond_to :seq }
-    it { is_expected.to respond_to :description_markdown }
-    it { is_expected.to respond_to :description }
-    it { is_expected.to respond_to :section }
-    it { is_expected.to respond_to :slug }
-  end
-
   context 'associations' do
     it { is_expected.to belong_to(:article) }
   end

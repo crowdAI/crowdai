@@ -1,28 +1,6 @@
 require 'rails_helper'
 
 describe Participant do
-  context 'fields' do
-    it { is_expected.to respond_to :email }
-    it { is_expected.to respond_to :admin }
-    it { is_expected.to respond_to :timezone }
-    it { is_expected.to respond_to :name}
-    it { is_expected.to respond_to :bio }
-    it { is_expected.to respond_to :website }
-    it { is_expected.to respond_to :github }
-    it { is_expected.to respond_to :linkedin }
-    it { is_expected.to respond_to :twitter }
-    it { is_expected.to respond_to :account_disabled }
-    it { is_expected.to respond_to :account_disabled_reason }
-    it { is_expected.to respond_to :account_disabled_dttm }
-    it { is_expected.to respond_to :slug }
-    it { is_expected.to respond_to :api_key }
-    it { is_expected.to respond_to :affiliation }
-    it { is_expected.to respond_to :address }
-    it { is_expected.to respond_to :country_cd }
-    it { is_expected.to respond_to :image_file }
-  end
-
-
   context 'associations' do
     it { is_expected.to belong_to(:organizer) }
     it { is_expected.to have_many(:submissions) }

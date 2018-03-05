@@ -1,13 +1,6 @@
 require 'rails_helper'
 
 describe Comment do
-  context 'fields' do
-    it { is_expected.to respond_to :slug }
-    it { is_expected.to respond_to :vote_count }
-    it { is_expected.to respond_to :comment }
-    it { is_expected.to respond_to :comment_markdown }
-  end
-
   context 'associations' do
     it { is_expected.to belong_to(:topic) }
     it { is_expected.to belong_to(:participant) }

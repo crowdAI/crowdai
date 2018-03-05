@@ -25,55 +25,6 @@ RSpec.describe Api::ExternalGradersController, type: :request do
   let!(:submission3) { create :submission, challenge: challenge, participant: participant, created_at: 2.days.ago }
 
 
-  describe "GET /api/external_graders/:api_key : validate user API key" do
-    context 'individual developer API key validation' do
-      describe "with valid organizer auth key" do
-        before {
-          get "/api/external_graders/#{participant.api_key}",
-            headers: {
-              'Accept': 'application/vnd.api+json',
-              'Content-Type': 'application/vnd.api+json',
-              'Authorization': auth_header(organizer.api_key) } }
-        it { expect(response).to have_http_status(200) }
-        it { expect(response.body).to eq('{"message":"Developer API key is valid","participant_id":' + participant.id.to_s + '}') }
-      end
-
-      describe "with crowdAI auth key" do
-        before {
-          get "/api/external_graders/#{participant.api_key}",
-            headers: {
-              'Accept': 'application/vnd.api+json',
-              'Content-Type': 'application/vnd.api+json',
-              'Authorization': auth_header(ENV['CROWDAI_API_KEY']) } }
-        it { expect(response).to have_http_status(200) }
-        it { expect(response.body).to eq('{"message":"Developer API key is valid","participant_id":' + participant.id.to_s + '}') }
-      end
-
-      describe "with invalid auth key" do
-        before {
-          get "/api/external_graders/#{participant.api_key}",
-            headers: {
-              'Accept': 'application/vnd.api+json',
-              'Content-Type': 'application/vnd.api+json',
-              'Authorization': auth_header('8f071908c5762b94dsc23a0a2e3asdesd1f726') } }
-        it { expect(response).to have_http_status(401) }
-        it { expect(response.body).to eq("HTTP Token: Access denied.\n") }
-      end
-
-      describe "with invalid developer key" do
-        before {
-          get "/api/external_graders/264358f071908c5762b9423a01f72662",
-            headers: {
-              'Accept': 'application/vnd.api+json',
-              'Content-Type': 'application/vnd.api+json',
-              'Authorization': auth_header(organizer.api_key) } }
-        it { expect(response).to have_http_status(404) }
-        it { expect(response.body).to eq('{"message":"No participant could be found for this API key","participant_id":null}') }
-      end
-    end
-  end
-
-
   describe "POST /api/external_graders/ : create submission" do
     def valid_attributes
       { challenge_client_name: challenge.challenge_client_name,
@@ -219,9 +170,9 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(response).to have_http_status(202) }
       it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
       it { expect(json(response.body)[:submission_id]).to be_a Integer }
-      it { expect(json(response.body)[:submissions_remaining]).to eq(3) }
+      it { expect(json(response.body)[:submissions_remaining]).to eq(2) }
       if not ENV['TRAVIS']
-        it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30T06:02:02.000Z") }
+        it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30 06:02:02 UTC") }
       end
       it { expect(Submission.count).to eq(4)}
       it { expect(Submission.last.participant_id).to eq(participant.id)}
@@ -239,9 +190,9 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(response).to have_http_status(202) }
       it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
       it { expect(json(response.body)[:submission_id]).to be_a Integer }
-      it { expect(json(response.body)[:submissions_remaining]).to eq(3) }
+      it { expect(json(response.body)[:submissions_remaining]).to eq(2) }
       if not ENV['TRAVIS']
-        it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30T06:02:02.000Z") }
+        it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30 06:02:02 UTC") }
       end
       it { expect(Submission.count).to eq(4)}
       it { expect(Submission.last.participant_id).to eq(participant.id)}
@@ -384,7 +335,7 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(json(response.body)[:submission_id]).to be_nil }
       it { expect(json(response.body)[:submissions_remaining]).to eq(3) }
       if not ENV['TRAVIS']
-        it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30T06:02:02.000Z") }
+        it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30 06:02:02 UTC") }
       end
     end
 
@@ -400,26 +351,56 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(json(response.body)[:submission_id]).to be_nil }
       it { expect(json(response.body)[:submissions_remaining]).to eq(0) }
       if not ENV['TRAVIS']
+        it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30 06:02:02 UTC") }
+      end
+    end
+
+=begin
+    context 'participant has made their weekly limit of submissions' do
+      before do
+        5.times {
+          post '/api/external_graders/',
+          params: valid_attributes,
+          headers: { 'Authorization': auth_header(organizer.api_key) } }
+      end
+      it { expect(response).to have_http_status(400) }
+      it { expect(json(response.body)[:message]).to eq("The participant has no submission slots remaining for today.") }
+      it { expect(json(response.body)[:submission_id]).to be_nil }
+      it { expect(json(response.body)[:submissions_remaining]).to eq(0) }
+      if not ENV['TRAVIS']
         it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30T06:02:02.000Z") }
       end
     end
 
+    context 'participant has made their challenge round limit of submissions' do
+      before do
+        5.times {
+          post '/api/external_graders/',
+          params: valid_attributes,
+          headers: { 'Authorization': auth_header(organizer.api_key) } }
+      end
+      it { expect(response).to have_http_status(400) }
+      it { expect(json(response.body)[:message]).to eq("The participant has no submission slots remaining for today.") }
+      it { expect(json(response.body)[:submission_id]).to be_nil }
+      it { expect(json(response.body)[:submissions_remaining]).to eq(0) }
+      if not ENV['TRAVIS']
+        it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30T06:02:02.000Z") }
+      end
+    end
+=end
+
     context 'post challenge submission' do
         before do
-          Timecop.freeze(DateTime.new(2018, 1, 5, 2, 2, 2, "+02:00"))
           post '/api/external_graders/',
             params: valid_attributes,
             headers: { 'Authorization': auth_header(organizer.api_key) }
         end
-        after do
-          Timecop.return
-        end
         it { expect(response).to have_http_status(202) }
         it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
         it { expect(json(response.body)[:submission_id]).to be_a Integer }
-        it { expect(json(response.body)[:submissions_remaining]).to eq(4) }
+        it { expect(json(response.body)[:submissions_remaining]).to eq(2) }
         if not ENV['TRAVIS']
-          it { expect(json(response.body)[:reset_dttm]).to eq("2018-01-06T01:02:02.000+01:00") }
+          it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30 06:02:02 UTC") }
         end
         it { expect(Submission.count).to eq(4)}
         it { expect(Submission.last.participant_id).to eq(participant.id)}
@@ -430,233 +411,6 @@ RSpec.describe Api::ExternalGradersController, type: :request do
 
   end  # POST
 
-  describe "PATCH /api/external_graders/:submission_id : update submission score or media" do
-    def valid_media_attributes
-      {
-        media_large: '/s3 url',
-        media_thumbnail: '/s3_thumbail',
-        media_content_type: 'application/png'
-      }
-    end
-
-    def valid_regrade_attributes
-      {
-        media_large: '/s3 url',
-        media_thumbnail: '/s3_thumbail',
-        media_content_type: 'application/png'
-      }
-    end
-
-    def valid_meta_attributes_update
-      {
-        meta: {
-          impwt_std: "0.01",
-          ips_std: "3.5",
-          snips: "45.69345202998776",
-          file_key: "submissions/eeeeee-a525-4e5e-97a8-8ff7199be43c"
-        }
-      }
-    end
-
-    def valid_meta_attributes_partial_update
-      {
-        meta: {
-          impwt_std: "0.01",
-          ips_std: "3.5",
-          snips: "45.69345202998776",
-          file_key: "submissions/eeeeee-a525-4e5e-97a8-8ff7199be43c"
-        }
-      }
-    end
-
-    def valid_meta_attributes_add
-      {
-        meta: {
-          impwt_std: "0.020956583416961033",
-          ips_std: "2.0898337641716487",
-          new_key: "hello",
-          file_key: "submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"
-        }
-      }
-    end
-
-    def valid_meta_attributes_multi
-      {
-        meta: {
-          impwt_std: "0.020956583416961033",
-          ips_std: "2.0898337641716487",
-          snips: "45.69345202998776",
-          file_key: "submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"
-        }
-      }
-    end
-
-    def invalid_incomplete_media_attributes
-      {
-        media_large: '/s3 url',
-        media_thumbnail: '/s3_thumbail',
-        media_content_type: nil
-      }
-    end
-
-    def valid_attributes_grading_submitted_with_message
-      { challenge_client_name: challenge.challenge_client_name,
-        api_key: participant.api_key,
-        grading_status: 'submitted',
-        grading_message: 'in progress'
-      }
-    end
-
-    context "with valid_media_attributes" do
-      before do
-        patch "/api/external_graders/#{submission1.id}",
-          params: valid_media_attributes,
-          headers: { 'Authorization': auth_header(organizer.api_key) }
-        submission1.reload
-      end
-      it { expect(response).to have_http_status(202) }
-      it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
-      it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
-      it { expect(submission1.media_large).to eq(valid_media_attributes[:media_large]) }
-      it { expect(submission1.media_thumbnail).to eq(valid_media_attributes[:media_thumbnail]) }
-      it { expect(submission1.media_content_type).to eq(valid_media_attributes[:media_content_type]) }
-    end
-
-    context "with valid_meta_attributes - update" do
-      before do
-        patch "/api/external_graders/#{submission1.id}",
-          params: valid_meta_attributes_update,
-          headers: { 'Authorization': auth_header(organizer.api_key) }
-        submission1.reload
-      end
-      it { expect(response).to have_http_status(202) }
-      it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
-      it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
-      it { expect(submission1.meta.symbolize_keys).to eq(valid_meta_attributes_update[:meta]) }
-    end
-
-    context "with valid_meta_attributes - partial update" do
-      before do
-        patch "/api/external_graders/#{submission1.id}",
-          params: valid_meta_attributes_partial_update,
-          headers: { 'Authorization': auth_header(organizer.api_key) }
-        submission1.reload
-      end
-      it { expect(response).to have_http_status(202) }
-      it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
-      it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
-      it { expect(submission1.meta.symbolize_keys).to eq({
-        :impwt_std=>"0.01",
-        :ips_std=>"3.5",
-        :snips=>"45.69345202998776", :file_key=>"submissions/eeeeee-a525-4e5e-97a8-8ff7199be43c"}) }
-    end
-
-    context "with valid_meta_attributes - add" do
-      before do
-        patch "/api/external_graders/#{submission1.id}",
-          params: valid_meta_attributes_add,
-          headers: { 'Authorization': auth_header(organizer.api_key) }
-        submission1.reload
-      end
-      it { expect(response).to have_http_status(202) }
-      it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
-      it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
-      it { expect(submission1.meta.symbolize_keys).to eq({
-        :impwt_std=>"0.020956583416961033", :ips_std=>"2.0898337641716487",
-        :new_key=>"hello", :file_key=>"submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"}) }
-    end
-
-    context "valid_attributes_grading_submitted_with_message" do
-      before do
-        patch "/api/external_graders/#{submission1.id}",
-          params: valid_attributes_grading_submitted_with_message,
-          headers: { 'Authorization': auth_header(organizer.api_key) }
-        submission1.reload
-      end
-      it { expect(response).to have_http_status(202) }
-      it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
-      it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
-      it { expect(submission1.grading_status_cd).to eq('submitted') }
-      it { expect(submission1.grading_message).to eq('in progress') }
-    end
-
-    context "with invalid submission id" do
-      before {
-        patch "/api/external_graders/999999",
-          params: valid_media_attributes,
-          headers: { 'Authorization': auth_header(organizer.api_key) } }
-      it { expect(response).to have_http_status(400) }
-      it { expect(json(response.body)[:message]).to eq("Couldn't find Submission with 'id'=999999") }
-    end
-  end
-
-  # PRESIGN
-  describe "GET /api/external_graders/presign : get presigned S3 url" do
-    context 'individual developer API key validation' do
-      describe "with valid organizer auth key" do
-        before {
-          get "/api/external_graders/#{participant.api_key}/presign",
-            headers: {
-              'Accept': 'application/vnd.api+json',
-              'Content-Type': 'application/vnd.api+json'
-            }
-          }
-        it { expect(response).to have_http_status(200) }
-        it { expect(json(response.body)[:message]).to eq('Presigned url generated') }
-        it { expect(json(response.body)[:presigned_url]).to be_a_valid_url }
-        it { expect(json(response.body)[:s3_key]).not_to be_nil }
-      end
-
-      describe "with invalid developer API key" do
-        before {
-          get "/api/external_graders/#{SecureRandom.uuid}/presign/",
-            headers: {
-              'Accept': 'application/vnd.api+json',
-              'Content-Type': 'application/vnd.api+json'
-            }
-        }
-        it { expect(response).to have_http_status(404) }
-        it { expect(json(response.body)[:message]).to eq('No participant could be found for this API key') }
-        it { expect(json(response.body)[:presigned_url]).to be_nil }
-        it { expect(json(response.body)[:s3_key]).to be_nil }
-      end
-    end
-  end
-
-=begin
-  # SUBMISSION INFO
-  describe "GET /api/external_graders/:submission_id/submission_info : Submission Info" do
-    describe "with valid organizer auth key" do
-      before {
-        get "/api/external_graders/:id/submission_info",
-          headers: {
-            'Accept': 'application/vnd.api+json',
-            'Content-Type': 'application/vnd.api+json'
-          },
-          headers: { 'Authorization': auth_header(organizer.api_key) }
-        }
-        it { expect(response).to have_http_status(200) }
-        it { expect(json(response.body)[:message]).to eq('Presigned url generated') }
-        it { expect(json(response.body)[:presigned_url]).to be_a_valid_url }
-        it { expect(json(response.body)[:s3_key]).not_to be_nil }
-      end
-
-      describe "with invalid developer API key" do
-        before {
-          get "/api/external_graders/#{SecureRandom.uuid}/presign/",
-            headers: {
-              'Accept': 'application/vnd.api+json',
-              'Content-Type': 'application/vnd.api+json'
-            }
-        }
-        it { expect(response).to have_http_status(404) }
-        it { expect(json(response.body)[:message]).to eq('No participant could be found for this API key') }
-        it { expect(json(response.body)[:presigned_url]).to be_nil }
-        it { expect(json(response.body)[:s3_key]).to be_nil }
-      end
-    end
-  end
-=end
   Timecop.return
 
 end

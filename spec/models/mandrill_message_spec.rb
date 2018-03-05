@@ -1,12 +1,6 @@
 require 'rails_helper'
 
 describe MandrillMessage do
-  context 'fields' do
-    it { is_expected.to respond_to :res }
-    it { is_expected.to respond_to :message }
-    it { is_expected.to respond_to :meta }
-  end
-
   context 'methods' do
     let!(:man) { create :mandrill_message }
     it { expect(man.status).to eq('sent') }

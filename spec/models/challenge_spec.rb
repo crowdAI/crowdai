@@ -1,54 +1,6 @@
 require 'rails_helper'
 
 describe Challenge do
-  context 'fields' do
-    it { is_expected.to respond_to :challenge }
-    it { is_expected.to respond_to :status_cd }
-    it { is_expected.to respond_to :description }
-    it { is_expected.to respond_to :evaluation_markdown }
-    it { is_expected.to respond_to :rules }
-    it { is_expected.to respond_to :prizes }
-    it { is_expected.to respond_to :resources }
-    it { is_expected.to respond_to :dataset_description }
-    it { is_expected.to respond_to :submission_instructions }
-    it { is_expected.to respond_to :tagline }
-    it { is_expected.to respond_to :evaluation }
-    it { is_expected.to respond_to :primary_sort_order_cd }
-    it { is_expected.to respond_to :secondary_sort_order_cd }
-    it { is_expected.to respond_to :description_markdown }
-    it { is_expected.to respond_to :rules_markdown }
-    it { is_expected.to respond_to :prizes_markdown }
-    it { is_expected.to respond_to :resources_markdown }
-    it { is_expected.to respond_to :dataset_description_markdown }
-    it { is_expected.to respond_to :submission_instructions_markdown }
-    it { is_expected.to respond_to :perpetual_challenge }
-    it { is_expected.to respond_to :grading_factor }
-    it { is_expected.to respond_to :grader_cd }
-    it { is_expected.to respond_to :answer_file_s3_key }
-    it { is_expected.to respond_to :page_views }
-    it { is_expected.to respond_to :license }
-    it { is_expected.to respond_to :license_markdown }
-    it { is_expected.to respond_to :participant_count }
-    it { is_expected.to respond_to :submission_count }
-    it { is_expected.to respond_to :score_title }
-    it { is_expected.to respond_to :automatic_grading }
-    it { is_expected.to respond_to :slug }
-    it { is_expected.to respond_to :submission_license }
-    it { is_expected.to respond_to :score_secondary_title }
-    it { is_expected.to respond_to :daily_submissions }
-    it { is_expected.to respond_to :threshold }
-    it { is_expected.to respond_to :media_on_leaderboard }
-    it { is_expected.to respond_to :vote_count }
-    it { is_expected.to respond_to :image_file }
-    it { is_expected.to respond_to :featured_sequence }
-    it { is_expected.to respond_to :dynamic_content_flag }
-    it { is_expected.to respond_to :dynamic_content_tab}
-    it { is_expected.to respond_to :dynamic_content}
-    it { is_expected.to respond_to :winner_description_markdown }
-    it { is_expected.to respond_to :winner_description }
-    it { is_expected.to respond_to :winners_tab_active }
-  end
-
   context 'associations' do
     it { is_expected.to belong_to(:organizer) }
     it { is_expected.to have_many(:dataset_files) }
@@ -66,20 +18,17 @@ describe Challenge do
     it { is_expected.to have_many(:challenge_rounds) }
   end
 
-  describe 'indexes' do
-    it { is_expected.to have_db_index ["organizer_id"] }
-  end
 
-=begin
+
   context 'validations' do
     it { is_expected.to validate_presence_of(:challenge) }
     it { is_expected.to validate_presence_of(:status) }
     it { is_expected.to validate_presence_of(:organizer_id) }
-    it { is_expected.to validate_presence_of(:grader) }
+    #it { is_expected.to validate_presence_of(:grader) }
     it { is_expected.to validate_presence_of(:primary_sort_order) }
     it { is_expected.to validate_presence_of(:grading_factor) }
   end
-=end
+
   context 'methods' do
     describe 'validate markdown fields' do
       let(:challenge) { create :challenge }
@@ -111,20 +60,18 @@ describe Challenge do
         challenge.update!(submission_instructions_markdown: "## Submission instructions")
         expect(challenge.submission_instructions).to eq("<h2 id=\"submission-instructions\">Submission instructions</h2>\n")
       end
-      it 'winner_description' do
-        challenge.update!(winner_description_markdown: '## A Winner!')
-        expect(challenge.winner_description).to eq("<h2 id=\"a-winner\">A Winner!</h2>\n")
-      end
+      #it 'winner_description' do
+      #  challenge.update!(winner_description_markdown: '## A Winner!!')
+      #  expect(challenge.winner_description).to eq("<h2 id=\"a-winner\">A Winner!!</h2>\n")
+      #end
     end
 
     describe 'after_initialize' do
       it 'sets submission information defaults' do
         challenge = create(:challenge)
         expect(challenge.submission_license).to eq("Please upload your submissions and include a detailed description of the methodology, techniques and insights leveraged with this submission. After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC).")
-        expect(challenge.daily_submissions).to eq(5)
       end
     end
-
 
     describe '#record_page_view' do
       it 'returns 1 for the first view' do
@@ -137,30 +84,6 @@ describe Challenge do
         article = build(:article)
         3.times { article.record_page_view }
         expect(article.view_count).to eq(3)
-      end
-    end
-
-    describe '#valid_status' do
-      #it 'does not allow a challenge to be running without dataset files' do
-      #  challenge = create(:challenge)
-      #  expect {
-      #    challenge.update!(status: :running)
-      #  }.to raise_error(ActiveRecord::RecordInvalid)
-      #end
-
-      it 'prevents a draft challenge being cancelled' do
-        challenge = create(:challenge, :draft)
-        expect {
-          challenge.update!(status: :cancelled)
-        }.to raise_error(ActiveRecord::RecordInvalid)
-      end
-
-      it 'prevents a completed challenge being cancelled' do
-        challenge = create(:challenge, :draft)
-        expect {
-          challenge.update!(status: :completed)
-          challenge.update!(status: :cancelled)
-        }.to raise_error(ActiveRecord::RecordInvalid)
       end
     end
 

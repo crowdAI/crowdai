@@ -1,15 +1,6 @@
 require 'rails_helper'
 
 describe Organizer do
-  context 'fields' do
-    it { is_expected.to respond_to :organizer }
-    it { is_expected.to respond_to :address }
-    it { is_expected.to respond_to :description }
-    it { is_expected.to respond_to :approved }
-    it { is_expected.to respond_to :api_key }
-    it { is_expected.to respond_to :clef_organizer }
-  end
-
   context 'associations' do
     it { is_expected.to have_many(:challenges) }
     it { is_expected.to have_many(:participants) }

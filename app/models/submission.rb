@@ -16,6 +16,13 @@ class Submission < ApplicationRecord
   validates :challenge_id,              presence: true
   validates :grading_status,            presence: true
 
+  after_create do
+    rnd = self.challenge.challenge_rounds.where('start_dttm <= ? and end_dttm >= ?',self.created_at,self.created_at).first
+    if rnd.present?
+      self.update(challenge_round_id: rnd.id)
+    end
+  end
+
   def ready?
     self.grading_status == :ready
   end
@@ -39,7 +46,7 @@ class Submission < ApplicationRecord
 
   private
   def cache_rendered_markdown
-    if self.description_markdown && description_markdown_changed?
+    if self.description_markdown && saved_change_to_attribute?(:description_markdown)
       self.description = Kramdown::Document.new(self.description_markdown,{coderay_line_numbers: nil}).to_html
     end
   end

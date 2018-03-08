@@ -4,7 +4,7 @@ services:
     image: 'postgres:9.6-alpine'
     environment:
       POSTGRES_USER: 'crowdai'
-      POSTGRES_PASSWORD: 'apassword'
+      POSTGRES_PASSWORD: 'postgrespassword'
     ports:
       - '5432:5432'
     volumes:
@@ -12,16 +12,52 @@ services:
 
   redis:
     image: 'redis:3.2-alpine'
-    command: redis-server --requirepass apassword
+    command: redis-server --requirepass redispassword
     ports:
       - '6379:6379'
     volumes:
       - 'redis:/data'
 
+  redis2:
+    image: 'redis:3.2-alpine'
+    command: redis-server --requirepass redis2password
+    ports:
+      - '6379:6379'
+    volumes:
+      - 'redis:/data'
+
+  fakes3:
+    image: 'lphoward/fake-s3'
+    ports:
+      - '4569:4569'
+    volumes:
+      - 'fakes3:/data'
+
+  broker:
+    image: "node:8"
+    user: "node"
+    depends_on:
+      - 'redis2'
+      - 'fakes3'
+    build: ./docker/broker
+    expose:
+      - "8081"
+    command: "npm start"
+
+  factory:
+    image: "ubuntu:16.04"
+    depends_on:
+      - 'redis2'
+      - 'fakes3'
+    build: ./docker/factory
+    expose:
+      - "8080"
+
   web:
     depends_on:
       - 'postgres'
       - 'redis'
+      - 'fakes3'
     build: .
     command: foreman start -f Procfile.dev
     volumes:
@@ -30,6 +66,10 @@ services:
       - "3000:3000"
       - "8080:8080"
 
+
 volumes:
   redis:
+  redis2:
   postgres:
+  broker:
+  fakes3:

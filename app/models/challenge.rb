@@ -1,8 +1,8 @@
 class Challenge < ApplicationRecord
   include FriendlyId
+  include Markdownable
 
   friendly_id :challenge, use: [:slugged, :finders, :history]
-  before_save :cache_rendered_markdown
   before_save :reset_featured_seq
   belongs_to :organizer
   belongs_to :clef_task, optional: true
@@ -129,36 +129,6 @@ class Challenge < ApplicationRecord
 
   def round_open?
     @round_open ||= self.current_round.present?
-  end
-
-  def cache_rendered_markdown
-    if saved_change_to_attribute?(:evaluation_markdown)
-      self.evaluation = Kramdown::Document.new(self.evaluation_markdown,{coderay_line_numbers: nil}).to_html
-    end
-    if saved_change_to_attribute?(:description_markdown)
-      self.description = Kramdown::Document.new(self.description_markdown,{coderay_line_numbers: nil}).to_html
-    end
-    if saved_change_to_attribute?(:rules_markdown)
-      self.rules = Kramdown::Document.new(self.rules_markdown,{coderay_line_numbers: nil}).to_html
-    end
-    if saved_change_to_attribute?(:prizes_markdown)
-      self.prizes = Kramdown::Document.new(self.prizes_markdown,{coderay_line_numbers: nil}).to_html
-    end
-    if saved_change_to_attribute?(:resources_markdown)
-      self.resources = Kramdown::Document.new(self.resources_markdown,{coderay_line_numbers: nil}).to_html
-    end
-    if saved_change_to_attribute?(:dataset_description_markdown)
-      self.dataset_description = Kramdown::Document.new(self.dataset_description_markdown,{coderay_line_numbers: nil}).to_html
-    end
-    if saved_change_to_attribute?(:submission_instructions_markdown)
-      self.submission_instructions = Kramdown::Document.new(self.submission_instructions_markdown,{coderay_line_numbers: nil}).to_html
-    end
-    if saved_change_to_attribute?(:license_markdown)
-      self.license = Kramdown::Document.new(self.license_markdown,{coderay_line_numbers: nil}).to_html
-    end
-    if saved_change_to_attribute?(:winner_description_markdown)
-      self.winner_description = Kramdown::Document.new(self.winner_description_markdown,{coderay_line_numbers: nil}).to_html
-    end
   end
 
   def should_generate_new_friendly_id?

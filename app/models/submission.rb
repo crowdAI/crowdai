@@ -1,5 +1,5 @@
 class Submission < ApplicationRecord
-  before_validation :cache_rendered_markdown
+  include Markdownable
   before_validation :generate_short_url
 
   belongs_to :challenge
@@ -45,12 +45,6 @@ class Submission < ApplicationRecord
 
 
   private
-  def cache_rendered_markdown
-    if self.description_markdown && saved_change_to_attribute?(:description_markdown)
-      self.description = Kramdown::Document.new(self.description_markdown,{coderay_line_numbers: nil}).to_html
-    end
-  end
-
   def generate_short_url
     if self.short_url.blank?
       short_url = nil

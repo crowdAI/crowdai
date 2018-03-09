@@ -133,6 +133,7 @@ group :development do
   gem 'shog'
   gem 'meta_request'
   gem 'model_2_factory-rails'
+  gem 'foreman'
 end
 
 

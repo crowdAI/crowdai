@@ -1,0 +1,20 @@
+import kit_energy_evaluator
+class Config:
+    redis_host = "redis"
+    redis_port = 6379
+    challenge_id = "KITEnergyChallenge"
+    redis_namespace = challenge_id
+
+    CROWDAI_TOKEN="<CROWDAI_TOKEN>"
+    CROWDAI_GRADER_URL = "http://localhost:3000/api/external_graders/"
+
+    answer_file_path = "data/ground_truth.csv"
+    evaluator = kit_energy_evaluator.KITEnergyEvaluatror(answer_file_path)
+
+    AWS_S3_BUCKET = "crowdai-shared"
+    S3_UPLOAD_PATH = "kit-energy-challenge"
+    AWS_ACCESS_KEY_ID = "<AWS_ACCESS_KEY_ID>"
+    AWS_SECRET_ACCESS_KEY = "<AWS_SECRET_ACCESS_KEY>"
+
+    TEMP_STORAGE_DIRECTORY_PATH="temp/"
+    DEBUG_MODE=False

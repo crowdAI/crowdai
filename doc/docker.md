@@ -22,6 +22,14 @@ docker ps
 docker logs 7b7ff37ed2d5
 ```
 
+```
+~/src/crowdai/crowdai (docker) $ docker-compose ps
+      Name                     Command               State            Ports
+------------------------------------------------------------------------------------
+crowdai_factory_1   python2                          Exit 0
+crowdai_fakes3_1    /usr/local/bin/fakes3 -r / ...   Up       0.0.0.0:4569->4569/tcp
+```
+
 ### Example
 
 ```

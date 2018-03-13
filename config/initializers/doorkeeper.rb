@@ -12,6 +12,7 @@ Doorkeeper.configure do
   #end
 
   resource_owner_from_credentials do |routes|
+    Rails.logger.debug("GITLAB params: #{params}")
     participant = Participant.find_for_database_authentication(:email => params[:username])
     if participant && participant.valid_for_authentication? { participant.valid_password?(params[:password]) }
       participant
@@ -132,3 +133,4 @@ Doorkeeper.configure do
   # WWW-Authenticate Realm (default "Doorkeeper").
   # realm "Doorkeeper"
 end
+Doorkeeper.configuration.token_grant_types << "password"

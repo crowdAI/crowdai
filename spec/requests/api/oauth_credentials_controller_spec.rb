@@ -19,11 +19,11 @@ RSpec.describe Api::OauthCredentialsController do
       expect(response.status).to eq(200)
     end
 
-    it 'returns the user as json' do
+    it 'returns the participant as json' do
       get api_me_url, headers: {
         'Authorization' => "Bearer #{token.token}"
       }
-      expect(response.body).to eq(user.to_json)
+      expect(response.body).to eq('{"participant":' + participant.to_json + '}')
     end
   end
 
@@ -42,20 +42,20 @@ RSpec.describe Api::OauthCredentialsController do
     end
 
     it 'responds with 200' do
-      get :me, format: :json
+      get '/api/me'
       expect(response.status).to eq(200)
     end
 
     it 'responds with 401 when unauthorized' do
       allow(token).to receive_messages accessible?: false
       allow(token).to receive_messages acceptable?: false
-      get :me, format: :json
+      get '/api/me'
       expect(response.status).to eq(401)
     end
 
-    it 'returns the user as json' do
-      get :me, format: :json
-      expect(response.body).to eq(user.to_json)
+    it 'returns the participant as json' do
+      get '/api/me'
+      expect(response.body).to eq('{"participant":' + participant.to_json + '}')
     end
   end
 end

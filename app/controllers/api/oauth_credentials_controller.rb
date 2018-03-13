@@ -1,13 +1,13 @@
-class Api::OAuthCredentialsController < ApplicationController
+class Api::OauthCredentialsController < ApplicationController
   before_action :doorkeeper_authorize!
   respond_to :json
 
   def me
-    respond_with current_resource_owner
+    render json: { participant: current_resource_owner }, status: :ok
   end
 
   private
   def current_resource_owner
-    User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
+    Participant.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
   end
 end

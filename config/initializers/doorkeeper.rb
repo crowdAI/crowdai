@@ -6,7 +6,7 @@ Doorkeeper.configure do
     # If you want to use named routes from your app you need
     # to call them on routes object eg.
     # routes.new_user_session_path
-    request.env['warden'].participant || Participant.where(email: request.params[:name]).first
+    Participant.find_by(id: session[:current_participant_id]) || redirect_to(login_url)
   end
 
   # If you want to restrict the access to the web interface for

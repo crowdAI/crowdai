@@ -1,20 +1,26 @@
 Doorkeeper.configure do
-  # Change the ORM that doorkeeper will use (needs plugins)
   orm :active_record
 
   # This block will be called to check whether the resource owner is authenticated or not.
-  resource_owner_authenticator do
+  #resource_owner_authenticator do
     # Put your resource owner authentication logic here.
     # Example implementation:
     #   User.find_by_id(session[:user_id]) || redirect_to(new_user_session_url)
-    current_participant || warden.authenticate!(:scope => :participant)
+  #  current_participant || warden.authenticate!(:scope => :participant)
 
     #Participant.find_by_id(session[:participant_id]) || redirect_to(new_participant_session_url)
-  end
+  #end
+
+  resource_owner_from_credentials do |routes|
+    participant = Participant.find_for_database_authentication(:email => params[:username])
+    if participant && participant.valid_for_authentication? { participant.valid_password?(params[:password]) }
+      participant
+    end
+ end
 
   # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
   admin_authenticator do
-     current_participant && current_participant.admin? || redirect_to(new_participant_session_url)
+    current_participant && current_participant.admin? || redirect_to(new_participant_session_url)
   end
 
   # Authorization Code expiration time (default 10 minutes).

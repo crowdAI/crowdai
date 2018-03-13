@@ -146,6 +146,7 @@ group :development, :test do
   gem 'to_factory'
   gem 'traceroute'
   gem 'parallel_tests'
+  gem 'oauth2'
 end
 
 group :test do

@@ -7,7 +7,7 @@ Doorkeeper.configure do
     if participant_signed_in?
       current_participant
     else 
-	    redirect_to(new_session_url(return_to: request.fullpath))
+      redirect_to(new_participant_session_url(return_to: request.fullpath))
     end
   end
 

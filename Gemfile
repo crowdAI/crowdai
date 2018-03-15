@@ -156,7 +156,7 @@ group :test do
   gem 'capybara'
   gem 'capybara-email'
   gem 'capybara-screenshot'
-  gem 'capybara-webkit' #, '1.12.0'
+  #gem 'capybara-webkit' #, '1.12.0'
   gem 'nokogiri' #, '~> 1.8'
   gem 'database_cleaner'
   gem "launchy"

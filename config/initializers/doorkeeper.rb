@@ -3,12 +3,12 @@ Doorkeeper.configure do
   # This block will be called to check whether the
   # resource owner is authenticated or not
   resource_owner_authenticator do |routes|
-    Participant.find_by_id(id: session[:participant_id]) || redirect_to(new_session_url(return_to: request.fullpath))
-    #if participant_signed_in?
-    #  current_participant
-    #else 
-    #  redirect_to root_path
-    #end
+    #Participant.find_by_id(id: session[:participant_id]) || redirect_to(new_session_url(return_to: request.fullpath))
+    if participant_signed_in?
+      current_participant
+    else 
+	    redirect_to(new_session_url(return_to: request.fullpath))
+    end
   end
 
   # If you want to restrict the access to the web interface for

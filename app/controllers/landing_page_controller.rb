@@ -3,7 +3,6 @@ class LandingPageController < ApplicationController
 
   def index
     @challenges = policy_scope(Challenge).order(featured_sequence: :desc).limit(5)
-    byebug
   end
 
   def host

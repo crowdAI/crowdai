@@ -29,6 +29,9 @@ ActiveAdmin.register ChallengeCall do
     column :closing_date
     column :website
     column :crowdai
+    column :reponses do |res|
+      res.challenge_call_responses.count
+    end
     column 'link' do |res|
       "https://www.crowdai.org/call-for-challenges/#{res.slug}/apply"
     end

@@ -6,7 +6,7 @@ class Api::OauthCredentialsController < ApplicationController
   respond_to :json
 
   def show
-    render json: current_resource_owner.as_json
+    render json: { participant: current_resource_owner.as_json }
   end
 
   def update

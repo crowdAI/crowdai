@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     get 'mailchimps/webhook' => 'mailchimps#verify', as: :verify_webhook
     post 'mailchimps/webhook' => 'mailchimps#webhook', as: :update_webhook
     resources :clef_tasks, only: [:show]
-    get '/me' => "oauth_credentials#me"  # doorkeeper / oauth
+    get 'user', to: 'oauth_credentials#show'
   end
 
   namespace :components do

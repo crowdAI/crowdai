@@ -59,8 +59,7 @@ function loadMathJax() {
             inlineMath: [ ["$","$"],["\\(","\\)"] ],
             displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
             processEscapes: true
-         }
-       }
+      }
     });
   });
 };

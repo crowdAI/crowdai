@@ -14,11 +14,9 @@ Doorkeeper.configure do
   # If you want to restrict access to the web interface for adding oauth authorized applications,
   # you need to declare the block below.
   #
-  # admin_authenticator do
-  #   # Put your admin authentication logic here.
-  #   # Example implementation:
-  #   Admin.find_by_id(session[:admin_id]) || redirect_to(new_admin_session_url)
-  # end
+  admin_authenticator do
+    current_participant && current_participant.admin? || redirect_to(new_participant_session_url)
+  end
 
   # If you are planning to use Doorkeeper in Rails 5 API-only application, then you might
   # want to use API mode that will skip all the views management and change the way how
@@ -80,7 +78,7 @@ Doorkeeper.configure do
   # https://github.com/doorkeeper-gem/doorkeeper/wiki/Using-Scopes
   #
   default_scopes  :public
-  optional_scopes :write, :update
+  #optional_scopes :write, :update
 
   # Change the way client credentials are retrieved from the request object.
   # By default it retrieves first from the `HTTP_AUTHORIZATION` header, then

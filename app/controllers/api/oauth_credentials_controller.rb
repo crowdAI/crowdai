@@ -1,15 +1,11 @@
 class Api::OauthCredentialsController < ApplicationController
   before_action :doorkeeper_authorize!
   before_action -> { doorkeeper_authorize! :public }, only: :show
-  before_action -> { doorkeeper_authorize! :write }, only: :update
 
   respond_to :json
 
   def show
     render json: { participant: current_resource_owner.as_json }
-  end
-
-  def update
   end
 
   private

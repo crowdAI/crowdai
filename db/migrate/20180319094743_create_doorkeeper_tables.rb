@@ -6,6 +6,7 @@ class CreateDoorkeeperTables < ActiveRecord::Migration[5.1]
       t.string  :secret,       null: false
       t.text    :redirect_uri, null: false
       t.string  :scopes,       null: false, default: ''
+      t.boolean :confidential, null: false, default: true
       t.timestamps             null: false
     end
 
@@ -64,7 +65,5 @@ class CreateDoorkeeperTables < ActiveRecord::Migration[5.1]
       :oauth_applications,
       column: :application_id
     )
-    add_foreign_key :oauth_access_grants, :participants, column: :resource_owner_id
-    add_foreign_key :oauth_access_tokens, :participants, column: :resource_owner_id
   end
 end

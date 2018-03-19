@@ -13,7 +13,8 @@ gem 'devise', '~> 4.4.1'
 gem 'authtrail'
 gem 'pundit'
 gem 'activeadmin'
-gem 'doorkeeper'
+gem 'doorkeeper', :github => 'doorkeeper-gem/doorkeeper', :branch => 'master'
+
 
 
 # monitoring

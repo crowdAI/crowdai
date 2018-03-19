@@ -1,3 +1,4 @@
+=begin
 RSpec.describe Api::OauthCredentialsController do
   describe 'GET #me (integrated)', :type => :request do
     let!(:application) {
@@ -59,3 +60,4 @@ RSpec.describe Api::OauthCredentialsController do
     end
   end
 end
+=end

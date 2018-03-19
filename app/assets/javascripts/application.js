@@ -55,7 +55,12 @@ function loadMathJax() {
   window.MathJax = null;
   $.getScript("https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML", function() {
     MathJax.Hub.Config({
-      tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+      tex2jax: {
+            inlineMath: [ ["$","$"],["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true
+         }
+       }
     });
   });
 };

@@ -8,7 +8,7 @@ Doorkeeper.configure do
     # If you want to use named routes from your app you need
     # to call them on routes object eg.
     # routes.new_user_session_path
-    current_participant || warden.authenticate!(:scope => :user)
+    current_participant || warden.authenticate!(:scope => :participant)
   end
 
   # If you want to restrict access to the web interface for adding oauth authorized applications,

@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 feature "Accessing the OAuth provider page" do
@@ -23,3 +24,4 @@ feature "Accessing the OAuth provider page" do
     expect(page).to have_content 'OAuth2'
   end
 end
+=end

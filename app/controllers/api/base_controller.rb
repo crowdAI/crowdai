@@ -3,6 +3,12 @@ class Api::BaseController < ApplicationController
   skip_before_action :verify_authenticity_token
   respond_to :json
 
+  def auth_by_admin_api_key
+    authenticate_or_request_with_http_token do |token, options|
+      (token == ENV['CROWDAI_API_KEY'])
+    end
+  end
+
   def auth_by_api_key
     authenticate_or_request_with_http_token do |token, options|
       organizer = Organizer.where(api_key: token).first

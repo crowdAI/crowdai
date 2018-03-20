@@ -10,19 +10,37 @@ RSpec.describe Api::ExternalGradersController, type: :request do
     Timecop.return
   end
 
-  let!(:organizer) { create :organizer, api_key: '3d1efc2332200314c86d2921dd33434c' }
-  let!(:challenge) { create :challenge,
-                            :running,
-                            organizer: organizer,
-                            daily_submissions: 5 }
-  let!(:challenge_round) { create :challenge_round,
-                                  challenge_id: challenge.id,
-                                  start_dttm: 4.weeks.ago,
-                                  end_dttm: 4.weeks.since }
-  let!(:participant) { create :participant, api_key: '5762b9423a01f72662264358f071908c' }
-  let!(:submission1) { create :submission, challenge: challenge, participant: participant, created_at: 2.hours.ago }
-  let!(:submission2) { create :submission, challenge: challenge, participant: participant, created_at: 18.hours.ago }
-  let!(:submission3) { create :submission, challenge: challenge, participant: participant, created_at: 2.days.ago }
+  let!(:organizer) {
+    create :organizer,
+    api_key: '3d1efc2332200314c86d2921dd33434c' }
+  let!(:challenge) {
+    create :challenge,
+    :running,
+    organizer: organizer,
+    daily_submissions: 5 }
+  let!(:challenge_round) {
+    create :challenge_round,
+    challenge_id: challenge.id,
+    start_dttm: 4.weeks.ago,
+    end_dttm: 4.weeks.since }
+  let!(:participant) {
+    create :participant,
+    api_key: '5762b9423a01f72662264358f071908c' }
+  let!(:submission1) {
+    create :submission,
+    challenge: challenge,
+    participant: participant,
+    created_at: 2.hours.ago }
+  let!(:submission2) {
+    create :submission,
+    challenge: challenge,
+    participant: participant,
+    created_at: 18.hours.ago }
+  let!(:submission3) {
+    create :submission,
+    challenge: challenge,
+    participant: participant,
+    created_at: 2.days.ago }
 
 
   describe "POST /api/external_graders/ : create submission" do
@@ -158,6 +176,24 @@ RSpec.describe Api::ExternalGradersController, type: :request do
         media_large: '/s3 url',
         media_thumbnail: nil,
         media_content_type: 'application/png'
+      }
+    end
+
+    def valid_challenge_round_attributes
+      { challenge_client_name: challenge.challenge_client_name,
+        api_key: participant.api_key,
+        grading_status: 'graded',
+        score: 0.9763,
+        challenge_round_id: challenge_round.id
+      }
+    end
+
+    def invalid_challenge_round_attributes
+      { challenge_client_name: challenge.challenge_client_name,
+        api_key: participant.api_key,
+        grading_status: 'graded',
+        score: 0.9763,
+        challenge_round_id: -1
       }
     end
 
@@ -353,6 +389,28 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       if not ENV['TRAVIS']
         it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30 06:02:02 UTC") }
       end
+    end
+
+    context 'with a valid challenge_round_id' do
+      before do
+        post '/api/external_graders/',
+          params: valid_challenge_round_attributes,
+          headers: {
+            'Authorization': auth_header(organizer.api_key) }
+      end
+      it { expect(response).to have_http_status(202) }
+      it { expect(Submission.last.challenge_round_id).to eq(valid_challenge_round_attributes[:challenge_round_id])}
+    end
+
+    context 'with a invalid challenge_round_id' do
+      before do
+        post '/api/external_graders/',
+          params: invalid_challenge_round_attributes,
+          headers: {
+            'Authorization': auth_header(organizer.api_key) }
+      end
+      it { expect(response).to have_http_status(400) }
+      it { expect(Submission.last.challenge_round_id).to eq(valid_challenge_round_attributes[:challenge_round_id])}
     end
 
 =begin

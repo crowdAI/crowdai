@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
+# Rails assets gems
 gem 'rails-assets-isInViewport'
 gem 'rails-assets-jQuery-File-Upload'
 
@@ -15,8 +16,7 @@ gem 'devise', '~> 4.4.1'
 gem 'authtrail'
 gem 'pundit'
 gem 'activeadmin'
-gem 'doorkeeper', :github => 'doorkeeper-gem/doorkeeper', :branch => 'master'
-
+gem 'doorkeeper', git: 'https://github.com/doorkeeper-gem/doorkeeper', :branch => 'master'
 
 
 # monitoring

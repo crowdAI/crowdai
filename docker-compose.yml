@@ -16,9 +16,9 @@ services:
       context: .
     environment:
       RAILS_ENV: development
-    entrypoint: /app/entrypoint.sh
+    entrypoint: /entrypoint.sh
     volumes:
-      - .:/myapp
+      - .:/app
     ports:
       - "3000:3000"
     depends_on:

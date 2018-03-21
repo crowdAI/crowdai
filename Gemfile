@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
-gem 'rails-assets-isInViewport', source: 'https://rails-assets.org'
-gem 'rails-assets-jQuery-File-Upload', source: 'https://rails-assets.org'
+source 'https://rails-assets.org'
+
+gem 'rails-assets-isInViewport'
+gem 'rails-assets-jQuery-File-Upload'
 
 ruby "2.5.0"
 gem 'rails', '5.1.5'

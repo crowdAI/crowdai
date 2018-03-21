@@ -136,6 +136,10 @@ group :development do
   gem 'model_2_factory-rails'
 end
 
+# Added to fix GitHub vulnerability messages
+gem 'loofah', '~> 2.2.1'
+gem 'sanitize', '~> 4.6.3'
+
 
 group :development, :test do
   gem 'byebug'
@@ -165,7 +169,6 @@ group :test do
   gem 'shoulda'
   gem 'timecop'
   gem 'shoulda-matchers', require: false
-  gem 'sanitize'
   gem 'rails-controller-testing'
   gem 'pundit-matchers', git: 'https://github.com/crowdAI/pundit-matchers'
 end

@@ -1,7 +1,8 @@
 require 'sidekiq'
 
 Sidekiq.configure_client do |config|
-  config.redis = { size: 1 }
+  config.redis = { size: 1,
+                   url: 'redis://redis/'}
 end
 
 schedule_file = "config/schedule.yml"

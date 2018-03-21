@@ -1,0 +1,34 @@
+version: '3'
+volumes:
+  postgres:
+    driver: local
+  redis:
+    driver: local
+
+services:
+
+  postgres:
+    image: postgres:10.3
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
+  crowd_ai:
+    build:
+      context: .
+    environment:
+      RAILS_ENV: development
+    entrypoint: /app/entrypoint.sh
+    volumes:
+      - .:/myapp
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
+
+  redis:
+    image: 'redis:4.0-alpine'
+    command: redis-server
+    ports:
+      - '6379:6379'
+    volumes:
+      - 'redis:/data'

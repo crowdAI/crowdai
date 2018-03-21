@@ -24,4 +24,6 @@ RUN npm install
 
 RUN /app/bin/webpack
 
-RUN chmod +x /app/entrypoint.sh
+RUN mv /app/entrypoint.sh /entrypoint.sh
+
+RUN chmod +x /entrypoint.sh

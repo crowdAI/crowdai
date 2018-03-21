@@ -1,18 +1,18 @@
 GIT
-  remote: git://github.com/doorkeeper-gem/doorkeeper.git
-  revision: f20136fe958757a3cb05e8da1607e2632cfcb220
-  branch: master
-  specs:
-    doorkeeper (4.3.1)
-      railties (>= 4.2)
-
-GIT
   remote: https://github.com/crowdAI/pundit-matchers
   revision: 4cd01555ee0c04c66f02f35d6f8bb4c046b533a0
   specs:
     pundit-matchers (1.2.3)
       pundit (~> 1.1, >= 1.1.0)
       rspec-rails (>= 3.0.0)
+
+GIT
+  remote: https://github.com/doorkeeper-gem/doorkeeper
+  revision: bc8930c6142a4a1aded28527fa3d99f59bd5d8ee
+  branch: master
+  specs:
+    doorkeeper (4.3.1)
+      railties (>= 4.2)
 
 GIT
   remote: https://github.com/trailblazer/cells-rails
@@ -869,8 +869,8 @@ DEPENDENCIES
   pundit
   pundit-matchers!
   rails (= 5.1.5)
-  rails-assets-isInViewport!
-  rails-assets-jQuery-File-Upload!
+  rails-assets-isInViewport
+  rails-assets-jQuery-File-Upload
   rails-controller-testing
   rails-erd
   ransack

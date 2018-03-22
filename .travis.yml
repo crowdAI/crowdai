@@ -14,15 +14,14 @@ rvm:
 
 env:
   - DB=postgres
+  - DISPLAY=:99.0
 
 before_script:
   - psql -c 'create database crowdai_test;' -U postgres
 
 before_install:
-  - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
-  - "export AWS_REGION=eu-west-1"
 
 script:
   - bundle exec rake parallel:setup

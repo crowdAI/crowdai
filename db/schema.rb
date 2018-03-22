@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180319094743) do
+ActiveRecord::Schema.define(version: 20180320151102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(version: 20180319094743) do
     t.boolean "clef_challenge", default: false
     t.boolean "submissions_page"
     t.boolean "private_challenge", default: false
+    t.boolean "show_leaderboard", default: true
     t.index ["clef_task_id"], name: "index_challenges_on_clef_task_id"
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id"
     t.index ["slug"], name: "index_challenges_on_slug", unique: true

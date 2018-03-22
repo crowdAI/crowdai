@@ -154,6 +154,7 @@ class ChallengesController < ApplicationController
                   :clef_task_id,
                   :submissions_page,
                   :private_challenge,
+                  :show_leaderboard,
                   dataset_attributes: [
                     :id,
                     :challenge_id,

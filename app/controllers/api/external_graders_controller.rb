@@ -29,7 +29,8 @@ class Api::ExternalGradersController < Api::BaseController
       raise DeveloperAPIKeyInvalid if participant.nil?
       challenge = Challenge.where(
                     challenge_client_name: params[:challenge_client_name]).first
-      challenge_round_id = get_challenge_round_id(challenge)
+      challenge_round_id = get_challenge_round_id(
+        challenge: challenge, params: params)
       raise ChallengeClientNameInvalid if challenge.nil?
       raise ChallengeRoundNotOpen unless challenge_round_open?(challenge)
       raise ParticipantNotQualified unless participant_qualified?(challenge,participant)
@@ -175,7 +176,17 @@ class Api::ExternalGradersController < Api::BaseController
     end
   end
 
-  def get_challenge_round_id(challenge)
+  def get_challenge_round_id(challenge:, params:)
+    if params[:challenge_round_id].present?
+      round = ChallengeRound.where(
+        challenge_id: challenge.id,
+        id: params[:challenge_round_id]).first
+      if round.present?
+        return round.id
+      else
+        raise InvalidChallengeRoundID
+      end
+    end
     round = challenge.current_round
     if round.present?
       return round.id
@@ -291,6 +302,12 @@ class Api::ExternalGradersController < Api::BaseController
 
   class ChallengeRoundNotOpen < StandardError
     def initialize(msg='The challenge is not open for submissions at this time. Please check the challenge page at www.crowdai.org')
+      super
+    end
+  end
+
+  class InvalidChallengeRoundID < StandardError
+    def initialize(msg='This challenge_round_id does not exist')
       super
     end
   end

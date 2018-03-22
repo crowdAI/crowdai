@@ -15,6 +15,7 @@ ActiveAdmin.register JobPosting do
     column :location
     column :country
     column :remote
+    column :page_views
     actions
   end
 

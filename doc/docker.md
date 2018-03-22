@@ -37,12 +37,21 @@ $ docker ps
 
 ```
 
-## Rebuild a specfic container
+## Rebuild a specific container
 ```
 docker-compose ps
 docker-compose stop web
 docker-compose rm web
 docker-compose up -d
+```
+
+## Start the container and tail the logs
+```
+docker-compose up -d && docker-compose logs -f
+```
+In another terminal
+```
+curl -I localhost
 ```
 
 

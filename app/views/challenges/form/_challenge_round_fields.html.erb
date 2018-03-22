@@ -63,6 +63,9 @@
         <%= f.text_field :end_dttm_time, placeholder: 'AM/PM'  %>
     </div>
   </div>
+  <% if current_participant.admin? && f.object.persisted?%>
+    round_id: <%= f.object.id %>
+  <% end %>
   <% if f.object.persisted? && @challenge.submissions.where(challenge_round_id: f.object.id).present? %>
     <span class='pull-right'>
       <%= pluralize(@challenge.submissions.count,'submission') %>

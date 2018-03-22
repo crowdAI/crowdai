@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180305133457) do
+ActiveRecord::Schema.define(version: 20180320151102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(version: 20180305133457) do
     t.boolean "clef_challenge", default: false
     t.boolean "submissions_page"
     t.boolean "private_challenge", default: false
+    t.boolean "show_leaderboard", default: true
     t.index ["clef_task_id"], name: "index_challenges_on_clef_task_id"
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id"
     t.index ["slug"], name: "index_challenges_on_slug", unique: true
@@ -382,6 +383,7 @@ ActiveRecord::Schema.define(version: 20180305133457) do
     t.string "secret", null: false
     t.text "redirect_uri", null: false
     t.string "scopes", default: "", null: false
+    t.boolean "confidential", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
@@ -631,9 +633,7 @@ ActiveRecord::Schema.define(version: 20180305133457) do
   add_foreign_key "invitations", "participants"
   add_foreign_key "notifications", "participants"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
-  add_foreign_key "oauth_access_grants", "participants", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
-  add_foreign_key "oauth_access_tokens", "participants", column: "resource_owner_id"
   add_foreign_key "participant_clef_tasks", "clef_tasks"
   add_foreign_key "participant_clef_tasks", "participants"
   add_foreign_key "participants", "organizers"

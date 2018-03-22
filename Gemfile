@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
-gem 'rails-assets-isInViewport', source: 'https://rails-assets.org'
-gem 'rails-assets-jQuery-File-Upload', source: 'https://rails-assets.org'
+source 'https://rails-assets.org'
+
+# Rails assets gems
+gem 'rails-assets-isInViewport'
+gem 'rails-assets-jQuery-File-Upload'
 
 ruby "2.5.0"
 gem 'rails', '5.1.5'
@@ -13,7 +16,7 @@ gem 'devise', '~> 4.4.1'
 gem 'authtrail'
 gem 'pundit'
 gem 'activeadmin'
-gem 'doorkeeper'
+gem 'doorkeeper', git: 'https://github.com/doorkeeper-gem/doorkeeper', :branch => 'master'
 
 
 # monitoring
@@ -136,6 +139,10 @@ group :development do
   gem 'foreman'
 end
 
+# Added to fix GitHub vulnerability messages
+gem 'loofah', '~> 2.2.1'
+gem 'sanitize', '~> 4.6.3'
+
 
 group :development, :test do
   gem 'byebug'
@@ -147,23 +154,24 @@ group :development, :test do
   gem 'to_factory'
   gem 'traceroute'
   gem 'parallel_tests'
+  gem 'oauth2'
 end
 
 group :test do
   # gem 'rspec-sidekiq'
+  gem 'codecov', :require => false
   gem "factory_girl_rails"
   gem 'simplecov', :require => false
   gem 'capybara'
   gem 'capybara-email'
   gem 'capybara-screenshot'
-  gem 'capybara-webkit' #, '1.12.0'
+  gem 'capybara-webkit', '1.15.0'
   gem 'nokogiri' #, '~> 1.8'
   gem 'database_cleaner'
   gem "launchy"
   gem 'shoulda'
   gem 'timecop'
   gem 'shoulda-matchers', require: false
-  gem 'sanitize'
   gem 'rails-controller-testing'
   gem 'pundit-matchers', git: 'https://github.com/crowdAI/pundit-matchers'
 end

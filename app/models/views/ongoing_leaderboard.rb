@@ -1,4 +1,4 @@
-class OngoingLeaderboard < ApplicationRecord
+class OngoingLeaderboard < SqlView
   self.primary_key = :id
   after_initialize :readonly!
 

@@ -1,6 +1,12 @@
 ## Application Documentation
 
+[Hosting institutions](hosting_institutions.md)
+[Dynamic content](dynamic_content.md)
 
 ## Technical Documentation
 
-[Grader API](doc/technical/grader_api.md)
+[Leaderboard](leaderboard.md)
+[Email preferences](email_preferences.md)
+[Entity-Relationship Diagram](erd.pdf)
+[Grader API](grader_api.md)
+[Image uploads](image_uploads.md)

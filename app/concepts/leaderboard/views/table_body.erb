@@ -1,6 +1,8 @@
 <tbody>
   <% leaderboard.each_with_index do |entry,row| %>
   <tr id='participant-<%= entry.participant_id %>'>
+    <%= ranking_change_helper(entry) %>
+
     <td class="position">
       <strong><%= "%02d." % (row + 1) %></strong>
     </td>

@@ -2,7 +2,7 @@
   <div class="row">
     <ul>
       <li class=<%= tab_class('overview') %> ><%= link_to 'Overview', challenge_path(challenge), class: tab_class('overview') %></li>
-      <% unless challenge.id == 25 || challenge.challenge_rounds.none? || !challenge.show_leaderboard%>
+      <% unless challenge.challenge_rounds.none? || !challenge.show_leaderboard %>
         <li class=<%= tab_class('leaderboard') %> ><%= link_to 'Leaderboard', challenge_leaderboards_path(challenge), class: tab_class('leaderboard') %></li>
       <% end %>
       <li class=<%= tab_class('discussion') %> ><%= link_to 'Discussion', challenge_topics_path(challenge), class: tab_class('discussion') %></li>

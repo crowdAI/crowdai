@@ -38,3 +38,40 @@ Scenic.database.refresh_materialized_view(
 8. Only the **previous_leaderboards** and **previous_ongoing_leaderboards** are currently materialized views, and we can easily modify all of the views to be materialized if performance warrants it.
 
 The downside of using materialized views is that there is the possibility they become stale if the refresh hook doesn't work for some reason.
+
+## Notes
+
+### Modifying views
+
+If views need to be changed, there is a generator available in the Scenic gem. This will copy the text for the view, in the ```db/views``` folder, as well as a migration to replace it.
+
+```
+rails generate scenic:view previous_leaderboards
+```
+
+Update the SQL text in the latest version of the view definition file, in ```db/views```.
+
+### View dependencies
+
+When a view is depended upon, the dependent views must be dropped first and recreated. It is not necessary to re-run the generator for the dependent views, but the migration file needs to cater for the relationships.
+
+```
+drop_view :leaderboards
+update_view :previous_leaderboards, version: 2, revert_to_version: 1, materialized: true
+create_view :leaderboards
+```
+
+### Materialized views
+
+If the materialized views are affected by a migration, they should also be refreshed by the migration.
+
+```
+Scenic.database.refresh_materialized_view(
+  :previous_leaderboards,
+  concurrently: false,
+  cascade: false)
+Scenic.database.refresh_materialized_view(
+  :previous_ongoing_leaderboards,
+  concurrently: false,
+  cascade: false)
+```

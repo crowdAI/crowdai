@@ -3,5 +3,4 @@ class ChallengeRoundView < SqlView
   after_initialize :readonly!
 
   default_scope { order("challenge_id, row_num") }
-
 end

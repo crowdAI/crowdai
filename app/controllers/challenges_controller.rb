@@ -13,13 +13,24 @@ class ChallengesController < ApplicationController
     @all_challenges = policy_scope(Challenge)
     case @challenge_filter
     when 'all'
-      @challenges = policy_scope(Challenge).page(params[:page]).per(20)
+      @challenges = policy_scope(Challenge)
+        .page(params[:page])
+        .per(20)
     when 'active'
-      @challenges = policy_scope(Challenge).where(status_cd: ['running','starting_soon']).page(params[:page]).per(20)
+      @challenges = policy_scope(Challenge)
+        .where(status_cd: ['running','starting_soon'])
+        .page(params[:page])
+        .per(20)
     when 'completed'
-      @challenges = policy_scope(Challenge).where(status_cd: 'completed').page(params[:page]).per(20)
+      @challenges = policy_scope(Challenge)
+        .where(status_cd: 'completed')
+        .page(params[:page])
+        .per(20)
     when 'draft'
-      @challenges = policy_scope(Challenge).where(status_cd: 'draft').page(params[:page]).per(20)
+      @challenges = policy_scope(Challenge)
+        .where(status_cd: 'draft')
+        .page(params[:page])
+        .per(20)
     end
   end
 
@@ -155,6 +166,8 @@ class ChallengesController < ApplicationController
                   :submissions_page,
                   :private_challenge,
                   :show_leaderboard,
+                  :ranking_window,
+                  :ranking_highlight,
                   dataset_attributes: [
                     :id,
                     :challenge_id,

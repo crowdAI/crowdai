@@ -4,6 +4,7 @@ FactoryGirl.define do
     participant
     grading_status :ready
     description_markdown '#Upload description'
+    post_challenge false
     #submission_files { [ build(:submission_file, submission_file_s3_key: 'project.tar') ]}
     trait :with_meta do
       meta {

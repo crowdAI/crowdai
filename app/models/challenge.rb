@@ -72,7 +72,7 @@ class Challenge < ApplicationRecord
               WHEN 'cancelled' THEN 4
               WHEN 'draft' THEN 5
               ELSE 6
-            END, created_at DESC")
+            END, participant_count DESC")
   }
 
   after_initialize do

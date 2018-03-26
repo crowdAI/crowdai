@@ -1,7 +1,6 @@
-class ChallengeRoundView < ApplicationRecord
+class ChallengeRoundView < SqlView
   self.primary_key = :id
   after_initialize :readonly!
-  
-  default_scope { order("challenge_id, row_num") }
 
+  default_scope { order("challenge_id, row_num") }
 end

@@ -40,8 +40,11 @@
           <%= render 'challenges/form/challenge_round_fields', f: challenge_round %>
         <% end %>
         <div class='links'>
-          <%= link_to_add_association '+ Challenge Round', f, :challenge_rounds,
-                                    html_options = { partial: 'challenges/form/challenge_round_fields' } %>
+          <%= link_to_add_association '+ Challenge Round',
+                f,
+                :challenge_rounds,
+                html_options = {
+                  partial: 'challenges/form/challenge_round_fields' } %>
         </div>
       </div>
     </fieldset>

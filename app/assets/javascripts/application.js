@@ -68,6 +68,7 @@ $(document).on('turbolinks:load', function() {
   loadMathJax();
 });
 
+
 // Remove default Turbolinks loader
 Turbolinks.ProgressBar.prototype.refresh = function() {}
 Turbolinks.ProgressBar.defaultCSS = ""

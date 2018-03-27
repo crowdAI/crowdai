@@ -34,7 +34,7 @@ class Challenge::Cell::ChallengeMasthead < Challenge::Cell
         ending_time
       end
     else
-      challenge.status.capitalize
+      challenge.status.to_s.humanize
     end
   end
 

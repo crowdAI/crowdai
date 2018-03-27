@@ -18,4 +18,5 @@ module ChallengesHelper
     return builder.select :status, statuses.map {|k,v| [v.humanize,k]}, include_blank: false
   end
 
+
 end

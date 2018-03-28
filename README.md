@@ -2,6 +2,8 @@
 
 # crowdAI - The open platform for data science challenges
 
+[![Join the chat at https://gitter.im/crowdAI/crowdai-mapping-challenge](https://badges.gitter.im/crowdAI/crowdai-mapping-challenge.svg)](https://gitter.im/crowdAI/crowdai-mapping-challenge?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Code Climate](https://codeclimate.com/github/crowdAI/crowdai/badges/gpa.svg)](https://codeclimate.com/github/crowdAI/crowdai)
 [![Gitter chat](https://badges.gitter.im/crowdAI/gitter.png)](https://gitter.im/crowdAI/Lobby)
 

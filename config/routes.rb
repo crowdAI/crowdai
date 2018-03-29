@@ -56,6 +56,7 @@ Rails.application.routes.draw do
     get :clef_email
     resources :clef_tasks
   end
+  resources :challenges
 
   resources :clef_tasks do
     resources :task_dataset_files

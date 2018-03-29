@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :challenge, class: Challenge do
-    organizer
     challenge { FFaker::Lorem.unique.sentence(3) }
     sequence(:challenge_client_name) { |n| "client_name_#{n}" }
     tagline { FFaker::Lorem.unique.sentence(3) }
@@ -23,6 +22,7 @@ FactoryGirl.define do
       dataset_files {[ build(:dataset_file) ]}
       after(:create) do |challenge|
         FactoryGirl.create(:challenge_round, challenge: challenge)
+        FactoryGirl.create(:challenge_organizer, challenge: challenge)
       end
     end
 
@@ -34,6 +34,7 @@ FactoryGirl.define do
           :challenge_round,
           challenge: challenge,
           submission_limit_period: :day)
+        FactoryGirl.create(:challenge_organizer, challenge: challenge)
       end
     end
 
@@ -45,6 +46,7 @@ FactoryGirl.define do
           :challenge_round,
           challenge: challenge,
           submission_limit_period: :week)
+        FactoryGirl.create(:challenge_organizer, challenge: challenge)
       end
     end
 
@@ -69,6 +71,7 @@ FactoryGirl.define do
           submission_limit_period: :round,
           start_dttm: challenge.created_at - 2.weeks,
           end_dttm: challenge.created_at + 3.weeks)
+        FactoryGirl.create(:challenge_organizer, challenge: challenge)
       end
     end
 

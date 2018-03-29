@@ -9,7 +9,7 @@ class ChallengePolicy < ApplicationPolicy
   end
 
   def edit?
-    participant && (participant.admin? || @record.organizer_id == participant.organizer_id)
+    participant && (participant.admin? || @record.organizers.organizer_id == participant.organizer_id)
   end
 
   def update?

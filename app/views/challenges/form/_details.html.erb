@@ -28,10 +28,10 @@
         <span>Your image will be cropped if necessary. 5MB limit</span>
       </div>
       <label>Host</label>
-      <input type='text' value='<%= @challenge.organizer.organizer %>' disabled>
+      <input type='text' value='<%#= @challenge.organizer.organizer %>' disabled>
     </fieldset>
 
-    <%= f.hidden_field :organizer_id %>
+    <%#= f.hidden_field :organizer_id %>
 
     <fieldset>
       <h4>Challenge Rounds</h4>

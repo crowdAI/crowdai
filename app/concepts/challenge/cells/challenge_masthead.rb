@@ -9,7 +9,7 @@ class Challenge::Cell::ChallengeMasthead < Challenge::Cell
   end
 
   def organizer
-    model.organizer
+    model.organizers.first
   end
 
   def progress

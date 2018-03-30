@@ -7,20 +7,22 @@
       <div class="heading-w-icon">
         <h2><%= challenge.challenge %></h2>
         <% if policy(challenge).edit? %>
-          <%= link_to edit_organizer_challenge_path(challenge.organizer,challenge), title: "Edit challenge" do %>
+          <%= link_to edit_challenge_path(challenge), title: "Edit challenge" do %>
             <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
           <% end %>
         <% end %>
       </div>
       <p class="large"><%= challenge.tagline %></p>
       <div class="user-link">
-        <%= link_to organizer_path(organizer) do %>
-          <%= concept(Image::Cell,organizer,size: :medium) %>
-        <% end %>
-        <p>By <%= link_to organizer.organizer, organizer_path(organizer) %>
-          <% if challenge.private_challenge %>
-          &nbsp;<strong>[Private Challenge]</strong>
+        <% challenge.organizers.each do |organizer| %>
+          <%= link_to organizer_path(organizer) do %>
+            <%= concept(Image::Cell,organizer,size: :medium) %>
           <% end %>
+          <p>By <%= link_to organizer.organizer, organizer_path(organizer) %>
+        <% end %>
+        <% if challenge.private_challenge %>
+          <br/><strong>[Private Challenge]</strong>
+        <% end %>
         </p>
       </div>
       <progress max="100" value="<%= progress %>"></progress>

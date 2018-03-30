@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180327104001) do
+ActiveRecord::Schema.define(version: 20180329073334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,16 @@ ActiveRecord::Schema.define(version: 20180327104001) do
     t.boolean "crowdai", default: false
     t.text "description_markdown"
     t.index ["organizer_id"], name: "index_challenge_calls_on_organizer_id"
+  end
+
+  create_table "challenge_organizers", force: :cascade do |t|
+    t.bigint "challenge_id"
+    t.bigint "organizer_id"
+    t.integer "seq", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_id"], name: "index_challenge_organizers_on_challenge_id"
+    t.index ["organizer_id"], name: "index_challenge_organizers_on_organizer_id"
   end
 
   create_table "challenge_partners", force: :cascade do |t|
@@ -621,6 +631,8 @@ ActiveRecord::Schema.define(version: 20180327104001) do
   add_foreign_key "article_sections", "articles"
   add_foreign_key "articles", "participants"
   add_foreign_key "challenge_call_responses", "challenge_calls"
+  add_foreign_key "challenge_organizers", "challenges"
+  add_foreign_key "challenge_organizers", "organizers"
   add_foreign_key "challenge_partners", "challenges"
   add_foreign_key "challenge_rounds", "challenges"
   add_foreign_key "challenges", "organizers"

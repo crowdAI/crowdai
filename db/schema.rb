@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180327104001) do
+ActiveRecord::Schema.define(version: 20180330153026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -204,6 +204,21 @@ ActiveRecord::Schema.define(version: 20180327104001) do
     t.index ["participant_id"], name: "index_posts_on_participant_id"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
     t.index ["topic_id"], name: "index_posts_on_topic_id"
+  end
+
+  create_table "comments_backup", id: false, force: :cascade do |t|
+    t.integer "id"
+    t.integer "topic_id"
+    t.integer "participant_id"
+    t.text "comment"
+    t.boolean "flagged"
+    t.boolean "notify"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer "vote_count"
+    t.string "slug"
+    t.text "comment_markdown"
+    t.string "mentions_cache"
   end
 
   create_table "dataset_file_downloads", id: :serial, force: :cascade do |t|

@@ -9,14 +9,14 @@ ActiveAdmin.setup do |config|
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
-  # config.site_title_link = "/"
+  config.site_title_link = "/"
 
   # Set an optional image to be displayed for the header
   # instead of a string (overrides :site_title)
   #
   # Note: Aim for an image that's 21px high so it fits in the header.
   #
-  # config.site_title_image = "logo.png"
+  config.site_title_image = "misc/crowdai-logo-smile.svg"
 
   # == Default Namespace
   #
@@ -54,7 +54,7 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # within the application controller.
-  config.authentication_method = :authenticate_participant!
+  # config.authentication_method = :authenticate_admin_user!
 
   # == User Authorization
   #
@@ -86,7 +86,7 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # (within the application controller) to return the currently logged in user.
-  config.current_user_method = :current_participant
+  # config.current_user_method = :current_admin_user
 
   # == Logging Out
   #
@@ -98,7 +98,7 @@ ActiveAdmin.setup do |config|
   # will call the method to return the path.
   #
   # Default:
-  config.logout_link_path = :destroy_participant_session_path
+  config.logout_link_path = :destroy_admin_user_session_path
 
   # This setting changes the http method used when rendering the
   # link. For example :get, :delete, :put, etc..
@@ -237,7 +237,9 @@ ActiveAdmin.setup do |config|
   #
   # To disable/customize for the :admin namespace:
   #
-  #   config.namespace :admin do |admin|
+  config.namespace :admin do |admin|
+    admin.download_links = false
+  end
   #
   #     # Disable the links entirely
   #     admin.download_links = false
@@ -290,4 +292,8 @@ ActiveAdmin.setup do |config|
   # You can inherit it with own class and inject it for all resources
   #
   # config.order_clause = MyOrderClause
+  # crowdAI Admin config
+  meta_tags_options = { viewport: 'width=device-width, initial-scale=1' }
+  config.meta_tags = meta_tags_options
+  config.meta_tags_for_logged_out_pages = meta_tags_options
 end

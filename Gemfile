@@ -16,6 +16,7 @@ gem 'devise', '~> 4.4.1'
 gem 'authtrail'
 gem 'pundit'
 gem 'activeadmin'
+gem 'crowdai_admin', path: '/Users/sean/src/crowdai/crowdai_admin'
 gem 'doorkeeper', git: 'https://github.com/doorkeeper-gem/doorkeeper', :branch => 'master'
 
 
@@ -53,7 +54,6 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'turbolinks', '~> 5.0.0'
 gem 'lodash-rails'
-gem 'browser'
 gem 'coffee-rails'
 gem 'webpacker', '~> 2.0'
 gem 'paloma', '~> 5.1.0'
@@ -63,7 +63,7 @@ gem 'social-share-button'
 
 # css
 gem 'sass-rails'
-gem 'compass-rails'
+#gem 'compass-rails'
 gem 'momentjs-rails', '~> 2.9'
 
 gem 'font-awesome-rails'

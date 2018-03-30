@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_participant!, only: [:create, :update, :destroy]
-  before_action :set_comment, only: [:edit, :update, :destroy]
+  before_action :authenticate_participant!,
+    only: [:create, :update, :destroy]
+  before_action :set_comment,
+    only: [:edit, :update, :destroy]
   before_action :set_topic_and_challenge
   respond_to :html, :js
 
@@ -8,8 +10,10 @@ class CommentsController < ApplicationController
     @challenge = @topic.challenge
     @author = @topic.participant
 
-    @first_comment = @topic.comments.order(created_at: :asc).first
-    @comments = @topic.comments.where.not(id: @first_comment.id).order(created_at: :asc)
+    @first_comment = @topic.comments
+      .order(created_at: :asc).first
+    @comments = @topic.comments
+      .where.not(id: @first_comment.id).order(created_at: :asc)
     @comment = Comment.new(topic_id: @topic_id)
     if params[:quoted_comment_id]
       quoted_comment = Comment.find(params[:quoted_comment_id])
@@ -22,14 +26,19 @@ class CommentsController < ApplicationController
     rendered_html, mentioned_participant_ids = MarkdownService.new(markdown: comment_params[:comment_markdown], mentions_cache: params[:comment][:mentions_cache]).call
     @comment = @topic.comments.new(comment_params)
     @comment.comment = rendered_html
-    Rails.logger.debug("called with: #{params[:comment][:mentions_cache]}")
-    Rails.logger.debug("mentioned_participant_ids: #{mentioned_participant_ids}" )
+
     if @comment.save
-      EveryCommentNotificationJob.set(wait: 5.minutes).perform_later(@comment.id)
+      EveryCommentNotificationJob
+        .set(wait: 5.minutes)
+        .perform_later(@comment.id)
       if mentioned_participant_ids.present?
-        MentionsNotificationsJob.set(wait: 5.minutes).perform_later(mentioned_participant_ids: mentioned_participant_ids, comment_id: @comment.id)
+        MentionsNotificationsJob
+          .set(wait: 5.minutes)
+          .perform_later(
+            mentioned_participant_ids: mentioned_participant_ids, comment_id: @comment.id)
       end
-      redirect_to new_topic_discussion_path(@topic), notice: 'Comment was successfully created.'
+      redirect_to new_topic_discussion_path(@topic),
+        notice: 'Comment was successfully created.'
     else
       render :new
     end

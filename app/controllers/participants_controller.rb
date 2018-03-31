@@ -5,7 +5,9 @@ class ParticipantsController < ApplicationController
 
   def show
     @articles = Article.where(participant_id: @participant.id)
-    @challenges = @participant.challenges
+    challenge_ids = policy_scope(ParticipantChallenge)
+      .where(participant_id: @participant.id).pluck(:challenge_id)
+    @challenges = Challenge.where(id: challenge_ids)
     @posts = @participant.comments.order(created_at: :desc)
   end
 

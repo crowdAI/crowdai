@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180330153026) do
+ActiveRecord::Schema.define(version: 20180331132823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1234,30 +1234,6 @@ ActiveRecord::Schema.define(version: 20180330153026) do
             ORDER BY x.challenge_id, x.participant_id) y;
   SQL
 
-  create_view "participant_challenges",  sql_definition: <<-SQL
-      SELECT DISTINCT p.id,
-      cr.challenge_id,
-      cr.participant_id,
-      c.organizer_id,
-      c.challenge,
-      c.description,
-      c.rules,
-      c.prizes,
-      c.resources,
-      c.tagline,
-      p.name,
-      p.email,
-      p.last_sign_in_at,
-      p.bio,
-      p.github,
-      p.linkedin,
-      p.twitter
-     FROM participants p,
-      challenges c,
-      challenge_registrations cr
-    WHERE ((cr.participant_id = p.id) AND (cr.challenge_id = c.id));
-  SQL
-
   create_view "participant_sign_ups",  sql_definition: <<-SQL
       SELECT count(participants.id) AS count,
       (date_part('month'::text, participants.created_at))::integer AS mnth,
@@ -1284,6 +1260,36 @@ ActiveRecord::Schema.define(version: 20180330153026) do
     WHERE (s.participant_id = p.id)
     GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
     ORDER BY s.created_at DESC;
+  SQL
+
+  create_view "participant_challenges",  sql_definition: <<-SQL
+      SELECT DISTINCT p.id,
+      cr.challenge_id,
+      cr.participant_id,
+      c.organizer_id,
+      c.status_cd,
+      c.challenge,
+      c.private_challenge,
+      c.description,
+      c.rules,
+      c.prizes,
+      c.resources,
+      c.tagline,
+      c.image_file,
+      c.submission_count,
+      c.participant_count,
+      c.page_views,
+      p.name,
+      p.email,
+      p.last_sign_in_at,
+      p.bio,
+      p.github,
+      p.linkedin,
+      p.twitter
+     FROM participants p,
+      challenges c,
+      challenge_registrations cr
+    WHERE ((cr.participant_id = p.id) AND (cr.challenge_id = c.id));
   SQL
 
 end

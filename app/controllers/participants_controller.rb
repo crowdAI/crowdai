@@ -59,26 +59,28 @@ class ParticipantsController < ApplicationController
   end
 
   def participant_params
-    params.require(:participant)
-          .permit(:email,
-                  :password,
-                  :password_confirmation,
-                  :phone_number,
-                  :name,
-                  :organizer_id,
-                  :email_public,
-                  :bio,
-                  :website,
-                  :github,
-                  :linkedin,
-                  :twitter,
-                  :image_file,
-                  :affiliation,
-                  :address,
-                  :city,
-                  :country_cd,
-                  :first_name,
-                  :last_name)
+    params
+      .require(:participant)
+      .permit(
+        :email,
+        :password,
+        :password_confirmation,
+        :phone_number,
+        :name,
+        :organizer_id,
+        :email_public,
+        :bio,
+        :website,
+        :github,
+        :linkedin,
+        :twitter,
+        :image_file,
+        :affiliation,
+        :address,
+        :city,
+        :country_cd,
+        :first_name,
+        :last_name)
     end
 
 end

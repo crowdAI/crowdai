@@ -81,18 +81,21 @@ class OrganizersController < ApplicationController
     end
 
     def organizer_params
-      params.require(:organizer)
-            .permit(:organizer,
-                    :address,
-                    :description,
-                    :approved,
-                    :organizer_id,
-                    :status,
-                    :tagline,
-                    :image_file,
-                    :clef_organizer,
-                    clef_tasks_attributes: [
-                      :id, :_delete, :task
-                    ])
+      params
+        .require(:organizer)
+        .permit(
+          :organizer,
+          :address,
+          :description,
+          :approved,
+          :organizer_id,
+          :status,
+          :tagline,
+          :image_file,
+          :clef_organizer,
+          clef_tasks_attributes: [
+            :id,
+            :_delete,
+            :task])
     end
 end

@@ -1,17 +1,19 @@
 class SubmissionsController < ApplicationController
   before_action :authenticate_participant!
-  before_action :set_submission, only: [:show, :edit, :update, :grade, :execute]
+  before_action :set_submission,
+    only: [:show, :edit, :update ]
   before_action :set_challenge
-  before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
+  before_action :set_s3_direct_post,
+    only: [:new, :edit, :create, :update]
   before_action :set_submissions_remaining
   respond_to :html, :js
 
   def index
     @submissions = @challenge
-                     .submissions
-                     .order('created_at desc')
-                     .page(params[:page])
-                     .per(10)
+      .submissions
+      .order('created_at desc')
+      .page(params[:page])
+      .per(10)
     @challenge_round_id = @challenge.challenge_rounds.where(active: true)
   end
 
@@ -65,24 +67,6 @@ class SubmissionsController < ApplicationController
     redirect_to challenge_leaderboards_path(@challenge), notice: 'Submission was successfully destroyed.'
   end
 
-
-  def grade
-    @job = SubmissionGraderJob.perform_later(@submission.id)
-    render 'submissions/ajax/refresh_submission_job'
-  end
-
-  def hub
-    @job = SubmissionDockerHubJob.perform_later(@submission.id)
-    render 'submissions/ajax/refresh_submission_job'
-  end
-
-
-  def execute  # TODO remove
-    @job = SubmissionExecutionJob.perform_later(@submission.id)
-    render 'admin/submissions/refresh_submission_job'
-  end
-
-
   private
     def set_submission
       if params.include?(:submission_id)
@@ -99,21 +83,23 @@ class SubmissionsController < ApplicationController
 
 
     def submission_params
-      params.require(:submission)
-            .permit(:challenge_id,
-                    :participant_id,
-                    :description_markdown,
-                    :score,
-                    :score_secondary,
-                    :grading_status,
-                    :grading_message,
-                    :api,
-                    :docker_configuration_id,
-                    submission_files_attributes:
-                        [:id,
-                         :seq,
-                         :submission_file_s3_key,
-                         :_delete])
+      params
+        .require(:submission)
+        .permit(
+          :challenge_id,
+          :participant_id,
+          :description_markdown,
+          :score,
+          :score_secondary,
+          :grading_status,
+          :grading_message,
+          :api,
+          :docker_configuration_id,
+          submission_files_attributes: [
+            :id,
+            :seq,
+            :submission_file_s3_key,
+            :_delete])
     end
 
 

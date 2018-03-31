@@ -12,10 +12,10 @@ require 'support/controller_helpers'
 require 'features/support/feature_spec_helpers'
 require 'support/helpers/header_helpers'
 require 'simplecov'
-require 'codecov'
+#require 'codecov'
 
-SimpleCov.start
-SimpleCov.formatter = SimpleCov::Formatter::Codecov
+#SimpleCov.start
+#SimpleCov.formatter = SimpleCov::Formatter::Codecov
 
 ActiveRecord::Migration.maintain_test_schema!
 

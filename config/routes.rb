@@ -75,11 +75,7 @@ Rails.application.routes.draw do
     end
     resources :events
     resources :winners, only: [:index]
-    resources :submissions do
-      get :grade
-      get :hub
-      get :execute
-    end
+    resources :submissions
     resources :dynamic_contents, only: [:index]
     resources :leaderboards, only: [:index, :show] do
       get :submission_detail

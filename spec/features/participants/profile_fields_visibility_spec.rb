@@ -48,5 +48,9 @@ feature 'Email field visibility', js: true do
     expect(participant.api_key).not_to be_nil
     expect(page).not_to have_content participant.email
   end
+
+  scenario "draft challenges not visible to public users" do
+    TODO
+  end
 end
 =end

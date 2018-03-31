@@ -1,10 +1,14 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_participant!, except: [:show,:index]
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_participant!,
+    except: [:show,:index]
+  before_action :set_article,
+    only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized
 
   def index
-    @articles = policy_scope(Article).page(params[:page]).per(10)
+    @articles = policy_scope(Article)
+      .page(params[:page])
+      .per(10)
     authorize @articles
   end
 
@@ -12,7 +16,8 @@ class ArticlesController < ApplicationController
   def show
     @article.record_page_view
     if params[:article_section_id]
-      @article_section = ArticleSection.find(params[:article_section_id])
+      @article_section = ArticleSection
+        .find(params[:article_section_id])
     else
       @article_section = @article.article_sections.first
     end
@@ -24,10 +29,8 @@ class ArticlesController < ApplicationController
     authorize @article
   end
 
-
   def edit
   end
-
 
   def create
     if current_participant
@@ -76,21 +79,25 @@ class ArticlesController < ApplicationController
 
 
     def article_params
-      params.require(:article)
-            .permit(:article,
-                    :published,
-                    :category,
-                    :summary,
-                    :participant_id,
-                    :image_file,
-                    article_sections_attributes: [:id,
-                                                  :article_id,
-                                                  :seq,
-                                                  :icon,
-                                                  :section,
-                                                  :description_markdown ],
-                    image_attributes: [:id,
-                                       :image,
-                                       :_destroy ])
+      params
+        .require(:article)
+        .permit(
+          :article,
+          :published,
+          :category,
+          :summary,
+          :participant_id,
+          :image_file,
+          article_sections_attributes: [
+            :id,
+            :article_id,
+            :seq,
+            :icon,
+            :section,
+            :description_markdown ],
+          image_attributes: [
+            :id,
+            :image,
+            :_destroy ])
     end
 end

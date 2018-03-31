@@ -13,36 +13,50 @@ class Participant < ApplicationRecord
   devise :database_authenticatable,  :confirmable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 
-  belongs_to :organizer,                  optional: true
-  has_many :submissions,                  dependent: :nullify
-  has_many :votes,                        dependent: :destroy
-  has_many :topics,                       dependent: :nullify
-  has_many :comments,                     dependent: :nullify
-  has_many :articles,                     dependent: :nullify
-  has_many :leaderboards,                 class_name: 'Leaderboard'
-  has_many :ongoing_leaderboards,         class_name: 'OngoingLeaderboard'
-  has_many :participant_challenges,       class_name: 'ParticipantChallenge'
-  has_many :challenge_registrations,      class_name: 'ChallengeRegistration'
-  has_many :participant_challenge_counts, class_name: 'ParticipantChallengeCount'
-  has_many :challenges,                   through: :participant_challenges
-  has_many :dataset_file_downloads,       dependent: :destroy
-  has_many :task_dataset_file_downloads,  dependent: :destroy
-  has_many :email_preferences,            dependent: :destroy
-  has_many :email_preferences_tokens,     dependent: :destroy
-  has_many :follows,                      dependent: :destroy
-  has_many :participant_clef_tasks,       dependent: :destroy
+  belongs_to :organizer, optional: true
+  has_many :submissions, dependent: :nullify
+  has_many :votes, dependent: :destroy
+  has_many :topics, dependent: :nullify
+  has_many :comments, dependent: :nullify
+  has_many :articles, dependent: :nullify
+  has_many :leaderboards,
+    class_name: 'Leaderboard'
+  has_many :ongoing_leaderboards,
+    class_name: 'OngoingLeaderboard'
+  has_many :participant_challenges,
+    class_name: 'ParticipantChallenge'
+  has_many :challenge_registrations,
+    class_name: 'ChallengeRegistration'
+  has_many :participant_challenge_counts,
+    class_name: 'ParticipantChallengeCount'
+  has_many :challenges,
+    through: :participant_challenges
+  has_many :dataset_file_downloads,
+    dependent: :destroy
+  has_many :task_dataset_file_downloads,
+    dependent: :destroy
+  has_many :email_preferences,
+    dependent: :destroy
+  has_many :email_preferences_tokens,
+    dependent: :destroy
+  has_many :follows,
+    dependent: :destroy
+  has_many :participant_clef_tasks,
+    dependent: :destroy
   has_many :invitations, dependent: :destroy
-  has_many :access_grants, class_name: "Doorkeeper::AccessGrant",
-                          foreign_key: :resource_owner_id,
-                          dependent: :destroy
-  has_many :access_tokens, class_name: "Doorkeeper::AccessToken",
-                          foreign_key: :resource_owner_id,
-                          dependent: :destroy
+  has_many :access_grants,
+    class_name: "Doorkeeper::AccessGrant",
+    foreign_key: :resource_owner_id,
+    dependent: :destroy
+  has_many :access_tokens,
+    class_name: "Doorkeeper::AccessToken",
+    foreign_key: :resource_owner_id,
+    dependent: :destroy
 
   validates :email,
-            presence: true,
-            'valid_email_2/email': true,
-            uniqueness: { case_sensitive: false }
+    presence: true,
+    'valid_email_2/email': true,
+    uniqueness: { case_sensitive: false }
   validates :website, :url => { allow_blank: true }
   validates :github, :url => { allow_blank: true }
   validates :linkedin, :url => { allow_blank: true }
@@ -56,23 +70,33 @@ class Participant < ApplicationRecord
       without: /\s/,
       message: 'cannot contain spaces'
     }
-  validates :affiliation, length:{ in:2...100}, allow_blank: true
-  validates :country_cd, inclusion: { in: ISO3166::Country::codes}, allow_blank: true
-  validates :address, length:{ in: 10...255 }, allow_blank: true
-  validates :first_name, length:{ in:2...100}, allow_blank: true
-  validates :last_name, length:{ in:2...100}, allow_blank: true
-
+  validates :affiliation,
+    length: { in: 2...100},
+    allow_blank: true
+  validates :country_cd,
+    inclusion: { in: ISO3166::Country::codes}, allow_blank: true
+  validates :address,
+    length: { in: 10...255 },
+    allow_blank: true
+  validates :first_name,
+    length: { in: 2...100},
+    allow_blank: true
+  validates :last_name,
+    length:{ in: 2...100},
+    allow_blank: true
 
   def disable_account(reason)
-    self.update(account_disabled: true,
-                account_disabled_reason: reason,
-                account_disabled_dttm: Time.now )
+    self.update(
+      account_disabled: true,
+      account_disabled_reason: reason,
+      account_disabled_dttm: Time.now )
   end
 
   def enable_account
-    self.update(account_disabled: false,
-                account_disabled_reason: nil,
-                account_disabled_dttm: nil )
+    self.update(
+      account_disabled: false,
+      account_disabled_reason: nil,
+      account_disabled_dttm: nil )
   end
 
   def active_for_authentication?

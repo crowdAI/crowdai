@@ -17,11 +17,16 @@ class EmailPreferencesController < ApplicationController
     end
     if @email_preference.save
       if @token
-        redirect_to edit_participant_email_preference_path(@participant, @email_preference, preferences_token: @token),
-                                                          notice: 'Your email preferences were successfully updated.'
+        redirect_to edit_participant_email_preference_path(
+          @participant,
+          @email_preference,
+          preferences_token: @token),
+          notice: 'Your email preferences were successfully updated.'
       else
-        redirect_to edit_participant_email_preference_path(@participant, @email_preference),
-                                                          notice: 'Your email preferences were successfully updated.'
+        redirect_to edit_participant_email_preference_path(
+          @participant,
+          @email_preference),
+          notice: 'Your email preferences were successfully updated.'
       end
     else
       render :edit
@@ -34,14 +39,16 @@ class EmailPreferencesController < ApplicationController
   end
 
   def email_preference_params
-    params.require(:email_preference)
-          .permit(:participant_id,
-                  :newsletter,
-                  :challenges_followed,
-                  :mentions,
-                  :receive_every_email,
-                  :receive_daily_digest,
-                  :receive_weekly_digest)
+    params
+      .require(:email_preference)
+      .permit(
+        :participant_id,
+        :newsletter,
+        :challenges_followed,
+        :mentions,
+        :receive_every_email,
+        :receive_daily_digest,
+        :receive_weekly_digest)
   end
 
 
@@ -49,7 +56,9 @@ class EmailPreferencesController < ApplicationController
     token = params[:preferences_token]
     Rails.logger.info("[EmailPreferencesController#email_preferences_token_or_authenticate] token: #{token}")
     if token.present?
-      status = EmailPreferencesTokenService.new(@participant).validate_token(token)
+      status = EmailPreferencesTokenService
+        .new(@participant)
+        .validate_token(token)
       case status
       when 'invalid_participant'
         flash[:error] = "The email preferences link is not valid for the currently logged in participant."

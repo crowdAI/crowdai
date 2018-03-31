@@ -136,10 +136,6 @@ GEM
       js_regex (~> 1.2)
       rails (>= 5.0.0.1, < 5.2)
     cocoon (1.2.10)
-    codecov (0.1.10)
-      json
-      simplecov
-      url
     coderay (1.1.1)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -772,7 +768,6 @@ GEM
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
     unicode_utils (1.4.0)
-    url (0.3.2)
     valid_email2 (2.1.1)
       activemodel (>= 3.2)
       mail (~> 2.5)
@@ -817,7 +812,6 @@ DEPENDENCIES
   cells-rails!
   client_side_validations
   cocoon
-  codecov
   coffee-rails
   compass-rails
   country_select

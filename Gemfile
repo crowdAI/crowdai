@@ -85,6 +85,7 @@ gem 'figaro'
 # email
 gem 'mandrill-api'
 gem 'gibbon'
+gem 'aws-ses'
 
 # background processing
 gem 'sidekiq', '~> 5.1.1'

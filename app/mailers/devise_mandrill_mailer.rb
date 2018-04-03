@@ -23,20 +23,9 @@ class DeviseMandrillMailer < Devise::Mailer
 
   def confirmation_instructions(record, token, opts={})
     options = {
-      participant_id:   record.id,
-      subject:          "crowdAI Confirmation Instructions",
-      email:            record.email,
-      global_merge_vars:  [
-        {
-          name:         "NAME",
-          content:      record.name
-        },
-        {
-          name:         "CONFIRMATION_URL",
-          content:      confirmation_url(record, confirmation_token: token)
-        }
-      ],
-      template:         "crowdAI Devise confirmation_instructions"
+      email: record.email,
+      subject:  'Confirmation de compte',
+      text_body: "Veuillez valider votre compte : #{confirmation_url(record, confirmation_token: token)}"
     }
     mandrill_send options
   end
@@ -62,24 +51,10 @@ class DeviseMandrillMailer < Devise::Mailer
   end
 
   def mandrill_send(options={})
-    message = {
-      subject:      options[:subject],
-      from_name:    "crowdAI",
-      from_email:   "no-reply@crowdai.org",
-      to: [
-        {
-          email:    options[:email],
-          type:     "to"
-        }
-      ],
-      global_merge_vars:  options[:global_merge_vars]
-    }
-    MANDRILL.messages.send_template( options[:template], [], message) unless Rails.env.test?
-
-    rescue Mandrill::Error => e
-      puts e.message
-      Rails.logger.debug("#{e.class}: #{e.message}")
-      raise
+    SES.send_email to: [options[:email]],
+                   source:    ENV['AWS_MAIL_SOURCE'],
+                   subject:   options[:subject],
+                   text_body: options[:text_body]
   end
 
 end

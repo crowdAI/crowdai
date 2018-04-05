@@ -37,12 +37,13 @@ class SubmissionsController < ApplicationController
 
 
   def new
-    @clef_primary_run_disabled = false #clef_primary_run_disabled?
+    @clef_primary_run_disabled = clef_primary_run_disabled?
 
     @submissions_remaining, @reset_dttm = SubmissionsRemainingQuery.new(
       challenge: @challenge,
       participant_id: current_participant.id
     ).call
+    @submissions_remaining_text = get_submissions_remaining_text
     @submission = @challenge.submissions.new
     @challenge.submission_file_definitions.each do |file|
       @submission.submission_files.build(seq: file.seq)
@@ -88,6 +89,10 @@ class SubmissionsController < ApplicationController
 
     def set_challenge
       @challenge = Challenge.friendly.find(params[:challenge_id])
+    end
+
+    def get_submissions_remaining_text
+  
     end
 
 
@@ -146,7 +151,8 @@ class SubmissionsController < ApplicationController
               AND s.grading_status_cd = 'graded')
               OR s.grading_status_cd NOT IN ('ready', 'submitted', 'initiated'))
       ]
-      ActiveRecord::Base.connection.select_values(sql)
+      res = ActiveRecord::Base.connection.select_values(sql)
+      res.any?
     end
 
 end

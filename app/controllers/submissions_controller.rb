@@ -60,7 +60,7 @@ class SubmissionsController < ApplicationController
       if @challenge.automatic_grading
         SubmissionGraderJob.perform_later(@submission.id)
       end
-      notify_admins
+      #notify_admins
       redirect_to challenge_submissions_path(@challenge),
         notice: 'Submission accepted.'
     else

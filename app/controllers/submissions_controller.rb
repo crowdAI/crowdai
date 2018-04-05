@@ -70,11 +70,11 @@ class SubmissionsController < ApplicationController
     end
   end
 
-
   def destroy
     submission = Submission.find(params[:id])
     submission.destroy
-    redirect_to challenge_leaderboards_path(@challenge), notice: 'Submission was successfully destroyed.'
+    redirect_to challenge_leaderboards_path(@challenge),
+      notice: 'Submission was successfully destroyed.'
   end
 
   private
@@ -86,15 +86,9 @@ class SubmissionsController < ApplicationController
       end
     end
 
-
     def set_challenge
       @challenge = Challenge.friendly.find(params[:challenge_id])
     end
-
-    def get_submissions_remaining_text
-  
-    end
-
 
     def submission_params
       params
@@ -123,13 +117,12 @@ class SubmissionsController < ApplicationController
             :_delete])
     end
 
-
     def set_s3_direct_post
-      @s3_direct_post = S3_BUCKET.presigned_post(key: "submission_files/#{SecureRandom.uuid}/${filename}",
-                                                 success_action_status: '201',
-                                                 acl: 'public-read')
+      @s3_direct_post = S3_BUCKET.presigned_post(
+        key: "submission_files/#{SecureRandom.uuid}/${filename}",
+        success_action_status: '201',
+        acl: 'public-read')
     end
-
 
     def set_submissions_remaining
       @submissions_remaining = @challenge.submissions_remaining(current_participant.id)

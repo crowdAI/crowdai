@@ -22,7 +22,7 @@ class GraderService
       response = call_grader
 
       puts response.inspect
-      
+
       evaluate_response(
         submission_id: @submission.id,
         response: response)
@@ -72,9 +72,9 @@ class GraderService
       response_channel: "na",
       session_token: "na",
       api_key: participant.api_key,
-      grader_id: 'CLEFChallenges', #challenge.grader_identifier,
+      grader_id: challenge.grader_identifier,  #CLEFChallenges
       challenge_client_name: challenge.challenge_client_name,
-      function_name: "submit",
+      function_name: "grade_submission",
       data: [{"file_key": get_submission_key, submission_id: @submission.id}],
       dry_run: 'false',
       parallel: 'false',
@@ -90,7 +90,7 @@ var _args = {}
   _args["api_key"] = participant_api_key
   _args["grader_id"] = grader_id
   _args["challenge_client_name"] = challenge_client_name
-  _args["function_name"] = "submit"
+  _args["function_name"] = "grade_submission"
   _args["data"] = [{"file_key":s3_key}]
   _args["dry_run"] = false
   _args["parallel"] = false

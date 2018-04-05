@@ -37,10 +37,10 @@ class SubmissionsController < ApplicationController
 
 
   def new
-    @clef_primary_run = !clef_primary_run_active?
+    @clef_primary_run_disabled = false #clef_primary_run_disabled?
 
-    @submissions_remaining, @reset_dttm = SubmissionsRemainingService.new(
-      challenge_id: @challenge.id,
+    @submissions_remaining, @reset_dttm = SubmissionsRemainingQuery.new(
+      challenge: @challenge,
       participant_id: current_participant.id
     ).call
     @submission = @challenge.submissions.new
@@ -134,7 +134,7 @@ class SubmissionsController < ApplicationController
       Admin::SubmissionNotificationJob.perform_later(@submission)
     end
 
-    def clef_primary_run_active?
+    def clef_primary_run_disabled?
       return true unless @challenge.organizer.clef?
 
       sql = %Q[

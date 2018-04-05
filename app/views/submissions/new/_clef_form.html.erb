@@ -30,7 +30,9 @@
 
         <fieldset class="checkbox">
           <div>
-            <%= f.check_box :clef_primary_run, {}, "true", "false" %>
+            <%= f.check_box :clef_primary_run,
+                  { disabled: @clef_primary_run_disabled },
+                  "true", "false"  %>
             <label for="">Primary Run?</label>
           </div>
         </fieldset>
@@ -63,7 +65,7 @@
           </div>
         <% end %>
         <p class="margin-bottom">
-          <strong>You have 5 submissions remaining today (in a 24 hour window).</strong>
+          <strong>You have <%= @submissions_remaining %> submissions remaining until <%= @reset_dttm %>.</strong>
         </p>
 
         <div class="button-group">

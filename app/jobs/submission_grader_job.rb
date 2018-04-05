@@ -3,11 +3,15 @@ class SubmissionGraderJob < ApplicationJob
 
   def perform(submission_id)
     submission = Submission.find(submission_id)
-    if submission.challenge.grader_cd == 'docker_container'
-      DockerizeSubmission.new(submission_id).grade
-    else
-      Grader.new(submission_id).grade
-    end
+    #Grader.new(submission_id).grade
   end
 
 end
+
+# https://grader.crowdai.org:10000/enqueue_grading_job
+
+# submission_id
+# s3_key
+# participant api key
+# challenge_client_name
+# grader_identifier -> grader_id

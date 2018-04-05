@@ -21,8 +21,6 @@ class GraderService
       puts
       response = call_grader
 
-      puts response.inspect
-      
       evaluate_response(
         submission_id: @submission.id,
         response: response)
@@ -43,22 +41,24 @@ class GraderService
       Submission.update(
         @submission.id,
         grading_status: 'failed',
-        grading_message: 'Grading process system error.')
+        grading_message: e.message)
       raise e
     end
   end
 
   def evaluate_response(submission_id:,response:)
-    if response
-      r = response.parsed_response
+    # {"response_type"=>"CrowdAI.Event.SUCCESS", "message"=>"Successfully enqueued 1 Job", "data"=>{}}
+    if response.code == 200
+      resp = JSON(response.body)
       Submission.update(
         submission_id,
-        grading_status: r["grading_status"],
-        grading_message: r["grading_message"])
+        grading_status: 'submitted',
+        grading_message: resp["message"])
     else
       Submission.update(
-        submission_id, grading_status: 'failed',
-        grading_message: 'Grading process system error.')
+        submission_id,
+        grading_status: 'failed',
+        grading_message: 'Grading process system error, please contact crowdAI administrators.')
     end
   end
 
@@ -72,13 +72,13 @@ class GraderService
       response_channel: "na",
       session_token: "na",
       api_key: participant.api_key,
-      grader_id: 'CLEFChallenges', #challenge.grader_identifier,
+      grader_id: challenge.grader_identifier,  #CLEFChallenges
       challenge_client_name: challenge.challenge_client_name,
-      function_name: "submit",
+      function_name: "grade_submission",
       data: [{"file_key": get_submission_key, submission_id: @submission.id}],
       dry_run: 'false',
       parallel: 'false',
-      enqueue_only: 'false',
+      enqueue_only: 'true',
       grader_api_key: ENV['CROWDAI_API_KEY']
     }
   end
@@ -90,7 +90,7 @@ var _args = {}
   _args["api_key"] = participant_api_key
   _args["grader_id"] = grader_id
   _args["challenge_client_name"] = challenge_client_name
-  _args["function_name"] = "submit"
+  _args["function_name"] = "grade_submission"
   _args["data"] = [{"file_key":s3_key}]
   _args["dry_run"] = false
   _args["parallel"] = false

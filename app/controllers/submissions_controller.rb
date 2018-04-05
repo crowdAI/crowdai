@@ -38,13 +38,12 @@ class SubmissionsController < ApplicationController
 
   def new
     @clef_primary_run_disabled = clef_primary_run_disabled?
-
     @submissions_remaining, @reset_dttm = SubmissionsRemainingQuery.new(
       challenge: @challenge,
       participant_id: current_participant.id
     ).call
-    @submissions_remaining_text = get_submissions_remaining_text
     @submission = @challenge.submissions.new
+    @submission.submission_files.build
     @challenge.submission_file_definitions.each do |file|
       @submission.submission_files.build(seq: file.seq)
     end
@@ -58,9 +57,7 @@ class SubmissionsController < ApplicationController
         participant_id: current_participant.id,
         online_submission: true))
     if @submission.save
-      if @challenge.automatic_grading
-        SubmissionGraderJob.perform_later(@submission.id)
-      end
+      SubmissionGraderJob.perform_later(@submission.id)
       #notify_admins
       redirect_to challenge_submissions_path(@challenge),
         notice: 'Submission accepted.'
@@ -70,11 +67,11 @@ class SubmissionsController < ApplicationController
     end
   end
 
-
   def destroy
     submission = Submission.find(params[:id])
     submission.destroy
-    redirect_to challenge_leaderboards_path(@challenge), notice: 'Submission was successfully destroyed.'
+    redirect_to challenge_leaderboards_path(@challenge),
+      notice: 'Submission was successfully destroyed.'
   end
 
   private
@@ -86,15 +83,9 @@ class SubmissionsController < ApplicationController
       end
     end
 
-
     def set_challenge
       @challenge = Challenge.friendly.find(params[:challenge_id])
     end
-
-    def get_submissions_remaining_text
-  
-    end
-
 
     def submission_params
       params
@@ -123,13 +114,13 @@ class SubmissionsController < ApplicationController
             :_delete])
     end
 
-
     def set_s3_direct_post
-      @s3_direct_post = S3_BUCKET.presigned_post(key: "submission_files/#{SecureRandom.uuid}/${filename}",
-                                                 success_action_status: '201',
-                                                 acl: 'public-read')
+      @s3_direct_post = S3_BUCKET
+        .presigned_post(
+          key: "submission_files/challenge_#{@challenge.id}/#{SecureRandom.uuid}_${filename}",
+          success_action_status: '201',
+          acl: 'private')
     end
-
 
     def set_submissions_remaining
       @submissions_remaining = @challenge.submissions_remaining(current_participant.id)

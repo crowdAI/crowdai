@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180331132823) do
+ActiveRecord::Schema.define(version: 20180405104839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -572,6 +572,13 @@ ActiveRecord::Schema.define(version: 20180331132823) do
     t.integer "challenge_round_id"
     t.json "meta", default: {}
     t.string "short_url"
+    t.text "clef_method_description"
+    t.string "clef_retrieval_type"
+    t.string "clef_run_type"
+    t.boolean "clef_primary_run", default: false
+    t.text "clef_other_info"
+    t.text "clef_additional"
+    t.boolean "online_submission", default: false
     t.index ["challenge_id"], name: "index_submissions_on_challenge_id"
     t.index ["participant_id"], name: "index_submissions_on_participant_id"
   end

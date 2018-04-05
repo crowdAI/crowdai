@@ -13,7 +13,7 @@ class Submission < ApplicationRecord
   has_many :votes, as: :votable
 
   as_enum :grading_status,
-    [:ready, :submitted, :graded, :failed, :initiated], map: :string
+    [:ready, :submitted, :initiated, :graded, :failed], map: :string
 
   validates :participant_id,            presence: true
   validates :challenge_id,              presence: true

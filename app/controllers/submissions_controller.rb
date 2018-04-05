@@ -17,7 +17,6 @@ class SubmissionsController < ApplicationController
     @challenge_round_id = @challenge.challenge_rounds.where(active: true)
   end
 
-
   def leaderboard
     if !@challenge.completed?
       redirect_to '/'
@@ -26,7 +25,6 @@ class SubmissionsController < ApplicationController
       @submissions = Submission.where(challenge_id: @challenge.id, participant_id: participant_id)
     end
   end
-
 
   def show
     if !@challenge.completed? && (@submission.participant_id != current_participant.id && !current_participant.admin?)
@@ -39,6 +37,8 @@ class SubmissionsController < ApplicationController
 
 
   def new
+    @clef_primary_run = !clef_primary_run_active?
+
     @submissions_remaining, @reset_dttm = SubmissionsRemainingService.new(
       challenge_id: @challenge.id,
       participant_id: current_participant.id
@@ -132,6 +132,21 @@ class SubmissionsController < ApplicationController
 
     def notify_admins
       Admin::SubmissionNotificationJob.perform_later(@submission)
+    end
+
+    def clef_primary_run_active?
+      return true unless @challenge.organizer.clef?
+
+      sql = %Q[
+        SELECT 'X'
+        FROM submissions s
+        WHERE s.challenge_id = #{@challenge.id}
+        AND s.participant_id = #{current_participant.id}
+        AND ((s.clef_primary_run IS TRUE
+              AND s.grading_status_cd = 'graded')
+              OR s.grading_status_cd NOT IN ('ready', 'submitted', 'initiated'))
+      ]
+      ActiveRecord::Base.connection.select_values(sql)
     end
 
 end

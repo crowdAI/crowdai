@@ -6,7 +6,9 @@ class SubmissionsRemainingQuery
   end
 
   def call
-    return [1,nil] unless @challenge.running?
+    unless @challenge.running? || @challenge.current_round.nil?
+      return [1,nil]
+    end
     remaining = send(@challenge.current_round.submission_limit_period_cd.to_s)
     return remaining
   end

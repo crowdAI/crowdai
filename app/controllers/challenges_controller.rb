@@ -179,6 +179,7 @@ class ChallengesController < ApplicationController
         :show_leaderboard,
         :ranking_window,
         :ranking_highlight,
+        :grader_identifier,
         dataset_attributes: [
           :id,
           :challenge_id,

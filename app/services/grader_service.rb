@@ -4,23 +4,25 @@ class GraderService
   base_uri ENV["GRADER"]
 
   # https://grader.crowdai.org:10000/
-
-  # submission_id
-  # s3_key
-  # participant api key
-  # challenge_client_name
-  # grader_identifier -> grader_id
+  # GraderService.new(submission_id: 358).call
 
   def initialize(submission_id:)
     @submission = Submission.find(submission_id)
   end
 
   def call
-    @query = api_query
-    if @query
+    @body = api_query
+    if @body
+
+      puts self.class.base_uri
       puts @submission.inspect
-      puts @query.inspect
+      puts
+      puts @body.inspect
+      puts
       response = call_grader
+
+      puts response.inspect
+      
       evaluate_response(
         submission_id: @submission.id,
         response: response)
@@ -35,8 +37,7 @@ class GraderService
 
   def call_grader
     begin
-      response = self.class.get('/enqueue_grading_job"',@query)
-      puts response
+      response = self.class.post('/enqueue_grading_job',body: @body)
       return response
     rescue => e
       Submission.update(
@@ -67,15 +68,35 @@ class GraderService
     participant = @submission.participant
     submission_key = get_submission_key
 
-    query = {
-      grader_api_key: ENV['CROWDAI_API_KEY'],
-      submission_id: @submission.id,
+    body = {
+      response_channel: "na",
+      session_token: "na",
+      api_key: participant.api_key,
+      grader_id: 'CLEFChallenges', #challenge.grader_identifier,
       challenge_client_name: challenge.challenge_client_name,
-      grader_id: challenge.grader_identifier,
-      file_key: get_submission_key,
-      participant_api_key: participant.api_key
+      function_name: "submit",
+      data: [{"file_key": get_submission_key, submission_id: @submission.id}],
+      dry_run: 'false',
+      parallel: 'false',
+      enqueue_only: 'false',
+      grader_api_key: ENV['CROWDAI_API_KEY']
     }
   end
+
+=begin
+var _args = {}
+  _args["response_channel"] = "na"
+  _args["session_token"] = "na"
+  _args["api_key"] = participant_api_key
+  _args["grader_id"] = grader_id
+  _args["challenge_client_name"] = challenge_client_name
+  _args["function_name"] = "submit"
+  _args["data"] = [{"file_key":s3_key}]
+  _args["dry_run"] = false
+  _args["parallel"] = false
+  _args["enqueue_only"] = false
+  _args["GRADER_API_KEY"] = grader_api_key
+=end
 
   def get_submission_key
     key = @submission.submission_files.first.submission_file_s3_key

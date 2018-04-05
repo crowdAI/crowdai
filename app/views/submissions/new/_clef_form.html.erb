@@ -9,7 +9,9 @@
           'host' => URI.parse(@s3_direct_post.url).host } do |f| %>
 
       <label>
-        <%= @challenge.submission_instructions.html_safe %>
+        <% if @challenge.submission_instructions %>
+          <%= @challenge.submission_instructions.html_safe %>
+        <% end %>
       </label>
       <fieldset>
         <%= f.label :clef_method_description,
@@ -53,15 +55,15 @@
               By making your submission you indicate your agreement with these terms.
             </p>
         <% end %>
-        <%= f.fields_for @submission.submission_files.build do |file| %>
+        <%= f.fields_for :submission_files do |f| %>
 
           <div class="nested-fields">
             <p><%#= @challenge.submission_file_definitions[file.index].submission_file_help_text %></p>
-            <%= file.hidden_field :seq %><!-- populated by controller -->
-            <%= file.file_field :submission_file_s3_key,
+            <%= f.hidden_field :seq %><!-- populated by controller -->
+            <%= f.file_field :submission_file_s3_key,
                   as: :file,
                   label: "Submissions file",
-                  input_html: { class: 's3File' } %>
+                  class: 'file-upload s3File' %>
           </div>
         <% end %>
         <p class="margin-bottom">

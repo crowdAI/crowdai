@@ -22,12 +22,12 @@ RSpec.describe Api::SubmissionsController, type: :request do
   describe 'with valid API key' do
     context "with organiser auth key" do
       before do
-        get "/api/challenges/#{challenge.id}/submissions",
+        get "/api/challenges/#{challenge.id}/submissions.json",
           headers: {
             'Content-Type': 'application/vnd.api+json',
             'Authorization': auth_header(organizer.api_key) }
       end
-      it { byebug }
+      #it { byebug }
       it { expect(response).to have_http_status(200) }
     end
   end

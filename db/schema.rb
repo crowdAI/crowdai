@@ -207,21 +207,6 @@ ActiveRecord::Schema.define(version: 20180405122218) do
     t.index ["topic_id"], name: "index_posts_on_topic_id"
   end
 
-  create_table "comments_backup", id: false, force: :cascade do |t|
-    t.integer "id"
-    t.integer "topic_id"
-    t.integer "participant_id"
-    t.text "comment"
-    t.boolean "flagged"
-    t.boolean "notify"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer "vote_count"
-    t.string "slug"
-    t.text "comment_markdown"
-    t.string "mentions_cache"
-  end
-
   create_table "dataset_file_downloads", id: :serial, force: :cascade do |t|
     t.integer "participant_id"
     t.integer "dataset_file_id"
@@ -1242,34 +1227,6 @@ ActiveRecord::Schema.define(version: 20180405122218) do
             ORDER BY x.challenge_id, x.participant_id) y;
   SQL
 
-  create_view "participant_sign_ups",  sql_definition: <<-SQL
-      SELECT count(participants.id) AS count,
-      (date_part('month'::text, participants.created_at))::integer AS mnth,
-      (date_part('year'::text, participants.created_at))::integer AS yr
-     FROM participants
-    GROUP BY ((date_part('month'::text, participants.created_at))::integer), ((date_part('year'::text, participants.created_at))::integer)
-    ORDER BY ((date_part('year'::text, participants.created_at))::integer), ((date_part('month'::text, participants.created_at))::integer);
-  SQL
-
-  create_view "participant_submissions",  sql_definition: <<-SQL
-      SELECT s.id,
-      s.challenge_id,
-      s.participant_id,
-      p.name,
-      s.grading_status_cd,
-      s.post_challenge,
-      s.score,
-      s.score_secondary,
-      count(f.*) AS files,
-      s.created_at
-     FROM participants p,
-      (submissions s
-       LEFT JOIN submission_files f ON ((f.submission_id = s.id)))
-    WHERE (s.participant_id = p.id)
-    GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
-    ORDER BY s.created_at DESC;
-  SQL
-
   create_view "participant_challenges",  sql_definition: <<-SQL
       SELECT DISTINCT p.id,
       cr.challenge_id,
@@ -1298,6 +1255,34 @@ ActiveRecord::Schema.define(version: 20180405122218) do
       challenges c,
       challenge_registrations cr
     WHERE ((cr.participant_id = p.id) AND (cr.challenge_id = c.id));
+  SQL
+
+  create_view "participant_sign_ups",  sql_definition: <<-SQL
+      SELECT count(participants.id) AS count,
+      (date_part('month'::text, participants.created_at))::integer AS mnth,
+      (date_part('year'::text, participants.created_at))::integer AS yr
+     FROM participants
+    GROUP BY ((date_part('month'::text, participants.created_at))::integer), ((date_part('year'::text, participants.created_at))::integer)
+    ORDER BY ((date_part('year'::text, participants.created_at))::integer), ((date_part('month'::text, participants.created_at))::integer);
+  SQL
+
+  create_view "participant_submissions",  sql_definition: <<-SQL
+      SELECT s.id,
+      s.challenge_id,
+      s.participant_id,
+      p.name,
+      s.grading_status_cd,
+      s.post_challenge,
+      s.score,
+      s.score_secondary,
+      count(f.*) AS files,
+      s.created_at
+     FROM participants p,
+      (submissions s
+       LEFT JOIN submission_files f ON ((f.submission_id = s.id)))
+    WHERE (s.participant_id = p.id)
+    GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
+    ORDER BY s.created_at DESC;
   SQL
 
 end

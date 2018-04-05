@@ -1,0 +1,53 @@
+<div class="row">
+  <%= form_for [@challenge,@submission],
+          html: {
+            class: "dbl-col",
+            multipart: true  } do |f| %>
+
+      <label>
+        <%= @challenge.submission_instructions.html_safe %>
+      </label>
+      <fieldset>
+        <%= f.label :clef_method_description,
+              'Method description' %>
+        <%= f.text_area :clef_method_description,
+              class: "txt-med" %>
+
+        <div class="twin-container">
+          <div class="twin-field">
+            <%= f.label :clef_retrieval_type, 'Retrieval Type' %>
+            <%= f.select :clef_retrieval_type, Submission::CLEF_RETRIEVAL_TYPES, include_blank: false %>
+          </div>
+          <div class="twin-field">
+            <%= f.label :clef_run_type, 'Run Type' %>
+            <%= f.select :clef_run_type, Submission::CLEF_RUN_TYPES, include_blank: false %>
+          </div>
+        </div>
+
+        <fieldset class="checkbox">
+          <div>
+            <%= f.check_box :clef_primary_run, {}, "true", "false" %>
+            <label for="">Primary Run?</label>
+          </div>
+        </fieldset>
+
+        <%= f.label :clef_other_info, 'Other information' %>
+        <%= f.text_area :clef_other_info, class: "txt-med" %>
+
+        <%= f.label :clef_additional, 'Additional resources used' %>
+        <%= f.text_area :clef_additional, class: "txt-med" %>
+
+        <p class="margin-bottom">After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC).<br>
+        By making your submission you indicate your agreement with these terms.</p>
+        <p class="margin-bottom">Will be graded by manual.<br>
+        <strong>You have 5 submissions remaining today (in a 24 hour window).</strong></p>
+
+        <div class="button-group">
+          <%= f.button "Submit Entry", class: 'btn btn-primary' %>
+          <%= button_to challenge_path(@challenge), class: "btn btn-secondary" do %>
+            Cancel
+          <% end %>
+        </div>
+      </fieldset>
+    <% end %>
+  </div>

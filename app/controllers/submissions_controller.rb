@@ -39,6 +39,10 @@ class SubmissionsController < ApplicationController
 
 
   def new
+    @submissions_remaining, @reset_dttm = SubmissionsRemainingService.new(
+      challenge_id: @challenge.id,
+      participant_id: current_participant.id
+    ).call
     @submission = @challenge.submissions.new
     @challenge.submission_file_definitions.each do |file|
       @submission.submission_files.build(seq: file.seq)
@@ -47,13 +51,18 @@ class SubmissionsController < ApplicationController
 
 
   def create
-    @submission = Submission.new(submission_params)
+    @submission = @challenge.submissions.new(
+      submission_params
+      .merge(
+        participant_id: current_participant.id,
+        online_submission: true))
     if @submission.save
-      if @challenge.automatic_grading && @challenge.grader != :docker_container
+      if @challenge.automatic_grading
         SubmissionGraderJob.perform_later(@submission.id)
       end
       notify_admins
-      redirect_to challenge_submissions_path(@challenge), notice: 'Submission accepted.'
+      redirect_to challenge_submissions_path(@challenge),
+        notice: 'Submission accepted.'
     else
       @errors = @submission.errors
       render :new
@@ -95,6 +104,13 @@ class SubmissionsController < ApplicationController
           :grading_message,
           :api,
           :docker_configuration_id,
+          :clef_method_description,
+          :clef_retrieval_type,
+          :clef_run_type,
+          :clef_primary_run,
+          :clef_other_info,
+          :clef_additional,
+          :online_submission,
           submission_files_attributes: [
             :id,
             :seq,

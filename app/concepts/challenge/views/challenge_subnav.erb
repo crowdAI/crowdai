@@ -32,5 +32,8 @@
     <% if current_tab == 'dataset' && policy(challenge).update? %>
       <%= link_to 'Add File', new_challenge_dataset_file_path(challenge), class: "btn btn-secondary pull-right" %>
     <% end %>
+    <% if current_participant && challenge.submissions_page && (challenge.running? || current_participant.admin?) %>
+      <%= link_to 'Create Submission', new_challenge_submission_path(challenge), class: "btn btn-secondary pull-right" %>
+    <% end %>
   </div>
 </div>

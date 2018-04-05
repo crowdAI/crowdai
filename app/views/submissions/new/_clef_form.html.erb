@@ -65,14 +65,19 @@
           </div>
         <% end %>
         <p class="margin-bottom">
-          <strong>You have <%= @submissions_remaining %> submissions remaining until <%= @reset_dttm %>.</strong>
+          <% if @reset_dttm %>
+            <strong>You have <%= pluralize(@submissions_remaining,'submission') %> remaining until <%= @reset_dttm %>."</strong>
+          <% else %>
+            <strong>You have <%= pluralize(@submissions_remaining,'submission') %> remaining.</strong>
+          <% end %>
         </p>
 
         <div class="button-group">
           <%= f.button "Submit Entry", class: 'btn btn-primary' %>
-          <%= button_to challenge_path(@challenge), class: "btn btn-secondary" do %>
-            Cancel
-          <% end %>
+          <%= button_to challenge_path(@challenge),
+                class: "btn btn-secondary" do %>
+                  Cancel
+              <% end %>
         </div>
       </fieldset>
 

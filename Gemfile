@@ -32,6 +32,7 @@ gem 'scenic', '~> 1.3'
 gem 'validate_url'
 gem 'paper_trail'
 gem 'valid_email2'
+gem "active_model_serializers"
 
 
 # forms / data manipulation / charts

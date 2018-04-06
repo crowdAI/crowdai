@@ -21,7 +21,9 @@ $(document).on('turbolinks:load', function() {
       add: function(e, data) {
         console.log('test');
         //var modelFile = $('.s3File')[0].files[0];
-        form.submit();
+        data.submit().then(function(){
+          form.submit();
+        });
         /*if (modelFile && modelFile.size > 681574400 ) {
           submitButton.prop('disabled', false);
           progressBar

@@ -13,6 +13,9 @@ class LeaderboardsController < ApplicationController
   end
 
   def index
+    if @challenge.show_leaderboard == false
+      redirect_to '/'
+    end
     @current_round = current_round
     if @challenge.completed?
       if params[:post_challenge] == 'on'

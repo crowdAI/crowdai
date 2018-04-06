@@ -44,9 +44,9 @@ class SubmissionsController < ApplicationController
     ).call
     @submission = @challenge.submissions.new
     @submission.submission_files.build
-    @challenge.submission_file_definitions.each do |file|
-      @submission.submission_files.build(seq: file.seq)
-    end
+    #@challenge.submission_file_definitions.each do |file|
+    #  @submission.submission_files.build(seq: file.seq)
+    #end
   end
 
 

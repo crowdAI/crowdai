@@ -239,10 +239,16 @@ class Api::ExternalGradersController < Api::BaseController
   def grading_params
     case params[:grading_status]
     when 'graded'
+      if params[:grading_message].blank?
+        grading_message = 'Graded successfully'
+      else
+        grading_message = params[:grading_message]
+      end
+      grading_message = params[:grading_message]
       { score: params[:score],
         score_secondary: params[:score_secondary],
         grading_status_cd: 'graded',
-        grading_message: params[:grading_message] }
+        grading_message: grading_message }
     when 'initiated'
       { score: nil,
         score_secondary: nil,

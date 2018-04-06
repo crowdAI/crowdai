@@ -55,7 +55,7 @@
               By making your submission you indicate your agreement with these terms.
             </p>
         <% end %>
-        <%= f.fields_for :submission_files do |f| %>
+        <%= f.fields_for :submission_files[0] do |f| %>
 
           <div class="nested-fields">
             <p><%#= @challenge.submission_file_definitions[file.index].submission_file_help_text %></p>
@@ -76,10 +76,9 @@
 
         <div class="button-group">
           <%= f.button "Submit Entry", class: 'btn btn-primary' %>
-          <%= button_to challenge_path(@challenge),
+          <%#= button_to challenge_path(@challenge),
                 class: "btn btn-secondary" do %>
-                  Cancel
-              <% end %>
+              <%# end %>
         </div>
       </fieldset>
 

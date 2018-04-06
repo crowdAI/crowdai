@@ -13,23 +13,10 @@ class GraderService
   def call
     @body = api_query
     if @body
-
-      puts self.class.base_uri
-      puts @submission.inspect
-      puts
-      puts @body.inspect
-      puts
       response = call_grader
-
       evaluate_response(
         submission_id: @submission.id,
         response: response)
-    else
-      Submission.update(
-        @submission.id,
-        grading_status: 'failed',
-        grading_message: 'Files were not received by server.')
-      raise "Grader called for submission #{@submission.id} but key cannot be found"
     end
   end
 
@@ -43,6 +30,15 @@ class GraderService
         grading_status: 'failed',
         grading_message: e.message)
       raise e
+    end
+  end
+
+  def preflight_checked?(challenge,participant,submission_key)
+    if participant.api_key.present? &&  challenge.grader_identifier.present? && challenge.challenge_client_name.present? &&
+      submission_key.present?
+      return true
+    else
+      return false
     end
   end
 
@@ -67,20 +63,27 @@ class GraderService
     challenge = @submission.challenge
     participant = @submission.participant
     submission_key = get_submission_key
-
-    body = {
-      response_channel: "na",
-      session_token: "na",
-      api_key: participant.api_key,
-      grader_id: challenge.grader_identifier,  #CLEFChallenges
-      challenge_client_name: challenge.challenge_client_name,
-      function_name: "grade_submission",
-      data: [{"file_key": get_submission_key, submission_id: @submission.id}],
-      dry_run: 'false',
-      parallel: 'false',
-      enqueue_only: 'true',
-      grader_api_key: ENV['CROWDAI_API_KEY']
-    }
+    if preflight_checked?(challenge,participant,submission_key)
+      return body = {
+        response_channel: "na",
+        session_token: "na",
+        api_key: participant.api_key,
+        grader_id: challenge.grader_identifier,  #CLEFChallenges
+        challenge_client_name: challenge.challenge_client_name,
+        function_name: "grade_submission",
+        data: [{"file_key": submission_key, submission_id: @submission.id}],
+        dry_run: 'false',
+        parallel: 'false',
+        enqueue_only: 'true',
+        grader_api_key: ENV['CROWDAI_API_KEY']
+      }
+    else
+      Submission.update(
+        @submission.id,
+        grading_status: 'failed',
+        grading_message: 'Grading process system error, please contact crowdAI administrators.')
+      return false
+    end
   end
 
 =begin

@@ -140,7 +140,7 @@ class SubmissionsController < ApplicationController
         AND s.participant_id = #{current_participant.id}
         AND ((s.clef_primary_run IS TRUE
               AND s.grading_status_cd = 'graded')
-              OR s.grading_status_cd NOT IN ('ready', 'submitted', 'initiated'))
+              OR s.grading_status_cd IN ('ready', 'submitted', 'initiated'))
       ]
       res = ActiveRecord::Base.connection.select_values(sql)
       res.any?

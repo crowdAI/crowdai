@@ -41,9 +41,6 @@ module ChallengesHelper
     end
   end
 
-  #def clef_task(challenge)
-  #  @clef_task ||= challenge.clef_task
-  #end
 
   def tab_class(tab)
     if tab == current_tab

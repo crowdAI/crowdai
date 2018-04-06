@@ -17,20 +17,43 @@
       <% end %>
       <% if policy(challenge).edit? %>
         <% if challenge.clef_task #&& challenge.clef_task.eua_required? %>
-          <li class=<%= tab_class('participants') %> ><%= link_to 'Participants', challenge_clef_task_path(challenge), class: tab_class('participants') %></li>
+          <li class=<%= tab_class('participants') %> >
+            <%= link_to 'Participants',
+                  challenge_clef_task_path(challenge),
+                  class: tab_class('participants') %>
+          </li>
         <% else %>
-          <li class=<%= tab_class('participants') %> ><%= link_to 'Participants', challenge_participant_challenges_path(challenge), class: tab_class('participants') %></li>
+          <li class=<%= tab_class('participants') %> >
+            <%= link_to 'Participants',
+                  challenge_participant_challenges_path(challenge),
+                  class: tab_class('participants') %>
+          </li>
         <% end %>
       <% end %>
       <% if challenge.winners_tab_active.present? %>
-        <li class=<%= tab_class('winner') %> ><%= link_to 'Winner', challenge_winners_path(challenge), class: tab_class('winner') %></li>
+        <li class=<%= tab_class('winner') %> >
+          <%= link_to 'Winner',
+                challenge_winners_path(challenge),
+                class: tab_class('winner') %>
+        </li>
       <% end %>
       <% if challenge.dynamic_content_tab.present? %>
-        <li class=<%= tab_class('dynamic') %> ><%= link_to challenge.dynamic_content_tab, challenge_dynamic_contents_path(challenge), class: tab_class('dynamic') %></li>
+        <li class=<%= tab_class('dynamic') %> >
+          <%= link_to challenge.dynamic_content_tab,
+                challenge_dynamic_contents_path(challenge),
+                class: tab_class('dynamic') %>
+        </li>
       <% end %>
     </ul>
     <% if current_tab == 'dataset' && policy(challenge).update? %>
-      <%= link_to 'Add File', new_challenge_dataset_file_path(challenge), class: "btn btn-secondary pull-right" %>
+      <%= link_to 'Add File',
+            new_challenge_dataset_file_path(challenge),
+            class: "btn btn-secondary pull-right" %>
+    <% end %>
+    <% if submissions_allowed?(challenge) && current_tab != 'dataset'%>
+      <%= link_to 'Create Submission',
+            new_challenge_submission_path(challenge),
+            class: "btn btn-secondary pull-right" %>
     <% end %>
 
   </div>

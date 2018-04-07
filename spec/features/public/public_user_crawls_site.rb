@@ -12,7 +12,6 @@ feature "site navigation for authenticated participant" do
 
   context "landing page" do
     scenario do
-      log_in(participant)
       visit_landing_page
       expect(page).to have_content challenge_1.challenge
       expect(page).to have_link 'Knowledge Base'
@@ -25,7 +24,6 @@ feature "site navigation for authenticated participant" do
 
   context "challenges" do
     scenario do
-      log_in(participant)
       visit_landing_page
       visit_challenges
       expect(page).to have_content challenge_1.challenge
@@ -43,7 +41,7 @@ feature "site navigation for authenticated participant" do
       expect(page).to have_link 'Discussion'
       expect(page).to have_link 'Dataset'
       expect(page).to have_link 'FOLLOW'
-      # TODO - icons ... expect(page).not_to have_link 'Edit'
+      # TODO - look for edit icon ... expect(page).not_to have_link 'Edit'
     end
   end
 
@@ -51,13 +49,16 @@ feature "site navigation for authenticated participant" do
     scenario do
       visit_challenge(challenge_1)
       click_link "Overview"
-      expect(page).to have_link 'Overview', class: 'active'
+      expect(page).to have_link 'Overview',
+        class: 'active'
       click_link "Leaderboard"
-      expect(page).to have_link 'Leaderboard', class: 'active'
+      expect(page).to have_link 'Leaderboard',
+        class: 'active'
       click_link "Discussion"
-      expect(page).to have_link 'Discussion', class: 'active'
+      expect(page).to have_link 'Discussion',
+        class: 'active'
       click_link "Dataset"
-      expect(page).to have_link 'Dataset', class: 'active'
+      expect(page).to have_text 'You need to sign in or sign up before continuing'
     end
   end
 
@@ -65,7 +66,9 @@ feature "site navigation for authenticated participant" do
     scenario do
       visit_challenge(challenge_1)
       click_link challenge_1.organizer.organizer
-      expect(page).to have_text 'Members'
+      expect(page).to have_text(challenge_1.organizer.organizer)
+      expect(page).to have_link 'Challenges'
+      expect(page).not_to have_text 'Members'
     end
   end
 

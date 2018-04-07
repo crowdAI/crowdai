@@ -25,11 +25,9 @@ feature "site navigation for authenticated participant" do
     scenario do
       log_in(participant)
       log_out(participant)
-      save_and_open_page
-      #expect(page).to have_text 'Signed out successfully.'
-      #expect(page).to have_link 'Sign up'
-      #expect(page).to have_link 'Log in'
-      #save_and_open_page
+      expect(page).to have_text 'Signed out successfully.'
+      expect(page).to have_link 'Sign up'
+      expect(page).to have_link 'Log in'
     end
   end
 
@@ -91,7 +89,7 @@ feature "site navigation for authenticated participant" do
       log_in(participant)
       visit_challenge(challenge_1)
       click_link challenge_1.organizer.organizer
-      expect(page).to have_text 'Members'
+      expect(page).not_to have_text 'Members'
     end
   end
 

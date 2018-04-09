@@ -22,4 +22,6 @@ COPY . .
 
 RUN yarn install
 
+ENV RAILS_ENV production
+
 RUN chmod +x /app/entrypoint.sh

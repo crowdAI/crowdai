@@ -8,7 +8,7 @@ Rails.application.configure do
   config.assets.js_compressor = :uglifier
   config.assets.css_compressor = :sass
   config.assets.compile = true
-  config.force_ssl = true
+  # config.force_ssl = true
   config.log_level = :info
   config.log_tags = [ :request_id ]
   config.i18n.fallbacks = true
@@ -27,7 +27,7 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
   config.action_mailer.default_url_options = { host: ENV["HOST"] }
-  config.action_controller.asset_host = "https://#{ENV['CLOUDFRONT_ASSETS_DOMAIN']}"
+  # config.action_controller.asset_host = "https://#{ENV['CLOUDFRONT_ASSETS_DOMAIN']}"
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)

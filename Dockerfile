@@ -20,10 +20,8 @@ RUN bundle install
 
 COPY . .
 
-RUN npm install
+RUN yarn install
 
-RUN /app/bin/webpack
+ENV RAILS_ENV production
 
-RUN mv /app/entrypoint.sh /entrypoint.sh
-
-RUN chmod +x /entrypoint.sh
+RUN chmod +x /app/entrypoint.sh

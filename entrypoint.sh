@@ -2,4 +2,5 @@
 
 cd /app &&
 rm -f tmp/pids/server.pid &&
-rails s -b '0.0.0.0'
+bundle exec rails webpacker:compile
+bundle exec puma -C config/puma.rb

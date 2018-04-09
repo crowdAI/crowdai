@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180405122218) do
+ActiveRecord::Schema.define(version: 20180409141418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -305,6 +305,33 @@ ActiveRecord::Schema.define(version: 20180405122218) do
     t.string "job_url"
   end
 
+  create_table "lboards", force: :cascade do |t|
+    t.bigint "challenge_id"
+    t.bigint "challenge_round_id"
+    t.bigint "participant_id"
+    t.integer "row_num"
+    t.integer "previous_row_num"
+    t.string "slug"
+    t.string "name"
+    t.integer "entries"
+    t.float "score"
+    t.float "score_secondary"
+    t.string "media_large"
+    t.string "media_thumbnail"
+    t.string "media_content_type"
+    t.string "description"
+    t.string "description_markdown"
+    t.string "leaderboard_type_cd"
+    t.datetime "refreshed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "submission_id"
+    t.index ["challenge_id"], name: "index_lboards_on_challenge_id"
+    t.index ["challenge_round_id"], name: "index_lboards_on_challenge_round_id"
+    t.index ["leaderboard_type_cd"], name: "index_lboards_on_leaderboard_type_cd"
+    t.index ["participant_id"], name: "index_lboards_on_participant_id"
+  end
+
   create_table "login_activities", force: :cascade do |t|
     t.text "scope"
     t.text "strategy"
@@ -484,6 +511,29 @@ ActiveRecord::Schema.define(version: 20180405122218) do
     t.index ["unlock_token"], name: "index_participants_on_unlock_token", unique: true
   end
 
+  create_table "prev", id: false, force: :cascade do |t|
+    t.integer "id"
+    t.bigint "row_num"
+    t.bigint "previous_row_num"
+    t.integer "submission_id"
+    t.integer "challenge_id"
+    t.integer "challenge_round_id"
+    t.integer "participant_id"
+    t.string "slug"
+    t.integer "organizer_id"
+    t.string "name"
+    t.bigint "entries"
+    t.float "score"
+    t.float "score_secondary"
+    t.string "media_large"
+    t.string "media_thumbnail"
+    t.string "media_content_type"
+    t.text "description"
+    t.text "description_markdown"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "settings", force: :cascade do |t|
     t.boolean "jobs_visible", default: false
     t.datetime "created_at", null: false
@@ -641,6 +691,9 @@ ActiveRecord::Schema.define(version: 20180405122218) do
   add_foreign_key "follows", "participants"
   add_foreign_key "invitations", "challenges"
   add_foreign_key "invitations", "participants"
+  add_foreign_key "lboards", "challenge_rounds"
+  add_foreign_key "lboards", "challenges"
+  add_foreign_key "lboards", "participants"
   add_foreign_key "notifications", "participants"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"

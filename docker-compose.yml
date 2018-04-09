@@ -10,8 +10,6 @@ services:
   crowd_ai:
     build:
       context: .
-    environment:
-      RAILS_ENV: development
     entrypoint: /app/entrypoint.sh
     ports:
       - "3000:3000"

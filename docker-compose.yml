@@ -19,7 +19,7 @@ services:
       - postgres
       - redis
 
-postgres:
+  postgres:
     image: postgres:10.3
     volumes:
       - 'postgres:/var/lib/postgresql/data'
@@ -30,4 +30,4 @@ postgres:
     ports:
       - '6379:6379'
     volumes:
-      - 'redis:/data
+      - 'redis:/data'

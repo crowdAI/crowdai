@@ -10,7 +10,7 @@ class CacheLeaderboardService
       purge_leaderboard
       create_leaderboard(leaderboard_type: 'leaderboard')
       #create_leaderboard(leaderboard_type: 'ongoing')
-      #create_leaderboard(leaderboard_type: 'previous')
+      create_leaderboard(leaderboard_type: 'previous')
       #create_leaderboard(leaderboard_type: 'previous_ongoing')
       #update_leaderboard_rankings
       #update_ongoing_leaderboard_rankings
@@ -113,16 +113,17 @@ class CacheLeaderboardService
         l.created_at,
         l.updated_at
       FROM (SELECT
-              row_number() OVER (PARTITION BY s.challenge_id, s.challenge_round_id, s.participant_id
-                                 ORDER BY
-                                   CASE WHEN c.primary_sort_order_cd = 'ascending'
-                                        THEN s.score END ASC,
-                                   CASE WHEN c.primary_sort_order_cd = 'descending'
-                                        THEN s.score END DESC,
-                                   CASE WHEN c.secondary_sort_order_cd = 'ascending'
-                                        THEN s.score_secondary END ASC,
-                                   CASE WHEN c.secondary_sort_order_cd = 'descending'
-                                        THEN s.score_secondary END DESC) AS submission_ranking,
+              row_number() OVER (PARTITION BY s.challenge_id,
+                s.challenge_round_id, s.participant_id
+                ORDER BY
+                  CASE WHEN c.primary_sort_order_cd = 'ascending'
+                       THEN s.score END ASC,
+                  CASE WHEN c.primary_sort_order_cd = 'descending'
+                       THEN s.score END DESC,
+                  CASE WHEN c.secondary_sort_order_cd = 'ascending'
+                       THEN s.score_secondary END ASC,
+                  CASE WHEN c.secondary_sort_order_cd = 'descending'
+                       THEN s.score_secondary END DESC) AS submission_ranking,
               s.id,
               s.challenge_id,
               s.challenge_round_id,
@@ -148,13 +149,17 @@ class CacheLeaderboardService
                            count(c_1.*) AS entries
                     FROM submissions c_1
                     WHERE c_1.post_challenge IN #{post_challenge}
-                    GROUP BY c_1.challenge_id, c_1.challenge_round_id, c_1.participant_id) cnt
+                    AND c_1.created_at <= '#{cuttoff_dttm.to_s(:db)}'
+                    GROUP BY c_1.challenge_id,
+                             c_1.challenge_round_id,
+                             c_1.participant_id) cnt
             WHERE p.id = s.participant_id
               AND s.challenge_id = c.id
               AND s.grading_status_cd::text = 'graded'::text
               AND s.post_challenge IN #{post_challenge}
               AND cnt.challenge_id = s.challenge_id
               AND cnt.challenge_round_id = s.challenge_round_id
+              AND c_1.created_at <= '#{cuttoff_dttm.to_s(:db)}'
               AND cnt.participant_id = s.participant_id) l,
           challenges c
         WHERE l.submission_ranking = 1

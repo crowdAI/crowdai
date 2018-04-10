@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180409141418) do
+ActiveRecord::Schema.define(version: 20180410074646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -176,6 +176,7 @@ ActiveRecord::Schema.define(version: 20180409141418) do
     t.integer "ranking_window"
     t.integer "ranking_highlight"
     t.string "grader_identifier"
+    t.boolean "online_submissions", default: false
     t.index ["clef_task_id"], name: "index_challenges_on_clef_task_id"
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id"
     t.index ["slug"], name: "index_challenges_on_slug", unique: true
@@ -509,29 +510,6 @@ ActiveRecord::Schema.define(version: 20180409141418) do
     t.index ["reset_password_token"], name: "index_participants_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_participants_on_slug", unique: true
     t.index ["unlock_token"], name: "index_participants_on_unlock_token", unique: true
-  end
-
-  create_table "prev", id: false, force: :cascade do |t|
-    t.integer "id"
-    t.bigint "row_num"
-    t.bigint "previous_row_num"
-    t.integer "submission_id"
-    t.integer "challenge_id"
-    t.integer "challenge_round_id"
-    t.integer "participant_id"
-    t.string "slug"
-    t.integer "organizer_id"
-    t.string "name"
-    t.bigint "entries"
-    t.float "score"
-    t.float "score_secondary"
-    t.string "media_large"
-    t.string "media_thumbnail"
-    t.string "media_content_type"
-    t.text "description"
-    t.text "description_markdown"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "settings", force: :cascade do |t|

@@ -20,9 +20,13 @@ module SubmissionsHelper
   def submissions_allowed?(challenge)
     return false unless challenge.online_submissions
     if challenge.running?
-      return true if current_participant && current_participant.admin?
+      return true
     else
-      return false
+      if current_participant && current_participant.admin?
+        return true
+      else
+        return false
+      end
     end
     if challenge.clef_challenge.present?
       if clef_participant_registered?(challenge)

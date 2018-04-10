@@ -6,14 +6,19 @@ class CacheLeaderboardService
   end
 
   def call
+    return false if @challenge.submissions.blank?
     ActiveRecord::Base.transaction do
       purge_leaderboard
       create_leaderboard(leaderboard_type: 'leaderboard')
       #create_leaderboard(leaderboard_type: 'ongoing')
-      create_leaderboard(leaderboard_type: 'previous')
+      #create_leaderboard(leaderboard_type: 'previous')
       #create_leaderboard(leaderboard_type: 'previous_ongoing')
-      #update_leaderboard_rankings
-      #update_ongoing_leaderboard_rankings
+      #update_leaderboard_rankings(
+      #  leaderboard: 'leaderboard',
+      #  prev: 'ongoing')
+      #update_leaderboard_rankings(
+      #  leaderboard: 'previous',
+      #  prev: 'previous_ongoing')
     end
     return true
   end
@@ -86,17 +91,18 @@ class CacheLeaderboardService
         l.challenge_round_id,
         l.participant_id,
         l.id,
-        ROW_NUMBER() OVER (PARTITION by l.challenge_id,
-                                        l.challenge_round_id
-                          ORDER BY
-                            CASE WHEN c.primary_sort_order_cd = 'ascending'
-                              THEN l.score END ASC,
-                            CASE WHEN c.primary_sort_order_cd = 'descending'
-                              THEN l.score END DESC,
-                            CASE WHEN c.secondary_sort_order_cd = 'ascending'
-                              THEN l.score_secondary END ASC,
-                            CASE WHEN c.secondary_sort_order_cd = 'descending'
-                              THEN l.score_secondary END DESC ) AS ROW_NUM,
+        ROW_NUMBER() OVER (
+          PARTITION by l.challenge_id,
+                       l.challenge_round_id
+          ORDER BY
+            CASE WHEN c.primary_sort_order_cd = 'ascending'
+                 THEN l.score END ASC,
+            CASE WHEN c.primary_sort_order_cd = 'descending'
+                 THEN l.score END DESC,
+            CASE WHEN c.secondary_sort_order_cd = 'ascending'
+                 THEN l.score_secondary END ASC,
+            CASE WHEN c.secondary_sort_order_cd = 'descending'
+                 THEN l.score_secondary END DESC ) AS ROW_NUM,
         0 as PREVIOUS_ROW_NUM,
         l.slug,
         l.name,
@@ -113,8 +119,10 @@ class CacheLeaderboardService
         l.created_at,
         l.updated_at
       FROM (SELECT
-              row_number() OVER (PARTITION BY s.challenge_id,
-                s.challenge_round_id, s.participant_id
+              row_number() OVER (
+                PARTITION BY s.challenge_id,
+                             s.challenge_round_id,
+                             s.participant_id
                 ORDER BY
                   CASE WHEN c.primary_sort_order_cd = 'ascending'
                        THEN s.score END ASC,
@@ -149,7 +157,7 @@ class CacheLeaderboardService
                            count(c_1.*) AS entries
                     FROM submissions c_1
                     WHERE c_1.post_challenge IN #{post_challenge}
-                    AND c_1.created_at <= '#{cuttoff_dttm.to_s(:db)}'
+                    --AND c_1.created_at <= '#{cuttoff_dttm.to_s(:db)}'
                     GROUP BY c_1.challenge_id,
                              c_1.challenge_round_id,
                              c_1.participant_id) cnt
@@ -159,7 +167,7 @@ class CacheLeaderboardService
               AND s.post_challenge IN #{post_challenge}
               AND cnt.challenge_id = s.challenge_id
               AND cnt.challenge_round_id = s.challenge_round_id
-              AND c_1.created_at <= '#{cuttoff_dttm.to_s(:db)}'
+              --AND s.created_at <= '#{cuttoff_dttm.to_s(:db)}'
               AND cnt.participant_id = s.participant_id) l,
           challenges c
         WHERE l.submission_ranking = 1
@@ -168,6 +176,34 @@ class CacheLeaderboardService
         ORDER BY l.challenge_id,
           l.challenge_round_id,
           row_num;
+    ]
+    @conn.execute sql
+  end
+
+  def update_leaderboard_rankings(leaderboard:, prev:)
+    sql = %Q[
+      WITH lb AS (
+        SELECT l.row_num,
+               p.row_num AS prev_row_num,
+               l.challenge_id,
+               l.challenge_round_id,
+               l.participant_id
+        FROM lboards l,
+             lboards p
+        WHERE l.challenge_id = p.challenge_id
+        AND l.challenge_id = #{@challenge.id}
+        AND l.challenge_round_id = p.challenge_round_id
+        AND l.participant_id = p.participant_id
+        AND l.leaderboard_type_cd = '#{leaderboard}'
+        AND p.leaderboard_type_cd = '#{prev}')
+      UPDATE lboards
+      SET previous_row_num = lb.prev_row_num
+      FROM lb
+      WHERE lboards.leaderboard_type_cd = 'leaderboard'
+      AND lboards.challenge_id = lb.challenge_id
+      AND lboards.challenge_id = #{@challenge.id}
+      AND lboards.challenge_round_id = lb.challenge_round_id
+      AND lboards.participant_id = lb.participant_id
     ]
     @conn.execute sql
   end

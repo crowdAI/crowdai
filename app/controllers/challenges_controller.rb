@@ -216,6 +216,10 @@ class ChallengesController < ApplicationController
           :minimum_score_secondary,
           :submission_limit,
           :submission_limit_period,
+          :ranking_window,
+          :ranking_highlight,
+          :score_significant_digits,
+          :score_secondary_significant_digits,
           :_destroy],
         challenge_partners_attributes: [
           :id,

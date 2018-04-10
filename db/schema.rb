@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180410074646) do
+ActiveRecord::Schema.define(version: 20180410131348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,10 @@ ActiveRecord::Schema.define(version: 20180410074646) do
     t.datetime "end_dttm"
     t.float "minimum_score"
     t.float "minimum_score_secondary"
+    t.integer "ranking_window"
+    t.integer "ranking_highlight"
+    t.integer "score_significant_digits"
+    t.integer "score_secondary_significant_digits"
     t.index ["challenge_id"], name: "index_challenge_rounds_on_challenge_id"
   end
 
@@ -333,6 +337,29 @@ ActiveRecord::Schema.define(version: 20180410074646) do
     t.index ["participant_id"], name: "index_lboards_on_participant_id"
   end
 
+  create_table "leaderboards_orig", id: false, force: :cascade do |t|
+    t.integer "id"
+    t.bigint "row_num"
+    t.bigint "previous_row_num"
+    t.integer "submission_id"
+    t.integer "challenge_id"
+    t.integer "challenge_round_id"
+    t.integer "participant_id"
+    t.string "slug"
+    t.integer "organizer_id"
+    t.string "name"
+    t.bigint "entries"
+    t.float "score"
+    t.float "score_secondary"
+    t.string "media_large"
+    t.string "media_thumbnail"
+    t.string "media_content_type"
+    t.text "description"
+    t.text "description_markdown"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "login_activities", force: :cascade do |t|
     t.text "scope"
     t.text "strategy"
@@ -418,6 +445,29 @@ ActiveRecord::Schema.define(version: 20180410074646) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
+  end
+
+  create_table "ongoing_leaderboards_orig", id: false, force: :cascade do |t|
+    t.integer "id"
+    t.bigint "row_num"
+    t.bigint "previous_row_num"
+    t.integer "submission_id"
+    t.integer "challenge_id"
+    t.integer "challenge_round_id"
+    t.integer "participant_id"
+    t.string "slug"
+    t.integer "organizer_id"
+    t.string "name"
+    t.bigint "entries"
+    t.float "score"
+    t.float "score_secondary"
+    t.string "media_large"
+    t.string "media_thumbnail"
+    t.string "media_content_type"
+    t.text "description"
+    t.text "description_markdown"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "organizer_applications", id: :serial, force: :cascade do |t|
@@ -593,6 +643,8 @@ ActiveRecord::Schema.define(version: 20180410074646) do
     t.text "clef_other_info"
     t.text "clef_additional"
     t.boolean "online_submission", default: false
+    t.float "score_display"
+    t.float "score_secondary_display"
     t.index ["challenge_id"], name: "index_submissions_on_challenge_id"
     t.index ["participant_id"], name: "index_submissions_on_participant_id"
   end

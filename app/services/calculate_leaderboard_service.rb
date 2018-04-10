@@ -1,58 +1,62 @@
-class CacheLeaderboardService
+class CalculateLeaderboardService
 
-  def initialize(challenge_id:)
-    @challenge = Challenge.find(challenge_id)
+  def initialize(challenge_round_id:)
+    @round = ChallengeRound.find(challenge_round_id)
     @conn = ActiveRecord::Base.connection
   end
 
   def call
-    return false if @challenge.submissions.blank?
+    return false if @round.submissions.blank?
     ActiveRecord::Base.transaction do
+      truncate_scores
       purge_leaderboard
       create_leaderboard(leaderboard_type: 'leaderboard')
-      #create_leaderboard(leaderboard_type: 'ongoing')
-      #create_leaderboard(leaderboard_type: 'previous')
-      #create_leaderboard(leaderboard_type: 'previous_ongoing')
-      #update_leaderboard_rankings(
-      #  leaderboard: 'leaderboard',
-      #  prev: 'ongoing')
-      #update_leaderboard_rankings(
-      #  leaderboard: 'previous',
-      #  prev: 'previous_ongoing')
+      create_leaderboard(leaderboard_type: 'ongoing')
+      create_leaderboard(leaderboard_type: 'previous')
+      create_leaderboard(leaderboard_type: 'previous_ongoing')
+      update_leaderboard_rankings(
+        leaderboard: 'leaderboard',
+        prev: 'ongoing')
+      update_leaderboard_rankings(
+        leaderboard: 'previous',
+        prev: 'previous_ongoing')
     end
     return true
   end
 
-  def window_border_dttm
-    most_recent = Submission
-      .where(challenge_id: @challenge.id)
-      .order(created_at: :desc)
-      .limit(1)
-      .first
-    return most_recent.created_at - (@challenge.ranking_window / 24.0)
+  def truncate_scores
+    sql = %Q[
+      update submissions
+      set
+        score_display = trunc(score::numeric,#{@round.score_precision}),
+        score_secondary_display = trunc(score_secondary::numeric,#{@round.score_secondary_precision})
+      where challenge_round_id = #{@round.id}
+    ]
+    @conn.execute sql
   end
 
-  def most_recent_dttm
+  def window_border_dttm
     most_recent = Submission
-      .where(challenge_id: @challenge.id)
+      .where(challenge_round_id: @round.id)
       .order(created_at: :desc)
       .limit(1)
       .first
-    return most_recent.created_at
+    window_border = most_recent.created_at - (@round.ranking_window / 24.0)
+    return "'#{window_border.to_s(:db)}'"
   end
 
   def purge_leaderboard
-    ActiveRecord::Base.connection.execute "delete from lboards where challenge_id = #{@challenge.id};"
+    ActiveRecord::Base.connection.execute "delete from lboards where challenge_round_id = #{@round.id};"
   end
 
   def create_leaderboard(leaderboard_type:)
     case leaderboard_type
     when 'leaderboard'
       post_challenge = '(FALSE)'
-      cuttoff_dttm = most_recent_dttm
+      cuttoff_dttm = 'current_timestamp'
     when 'ongoing'
       post_challenge = '(TRUE,FALSE)'
-      cuttoff_dttm = most_recent_dttm
+      cuttoff_dttm = 'current_timestamp'
     when 'previous'
       post_challenge = '(FALSE)'
       cuttoff_dttm = window_border_dttm
@@ -96,19 +100,19 @@ class CacheLeaderboardService
                        l.challenge_round_id
           ORDER BY
             CASE WHEN c.primary_sort_order_cd = 'ascending'
-                 THEN l.score END ASC,
+                 THEN l.score_display END ASC,
             CASE WHEN c.primary_sort_order_cd = 'descending'
-                 THEN l.score END DESC,
+                 THEN l.score_display END DESC,
             CASE WHEN c.secondary_sort_order_cd = 'ascending'
-                 THEN l.score_secondary END ASC,
+                 THEN l.score_secondary_display END ASC,
             CASE WHEN c.secondary_sort_order_cd = 'descending'
-                 THEN l.score_secondary END DESC ) AS ROW_NUM,
+                 THEN l.score_secondary_display END DESC ) AS ROW_NUM,
         0 as PREVIOUS_ROW_NUM,
         l.slug,
         l.name,
         l.entries,
-        l.score,
-        l.score_secondary,
+        l.score_display,
+        l.score_secondary_display,
         l.media_large,
         l.media_thumbnail,
         l.media_content_type,
@@ -125,13 +129,13 @@ class CacheLeaderboardService
                              s.participant_id
                 ORDER BY
                   CASE WHEN c.primary_sort_order_cd = 'ascending'
-                       THEN s.score END ASC,
+                       THEN s.score_display END ASC,
                   CASE WHEN c.primary_sort_order_cd = 'descending'
-                       THEN s.score END DESC,
+                       THEN s.score_display END DESC,
                   CASE WHEN c.secondary_sort_order_cd = 'ascending'
-                       THEN s.score_secondary END ASC,
+                       THEN s.score_secondary_display END ASC,
                   CASE WHEN c.secondary_sort_order_cd = 'descending'
-                       THEN s.score_secondary END DESC) AS submission_ranking,
+                       THEN s.score_secondary_display END DESC) AS submission_ranking,
               s.id,
               s.challenge_id,
               s.challenge_round_id,
@@ -139,8 +143,8 @@ class CacheLeaderboardService
               p.slug,
               p.name,
               cnt.entries,
-              s.score,
-              s.score_secondary,
+              s.score_display,
+              s.score_secondary_display,
               s.media_large,
               s.media_thumbnail,
               s.media_content_type,
@@ -156,26 +160,25 @@ class CacheLeaderboardService
                            c_1.participant_id,
                            count(c_1.*) AS entries
                     FROM submissions c_1
-                    WHERE c_1.post_challenge IN #{post_challenge}
-                    --AND c_1.created_at <= '#{cuttoff_dttm.to_s(:db)}'
+                    WHERE c_1.challenge_round_id = #{@round.id}
+                    AND c_1.post_challenge IN #{post_challenge}
+                    AND c_1.created_at <= #{cuttoff_dttm}
                     GROUP BY c_1.challenge_id,
                              c_1.challenge_round_id,
                              c_1.participant_id) cnt
-            WHERE p.id = s.participant_id
-              AND s.challenge_id = c.id
-              AND s.grading_status_cd::text = 'graded'::text
-              AND s.post_challenge IN #{post_challenge}
-              AND cnt.challenge_id = s.challenge_id
-              AND cnt.challenge_round_id = s.challenge_round_id
-              --AND s.created_at <= '#{cuttoff_dttm.to_s(:db)}'
-              AND cnt.participant_id = s.participant_id) l,
+            WHERE s.challenge_round_id = #{@round.id}
+            AND s.grading_status_cd = 'graded'
+            AND s.post_challenge IN #{post_challenge}
+            AND s.created_at <= #{cuttoff_dttm}
+            AND p.id = s.participant_id
+            AND s.challenge_id = c.id
+            AND cnt.challenge_id = s.challenge_id
+            AND cnt.challenge_round_id = s.challenge_round_id
+            AND cnt.participant_id = s.participant_id) l,
           challenges c
         WHERE l.submission_ranking = 1
         AND c.id = l.challenge_id
-        AND c.id = #{@challenge.id}
-        ORDER BY l.challenge_id,
-          l.challenge_round_id,
-          row_num;
+        AND c.id = #{@round.challenge_id}
     ]
     @conn.execute sql
   end
@@ -191,22 +194,21 @@ class CacheLeaderboardService
         FROM lboards l,
              lboards p
         WHERE l.challenge_id = p.challenge_id
-        AND l.challenge_id = #{@challenge.id}
         AND l.challenge_round_id = p.challenge_round_id
+        AND l.challenge_round_id = #{@round.id}
         AND l.participant_id = p.participant_id
         AND l.leaderboard_type_cd = '#{leaderboard}'
         AND p.leaderboard_type_cd = '#{prev}')
       UPDATE lboards
       SET previous_row_num = lb.prev_row_num
       FROM lb
-      WHERE lboards.leaderboard_type_cd = 'leaderboard'
+      WHERE lboards.leaderboard_type_cd = '#{leaderboard}'
       AND lboards.challenge_id = lb.challenge_id
-      AND lboards.challenge_id = #{@challenge.id}
       AND lboards.challenge_round_id = lb.challenge_round_id
+      AND lboards.challenge_round_id = #{@round.id}
       AND lboards.participant_id = lb.participant_id
     ]
     @conn.execute sql
   end
-
 
 end

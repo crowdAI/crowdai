@@ -16,23 +16,13 @@
         <label for="">Submissions Page Visible?</label>
       </div>
     </fieldset>
-    <fieldset>
-      <div class="switch-container">
-        <input type="checkbox" id="switch" name="switch" class="switch" checked>
-        <label for="switch">Open source my submission after the end of the challenge</label>
+    <fieldset class="checkbox">
+      <div>
+        <%= f.check_box :online_submissions, {}, "true", "false" %>
+        <label for="">Online Submissions?</label>
       </div>
     </fieldset>
-    <fieldset class="radiogroup">
-      <label>License type:</label>
-      <input type="radio" name="" value="">
-      License #1
-      <input type="radio" name="" value="">
-      License #2
-      <input type="radio" name="" value="">
-      License #3
-      <input type="radio" name="" value="">
-      License #4
-    </fieldset>
+  
     <fieldset>
       <label>Maximum no. of daily submissions</label>
       <%= f.text_field :daily_submissions %>

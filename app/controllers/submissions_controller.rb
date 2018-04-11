@@ -44,6 +44,7 @@ class SubmissionsController < ApplicationController
     ).call
     @submission = @challenge.submissions.new
     @submission.submission_files.build
+    authorize @submission
     #@challenge.submission_file_definitions.each do |file|
     #  @submission.submission_files.build(seq: file.seq)
     #end
@@ -56,6 +57,7 @@ class SubmissionsController < ApplicationController
       .merge(
         participant_id: current_participant.id,
         online_submission: true))
+    authorize @submission
     if @submission.save
       SubmissionGraderJob.perform_later(@submission.id)
       #notify_admins

@@ -10,4 +10,13 @@ class SubmissionPolicy < ApplicationPolicy
     true
   end
 
+  def new?
+    ChallengePolicy.new(participant, @record.challenge).submissions_allowed?
+  end
+
+  def create?
+    new?
+  end
+
+
 end

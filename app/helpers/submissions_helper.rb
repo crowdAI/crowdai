@@ -17,38 +17,4 @@ module SubmissionsHelper
     end
   end
 
-  def submissions_allowed?(challenge)
-    return false unless challenge.online_submissions
-    if challenge.running?
-      if challenge.clef_challenge.present?
-        if clef_participant_registered?(challenge)
-          return true
-        else
-          return false
-        end
-      else
-        return true
-      end
-    else
-      if current_participant && current_participant.admin?
-        return true
-      else
-        return false
-      end
-    end
-  end
-
-  def clef_participant_registered?(challenge)
-    return false unless current_participant.present?
-    clef_task = challenge.clef_task
-    participant_clef_task = ParticipantClefTask.where(
-      participant_id: current_participant,
-      clef_task_id: clef_task.id).first
-    if participant_clef_task
-      return true if participant_clef_task.registered?
-    else
-      return false
-    end
-  end
-
 end

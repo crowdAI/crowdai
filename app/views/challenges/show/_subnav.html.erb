@@ -1,0 +1,85 @@
+<div class="sub-nav">
+  <div class="row">
+    <ul>
+      <li class=<%= tab_class('overview') %> >
+        <%= link_to 'Overview',
+              challenge_path(challenge),
+              class: tab_class('overview') %>
+      </li>
+      <% unless challenge.challenge_rounds.none? || !challenge.show_leaderboard %>
+        <li class=<%= tab_class('leaderboard') %> >
+          <%= link_to 'Leaderboard',
+                challenge_leaderboards_path(challenge),
+                class: tab_class('leaderboard') %>
+        </li>
+      <% end %>
+      <li class=<%= tab_class('discussion') %> >
+        <%= link_to 'Discussion',
+              challenge_topics_path(challenge),
+              class: tab_class('discussion') %>
+      </li>
+      <% if challenge.clef_task.present? %>
+        <li class=<%= tab_class('clef_dataset') %> >
+          <%= link_to 'Dataset',
+                clef_task_task_dataset_files_path(
+                  challenge.clef_task, challenge_id: challenge.id),
+                class: tab_class('clef_dataset') %>
+        </li>
+      <% else %>
+        <li class=<%= tab_class('dataset') %> >
+          <%= link_to 'Dataset',
+                challenge_dataset_files_path(challenge),
+                class: tab_class('dataset') %>
+        </li>
+      <% end %>
+
+      <% if challenge.submissions_page.present? %>
+        <li class=<%= tab_class('submissions') %> >
+          <%= link_to 'Submissions',
+                challenge_submissions_path(challenge),
+                class: tab_class('submissions') %>
+        </li>
+      <% end %>
+      <% if policy(challenge).edit? %>
+        <% if challenge.clef_task #&& challenge.clef_task.eua_required? %>
+          <li class=<%= tab_class('participants') %> >
+            <%= link_to 'Participants',
+                  challenge_clef_task_path(challenge),
+                  class: tab_class('participants') %>
+          </li>
+        <% else %>
+          <li class=<%= tab_class('participants') %> >
+            <%= link_to 'Participants',
+                  challenge_participant_challenges_path(challenge),
+                  class: tab_class('participants') %>
+          </li>
+        <% end %>
+      <% end %>
+      <% if challenge.winners_tab_active.present? %>
+        <li class=<%= tab_class('winner') %> >
+          <%= link_to 'Winner',
+                challenge_winners_path(challenge),
+                class: tab_class('winner') %>
+        </li>
+      <% end %>
+      <% if challenge.dynamic_content_tab.present? %>
+        <li class=<%= tab_class('dynamic') %> >
+          <%= link_to challenge.dynamic_content_tab,
+                challenge_dynamic_contents_path(challenge),
+                class: tab_class('dynamic') %>
+        </li>
+      <% end %>
+    </ul>
+    <% if current_tab == 'dataset' && policy(challenge).update? %>
+      <%= link_to 'Add File',
+            new_challenge_dataset_file_path(challenge),
+            class: "btn btn-secondary pull-right" %>
+    <% end %>
+    <% if policy(challenge).submissions_allowed? && current_tab != 'dataset' %>
+      <%= link_to 'Create Submission',
+            new_challenge_submission_path(challenge),
+            class: "btn btn-secondary pull-right" %>
+    <% end %>
+
+  </div>
+</div>

@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
+# Rails assets gems
 gem 'rails-assets-isInViewport'
 gem 'rails-assets-jQuery-File-Upload'
 
@@ -15,8 +16,7 @@ gem 'devise', '~> 4.4.1'
 gem 'authtrail'
 gem 'pundit'
 gem 'activeadmin'
-gem 'doorkeeper', :github => 'doorkeeper-gem/doorkeeper', :branch => 'master'
-
+gem 'doorkeeper', git: 'https://github.com/doorkeeper-gem/doorkeeper', :branch => 'master'
 
 
 # monitoring
@@ -32,6 +32,8 @@ gem 'scenic', '~> 1.3'
 gem 'validate_url'
 gem 'paper_trail'
 gem 'valid_email2'
+gem "active_model_serializers"
+
 
 # forms / data manipulation / charts
 gem 'cocoon'
@@ -139,6 +141,10 @@ group :development do
   gem 'model_2_factory-rails'
 end
 
+# Added to fix GitHub vulnerability messages
+gem 'loofah', '~> 2.2.1'
+gem 'sanitize', '~> 4.6.3'
+
 
 group :development, :test do
   gem 'byebug'
@@ -155,7 +161,6 @@ end
 
 group :test do
   # gem 'rspec-sidekiq'
-  gem 'codecov', :require => false
   gem "factory_girl_rails"
   gem 'simplecov', :require => false
   gem 'capybara'
@@ -168,7 +173,6 @@ group :test do
   gem 'shoulda'
   gem 'timecop'
   gem 'shoulda-matchers', require: false
-  gem 'sanitize'
   gem 'rails-controller-testing'
   gem 'pundit-matchers', git: 'https://github.com/crowdAI/pundit-matchers'
 end

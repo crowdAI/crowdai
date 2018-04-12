@@ -43,7 +43,7 @@ class Api::ExternalGradersController < Api::BaseController
                        challenge_id: challenge.id,
                        challenge_round_id: challenge_round_id,
                        description_markdown: params[:comment],
-                       post_challenge: post_challenge(challenge),
+                       post_challenge: post_challenge(challenge,params),
                        meta: params[:meta])
       if media_fields_present?
         submission.update({media_large: params[:media_large],
@@ -153,7 +153,13 @@ class Api::ExternalGradersController < Api::BaseController
     render json: { message: message, participant_id: participant_id, s3_key: s3_key, presigned_url: presigned_url }, status: status
   end
 
-  def post_challenge(challenge)
+  def post_challenge(challenge,params)
+    if params[:post_challenge] == "true"
+      return true
+    end
+    if params[:post_challenge] == "false"
+      return false
+    end
     if DateTime.now > challenge.end_dttm
       return true
     else
@@ -233,10 +239,16 @@ class Api::ExternalGradersController < Api::BaseController
   def grading_params
     case params[:grading_status]
     when 'graded'
+      if params[:grading_message].blank?
+        grading_message = 'Graded successfully'
+      else
+        grading_message = params[:grading_message]
+      end
+      grading_message = params[:grading_message]
       { score: params[:score],
         score_secondary: params[:score_secondary],
         grading_status_cd: 'graded',
-        grading_message: params[:grading_message] }
+        grading_message: grading_message }
     when 'initiated'
       { score: nil,
         score_secondary: nil,

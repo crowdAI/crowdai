@@ -3,6 +3,7 @@
 # crowdAI - The open platform for data science challenges
 
 [![Code Climate](https://codeclimate.com/github/crowdAI/crowdai/badges/gpa.svg)](https://codeclimate.com/github/crowdAI/crowdai)
+[![Gitter chat](https://badges.gitter.im/crowdAI/gitter.png)](https://gitter.im/crowdAI/Lobby)
 
 ## Introduction
 crowdAI (www.crowdAI.org) is a not-for-profit platform for open data challenges.
@@ -21,6 +22,10 @@ By providing their solutions openly, participants can rapidly learn the latest p
 Did we you say you are Awesomeee ?
 
 Our Contribution guidelines are available at [CONTRIBUTING.md](CONTRIBUTING.md)
+
+# Documentation
+
+We are in the process of migrating our [documentation](doc/documentation.md) from the Wiki into this repository as markdown files. 
 
 ## Contact
 You can always reach out to us at [info@crowdai.org](mailto:info@crowdai.org)

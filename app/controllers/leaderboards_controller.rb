@@ -1,6 +1,8 @@
 class LeaderboardsController < ApplicationController
-  before_action :authenticate_participant!, except: [:index, :show, :video_modal]
-  before_action :set_leaderboard, only: [:show]
+  before_action :authenticate_participant!,
+    except: [:index, :show, :video_modal]
+  before_action :set_leaderboard,
+    only: [:show]
   before_action :set_challenge
   respond_to :js, :html
   layout :set_layout
@@ -11,6 +13,9 @@ class LeaderboardsController < ApplicationController
   end
 
   def index
+    if @challenge.show_leaderboard == false
+      redirect_to '/'
+    end
     @current_round = current_round
     if @challenge.completed?
       if params[:post_challenge] == 'on'
@@ -21,16 +26,16 @@ class LeaderboardsController < ApplicationController
     end
     if @post_challenge == 'on'
       @leaderboards = @challenge
-                        .ongoing_leaderboards
-                        .where(challenge_round_id: current_round.id)
-                        .page(params[:page])
-                        .per(10)
+        .ongoing_leaderboards
+        .where(challenge_round_id: current_round.id)
+        .page(params[:page])
+        .per(10)
     else
       @leaderboards = @challenge
-                        .leaderboards
-                        .where(challenge_round_id: current_round.id)
-                        .page(params[:page])
-                        .per(10)
+        .leaderboards
+        .where(challenge_round_id: current_round.id)
+        .page(params[:page])
+        .per(10)
     end
 
     if current_participant && (current_participant.admin? || @challenge.organizer_id == current_participant.organizer_id)
@@ -51,12 +56,16 @@ class LeaderboardsController < ApplicationController
     leaderboard = Leaderboard.find(params[:leaderboard_id])
     @leaderboard = @challenge.leaderboards
     @submissions = Submission
-                     .where(
-                        participant_id: params[:participant_id],
-                        challenge_id: params[:challenge_id],
-                        challenge_round_id: leaderboard.challenge_round_id)
-                     .order(created_at: :desc)
-    render js: concept(Leaderboard::Cell,@leaderboard, challenge: @challenge, submissions: @submissions).(:insert_submissions)
+      .where(
+        participant_id: params[:participant_id],
+        challenge_id: params[:challenge_id],
+        challenge_round_id: leaderboard.challenge_round_id)
+      .order(created_at: :desc)
+    render js: concept(
+      Leaderboard::Cell,
+      @leaderboard,
+      challenge: @challenge,
+      submissions: @submissions).(:insert_submissions)
   end
 
   private

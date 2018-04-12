@@ -40,7 +40,6 @@ module LeaderboardVideosHelper
     return video_url
   end
 
-
   def submission_video(submission_id)
     url = submission_video_url(submission_id)
     if url.present?

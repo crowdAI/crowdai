@@ -1,4 +1,8 @@
-<tr id='participant-<%= entry.participant_id %>'>
+<tr id='participant-<%= entry.participant_id %>' class='<%= leader_class %>'>
+  <td class='change'>
+    <%= ranking_change(entry) %>
+  </td>
+
   <td class="position">
     <strong><%= "%02d." % (entry.row_num) %></strong>
   </td>

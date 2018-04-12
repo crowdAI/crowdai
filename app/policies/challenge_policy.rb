@@ -44,6 +44,39 @@ class ChallengePolicy < ApplicationPolicy
     update?
   end
 
+  def submissions_allowed?
+    return false unless @record.online_submissions
+    if participant && participant.admin?
+      return true
+    end
+    if @record.running?
+      if @record.clef_challenge.present?
+        if clef_participant_registered?(@record)
+          return true #return true if running and clef challenge and registered
+        else
+          return false #return false if running and clef_challenge and NOT REGISTERED
+        end
+      else
+        return true #return true if running and no clef challenge
+      end
+    else
+      return false #return false if challenge not running
+    end
+  end
+
+  def clef_participant_registered?(challenge)
+    return false unless participant.present?
+    clef_task = challenge.clef_task
+    participant_clef_task = ParticipantClefTask.where(
+      participant_id: participant,
+      clef_task_id: clef_task.id).first
+    if participant_clef_task
+      return true if participant_clef_task.registered?
+    else
+      return false
+    end
+  end
+
 
   class Scope
     attr_reader :participant, :scope

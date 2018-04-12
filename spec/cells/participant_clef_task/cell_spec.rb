@@ -21,15 +21,16 @@ RSpec.describe ParticipantClefTask::Cell, type: :cell do
   end
 
   describe '#eua_required?' do
-    let(:participant) { create :participant }
+    let!(:participant) { create :participant }
     subject { cell(described_class, clef_task, current_participant: participant) }
     context 'required' do
-      let(:clef_task) { create :clef_task, :with_eua }
-  #    it { expect(subject.eua_required?).to be true }
+      let!(:clef_task) { create :clef_task, :with_eua }
+      it { expect(clef_task.eua_file.file).to_not be_nil }
+      it { expect(subject.eua_required?).to be true }
     end
     context 'not required' do
       let(:clef_task) { create :clef_task }
-      #it { expect(subject.eua_required?).to be false }
+      it { expect(subject.eua_required?).to be false }
     end
   end
 
@@ -44,13 +45,13 @@ RSpec.describe ParticipantClefTask::Cell, type: :cell do
 
     context 'unregistered' do
       let(:participant) { create :participant, :clef_complete }
-      #it { expect(subject.participant_status).to eq('unregistered')}
+      it { expect(subject.participant_status).to eq('unregistered')}
     end
 
     context 'requested' do
       let(:participant) { create :participant, :clef_complete }
       let(:participant_clef_task) { create :participant_clef_task, clef_task: clef_task, participant: participant }
-  #    it { expect(subject.participant_status).to eq('requested')}
+      #it { expect(subject.participant_status).to eq('requested')}
     end
 
     context 'registered' do

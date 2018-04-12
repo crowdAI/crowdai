@@ -10,7 +10,7 @@ class FollowsController < ApplicationController
     render js: concept(Follow::Cell, @followable, current_participant: current_participant).(:refresh)
   end
 
-  def destroy #unfollow
+  def destroy
     Follow.destroy(params[:id])
     render js: concept(Follow::Cell, @followable, current_participant: current_participant).(:refresh)
   end

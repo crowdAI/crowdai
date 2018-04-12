@@ -2,7 +2,9 @@
   <%= concept(Challenge::Cell::ChallengeMasthead,
                 @challenge,
                 current_participant: current_participant) %>
-  <%= concept(Challenge::Cell::ChallengeSubnav,
+  <%= render partial: 'challenges/show/subnav',
+        locals: { challenge: @challenge } %>
+  <%#= concept(Challenge::Cell::ChallengeSubnav,
                 @challenge,
                 tab: 'leaderboard',
                 current_participant: current_participant) %>

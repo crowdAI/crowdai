@@ -24,7 +24,9 @@ Rails.application.routes.draw do
     post 'mailchimps/webhook' => 'mailchimps#webhook', as: :update_webhook
     resources :clef_tasks, only: [:show]
     get 'user', to: 'oauth_credentials#show'
-    resources :challenges, only: [:index, :show]
+    resources :challenges, only: [:index, :show] do
+      resources :submissions, only: [:index, :show]
+    end
   end
 
   namespace :components do
@@ -75,11 +77,7 @@ Rails.application.routes.draw do
     end
     resources :events
     resources :winners, only: [:index]
-    resources :submissions do
-      get :grade
-      get :hub
-      get :execute
-    end
+    resources :submissions
     resources :dynamic_contents, only: [:index]
     resources :leaderboards, only: [:index, :show] do
       get :submission_detail

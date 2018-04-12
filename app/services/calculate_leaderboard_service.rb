@@ -85,6 +85,7 @@ class CalculateLeaderboardService
         description,
         description_markdown,
         leaderboard_type_cd,
+        post_challenge,
         refreshed_at,
         created_at,
         updated_at
@@ -119,6 +120,7 @@ class CalculateLeaderboardService
         l.description,
         l.description_markdown,
         '#{leaderboard_type}',
+        l.post_challenge,
         '#{DateTime.now.to_s(:db)}',
         l.created_at,
         l.updated_at
@@ -150,6 +152,7 @@ class CalculateLeaderboardService
               s.media_content_type,
               s.description,
               s.description_markdown,
+              s.post_challenge,
               s.created_at,
               s.updated_at
             FROM submissions s,

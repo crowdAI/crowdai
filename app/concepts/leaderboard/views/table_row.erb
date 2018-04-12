@@ -17,7 +17,9 @@
           <% if participant.admin? %>
             <span class='badge badge-accent'>Admin</span>
           <% end %>
-          <% if participant.organizer_id == entry.organizer_id %>
+          <% if organizer_badge?(
+              challenge_id: entry.challenge_id,
+              participant_id: participant.id) %>
             <span class='badge'>Organizer</span>
           <% end %>
       </div>
@@ -26,7 +28,10 @@
 
   <% if cols.include?(:media) %>
     <td class="video">
-      <%= concept(Leaderboard::Cell::Media, entry, size: :thumb, current_participant: current_participant) %>
+      <%= concept(Leaderboard::Cell::Media,
+            entry,
+            size: :thumb,
+            current_participant: current_participant) %>
     </td>
   <% end %>
 
@@ -43,12 +48,12 @@
   <% if policy(entry).submission_detail? %>
   <td class="entries">
     <%= link_to entry.entries,
-                challenge_leaderboard_submission_detail_path(
-                  challenge_id: entry.challenge_id,
-                  leaderboard_id: entry.id,
-                  participant_id: entry.participant_id),
-        id: "participant-link-#{ entry.participant_id }",
-        remote: true %>
+          challenge_leaderboard_submission_detail_path(
+            challenge_id: entry.challenge_id,
+            leaderboard_id: entry.id,
+            participant_id: entry.participant_id),
+          id: "participant-link-#{ entry.participant_id }",
+          remote: true %>
   </td>
 <% else %>
   <td class="entries"><%= entry.entries %></td>
@@ -58,10 +63,13 @@
   <td class="post-challenge"></td>
   <% end %>
 
-  <td class="last-submission"><%= entry.created_at.strftime("%a, %e %b %Y %R") %></td>
+  <td class="last-submission">
+    <%= entry.created_at.strftime("%a, %e %b %Y %R") %>
+  </td>
   <td class='action'>
     <% if challenge.media_on_leaderboard %>
-      <%= link_to challenge_leaderboard_path(entry.challenge, entry.id), class: 'btn btn-secondary' do %>
+      <%= link_to challenge_leaderboard_path(
+            entry.challenge, entry.submission_id), class: 'btn btn-secondary' do %>
         <i class="fa fa-arrows-alt" aria-hidden="true"></i>
       <% end %>
     <% end %>

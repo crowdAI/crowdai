@@ -5,7 +5,7 @@ $(document).on('turbolinks:load', function() {
     data: "/participants.json"
   })
   .on("inserted.atwho", function(event, $li, browser_event) {
-      console.log('inserted: ' + $li.data('item-data')['name']);
+      //console.log('inserted: ' + $li.data('item-data')['name']);
       var cacheEntry = {
         id: $li.data('item-data')['id'],
         name: $li.data('item-data')['name']

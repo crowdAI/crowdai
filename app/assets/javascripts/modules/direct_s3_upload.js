@@ -19,7 +19,7 @@ $(document).on('turbolinks:load', function() {
       maxFileSize:      20,
 
       add: function(e, data) {
-        console.log('test');
+        //console.log('test');
         //var modelFile = $('.s3File')[0].files[0];
         data.submit().then(function(){
           form.submit();

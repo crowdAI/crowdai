@@ -1,5 +1,7 @@
 <% if ['video','image'].include?(content_type) %>
-  <%= link_to challenge_leaderboard_path(leaderboard_row.challenge_id, leaderboard_row.id) do %>
+  <%= link_to challenge_leaderboard_path(
+        leaderboard_row.challenge_id,
+        leaderboard_row.id) do %>
     <%= media_asset %>
   <% end %>
 <% else %>

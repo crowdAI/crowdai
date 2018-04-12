@@ -1,4 +1,4 @@
-class Lboard < ApplicationRecord
+class BaseLeaderboard < ApplicationRecord
   belongs_to :challenge
   belongs_to :challenge_round
   belongs_to :participant

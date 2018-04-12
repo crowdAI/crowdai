@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180410133400) do
+ActiveRecord::Schema.define(version: 20180412092712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,34 @@ ActiveRecord::Schema.define(version: 20180410133400) do
     t.string "image_file"
     t.index ["participant_id"], name: "index_articles_on_participant_id"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
+  end
+
+  create_table "base_leaderboards", force: :cascade do |t|
+    t.bigint "challenge_id"
+    t.bigint "challenge_round_id"
+    t.bigint "participant_id"
+    t.integer "row_num"
+    t.integer "previous_row_num"
+    t.string "slug"
+    t.string "name"
+    t.integer "entries"
+    t.float "score"
+    t.float "score_secondary"
+    t.string "media_large"
+    t.string "media_thumbnail"
+    t.string "media_content_type"
+    t.string "description"
+    t.string "description_markdown"
+    t.string "leaderboard_type_cd"
+    t.datetime "refreshed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "submission_id"
+    t.boolean "post_challenge", default: false
+    t.index ["challenge_id"], name: "index_base_leaderboards_on_challenge_id"
+    t.index ["challenge_round_id"], name: "index_base_leaderboards_on_challenge_round_id"
+    t.index ["leaderboard_type_cd"], name: "index_base_leaderboards_on_leaderboard_type_cd"
+    t.index ["participant_id"], name: "index_base_leaderboards_on_participant_id"
   end
 
   create_table "challenge_call_responses", force: :cascade do |t|
@@ -308,33 +336,6 @@ ActiveRecord::Schema.define(version: 20180410133400) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "job_url"
-  end
-
-  create_table "lboards", force: :cascade do |t|
-    t.bigint "challenge_id"
-    t.bigint "challenge_round_id"
-    t.bigint "participant_id"
-    t.integer "row_num"
-    t.integer "previous_row_num"
-    t.string "slug"
-    t.string "name"
-    t.integer "entries"
-    t.float "score"
-    t.float "score_secondary"
-    t.string "media_large"
-    t.string "media_thumbnail"
-    t.string "media_content_type"
-    t.string "description"
-    t.string "description_markdown"
-    t.string "leaderboard_type_cd"
-    t.datetime "refreshed_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "submission_id"
-    t.index ["challenge_id"], name: "index_lboards_on_challenge_id"
-    t.index ["challenge_round_id"], name: "index_lboards_on_challenge_round_id"
-    t.index ["leaderboard_type_cd"], name: "index_lboards_on_leaderboard_type_cd"
-    t.index ["participant_id"], name: "index_lboards_on_participant_id"
   end
 
   create_table "login_activities", force: :cascade do |t|
@@ -662,6 +663,9 @@ ActiveRecord::Schema.define(version: 20180410133400) do
 
   add_foreign_key "article_sections", "articles"
   add_foreign_key "articles", "participants"
+  add_foreign_key "base_leaderboards", "challenge_rounds"
+  add_foreign_key "base_leaderboards", "challenges"
+  add_foreign_key "base_leaderboards", "participants"
   add_foreign_key "challenge_call_responses", "challenge_calls"
   add_foreign_key "challenge_partners", "challenges"
   add_foreign_key "challenge_rounds", "challenges"
@@ -675,9 +679,6 @@ ActiveRecord::Schema.define(version: 20180410133400) do
   add_foreign_key "follows", "participants"
   add_foreign_key "invitations", "challenges"
   add_foreign_key "invitations", "participants"
-  add_foreign_key "lboards", "challenge_rounds"
-  add_foreign_key "lboards", "challenges"
-  add_foreign_key "lboards", "participants"
   add_foreign_key "notifications", "participants"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
@@ -803,424 +804,6 @@ ActiveRecord::Schema.define(version: 20180410133400) do
     WHERE ((c.id = cr.challenge_id) AND (c.id = acr.challenge_id) AND (acr.active IS TRUE));
   SQL
 
-  create_view "current_leaderboards",  sql_definition: <<-SQL
-      SELECT l.id,
-      row_number() OVER (PARTITION BY l.challenge_id, l.challenge_round_id ORDER BY
-          CASE
-              WHEN ((c.primary_sort_order_cd)::text = 'ascending'::text) THEN l.score
-              ELSE NULL::double precision
-          END,
-          CASE
-              WHEN ((c.primary_sort_order_cd)::text = 'descending'::text) THEN l.score
-              ELSE NULL::double precision
-          END DESC,
-          CASE
-              WHEN ((c.secondary_sort_order_cd)::text = 'ascending'::text) THEN l.score_secondary
-              ELSE NULL::double precision
-          END,
-          CASE
-              WHEN ((c.secondary_sort_order_cd)::text = 'descending'::text) THEN l.score_secondary
-              ELSE NULL::double precision
-          END DESC) AS row_num,
-      l.id AS submission_id,
-      l.challenge_id,
-      l.challenge_round_id,
-      l.participant_id,
-      l.slug,
-      c.organizer_id,
-      l.name,
-      l.entries,
-      l.score,
-      l.score_secondary,
-      l.media_large,
-      l.media_thumbnail,
-      l.media_content_type,
-      l.description,
-      l.description_markdown,
-      l.created_at,
-      l.updated_at
-     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.challenge_round_id, s.participant_id ORDER BY
-                  CASE
-                      WHEN ((c_1.primary_sort_order_cd)::text = 'ascending'::text) THEN s.score
-                      ELSE NULL::double precision
-                  END,
-                  CASE
-                      WHEN ((c_1.primary_sort_order_cd)::text = 'descending'::text) THEN s.score
-                      ELSE NULL::double precision
-                  END DESC,
-                  CASE
-                      WHEN ((c_1.secondary_sort_order_cd)::text = 'ascending'::text) THEN s.score_secondary
-                      ELSE NULL::double precision
-                  END,
-                  CASE
-                      WHEN ((c_1.secondary_sort_order_cd)::text = 'descending'::text) THEN s.score_secondary
-                      ELSE NULL::double precision
-                  END DESC) AS submission_ranking,
-              s.id,
-              s.challenge_id,
-              s.challenge_round_id,
-              s.participant_id,
-              p.slug,
-              p.name,
-              cnt.entries,
-              s.score,
-              s.score_secondary,
-              s.media_large,
-              s.media_thumbnail,
-              s.media_content_type,
-              s.description,
-              s.description_markdown,
-              s.created_at,
-              s.updated_at
-             FROM submissions s,
-              challenges c_1,
-              participants p,
-              ( SELECT c_1_1.challenge_id,
-                      c_1_1.challenge_round_id,
-                      c_1_1.participant_id,
-                      count(c_1_1.*) AS entries
-                     FROM submissions c_1_1
-                    WHERE (c_1_1.post_challenge IS FALSE)
-                    GROUP BY c_1_1.challenge_id, c_1_1.challenge_round_id, c_1_1.participant_id) cnt
-            WHERE ((p.id = s.participant_id) AND (s.challenge_id = c_1.id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (s.post_challenge IS FALSE) AND (cnt.challenge_id = s.challenge_id) AND (cnt.challenge_round_id = s.challenge_round_id) AND (cnt.participant_id = s.participant_id))) l,
-      challenges c
-    WHERE ((l.submission_ranking = 1) AND (c.id = l.challenge_id))
-    ORDER BY l.challenge_id, l.challenge_round_id, (row_number() OVER (PARTITION BY l.challenge_id, l.challenge_round_id ORDER BY
-          CASE
-              WHEN ((c.primary_sort_order_cd)::text = 'ascending'::text) THEN l.score
-              ELSE NULL::double precision
-          END,
-          CASE
-              WHEN ((c.primary_sort_order_cd)::text = 'descending'::text) THEN l.score
-              ELSE NULL::double precision
-          END DESC,
-          CASE
-              WHEN ((c.secondary_sort_order_cd)::text = 'ascending'::text) THEN l.score_secondary
-              ELSE NULL::double precision
-          END,
-          CASE
-              WHEN ((c.secondary_sort_order_cd)::text = 'descending'::text) THEN l.score_secondary
-              ELSE NULL::double precision
-          END DESC));
-  SQL
-
-  create_view "current_ongoing_leaderboards",  sql_definition: <<-SQL
-      SELECT l.id,
-      row_number() OVER (PARTITION BY l.challenge_id, l.challenge_round_id ORDER BY
-          CASE
-              WHEN ((c.primary_sort_order_cd)::text = 'ascending'::text) THEN l.score
-              ELSE NULL::double precision
-          END,
-          CASE
-              WHEN ((c.primary_sort_order_cd)::text = 'descending'::text) THEN l.score
-              ELSE NULL::double precision
-          END DESC,
-          CASE
-              WHEN ((c.secondary_sort_order_cd)::text = 'ascending'::text) THEN l.score_secondary
-              ELSE NULL::double precision
-          END,
-          CASE
-              WHEN ((c.secondary_sort_order_cd)::text = 'descending'::text) THEN l.score_secondary
-              ELSE NULL::double precision
-          END DESC) AS row_num,
-      l.id AS submission_id,
-      l.challenge_id,
-      l.challenge_round_id,
-      l.participant_id,
-      l.slug,
-      c.organizer_id,
-      l.name,
-      l.entries,
-      l.score,
-      l.score_secondary,
-      l.media_large,
-      l.media_thumbnail,
-      l.media_content_type,
-      l.description,
-      l.description_markdown,
-      l.post_challenge,
-      l.created_at,
-      l.updated_at
-     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.challenge_round_id, s.participant_id ORDER BY
-                  CASE
-                      WHEN ((c_1.primary_sort_order_cd)::text = 'ascending'::text) THEN s.score
-                      ELSE NULL::double precision
-                  END,
-                  CASE
-                      WHEN ((c_1.primary_sort_order_cd)::text = 'descending'::text) THEN s.score
-                      ELSE NULL::double precision
-                  END DESC,
-                  CASE
-                      WHEN ((c_1.secondary_sort_order_cd)::text = 'ascending'::text) THEN s.score_secondary
-                      ELSE NULL::double precision
-                  END,
-                  CASE
-                      WHEN ((c_1.secondary_sort_order_cd)::text = 'descending'::text) THEN s.score_secondary
-                      ELSE NULL::double precision
-                  END DESC) AS submission_ranking,
-              s.id,
-              s.challenge_id,
-              s.challenge_round_id,
-              s.participant_id,
-              p.slug,
-              p.name,
-              cnt.entries,
-              s.score,
-              s.score_secondary,
-              s.media_large,
-              s.media_thumbnail,
-              s.media_content_type,
-              s.description,
-              s.description_markdown,
-              s.post_challenge,
-              s.created_at,
-              s.updated_at
-             FROM submissions s,
-              challenges c_1,
-              participants p,
-              ( SELECT c_1_1.challenge_id,
-                      c_1_1.challenge_round_id,
-                      c_1_1.participant_id,
-                      count(c_1_1.*) AS entries
-                     FROM submissions c_1_1
-                    WHERE (c_1_1.post_challenge = ANY (ARRAY[true, false]))
-                    GROUP BY c_1_1.challenge_id, c_1_1.challenge_round_id, c_1_1.participant_id) cnt
-            WHERE ((p.id = s.participant_id) AND (s.challenge_id = c_1.id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (s.post_challenge = ANY (ARRAY[true, false])) AND (cnt.challenge_id = s.challenge_id) AND (cnt.challenge_round_id = s.challenge_round_id) AND (cnt.participant_id = s.participant_id))) l,
-      challenges c
-    WHERE ((l.submission_ranking = 1) AND (c.id = l.challenge_id))
-    ORDER BY l.challenge_id, l.challenge_round_id, (row_number() OVER (PARTITION BY l.challenge_id, l.challenge_round_id ORDER BY
-          CASE
-              WHEN ((c.primary_sort_order_cd)::text = 'ascending'::text) THEN l.score
-              ELSE NULL::double precision
-          END,
-          CASE
-              WHEN ((c.primary_sort_order_cd)::text = 'descending'::text) THEN l.score
-              ELSE NULL::double precision
-          END DESC,
-          CASE
-              WHEN ((c.secondary_sort_order_cd)::text = 'ascending'::text) THEN l.score_secondary
-              ELSE NULL::double precision
-          END,
-          CASE
-              WHEN ((c.secondary_sort_order_cd)::text = 'descending'::text) THEN l.score_secondary
-              ELSE NULL::double precision
-          END DESC));
-  SQL
-
-  create_view "previous_leaderboards", materialized: true,  sql_definition: <<-SQL
-      SELECT l.id,
-      row_number() OVER (PARTITION BY l.challenge_id, l.challenge_round_id ORDER BY
-          CASE
-              WHEN ((c.primary_sort_order_cd)::text = 'ascending'::text) THEN l.score
-              ELSE NULL::double precision
-          END,
-          CASE
-              WHEN ((c.primary_sort_order_cd)::text = 'descending'::text) THEN l.score
-              ELSE NULL::double precision
-          END DESC,
-          CASE
-              WHEN ((c.secondary_sort_order_cd)::text = 'ascending'::text) THEN l.score_secondary
-              ELSE NULL::double precision
-          END,
-          CASE
-              WHEN ((c.secondary_sort_order_cd)::text = 'descending'::text) THEN l.score_secondary
-              ELSE NULL::double precision
-          END DESC) AS row_num,
-      l.id AS submission_id,
-      l.challenge_id,
-      l.challenge_round_id,
-      l.participant_id,
-      l.score,
-      l.score_secondary,
-      l.created_at,
-      l.updated_at
-     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.challenge_round_id, s.participant_id ORDER BY
-                  CASE
-                      WHEN ((c_1.primary_sort_order_cd)::text = 'ascending'::text) THEN s.score
-                      ELSE NULL::double precision
-                  END,
-                  CASE
-                      WHEN ((c_1.primary_sort_order_cd)::text = 'descending'::text) THEN s.score
-                      ELSE NULL::double precision
-                  END DESC,
-                  CASE
-                      WHEN ((c_1.secondary_sort_order_cd)::text = 'ascending'::text) THEN s.score_secondary
-                      ELSE NULL::double precision
-                  END,
-                  CASE
-                      WHEN ((c_1.secondary_sort_order_cd)::text = 'descending'::text) THEN s.score_secondary
-                      ELSE NULL::double precision
-                  END DESC) AS submission_ranking,
-              s.id,
-              s.challenge_id,
-              s.challenge_round_id,
-              s.participant_id,
-              s.score,
-              s.score_secondary,
-              s.created_at,
-              s.updated_at
-             FROM submissions s,
-              challenges c_1,
-              participants p
-            WHERE ((p.id = s.participant_id) AND (s.challenge_id = c_1.id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (s.post_challenge = false) AND (s.created_at <= ( SELECT (m.created_at - ((c_1.ranking_window || ' HOUR'::text))::interval)
-                     FROM submissions m
-                    WHERE (m.challenge_id = c_1.id)
-                    ORDER BY m.created_at DESC
-                   LIMIT 1)))) l,
-      challenges c
-    WHERE ((l.submission_ranking = 1) AND (c.id = l.challenge_id))
-    ORDER BY l.challenge_id, l.challenge_round_id, (row_number() OVER (PARTITION BY l.challenge_id, l.challenge_round_id ORDER BY
-          CASE
-              WHEN ((c.primary_sort_order_cd)::text = 'ascending'::text) THEN l.score
-              ELSE NULL::double precision
-          END,
-          CASE
-              WHEN ((c.primary_sort_order_cd)::text = 'descending'::text) THEN l.score
-              ELSE NULL::double precision
-          END DESC,
-          CASE
-              WHEN ((c.secondary_sort_order_cd)::text = 'ascending'::text) THEN l.score_secondary
-              ELSE NULL::double precision
-          END,
-          CASE
-              WHEN ((c.secondary_sort_order_cd)::text = 'descending'::text) THEN l.score_secondary
-              ELSE NULL::double precision
-          END DESC));
-  SQL
-
-  create_view "leaderboards",  sql_definition: <<-SQL
-      SELECT c.id,
-      c.row_num,
-      COALESCE(( SELECT p1.row_num
-             FROM previous_leaderboards p1
-            WHERE ((p1.participant_id = c.participant_id) AND (p1.challenge_id = c.challenge_id) AND (p1.challenge_round_id = c.challenge_round_id))), (0)::bigint) AS previous_row_num,
-      c.id AS submission_id,
-      c.challenge_id,
-      c.challenge_round_id,
-      c.participant_id,
-      c.slug,
-      c.organizer_id,
-      c.name,
-      c.entries,
-      c.score,
-      c.score_secondary,
-      c.media_large,
-      c.media_thumbnail,
-      c.media_content_type,
-      c.description,
-      c.description_markdown,
-      c.created_at,
-      c.updated_at
-     FROM current_leaderboards c;
-  SQL
-
-  create_view "previous_ongoing_leaderboards", materialized: true,  sql_definition: <<-SQL
-      SELECT l.id,
-      row_number() OVER (PARTITION BY l.challenge_id, l.challenge_round_id ORDER BY
-          CASE
-              WHEN ((c.primary_sort_order_cd)::text = 'ascending'::text) THEN l.score
-              ELSE NULL::double precision
-          END,
-          CASE
-              WHEN ((c.primary_sort_order_cd)::text = 'descending'::text) THEN l.score
-              ELSE NULL::double precision
-          END DESC,
-          CASE
-              WHEN ((c.secondary_sort_order_cd)::text = 'ascending'::text) THEN l.score_secondary
-              ELSE NULL::double precision
-          END,
-          CASE
-              WHEN ((c.secondary_sort_order_cd)::text = 'descending'::text) THEN l.score_secondary
-              ELSE NULL::double precision
-          END DESC) AS row_num,
-      l.id AS submission_id,
-      l.challenge_id,
-      l.challenge_round_id,
-      l.participant_id,
-      l.score,
-      l.score_secondary,
-      l.created_at,
-      l.updated_at
-     FROM ( SELECT row_number() OVER (PARTITION BY s.challenge_id, s.challenge_round_id, s.participant_id ORDER BY
-                  CASE
-                      WHEN ((c_1.primary_sort_order_cd)::text = 'ascending'::text) THEN s.score
-                      ELSE NULL::double precision
-                  END,
-                  CASE
-                      WHEN ((c_1.primary_sort_order_cd)::text = 'descending'::text) THEN s.score
-                      ELSE NULL::double precision
-                  END DESC,
-                  CASE
-                      WHEN ((c_1.secondary_sort_order_cd)::text = 'ascending'::text) THEN s.score_secondary
-                      ELSE NULL::double precision
-                  END,
-                  CASE
-                      WHEN ((c_1.secondary_sort_order_cd)::text = 'descending'::text) THEN s.score_secondary
-                      ELSE NULL::double precision
-                  END DESC) AS submission_ranking,
-              s.id,
-              s.challenge_id,
-              s.challenge_round_id,
-              s.participant_id,
-              s.score,
-              s.score_secondary,
-              s.created_at,
-              s.updated_at
-             FROM submissions s,
-              challenges c_1,
-              participants p
-            WHERE ((p.id = s.participant_id) AND (s.challenge_id = c_1.id) AND ((s.grading_status_cd)::text = 'graded'::text) AND (s.post_challenge = ANY (ARRAY[true, false])) AND (s.created_at <= ( SELECT (m.created_at - ((c_1.ranking_window || ' HOUR'::text))::interval)
-                     FROM submissions m
-                    WHERE (m.challenge_id = c_1.id)
-                    ORDER BY m.created_at DESC
-                   LIMIT 1)))) l,
-      challenges c
-    WHERE ((l.submission_ranking = 1) AND (c.id = l.challenge_id))
-    ORDER BY l.challenge_id, l.challenge_round_id, (row_number() OVER (PARTITION BY l.challenge_id, l.challenge_round_id ORDER BY
-          CASE
-              WHEN ((c.primary_sort_order_cd)::text = 'ascending'::text) THEN l.score
-              ELSE NULL::double precision
-          END,
-          CASE
-              WHEN ((c.primary_sort_order_cd)::text = 'descending'::text) THEN l.score
-              ELSE NULL::double precision
-          END DESC,
-          CASE
-              WHEN ((c.secondary_sort_order_cd)::text = 'ascending'::text) THEN l.score_secondary
-              ELSE NULL::double precision
-          END,
-          CASE
-              WHEN ((c.secondary_sort_order_cd)::text = 'descending'::text) THEN l.score_secondary
-              ELSE NULL::double precision
-          END DESC));
-  SQL
-
-  create_view "ongoing_leaderboards",  sql_definition: <<-SQL
-      SELECT c.id,
-      c.row_num,
-      COALESCE(( SELECT p1.row_num
-             FROM previous_ongoing_leaderboards p1
-            WHERE ((p1.participant_id = c.participant_id) AND (p1.challenge_id = c.challenge_id) AND (p1.challenge_round_id = c.challenge_round_id))), (0)::bigint) AS previous_row_num,
-      c.id AS submission_id,
-      c.challenge_id,
-      c.challenge_round_id,
-      c.participant_id,
-      c.slug,
-      c.organizer_id,
-      c.name,
-      c.entries,
-      c.score,
-      c.score_secondary,
-      c.media_large,
-      c.media_thumbnail,
-      c.media_content_type,
-      c.description,
-      c.description_markdown,
-      c.created_at,
-      c.updated_at
-     FROM current_ongoing_leaderboards c;
-  SQL
-
   create_view "participant_challenge_counts",  sql_definition: <<-SQL
       SELECT row_number() OVER () AS row_number,
       y.challenge_id,
@@ -1320,6 +903,114 @@ ActiveRecord::Schema.define(version: 20180410133400) do
     WHERE (s.participant_id = p.id)
     GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
     ORDER BY s.created_at DESC;
+  SQL
+
+  create_view "leaderboards",  sql_definition: <<-SQL
+      SELECT base_leaderboards.id,
+      base_leaderboards.challenge_id,
+      base_leaderboards.challenge_round_id,
+      base_leaderboards.participant_id,
+      base_leaderboards.row_num,
+      base_leaderboards.previous_row_num,
+      base_leaderboards.slug,
+      base_leaderboards.name,
+      base_leaderboards.entries,
+      base_leaderboards.score,
+      base_leaderboards.score_secondary,
+      base_leaderboards.media_large,
+      base_leaderboards.media_thumbnail,
+      base_leaderboards.media_content_type,
+      base_leaderboards.description,
+      base_leaderboards.description_markdown,
+      base_leaderboards.leaderboard_type_cd,
+      base_leaderboards.refreshed_at,
+      base_leaderboards.created_at,
+      base_leaderboards.updated_at,
+      base_leaderboards.submission_id,
+      base_leaderboards.post_challenge
+     FROM base_leaderboards
+    WHERE ((base_leaderboards.leaderboard_type_cd)::text = 'leaderboard'::text);
+  SQL
+
+  create_view "ongoing_leaderboards",  sql_definition: <<-SQL
+      SELECT base_leaderboards.id,
+      base_leaderboards.challenge_id,
+      base_leaderboards.challenge_round_id,
+      base_leaderboards.participant_id,
+      base_leaderboards.row_num,
+      base_leaderboards.previous_row_num,
+      base_leaderboards.slug,
+      base_leaderboards.name,
+      base_leaderboards.entries,
+      base_leaderboards.score,
+      base_leaderboards.score_secondary,
+      base_leaderboards.media_large,
+      base_leaderboards.media_thumbnail,
+      base_leaderboards.media_content_type,
+      base_leaderboards.description,
+      base_leaderboards.description_markdown,
+      base_leaderboards.leaderboard_type_cd,
+      base_leaderboards.refreshed_at,
+      base_leaderboards.created_at,
+      base_leaderboards.updated_at,
+      base_leaderboards.submission_id,
+      base_leaderboards.post_challenge
+     FROM base_leaderboards
+    WHERE ((base_leaderboards.leaderboard_type_cd)::text = 'ongoing'::text);
+  SQL
+
+  create_view "previous_leaderboards",  sql_definition: <<-SQL
+      SELECT base_leaderboards.id,
+      base_leaderboards.challenge_id,
+      base_leaderboards.challenge_round_id,
+      base_leaderboards.participant_id,
+      base_leaderboards.row_num,
+      base_leaderboards.previous_row_num,
+      base_leaderboards.slug,
+      base_leaderboards.name,
+      base_leaderboards.entries,
+      base_leaderboards.score,
+      base_leaderboards.score_secondary,
+      base_leaderboards.media_large,
+      base_leaderboards.media_thumbnail,
+      base_leaderboards.media_content_type,
+      base_leaderboards.description,
+      base_leaderboards.description_markdown,
+      base_leaderboards.leaderboard_type_cd,
+      base_leaderboards.refreshed_at,
+      base_leaderboards.created_at,
+      base_leaderboards.updated_at,
+      base_leaderboards.submission_id,
+      base_leaderboards.post_challenge
+     FROM base_leaderboards
+    WHERE ((base_leaderboards.leaderboard_type_cd)::text = 'previous'::text);
+  SQL
+
+  create_view "previous_ongoing_leaderboards",  sql_definition: <<-SQL
+      SELECT base_leaderboards.id,
+      base_leaderboards.challenge_id,
+      base_leaderboards.challenge_round_id,
+      base_leaderboards.participant_id,
+      base_leaderboards.row_num,
+      base_leaderboards.previous_row_num,
+      base_leaderboards.slug,
+      base_leaderboards.name,
+      base_leaderboards.entries,
+      base_leaderboards.score,
+      base_leaderboards.score_secondary,
+      base_leaderboards.media_large,
+      base_leaderboards.media_thumbnail,
+      base_leaderboards.media_content_type,
+      base_leaderboards.description,
+      base_leaderboards.description_markdown,
+      base_leaderboards.leaderboard_type_cd,
+      base_leaderboards.refreshed_at,
+      base_leaderboards.created_at,
+      base_leaderboards.updated_at,
+      base_leaderboards.submission_id,
+      base_leaderboards.post_challenge
+     FROM base_leaderboards
+    WHERE ((base_leaderboards.leaderboard_type_cd)::text = 'previous_ongoing'::text);
   SQL
 
 end

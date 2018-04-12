@@ -17,8 +17,7 @@ FactoryGirl.define do
     grader 'f1_logloss'
     grading_factor 0.3
     license_markdown '## This is a license'
-    ranking_window 48
-    ranking_highlight 3
+
 
     trait :running do
       status :running

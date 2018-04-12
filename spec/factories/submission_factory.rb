@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :submission, class: Submission do
-    challenge
+    challenge #FactoryGirl.create(:challenge, :running)
     participant
     grading_status :ready
     description_markdown '#Upload description'

@@ -4,6 +4,10 @@ class Leaderboard::Cell < Template::Cell
     options[:challenge]
   end
 
+  def challenge_round
+    options[:current_round]
+  end
+
   def submissions
     options[:submissions]
   end

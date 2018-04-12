@@ -28,7 +28,7 @@ class CalculateLeaderboardService
     sql = %Q[
       update submissions
       set
-        score_display = trunc(score::numeric,#{@round.score_precision}),
+        score_display = round(score::numeric,#{@round.score_precision}),
         score_secondary_display = trunc(score_secondary::numeric,#{@round.score_secondary_precision})
       where challenge_round_id = #{@round.id}
     ]

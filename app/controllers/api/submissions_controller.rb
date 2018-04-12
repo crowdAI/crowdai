@@ -4,12 +4,30 @@ class Api::SubmissionsController < Api::BaseController
   respond_to :json
 
   def index
-    permitted_challenge_ids = @organizer.challenges.pluck(:id)
-    @submissions = Submission
-      .where(challenge_id: params[:challenge_id])
-    render json: @submissions,
-      each_serializer: Api::SubmissionSerializer,
-      status: :ok
+    begin
+      challenge_id = params[:challenge_id]
+      grading_status = params[:grading_status]
+      #allow only own organiser to access this challenge's submissions
+      permitted_challenge_ids = @organizer.challenges.pluck(:id).map(&:to_s)
+      if !permitted_challenge_ids.include?(challenge_id)
+        raise OrganizerNotAuthorized
+      end
+      # query param 'grading_status' to filter based on grading_status_cd
+      if grading_status.present?
+        @submissions = Submission.where("challenge_id = ? AND grading_status_cd = ?", challenge_id, grading_status)
+      else
+        @submissions = Submission.where(challenge_id: challenge_id)
+      end
+      render json: @submissions, each_serializer: Api::SubmissionSerializer, status: :ok
+      rescue ActiveRecord::RecordNotFound
+        message = "challenge_id #{challenge_id} not found"
+        render json: {message: message}, status: :not_found
+      rescue OrganizerNotAuthorized => o
+        render json: {message: o}, status: :unauthorized
+      rescue => e
+        message = e
+        render json: {message: e}, status: :internal_server_error
+    end
   end
 
   private

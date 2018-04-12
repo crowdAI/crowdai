@@ -1,3 +1,4 @@
+=begin
 require 'spec_helper'
 
 describe CurrentOngoingLeaderboard do
@@ -200,3 +201,4 @@ describe CurrentOngoingLeaderboard do
     end
   end
 end
+=end

@@ -46,7 +46,7 @@ class CalculateLeaderboardService
   end
 
   def purge_leaderboard
-    ActiveRecord::Base.connection.execute "delete from lboards where challenge_round_id = #{@round.id};"
+    ActiveRecord::Base.connection.execute "delete from base_leaderboards where challenge_round_id = #{@round.id};"
   end
 
   def create_leaderboard(leaderboard_type:)
@@ -66,7 +66,7 @@ class CalculateLeaderboardService
     end
 
     sql = %Q[
-      INSERT INTO lboards (
+      INSERT INTO base_leaderboards (
         id,
         challenge_id,
         challenge_round_id,
@@ -90,7 +90,7 @@ class CalculateLeaderboardService
         updated_at
       )
       SELECT
-        nextval('lboards_id_seq'::regclass),
+        nextval('base_leaderboards_id_seq'::regclass),
         l.challenge_id,
         l.challenge_round_id,
         l.participant_id,
@@ -191,22 +191,22 @@ class CalculateLeaderboardService
                l.challenge_id,
                l.challenge_round_id,
                l.participant_id
-        FROM lboards l,
-             lboards p
+        FROM base_leaderboards l,
+             base_leaderboards p
         WHERE l.challenge_id = p.challenge_id
         AND l.challenge_round_id = p.challenge_round_id
         AND l.challenge_round_id = #{@round.id}
         AND l.participant_id = p.participant_id
         AND l.leaderboard_type_cd = '#{leaderboard}'
         AND p.leaderboard_type_cd = '#{prev}')
-      UPDATE lboards
+      UPDATE base_leaderboards
       SET previous_row_num = lb.prev_row_num
       FROM lb
-      WHERE lboards.leaderboard_type_cd = '#{leaderboard}'
-      AND lboards.challenge_id = lb.challenge_id
-      AND lboards.challenge_round_id = lb.challenge_round_id
-      AND lboards.challenge_round_id = #{@round.id}
-      AND lboards.participant_id = lb.participant_id
+      WHERE base_leaderboards.leaderboard_type_cd = '#{leaderboard}'
+      AND base_leaderboards.challenge_id = lb.challenge_id
+      AND base_leaderboards.challenge_round_id = lb.challenge_round_id
+      AND base_leaderboards.challenge_round_id = #{@round.id}
+      AND base_leaderboards.participant_id = lb.participant_id
     ]
     @conn.execute sql
   end

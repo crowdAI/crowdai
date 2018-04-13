@@ -180,6 +180,7 @@ class ChallengesController < ApplicationController
         :ranking_window,
         :ranking_highlight,
         :grader_identifier,
+        :online_submissions,
         dataset_attributes: [
           :id,
           :challenge_id,

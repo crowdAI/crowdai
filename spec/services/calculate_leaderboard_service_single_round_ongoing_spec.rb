@@ -11,32 +11,22 @@ RSpec.describe CalculateLeaderboardService do
   end
 
 
-  # Submission | Partic | Score     | Secondary | Post?
-  # -----------|--------|-----------|------------------
-  #  p1s1      |  p1    | 30.050123 | 0.001999  |  No
-  #  p1s2      |  p1    | 30.05     | 0.002     |  No
-  #  p1s3      |  p1    | 32.05     | 0.001     |  No
-  #  p1s4      |  p1    | 32.05     | 0.002     |  No
-  #  p2s1      |  p2    | 31.00     | 0.003     |  No
-  #  p2s2      |  p2    | 36.00     | 0.003     |  No
-  #  p2s3      |  p2    | 40.00     | 0.005456  |  Yes
-
-
-  # Leaderboard
-  # Row | Submission | Partic | Primary | Secondary
-  # ----|------------|--------|---------|----------
-  #  1  |  p1s1      |  p1    |  30.05  |  0.001
-  #  2  |  p2s1      |  p2    |  31.00  |  0.003
-
-  # Ongoing Leaderboard
-  # Rank | Submission | Partic | Primary | Secondary | Post?
-  # -----|------------|--------|---------|-----------|------
-  #  1   |  p1s1      |  p1    |  30.05  |  0.001    | No
-  #  2   |  p2s1      |  p2    |  31.00  |  0.003    | No
+  # Submission | Partic | Score     | Secondary | Post? | Window
+  # -----------|--------|-----------|-------------------|-------
+  #  p1s1      |  p1    | 30.050123 | 0.001999  |  No   | Prev
+  #  p1s2      |  p1    | 30.05     | 0.002     |  No   | Prev
+  #  p1s3      |  p1    | 32.05     | 0.001     |  No   | Current
+  #  p1s4      |  p1    | 32.05     | 0.002     |  No   | Current
+  #  p2s1      |  p2    | 31.00     | 0.003     |  No   | Prev
+  #  p2s2      |  p2    | 36.00     | 0.003     |  No   | Current
+  #  p2s3      |  p2    | 40.00     | 0.005456  |  Yes  | Current
+  #  p3s1      |  p3    | 50.00     | 0.0001    |  Yes  | Prev
+  #  p3s2      |  p3    | 60.00     | 0.001     |  Yes  | Current
 
 
   let!(:challenge) { create :challenge, :running }
   let!(:challenge_round) { challenge.challenge_rounds.first }
+  # Ranking Window = 48 hours
   let!(:participant1) { create :participant }
   let!(:participant2) { create :participant }
   let!(:p1s1) {
@@ -46,7 +36,8 @@ RSpec.describe CalculateLeaderboardService do
     challenge_round_id: challenge_round.id,
     grading_status: :graded,
     score: 30.050123,
-    score_secondary: 0.001999 }
+    score_secondary: 0.001999,
+    created_at: 52.hours.ago }
   let!(:p1s2) {
     create :submission,
     participant: participant1,
@@ -54,15 +45,17 @@ RSpec.describe CalculateLeaderboardService do
     challenge_round_id: challenge_round.id,
     grading_status: :graded,
     score: 30.05,
-    score_secondary: 0.002 }
+    score_secondary: 0.002,
+    created_at: 50.hours.ago }
   let!(:p1s3) {
     create :submission,
     participant: participant1,
     challenge: challenge,
     challenge_round_id: challenge_round.id,
     grading_status: :graded,
-    score: 32.05,
-    score_secondary: 0.001 }
+    score: 32.0501,
+    score_secondary: 0.001,
+    created_at: 1.minute.ago }
   let!(:p1s4) {
     create :submission,
     participant: participant1,
@@ -70,7 +63,8 @@ RSpec.describe CalculateLeaderboardService do
     challenge_round_id: challenge_round.id,
     grading_status: :graded,
     score: 32.05,
-    score_secondary: 0.002 }
+    score_secondary: 0.002,
+    created_at: 20.hours.ago }
   let!(:p2s1) {
     create :submission,
     participant: participant2,
@@ -78,7 +72,8 @@ RSpec.describe CalculateLeaderboardService do
     challenge_round_id: challenge_round.id,
     grading_status: :graded,
     score: 31.00,
-    score_secondary: 0.003 }
+    score_secondary: 0.003,
+    created_at: 70.hours.ago }
   let!(:p2s2) {
     create :submission,
     participant: participant2,
@@ -86,16 +81,21 @@ RSpec.describe CalculateLeaderboardService do
     challenge_round_id: challenge_round.id,
     grading_status: :graded,
     score: 36.00,
-    score_secondary: 0.003 }
-  let!(:p2s3) {
-    create :submission,
-    participant: participant2,
-    challenge: challenge,
-    challenge_round_id: challenge_round.id,
-    grading_status: :graded,
-    post_challenge: true,
-    score: 40.00,
-    score_secondary: 0.005456 }
+    score_secondary: 0.003,
+    created_at: 5.hours.ago }
+
+
+    # Leaderboard
+    # Row | Move | Submission | Partic | Primary | Secondary
+    # ----|------|------------|--------|---------|----------
+    #  1  |      | p1s1       |  p1    |  30.05  |  0.001
+    #  2  |      | p2s1       |  p2    |  31.00  |  0.003
+
+    # Ongoing Leaderboard
+    # Rank | Submission | Partic | Primary | Secondary | Post?
+    # -----|------------|--------|---------|-----------|------
+    #  1   |  p1s1      |  p1    |  30.05  |  0.001    | No
+    #  2   |  p2s1      |  p2    |  31.00  |  0.003    | No
 
   describe 'order by primary asc, secondary asc' do
     # Row | Submission | Participant | Primary | Secondary

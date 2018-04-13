@@ -41,6 +41,25 @@
   }
 }
 
+.nips-user-link {
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+  img {
+    width: 36px;
+    height: 36px;
+    margin-right: 8px;
+    border-radius: 2px;
+    @media screen and (max-width: 400px) {
+      display: none;
+    }
+  }
+}
+
+.nips-spacer {
+  margin-right: 20px;
+}
+
 /* Button group */
 
 .button-group {

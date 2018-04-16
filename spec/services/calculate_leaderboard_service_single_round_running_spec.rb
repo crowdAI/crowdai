@@ -247,55 +247,55 @@ RSpec.describe CalculateLeaderboardService do
 
     # leaderboard
     it { expect(Leaderboard.first.participant_id)
-          .to eq(participant1.id) }
+          .to eq(participant2.id) }
     it { expect(Leaderboard.first.row_num)
           .to eq(1) }
     it { expect(Leaderboard.first.previous_row_num)
           .to eq(1) }
     it { expect(Leaderboard.first.score)
-          .to eq(30.05) }
+          .to eq(29.00) }
     it { expect(Leaderboard.first.score_secondary)
-          .to eq(0.002) }
+          .to eq(0.003) }
     it { expect(Leaderboard.first.entries)
-          .to eq(4) }
+          .to eq(2) }
     it { expect(Leaderboard.first.post_challenge)
           .to eq(false) }
 
     it { expect(Leaderboard.second.participant_id)
-          .to eq(participant2.id) }
+          .to eq(participant1.id) }
     it { expect(Leaderboard.second.row_num)
           .to eq(2) }
     it { expect(Leaderboard.second.previous_row_num)
-          .to eq(1) }
-    it { expect(Leaderboard.second.score)
-          .to eq(31.00) }
-    it { expect(Leaderboard.second.score_secondary)
-          .to eq(0.003) }
-    it { expect(Leaderboard.second.entries)
           .to eq(2) }
+    it { expect(Leaderboard.second.score)
+          .to eq(30.05) }
+    it { expect(Leaderboard.second.score_secondary)
+          .to eq(0.002) }
+    it { expect(Leaderboard.second.entries)
+          .to eq(4) }
     it { expect(Leaderboard.second.post_challenge)
           .to eq(false) }
 
     # previous leaderboard
     it { expect(PreviousLeaderboard.first.participant_id)
-          .to eq(participant1.id) }
+          .to eq(participant2.id) }
     it { expect(PreviousLeaderboard.first.row_num)
           .to eq(1) }
     it { expect(PreviousLeaderboard.first.score)
-          .to eq(30.05) }
+          .to eq(29.0) }
     it { expect(PreviousLeaderboard.first.score_secondary)
-          .to eq(0.002) }
+          .to eq(0.003) }
     it { expect(PreviousLeaderboard.first.post_challenge)
           .to eq(false) }
 
     it { expect(PreviousLeaderboard.second.participant_id)
-          .to eq(participant2.id) }
+          .to eq(participant1.id) }
     it { expect(PreviousLeaderboard.second.row_num)
           .to eq(2) }
     it { expect(PreviousLeaderboard.second.score)
-          .to eq(31.00) }
+          .to eq(30.05) }
     it { expect(PreviousLeaderboard.second.score_secondary)
-          .to eq(0.003) }
+          .to eq(0.002) }
     it { expect(PreviousLeaderboard.second.post_challenge)
           .to eq(false) }
   end

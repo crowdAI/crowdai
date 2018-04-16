@@ -2,35 +2,79 @@ require 'rails_helper'
 
 RSpec.describe CalculateLeaderboardService do
 
-  let(prim_desc_sec_asc) {
-    create :challenge,
-      primary_sort_order_cd: 'descending',
-      secondary_sort_order_cd: 'ascending' }
-  let(prim_desc) {
-    create :challenge,
-      primary_sort_order_cd: 'descending',
-      secondary_sort_order_cd: 'not_used' }
-  let(prim_asc_sec_asc) {
-    create :challenge,
-      primary_sort_order_cd: 'ascending',
-      secondary_sort_order_cd: 'ascending' }
-  let(prim_asc_sec_desc) {
-    create :challenge,
-      primary_sort_order_cd: 'ascending',
-      secondary_sort_order_cd: 'descending' }
-  let(prim_asc) {
-    create :challenge,
-      primary_sort_order_cd: 'descending',
-      secondary_sort_order_cd: 'not_used' }
+  let(:challenge) { create :challenge, :running }
+  let(:challenge_round) { challenge.challenge_rounds.first }
 
-  it 'primary descending, secondary descending' do
-    prim_desc_sec_desc = create :challenge,
-        primary_sort_order_cd: 'descending',
-        secondary_sort_order_cd: 'descending'
+  describe 'descending / ascending' do
+    before do
+      challenge.update(
+        primary_sort_order: :descending,
+        secondary_sort_order: :descending)
+    end
+    it { expect(described_class.new(
+      challenge_round_id: challenge_round.id)
+      .get_order_by)
+      .to eq('score_display desc, score_secondary_display desc')}
   end
 
+  describe 'descending / not_used' do
+    before do
+      challenge.update(
+        primary_sort_order: :descending,
+        secondary_sort_order: :not_used)
+    end
+    it { expect(described_class.new(
+      challenge_round_id: challenge_round.id)
+      .get_order_by)
+      .to eq('score_display desc')}
+  end
 
+  describe 'ascending / ascending' do
+    before do
+      challenge.update(
+        primary_sort_order: :ascending,
+        secondary_sort_order: :ascending)
+    end
+    it { expect(described_class.new(
+      challenge_round_id: challenge_round.id)
+      .get_order_by)
+      .to eq('score_display asc, score_secondary_display asc')}
+  end
 
+  describe 'ascending / descending' do
+    before do
+      challenge.update(
+        primary_sort_order: :ascending,
+        secondary_sort_order: :descending)
+    end
+    it { expect(described_class.new(
+      challenge_round_id: challenge_round.id)
+      .get_order_by)
+      .to eq('score_display asc, score_secondary_display desc')}
+  end
 
+  describe 'ascending / not_used' do
+    before do
+      challenge.update(
+        primary_sort_order: :ascending,
+        secondary_sort_order: :not_used)
+    end
+    it { expect(described_class.new(
+      challenge_round_id: challenge_round.id)
+      .get_order_by)
+      .to eq('score_display asc')}
+  end
+
+  describe 'ascending / descending' do
+    before do
+      challenge.update(
+        primary_sort_order: :descending,
+        secondary_sort_order: :descending)
+    end
+    it { expect(described_class.new(
+      challenge_round_id: challenge_round.id)
+      .get_order_by)
+      .to eq('score_display desc, score_secondary_display desc')}
+  end
 
 end

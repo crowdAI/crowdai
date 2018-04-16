@@ -4,6 +4,10 @@ class Leaderboard::Cell < Template::Cell
     options[:challenge]
   end
 
+  def challenge_round
+    options[:current_round]
+  end
+
   def submissions
     options[:submissions]
   end
@@ -63,6 +67,12 @@ class Leaderboard::Cell < Template::Cell
         data: { toggle: 'tooltip'},
         title: "-#{entry.previous_row_num - entry.row_num} change")
     end
+  end
+
+  def organizer_badge?(challenge_id:,participant_id:)
+    challenge = Challenge.find(challenge_id)
+    participant = Participant.find(participant_id)
+    return true if challenge.organizer_id == participant.organizer_id
   end
 
 end

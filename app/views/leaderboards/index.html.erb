@@ -4,10 +4,6 @@
                 current_participant: current_participant) %>
   <%= render partial: 'challenges/show/subnav',
         locals: { challenge: @challenge } %>
-  <%#= concept(Challenge::Cell::ChallengeSubnav,
-                @challenge,
-                tab: 'leaderboard',
-                current_participant: current_participant) %>
   <%= concept(Leaderboard::Cell::LeaderboardSubnav,
                 @challenge,
                 current_round: @current_round,
@@ -18,6 +14,7 @@
       <%= concept(Leaderboard::Cell::TableHead,
                     @leaderboards,
                     challenge: @challenge,
+                    current_round: @current_round,
                     current_participant: current_participant) %>
       <tbody>
         <%= render partial: 'leaderboards' %>
@@ -26,15 +23,17 @@
   </div>
 
   <% if @post_challenge == 'off' %>
-    <%= render partial: 'post_challenge_off', locals: { challenge: @challenge } %>
+    <%= render partial: 'post_challenge_off',
+          locals: { challenge: @challenge } %>
   <% end %>
   <% if @post_challenge == 'on' %>
-    <%= render partial: 'post_challenge_on', locals: { challenge: @challenge } %>
+    <%= render partial: 'post_challenge_on',
+          locals: { challenge: @challenge } %>
   <% end %>
 
 
   <span id='more-anchor'></span>
-  <%= render partial: 'shared/load_more', locals: { collection: @leaderboards } %>
-
+  <%= render partial: 'shared/load_more',
+        locals: { collection: @leaderboards } %>
   <div id='modal-anchor'></div>
 </div>

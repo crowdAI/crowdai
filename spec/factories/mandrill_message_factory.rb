@@ -1,5 +1,5 @@
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :mandrill_message, class: MandrillMessage do
     res [{"email"=>"micah@satterfieldzulauf.name",
           "status"=>"sent",

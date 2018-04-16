@@ -6,11 +6,11 @@ RSpec.describe ArticlesController, type: :controller do
   let(:participant) { create :participant, admin: true }
 
   let(:valid_attributes) {
-    FactoryGirl.attributes_for(:article, participant_id: participant.id)
+    FactoryBot.attributes_for(:article, participant_id: participant.id)
   }
 
   let(:invalid_attributes) {
-    FactoryGirl.attributes_for(:article, :invalid)
+    FactoryBot.attributes_for(:article, :invalid)
   }
 
   3.times do |i|

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :topic, class: Topic do
     challenge
     participant
@@ -6,12 +6,12 @@ FactoryGirl.define do
     sticky false
     views 1
     after(:create) do |topic|
-      topic.comments << FactoryGirl.create(:comment, topic: topic)
+      topic.comments << FactoryBot.create(:comment, topic: topic)
     end
 
     trait :with_comments do
       after(:create) do |topic|
-        topic.comments << FactoryGirl.create_list(:comment, 3, topic: topic)
+        topic.comments << FactoryBot.create_list(:comment, 3, topic: topic)
         topic.participant = topic.comments.first.participant
       end
     end

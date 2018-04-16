@@ -4,10 +4,6 @@
                 current_participant: current_participant) %>
   <%= render partial: 'challenges/show/subnav',
         locals: { challenge: @challenge } %>
-  <%#= concept(Challenge::Cell::ChallengeSubnav,
-                @challenge,
-                tab: 'submissions',
-                current_participant: current_participant) %>
 
   <div class="row">
     <table class="submissions">
@@ -18,6 +14,7 @@
           <th>Status</th>
           <th>Message</th>
           <th class="submission">Submission (UTC)</th>
+          <th class="action"></th>
           <th class="action"></th>
         </tr>
       </thead>

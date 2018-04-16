@@ -4,11 +4,11 @@ RSpec.describe OrganizersController, type: :controller do
   render_views
 
   let(:valid_attributes) {
-    FactoryGirl.attributes_for(:organizer)
+    FactoryBot.attributes_for(:organizer)
   }
 
   let(:invalid_attributes) {
-    FactoryGirl.attributes_for(:organizer,:invalid)
+    FactoryBot.attributes_for(:organizer,:invalid)
   }
 
   context 'as an admin' do

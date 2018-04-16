@@ -6,10 +6,10 @@ RSpec.describe ChallengeCallResponsesController, type: :controller do
   let(:challenge_call) { create :challenge_call }
   let(:challenge_call_response) { create :challenge_call_response }
   let(:valid_attributes) {
-    FactoryGirl.attributes_for(:challenge_call_response)
+    FactoryBot.attributes_for(:challenge_call_response)
   }
   let(:invalid_attributes) {
-    FactoryGirl.attributes_for(:challenge_call_response, :invalid)
+    FactoryBot.attributes_for(:challenge_call_response, :invalid)
   }
 
   describe 'GET #show' do

@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 RSpec.describe PreviousLeaderboard, type: :model do
@@ -149,3 +150,4 @@ RSpec.describe PreviousLeaderboard, type: :model do
     end
   end
 end
+=end

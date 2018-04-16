@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :organizer_application, class: OrganizerApplication do
     contact_name FFaker::Name.name
     email FFaker::Internet.email

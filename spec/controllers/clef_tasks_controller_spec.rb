@@ -7,11 +7,11 @@ RSpec.describe ClefTasksController, type: :controller do
   let(:organizer_admin) { create :participant, organizer: organizer }
 
   let(:valid_attributes) {
-    FactoryGirl.attributes_for(:clef_task)
+    FactoryBot.attributes_for(:clef_task)
   }
 
   let(:invalid_attributes) {
-    FactoryGirl.attributes_for(:clef_task, :invalid)
+    FactoryBot.attributes_for(:clef_task, :invalid)
   }
 
   3.times do |i|

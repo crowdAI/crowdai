@@ -37,7 +37,7 @@ RSpec.configure do |config|
   Capybara.reset_sessions!
 
   #config.filter_run :focus => true
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.infer_spec_type_from_file_location!
 
   config.include Devise::Test::ControllerHelpers, type: :controller

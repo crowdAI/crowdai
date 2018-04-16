@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :participant_clef_task, class: ParticipantClefTask do
     clef_task
     participant

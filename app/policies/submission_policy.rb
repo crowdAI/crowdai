@@ -18,5 +18,13 @@ class SubmissionPolicy < ApplicationPolicy
     new?
   end
 
+  def edit?
+    participant && (participant.admin? ||
+      @record.challenge.organizer_id == participant.organizer_id )
+  end
+
+  def update?
+    edit?
+  end
 
 end

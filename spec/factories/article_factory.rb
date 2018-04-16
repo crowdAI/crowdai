@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :article, class: Article do
     article { FFaker::Lorem.unique.sentence(3) }
     summary FFaker::LoremFR.paragraphs(4).join(' ')

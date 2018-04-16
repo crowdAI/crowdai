@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :submission_grade, class: SubmissionGrade do
     submission
     grading_status_cd 'graded'

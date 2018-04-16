@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :challenge, class: Challenge do
     organizer
     challenge { FFaker::Lorem.unique.sentence(3) }
@@ -22,7 +22,7 @@ FactoryGirl.define do
       status :running
       dataset_files {[ build(:dataset_file) ]}
       after(:create) do |challenge|
-        FactoryGirl.create(:challenge_round, challenge: challenge)
+        FactoryBot.create(:challenge_round, challenge: challenge)
       end
     end
 
@@ -30,7 +30,7 @@ FactoryGirl.define do
       status :running
       dataset_files {[ build(:dataset_file) ]}
       after(:create) do |challenge|
-        FactoryGirl.create(
+        FactoryBot.create(
           :challenge_round,
           challenge: challenge,
           submission_limit_period: :day)
@@ -41,7 +41,7 @@ FactoryGirl.define do
       status :running
       dataset_files {[ build(:dataset_file) ]}
       after(:create) do |challenge|
-        FactoryGirl.create(
+        FactoryBot.create(
           :challenge_round,
           challenge: challenge,
           submission_limit_period: :week)
@@ -52,7 +52,7 @@ FactoryGirl.define do
       status :running
       dataset_files {[ build(:dataset_file) ]}
       after(:create) do |challenge|
-        FactoryGirl.create(
+        FactoryBot.create(
           :challenge_round,
           :historical,
           challenge: challenge,
@@ -61,7 +61,7 @@ FactoryGirl.define do
           submission_limit_period: :round,
           start_dttm: challenge.created_at - 5.weeks,
           end_dttm: challenge.created_at - 3.weeks)
-        FactoryGirl.create(
+        FactoryBot.create(
           :challenge_round,
           challenge: challenge,
           challenge_round: 'round 2',

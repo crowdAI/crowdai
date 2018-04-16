@@ -37,7 +37,7 @@ RSpec.configure do |config|
   Capybara.reset_sessions!
 
   #config.filter_run :focus => true
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.infer_spec_type_from_file_location!
 
   config.include Devise::Test::ControllerHelpers, type: :controller
@@ -65,6 +65,13 @@ RSpec.configure do |config|
       example.run
     end
   end
+
+  # Fixes Timecop’s issue (https://goo.gl/1tujRj)
+  #config.around(:each, freeze_time: true) do |example|
+  #  Timecop.freeze(Time.zone.now.change(nsec: 0))
+  #  example.run
+  #  Timecop.return
+  #end
 
   config.example_status_persistence_file_path = 'spec/examples.txt'
 end

@@ -15,22 +15,30 @@
     <% end %>
 
     <td class="score">
-      <strong><%= number_with_precision(submission.score) %></strong>
+      <strong><%= submission.score %></strong>
     </td>
 
     <% if cols.include?(:score_secondary) %>
       <td class="score">
-        <strong><%= number_with_precision(submission.score_secondary) %></strong>
+        <strong><%= submission.score_secondary %></strong>
       </td>
     <% end %>
 
     <td class="entries">
       <%= submission.grading_status %>
       <% if policy(submission).destroy? %>
-        <p class='status active'><%= link_to 'delete', challenge_submission_path(submission.challenge,submission), method: :delete, data: {confirm: 'Are you sure?'} %></p>
+        <p class='status active'>
+          <%= link_to 'delete',
+                challenge_submission_path(
+                  submission.challenge,submission),
+                method: :delete,
+                data: {confirm: 'Are you sure?'} %>
+        </p>
       <% end %>
     </td>
 
-    <td class="last-submission"><%= submission.created_at.strftime("%a, %e %b %Y %R") %></td>
+    <td class="last-submission">
+      <%= submission.created_at.strftime("%a, %e %b %Y %R") %>
+    </td>
   </tr>
 <% end %>

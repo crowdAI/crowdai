@@ -7,7 +7,6 @@ function switchTab(self,tab_id,editor) {
   $(this).addClass('active');
   $("."+tab_id).addClass('active');
 
-  console.log('tabbed' + tab_id);
 }
 
 
@@ -44,15 +43,12 @@ function insertText(beforeText, afterText, editor) {
 
 
 function uploadFile() {
-  console.log(event.target);
-  console.log(event.currentTarget);
 
   var markdownFieldID = $(event.target).closest('.md-tab-content').find('textarea.txt-med')[0].id;
   var file  = event.target.files[0];
   var reader  = new FileReader();
 
   reader.addEventListener("load", function () {
-    console.log('load');
     var formData = new FormData();
     formData.append('attachment', file);
     $.ajax({

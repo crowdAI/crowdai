@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :participant, class: Participant do
     name { FFaker::Name.unique.first_name }
     email { FFaker::Internet.unique.email }
@@ -17,11 +17,11 @@ FactoryGirl.define do
     end
 
     trait :organizer do
-      organizer { FactoryGirl.create(:organizer) }
+      organizer { FactoryBot.create(:organizer) }
     end
 
     trait :clef_organizer do
-      organizer { FactoryGirl.create(:organizer, :clef) }
+      organizer { FactoryBot.create(:organizer, :clef) }
     end
 
     trait :invalid do

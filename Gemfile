@@ -152,7 +152,6 @@ group :development, :test do
   gem 'table_print'
   gem 'rspec-rails', '~> 3.6'
   gem 'rspec-kickstarter'
-  gem 'to_factory'
   gem 'traceroute'
   gem 'parallel_tests'
   gem 'oauth2'
@@ -160,7 +159,7 @@ end
 
 group :test do
   # gem 'rspec-sidekiq'
-  gem "factory_girl_rails"
+  gem "factory_bot_rails"
   gem 'simplecov', :require => false
   gem 'capybara'
   gem 'capybara-email'

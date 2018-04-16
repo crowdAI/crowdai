@@ -1,8 +1,9 @@
 <label>CLEF Task</label>
-<%= collection_select(:challenge,
-                      :clef_task_id,
-                      ClefTask.all,
-                      :id,
-                      :task,
-                      include_blank: true,
-                      prompt: 'No task selected') %>
+<%= collection_select(
+      :challenge,
+      :clef_task_id,
+      ClefTask.all,
+      :id,
+      :task,
+      include_blank: true,
+      prompt: 'No task selected') %>

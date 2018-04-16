@@ -17,7 +17,7 @@ class Leaderboard::Cell::TableRow < Leaderboard::Cell
   end
 
   def top_rows
-    @top_rows ||= challenge.ranking_highlight
+    @top_rows ||= challenge_round.ranking_highlight
   end
 
   def leader_class

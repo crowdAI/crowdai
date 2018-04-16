@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :challenge_call_response do
     challenge_call
     contact_name 'Joe Bloggs'

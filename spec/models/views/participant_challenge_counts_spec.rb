@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 describe ParticipantChallengeCount, type: :model do
@@ -34,3 +35,4 @@ describe ParticipantChallengeCount, type: :model do
                   .pluck(:registration_type).sort).to eq ['forum','heart','submission'] }
   end
 end
+=end

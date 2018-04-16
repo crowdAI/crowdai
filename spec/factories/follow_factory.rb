@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :follow, class: Follow do
     association :followable, factory: :challenge
     participant

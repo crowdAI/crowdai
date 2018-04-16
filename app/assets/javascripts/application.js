@@ -75,7 +75,6 @@ var loaderTimer;
 
 $(document).on('turbolinks:click', function() {
   loaderTimer = setTimeout(function(){
-    console.log('spinner starts');
     $('#page-content').hide();
     $('#loader-container').show();
   }, 500);
@@ -83,7 +82,6 @@ $(document).on('turbolinks:click', function() {
 
 $(document).on('turbolinks:load', function() {
   clearTimeout(loaderTimer);
-  console.log('spinner stops');
   $('#page-content').show();
   $('#loader-container').hide();
 });

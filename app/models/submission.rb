@@ -39,6 +39,9 @@ class Submission < ApplicationRecord
     if rnd.present?
       self.update(challenge_round_id: rnd.id)
     end
+  end
+
+  after_save do
     CalculateLeaderboardJob
       .perform_later(challenge_round_id: challenge_round_id)
   end

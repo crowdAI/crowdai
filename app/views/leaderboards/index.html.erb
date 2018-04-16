@@ -23,15 +23,17 @@
   </div>
 
   <% if @post_challenge == 'off' %>
-    <%= render partial: 'post_challenge_off', locals: { challenge: @challenge } %>
+    <%= render partial: 'post_challenge_off',
+          locals: { challenge: @challenge } %>
   <% end %>
   <% if @post_challenge == 'on' %>
-    <%= render partial: 'post_challenge_on', locals: { challenge: @challenge } %>
+    <%= render partial: 'post_challenge_on',
+          locals: { challenge: @challenge } %>
   <% end %>
 
 
   <span id='more-anchor'></span>
-  <%= render partial: 'shared/load_more', locals: { collection: @leaderboards } %>
-
+  <%= render partial: 'shared/load_more',
+        locals: { collection: @leaderboards } %>
   <div id='modal-anchor'></div>
 </div>

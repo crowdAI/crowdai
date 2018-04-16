@@ -33,19 +33,19 @@ bundle exec rails db:reset db:migrate
 
 #### For development :
  
-- Compile webpacker :
+- Compile webpacker once :
 ```
 bundle exec rails webpacker:compile
+```
+
+- Compile webpacker continously :
+```
+./bin/webpack-dev-server
 ```
  
 - Launch the server listening on port 3000 :
 ```
 bundle exec rails s -p 3000
-```
-    
-- Launch the webpacker server for development :
-```
-./bin/webpack-dev-server
 ```
     
 - Launch the sidekiq which manages the different jobs in [/app/jobs](/app/jobs) :

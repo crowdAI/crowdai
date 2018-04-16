@@ -28,13 +28,13 @@ RSpec.describe MailchimpService do
       it { expect(subject.subscribed?).to be false}
     end
     context 'true' do
-      participant = FactoryGirl.create :participant
+      participant = FactoryBot.create :participant
       mailchimp = described_class.new(participant.id)
       mailchimp.subscribe
       it { expect(mailchimp.subscribed?).to be true }
     end
     context 'unsubscribe' do
-      participant = FactoryGirl.create :participant
+      participant = FactoryBot.create :participant
       mailchimp = described_class.new(participant.id)
       mailchimp.subscribe
       mailchimp.unsubscribe

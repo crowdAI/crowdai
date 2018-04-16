@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :challenge_round do
     challenge
     challenge_round 'Round 1'

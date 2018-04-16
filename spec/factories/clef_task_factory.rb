@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :clef_task, class: ClefTask do
     association :organizer, :clef
     task FFaker::Lorem.sentence(3)

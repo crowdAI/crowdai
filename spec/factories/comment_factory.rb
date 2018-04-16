@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :comment, class: Comment do
     comment_markdown "### Some markdown"
     comment { FFaker::Lorem.words(4) }

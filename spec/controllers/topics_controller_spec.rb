@@ -4,11 +4,11 @@ RSpec.describe TopicsController, type: :controller do
   render_views
 
   let(:valid_attributes) {
-    FactoryGirl.attributes_for(:topic)
+    FactoryBot.attributes_for(:topic)
   }
 
   let(:invalid_attributes) {
-    FactoryGirl.attributes_for(:topic, :invalid)
+    FactoryBot.attributes_for(:topic, :invalid)
   }
 
   let!(:admin) { create :participant, :admin }

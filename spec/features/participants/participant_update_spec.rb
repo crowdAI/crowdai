@@ -7,7 +7,7 @@ feature 'update participant data', js: true do
 
   describe "participant profile" do
     before (:example) do
-      participant = FactoryGirl.build(:participant)
+      participant = FactoryBot.build(:participant)
     end
 
     scenario "a participant can link their github id" do

@@ -2,12 +2,13 @@ class CalculateLeaderboardService
 
   def initialize(challenge_round_id:)
     @round = ChallengeRound.find(challenge_round_id)
+    @order_by = get_order_by
     @conn = ActiveRecord::Base.connection
   end
 
   def call
     return false if @round.submissions.blank?
-    ActiveRecord::Base.transaction do
+    #ActiveRecord::Base.transaction do
       truncate_scores
       purge_leaderboard
       create_leaderboard(leaderboard_type: 'leaderboard')
@@ -16,11 +17,12 @@ class CalculateLeaderboardService
       create_leaderboard(leaderboard_type: 'previous_ongoing')
       update_leaderboard_rankings(
         leaderboard: 'leaderboard',
-        prev: 'ongoing')
+        prev: 'previous')
       update_leaderboard_rankings(
-        leaderboard: 'previous',
+        leaderboard: 'ongoing',
         prev: 'previous_ongoing')
-    end
+    #end
+
     return true
   end
 
@@ -41,8 +43,28 @@ class CalculateLeaderboardService
       .order(created_at: :desc)
       .limit(1)
       .first
-    window_border = most_recent.created_at - (@round.ranking_window / 24.0)
+    window_border = most_recent.created_at - @round.ranking_window.hours
     return "'#{window_border.to_s(:db)}'"
+  end
+
+  def get_order_by
+    challenge = @round.challenge
+    if challenge.secondary_sort_order_cd.blank?
+        return "score_display #{sort_map(challenge.primary_sort_order_cd)}"
+    else
+      return "score_display #{sort_map(challenge.primary_sort_order_cd)}, score_secondary_display #{sort_map(challenge.secondary_sort_order_cd)}"
+    end
+  end
+
+  def sort_map(sort_field)
+    case sort_field
+    when 'ascending'
+      return 'asc'
+    when 'descending'
+      return 'desc'
+    else
+      return nil
+    end
   end
 
   def purge_leaderboard
@@ -99,15 +121,7 @@ class CalculateLeaderboardService
         ROW_NUMBER() OVER (
           PARTITION by l.challenge_id,
                        l.challenge_round_id
-          ORDER BY
-            CASE WHEN c.primary_sort_order_cd = 'ascending'
-                 THEN l.score_display END ASC,
-            CASE WHEN c.primary_sort_order_cd = 'descending'
-                 THEN l.score_display END DESC,
-            CASE WHEN c.secondary_sort_order_cd = 'ascending'
-                 THEN l.score_secondary_display END ASC,
-            CASE WHEN c.secondary_sort_order_cd = 'descending'
-                 THEN l.score_secondary_display END DESC ) AS ROW_NUM,
+          ORDER BY #{@order_by} ) AS ROW_NUM,
         0 as PREVIOUS_ROW_NUM,
         l.slug,
         l.name,
@@ -129,15 +143,7 @@ class CalculateLeaderboardService
                 PARTITION BY s.challenge_id,
                              s.challenge_round_id,
                              s.participant_id
-                ORDER BY
-                  CASE WHEN c.primary_sort_order_cd = 'ascending'
-                       THEN s.score_display END ASC,
-                  CASE WHEN c.primary_sort_order_cd = 'descending'
-                       THEN s.score_display END DESC,
-                  CASE WHEN c.secondary_sort_order_cd = 'ascending'
-                       THEN s.score_secondary_display END ASC,
-                  CASE WHEN c.secondary_sort_order_cd = 'descending'
-                       THEN s.score_secondary_display END DESC) AS submission_ranking,
+                ORDER BY #{@order_by} ) AS submission_ranking,
               s.id,
               s.challenge_id,
               s.challenge_round_id,

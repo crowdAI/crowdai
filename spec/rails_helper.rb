@@ -67,11 +67,11 @@ RSpec.configure do |config|
   end
 
   # Fixes Timecop’s issue (https://goo.gl/1tujRj)
-  config.around(:each, freeze_time: true) do |example|
-    Timecop.freeze(Time.zone.now.change(nsec: 0))
-    example.run
-    Timecop.return
-   end
+  #config.around(:each, freeze_time: true) do |example|
+  #  Timecop.freeze(Time.zone.now.change(nsec: 0))
+  #  example.run
+  #  Timecop.return
+  #end
 
   config.example_status_persistence_file_path = 'spec/examples.txt'
 end

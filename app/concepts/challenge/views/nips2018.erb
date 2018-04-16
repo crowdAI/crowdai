@@ -1,0 +1,20 @@
+<div class="nips-user-link">
+  <div class='nips-spacer'>
+    <%= link_to organizer_path(organizer) do %>
+      <%= concept(Image::Cell,organizer,size: :medium) %>
+    <% end %>
+    <p><%= link_to organizer.organizer, organizer_path(organizer) %></p>
+  </div>
+  <div class='nips-spacer'>
+    <%= link_to '/' do %>
+      <%= image_tag('misc/crowdai-head.svg') %>
+    <% end %>
+    <p><%= link_to 'crowdAI', '/' %></p>
+  </div>
+  <div>
+    <%= link_to 'https://research.google.com/teams/brain/' do %>
+      <%= image_tag('misc/google_brain.png') %>
+    <% end %>
+    <p><%= link_to 'Google Brain', 'https://research.google.com/teams/brain/' %></p>
+  </div>
+</div>

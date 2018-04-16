@@ -24,7 +24,7 @@ RSpec.describe SubmissionGradedNotificationJob, type: :job do
 
     it 'queues the job' do
       expect { job
-      }.to change(ActiveJob::Base.queue_adapter.enqueued_jobs, :size).by(2)
+      }.to change(ActiveJob::Base.queue_adapter.enqueued_jobs, :size).by(3)
     end
     # (byebug) ActiveJob::Base.queue_adapter.enqueued_jobs.first
     # {:job=>CalculateLeaderboardJob, :args=>[{"challenge_round_id"=>1, "_aj_symbol_keys"=>["challenge_round_id"]}], :queue=>"default"}

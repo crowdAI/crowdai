@@ -69,6 +69,20 @@ class SubmissionsController < ApplicationController
     end
   end
 
+  def edit
+    authorize @submission
+  end
+
+  def update
+    authorize @submission
+    if @submission.update(submission_params)
+      redirect_to @challenge,
+        notice: 'Submission updated.'
+    else
+      render :edit
+    end
+  end
+
   def destroy
     submission = Submission.find(params[:id])
     submission.destroy

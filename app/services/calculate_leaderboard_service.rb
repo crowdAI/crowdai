@@ -8,7 +8,7 @@ class CalculateLeaderboardService
 
   def call
     return false if @round.submissions.blank?
-    #ActiveRecord::Base.transaction do
+    ActiveRecord::Base.transaction do
       truncate_scores
       purge_leaderboard
       create_leaderboard(leaderboard_type: 'leaderboard')
@@ -21,8 +21,7 @@ class CalculateLeaderboardService
       update_leaderboard_rankings(
         leaderboard: 'ongoing',
         prev: 'previous_ongoing')
-    #end
-
+    end
     return true
   end
 
@@ -49,7 +48,7 @@ class CalculateLeaderboardService
 
   def get_order_by
     challenge = @round.challenge
-    if challenge.secondary_sort_order_cd.blank?
+    if (challenge.secondary_sort_order_cd.blank? || challenge.secondary_sort_order_cd == 'not_used')
         return "score_display #{sort_map(challenge.primary_sort_order_cd)}"
     else
       return "score_display #{sort_map(challenge.primary_sort_order_cd)}, score_secondary_display #{sort_map(challenge.secondary_sort_order_cd)}"

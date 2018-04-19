@@ -143,7 +143,7 @@ Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com
 
     ![Screenshots and GIFs which demonstrate the steps or part of crowdAI the enhancement suggestion is related to](url)
 
-    **crowdAI Version:** [Enter CrowdAI version here]
+    **crowdAI Version:** [Enter crowdAI version here]
     **OS and Version:** [Enter OS name and version here]
 ### Your First Code Contribution
 

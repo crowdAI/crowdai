@@ -3,15 +3,22 @@ class Participant < ApplicationRecord
   include ApiKey
   include Countries
   friendly_id :name, use: [:slugged, :finders, :history]
-  after_create :set_email_preferences
   before_save :set_api_key
   before_save { self.email = email.downcase }
   before_save :process_urls
+  after_create :set_email_preferences
+  after_save :refresh_materialized_view
   mount_uploader :image_file, ImageUploader
   validates :image_file, file_size: { less_than: 5.megabytes }
 
-  devise :database_authenticatable,  :confirmable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :lockable
+  devise :confirmable,
+    :database_authenticatable,
+    :lockable,
+    :recoverable,
+    :registerable,
+    :rememberable,
+    :trackable,
+    :validatable
 
   belongs_to :organizer, optional: true
   has_many :submissions, dependent: :nullify
@@ -29,6 +36,8 @@ class Participant < ApplicationRecord
     class_name: 'ChallengeRegistration'
   has_many :participant_challenge_counts,
     class_name: 'ParticipantChallengeCount'
+  has_many :challenge_organizer_participants,
+    class_name: 'ChallengeOrganizerParticipant'
   has_many :challenges,
     through: :participant_challenges
   has_many :dataset_file_downloads,
@@ -173,6 +182,12 @@ class Participant < ApplicationRecord
       super
     rescue
       NullParticipant.new
+    end
+  end
+
+  def refresh_materialized_view
+    if saved_change_to_attribute?(:organizer_id)
+      RefreshChallengeOrganizerParticipantViewJob.perform_later
     end
   end
 

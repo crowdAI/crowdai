@@ -77,7 +77,7 @@ $(document).on('turbolinks:click', function() {
   loaderTimer = setTimeout(function(){
     $('#page-content').hide();
     $('#loader-container').show();
-  }, 500);
+  }, 250);
 });
 
 $(document).on('turbolinks:load', function() {

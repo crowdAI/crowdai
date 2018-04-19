@@ -159,11 +159,9 @@ Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com
 ### Pull Requests
 
 * Include screenshots and animated GIFs in your pull request whenever possible.
-* Follow the [Styleguides][#styleguides].
-* Document new code based on the
-  [Documentation Styleguide](#documentation-styleguide)
 * End files with a newline.
-* TODO: Add more stuff here as required.
+* TODO: Add more pre-requisites for Pull Requests.
+* TODO: Add Documentation Styleguide.
 
 ## Styleguides
 

@@ -154,7 +154,7 @@ Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com
 
     Both issue lists are sorted by total number of comments. While not perfect, number of comments is a reasonable proxy for impact a given change will have.
 
-    If you want to read about using crowdAI, you can have a quick look through these resources on the [Wiki](https://github.com/crowdAI/crowdai/wiki).
+    If you want to read about using crowdAI, you can have a quick look through these resources in the Wiki.
 
 ### Pull Requests
 

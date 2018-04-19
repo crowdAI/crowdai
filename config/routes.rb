@@ -15,26 +15,26 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    resources :external_graders, only: [:create, :show, :update] do
-      get :challenge_config, on: :collection
-      get :presign, on: :member
-      get :submission_info, on: :member
+    resources :external_graders,
+      only: [:create, :show, :update] do
+        get :challenge_config, on: :collection
+        get :presign, on: :member
+        get :submission_info, on: :member
     end
-    get 'mailchimps/webhook' => 'mailchimps#verify', as: :verify_webhook
-    post 'mailchimps/webhook' => 'mailchimps#webhook', as: :update_webhook
+    get 'mailchimps/webhook' => 'mailchimps#verify',
+      as: :verify_webhook
+    post 'mailchimps/webhook' => 'mailchimps#webhook',
+      as: :update_webhook
     resources :clef_tasks, only: [:show]
     get 'user', to: 'oauth_credentials#show'
     resources :challenges, only: [:index, :show] do
       resources :submissions, only: [:index, :show]
     end
+    resources :participants, only: :show
   end
 
   namespace :components do
-    resources :notifications, only: [:index] do
-      post :mark_as_touched, on: :member
-      post :mark_all_as_read, on: :collection
-      post :mark_as_read, on: :member
-    end
+    resources :notifications, only: [:index]
   end
 
   devise_for :participants

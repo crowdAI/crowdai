@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180412111735) do
+ActiveRecord::Schema.define(version: 20180419115251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1011,6 +1011,39 @@ ActiveRecord::Schema.define(version: 20180412111735) do
       base_leaderboards.post_challenge
      FROM base_leaderboards
     WHERE ((base_leaderboards.leaderboard_type_cd)::text = 'previous_ongoing'::text);
+  SQL
+
+  create_view "challenge_organizer_participants", materialized: true,  sql_definition: <<-SQL
+      SELECT DISTINCT cop.id,
+      cop.participant_id,
+      cop.clef_task_id,
+      cop.organizer_id,
+      cop.name,
+      cop.challenge
+     FROM ( SELECT c.id,
+              p.id AS participant_id,
+              c.clef_task_id,
+              c.organizer_id,
+              p.name,
+              c.challenge
+             FROM participants p,
+              challenges c,
+              organizers o
+            WHERE ((p.organizer_id = o.id) AND (c.organizer_id = o.id))
+          UNION
+           SELECT c.id,
+              p.id AS participant_id,
+              c.clef_task_id,
+              c.organizer_id,
+              p.name,
+              c.challenge
+             FROM participants p,
+              challenges c
+            WHERE ((c.clef_challenge IS TRUE) AND (c.clef_task_id IN ( SELECT c1.clef_task_id
+                     FROM challenges c1,
+                      organizers o1,
+                      participants p1
+                    WHERE ((c1.clef_challenge IS TRUE) AND (o1.id = c1.organizer_id) AND (o1.id = p1.organizer_id) AND (p1.id = p.id)))))) cop;
   SQL
 
 end

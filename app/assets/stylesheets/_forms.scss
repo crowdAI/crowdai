@@ -8,6 +8,21 @@ label {
   font-weight: 500;
 }
 
+/* Added by Ivan for CLEF submission form */
+.required {
+    color: #d23934;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+/* Added by Ivan for CLEF submission form */
+.hint {
+  color: $color-grey-54;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+
 /* Inputs & Textareas */
 
 input[type=text],

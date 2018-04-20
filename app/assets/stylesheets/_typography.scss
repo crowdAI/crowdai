@@ -81,12 +81,15 @@ h5 {
 }
 
 h6 {
-  color: $color-grey-54;
-  font-size: 13px;
-  font-weight: 500;
+  color: $color-accent-dark;
+  font-size: 15px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-}
+  @media screen and (max-width: 400px) {
+    font-size: 14px;
+  }
+}	 
 
 p {
   line-height: 20px;

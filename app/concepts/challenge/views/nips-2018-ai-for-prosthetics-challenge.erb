@@ -3,7 +3,9 @@
     <%= link_to organizer_path(organizer) do %>
       <%= concept(Image::Cell,organizer,size: :medium) %>
     <% end %>
-    <p><%= link_to organizer.organizer, organizer_path(organizer) %></p>
+    <p><%= link_to organizer_path(organizer) do %>
+      Stanford Neuromuscular <br/>Biomechanics Laboratory
+    <% end %></p>
   </div>
   <div class='nips-spacer'>
     <%= link_to '/' do %>

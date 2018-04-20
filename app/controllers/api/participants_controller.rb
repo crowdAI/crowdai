@@ -12,7 +12,6 @@ class Api::ParticipantsController < Api::BaseController
       message = "No participant could be found for this username"
       status = :not_found
     end
-    byebug
     render json: { message: message }, status: status
   end
 

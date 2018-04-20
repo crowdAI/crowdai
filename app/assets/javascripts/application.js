@@ -12,6 +12,7 @@
 //= require paloma
 //= require jquery.atwho
 //= require social-share-button
+//= require codemirror
 
 // ---------------------- Modules ---------------------- //
 //= require modules/site

@@ -44,6 +44,7 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'client_side_validations'
 gem 'country_select'
 gem 'time_splitter'
+gem 'codemirror-rails'
 
 # performance
 gem 'fast_blank'

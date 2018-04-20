@@ -1,0 +1,9 @@
+<textarea id='grader-logs'>
+  <%= grader_logs %>
+</textarea>
+
+<script>
+var editor = CodeMirror.fromTextArea(document.getElementById('grader-logs'), {
+   lineNumbers: true
+ });
+</script>

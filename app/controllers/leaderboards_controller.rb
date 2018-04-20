@@ -70,7 +70,7 @@ class LeaderboardsController < ApplicationController
 
   private
   def set_leaderboard
-    @entry = Leaderboard.find(params[:id])
+    @entry = Leaderboard.where(submission_id: params[:id]).first
   end
 
   def set_challenge

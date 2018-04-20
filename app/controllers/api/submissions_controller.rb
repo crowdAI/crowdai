@@ -1,7 +1,13 @@
 class Api::SubmissionsController < Api::BaseController
-  before_action :auth_by_api_key
-  before_action :set_organizer
+  before_action :auth_by_api_key, only: :index
+  before_action :auth_by_admin_api_key, only: :show
+  before_action :set_organizer, only: :index
   respond_to :json
+
+  def show
+    @submission = Submission.find(params[:id])
+    render json: @submission, status: :ok
+  end
 
   def index
     begin

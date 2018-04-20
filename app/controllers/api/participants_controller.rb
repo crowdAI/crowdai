@@ -6,13 +6,14 @@ class Api::ParticipantsController < Api::BaseController
     @participant = Participant
       .where("lower(name) = '#{params[:id].downcase}'").first
     if @participant.present?
-      message = Api::ParticipantSerializer.new(@participant).as_json
+      payload = Api::ParticipantSerializer.new(@participant).as_json
+      payload.merge({ message: 'Participant found.'})
       status = :ok
     else
-      message = "No participant could be found for this username"
+      payload = { message: "No participant could be found for this username" }
       status = :not_found
     end
-    render json: { message: message }, status: status
+    render json: payload, status: status
   end
 
 end

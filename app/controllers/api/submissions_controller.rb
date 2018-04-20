@@ -5,15 +5,16 @@ class Api::SubmissionsController < Api::BaseController
   respond_to :json
 
   def show
-    @submission = Submission.find(params[:id])
+    @submission = Submission.where(id: params[:id]).first
     if @submission.present?
-      message = Api::SubmissionSerializer.new(@submission).as_json
+      payload = Api::SubmissionSerializer.new(@submission).as_json
+      payload.merge({message: "Submission found."})
       status = :ok
     else
-      message = "No submission could be found for this id"
+      payload = { message: "No submission could be found for this id"}
       status = :not_found
     end
-    render json: { message: message }, status: status
+    render json: payload, status: status
   end
 
 

@@ -6,8 +6,16 @@ class Api::SubmissionsController < Api::BaseController
 
   def show
     @submission = Submission.find(params[:id])
-    render json: @submission, status: :ok
+    if @submission.present?
+      message = Api::SubmissionSerializer.new(@submission).as_json
+      status = :ok
+    else
+      message = "No submission could be found for this id"
+      status = :not_found
+    end
+    render json: { message: message }, status: status
   end
+
 
   def index
     begin

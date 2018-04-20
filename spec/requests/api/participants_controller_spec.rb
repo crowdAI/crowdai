@@ -18,7 +18,7 @@ RSpec.describe Api::ParticipantsController, type: :request do
             'Authorization': auth_header(ENV['CROWDAI_API_KEY']) }
     end
     it { expect(response).to have_http_status(200) }
-    it { expect(JSON.parse(response.body)["message"]["api_key"])
+    it { expect(JSON.parse(response.body)["api_key"])
       .to eq(participant.api_key)}
   end
 

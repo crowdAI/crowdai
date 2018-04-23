@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :submission, class: Submission do
-    challenge #FactoryBot.create(:challenge, :running)
+    challenge
     participant
     grading_status :ready
     description_markdown '#Upload description'

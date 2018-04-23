@@ -3,7 +3,7 @@ require 'rails_helper'
 feature "site navigation for authenticated participant" do
   let!(:participant) { create(:participant, :admin) }
   3.times do |i|
-    let!("challenge_#{i + 1}") { create :challenge, :running }
+    let!("challenge_#{i + 1}") { create :challenge }
   end
   let(:draft) { create :challenge, :draft }
   3.times do |i|

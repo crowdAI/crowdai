@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature "download dataset links" do
   let!(:participant) { create(:participant, :admin) }
-  let!(:challenge) { create :challenge, :running }
+  let!(:challenge) { create :challenge }
   let!(:participant) { create :participant }
   let!(:admin) { create :participant, :admin }
   let!(:organizer) { create :participant, organizer: challenge.organizer }

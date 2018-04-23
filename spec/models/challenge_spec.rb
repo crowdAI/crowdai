@@ -98,7 +98,7 @@ describe Challenge do
 
     describe '#current_round' do
       context 'single open round' do
-        let(:challenge) { create :challenge, :running }
+        let(:challenge) { create :challenge }
         it { expect(challenge.current_round.round_status_cd).to eq('current') }
         it { expect(challenge.current_round.active).to be true }
         it { expect(challenge.current_round.challenge_id).to eq(challenge.id) }
@@ -113,7 +113,7 @@ describe Challenge do
 
     describe '#round_open?' do
       context 'single open round' do
-        let(:challenge) { create :challenge, :running }
+        let(:challenge) { create :challenge }
         it { expect(challenge.round_open?).to be true }
       end
       context 'previous and current round' do
@@ -124,7 +124,7 @@ describe Challenge do
 
     describe '#previous_round' do
       context 'single open round' do
-        let(:challenge) { create :challenge, :running }
+        let(:challenge) { create :challenge }
         it { expect(challenge.previous_round).to be_nil }
       end
       context 'previous and current round' do

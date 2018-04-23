@@ -45,7 +45,7 @@ describe Submission do
        end
 
        context 'submission is made during the challenge' do
-         let(:challenge) { create(:challenge, :running)}
+         let(:challenge) { create(:challenge)}
          let(:submission) { create(:submission, challenge: challenge) }
          it { expect(submission.post_challenge).to be false }
        end

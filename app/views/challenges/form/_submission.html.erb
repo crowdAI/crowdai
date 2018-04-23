@@ -22,7 +22,13 @@
         <label for="">Online Submissions?</label>
       </div>
     </fieldset>
-  
+    <fieldset class="checkbox">
+      <div>
+        <%= f.check_box :grader_logs, {}, "true", "false" %>
+        <label for="">Grader Logs?</label>
+      </div>
+    </fieldset>
+
     <fieldset>
       <label>Maximum no. of daily submissions</label>
       <%= f.text_field :daily_submissions %>

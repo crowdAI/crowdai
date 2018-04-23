@@ -30,11 +30,11 @@ class SubmissionsController < ApplicationController
     if !@challenge.completed? && (@submission.participant_id != current_participant.id && !current_participant.admin?)
       redirect_to '/', notice: "You don't have permission for this action."
     else
+      @grader_logs = grader_logs
       @participant = @submission.participant
       render :show
     end
   end
-
 
   def new
     @clef_primary_run_disabled = clef_primary_run_disabled?
@@ -49,7 +49,6 @@ class SubmissionsController < ApplicationController
     #  @submission.submission_files.build(seq: file.seq)
     #end
   end
-
 
   def create
     @submission = @challenge.submissions.new(
@@ -101,6 +100,15 @@ class SubmissionsController < ApplicationController
 
     def set_challenge
       @challenge = Challenge.friendly.find(params[:challenge_id])
+    end
+
+    def grader_logs
+      if @challenge.grader_logs
+        s3_key = "grader_logs/#{@challenge.slug}/grader_logs_submission_#{@submission.id}.txt"
+        s3 = S3Service.new(s3_key)
+        @grader_logs = s3.filestream
+      end
+      return @grader_logs
     end
 
     def submission_params

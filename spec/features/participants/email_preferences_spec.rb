@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Email Preferences' do
 
-  let!(:challenge) { create :challenge, :running }
+  let!(:challenge) { create :challenge }
   let!(:participant) { create :participant }
   let!(:participant2) { create :participant }
   let!(:admin) { create :participant, :admin }

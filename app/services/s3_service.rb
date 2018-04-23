@@ -41,7 +41,7 @@ class S3Service
   end
 
   def s3_filesize(s3_key)
-    return 0 if @s3_key.nil? || !@s3_file_obj.exists?
+    return 0 if @s3_key.blank? || @s3_file_obj.blank?
     filesize = number_to_human_size(s3_file_obj.content_length)
   end
 
@@ -55,6 +55,18 @@ class S3Service
       bucket: @bucket_name,
       key: @s3_key
     })
+  end
+
+  def filestream
+    begin
+      resp = Aws::S3::Client.new.get_object(
+        bucket: @bucket_name,
+        key: @s3_key)
+      filestream = resp.body.read
+    rescue Aws::S3::Errors::NoSuchKey
+      filestream = nil
+    end
+    return filestream
   end
 
 end

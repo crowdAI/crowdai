@@ -22,6 +22,10 @@ class Article < ApplicationRecord
   mount_uploader :image_file, ImageUploader
   validates :image_file, file_size: { less_than: 5.megabytes }
 
+  as_enum :article_type,
+    [:markdown, :notebook],
+    map: :string
+
   def participant
     super || NullParticipant.new
   end

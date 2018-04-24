@@ -31,7 +31,7 @@ describe Challenge do
 
   context 'methods' do
     describe 'validate markdown fields' do
-      let(:challenge) { create :challenge }
+      let(:challenge) { create :challenge, :running }
       it 'description' do
         challenge.update!(description_markdown: '### The description')
         expect(challenge.description).to eq("<h3 id=\"the-description\">The description</h3>\n")
@@ -68,7 +68,7 @@ describe Challenge do
 
     describe 'after_initialize' do
       it 'sets submission information defaults' do
-        challenge = create(:challenge)
+        challenge = create(:challenge, :running)
         expect(challenge.submission_license).to eq("Please upload your submissions and include a detailed description of the methodology, techniques and insights leveraged with this submission. After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC).")
       end
     end
@@ -89,7 +89,7 @@ describe Challenge do
 
     describe "friendly_id" do
       it 'updates the slug when the challenge title changes' do
-        challenge = create(:challenge)
+        challenge = create(:challenge, :running)
         challenge.challenge = 'a new challenge title'
         challenge.save!
         expect(challenge.slug).to eq('a-new-challenge-title')
@@ -98,7 +98,7 @@ describe Challenge do
 
     describe '#current_round' do
       context 'single open round' do
-        let(:challenge) { create :challenge }
+        let(:challenge) { create :challenge, :running }
         it { expect(challenge.current_round.round_status_cd).to eq('current') }
         it { expect(challenge.current_round.active).to be true }
         it { expect(challenge.current_round.challenge_id).to eq(challenge.id) }
@@ -113,7 +113,7 @@ describe Challenge do
 
     describe '#round_open?' do
       context 'single open round' do
-        let(:challenge) { create :challenge }
+        let(:challenge) { create :challenge, :running }
         it { expect(challenge.round_open?).to be true }
       end
       context 'previous and current round' do
@@ -124,7 +124,7 @@ describe Challenge do
 
     describe '#previous_round' do
       context 'single open round' do
-        let(:challenge) { create :challenge }
+        let(:challenge) { create :challenge, :running }
         it { expect(challenge.previous_round).to be_nil }
       end
       context 'previous and current round' do

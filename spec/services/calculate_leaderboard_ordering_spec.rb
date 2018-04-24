@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CalculateLeaderboardService do
 
-  let(:challenge) { create :challenge }
+  let(:challenge) { create :challenge, :running }
   let(:challenge_round) { challenge.challenge_rounds.first }
 
   describe 'descending / ascending' do

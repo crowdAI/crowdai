@@ -4,7 +4,7 @@ RSpec.describe SubmissionGradedNotificationJob, type: :job do
   include ActiveJob::TestHelper
 
   let!(:participant) { create :participant }
-  let!(:challenge) { create :challenge }
+  let!(:challenge) { create :challenge, :running }
   let(:submission) {
     create :submission,
     challenge: challenge,

@@ -22,7 +22,7 @@ RSpec.describe CalculateLeaderboardService do
   #  p2s2 |  p2  | 36.00     | 0.003     |  No   | Current |  5h
 
 
-  let!(:challenge) { create :challenge }
+  let!(:challenge) { create :challenge, :running }
   let!(:challenge_round) { challenge.challenge_rounds.first }
   # Ranking Window = 48 hours
   let!(:participant1) { create :participant }

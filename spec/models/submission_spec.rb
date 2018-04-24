@@ -45,7 +45,7 @@ describe Submission do
        end
 
        context 'submission is made during the challenge' do
-         let(:challenge) { create(:challenge)}
+         let(:challenge) { create(:challenge, :running)}
          let(:submission) { create(:submission, challenge: challenge) }
          it { expect(submission.post_challenge).to be false }
        end
@@ -66,7 +66,6 @@ describe Submission do
          expect(submission.graded?).to be true
        end
      end
-
 
      describe '#failed?' do
        it 'works' do

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe DatasetFilesController, type: :controller do
   render_views
 
-  let!(:challenge) { create :challenge }
+  let!(:challenge) { create :challenge, :running }
   let!(:file1) {
     create :dataset_file, challenge: challenge, title: 'file1' }
   let!(:file2) {

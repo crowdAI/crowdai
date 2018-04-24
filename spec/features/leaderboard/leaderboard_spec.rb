@@ -35,7 +35,7 @@ feature "Leaderboard" do
   #  2   |  p2s1      |  p2    |  31.00  |  0.003    | No
 
 
-  let!(:challenge) { create :challenge }
+  let!(:challenge) { create :challenge, :running }
   let!(:challenge_round) { challenge.challenge_rounds.first }
   let!(:participant1) { create :participant }
   let!(:participant2) { create :participant }

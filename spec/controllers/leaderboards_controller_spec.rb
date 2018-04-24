@@ -9,7 +9,7 @@ RSpec.describe LeaderboardsController, type: :controller do
           challenge: challenge,
           participant: participant }
     end
-    let(:challenge) { create :challenge }
+    let(:challenge) { create :challenge, :running }
     let(:participant) { create :participant }
     let(:user) { create :participant }
 

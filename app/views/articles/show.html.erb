@@ -1,9 +1,9 @@
-<div class="content">
-  <%= render partial: 'masthead', locals: { article: @article, article_section: @article_section } %>
-  <%= render partial: 'subnav', locals: { article: @article, article_section: @article_section } %>
-  <div class="row">
-    <div class="article">
-      <%= sanitize(@article_section.description) if @article_section.present? %>
-    </div>
-  </div>
-</div>
+<% if @article.notebook_url.blank? %>
+  <%= render partial: 'articles/show/article',
+        locals: {
+          article: @article,
+          article_section: @article_section } %>
+<% else %>
+  <%= render partial: 'articles/show/notebook',
+        locals: { article: @article }%>
+<% end %>

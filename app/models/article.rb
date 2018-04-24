@@ -7,7 +7,9 @@ class Article < ApplicationRecord
   has_many :votes, as: :votable
   has_many :comments, as: :commentable
   has_many :article_sections, dependent: :destroy
-  accepts_nested_attributes_for :article_sections, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :article_sections,
+    reject_if: :all_blank,
+    allow_destroy: true
 
   friendly_id :article, use: [:slugged, :finders, :history]
 

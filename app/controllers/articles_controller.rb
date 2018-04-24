@@ -38,7 +38,9 @@ class ArticlesController < ApplicationController
     authorize @article
 
     if @article.save
-      @article.article_sections.create!(section: 'Introduction')
+      unless @article.notebook_url.present?
+        @article.article_sections.create!(section: 'Introduction')
+      end
       redirect_to @article
     else
       render :new

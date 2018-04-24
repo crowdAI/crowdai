@@ -32,6 +32,10 @@ class ArticlePolicy < ApplicationPolicy
     edit?
   end
 
+  def activate?
+    participant && participant.admin?
+  end
+
   class Scope
     attr_reader :participant, :scope
 

@@ -46,17 +46,17 @@
   <% end %>
 
   <% if policy(entry).submission_detail? %>
-  <td class="entries">
-    <%= link_to entry.entries,
-          challenge_leaderboard_submission_detail_path(
-            challenge_id: entry.challenge_id,
-            leaderboard_id: entry.id,
-            participant_id: entry.participant_id),
-          id: "participant-link-#{ entry.participant_id }",
-          remote: true %>
-  </td>
-<% else %>
-  <td class="entries"><%= entry.entries %></td>
+    <td class="entries">
+      <%= link_to entry.entries,
+            challenge_leaderboard_submission_detail_path(
+              challenge_id: entry.challenge_id,
+              leaderboard_id: entry.id,
+              participant_id: entry.participant_id),
+            id: "participant-link-#{ entry.participant_id }",
+            remote: true %>
+    </td>
+  <% else %>
+    <td class="entries"><%= entry.entries %></td>
   <% end %>
 
   <%= if cols.include?(:post_challenge) %>
@@ -67,7 +67,7 @@
     <%= entry.created_at.strftime("%a, %e %b %Y %R") %>
   </td>
   <td class='action'>
-    <% if challenge.media_on_leaderboard %>
+    <% if challenge.submissions_page %>
       <%= link_to challenge_leaderboard_path(
             entry.challenge, entry.submission_id), class: 'btn btn-secondary' do %>
         <i class="fa fa-arrows-alt" aria-hidden="true"></i>

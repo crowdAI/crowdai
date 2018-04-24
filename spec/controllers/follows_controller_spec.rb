@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe FollowsController, type: :controller do
   render_views
 
-  let!(:challenge) { create :challenge, :running }
+  let!(:challenge) { create :challenge }
   let!(:participant) { create :participant }
 
   context 'participant' do

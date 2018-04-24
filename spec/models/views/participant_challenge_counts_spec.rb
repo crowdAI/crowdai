@@ -16,14 +16,14 @@ describe ParticipantChallengeCount, type: :model do
   context 'view SQL' do
     let!(:participant1) { create :participant }
     let!(:participant2) { create :participant }
-    let!(:challenge) { create :challenge, :running }
+    let!(:challenge) { create :challenge }
     let!(:vote1) { create :vote, votable: challenge, participant: participant1 }
     let!(:vote2) { create :vote, votable: challenge, participant: participant2 }
     let!(:submission) { create :submission, challenge: challenge, participant: participant2 }
     let!(:topic) { create :topic, participant: participant2 }
 
     3.times do |i|
-      let!("challenge_#{i + 1}") { create :challenge, :running }
+      let!("challenge_#{i + 1}") { create :challenge }
     end
 
     it { expect(ParticipantChallengeCount.count).to eq(5) }

@@ -32,7 +32,7 @@
     </td>
     <td class='pull-right'><%= submission.created_at %></td>
     <td class='action'>
-      <% if submission.challenge.media_on_leaderboard %>
+      <% if submission.challenge.submissions_page %>
         <%= link_to challenge_submission_path(
               submission.challenge_id,submission),
               class: 'btn btn-secondary' do %>

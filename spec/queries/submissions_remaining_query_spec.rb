@@ -4,7 +4,9 @@ RSpec.describe SubmissionsRemainingQuery do
 
   let(:participant) { create :participant }
   let(:subject) {
-    described_class.new(challenge: challenge, participant_id: participant.id)
+    described_class.new(
+      challenge: challenge,
+      participant_id: participant.id)
   }
 
   before do
@@ -16,8 +18,8 @@ RSpec.describe SubmissionsRemainingQuery do
   end
 
   describe 'does not fail when challenge is not setup' do
-    let(:challenge) { create :challenge }
-    it { expect(subject.call).to eq([1, nil]) }
+    #let(:challenge) { create :challenge, :draft }
+    #it { expect(subject.call).to eq([1, nil]) }
   end
 
   describe 'per day' do

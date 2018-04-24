@@ -13,7 +13,12 @@
 <!--Detail header end-->
 
 <!--Detail media start-->
-<div class="detail-media">
-  <%= concept(Leaderboard::Cell::Media, entry, size: :large, current_participant: current_participant) %>
-</div>
+<% if challenge.media_on_leaderboard %>
+  <div class="detail-media">
+    <%= concept(Leaderboard::Cell::Media,
+          entry,
+          size: :large,
+          current_participant: current_participant) %>
+  </div>
+<% end %>
 <!--Detail media end-->

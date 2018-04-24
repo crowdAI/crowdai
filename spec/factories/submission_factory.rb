@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :submission, class: Submission do
-    challenge #FactoryBot.create(:challenge, :running)
+    association :challenge, :running
     participant
     grading_status :ready
     description_markdown '#Upload description'
@@ -19,5 +19,6 @@ FactoryBot.define do
     trait :with_file do
       submission_files { [ build(:submission_file, submission_file_s3_key: 'submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c') ]}
     end
+
   end
 end

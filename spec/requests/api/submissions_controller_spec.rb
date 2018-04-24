@@ -10,6 +10,7 @@ RSpec.describe Api::SubmissionsController, type: :request do
       organizer: organizer }
   let!(:challenge) {
     create :challenge,
+      :running,
       organizer: organizer }
   5.times do |i|
     let!("submission_#{i + 1}") {

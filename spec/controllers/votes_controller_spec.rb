@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe VotesController, type: :controller do
   render_views
 
-  let!(:challenge) { create :challenge, :running }
+  let!(:challenge) { create :challenge }
   let!(:article) { create :article }
   let!(:topic) { create :topic }
   let!(:participant) { create :participant }

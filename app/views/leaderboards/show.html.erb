@@ -6,13 +6,20 @@
 
   <div class="row">
     <%= render partial: 'leaderboards/show/header',
-          locals: { participant: @participant, entry: @entry } %>
+          locals: {
+            challenge: @challenge,
+            participant: @participant,
+            entry: @entry } %>
 
     <%= render partial: 'leaderboards/show/share',
           locals: { submission: @submission }%>
 
     <%= render partial: 'leaderboards/show/entry_description',
           locals: { entry: @entry, submission: @submission }  %>
+
+    <% if @grader_logs.present? %>
+      <%= render partial: 'submissions/show/codemirror' %>
+    <% end %>
 
     <%= render partial: 'leaderboards/show/comments',
           locals: {

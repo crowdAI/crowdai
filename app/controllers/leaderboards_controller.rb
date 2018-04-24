@@ -9,7 +9,8 @@ class LeaderboardsController < ApplicationController
 
   def show
     @participant = @entry.participant
-    @submission = Submission.find(@entry.id)
+    @submission = Submission.find(@entry.submission_id)
+    @grader_logs = grader_logs
   end
 
   def index
@@ -42,7 +43,6 @@ class LeaderboardsController < ApplicationController
       @participant_submissions = ParticipantSubmission.where(challenge_id: @challenge.id)
     end
   end
-
 
   def video_modal
     @leaderboard = Leaderboard.where(submission_id: params[:submission_id]).first
@@ -88,6 +88,15 @@ class LeaderboardsController < ApplicationController
   def set_layout
     return 'bare' if action_name == 'show'
     return 'application'
+  end
+
+  def grader_logs
+    if @challenge.grader_logs
+      s3_key = "grader_logs/#{@challenge.slug}/grader_logs_submission_#{@submission.id}.txt"
+      s3 = S3Service.new(s3_key)
+      @grader_logs = s3.filestream
+    end
+    return @grader_logs
   end
 
 end

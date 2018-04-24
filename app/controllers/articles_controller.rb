@@ -33,12 +33,9 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    if current_participant
-      @article = current_participant.articles.new(article_params)
-      authorize @article
-    else
-      raise Pundit::NotAuthorizedError
-    end
+    @article = current_participant.articles.new(
+      article_params.merge(participant_id: current_participant.id))
+    authorize @article
 
     if @article.save
       @article.article_sections.create!(section: 'Introduction')
@@ -77,7 +74,6 @@ class ArticlesController < ApplicationController
       authorize @article
     end
 
-
     def article_params
       params
         .require(:article)
@@ -86,8 +82,8 @@ class ArticlesController < ApplicationController
           :published,
           :category,
           :summary,
-          :participant_id,
           :image_file,
+          :notebook_url,
           article_sections_attributes: [
             :id,
             :article_id,

@@ -23,7 +23,9 @@
 
   <fieldset class="checkbox">
     <div>
-      <%= f.check_box :published, {}, "true", "false" %>
+      <%= f.check_box :published, {
+            disabled: !(policy(article).activate?)
+          }, "true", "false" %>
       <label for="">Published?</label>
     </div>
   </fieldset>

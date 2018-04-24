@@ -9,6 +9,7 @@ RSpec.describe LandingPageController, type: :controller do
       challenge: 'challenge_draft' }
   let!(:challenge_running) {
     create :challenge,
+      :running,
       challenge: 'challenge_running' }
   let!(:challenge_completed) {
     create :challenge,

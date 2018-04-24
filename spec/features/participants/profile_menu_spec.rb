@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Email Preferences' do
   let!(:participant) { create(:participant) }
   3.times do |i|
-    let!("challenge_#{i + 1}") { create :challenge }
+    let!("challenge_#{i + 1}") { create :challenge, :running }
   end
 
   context 'open menu' do

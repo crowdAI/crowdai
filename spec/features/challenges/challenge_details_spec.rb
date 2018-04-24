@@ -1,20 +1,20 @@
 feature 'An organizer creates a challenge' do
   let!(:organizer) { create :organizer }
   let!(:participant) { create :participant, organizer: organizer }
-  let(:valid_attributes) { build :challenge }
+  let(:valid_attributes) { build :challenge, :running }
 
   before do
     log_in(participant)
   end
 
   scenario 'access create challenge button' do
-    visit organizer_path(organizer)
+    visit organizer_path(organizer, wait: 1)
     expect(page).to have_text organizer.organizer
     expect(page).to have_selector '.btn', text: 'Create Challenge'
   end
 
   scenario 'create challenge with valid attributes', js: true do
-    visit organizer_path(organizer)
+    visit organizer_path(organizer, wait: 1)
     click_on 'Create Challenge'
     expect(page).to have_text 'New Challenge'
     expect(page).to have_selector '.btn', text: 'CREATE CHALLENGE'

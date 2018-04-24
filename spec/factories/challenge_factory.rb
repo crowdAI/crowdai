@@ -2,9 +2,9 @@ FactoryBot.define do
   factory :challenge, class: Challenge do
     organizer
     challenge { FFaker::Lorem.unique.sentence(3) }
-    sequence(:challenge_client_name) { |n| "client_name_#{n}" }
+    challenge_client_name { FFaker::Internet.unique.user_name }
     tagline { FFaker::Lorem.unique.sentence(3) }
-    status :running
+    status :draft
     description_markdown "### The description"
     evaluation_markdown "# An evaluation"
     rules_markdown "Some *rules*"
@@ -17,9 +17,13 @@ FactoryBot.define do
     grader 'f1_logloss'
     grading_factor 0.3
     license_markdown '## This is a license'
-    after(:create) do |challenge|
-      create(:dataset_file, challenge: challenge)
-      create(:challenge_round, challenge: challenge)
+
+    trait :running do
+      status :running
+      dataset_files {[ build(:dataset_file) ]}
+      after(:create) do |challenge|
+        FactoryBot.create(:challenge_round, challenge: challenge)
+      end
     end
 
     trait :day do

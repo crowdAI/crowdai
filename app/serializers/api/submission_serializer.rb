@@ -5,6 +5,8 @@ class Api::SubmissionSerializer < ActiveModel::Serializer
   attributes :id,
     :challenge_id,
     :challenge_name,
+    :challenge_round_id,
+    :created_at,
     :participant_id,
     :participant_email,
     :participant_name,

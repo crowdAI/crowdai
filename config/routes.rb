@@ -28,9 +28,10 @@ Rails.application.routes.draw do
     resources :clef_tasks, only: [:show]
     get 'user', to: 'oauth_credentials#show'
     resources :challenges, only: [:index, :show] do
-      resources :submissions, only: [:index, :show]
+      resources :submissions, only: :index
     end
     resources :participants, only: :show
+    resources :submissions, only: :show
   end
 
   namespace :components do

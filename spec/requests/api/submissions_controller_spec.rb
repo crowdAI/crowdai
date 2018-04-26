@@ -10,6 +10,7 @@ RSpec.describe Api::SubmissionsController, type: :request do
       organizer: organizer }
   let!(:challenge) {
     create :challenge,
+      :running,
       organizer: organizer }
   5.times do |i|
     let!("submission_#{i + 1}") {
@@ -27,6 +28,19 @@ RSpec.describe Api::SubmissionsController, type: :request do
             'Accept': 'application/vnd.api+json',
             'Content-Type': 'application/vnd.api+json',
             'Authorization': auth_header(organizer.api_key) }
+      end
+      it { expect(response).to have_http_status(200) }
+    end
+  end
+
+  describe 'GET #show' do
+    context "with admin auth key" do
+      before do
+        get "/api/submissions/#{submission_1.id}",
+          headers: {
+            'Accept': 'application/vnd.api+json',
+            'Content-Type': 'application/vnd.api+json',
+            'Authorization': auth_header(ENV['CROWDAI_API_KEY']) }
       end
       it { expect(response).to have_http_status(200) }
     end

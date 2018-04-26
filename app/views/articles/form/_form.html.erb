@@ -1,27 +1,31 @@
 <div class="content">
-	<div class="masthead">
-		<div class="row">
-			<div class="info">
-				<h2><%= title %></h2>
-			</div>
-		</div>
-	</div>
+  <div class="masthead">
+    <div class="row">
+      <div class="info">
+        <h2><%= title %></h2>
+      </div>
+    </div>
+  </div>
 
   <div class="sub-nav">
     <div class="row">
       <ul class='tabs'>
-        <li data-tab='tab-details' class="active">Details</sup></li>
-        <li data-tab='tab-content'>Content</li>
+        <li data-tab='tab-details' class="active">Details</li>
+        <% if article.notebook_url.blank? %>
+          <li data-tab='tab-content'>Content</li>
+        <% end %>
       </ul>
     </div>
-	</div>
+  </div>
 
   <div id='tab-details' class='tab-content active'>
     <%= render partial: 'articles/form/details', locals: { article: article } %>
   </div>
-  <div id='tab-content' class='tab-content'>
-    <%= render partial: 'articles/form/content', locals: { article: article } %>
-  </div>
+  <% if article.notebook_url.blank? && article.persisted? %>
+    <div id='tab-content' class='tab-content'>
+      <%= render partial: 'articles/form/content', locals: { article: article } %>
+    </div>
+  <% end %>
 
   <% if policy(article).destroy? %>
     <div class="additional">

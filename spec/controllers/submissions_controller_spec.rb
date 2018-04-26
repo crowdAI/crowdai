@@ -10,7 +10,7 @@ RSpec.describe SubmissionsController, type: :controller do
         participant: participant }
   end
   let!(:meta) { create :submission, :with_meta, challenge: challenge, participant: participant }
-  let(:challenge) { create :challenge }
+  let(:challenge) { create :challenge, :running }
   let(:participant) { create :participant }
 
   before do

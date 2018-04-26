@@ -20,6 +20,10 @@ class ArticlesController < ApplicationController
         .find(params[:article_section_id])
     else
       @article_section = @article.article_sections.first
+      if @article.notebook_url
+        @notebook_data = NotebookService.new(
+          notebook_url: @article.notebook_url).call
+      end
     end
   end
 
@@ -33,15 +37,14 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    if current_participant
-      @article = current_participant.articles.new(article_params)
-      authorize @article
-    else
-      raise Pundit::NotAuthorizedError
-    end
+    @article = current_participant.articles.new(
+      article_params.merge(participant_id: current_participant.id))
+    authorize @article
 
     if @article.save
-      @article.article_sections.create!(section: 'Introduction')
+      unless @article.notebook_url.present?
+        @article.article_sections.create!(section: 'Introduction')
+      end
       redirect_to @article
     else
       render :new
@@ -77,7 +80,6 @@ class ArticlesController < ApplicationController
       authorize @article
     end
 
-
     def article_params
       params
         .require(:article)
@@ -86,8 +88,8 @@ class ArticlesController < ApplicationController
           :published,
           :category,
           :summary,
-          :participant_id,
           :image_file,
+          :notebook_url,
           article_sections_attributes: [
             :id,
             :article_id,

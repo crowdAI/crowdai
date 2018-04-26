@@ -143,6 +143,8 @@ GEM
       js_regex (~> 1.2)
       rails (>= 5.0.0.1, < 5.2)
     cocoon (1.2.10)
+    codemirror-rails (5.16.0)
+      railties (>= 3.0, < 6.0)
     coderay (1.1.1)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -811,6 +813,7 @@ DEPENDENCIES
   cells-rails!
   client_side_validations
   cocoon
+  codemirror-rails
   coffee-rails
   compass-rails
   country_select

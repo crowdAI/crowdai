@@ -3,8 +3,17 @@ class Api::ParticipantsController < Api::BaseController
   respond_to :json
 
   def show
-    @participant = Participant.where(name: params[:id]).first
-    render json: @participant, status: :ok
+    @participant = Participant
+      .where("lower(name) = '#{params[:id].downcase}'").first
+    if @participant.present?
+      payload = Api::ParticipantSerializer.new(@participant).as_json
+      payload.merge({ message: 'Participant found.'})
+      status = :ok
+    else
+      payload = { message: "No participant could be found for this username" }
+      status = :not_found
+    end
+    render json: payload, status: status
   end
 
 end

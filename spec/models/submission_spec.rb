@@ -67,7 +67,6 @@ describe Submission do
        end
      end
 
-
      describe '#failed?' do
        it 'works' do
          submission = create(:submission, grading_status: :failed)

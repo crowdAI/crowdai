@@ -6,7 +6,9 @@ class ArticleSection < ApplicationRecord
 
   belongs_to :article
   validates_presence_of :section
-  validates_uniqueness_of :section, allow_blank: false, scope: :article
+  validates_uniqueness_of :section,
+    allow_blank: false,
+    scope: :article
 
   friendly_id :section, use: [:slugged, :finders, :history]
 

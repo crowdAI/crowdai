@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :challenge, class: Challenge do
     organizer
     challenge { FFaker::Lorem.unique.sentence(3) }
-    sequence(:challenge_client_name) { |n| "client_name_#{n}" }
+    challenge_client_name { FFaker::Internet.unique.user_name }
     tagline { FFaker::Lorem.unique.sentence(3) }
     status :draft
     description_markdown "### The description"

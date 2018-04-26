@@ -54,6 +54,9 @@ $flag-css-png-path: 'flags/png' !default;
 // Gems
 @import 'jquery.atwho';
 @import "social-share-button";
+@import "codemirror";
+@import "notebook";
+@import "prism";
 
 // General styles
 

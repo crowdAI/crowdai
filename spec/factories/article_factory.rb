@@ -7,6 +7,7 @@ FactoryBot.define do
     published true
     vote_count 0
     view_count 0
+    article_type 'markdown'
 
     trait :with_sections do
       article_sections { [ build(:article_section, seq: 0),
@@ -30,6 +31,10 @@ FactoryBot.define do
 
     trait :invalid do
       article nil
+    end
+
+    trait :notebook do
+      notebook_url 'https://gitlab.crowdai.org/crowdai-dojo/encoding-cat-vars-in-practice'
     end
 
   end

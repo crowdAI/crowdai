@@ -53,6 +53,10 @@
     @media screen and (max-width: 400px) {
       display: none;
     }
+    &.rectangle {
+      width: 70px;
+      height: 36px;
+    }
   }
 }
 

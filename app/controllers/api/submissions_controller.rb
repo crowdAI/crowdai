@@ -21,18 +21,12 @@ class Api::SubmissionsController < Api::BaseController
   def index
     begin
       challenge_id = params[:challenge_id]
-      grading_status = params[:grading_status]
       #allow only own organiser to access this challenge's submissions
       permitted_challenge_ids = @organizer.challenges.pluck(:id).map(&:to_s)
       if !permitted_challenge_ids.include?(challenge_id)
         raise OrganizerNotAuthorized
       end
-      # query param 'grading_status' to filter based on grading_status_cd
-      if grading_status.present?
-        @submissions = Submission.where("challenge_id = ? AND grading_status_cd = ?", challenge_id, grading_status)
-      else
-        @submissions = Submission.where(challenge_id: challenge_id)
-      end
+      set_submissions(challenge_id, params[:grading_status], params[:after], params[:challenge_round_id])
       render json: @submissions, each_serializer: Api::SubmissionSerializer, status: :ok
       rescue ActiveRecord::RecordNotFound
         message = "challenge_id #{challenge_id} not found"
@@ -41,9 +35,39 @@ class Api::SubmissionsController < Api::BaseController
         render json: {message: o}, status: :unauthorized
       rescue => e
         message = e
-        render json: {message: e}, status: :internal_server_error
+        render json: {message: "server error"}, status: :internal_server_error
     end
   end
+
+
+  private
+  def set_submissions(challenge_id, grading_status, after, challenge_round_id)
+    if grading_status.blank? && after.blank? && challenge_round_id.blank?
+      @submissions = Submission.where(challenge_id: challenge_id)
+    elsif grading_status.blank? && after.blank? && challenge_round_id.present?
+      @submissions = Submission.where("challenge_id = ? AND challenge_round_id = ?",
+        challenge_id, challenge_round_id)
+    elsif grading_status.blank? && after.present? && challenge_round_id.present?
+      @submissions = Submission.where("challenge_id = ? AND created_at >= ? AND challenge_round_id = ?",
+        challenge_id, after, challenge_round_id)
+    elsif grading_status.blank? && after.present? && challenge_round_id.blank?
+      @submissions = Submission.where("challenge_id = ? AND created_at >= ?",
+        challenge_id, after)
+    elsif grading_status.present? && after.present? && challenge_round_id.present?
+      @submissions = Submission.where("challenge_id = ? AND grading_status_cd = ? AND created_at >= ? AND challenge_round_id = ?",
+        challenge_id, grading_status, after, challenge_round_id)
+    elsif grading_status.present? && after.present? && challenge_round_id.blank?
+      @submissions = Submission.where("challenge_id = ? AND grading_status_cd = ? AND created_at >= ?",
+        challenge_id, grading_status, after)
+    elsif grading_status.present? && after.blank? && challenge_round_id.blank?
+      @submissions = Submission.where("challenge_id = ? AND grading_status_cd = ?",
+        challenge_id, grading_status)
+    elsif grading_status.present? && after.blank? && challenge_round_id.present?
+      @submissions = Submission.where("challenge_id = ? AND grading_status_cd = ? AND challenge_round_id = ?",
+        challenge_id, grading_status, challenge_round_id)
+    end
+  end
+
 
   private
   def set_organizer

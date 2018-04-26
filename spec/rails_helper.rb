@@ -24,11 +24,9 @@ Capybara::Screenshot.register_driver(:chrome) do |driver, path|
   driver.browser.save_screenshot("#{Rails.root}/tmp/capybara/#{filename}")
 end
 Capybara::Webkit.configure do |config|
-  config.allow_url("cdn.mathjax.org")
-  config.allow_url("www.gravatar.com")
-end
-
-Capybara::Webkit.configure do |config|
+  #config.allow_url("cdn.mathjax.org")
+  #config.allow_url("www.gravatar.com")
+  #config.allow_url("use.fontawesome.com")
   config.allow_unknown_urls
   config.ignore_ssl_errors
 end

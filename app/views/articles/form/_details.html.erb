@@ -1,8 +1,9 @@
 <div class="row">
   <%= form_for article, validate: true, html: { class: "sgl-col", multipart: true } do |f| %>
   <fieldset>
-    <label>Title</label>
+    <%= f.label :article, 'Title' %>
     <%= f.text_field :article %>
+
     <label>Tutorial Image</label>
     <div class="upload">
       <%= concept(Image::Cell,article,klass: 'img-thumb') %>
@@ -12,14 +13,24 @@
       <% end %>
       <span>Your image will be cropped if necessary. 5MB limit</span>
     </div>
-    <label>Short description</label>
+
+    <%= f.label :summary, 'Short description' %>
     <%= f.text_area :summary, class: "txt-sml", placeholder: "Add a short description, only one sentence&hellip;"  %>
-    <%= f.hidden_field :participant_id, value: article.id %> <%# TODO %>
-    <div class="switch-container">
-      <input type="checkbox" id="switch" name="switch" class="switch">
-      <label for="switch">Live?</label>
-    </div>
-    <%= render partial: 'articles/form/submit_buttons', locals: { f: f } %>
+
+    <%= f.label :notebook_url, 'Notebook repository' %>
+    <%= f.text_field :notebook_url %>
   </fieldset>
+
+  <fieldset class="checkbox">
+    <div>
+      <%= f.check_box :published, {
+            disabled: !(policy(article).activate?)
+          }, "true", "false" %>
+      <label for="">Published?</label>
+    </div>
+  </fieldset>
+
+  <%= render partial: 'articles/form/submit_buttons',
+        locals: { f: f } %>
   <% end %>
 </div>

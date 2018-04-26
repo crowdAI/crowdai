@@ -1,0 +1,14 @@
+<div class="content">
+  <%= render partial: 'masthead',
+        locals: {
+          article: article } %>
+  <div class="row">
+    <div class="article">
+      <div id="notebook-holder"></div>
+    </div>
+  </div>
+</div>
+
+<div id='notebook-data' style="display:none;">
+  <%= @notebook_data %>
+</div>

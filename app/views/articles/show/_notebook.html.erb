@@ -4,9 +4,11 @@
           article: article } %>
   <div class="row">
     <div class="article">
-      <%= article.notebook_url %>
+      <div id="notebook-holder"></div>
     </div>
   </div>
 </div>
-<script src="require.js"></script>
-<script src="notebook.js"></script>
+
+<div id='notebook-data' style="display:none;">
+  <%= @notebook_data %>
+</div>

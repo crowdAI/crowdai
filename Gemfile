@@ -16,15 +16,17 @@ gem 'devise', '~> 4.4.1'
 gem 'authtrail'
 gem 'pundit'
 gem 'activeadmin'
-gem 'doorkeeper', git: 'https://github.com/doorkeeper-gem/doorkeeper', :branch => 'master'
-
+gem 'crowdai_admin',
+      path: '/Users/sean/src/crowdai/crowdai_admin'
+gem 'doorkeeper',
+      git: 'https://github.com/doorkeeper-gem/doorkeeper',
+      :branch => 'master'
 
 # monitoring
 gem 'mini_magick'
 gem 'rollbar'
 gem 'oj', '~> 3.0'
 gem 'lograge'
-
 
 # model
 gem 'simple_enum'

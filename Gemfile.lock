@@ -22,6 +22,14 @@ GIT
       actionpack (>= 3.0)
       cells (>= 4.1.6, < 5.0.0)
 
+PATH
+  remote: ../crowdai_admin
+  specs:
+    crowdai_admin (1.0.0)
+      activeadmin (>= 1.1.0, < 2.0)
+      font-awesome-rails
+      jquery-rails
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -817,6 +825,7 @@ DEPENDENCIES
   coffee-rails
   compass-rails
   country_select
+  crowdai_admin!
   database_cleaner
   derailed_benchmarks
   devise (~> 4.4.1)

@@ -1,34 +1,27 @@
-<p id="notice"><%= notice %></p>
+<div class="content">
+  <div class="masthead-detailed">
+    <div class="row">
+      <div class="info info-tutorial">
+        <h2><%= @blog.title %></h2>
+        <p class="large"><%= @blog.created_at.strftime("%-d %B %Y") %></p>
+        <div class="user-link">
+          <%= concept(Image::Cell,@blog.participant,size: :medium) %>
+          <p>By
+            <%= link_to @blog.participant.name, participant_path(@blog.participant) %>
+          </p>
+        </div>
+        <div class="button-group">
+          <%= concept(Vote::Cell,
+                @blog,
+                current_participant: current_participant) %>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Participant:</strong>
-  <%= @blog.participant %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @blog.title %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @blog.body %>
-</p>
-
-<p>
-  <strong>Published:</strong>
-  <%= @blog.published %>
-</p>
-
-<p>
-  <strong>Vote count:</strong>
-  <%= @blog.vote_count %>
-</p>
-
-<p>
-  <strong>View count:</strong>
-  <%= @blog.view_count %>
-</p>
-
-<%= link_to 'Edit', edit_blog_path(@blog) %> |
-<%= link_to 'Back', blogs_path %>
+  <div class="row">
+    <div class="article">
+      <%= @blog.body.html_safe %>
+    </div>
+  </div>
+</div>

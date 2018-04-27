@@ -1,37 +1,15 @@
-<p id="notice"><%= notice %></p>
+<div class="content">
+  <div class="row">
+    <h1>crowdAI Blog</h1>
+    <p class="large">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam augue felis, tempus sit amet tempor non, laoreet id nisi.</p>
+  </div>
 
-<h1>Blogs</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Participant</th>
-      <th>Title</th>
-      <th>Body</th>
-      <th>Published</th>
-      <th>Vote count</th>
-      <th>View count</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @blogs.each do |blog| %>
-      <tr>
-        <td><%= blog.participant %></td>
-        <td><%= blog.title %></td>
-        <td><%= blog.body %></td>
-        <td><%= blog.published %></td>
-        <td><%= blog.vote_count %></td>
-        <td><%= blog.view_count %></td>
-        <td><%= link_to 'Show', blog %></td>
-        <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
-        <td><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Blog', new_blog_path %>
+  <div class="row">
+    <!-- every four posts (each row @desktop) need to be wrapped in .grid-blog -->
+    <div class="grid-blog">
+      <% @blogs.each_with_index do |blog,index| %>
+        <%= render partial: 'blog_post', locals: { blog: blog } %>
+      <% end %>
+    </div>
+  </div>
+</div>

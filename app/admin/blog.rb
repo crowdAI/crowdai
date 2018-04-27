@@ -8,6 +8,7 @@ ActiveAdmin.register Blog do
 
   index do
     selectable_column
+    column :seq
     column :title
     column :participant
     column :published

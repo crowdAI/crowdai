@@ -1,0 +1,19 @@
+.atwho_participant_suggestions {
+  vertical-align: middle;
+}
+
+.atwho-view .cur.atwho_participant_suggestions {
+  background: $color-accent;
+}
+
+.atwho-view .atwho_participant_suggestions strong {
+    color: $color-accent;
+}
+
+.atwho-view ul li.atwho_participant_suggestions {
+    display: block;
+    padding: 8px 10px 5px 10px;
+    border-bottom: 1px solid $color-accent-dark;
+    cursor: pointer;
+    /* border-top: 1px solid #C8C8C8; */        
+}

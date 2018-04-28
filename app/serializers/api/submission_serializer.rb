@@ -16,6 +16,7 @@ class Api::SubmissionSerializer < ActiveModel::Serializer
     :grading_status_cd,
     :score,
     :score_secondary,
+    :meta,
     :clef_method_description,
     :clef_retrieval_type,
     :clef_run_type,

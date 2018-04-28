@@ -1,10 +1,12 @@
 Paloma.controller('Articles', {
   show: function(){
     var anchor = document.querySelector("#notebook-holder");
-    var notebook_json = $('#notebook-data')[0].outerText;
     var ipynb = null;
     try {
-      var ipynb = JSON.parse(notebook_json);
+      if($('#notebook-data').length > 0){
+        var notebook_json = $('#notebook-data')[0].outerText;
+        ipynb = JSON.parse(notebook_json);
+      }
     }
     catch(error) {
       console.log(error);

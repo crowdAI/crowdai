@@ -93,8 +93,26 @@ class Api::ExternalGradersController < Api::BaseController
       if params[:meta].present?
         if submission.meta.nil?
           meta = params[:meta]
+          JSON.parse(meta) #This step just ensures that the provided meta is a valid JSON
         else
-          meta = submission.meta.deep_merge(params[:meta])
+          # The next step assumes that submission.meta always has a valid JSON
+          # The overall idea is that the meta key always holds the *serialized*
+          # version of the JSON. We received the serialized JSON, then
+          # deserialize it, merge it with the already present meta key, and
+          # serialize and update the merged meta key
+          # This step can be overriden if `meta_overwrite=True` is present
+          # in the params, in which case, the meta parameter will be overwritten
+          #
+          @byebug
+          if params[:meta_overwrite].present? && params[:meta_overwrite]
+            meta = params[:meta]
+            JSON.parse(meta) #This step just ensures that the provided meta is a valid JSON
+          else
+            meta = JSON.parse(submission.meta)
+            params_meta = JSON.parse(params[:meta])
+            meta = meta.deep_merge(params_meta)
+            meta = JSON.dump(meta)
+          end
         end
         submission.update({meta: meta})
       end

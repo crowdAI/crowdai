@@ -273,21 +273,6 @@ RSpec.describe Api::ExternalGradersController, type: :request do
         :new_key=>"hello", :file_key=>"submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"}) }
     end
 
-    context "with valid_meta_attributes - overwrite using meta_overwrite" do
-      before do
-        patch "/api/external_graders/#{submission1.id}",
-          params: valid_meta_attributes,
-          headers: { 'Authorization': auth_header(organizer.api_key) }
-        submission1.reload
-      end
-      it { expect(response).to have_http_status(202) }
-      it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
-      it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
-      it { expect(submission1.meta.symbolize_keys).to eq({
-        :impwt_std=>"0.020956583416961033", :ips_std=>"2.0898337641716487",
-        :new_key=>"hello", :file_key=>"submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"}) }
-    end
-
     context "valid_attributes_grading_submitted_with_message" do
       before do
         patch "/api/external_graders/#{submission1.id}",

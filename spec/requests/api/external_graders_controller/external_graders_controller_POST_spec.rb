@@ -118,12 +118,12 @@ RSpec.describe Api::ExternalGradersController, type: :request do
         api_key: participant.api_key,
         grading_status: 'graded',
         score: 0.9763,
-        meta: {
+        meta: JSON.dump({
           impwt_std: "0.020956583416961033",
           ips_std: "2.0898337641716487",
           snips: "45.69345202998776",
           file_key: "submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"
-        }
+        })
       }
     end
 
@@ -327,9 +327,9 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(response).to have_http_status(202) }
       it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
       it { expect(json(response.body)[:submission_id]).to be_a Integer }
-      it { expect(Submission.last.meta).to eq({
+      it { expect(Submission.last.meta).to eq(JSON.dump({
         "impwt_std"=>"0.020956583416961033", "ips_std"=>"2.0898337641716487",
-        "snips"=>"45.69345202998776", "file_key"=>"submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"}) }
+        "snips"=>"45.69345202998776", "file_key"=>"submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"})) }
       it { expect(Submission.last.post_challenge).to be false }
     end
 

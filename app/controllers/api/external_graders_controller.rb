@@ -103,7 +103,6 @@ class Api::ExternalGradersController < Api::BaseController
           # This step can be overriden if `meta_overwrite=True` is present
           # in the params, in which case, the meta parameter will be overwritten
           #
-          @byebug
           if params[:meta_overwrite].present? && params[:meta_overwrite]
             meta = params[:meta]
             JSON.parse(meta) #This step just ensures that the provided meta is a valid JSON

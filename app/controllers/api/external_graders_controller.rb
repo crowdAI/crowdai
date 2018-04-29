@@ -103,10 +103,19 @@ class Api::ExternalGradersController < Api::BaseController
         if submission.meta.nil?
           meta = params[:meta]
         else
-          # Standardise submission.meta to a Hash, irrespective of the
-          # version of the API
-          submission_meta = clean_meta(submission.meta)
-          meta = submission_meta.deep_merge(params[:meta])
+          if params[:meta_overwrite].present? && pararms[:meta_overwrite]
+            # When the provided parameters have a `meta_overwrite=True`
+            # parrameter, then a merge between the provided meta param
+            # and the submission meta param will *NOT* happen. In this
+            # case, the provided meta_param will overwrite the submission's
+            # meta param.
+            meta = params[:meta]
+          else
+            # Standardise submission.meta to a Hash, irrespective of the
+            # version of the API
+            submission_meta = clean_meta(submission.meta)
+            meta = submission_meta.deep_merge(params[:meta])
+          end
         end
         submission.update({meta: meta})
       end

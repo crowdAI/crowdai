@@ -104,8 +104,8 @@ table.submissions {
 	}
 	th,
 	td {
-		padding-right: 8px;
-		vertical-align: top;
+		padding-right: 16px;
+		vertical-align: middle;
 	}
 	th:last-of-type,
 	td:last-of-type {
@@ -124,6 +124,9 @@ table.submissions {
 	}
 	th.submission,
 	td.submission {
+		text-align: right;
+	}
+	td.submission_date {
 		text-align: right;
 	}
 }

@@ -149,6 +149,9 @@ class Api::ExternalGradersController < Api::BaseController
         # because of this bug :
         # https://github.com/crowdAI/crowdai/issues/737
         # So we return an empty Hash
+        Rails.logger.warn "Found invalid meta key: #{params_meta}.
+        Assuming the user meant an empty Hash, or it is corrupt data.
+        Reference : https://github.com/crowdAI/crowdai/issues/737 "
         return {}
       end
     end

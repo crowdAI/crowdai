@@ -127,6 +127,32 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       }
     end
 
+    def valid_attributes_with_meta_as_json
+      {
+        challenge_client_name: challenge.challenge_client_name,
+        api_key: participant.api_key,
+        grading_status: 'graded',
+        score: 0.9763,
+        meta: JSON.dump({
+          impwt_std: "0.020956583416961033",
+          ips_std: "2.0898337641716487",
+          snips: "45.69345202998776",
+          file_key: "submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"
+        })
+      }
+    end
+
+    def invalid_attributes_with_meta
+      {
+        challenge_client_name: challenge.challenge_client_name,
+        api_key: participant.api_key,
+        grading_status: 'graded',
+        score: 0.9763,
+        meta: "THIS IS A BAD META PARAM"
+      }
+    end
+
+
     def invalid_api_key_attributes
       { challenge_client_name: challenge.challenge_client_name,
         api_key: '264358f071908c5762b9423a01f72662',
@@ -330,6 +356,34 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(Submission.last.meta).to eq({
         "impwt_std"=>"0.020956583416961033", "ips_std"=>"2.0898337641716487",
         "snips"=>"45.69345202998776", "file_key"=>"submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"}) }
+      it { expect(Submission.last.post_challenge).to be false }
+    end
+
+    context "with valid_attributes_with_meta (as JSON)" do
+      before do
+        post '/api/external_graders/',
+          params: valid_attributes_with_meta_as_json,
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+      end
+      it { expect(response).to have_http_status(202) }
+      it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
+      it { expect(json(response.body)[:submission_id]).to be_a Integer }
+      it { expect(Submission.last.meta).to eq({
+        "impwt_std"=>"0.020956583416961033", "ips_std"=>"2.0898337641716487",
+        "snips"=>"45.69345202998776", "file_key"=>"submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"}) }
+      it { expect(Submission.last.post_challenge).to be false }
+    end
+
+    context "with invalid_attributes_with_meta" do
+      before do
+        post '/api/external_graders/',
+          params: invalid_attributes_with_meta,
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+      end
+      it { expect(response).to have_http_status(202) }
+      it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
+      it { expect(json(response.body)[:submission_id]).to be_a Integer }
+      it { expect(Submission.last.meta).to eq({}) }
       it { expect(Submission.last.post_challenge).to be false }
     end
 

@@ -37,6 +37,9 @@ class Api::ExternalGradersController < Api::BaseController
 
       submissions_remaining, reset_dttm = challenge.submissions_remaining(participant.id)
       raise NoSubmissionSlotsRemaining if submissions_remaining < 1
+      if params[:meta].present?
+        params[:meta] = clean_meta(params[:meta])
+      end
       submission = Submission
                      .create!(
                        participant_id: participant.id,
@@ -90,14 +93,24 @@ class Api::ExternalGradersController < Api::BaseController
           S3Service.new(params[:media_thumbnail]).make_public_read
         end
       end
+
+      # Handle `meta` param
       if params[:meta].present?
+        # Standardise params[:meta] to a Hash, irrespective of the
+        # version of the API
+        params[:meta] = clean_meta(params[:meta])
+
         if submission.meta.nil?
           meta = params[:meta]
         else
-          meta = submission.meta.deep_merge(params[:meta])
+          # Standardise submission.meta to a Hash, irrespective of the
+          # version of the API
+          submission_meta = clean_meta(submission.meta)
+          meta = submission_meta.deep_merge(params[:meta])
         end
         submission.update({meta: meta})
       end
+
       if params[:grading_status].present?
         submission.submission_grades.create!(grading_params)
       end
@@ -114,6 +127,30 @@ class Api::ExternalGradersController < Api::BaseController
                      submission_id: submission_id,
                      submissions_remaining: submissions_remaining,
                      reset_date: reset_date }, status: status
+    end
+  end
+
+  def clean_meta(params_meta)
+    # Backward Compatibility
+    # Across differrent versions of this API we have been passing
+    # `meta` as a string, serialized JSON, and a hash.
+    # This function consistently returns a Hash by parsing the
+    # meta field depending of if its a string, serrialized json or a hash.
+    #
+    if params_meta.respond_to?(:keys)
+      return params_meta
+    else
+      begin
+        # Try to parse it as a JSON
+        return JSON.parse(params_meta)
+      rescue Exception => _e
+        # If its a string which is not a valid JSON
+        # Then this is from the corrupted data
+        # because of this bug :
+        # https://github.com/crowdAI/crowdai/issues/737
+        # So we return an empty Hash
+        return {}
+      end
     end
   end
 

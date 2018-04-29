@@ -44,45 +44,45 @@ RSpec.describe Api::ExternalGradersController, type: :request do
 
     def valid_meta_attributes_update
       {
-        meta: {
+        meta: JSON.dump({
           impwt_std: "0.01",
           ips_std: "3.5",
           snips: "45.69345202998776",
           file_key: "submissions/eeeeee-a525-4e5e-97a8-8ff7199be43c"
-        }
+        })
       }
     end
 
     def valid_meta_attributes_partial_update
       {
-        meta: {
+        meta: JSON.dump({
           impwt_std: "0.01",
           ips_std: "3.5",
           snips: "45.69345202998776",
           file_key: "submissions/eeeeee-a525-4e5e-97a8-8ff7199be43c"
-        }
+        })
       }
     end
 
     def valid_meta_attributes_add
       {
-        meta: {
+        meta: JSON.dump({
           impwt_std: "0.020956583416961033",
           ips_std: "2.0898337641716487",
           new_key: "hello",
           file_key: "submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"
-        }
+        })
       }
     end
 
     def valid_meta_attributes_multi
       {
-        meta: {
+        meta: JSON.dump({
           impwt_std: "0.020956583416961033",
           ips_std: "2.0898337641716487",
           snips: "45.69345202998776",
           file_key: "submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"
-        }
+        })
       }
     end
 
@@ -140,10 +140,10 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(response).to have_http_status(202) }
       it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
       it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
-      it { expect(submission1.meta.symbolize_keys).to eq({
+      it { expect(submission1.meta.symbolize_keys).to eq(JSON.dump({
         :impwt_std=>"0.01",
         :ips_std=>"3.5",
-        :snips=>"45.69345202998776", :file_key=>"submissions/eeeeee-a525-4e5e-97a8-8ff7199be43c"}) }
+        :snips=>"45.69345202998776", :file_key=>"submissions/eeeeee-a525-4e5e-97a8-8ff7199be43c"})) }
     end
 
     context "with valid_meta_attributes - add" do
@@ -156,9 +156,9 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(response).to have_http_status(202) }
       it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
       it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
-      it { expect(submission1.meta.symbolize_keys).to eq({
+      it { expect(submission1.meta.symbolize_keys).to eq(JSON.dump({
         :impwt_std=>"0.020956583416961033", :ips_std=>"2.0898337641716487",
-        :new_key=>"hello", :file_key=>"submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"}) }
+        :new_key=>"hello", :file_key=>"submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"})) }
     end
 
     context "valid_attributes_grading_submitted_with_message" do

@@ -12,7 +12,7 @@ module Crowdai
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
-    config.assets.version = '1.0'
+    config.assets.version = '2.0'
 
     config.active_job.queue_adapter = :sidekiq
     #config.autoload_paths += Dir[Rails.root.join('app', 'models', '{*/}')]
@@ -32,6 +32,7 @@ module Crowdai
       g.stylesheets false
       g.helper false
       g.assets false
+      g.view false
       g.fixture_replacement :factory_bot, dir: 'spec/factories'
     end
   end

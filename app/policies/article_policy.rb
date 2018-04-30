@@ -5,7 +5,7 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    @record.published || edit?
   end
 
   def edit?

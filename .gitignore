@@ -26,3 +26,4 @@ scripts/stg_from_prd.sh
 /public/packs
 /node_modules
 spec/examples.txt
+/public/assets/**

@@ -34,6 +34,7 @@ $flag-css-png-path: 'flags/png' !default;
 @import 'dropdowns';
 @import 'flag-core';
 @import 'flag-list';
+@import 'flex-grid';
 @import 'footer';
 @import 'forms';
 @import 'header';
@@ -46,6 +47,7 @@ $flag-css-png-path: 'flags/png' !default;
 @import 'markdown';
 @import 'mastheads';
 @import 'md-editor';
+@import 'pagination-dots';
 @import 'panel';
 @import 'progress-bar';
 @import 'remodal-default-theme';
@@ -175,9 +177,9 @@ a img:hover {
   display: none;
 }
 
-.turbolinks-progress-bar {
-  background-color: #f0524d;
-}
+//.turbolinks-progress-bar {
+//  background-color: #f0524d;
+//}
 
 .ellipsis {
   max-width: 640px;
@@ -207,5 +209,3 @@ a img:hover {
     width: 100%;
     height: 100%;
 }
-// http://jsfiddle.net/omarjuvera/8zkunqxy/2/
-// https://www.smashingmagazine.com/2014/02/making-embedded-content-work-in-responsive-design/

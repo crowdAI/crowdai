@@ -1,7 +1,14 @@
-class Footer::Cell < Template::Cell
+module ApplicationHelper
 
-  def show
-    render
+  def body_id
+    if (controller.controller_name == 'landing_page' &&
+          controller.action_name == 'index') ||
+       (controller.controller_name == 'blogs' &&
+          controller.action_name == 'index')
+      return 'home'
+    else
+      return nil
+    end
   end
 
   def footer_class

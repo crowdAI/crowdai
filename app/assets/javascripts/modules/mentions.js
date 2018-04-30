@@ -1,11 +1,11 @@
 $(document).on('turbolinks:load', function() {
   $('[data-behavior="mentions"]').atwho({
     at: "@",
-    displayTpl: "<li><img src='${thumbnail_url}' height='20' width='20' /> ${name} </li>",
+    displayTpl: "<li class='atwho_participant_suggestions'><img src='${thumbnail_url}' height='20' width='20' /> ${name} </li>",
     data: "/participants.json"
   })
   .on("inserted.atwho", function(event, $li, browser_event) {
-      //console.log('inserted: ' + $li.data('item-data')['name']);
+      console.log('inserted: ' + $li.data('item-data')['name']);
       var cacheEntry = {
         id: $li.data('item-data')['id'],
         name: $li.data('item-data')['name']

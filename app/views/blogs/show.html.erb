@@ -1,0 +1,27 @@
+<div class="content">
+  <div class="masthead-detailed">
+    <div class="row">
+      <div class="info info-tutorial">
+        <h2><%= @blog.title %></h2>
+        <p class="large"><%= @blog.created_at.strftime("%-d %B %Y") %></p>
+        <div class="user-link">
+          <%= concept(Image::Cell,@blog.participant,size: :medium) %>
+          <p>By
+            <%= link_to @blog.participant.name, participant_path(@blog.participant) %>
+          </p>
+        </div>
+        <div class="button-group">
+          <%= concept(Vote::Cell,
+                @blog,
+                current_participant: current_participant) %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="article">
+      <%= @blog.body.html_safe %>
+    </div>
+  </div>
+</div>

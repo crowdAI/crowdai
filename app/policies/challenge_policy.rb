@@ -5,7 +5,7 @@ class ChallengePolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    ChallengePolicy::Scope.new(participant,Challenge).resolve.include?(@record)
   end
 
   def edit?

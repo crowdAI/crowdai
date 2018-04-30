@@ -51,12 +51,6 @@
   }
 }
 
-.list-participants {
-  &:first-of-type {
-
-  }
-}
-
 /* List - Challenges */
 
 .list-challenges {
@@ -106,6 +100,7 @@
 }
 
 #home .list-challenges {
+  margin-top: 0;
   li:last-of-type {
     border-bottom: none;
   }
@@ -344,7 +339,7 @@
   }
 }
 
-
+// added by Sean
 ul.list-job-details {
   list-style-type: square;
 }

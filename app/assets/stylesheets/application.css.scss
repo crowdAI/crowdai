@@ -27,6 +27,7 @@ $flag-css-png-path: 'flags/png' !default;
 @import 'dropdowns';
 @import 'flag-core';
 @import 'flag-list';
+@import 'flex-grid';
 @import 'footer';
 @import 'forms';
 @import 'header';
@@ -40,6 +41,7 @@ $flag-css-png-path: 'flags/png' !default;
 @import 'atwho_mentions';
 @import 'mastheads';
 @import 'md-editor';
+@import 'pagination-dots';
 @import 'panel';
 @import 'progress-bar';
 @import 'remodal-default-theme';
@@ -169,9 +171,9 @@ a img:hover {
   display: none;
 }
 
-.turbolinks-progress-bar {
-  background-color: #f0524d;
-}
+//.turbolinks-progress-bar {
+//  background-color: #f0524d;
+//}
 
 .ellipsis {
   max-width: 640px;

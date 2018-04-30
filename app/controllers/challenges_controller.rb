@@ -41,7 +41,6 @@ class ChallengesController < ApplicationController
   end
 
   def show
-    authorize @challenge
     if !params[:version]  # dont' record page views on history pages
       @challenge.record_page_view
     end
@@ -53,7 +52,6 @@ class ChallengesController < ApplicationController
   end
 
   def edit
-    authorize @challenge
   end
 
   def create

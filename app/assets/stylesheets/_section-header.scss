@@ -1,22 +1,15 @@
 /* Section header (e.g., Home Challenges) */
 
 .section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   height: 73px;
-  margin-top: 120px;
+  margin-top: 80px;
   border-bottom: 1px solid $color-grey-10;
-  @media screen and (max-width: 1024px) {
-    margin-top: 100px;
-  }
-  @media screen and (max-width: 800px) {
-    margin-top: 80px;
-  }
   @media screen and (max-width: 640px) {
     height: 48px;
     margin-top: 60px;
-  }
-  h3 {
-    float: left;
-    margin-top: 4px;
   }
   .btn {
     float: right;

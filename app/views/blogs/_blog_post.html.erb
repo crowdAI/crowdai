@@ -1,0 +1,21 @@
+<div class="blog-post">
+  <h5><%= link_to blog.title, blog_path(blog) %></h5>
+  <p>
+    <%= truncate(blog.body,
+           length: 100,
+           omission: "" ,
+           escape: false) %>...
+  </p>
+
+  <div class="blog-post-details">
+    <%= concept(Image::Cell,blog.participant,size: :medium) %>
+    <div>
+      <span class="author">
+        By <%= link_to blog.participant.name, participant_path(blog.participant) %>
+      </span>
+      <span>
+        <%= blog.created_at.strftime("%-d %B %Y") %>
+      </span>
+    </div>
+  </div>
+</div>

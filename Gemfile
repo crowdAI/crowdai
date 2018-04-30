@@ -16,8 +16,9 @@ gem 'devise', '~> 4.4.1'
 gem 'authtrail'
 gem 'pundit'
 gem 'activeadmin'
-gem 'crowdai_admin',
-      path: '/Users/sean/src/crowdai/crowdai_admin'
+gem 'crowdai_admin'
+#gem 'crowdai_admin',
+#      path: '/Users/sean/src/crowdai/crowdai_admin'
 gem 'doorkeeper',
       git: 'https://github.com/doorkeeper-gem/doorkeeper',
       :branch => 'master'

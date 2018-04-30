@@ -1,7 +1,25 @@
 /* Footer */
 
+// Sticky footer using flexbox
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+// Footer
+
 .logo-footer {
-  width: 120px;
+  width: 84px;
   height: auto;
   @media screen and (max-width: 700px) {
     display: none;
@@ -11,7 +29,7 @@
 footer {
   background: #202020;
   font-size: 14px;
-  line-height: 60px;
+  line-height: 40px;
   padding: 60px 0 35px 0;
   margin-top: 60px;
   @media screen and (max-width: 1024px) {
@@ -34,7 +52,7 @@ footer {
     float: left;
     color: rgba(255,255,255,0.3);
     margin-left: 20px;
-    line-height: 60px;
+    line-height: 40px;
     @media screen and (max-width: 700px) {
       display: none;
     }

@@ -24,7 +24,7 @@
         <li><%= link_to 'Knowledge Base', articles_path %></li>
         <li><%= link_to 'Job Board', job_postings_path %></li>
         <% if current_participant && current_participant.admin? %>
-          <li><%= link_to "Admin", '/admin' %></li>
+          <li data-turbolinks='false'><%= link_to "Admin", '/admin' %></li>
         <% end %>
         <% if current_participant.nil? %>
           <li><%= link_to "Sign up", new_participant_registration_path %></li>

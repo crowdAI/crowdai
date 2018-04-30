@@ -10,6 +10,13 @@ $color-grey-54:     rgba(0,0,0,0.54);
 $color-grey-80:     rgba(0,0,0,0.8);
 $color-grey-87:     rgba(0,0,0,0.87);
 $color-black:       rgba(0,0,0,1);
+
+// These colors are picked from the screenshot @jason posed
+// here : https://github.com/crowdAI/crowdai/issues/571#issuecomment-374510836
+$color-red: #F0524D;
+$color-yellow: #FA9E33;
+$color-green: #23B761;
+
 // Flags
 $flag-width: 1.333333333333em !default;
 $flag-line-height: 1em !default;
@@ -27,6 +34,7 @@ $flag-css-png-path: 'flags/png' !default;
 @import 'dropdowns';
 @import 'flag-core';
 @import 'flag-list';
+@import 'flex-grid';
 @import 'footer';
 @import 'forms';
 @import 'header';
@@ -37,8 +45,10 @@ $flag-css-png-path: 'flags/png' !default;
 @import 'lists';
 @import 'loader';
 @import 'markdown';
+@import 'atwho_mentions';
 @import 'mastheads';
 @import 'md-editor';
+@import 'pagination-dots';
 @import 'panel';
 @import 'progress-bar';
 @import 'remodal-default-theme';
@@ -168,9 +178,9 @@ a img:hover {
   display: none;
 }
 
-.turbolinks-progress-bar {
-  background-color: #f0524d;
-}
+//.turbolinks-progress-bar {
+//  background-color: #f0524d;
+//}
 
 .ellipsis {
   max-width: 640px;
@@ -202,3 +212,24 @@ a img:hover {
 }
 // http://jsfiddle.net/omarjuvera/8zkunqxy/2/
 // https://www.smashingmagazine.com/2014/02/making-embedded-content-work-in-responsive-design/
+
+// Inspired by :
+// https://css-tricks.com/snippets/css/simple-and-nice-blockquote-styling/
+blockquote {
+  background: $color-grey-03;
+  border-left: 10px solid $color-accent;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote:before {
+  color: $color-accent;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+blockquote p {
+  display: inline;
+}

@@ -23,7 +23,9 @@ module Crowdai
     config.autoload_paths += Dir["#{Rails.root.to_s}/app/queries/**/"]
     config.active_record.time_zone_aware_types = [:datetime]
     config.ssl_options = { hsts: { subdomains: false } }
-    #config.assets.precompile += %w( application.scss )
+    config.assets.precompile += %w( application.scss )
+
+    config.action_view.sanitized_allowed_tags = ['table', 'tr', 'td']
 
     config.generators do |g|
       g.test_framework :rspec

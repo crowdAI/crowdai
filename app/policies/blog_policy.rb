@@ -5,7 +5,7 @@ class BlogPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    @record.published || (participant && (participant.admin? || @record.participant_id == participant.id))
   end
 
   def edit?
@@ -13,19 +13,19 @@ class BlogPolicy < ApplicationPolicy
   end
 
   def update?
-    edit?
+    false
   end
 
   def new?
-    edit?
+    false
   end
 
   def create?
-    edit?
+    false
   end
 
   def destroy?
-    edit?
+    false
   end
 
   class Scope

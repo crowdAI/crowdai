@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180424121801) do
+ActiveRecord::Schema.define(version: 20180427095026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,20 @@ ActiveRecord::Schema.define(version: 20180424121801) do
     t.index ["challenge_round_id"], name: "index_base_leaderboards_on_challenge_round_id"
     t.index ["leaderboard_type_cd"], name: "index_base_leaderboards_on_leaderboard_type_cd"
     t.index ["participant_id"], name: "index_base_leaderboards_on_participant_id"
+  end
+
+  create_table "blogs", force: :cascade do |t|
+    t.bigint "participant_id"
+    t.string "title"
+    t.text "body"
+    t.boolean "published"
+    t.integer "vote_count"
+    t.integer "view_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "body_markdown"
+    t.integer "seq"
+    t.index ["participant_id"], name: "index_blogs_on_participant_id"
   end
 
   create_table "challenge_call_responses", force: :cascade do |t|
@@ -566,6 +580,17 @@ ActiveRecord::Schema.define(version: 20180424121801) do
     t.index ["unlock_token"], name: "index_participants_on_unlock_token", unique: true
   end
 
+  create_table "partners", force: :cascade do |t|
+    t.bigint "organizer_id"
+    t.string "image_file"
+    t.boolean "visible", default: false
+    t.integer "seq", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.index ["organizer_id"], name: "index_partners_on_organizer_id"
+  end
+
   create_table "settings", force: :cascade do |t|
     t.boolean "jobs_visible", default: false
     t.datetime "created_at", null: false
@@ -715,6 +740,7 @@ ActiveRecord::Schema.define(version: 20180424121801) do
   add_foreign_key "base_leaderboards", "challenge_rounds"
   add_foreign_key "base_leaderboards", "challenges"
   add_foreign_key "base_leaderboards", "participants"
+  add_foreign_key "blogs", "participants"
   add_foreign_key "challenge_call_responses", "challenge_calls"
   add_foreign_key "challenge_partners", "challenges"
   add_foreign_key "challenge_rounds", "challenges"
@@ -734,6 +760,7 @@ ActiveRecord::Schema.define(version: 20180424121801) do
   add_foreign_key "participant_clef_tasks", "clef_tasks"
   add_foreign_key "participant_clef_tasks", "participants"
   add_foreign_key "participants", "organizers"
+  add_foreign_key "partners", "organizers"
   add_foreign_key "submission_comments", "participants"
   add_foreign_key "submission_comments", "submissions"
   add_foreign_key "submission_file_definitions", "challenges"

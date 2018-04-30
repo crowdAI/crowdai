@@ -1,12 +1,20 @@
-<footer <%= footer_class %> data-cell='Footer::Cell'>
+<footer class="<%= footer_class %>">
   <div class="row">
     <a class="logo-footer" href="http://epfl.ch/">
       <%= image_tag 'epfl-logo.png' %>
     </a>
-    <p class="copyright">&#9400; 2017 crowdAI</p>
+    <p class="copyright">&#9400; 2018 crowdAI</p>
     <ul class="social">
-      <li><a href="https://twitter.com/crowd_ai"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-      <li><a href="https://github.com/crowdAI"><i class="fa fa-github fa-lg" aria-hidden="true"></i></li>
+      <li>
+        <a href="https://twitter.com/crowd_ai">
+          <i class="fa fa-twitter fa-lg" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/crowdAI">
+          <i class="fa fa-github fa-lg" aria-hidden="true"></i>
+        </a>
+      </li>
     </ul>
     <ul class="links">
       <li><%= link_to 'FAQ', faq_path %></li>

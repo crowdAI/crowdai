@@ -12,10 +12,10 @@ RSpec.configure do
   end
 
   def asks_to_sign_in
-    expect(response).to redirect_to sign_in_path
-    expect(flash[:error]).to match(
-      /You need to sign in or sign up before continuing./
-    )
+    expect(response).to redirect_to new_participant_session_path
+    #expect(flash[:error]).to match(
+    #  /You need to sign in or sign up before continuing./
+    #)
   end
 
   def denies_access

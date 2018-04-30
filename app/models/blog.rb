@@ -1,4 +1,6 @@
 class Blog < ApplicationRecord
+  include Markdownable
+
   belongs_to :participant
   has_many :votes, as: :votable
 

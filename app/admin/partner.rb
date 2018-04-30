@@ -6,10 +6,24 @@ ActiveAdmin.register Partner do
     end
   end
 
+  batch_action :activate do |ids|
+    batch_action_collection.find(ids).each do |partner|
+      partner.update(visible: true)
+    end
+    redirect_to collection_path, alert: "Updated."
+  end
+
+  batch_action :deactivate do |ids|
+    batch_action_collection.find(ids).each do |partner|
+      partner.update(visible: false)
+    end
+    redirect_to collection_path, alert: "Updated."
+  end
+
   index do
     selectable_column
     column "Image" do |partner|
-      image_tag(partner.image_file, size: "50x50")
+      image_tag(partner.image_file, width: '50')
     end
     column :name
     column :organizer

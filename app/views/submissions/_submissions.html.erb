@@ -18,8 +18,7 @@
     </td>
     <td class="grading_status_cd">
         <%= link_to challenge_submission_path(
-              submission.challenge_id,submission),
-              class: '' do %>
+              submission.challenge_id,submission) do %>
                 <i class="fa fa-square <%= submission.grading_status_cd %>" aria-hidden="true"></i>
                 <strong class="<%= submission.grading_status_cd %>"><%= submission.grading_status_cd %></strong>
               <% end %>

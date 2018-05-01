@@ -26,7 +26,7 @@ end
 Capybara::Webkit.configure do |config|
   #config.allow_url("cdn.mathjax.org")
   #config.allow_url("www.gravatar.com")
-  #config.allow_url("use.fontawesome.com")
+  config.allow_url("use.fontawesome.com")
   config.allow_unknown_urls
   config.ignore_ssl_errors
 end

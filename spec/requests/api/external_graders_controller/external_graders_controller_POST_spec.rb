@@ -16,8 +16,7 @@ RSpec.describe Api::ExternalGradersController, type: :request do
   let!(:challenge) {
     create :challenge,
     :running,
-    organizer: organizer,
-    daily_submissions: 5 }
+    organizer: organizer }
   let!(:challenge_round) {
     create :challenge_round,
     challenge_id: challenge.id,

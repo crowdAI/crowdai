@@ -42,8 +42,9 @@
     <% if policy(entry).submission_detail? %>
       <td class="entries">
         <%= link_to entry.entries,
-            challenge_submission_detail_path(challenge_id: entry.challenge_id,
-                                             participant_id: entry.participant_id),
+            challenge_submission_detail_path(
+              challenge_id: entry.challenge_id,
+              participant_id: entry.participant_id),
             id: "participant-link-#{ entry.participant_id }",
             remote: true %>
       </td>
@@ -55,7 +56,9 @@
       <td class="post-challenge"></td>
     <% end %>
 
-    <td class="last-submission"><%= entry.created_at.strftime("%a, %e %b %Y %R") %></td>
+    <td class="last-submission">
+      <%= entry.created_at.strftime("%a, %e %b %Y %R") %>
+    </td>
   </tr>
   <% end %>
 </tbody>

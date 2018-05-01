@@ -24,8 +24,12 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
   def content_type
     return nil if leaderboard_row.media_content_type.nil?
 
-    content_type = leaderboard_row.media_content_type.split('/').first
-    content_type = nil if ['video','image','youtube'].exclude?(content_type)
+    media = leaderboard_row.media_content_type.split('/')
+    content_type = media[0]
+    file_type = media[1]
+    return file_type if file_type == 'youtube'
+
+    content_type = nil if ['video','image'].exclude?(content_type)
     return content_type
   end
 
@@ -59,8 +63,16 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
   end
 
   def youtube
-    result = %(<iframe title="YouTube video player" width="800"
-                height="600" src="//www.youtube.com/embed/#{ leaderboard_row.media_large }"
+    if size == :thumb
+      width = 100
+      height = 75
+    end
+    if size == :large
+      width = 800
+      height = 600
+    end
+    result = %(<iframe title="YouTube video player" width="#{width}"
+                height="#{height}" src="//www.youtube.com/embed/#{ leaderboard_row.media_large }"
                 frameborder="0" allowfullscreen></iframe>)
     return result.html_safe
   end

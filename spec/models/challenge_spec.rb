@@ -24,9 +24,7 @@ describe Challenge do
     it { is_expected.to validate_presence_of(:challenge) }
     it { is_expected.to validate_presence_of(:status) }
     it { is_expected.to validate_presence_of(:organizer_id) }
-    #it { is_expected.to validate_presence_of(:grader) }
     it { is_expected.to validate_presence_of(:primary_sort_order) }
-    it { is_expected.to validate_presence_of(:grading_factor) }
   end
 
   context 'methods' do

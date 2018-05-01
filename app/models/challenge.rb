@@ -57,9 +57,6 @@ class Challenge < ApplicationRecord
   as_enum :status,
     [:draft, :running, :completed, :terminated, :starting_soon],
     map: :string
-  as_enum :grader,
-    [:f1_logloss, :discrete_mean_squared_error, :diff_ratio, :manual, :external],
-    map: :string
   as_enum :primary_sort_order,
     [:ascending, :descending],
     map: :string
@@ -71,7 +68,7 @@ class Challenge < ApplicationRecord
   validates_presence_of :challenge
   validates_presence_of :organizer_id
   validates_presence_of :primary_sort_order
-  validates_presence_of :grading_factor
+  validates_presence_of :secondary_sort_order
   validates_uniqueness_of :challenge_client_name
   validates :challenge_client_name,
     format: { with: /\A[a-zA-Z0-9]/ }

@@ -129,24 +129,27 @@ table.submissions {
 	td.submission_date {
 		text-align: right;
 	}
-	td.grading_status_cd {
-		.fa {
-			padding-right: 3px;
-		}
-		.submitted {
-			color: $color-yellow;
-		}
-		.initiated {
-			color: $color-yellow;
-		}
-		.graded {
-			color: $color-green;
-		}
-		.failed {
-			color: $color-red;
-		}
-	}
 }
+
+.grading_status_cd {
+  .fa {
+    padding-right: 3px;
+  }
+  .submitted {
+    color: $color-yellow;
+  }
+  .initiated {
+    color: $color-yellow;
+  }
+  .graded {
+    color: $color-green;
+  }
+  .failed {
+    color: $color-red;
+  }
+}
+
+
 
 /* Load more bar */
 

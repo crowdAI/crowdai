@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180427095026) do
+ActiveRecord::Schema.define(version: 20180501122045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -174,20 +174,15 @@ ActiveRecord::Schema.define(version: 20180427095026) do
     t.string "primary_sort_order_cd", default: "ascending"
     t.string "secondary_sort_order_cd"
     t.boolean "perpetual_challenge", default: false
-    t.float "grading_factor", default: 1.0
-    t.string "grader_cd"
     t.string "answer_file_s3_key"
     t.integer "page_views", default: 0
     t.integer "participant_count", default: 0
     t.integer "submission_count", default: 0
     t.string "score_title"
     t.string "score_secondary_title"
-    t.boolean "automatic_grading", default: false
     t.string "slug"
     t.string "submission_license"
     t.boolean "api_required", default: false
-    t.integer "daily_submissions"
-    t.float "threshold"
     t.boolean "media_on_leaderboard", default: false
     t.string "challenge_client_name"
     t.boolean "online_grading", default: true
@@ -226,6 +221,7 @@ ActiveRecord::Schema.define(version: 20180427095026) do
     t.string "grader_identifier"
     t.boolean "online_submissions", default: false
     t.boolean "grader_logs", default: false
+    t.boolean "require_registration", default: false
     t.index ["clef_task_id"], name: "index_challenges_on_clef_task_id"
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id"
     t.index ["slug"], name: "index_challenges_on_slug", unique: true

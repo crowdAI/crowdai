@@ -1,11 +1,20 @@
 <div class="row">
-  <%= form_for [@organizer,@challenge], validate: true, html: { class: "sgl-col", multipart: true } do |f| %>
-    <fieldset>
-      <%= f.label :challenge, 'Challenge Title' %>
-      <%= f.text_field :challenge %>
+  <%= form_for [@organizer,@challenge], html: { class: "dbl-col" } do |f| %>
+    <% @challenge.errors.full_messages.each do |error| %>
+      <p><%= error %></p>
+    <% end %>
 
-      <%= f.label :tagline %>
-      <%= f.text_field :tagline %>
+    <fieldset>
+      <div class="twin-container">
+        <div class="twin-field">
+          <%= f.label :challenge, 'Challenge Title' %>
+          <%= f.text_field :challenge %>
+        </div>
+        <div class="twin-field">
+          <%= f.label :tagline %>
+          <%= f.text_field :tagline %>
+        </div>
+      </div>
 
       <div class="twin-container">
         <div class="twin-field">
@@ -18,14 +27,24 @@
         </div>
       </div>
 
-      <label>Image</label>
-      <div class="upload">
-        <%= concept(Image::Cell,challenge,klass: 'img-thumb') %>
-        <%= f.file_field :image_file, class: 'file-upload' %>
-        <% if @challenge.image_file.present? %>
-          <%= link_to 'Delete', challenge_remove_image_path(@challenge) %>
-        <% end %>
-        <span>Your image will be cropped if necessary. 5MB limit</span>
+      <div class="twin-container">
+        <div class="twin-field">
+          <label>Image</label>
+          <div class="upload">
+            <%= concept(Image::Cell,challenge,klass: 'img-thumb') %>
+            <%= f.file_field :image_file, class: 'file-upload' %>
+            <% if @challenge.image_file.present? %>
+              <%= link_to 'Delete', challenge_remove_image_path(@challenge) %>
+            <% end %>
+            <span>Your image will be cropped if necessary. 5MB limit</span>
+          </div>
+        </div>
+        <div class="twin-field">
+          <label>Answer file</label>
+          <div class="upload">
+            <input class="file-upload" type="file" accept="all">
+          </div>
+        </div>
       </div>
       <label>Host</label>
       <input type='text' value='<%= @challenge.organizer.organizer %>' disabled>
@@ -33,22 +52,98 @@
 
     <%= f.hidden_field :organizer_id %>
 
-    <fieldset>
-      <h4>Challenge Rounds</h4>
-      <div id='rounds'>
-        <%= f.fields_for :challenge_rounds do |challenge_round| %>
-          <%= render 'challenges/form/challenge_round_fields', f: challenge_round %>
-        <% end %>
-        <div class='links'>
-          <%= link_to_add_association '+ Challenge Round',
-                f,
-                :challenge_rounds,
-                html_options = {
-                  partial: 'challenges/form/challenge_round_fields' } %>
-        </div>
+    <div class="twin-container">
+      <div class="twin-field">
+        <label>Challenge Client Name</label>
+        <%= f.text_field :challenge_client_name %>
+      </div>
+      <div class="twin-field">
+        <label>Grader Identifier</label>
+        <%= f.text_field :grader_identifier %>
+      </div>
+    </div>
+
+    <div class="twin-container">
+      <div class="twin-field">
+        <fieldset class="checkbox">
+          <div>
+            <%= f.check_box :require_registration, {}, "true", "false" %>
+            <label for="">Registration required?</label>
+          </div>
+          <div>
+            <%= f.check_box :media_on_leaderboard, {}, "true", "false" %>
+            <label for="">Media on leaderboard?</label>
+          </div>
+          <div>
+            <%= f.check_box :show_leaderboard, {}, "true", "false" %>
+            <label for="">Show leaderboard?</label>
+          </div>
+        </fieldset>
+      </div>
+      <div class="twin-field">
+        <fieldset class="checkbox">
+          <div>
+            <%= f.check_box :submissions_page, {}, "true", "false" %>
+            <label for="">Submissions Details Visible?</label>
+          </div>
+          <div>
+            <%= f.check_box :online_submissions, {}, "true", "false" %>
+            <label for="">Online Submissions Permitted?</label>
+          </div>
+          <div>
+            <%= f.check_box :grader_logs, {}, "true", "false" %>
+            <label for="">Grader Logs Visible?</label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+
+    <div class="twin-container">
+      <div class="twin-field">
+        <label>Highlight rankings</label>
+        <%= f.text_field :ranking_highlight %>
+      </div>
+      <div class="twin-field">
+        <label>Ranking window (hours)</label>
+        <%= f.text_field :ranking_window %>
+      </div>
+    </div>
+
+    <div class="twin-container">
+      <div class="twin-field">
+        <label>Primary score title</label>
+        <%= f.text_field :score_title %>
+      </div>
+      <div class="twin-field">
+        <label>Sort order</label>
+        <%= f.select :primary_sort_order, enum_option_pairs(Challenge, :primary_sort_order), include_blank: false %>
+      </div>
+    </div>
+    <div class="twin-container">
+      <div class="twin-field">
+        <label>Secondary score title</label>
+        <%= f.text_field :score_secondary_title %>
+      </div>
+      <div class="twin-field">
+        <label>Sort order</label>
+        <%= f.select :secondary_sort_order, enum_option_pairs(Challenge, :secondary_sort_order), include_blank: false %>
+      </div>
+    </div>
+
+    <fieldset class="checkbox">
+      <div>
+        <%= f.check_box :private_challenge, {}, "true", "false" %>
+        <label for="">Private challenge</label>
       </div>
     </fieldset>
 
-    <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>
-<% end %>
+
+
+    <%= render partial: 'challenges/form/invitations_table',
+            locals: { challenge: @challenge, f: f } %>
+
+    <%= render partial: 'challenges/form/submit_buttons',
+          locals: { f: f } %>
+  <% end %>
 </div>

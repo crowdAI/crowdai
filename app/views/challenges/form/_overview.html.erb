@@ -5,7 +5,56 @@
     <%= markdown_editor do |m| %>
       <%= f.text_area :description_markdown, class: "txt-med" %>
     <% end %>
+
+    <label>Evaluation Criteria</label>
+    <%= markdown_editor do |m| %>
+      <%= f.text_area :evaluation_markdown, class: "txt-med" %>
+    <% end %>
+
+    <label>Rules</label>
+    <%= markdown_editor do |m| %>
+      <%= f.text_area :rules_markdown, class: "txt-med" %>
+    <% end %>
+
+    <label>Prizes</label>
+    <%= markdown_editor do |m| %>
+      <%= f.text_area :prizes_markdown, class: "txt-med" %>
+    <% end %>
+
+    <label>Resources</label>
+    <%= markdown_editor do |m| %>
+      <%= f.text_area :resources_markdown, class: "txt-med" %>
+    <% end %>
+
+    <label>Submission Instructions</label>
+    <%= markdown_editor do |m| %>
+      <%= f.text_area :submission_instructions_markdown, class: "txt-med" %>
+    <% end %>
+
+    <p>This license text is displayed on the submission upload page during and after the challenge</p>
+    <%= markdown_editor do |m| %>
+      <%= f.text_area :license_markdown, class: "txt-med", placeholder: "Please upload your submissions and include a detailed description of the methodology, techniques and insights leveraged with this submission. After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC)." %>
+    <% end %>
+
+    <label>Datasets License</label>
+    <%= markdown_editor do |m| %>
+      <%= f.text_area :dataset_description_markdown, class: "txt-med" %>
+    <% end %>
+    <%= render partial: 'challenges/form/clef_fields', locals: { f: f } %>
+
+    <fieldset>
+      <h4>Submission File Definitions</h4>
+      <div id='submission-file-definitions'>
+        <%= f.fields_for :submission_file_definitions do |file| %>
+          <%= render 'challenges/form/submission_file_definition_fields', f: file %>
+        <% end %>
+        <div class='links'>
+          <%= link_to_add_association '+ Submission File Definition', f, :submission_file_definitions,
+                                    html_options = { partial: 'challenges/form/submission_file_definition_fields' } %>
+        </div>
+      </div>
   </fieldset>
+
   <fieldset>
     <h4>Partner Logos</h4>
     <div id='partner-logos'>

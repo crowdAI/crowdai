@@ -51,21 +51,21 @@ class Leaderboard::Cell < Template::Cell
       return image_tag(
         "icon-change-none.svg",
         data: { toggle: 'tooltip'},
-        title: '0 change')
+        title: 'No change')
     end
 
     if entry.row_num > entry.previous_row_num
       return image_tag(
-        "icon-change-up.svg",
+        "icon-change-down.svg",
         data: { toggle: 'tooltip'},
-        title: "+#{entry.row_num - entry.previous_row_num} change")
+        title: "-#{entry.row_num - entry.previous_row_num} change, previous rank #{entry.previous_row_num}")
     end
 
     if entry.row_num < entry.previous_row_num && entry.previous_row_num != 0
       return image_tag(
-        "icon-change-down.svg",
+        "icon-change-up.svg",
         data: { toggle: 'tooltip'},
-        title: "-#{entry.previous_row_num - entry.row_num} change")
+        title: "+#{entry.previous_row_num - entry.row_num} change, previous rank #{entry.previous_row_num}")
     end
   end
 

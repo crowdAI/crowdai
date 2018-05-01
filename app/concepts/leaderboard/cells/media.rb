@@ -25,7 +25,7 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
     return nil if leaderboard_row.media_content_type.nil?
 
     content_type = leaderboard_row.media_content_type.split('/').first
-    content_type = nil if ['video','image'].exclude?(content_type)
+    content_type = nil if ['video','image','youtube'].exclude?(content_type)
     return content_type
   end
 
@@ -37,6 +37,8 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
       return video
     when 'image'
       return image
+    when 'youtube'
+      return youtube
     end
   end
 
@@ -54,6 +56,13 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
     else
       return video_tag(default_image_url, size: dimensions)
     end
+  end
+
+  def youtube
+    result = %(<iframe title="YouTube video player" width="800"
+                height="600" src="//www.youtube.com/embed/#{ leaderboard_row.media_large }"
+                frameborder="0" allowfullscreen></iframe>)
+    return result.html_safe
   end
 
   def public_url

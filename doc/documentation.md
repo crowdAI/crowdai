@@ -10,3 +10,7 @@
 - [Entity-Relationship Diagram](erd.pdf)
 - [Grader API](grader_api.md)
 - [Image uploads](image_uploads.md)
+
+## Contributing to Development
+
+- [Getting Started](technical/getting_started.md)

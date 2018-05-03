@@ -1,7 +1,7 @@
 <% if ['video','image','youtube'].include?(content_type) %>
   <%= link_to challenge_leaderboard_path(
         leaderboard_row.challenge_id,
-        leaderboard_row.submission_id) do %>
+        submission_id) do %>
     <%= media_asset %>
   <% end %>
 <% else %>

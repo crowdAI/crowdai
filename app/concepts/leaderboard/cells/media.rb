@@ -12,6 +12,10 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
     options[:size]
   end
 
+  def submission_id
+    options[:submission_id]
+  end
+
   def dimensions
     if size == :thumb
       return "100x75"

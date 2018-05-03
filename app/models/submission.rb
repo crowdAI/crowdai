@@ -46,6 +46,11 @@ class Submission < ApplicationRecord
       .perform_later(challenge_round_id: challenge_round_id)
   end
 
+  after_destroy do
+    CalculateLeaderboardJob
+      .perform_later(challenge_round_id: challenge_round_id)
+  end
+
   def ready?
     self.grading_status == :ready
   end

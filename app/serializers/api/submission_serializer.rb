@@ -22,7 +22,8 @@ class Api::SubmissionSerializer < ActiveModel::Serializer
     :clef_run_type,
     :clef_primary_run,
     :clef_other_info,
-    :clef_additional
+    :clef_additional,
+    :description
 
 
   def challenge_name

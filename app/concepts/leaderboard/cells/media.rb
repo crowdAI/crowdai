@@ -75,9 +75,20 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
       width = 800
       height = 600
     end
-    result = %(<iframe title="YouTube video player" width="#{width}"
-                height="#{height}" src="//www.youtube.com/embed/#{ leaderboard_row.media_large }"
-                frameborder="0" allowfullscreen></iframe>)
+    result = %Q[
+      <iframe title="crowdAI Video"
+        allowfullscreen="allowfullscreen"
+        mozallowfullscreen="mozallowfullscreen"
+        msallowfullscreen="msallowfullscreen"
+        oallowfullscreen="oallowfullscreen"
+        webkitallowfullscreen="webkitallowfullscreen"
+        width="#{width}"
+        height="#{height}"
+        src="//www.youtube.com/embed/#{leaderboard_row.media_large }"
+        frameborder="0"
+        allowfullscreen>
+      </iframe>
+      ]
     return result.html_safe
   end
 

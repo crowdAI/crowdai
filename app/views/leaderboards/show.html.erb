@@ -9,7 +9,8 @@
           locals: {
             challenge: @challenge,
             participant: @participant,
-            entry: @entry } %>
+            entry: @entry,
+            submission_id: @entry.submission_id } %>
 
     <%= render partial: 'leaderboards/show/share',
           locals: { submission: @submission }%>

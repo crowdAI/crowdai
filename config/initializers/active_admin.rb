@@ -238,7 +238,6 @@ ActiveAdmin.setup do |config|
   # To disable/customize for the :admin namespace:
   #
   config.namespace :admin do |admin|
-
        # Disable the links entirely
       admin.download_links = false
   end

@@ -20,7 +20,7 @@ class ArticlesController < ApplicationController
         .find(params[:article_section_id])
     else
       @article_section = @article.article_sections.first
-      if @article.notebook_url
+      if @article.notebook_url.present?
         @notebook_data = NotebookService.new(
           notebook_url: @article.notebook_url).call
       end

@@ -222,6 +222,21 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       }
     end
 
+    def valid_youtube_attributes
+      {
+        media_large: "94EPSjQH38Y",
+        media_thumbnail: "94EPSjQH38Y",
+        media_content_type: "video/youtube"
+      }
+    end
+
+    def invalid_youtube_attributes
+      {
+        media_large: "94EPSjQH38Y",
+        media_content_type: "video/youtube"
+      }
+    end
+
     context "with valid_attributes" do
       before do
         post '/api/external_graders/',

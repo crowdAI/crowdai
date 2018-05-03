@@ -125,6 +125,10 @@ class Api::ExternalGradersController < Api::BaseController
       if params[:grading_status].present?
         submission.submission_grades.create!(grading_params)
       end
+      if params[:description_markdown].present?
+        submission.description_markdown = params[:description_markdown]
+      end
+
       submission.post_challenge = post_challenge
       submission.save
       message = "Submission #{submission.id} updated"

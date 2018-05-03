@@ -42,8 +42,10 @@ class Submission < ApplicationRecord
   end
 
   after_save do
-    CalculateLeaderboardJob
-      .perform_later(challenge_round_id: challenge_round_id)
+    if self.grading_status_cd == 'graded'
+      CalculateLeaderboardJob
+        .perform_later(challenge_round_id: challenge_round_id)
+    end
   end
 
   after_destroy do

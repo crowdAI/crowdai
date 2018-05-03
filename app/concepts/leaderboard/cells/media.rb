@@ -67,29 +67,27 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
   end
 
   def youtube
-    if size == :thumb
-      width = 100
-      height = 75
+    if size == :thumb && leaderboard_row.media_thumbnail.present?
+      url = "https://img.youtube.com/vi/#{leaderboard_row.media_thumbnail}/0.jpg"
+      return image_tag(url, size: "100x75")
     end
-    if size == :large
-      width = 800
-      height = 600
-    end
-    result = %Q[
-      <iframe title="crowdAI Video"
-        allowfullscreen="allowfullscreen"
-        mozallowfullscreen="mozallowfullscreen"
-        msallowfullscreen="msallowfullscreen"
-        oallowfullscreen="oallowfullscreen"
-        webkitallowfullscreen="webkitallowfullscreen"
-        width="#{width}"
-        height="#{height}"
-        src="//www.youtube.com/embed/#{leaderboard_row.media_large }"
-        frameborder="0"
-        allowfullscreen>
-      </iframe>
+    if size == :large && leaderboard_row.media_large.present?
+      result = %Q[
+        <iframe title="crowdAI Video"
+          allowfullscreen="allowfullscreen"
+          mozallowfullscreen="mozallowfullscreen"
+          msallowfullscreen="msallowfullscreen"
+          oallowfullscreen="oallowfullscreen"
+          webkitallowfullscreen="webkitallowfullscreen"
+          width="800"
+          height="600"
+          src="//www.youtube.com/embed/#{leaderboard_row.media_large }"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
       ]
-    return result.html_safe
+      return result.html_safe
+    end
   end
 
   def public_url

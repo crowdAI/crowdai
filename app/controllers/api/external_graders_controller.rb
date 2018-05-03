@@ -41,17 +41,18 @@ class Api::ExternalGradersController < Api::BaseController
         params[:meta] = clean_meta(params[:meta])
       end
       submission = Submission
-                     .create!(
-                       participant_id: participant.id,
-                       challenge_id: challenge.id,
-                       challenge_round_id: challenge_round_id,
-                       description_markdown: params[:comment],
-                       post_challenge: post_challenge(challenge,params),
-                       meta: params[:meta])
+        .create!(
+          participant_id: participant.id,
+          challenge_id: challenge.id,
+          challenge_round_id: challenge_round_id,
+          description_markdown: params[:description_markdown],
+          post_challenge: post_challenge(challenge,params),
+          meta: params[:meta])
       if media_fields_present?
-        submission.update({media_large: params[:media_large],
-                           media_thumbnail: params[:media_thumbnail],
-                           media_content_type: params[:media_content_type]})
+        submission.update(
+          media_large: params[:media_large],
+          media_thumbnail: params[:media_thumbnail],
+          media_content_type: params[:media_content_type])
       end
       submission.submission_grades.create!(grading_params)
       submission_id = submission.id
@@ -85,10 +86,11 @@ class Api::ExternalGradersController < Api::BaseController
       challenge = submission.challenge
       submissions_remaining, reset_date = challenge.submissions_remaining(submission.participant_id)
       if media_fields_present?
-        submission.update({media_large: params[:media_large],
-                           media_thumbnail: params[:media_thumbnail],
-                           media_content_type: params[:media_content_type]})
-        unless Rails.env.test?
+        submission.update(
+          media_large: params[:media_large],
+          media_thumbnail: params[:media_thumbnail],
+          media_content_type: params[:media_content_type])
+        unless media_content_type == 'video/youtube' || Rails.env.test?
           S3Service.new(params[:media_large]).make_public_read
           S3Service.new(params[:media_thumbnail]).make_public_read
         end

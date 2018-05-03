@@ -7,9 +7,14 @@ class NotebookService
   end
 
   def call
-    response = HTTParty.get(@notebook_url, verify: false)
-    json = response.body
-    return json
+    begin
+      response = HTTParty.get(@notebook_url, verify: false)
+      json = response.body
+    rescue
+      json = nil
+    ensure
+      return json
+    end
   end
 
 end

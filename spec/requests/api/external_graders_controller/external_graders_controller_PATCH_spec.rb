@@ -155,6 +155,21 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       }
     end
 
+    def valid_youtube_attributes
+      {
+        media_large: "94EPSjQH38Y",
+        media_thumbnail: "94EPSjQH38Y",
+        media_content_type: "video/youtube"
+      }
+    end
+
+    def invalid_youtube_attributes
+      {
+        media_large: "94EPSjQH38Y",
+        media_content_type: "video/youtube"
+      }
+    end
+
     context "with valid_media_attributes" do
       before do
         patch "/api/external_graders/#{submission1.id}",
@@ -294,6 +309,22 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(response).to have_http_status(400) }
       it { expect(json(response.body)[:message]).to eq("Couldn't find Submission with 'id'=999999") }
     end
+
+    context "with valid_youtube_attributes" do
+      before do
+        patch "/api/external_graders/#{submission1.id}",
+          params: valid_youtube_attributes,
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+        submission1.reload
+      end
+      it { expect(response).to have_http_status(202) }
+      it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
+      it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
+      it { expect(submission1.media_large).to eq(valid_youtube_attributes[:media_large]) }
+      it { expect(submission1.media_thumbnail).to eq(valid_youtube_attributes[:media_thumbnail]) }
+      it { expect(submission1.media_content_type).to eq('video/youtube') }
+    end
+
   end
 
   Timecop.return

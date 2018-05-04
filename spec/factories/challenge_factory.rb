@@ -15,6 +15,7 @@ FactoryBot.define do
     primary_sort_order_cd 'ascending'
     secondary_sort_order_cd 'descending'
     license_markdown '## This is a license'
+    submissions_page true
 
     trait :running do
       status :running

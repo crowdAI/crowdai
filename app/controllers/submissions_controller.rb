@@ -87,6 +87,7 @@ class SubmissionsController < ApplicationController
   private
     def set_submission
       @submission = Submission.find(params[:id])
+      authorize @submission
     end
 
     def set_challenge

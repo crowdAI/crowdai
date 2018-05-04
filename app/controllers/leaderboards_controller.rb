@@ -14,8 +14,8 @@ class LeaderboardsController < ApplicationController
   end
 
   def index
-    if @challenge.show_leaderboard == false
-      redirect_to '/'
+    if @challenge.show_leaderboard == false && !(current_participant.admin? || @challenge.organizer_id == current_participant.organizer_id)
+      redirect_to '/', notice: "You don't have permission for this action."
     end
     @current_round = current_round
     if @challenge.completed?

@@ -10,9 +10,6 @@ class SubmissionsController < ApplicationController
   respond_to :html, :js
 
   def index
-    if !@challenge.submissions_page.present? && !(current_participant.admin? || @challenge.organizer_id == current_participant.organizer_id)
-      redirect_to '/', notice: "You don't have permission for this action."
-    end
     @submissions = @challenge
       .submissions
       .order('created_at desc')
@@ -22,16 +19,12 @@ class SubmissionsController < ApplicationController
   end
 
   def show
-    if !@challenge.completed? && (@submission.participant_id != current_participant.id && !current_participant.admin?)
-      redirect_to '/', notice: "You don't have permission for this action."
-    else
-      @presenter = SubmissionDetailPresenter.new(
-        submission: @submission,
-        challenge: @challenge,
-        view_context: view_context
-      )
-      render :show
-    end
+    @presenter = SubmissionDetailPresenter.new(
+      submission: @submission,
+      challenge: @challenge,
+      view_context: view_context
+    )
+    render :show
   end
 
   def new

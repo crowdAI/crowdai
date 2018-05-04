@@ -83,11 +83,9 @@ Rails.application.routes.draw do
     resources :winners, only: [:index]
     resources :submissions
     resources :dynamic_contents, only: [:index]
-    resources :leaderboards, only: [:index, :show] do
+    resources :leaderboards, only: :index do
       get :submission_detail
     end
-    get 'leaderboards/video_modal' => 'leaderboards#video_modal', as: :video_modal
-    #get 'leaderboards/submission_detail' => 'leaderboards#submission_detail', as: :submission_detail
     resources :topics, except: [:show]
     get :regrade
     get :remove_image

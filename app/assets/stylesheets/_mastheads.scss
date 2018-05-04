@@ -84,7 +84,8 @@
   }
 
   .user-link {
-    display: block;
+    display: flex;
+    align-items: center;
     margin-top: 13px;
 
     @media screen and (max-width: 800px) {
@@ -103,7 +104,7 @@
   .pic-challenge {
     width: 300px;
     height: 300px;
-    
+
     @media screen and (max-width: 1024px) {
       width: 200px;
       height: 200px;
@@ -135,13 +136,13 @@
       .like {
         @media screen and (max-width: 360px) {
           display: none;
-        } 
+        }
       }
 
       .share {
         @media screen and (max-width: 800px) {
           display: none;
-        } 
+        }
       }
     }
   }
@@ -149,7 +150,7 @@
   .pic-user {
     width: 140px;
     height: 140px;
-    
+
     @media screen and (max-width: 800px) {
       width: 120px;
       height: 120px;
@@ -195,7 +196,7 @@
   .pic-tutorial {
     width: 200px;
     height: 200px;
-    
+
     @media screen and (max-width: 1024px) {
       width: 200px;
       height: 200px;

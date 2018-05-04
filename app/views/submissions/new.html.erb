@@ -1,19 +1,20 @@
-<%= render partial: 'challenges/sidebar' %>
-<%= render partial: 'challenges/header', challenge: @challenge %>
+<div class="content">
+	<div class="masthead">
+		<div class="row">
+			<div class="info">
+				<h6><%= @challenge.challenge %></h6>
+				<h2>Create Submission</h2>
+			</div>
+		</div>
+	</div>
 
-<div class='page-content-container'>
-  <p class="lead">
-    <%= @challenge.submission_license %>
-  </p>
-
-  <p class="lead"><b>
-    By making your submission you indicate your agreement with these terms.
-  </b></p>
-
-  <% if @submissions_remaining < 1 %>
-    <h2>You may submit a maximum of <%= pluralize(@challenge.daily_submissions,'entry') %> each 24 hours.</h2>
+  <% if @submissions_remaining == 0 %>
+    <%= render partial: 'submissions/new/no_submissions' %>
   <% else %>
-    <p class="text-primary"><b>You have <%= @submissions_remaining %> submissions remaining today (in a 24 hour window). </b></p>
-    <%= render 'form' %>
+    <% if @challenge.organizer.clef? %>
+      <%= render partial: 'submissions/new/clef_form' %>
+    <% else %>
+      <%#= render partial: 'submissions/new/form' %>
+    <% end %>
   <% end %>
 </div>

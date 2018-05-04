@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :article, class: Article do
     article { FFaker::Lorem.unique.sentence(3) }
     summary FFaker::LoremFR.paragraphs(4).join(' ')
@@ -7,6 +7,7 @@ FactoryGirl.define do
     published true
     vote_count 0
     view_count 0
+    article_type 'markdown'
 
     trait :with_sections do
       article_sections { [ build(:article_section, seq: 0),
@@ -30,6 +31,10 @@ FactoryGirl.define do
 
     trait :invalid do
       article nil
+    end
+
+    trait :notebook do
+      notebook_url 'https://gitlab.crowdai.org/crowdai-dojo/encoding-cat-vars-in-practice'
     end
 
   end

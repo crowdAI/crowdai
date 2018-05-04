@@ -15,24 +15,27 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    resources :external_graders, only: [:create, :show, :update] do
-      get :challenge_config, on: :collection
-      get :presign, on: :member
-      get :submission_info, on: :member
+    resources :external_graders,
+      only: [:create, :show, :update] do
+        get :challenge_config, on: :collection
+        get :presign, on: :member
+        get :submission_info, on: :member
     end
-    get 'mailchimps/webhook' => 'mailchimps#verify', as: :verify_webhook
-    post 'mailchimps/webhook' => 'mailchimps#webhook', as: :update_webhook
+    get 'mailchimps/webhook' => 'mailchimps#verify',
+      as: :verify_webhook
+    post 'mailchimps/webhook' => 'mailchimps#webhook',
+      as: :update_webhook
     resources :clef_tasks, only: [:show]
     get 'user', to: 'oauth_credentials#show'
-    resources :challenges, only: [:index, :show]
+    resources :challenges, only: [:index, :show] do
+      resources :submissions, only: :index
+    end
+    resources :participants, only: :show
+    resources :submissions, only: :show
   end
 
   namespace :components do
-    resources :notifications, only: [:index] do
-      post :mark_as_touched, on: :member
-      post :mark_all_as_read, on: :collection
-      post :mark_as_read, on: :member
-    end
+    resources :notifications, only: [:index]
   end
 
   devise_for :participants
@@ -56,6 +59,9 @@ Rails.application.routes.draw do
     get :clef_email
     resources :clef_tasks
   end
+  resources :blogs do
+    resources :votes, only: [:create, :destroy]
+  end
 
   resources :clef_tasks do
     resources :task_dataset_files
@@ -75,17 +81,11 @@ Rails.application.routes.draw do
     end
     resources :events
     resources :winners, only: [:index]
-    resources :submissions do
-      get :grade
-      get :hub
-      get :execute
-    end
+    resources :submissions
     resources :dynamic_contents, only: [:index]
-    resources :leaderboards, only: [:index, :show] do
+    resources :leaderboards, only: :index do
       get :submission_detail
     end
-    get 'leaderboards/video_modal' => 'leaderboards#video_modal', as: :video_modal
-    #get 'leaderboards/submission_detail' => 'leaderboards#submission_detail', as: :submission_detail
     resources :topics, except: [:show]
     get :regrade
     get :remove_image

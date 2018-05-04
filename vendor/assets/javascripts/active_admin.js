@@ -1,1 +1,1 @@
-//= require active_admin/base
+//= require crowdai_admin/base

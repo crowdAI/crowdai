@@ -5,7 +5,7 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    @record.published || edit?
   end
 
   def edit?
@@ -30,6 +30,10 @@ class ArticlePolicy < ApplicationPolicy
 
   def remove_image?
     edit?
+  end
+
+  def activate?
+    participant && participant.admin?
   end
 
   class Scope

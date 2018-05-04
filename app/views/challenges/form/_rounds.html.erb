@@ -1,0 +1,23 @@
+<div class="row">
+  <%= form_for [@organizer,@challenge], validate: true, html: { class: "sgl-col", multipart: true } do |f| %>
+  
+
+    <fieldset>
+      <h4>Challenge Rounds</h4>
+      <div id='rounds'>
+        <%= f.fields_for :challenge_rounds do |challenge_round| %>
+          <%= render 'challenges/form/challenge_round_fields', f: challenge_round %>
+        <% end %>
+        <div class='links'>
+          <%= link_to_add_association '+ Challenge Round',
+                f,
+                :challenge_rounds,
+                html_options = {
+                  partial: 'challenges/form/challenge_round_fields' } %>
+        </div>
+      </div>
+    </fieldset>
+
+    <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>
+<% end %>
+</div>

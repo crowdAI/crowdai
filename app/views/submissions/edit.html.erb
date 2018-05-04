@@ -1,6 +1,37 @@
-<h1>Editing Submission</h1>
+<div class="content">
+	<div class="masthead">
+		<div class="row">
+			<div class="info">
+				<h6><%= @challenge.challenge %></h6>
+				<h2>Update Submission</h2>
+			</div>
+		</div>
+	</div>
 
-<%= render 'form' %>
+  <div class="row">
+  <%= form_for [@challenge, @submission], html: { class: "sgl-col" } do |f| %>
+    <fieldset>
+      <div class="twin-container">
+        <div class="twin-field">
+          <%= f.label :score %>
+          <%= f.text_field :score %>
+        </div>
+        <div class="twin-field">
+          <%= f.label :score_secondary %>
+          <%= f.text_field :score_secondary %>
+        </div>
+      </div>
+      <%= f.label :grading_message %>
+      <%= f.text_field :grading_message %>
+    </fieldset>
 
-<%= link_to 'Show', challenge_submission_path(@challenge,@submission) %> 
-<%= link_to 'Back',challenge_path(@challenge)  %>
+    <div class="button-group">
+      <%= f.button "Update Submission", class: 'btn btn-primary' %>
+      <%= button_to challenges_path, class: "btn btn-secondary" do %>
+        Cancel
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+
+</div>

@@ -1,16 +1,14 @@
 class LeaderboardsController < ApplicationController
-  before_action :authenticate_participant!, except: [:index, :show, :video_modal]
-  before_action :set_leaderboard, only: [:show]
+  before_action :authenticate_participant!,
+    except: [:index, :video_modal]
   before_action :set_challenge
   respond_to :js, :html
   layout :set_layout
 
-  def show
-    @participant = @entry.participant
-    @submission = Submission.find(@entry.id)
-  end
-
   def index
+    if @challenge.show_leaderboard == false && !(current_participant.admin? || @challenge.organizer_id == current_participant.organizer_id)
+      redirect_to '/', notice: "You don't have permission for this action."
+    end
     @current_round = current_round
     if @challenge.completed?
       if params[:post_challenge] == 'on'
@@ -21,23 +19,22 @@ class LeaderboardsController < ApplicationController
     end
     if @post_challenge == 'on'
       @leaderboards = @challenge
-                        .ongoing_leaderboards
-                        .where(challenge_round_id: current_round.id)
-                        .page(params[:page])
-                        .per(10)
+        .ongoing_leaderboards
+        .where(challenge_round_id: current_round.id)
+        .page(params[:page])
+        .per(10)
     else
       @leaderboards = @challenge
-                        .leaderboards
-                        .where(challenge_round_id: current_round.id)
-                        .page(params[:page])
-                        .per(10)
+        .leaderboards
+        .where(challenge_round_id: current_round.id)
+        .page(params[:page])
+        .per(10)
     end
 
     if current_participant && (current_participant.admin? || @challenge.organizer_id == current_participant.organizer_id)
       @participant_submissions = ParticipantSubmission.where(challenge_id: @challenge.id)
     end
   end
-
 
   def video_modal
     @leaderboard = Leaderboard.where(submission_id: params[:submission_id]).first
@@ -51,19 +48,19 @@ class LeaderboardsController < ApplicationController
     leaderboard = Leaderboard.find(params[:leaderboard_id])
     @leaderboard = @challenge.leaderboards
     @submissions = Submission
-                     .where(
-                        participant_id: params[:participant_id],
-                        challenge_id: params[:challenge_id],
-                        challenge_round_id: leaderboard.challenge_round_id)
-                     .order(created_at: :desc)
-    render js: concept(Leaderboard::Cell,@leaderboard, challenge: @challenge, submissions: @submissions).(:insert_submissions)
+      .where(
+        participant_id: params[:participant_id],
+        challenge_id: params[:challenge_id],
+        challenge_round_id: leaderboard.challenge_round_id)
+      .order(created_at: :desc)
+    render js: concept(
+      Leaderboard::Cell,
+      @leaderboard,
+      challenge: @challenge,
+      submissions: @submissions).(:insert_submissions)
   end
 
   private
-  def set_leaderboard
-    @entry = Leaderboard.find(params[:id])
-  end
-
   def set_challenge
     @challenge = Challenge.friendly.find(params[:challenge_id])
   end

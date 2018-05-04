@@ -14,14 +14,9 @@
     <div class="row">
       <ul class='tabs'>
         <li data-tab='tab-details' class='active'>Details</li>
-        <li data-tab='tab-type'>Type</li>
+        <li data-tab='tab-type'>Rounds</li>
         <li data-tab='tab-overview'>Overview</li>
-        <li data-tab='tab-evaluation'>Evaluation</li>
-        <li data-tab='tab-rules'>Rules</li>
-        <li data-tab='tab-prizes'>Prizes</li>
-        <li data-tab='tab-resources'>Resources</li>
-        <li data-tab='tab-submission'>Submission</li>
-        <li data-tab='tab-dataset'>Dataset</li>
+        <li data-tab='tab-submissions'>Submissions</li>
         <li data-tab='tab-winner'>Winner</li>
         <% if current_participant.admin? %>
           <li data-tab='tab-dynamic'>Dynamic</li>
@@ -34,29 +29,15 @@
       <%= render partial: 'challenges/form/details', locals: { challenge: challenge } %>
     </div>
     <div id='tab-type' class='tab-content'>
-      <%= render partial: 'challenges/form/type', locals: { challenge: challenge } %>
+      <%= render partial: 'challenges/form/rounds', locals: { challenge: challenge } %>
     </div>
     <div id='tab-overview' class='tab-content'>
       <%= render partial: 'challenges/form/overview', locals: { challenge: challenge } %>
     </div>
-    <div id='tab-evaluation' class='tab-content'>
-      <%= render partial: 'challenges/form/evaluation', locals: { challenge: challenge } %>
+    <div id='tab-submissions' class='tab-content'>
+      <%= render partial: 'challenges/form/submissions', locals: { challenge: challenge } %>
     </div>
-    <div id='tab-rules' class='tab-content'>
-      <%= render partial: 'challenges/form/rules', locals: { challenge: challenge } %>
-    </div>
-    <div id='tab-prizes' class='tab-content'>
-      <%= render partial: 'challenges/form/prizes', locals: { challenge: challenge } %>
-    </div>
-    <div id='tab-resources' class='tab-content'>
-      <%= render partial: 'challenges/form/resources', locals: { challenge: challenge } %>
-    </div>
-    <div id='tab-submission' class='tab-content'>
-      <%= render partial: 'challenges/form/submission', locals: { challenge: challenge } %>
-    </div>
-    <div id='tab-dataset' class='tab-content'>
-      <%= render partial: 'challenges/form/dataset', locals: { challenge: challenge } %>
-    </div>
+
     <div id='tab-winner' class='tab-content'>
       <%= render partial: 'challenges/form/winner', locals: { challenge: challenge } %>
     </div>

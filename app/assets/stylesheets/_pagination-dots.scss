@@ -1,0 +1,19 @@
+/* Pagination dots */
+
+.pagination {
+
+}
+
+.pagination a {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid $color-grey-40;
+  border-radius: 50%;
+  margin-left: 8px;
+}
+
+.pagination a.active {
+  background-color: $color-accent;
+  border: none;
+}

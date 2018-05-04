@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :task_dataset_file, class: TaskDatasetFile do
     clef_task
     title "first_file"

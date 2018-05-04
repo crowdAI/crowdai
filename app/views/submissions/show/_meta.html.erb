@@ -1,0 +1,6 @@
+<% if submission.meta.present? &&  submission.meta["public"].present? %>
+  <%= content_tag :div,
+    nil,
+    id: "meta",
+    data: { meta: submission.meta["public"] } %>
+<% end %>

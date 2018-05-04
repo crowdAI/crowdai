@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :organizer, class: Organizer do
     organizer  { FFaker::Lorem.sentence(3) }
     address FFaker::Lorem.sentence(3)

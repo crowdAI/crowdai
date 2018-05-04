@@ -1,11 +1,7 @@
 <div class="row">
   <%= form_for [@organizer,@challenge], validate: true, html: { class: "dbl-col" } do |f| %>
   <fieldset>
-    <label>Datasets License</label>
-    <%= markdown_editor do |m| %>
-      <%= f.text_area :dataset_description_markdown, class: "txt-med" %>
-    <% end %>
-    <%= render partial: 'challenges/form/clef_fields', locals: { f: f } %>
+  
     <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>
   </fieldset>
   <% end %>

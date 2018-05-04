@@ -16,8 +16,12 @@ gem 'devise', '~> 4.4.1'
 gem 'authtrail'
 gem 'pundit'
 gem 'activeadmin'
-gem 'doorkeeper', git: 'https://github.com/doorkeeper-gem/doorkeeper', :branch => 'master'
-
+gem 'crowdai_admin'
+#gem 'crowdai_admin',
+#      path: '/Users/sean/src/crowdai/crowdai_admin'
+gem 'doorkeeper',
+      git: 'https://github.com/doorkeeper-gem/doorkeeper',
+      :branch => 'master'
 
 # monitoring
 gem 'mini_magick'
@@ -25,13 +29,14 @@ gem 'rollbar'
 gem 'oj', '~> 3.0'
 gem 'lograge'
 
-
 # model
 gem 'simple_enum'
 gem 'scenic', '~> 1.3'
 gem 'validate_url'
 gem 'paper_trail'
 gem 'valid_email2'
+gem "active_model_serializers"
+
 
 # forms / data manipulation / charts
 gem 'cocoon'
@@ -42,6 +47,9 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'client_side_validations'
 gem 'country_select'
 gem 'time_splitter'
+gem 'codemirror-rails'
+gem 'rails-html-sanitizer', '~> 1.0.4'
+gem 'meta-tags'
 
 # performance
 gem 'fast_blank'
@@ -151,7 +159,6 @@ group :development, :test do
   gem 'table_print'
   gem 'rspec-rails', '~> 3.6'
   gem 'rspec-kickstarter'
-  gem 'to_factory'
   gem 'traceroute'
   gem 'parallel_tests'
   gem 'oauth2'
@@ -159,8 +166,7 @@ end
 
 group :test do
   # gem 'rspec-sidekiq'
-  gem 'codecov', :require => false
-  gem "factory_girl_rails"
+  gem "factory_bot_rails"
   gem 'simplecov', :require => false
   gem 'capybara'
   gem 'capybara-email'

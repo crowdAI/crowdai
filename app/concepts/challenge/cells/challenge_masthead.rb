@@ -34,7 +34,18 @@ class Challenge::Cell::ChallengeMasthead < Challenge::Cell
         ending_time
       end
     else
-      challenge.status.capitalize
+      challenge.status.to_s.humanize
+    end
+  end
+
+  def organizer_view
+    case challenge.slug
+    when 'nips-2018-ai-for-prosthetics-challenge'
+      render 'nips-2018-ai-for-prosthetics-challenge'
+    when 'nips-2018-adversarial-vision-challenge'
+      render 'nips-2018-adversarial-vision-challenge'
+    else
+      render 'organizer_view'
     end
   end
 

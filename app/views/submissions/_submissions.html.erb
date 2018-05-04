@@ -4,7 +4,9 @@
     <td class="participant">
       <div class="user-link">
         <div class='text-badge'>
-          <%= link_to submission.participant.name, participant_path(submission.participant.slug), target: :_blank %>
+          <%= link_to submission.participant.name,
+                participant_path(submission.participant.slug),
+                target: :_blank %>
           <% if submission.participant.admin? %>
             <span class='badge badge-accent'>Admin</span>
           <% end %>
@@ -14,26 +16,40 @@
         </div>
       </div>
     </td>
-    <td><%= submission.grading_status_cd %></td>
+    <td class="grading_status_cd">
+        <%= link_to challenge_submission_path(
+              submission.challenge_id,submission) do %>
+                <i class="fa fa-square <%= submission.grading_status_cd %>" aria-hidden="true"></i>
+                <strong class="<%= submission.grading_status_cd %>"><%= submission.grading_status_cd %></strong>
+              <% end %>
+    </td>
     <td>
       <% if submission.grading_message.present? %>
         <%= submission.grading_message %>
       <% else %>
         <% if submission.grading_status_cd == 'graded' %>
           <% if @challenge.secondary_sort_order_cd == 'not_used' %>
-            <%= "#{@challenge.score_title}: #{number_with_precision(submission.score)}" %>
+            <%= "#{@challenge.score_title}: #{submission.score_display}" %>
           <% else %>
-            <%= "#{@challenge.score_title}: #{submission.score}, #{@challenge.score_secondary_title}: #{number_with_precision(submission.score_secondary)}" %>
+            <%= "#{@challenge.score_title}: #{submission.score}, #{@challenge.score_secondary_title}: #{submission.score_secondary_display}" %>
           <% end %>
         <% end %>
       <% end %>
     </td>
-    <td class='pull-right'><%= submission.created_at %></td>
+    <td class='submission_date'><%= submission.created_at %></td>
     <td class='action'>
-      <% if submission.challenge.media_on_leaderboard %>
-        <%= link_to challenge_submission_path(submission.challenge_id,submission),
+      <% if submission.challenge.submissions_page %>
+        <%= link_to challenge_submission_path(
+              submission.challenge_id,submission),
               class: 'btn btn-secondary' do %>
                 <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+              <% end %>
+      <% end %>
+    </td>
+    <td class='action'>
+      <% if policy(submission).update? %>
+        <%= link_to edit_challenge_submission_path(@challenge,submission) do %>
+          <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
         <% end %>
       <% end %>
     </td>

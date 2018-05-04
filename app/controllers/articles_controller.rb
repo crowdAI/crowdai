@@ -1,10 +1,14 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_participant!, except: [:show,:index]
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_participant!,
+    except: [:show,:index]
+  before_action :set_article,
+    only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized
 
   def index
-    @articles = policy_scope(Article).page(params[:page]).per(10)
+    @articles = policy_scope(Article)
+      .page(params[:page])
+      .per(10)
     authorize @articles
   end
 
@@ -12,9 +16,14 @@ class ArticlesController < ApplicationController
   def show
     @article.record_page_view
     if params[:article_section_id]
-      @article_section = ArticleSection.find(params[:article_section_id])
+      @article_section = ArticleSection
+        .find(params[:article_section_id])
     else
       @article_section = @article.article_sections.first
+      if @article.notebook_url.present?
+        @notebook_data = NotebookService.new(
+          notebook_url: @article.notebook_url).call
+      end
     end
   end
 
@@ -24,21 +33,18 @@ class ArticlesController < ApplicationController
     authorize @article
   end
 
-
   def edit
   end
 
-
   def create
-    if current_participant
-      @article = current_participant.articles.new(article_params)
-      authorize @article
-    else
-      raise Pundit::NotAuthorizedError
-    end
+    @article = current_participant.articles.new(
+      article_params.merge(participant_id: current_participant.id))
+    authorize @article
 
     if @article.save
-      @article.article_sections.create!(section: 'Introduction')
+      unless @article.notebook_url.present?
+        @article.article_sections.create!(section: 'Introduction')
+      end
       redirect_to @article
     else
       render :new
@@ -74,23 +80,26 @@ class ArticlesController < ApplicationController
       authorize @article
     end
 
-
     def article_params
-      params.require(:article)
-            .permit(:article,
-                    :published,
-                    :category,
-                    :summary,
-                    :participant_id,
-                    :image_file,
-                    article_sections_attributes: [:id,
-                                                  :article_id,
-                                                  :seq,
-                                                  :icon,
-                                                  :section,
-                                                  :description_markdown ],
-                    image_attributes: [:id,
-                                       :image,
-                                       :_destroy ])
+      params
+        .require(:article)
+        .permit(
+          :article,
+          :published,
+          :category,
+          :summary,
+          :image_file,
+          :notebook_url,
+          article_sections_attributes: [
+            :id,
+            :article_id,
+            :seq,
+            :icon,
+            :section,
+            :description_markdown ],
+          image_attributes: [
+            :id,
+            :image,
+            :_destroy ])
     end
 end

@@ -1,4 +1,4 @@
-class Leaderboard < ApplicationRecord
+class Leaderboard < SqlView
   self.primary_key = :id
   after_initialize :readonly!
 

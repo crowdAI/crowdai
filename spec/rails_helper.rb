@@ -12,10 +12,6 @@ require 'support/controller_helpers'
 require 'features/support/feature_spec_helpers'
 require 'support/helpers/header_helpers'
 require 'simplecov'
-require 'codecov'
-
-SimpleCov.start
-SimpleCov.formatter = SimpleCov::Formatter::Codecov
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -28,11 +24,9 @@ Capybara::Screenshot.register_driver(:chrome) do |driver, path|
   driver.browser.save_screenshot("#{Rails.root}/tmp/capybara/#{filename}")
 end
 Capybara::Webkit.configure do |config|
-  config.allow_url("cdn.mathjax.org")
-  config.allow_url("www.gravatar.com")
-end
-
-Capybara::Webkit.configure do |config|
+  #config.allow_url("cdn.mathjax.org")
+  #config.allow_url("www.gravatar.com")
+  config.allow_url("use.fontawesome.com")
   config.allow_unknown_urls
   config.ignore_ssl_errors
 end
@@ -41,7 +35,7 @@ RSpec.configure do |config|
   Capybara.reset_sessions!
 
   #config.filter_run :focus => true
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.infer_spec_type_from_file_location!
 
   config.include Devise::Test::ControllerHelpers, type: :controller
@@ -69,6 +63,13 @@ RSpec.configure do |config|
       example.run
     end
   end
+
+  # Fixes Timecop’s issue (https://goo.gl/1tujRj)
+  #config.around(:each, freeze_time: true) do |example|
+  #  Timecop.freeze(Time.zone.now.change(nsec: 0))
+  #  example.run
+  #  Timecop.return
+  #end
 
   config.example_status_persistence_file_path = 'spec/examples.txt'
 end

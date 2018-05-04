@@ -5,7 +5,7 @@ RSpec.describe OrganizerApplicationsController, type: :controller do
   render_views
 
   let(:valid_attributes) {
-    FactoryGirl.attributes_for(:organizer_application)
+    FactoryBot.attributes_for(:organizer_application)
   }
 
   describe "POST #create" do

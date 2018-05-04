@@ -12,6 +12,10 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
     options[:size]
   end
 
+  def submission_id
+    options[:submission_id]
+  end
+
   def dimensions
     if size == :thumb
       return "100x75"
@@ -24,7 +28,11 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
   def content_type
     return nil if leaderboard_row.media_content_type.nil?
 
-    content_type = leaderboard_row.media_content_type.split('/').first
+    media = leaderboard_row.media_content_type.split('/')
+    content_type = media[0]
+    file_type = media[1]
+    return file_type if file_type == 'youtube'
+
     content_type = nil if ['video','image'].exclude?(content_type)
     return content_type
   end
@@ -37,6 +45,8 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
       return video
     when 'image'
       return image
+    when 'youtube'
+      return youtube
     end
   end
 
@@ -53,6 +63,30 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
       return video_tag(public_url, size: dimensions)
     else
       return video_tag(default_image_url, size: dimensions)
+    end
+  end
+
+  def youtube
+    if size == :thumb && leaderboard_row.media_thumbnail.present?
+      url = "https://img.youtube.com/vi/#{leaderboard_row.media_thumbnail}/0.jpg"
+      return image_tag(url, size: "100x75")
+    end
+    if size == :large && leaderboard_row.media_large.present?
+      result = %Q[
+        <iframe title="crowdAI Video"
+          allowfullscreen="allowfullscreen"
+          mozallowfullscreen="mozallowfullscreen"
+          msallowfullscreen="msallowfullscreen"
+          oallowfullscreen="oallowfullscreen"
+          webkitallowfullscreen="webkitallowfullscreen"
+          width="800"
+          height="600"
+          src="//www.youtube.com/embed/#{leaderboard_row.media_large }"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      ]
+      return result.html_safe
     end
   end
 

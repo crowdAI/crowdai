@@ -16,8 +16,7 @@ RSpec.describe Api::ExternalGradersController, type: :request do
   let!(:challenge) {
     create :challenge,
     :running,
-    organizer: organizer,
-    daily_submissions: 5 }
+    organizer: organizer }
   let!(:challenge_round) {
     create :challenge_round,
     challenge_id: challenge.id,
@@ -92,12 +91,12 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       }
     end
 
-    def valid_attributes_with_comment
+    def valid_attributes_with_description_markdown
       { challenge_client_name: challenge.challenge_client_name,
         api_key: participant.api_key,
         grading_status: 'graded',
         score: 0.9763,
-        comment: "**My first submission!**"
+        description_markdown: "**My first submission!**"
       }
     end
 
@@ -126,6 +125,32 @@ RSpec.describe Api::ExternalGradersController, type: :request do
         }
       }
     end
+
+    def valid_attributes_with_meta_as_json
+      {
+        challenge_client_name: challenge.challenge_client_name,
+        api_key: participant.api_key,
+        grading_status: 'graded',
+        score: 0.9763,
+        meta: JSON.dump({
+          impwt_std: "0.020956583416961033",
+          ips_std: "2.0898337641716487",
+          snips: "45.69345202998776",
+          file_key: "submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"
+        })
+      }
+    end
+
+    def invalid_attributes_with_meta
+      {
+        challenge_client_name: challenge.challenge_client_name,
+        api_key: participant.api_key,
+        grading_status: 'graded',
+        score: 0.9763,
+        meta: "THIS IS A BAD META PARAM"
+      }
+    end
+
 
     def invalid_api_key_attributes
       { challenge_client_name: challenge.challenge_client_name,
@@ -197,6 +222,30 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       }
     end
 
+    def valid_youtube_attributes
+      {
+        challenge_client_name: challenge.challenge_client_name,
+        api_key: participant.api_key,
+        grading_status: 'graded',
+        score: 0.9763,
+        media_large: "94EPSjQH38Y",
+        media_thumbnail: "94EPSjQH38Y",
+        media_content_type: "video/youtube"
+      }
+    end
+
+    def invalid_youtube_attributes
+      {
+        challenge_client_name: challenge.challenge_client_name,
+        api_key: participant.api_key,
+        grading_status: 'graded',
+        score: 0.9763,
+        media_large: "94EPSjQH38Y",
+        media_content_type: "video/youtube"
+      }
+    end
+
+    # ---------------------- RETURNING 200 ------------------ #
     context "with valid_attributes" do
       before do
         post '/api/external_graders/',
@@ -291,10 +340,10 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(Submission.last.post_challenge).to be false }
     end
 
-    context "with valid_attributes_with_comment" do
+    context "with valid_attributes_with_description_markdown" do
       before {
         post '/api/external_graders/',
-          params: valid_attributes_with_comment,
+          params: valid_attributes_with_description_markdown,
           headers: { 'Authorization': auth_header(organizer.api_key) } }
       it { expect(response).to have_http_status(202) }
       it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
@@ -333,32 +382,93 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(Submission.last.post_challenge).to be false }
     end
 
-    context "with invalid developer API key" do
-      before {
+    context "with valid_attributes_with_meta (as JSON)" do
+      before do
         post '/api/external_graders/',
-        params: invalid_api_key_attributes,
-        headers: { 'Authorization': auth_header(organizer.api_key) } }
-      it { expect(response).to have_http_status(400) }
-      it { expect(json(response.body)[:message]).to eq("The API key did not match any participant record.") }
-      it { expect(json(response.body)[:submission_id]).to be_nil }
+          params: valid_attributes_with_meta_as_json,
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+      end
+      it { expect(response).to have_http_status(202) }
+      it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
+      it { expect(json(response.body)[:submission_id]).to be_a Integer }
+      it { expect(Submission.last.meta).to eq({
+        "impwt_std"=>"0.020956583416961033", "ips_std"=>"2.0898337641716487",
+        "snips"=>"45.69345202998776", "file_key"=>"submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"}) }
+      it { expect(Submission.last.post_challenge).to be false }
     end
 
-    context "with invalid Challenge Client Name" do
-      before {
+    context 'post challenge submission' do
+      before do
         post '/api/external_graders/',
-          params: invalid_challenge_client_name_attributes,
-          headers: { 'Authorization': auth_header(organizer.api_key) } }
-      it { expect(response).to have_http_status(401) }
-      it { expect(response.body).to eq("HTTP Token: Access denied.\n") }
+          params: valid_attributes,
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+      end
+      it { expect(response).to have_http_status(202) }
+      it { expect(json(response.body)[:message]).
+        to eq("Participant #{participant.name} scored") }
+      it { expect(json(response.body)[:submission_id]).to be_a Integer }
+      it { expect(json(response.body)[:submissions_remaining]).to eq(2) }
+      if not ENV['TRAVIS']
+        it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30 06:02:02 UTC") }
+      end
+      it { expect(Submission.count).to eq(4)}
+      it { expect(Submission.last.participant_id).to eq(participant.id)}
+      it { expect(Submission.last.score).
+        to eq(valid_attributes_with_secondary_score[:score])}
+      it { expect(Submission.last.grading_status_cd).to eq('graded')}
+        #it { expect(Submission.last.post_challenge).to be true }
     end
 
-    context "with incomplete Media fields" do
-      before {
+    context "with invalid_attributes_with_meta" do
+      before do
         post '/api/external_graders/',
-          params: invalid_incomplete_with_media_attributes,
-          headers: { 'Authorization': auth_header(organizer.api_key) } }
+          params: invalid_attributes_with_meta,
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+      end
+      it { expect(response).to have_http_status(202) }
+      it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
+      it { expect(json(response.body)[:submission_id]).to be_a Integer }
+      it { expect(Submission.last.meta).to eq({}) }
+      it { expect(Submission.last.post_challenge).to be false }
+    end
+
+    context 'with a valid challenge_round_id' do
+      before do
+        post '/api/external_graders/',
+          params: valid_challenge_round_attributes,
+          headers: {
+            'Authorization': auth_header(organizer.api_key) }
+      end
+      it { expect(response).to have_http_status(202) }
+      it { expect(Submission.last.challenge_round_id).to eq(valid_challenge_round_attributes[:challenge_round_id])}
+    end
+
+    context 'with valid_youtube_attributes' do
+      before do
+        post '/api/external_graders/',
+          params: valid_youtube_attributes,
+          headers: {
+            'Authorization': auth_header(organizer.api_key) }
+      end
+      it { expect(response).to have_http_status(202) }
+      it { expect(Submission.last.media_large)
+        .to eq(valid_youtube_attributes[:media_large])}
+      it { expect(Submission.last.media_thumbnail)
+        .to eq(valid_youtube_attributes[:media_thumbnail])}
+      it { expect(Submission.last.media_content_type)
+        .to eq("video/youtube")}
+    end
+
+    # ---------------------- RETURNING ERRORS ------------------ #
+    context 'with a invalid challenge_round_id' do
+      before do
+        post '/api/external_graders/',
+          params: invalid_challenge_round_attributes,
+          headers: {
+            'Authorization': auth_header(organizer.api_key) }
+      end
       it { expect(response).to have_http_status(400) }
-      it { expect(json(response.body)[:message]).to eq("Either all or none of media_large, media_thumbnail and media_content_type must be provided.") }
+      it { expect(Submission.last.challenge_round_id).to eq(valid_challenge_round_attributes[:challenge_round_id])}
     end
 
     context "with invalid grading status" do
@@ -391,26 +501,43 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       end
     end
 
-    context 'with a valid challenge_round_id' do
-      before do
+    context "with incomplete Media fields" do
+      before {
         post '/api/external_graders/',
-          params: valid_challenge_round_attributes,
-          headers: {
-            'Authorization': auth_header(organizer.api_key) }
-      end
-      it { expect(response).to have_http_status(202) }
-      it { expect(Submission.last.challenge_round_id).to eq(valid_challenge_round_attributes[:challenge_round_id])}
+          params: invalid_incomplete_with_media_attributes,
+          headers: { 'Authorization': auth_header(organizer.api_key) } }
+      it { expect(response).to have_http_status(400) }
+      it { expect(json(response.body)[:message]).to eq("Either all or none of media_large, media_thumbnail and media_content_type must be provided.") }
     end
 
-    context 'with a invalid challenge_round_id' do
+    context "with invalid Challenge Client Name" do
+      before {
+        post '/api/external_graders/',
+          params: invalid_challenge_client_name_attributes,
+          headers: { 'Authorization': auth_header(organizer.api_key) } }
+      it { expect(response).to have_http_status(401) }
+      it { expect(response.body).to eq("HTTP Token: Access denied.\n") }
+    end
+
+    context "with invalid developer API key" do
+      before {
+        post '/api/external_graders/',
+        params: invalid_api_key_attributes,
+        headers: { 'Authorization': auth_header(organizer.api_key) } }
+      it { expect(response).to have_http_status(400) }
+      it { expect(json(response.body)[:message]).to eq("The API key did not match any participant record.") }
+      it { expect(json(response.body)[:submission_id]).to be_nil }
+    end
+
+    context 'with invalid_youtube_attributes' do
       before do
         post '/api/external_graders/',
-          params: invalid_challenge_round_attributes,
+          params: invalid_youtube_attributes,
           headers: {
             'Authorization': auth_header(organizer.api_key) }
       end
       it { expect(response).to have_http_status(400) }
-      it { expect(Submission.last.challenge_round_id).to eq(valid_challenge_round_attributes[:challenge_round_id])}
+      it { expect(json(response.body)[:message]).to eq("Either all or none of media_large, media_thumbnail and media_content_type must be provided.")}
     end
 
 =begin
@@ -447,25 +574,7 @@ RSpec.describe Api::ExternalGradersController, type: :request do
     end
 =end
 
-    context 'post challenge submission' do
-        before do
-          post '/api/external_graders/',
-            params: valid_attributes,
-            headers: { 'Authorization': auth_header(organizer.api_key) }
-        end
-        it { expect(response).to have_http_status(202) }
-        it { expect(json(response.body)[:message]).to eq("Participant #{participant.name} scored") }
-        it { expect(json(response.body)[:submission_id]).to be_a Integer }
-        it { expect(json(response.body)[:submissions_remaining]).to eq(2) }
-        if not ENV['TRAVIS']
-          it { expect(json(response.body)[:reset_dttm]).to eq("2017-10-30 06:02:02 UTC") }
-        end
-        it { expect(Submission.count).to eq(4)}
-        it { expect(Submission.last.participant_id).to eq(participant.id)}
-        it { expect(Submission.last.score).to eq(valid_attributes_with_secondary_score[:score])}
-        it { expect(Submission.last.grading_status_cd).to eq('graded')}
-        #it { expect(Submission.last.post_challenge).to be true }
-      end
+
 
   end  # POST
 

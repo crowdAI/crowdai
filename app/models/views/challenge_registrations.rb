@@ -1,4 +1,4 @@
-class ChallengeRegistration < ApplicationRecord
+class ChallengeRegistration < SqlView
   self.primary_key = :id
   after_initialize :readonly!
 

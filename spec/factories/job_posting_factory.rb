@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :job_posting, class: JobPosting do
     title { FFaker::Lorem.unique.sentence(3) }
     organisation { FFaker::Lorem.unique.sentence(3) }

@@ -4,19 +4,19 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "crowdAI"
+  #config.site_title = "crowdAI"
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
-  # config.site_title_link = "/"
+  config.site_title_link = "/"
 
   # Set an optional image to be displayed for the header
   # instead of a string (overrides :site_title)
   #
   # Note: Aim for an image that's 21px high so it fits in the header.
   #
-  # config.site_title_image = "logo.png"
+  config.site_title_image = "misc/crowdai-head.png"
 
   # == Default Namespace
   #
@@ -104,7 +104,7 @@ ActiveAdmin.setup do |config|
   # link. For example :get, :delete, :put, etc..
   #
   # Default:
-  # config.logout_link_method = :get
+  config.logout_link_method = :delete
 
   # == Root
   #
@@ -237,10 +237,10 @@ ActiveAdmin.setup do |config|
   #
   # To disable/customize for the :admin namespace:
   #
-  #   config.namespace :admin do |admin|
-  #
-  #     # Disable the links entirely
-  #     admin.download_links = false
+  config.namespace :admin do |admin|
+       # Disable the links entirely
+      admin.download_links = false
+  end
   #
   #     # Only show XML & PDF options
   #     admin.download_links = [:xml, :pdf]
@@ -290,4 +290,7 @@ ActiveAdmin.setup do |config|
   # You can inherit it with own class and inject it for all resources
   #
   # config.order_clause = MyOrderClause
+  meta_tags_options = { viewport: 'width=device-width, initial-scale=1' }
+  config.meta_tags = meta_tags_options
+  config.meta_tags_for_logged_out_pages = meta_tags_options
 end

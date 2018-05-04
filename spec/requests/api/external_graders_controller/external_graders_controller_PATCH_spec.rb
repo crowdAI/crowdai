@@ -11,10 +11,10 @@ RSpec.describe Api::ExternalGradersController, type: :request do
   end
 
   let!(:organizer) { create :organizer, api_key: '3d1efc2332200314c86d2921dd33434c' }
-  let!(:challenge) { create :challenge,
-                            :running,
-                            organizer: organizer,
-                            daily_submissions: 5 }
+  let!(:challenge) {
+    create :challenge,
+      :running,
+      organizer: organizer }
   let!(:challenge_round) { create :challenge_round,
                                   challenge_id: challenge.id,
                                   start_dttm: 4.weeks.ago,
@@ -52,6 +52,18 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       }
     end
 
+    def valid_meta_attributes_update_as_json
+      {
+        meta: JSON.dump({
+          impwt_std: "0.01",
+          ips_std: "3.5",
+          snips: "45.69345202998776",
+          file_key: "submissions/eeeeee-a525-4e5e-97a8-8ff7199be43c"
+        })
+      }
+    end
+
+
     def valid_meta_attributes_partial_update
       {
         meta: {
@@ -62,6 +74,18 @@ RSpec.describe Api::ExternalGradersController, type: :request do
         }
       }
     end
+
+    def valid_meta_attributes_partial_update_as_json
+      {
+        meta: JSON.dump({
+          impwt_std: "0.01",
+          ips_std: "3.5",
+          snips: "45.69345202998776",
+          file_key: "submissions/eeeeee-a525-4e5e-97a8-8ff7199be43c"
+        })
+      }
+    end
+
 
     def valid_meta_attributes_add
       {
@@ -74,6 +98,24 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       }
     end
 
+    def valid_meta_attributes_add_as_json
+      {
+        meta: JSON.dump({
+          impwt_std: "0.020956583416961033",
+          ips_std: "2.0898337641716487",
+          new_key: "hello",
+          file_key: "submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"
+        })
+      }
+    end
+
+    def invalid_meta_attributes
+      {
+        meta: "THIS_IS_AN_INVALID_META_ATTRIBUTE"
+      }
+    end
+
+
     def valid_meta_attributes_multi
       {
         meta: {
@@ -82,6 +124,18 @@ RSpec.describe Api::ExternalGradersController, type: :request do
           snips: "45.69345202998776",
           file_key: "submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"
         }
+      }
+    end
+
+
+    def valid_meta_attributes_multi_as_json
+      {
+        meta: JSON.dump({
+          impwt_std: "0.020956583416961033",
+          ips_std: "2.0898337641716487",
+          snips: "45.69345202998776",
+          file_key: "submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"
+        })
       }
     end
 
@@ -101,6 +155,21 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       }
     end
 
+    def valid_youtube_attributes
+      {
+        media_large: "94EPSjQH38Y",
+        media_thumbnail: "94EPSjQH38Y",
+        media_content_type: "video/youtube"
+      }
+    end
+
+    def invalid_youtube_attributes
+      {
+        media_large: "94EPSjQH38Y",
+        media_content_type: "video/youtube"
+      }
+    end
+
     context "with valid_media_attributes" do
       before do
         patch "/api/external_graders/#{submission1.id}",
@@ -116,10 +185,36 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(submission1.media_content_type).to eq(valid_media_attributes[:media_content_type]) }
     end
 
+    context "with invalid_meta_attributes - update" do
+      before do
+        patch "/api/external_graders/#{submission1.id}",
+          params: invalid_meta_attributes,
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+        submission1.reload
+      end
+      it { expect(response).to have_http_status(202) }
+      it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
+      it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
+      it { expect(submission1.meta.symbolize_keys).to eq({}) }
+    end
+
     context "with valid_meta_attributes - update" do
       before do
         patch "/api/external_graders/#{submission1.id}",
           params: valid_meta_attributes_update,
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+        submission1.reload
+      end
+      it { expect(response).to have_http_status(202) }
+      it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
+      it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
+      it { expect(submission1.meta.symbolize_keys).to eq(valid_meta_attributes_update[:meta]) }
+    end
+
+    context "with valid_meta_attributes (as JSON)- update" do
+      before do
+        patch "/api/external_graders/#{submission1.id}",
+          params: valid_meta_attributes_update_as_json,
           headers: { 'Authorization': auth_header(organizer.api_key) }
         submission1.reload
       end
@@ -145,10 +240,42 @@ RSpec.describe Api::ExternalGradersController, type: :request do
         :snips=>"45.69345202998776", :file_key=>"submissions/eeeeee-a525-4e5e-97a8-8ff7199be43c"}) }
     end
 
+    context "with valid_meta_attributes (as JSON)- partial update" do
+      before do
+        patch "/api/external_graders/#{submission1.id}",
+          params: valid_meta_attributes_partial_update_as_json,
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+        submission1.reload
+      end
+      it { expect(response).to have_http_status(202) }
+      it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
+      it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
+      it { expect(submission1.meta.symbolize_keys).to eq({
+        :impwt_std=>"0.01",
+        :ips_std=>"3.5",
+        :snips=>"45.69345202998776", :file_key=>"submissions/eeeeee-a525-4e5e-97a8-8ff7199be43c"}) }
+    end
+
+
     context "with valid_meta_attributes - add" do
       before do
         patch "/api/external_graders/#{submission1.id}",
           params: valid_meta_attributes_add,
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+        submission1.reload
+      end
+      it { expect(response).to have_http_status(202) }
+      it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
+      it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
+      it { expect(submission1.meta.symbolize_keys).to eq({
+        :impwt_std=>"0.020956583416961033", :ips_std=>"2.0898337641716487",
+        :new_key=>"hello", :file_key=>"submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c"}) }
+    end
+
+    context "with valid_meta_attributes (as JSON) - add" do
+      before do
+        patch "/api/external_graders/#{submission1.id}",
+          params: valid_meta_attributes_add_as_json,
           headers: { 'Authorization': auth_header(organizer.api_key) }
         submission1.reload
       end
@@ -182,6 +309,22 @@ RSpec.describe Api::ExternalGradersController, type: :request do
       it { expect(response).to have_http_status(400) }
       it { expect(json(response.body)[:message]).to eq("Couldn't find Submission with 'id'=999999") }
     end
+
+    context "with valid_youtube_attributes" do
+      before do
+        patch "/api/external_graders/#{submission1.id}",
+          params: valid_youtube_attributes,
+          headers: { 'Authorization': auth_header(organizer.api_key) }
+        submission1.reload
+      end
+      it { expect(response).to have_http_status(202) }
+      it { expect(json(response.body)[:message]).to eq("Submission #{submission1.id} updated") }
+      it { expect(json(response.body)[:submission_id]).to eq(submission1.id.to_s)}
+      it { expect(submission1.media_large).to eq(valid_youtube_attributes[:media_large]) }
+      it { expect(submission1.media_thumbnail).to eq(valid_youtube_attributes[:media_thumbnail]) }
+      it { expect(submission1.media_content_type).to eq('video/youtube') }
+    end
+
   end
 
   Timecop.return

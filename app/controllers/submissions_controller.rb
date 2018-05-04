@@ -10,6 +10,9 @@ class SubmissionsController < ApplicationController
   respond_to :html, :js
 
   def index
+    if !@challenge.submissions_page.present? && !(current_participant.admin? || @challenge.organizer_id == current_participant.organizer_id)
+      redirect_to '/', notice: "You don't have permission for this action."
+    end
     @submissions = @challenge
       .submissions
       .order('created_at desc')

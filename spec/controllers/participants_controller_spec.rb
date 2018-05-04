@@ -4,11 +4,11 @@ RSpec.describe ParticipantsController, type: :controller do
   render_views
 
   let(:valid_attributes) {
-    FactoryGirl.attributes_for(:participant)
+    FactoryBot.attributes_for(:participant)
   }
 
   let(:invalid_attributes) {
-    FactoryGirl.attributes_for(:participant, :invalid)
+    FactoryBot.attributes_for(:participant, :invalid)
   }
 
   context 'as a participant' do

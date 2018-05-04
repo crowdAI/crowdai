@@ -1,10 +1,11 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :submission, class: Submission do
-    challenge
+    association :challenge, :running
     participant
     grading_status :ready
     description_markdown '#Upload description'
-    #submission_files { [ build(:submission_file, submission_file_s3_key: 'project.tar') ]}
+    post_challenge false
+
     trait :with_meta do
       meta {
         {
@@ -15,5 +16,9 @@ FactoryGirl.define do
         }
       }
     end
+    trait :with_file do
+      submission_files { [ build(:submission_file, submission_file_s3_key: 'submissions/07b2ccb7-a525-4e5e-97a8-8ff7199be43c') ]}
+    end
+
   end
 end

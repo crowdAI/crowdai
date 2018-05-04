@@ -37,18 +37,22 @@ class Api::ExternalGradersController < Api::BaseController
 
       submissions_remaining, reset_dttm = challenge.submissions_remaining(participant.id)
       raise NoSubmissionSlotsRemaining if submissions_remaining < 1
+      if params[:meta].present?
+        params[:meta] = clean_meta(params[:meta])
+      end
       submission = Submission
-                     .create!(
-                       participant_id: participant.id,
-                       challenge_id: challenge.id,
-                       challenge_round_id: challenge_round_id,
-                       description_markdown: params[:comment],
-                       post_challenge: post_challenge(challenge),
-                       meta: params[:meta])
+        .create!(
+          participant_id: participant.id,
+          challenge_id: challenge.id,
+          challenge_round_id: challenge_round_id,
+          description_markdown: params[:description_markdown],
+          post_challenge: post_challenge(challenge,params),
+          meta: params[:meta])
       if media_fields_present?
-        submission.update({media_large: params[:media_large],
-                           media_thumbnail: params[:media_thumbnail],
-                           media_content_type: params[:media_content_type]})
+        submission.update(
+          media_large: params[:media_large],
+          media_thumbnail: params[:media_thumbnail],
+          media_content_type: params[:media_content_type])
       end
       submission.submission_grades.create!(grading_params)
       submission_id = submission.id
@@ -82,25 +86,49 @@ class Api::ExternalGradersController < Api::BaseController
       challenge = submission.challenge
       submissions_remaining, reset_date = challenge.submissions_remaining(submission.participant_id)
       if media_fields_present?
-        submission.update({media_large: params[:media_large],
-                           media_thumbnail: params[:media_thumbnail],
-                           media_content_type: params[:media_content_type]})
-        unless Rails.env.test?
+        submission.update(
+          media_large: params[:media_large],
+          media_thumbnail: params[:media_thumbnail],
+          media_content_type: params[:media_content_type])
+        unless params[:media_content_type] == 'video/youtube' || Rails.env.test?
           S3Service.new(params[:media_large]).make_public_read
           S3Service.new(params[:media_thumbnail]).make_public_read
         end
       end
+
+      # Handle `meta` param
       if params[:meta].present?
+        # Standardise params[:meta] to a Hash, irrespective of the
+        # version of the API
+        params[:meta] = clean_meta(params[:meta])
+
         if submission.meta.nil?
           meta = params[:meta]
         else
-          meta = submission.meta.deep_merge(params[:meta])
+          if params[:meta_overwrite].present? && pararms[:meta_overwrite]
+            # When the provided parameters have a `meta_overwrite=True`
+            # parrameter, then a merge between the provided meta param
+            # and the submission meta param will *NOT* happen. In this
+            # case, the provided meta_param will overwrite the submission's
+            # meta param.
+            meta = params[:meta]
+          else
+            # Standardise submission.meta to a Hash, irrespective of the
+            # version of the API
+            submission_meta = clean_meta(submission.meta)
+            meta = submission_meta.deep_merge(params[:meta])
+          end
         end
         submission.update({meta: meta})
       end
+
       if params[:grading_status].present?
         submission.submission_grades.create!(grading_params)
       end
+      if params[:description_markdown].present?
+        submission.description_markdown = params[:description_markdown]
+      end
+
       submission.post_challenge = post_challenge
       submission.save
       message = "Submission #{submission.id} updated"
@@ -114,6 +142,33 @@ class Api::ExternalGradersController < Api::BaseController
                      submission_id: submission_id,
                      submissions_remaining: submissions_remaining,
                      reset_date: reset_date }, status: status
+    end
+  end
+
+  def clean_meta(params_meta)
+    # Backward Compatibility
+    # Across differrent versions of this API we have been passing
+    # `meta` as a string, serialized JSON, and a hash.
+    # This function consistently returns a Hash by parsing the
+    # meta field depending of if its a string, serrialized json or a hash.
+    #
+    if params_meta.respond_to?(:keys)
+      return params_meta
+    else
+      begin
+        # Try to parse it as a JSON
+        return JSON.parse(params_meta)
+      rescue Exception => _e
+        # If its a string which is not a valid JSON
+        # Then this is from the corrupted data
+        # because of this bug :
+        # https://github.com/crowdAI/crowdai/issues/737
+        # So we return an empty Hash
+        Rails.logger.warn "Found invalid meta key: #{params_meta}.
+        Assuming the user meant an empty Hash, or it is corrupt data.
+        Reference : https://github.com/crowdAI/crowdai/issues/737 "
+        return {}
+      end
     end
   end
 
@@ -153,7 +208,13 @@ class Api::ExternalGradersController < Api::BaseController
     render json: { message: message, participant_id: participant_id, s3_key: s3_key, presigned_url: presigned_url }, status: status
   end
 
-  def post_challenge(challenge)
+  def post_challenge(challenge,params)
+    if params[:post_challenge] == "true"
+      return true
+    end
+    if params[:post_challenge] == "false"
+      return false
+    end
     if DateTime.now > challenge.end_dttm
       return true
     else
@@ -233,10 +294,16 @@ class Api::ExternalGradersController < Api::BaseController
   def grading_params
     case params[:grading_status]
     when 'graded'
+      if params[:grading_message].blank?
+        grading_message = 'Graded successfully'
+      else
+        grading_message = params[:grading_message]
+      end
+      grading_message = params[:grading_message]
       { score: params[:score],
         score_secondary: params[:score_secondary],
         grading_status_cd: 'graded',
-        grading_message: params[:grading_message] }
+        grading_message: grading_message }
     when 'initiated'
       { score: nil,
         score_secondary: nil,

@@ -13,16 +13,8 @@
         <% end %>
       </div>
       <p class="large"><%= challenge.tagline %></p>
-      <div class="user-link">
-        <%= link_to organizer_path(organizer) do %>
-          <%= concept(Image::Cell,organizer,size: :medium) %>
-        <% end %>
-        <p>By <%= link_to organizer.organizer, organizer_path(organizer) %>
-          <% if challenge.private_challenge %>
-          &nbsp;<strong>[Private Challenge]</strong>
-          <% end %>
-        </p>
-      </div>
+      <%= organizer_view %>
+    
       <progress max="100" value="<%= progress %>"></progress>
       <div class="stats">
         <div class="stat-fl">

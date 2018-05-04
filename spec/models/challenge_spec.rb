@@ -24,14 +24,12 @@ describe Challenge do
     it { is_expected.to validate_presence_of(:challenge) }
     it { is_expected.to validate_presence_of(:status) }
     it { is_expected.to validate_presence_of(:organizer_id) }
-    #it { is_expected.to validate_presence_of(:grader) }
     it { is_expected.to validate_presence_of(:primary_sort_order) }
-    it { is_expected.to validate_presence_of(:grading_factor) }
   end
 
   context 'methods' do
     describe 'validate markdown fields' do
-      let(:challenge) { create :challenge }
+      let(:challenge) { create :challenge, :running }
       it 'description' do
         challenge.update!(description_markdown: '### The description')
         expect(challenge.description).to eq("<h3 id=\"the-description\">The description</h3>\n")
@@ -68,7 +66,7 @@ describe Challenge do
 
     describe 'after_initialize' do
       it 'sets submission information defaults' do
-        challenge = create(:challenge)
+        challenge = create(:challenge, :running)
         expect(challenge.submission_license).to eq("Please upload your submissions and include a detailed description of the methodology, techniques and insights leveraged with this submission. After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC).")
       end
     end
@@ -89,7 +87,7 @@ describe Challenge do
 
     describe "friendly_id" do
       it 'updates the slug when the challenge title changes' do
-        challenge = create(:challenge)
+        challenge = create(:challenge, :running)
         challenge.challenge = 'a new challenge title'
         challenge.save!
         expect(challenge.slug).to eq('a-new-challenge-title')

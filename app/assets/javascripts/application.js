@@ -1,17 +1,27 @@
-// ---------------------- Gems ---------------------- //
+// ---------------------- Gems ----------------------- //
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery.remotipart
 //= require cocoon
 //= require rails.validations
-//= require jQuery-File-Upload
-//= require remodal
 //= require isInViewport
 //= require turbolinks
 //= require paloma
 //= require jquery.atwho
 //= require social-share-button
+//= require codemirror
+
+// --------------------- Vendor ------------------------ //
+//= require jQuery-File-Upload
+//= require remodal
+
+// ------------------ Vendor / Notebooks --------------- //
+//= require ansi_up.min
+//= require es5-shim.min
+//= require marked.min
+//= require notebook.min
+//= require prism.min
 
 // ---------------------- Modules ---------------------- //
 //= require modules/site
@@ -28,13 +38,13 @@
 // require pages/email_preferences_edit
 
 // -------------------- Controllers ------------------- //
+//= require controllers/articles_controller
 //= require controllers/challenges_controller
 //= require controllers/leaderboards_controller
 //= require controllers/dataset_files_controller
 //= require controllers/task_dataset_files_controller
 //= require controllers/participants_controller
 //= require controllers/email_preferences_controller
-
 
 
 // ------------------------ STARTUP -------------------------- //
@@ -75,15 +85,13 @@ var loaderTimer;
 
 $(document).on('turbolinks:click', function() {
   loaderTimer = setTimeout(function(){
-    console.log('spinner starts');
     $('#page-content').hide();
     $('#loader-container').show();
-  }, 500);
+  }, 250);
 });
 
 $(document).on('turbolinks:load', function() {
   clearTimeout(loaderTimer);
-  console.log('spinner stops');
   $('#page-content').show();
   $('#loader-container').hide();
 });

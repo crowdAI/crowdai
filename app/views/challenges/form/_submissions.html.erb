@@ -1,0 +1,34 @@
+<div class="row">
+  <%= form_for [@organizer,@challenge], html: { class: "dbl-col" } do |f| %>
+    <% @challenge.errors.full_messages.each do |error| %>
+      <p><%= error %></p>
+    <% end %>
+
+    <p>This page configures the online submissions page, if the challenge requires it. Many challenges will instead accept submissions via the Python client or via GitLab tagged pushes.</p>
+
+    <fieldset>
+    <div class="twin-container">
+      <div class="twin-field">
+        <fieldset class="checkbox">
+          <div>
+            <%= f.check_box :online_submissions, {}, "true", "false" %>
+            <label for="">Online Submissions Permitted?</label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <label>Submission Instructions</label>
+    <%= markdown_editor do |m| %>
+      <%= f.text_area :submission_instructions_markdown, class: "txt-med" %>
+    <% end %>
+
+    <p>This license text is displayed on the submission upload page during and after the challenge</p>
+    <%= markdown_editor do |m| %>
+      <%= f.text_area :license_markdown, class: "txt-med", placeholder: "Please upload your submissions and include a detailed description of the methodology, techniques and insights leveraged with this submission. After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC)." %>
+    <% end %>
+
+    <%= render partial: 'challenges/form/submit_buttons',
+          locals: { f: f } %>
+  <% end %>
+</div>

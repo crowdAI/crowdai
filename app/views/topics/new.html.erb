@@ -2,7 +2,9 @@
   <%= concept(Challenge::Cell::ChallengeMasthead,
                 @challenge,
                 current_participant: current_participant) %>
-  <%= concept(Challenge::Cell::ChallengeSubnav,
+  <%= render partial: 'challenges/show/subnav',
+        locals: { challenge: @challenge } %>
+  <%#= concept(Challenge::Cell::ChallengeSubnav,
                 @challenge,
                 tab: 'discussion',
                 current_participant: current_participant) %>
@@ -13,19 +15,26 @@
         <%= concept(Image::Cell,current_participant) %>
         <% end %>
       </div>
-      <%= form_for [@challenge,@topic], html: { class: 'add-comment', id: 'new_comment' } do |f| %>
-      <fieldset>
-        <label>Topic</label>
-        <%= f.text_field :topic %>
-        <%= f.fields_for :comments do |comment| %>
-          <label>Comment</label>
-          <%= comment.text_area :comment_markdown, placeholder: "Add a comment..." %>
-          <%= comment.hidden_field :participant_id, value: current_participant.id %>
+        <%= form_for [@challenge,@topic],
+            html: {
+              class: 'add-comment',
+              id: 'new_comment' } do |f| %>
+          <fieldset>
+            <label>Topic</label>
+            <%= f.text_field :topic %>
+            <%= f.fields_for :comments do |comment| %>
+              <label>Comment</label>
+              <%= comment.text_area :comment_markdown,
+                    placeholder: "Add a comment..." %>
+              <%= comment.hidden_field :participant_id,
+                    value: current_participant.id %>
+            <% end %>
+          </fieldset>
+          <%= f.hidden_field :participant_id,
+                value: current_participant.id %>
+          <%= f.submit 'Add topic',
+                class: 'btn btn-primary pull-right' %>
         <% end %>
-      </fieldset>
-      <%= f.hidden_field :participant_id, value: current_participant.id %>
-      <%= f.submit 'Add topic', class: 'btn btn-primary pull-right' %>
-      <% end %>
     </div>
   </div>
 </div>

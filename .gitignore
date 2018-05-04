@@ -19,3 +19,4 @@ scripts/stg_from_prd.sh
 spec/examples.txt
 docker/postgres/*
 docker/factory/ground_truth.csv
+/public/assets/**

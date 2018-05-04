@@ -2,10 +2,8 @@
   <%= concept(Challenge::Cell::ChallengeMasthead,
                 @challenge,
                 current_participant: current_participant) %>
-  <%= concept(Challenge::Cell::ChallengeSubnav,
-                @challenge,
-                tab: 'submissions',
-                current_participant: current_participant) %>
+  <%= render partial: 'challenges/show/subnav',
+        locals: { challenge: @challenge } %>
 
   <div class="row">
     <table class="submissions">
@@ -17,6 +15,7 @@
           <th>Message</th>
           <th class="submission">Submission (UTC)</th>
           <th class="action"></th>
+          <th class="action"></th>
         </tr>
       </thead>
       <tbody>
@@ -24,6 +23,7 @@
       </tbody>
     </table>
     <span id='more-anchor'></span>
-    <%= render partial: 'shared/load_more', locals: { collection: @submissions } %>
+    <%= render partial: 'shared/load_more',
+          locals: { collection: @submissions } %>
   </div>
 </div>

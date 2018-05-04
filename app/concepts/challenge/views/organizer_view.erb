@@ -1,0 +1,11 @@
+<div class="user-link">
+  <%= link_to organizer_path(organizer) do %>
+    <%= concept(Image::Cell,organizer,size: :medium) %>
+  <% end %>
+  <p>By <%= link_to organizer.organizer,
+              organizer_path(organizer) %>
+    <% if challenge.private_challenge %>
+      &nbsp;<strong>[Private Challenge]</strong>
+    <% end %>
+  </p>
+</div>

@@ -3,7 +3,10 @@ class ParticipantClefTasksController < ApplicationController
 
   def create
     clef_task = ClefTask.find(params[:participant_clef_task][:clef_task_id])
-    participant_clef_task = ParticipantClefTask.where(clef_task_id: strong_params[:clef_task_id], participant_id: current_participant.id).first
+    participant_clef_task = ParticipantClefTask
+      .where(
+        clef_task_id: strong_params[:clef_task_id], participant_id: current_participant.id)
+      .first
     if participant_clef_task.blank?
       participant_clef_task = ParticipantClefTask.create!(strong_params.merge(status_cd: 'requested'))
     else
@@ -11,7 +14,9 @@ class ParticipantClefTasksController < ApplicationController
     end
     set_status(clef_task,participant_clef_task)
     respond_to do |format|
-      format.html { redirect_to clef_task_task_dataset_files_path(clef_task, challenge_id: params[:participant_clef_task][:challenge_id]) }
+      format.html { redirect_to clef_task_task_dataset_files_path(
+        clef_task,
+        challenge_id: params[:participant_clef_task][:challenge_id]) }
     end
   end
 

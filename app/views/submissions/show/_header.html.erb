@@ -1,0 +1,40 @@
+<!--Detail header start-->
+<div class="detail-header">
+  <div class="text-badge">
+    <%= link_to participant.name,
+          participant_path(participant.id),
+          class: "color-accent" %>
+    <% if participant.admin? %>
+      <span class="badge badge-accent">Admin</span>
+    <% end %>
+  </div>
+  <h4>Submission: <%= challenge.challenge %></h4>
+  <br/>
+  <% if @submission.grading_status_cd == 'graded' %>
+    <h5><%= "#{@challenge.score_title}: #{@submission.score}" %></h5>
+    <% unless @challenge.secondary_sort_order_cd == 'not_used' %>
+      <h5><%= "#{@challenge.score_secondary_title}: #{@submission.score_secondary}" %></h5>
+    <% end %>
+  <% end %>
+
+  <div class='grading_status_cd'>
+    <i class="fa fa-square <%= @submission.grading_status_cd %>" aria-hidden="true"></i>
+    <strong class="<%= @submission.grading_status_cd %>">
+      <%= @submission.grading_status_cd %>
+    </strong>
+  </div>
+
+</div>
+<!--Detail header end-->
+
+<!--Detail media start-->
+<% if challenge.media_on_leaderboard %>
+  <div class="detail-media">
+    <%= concept(Leaderboard::Cell::Media,
+          @submission,
+          size: :large,
+          submission_id: submission_id,
+          current_participant: current_participant) %>
+  </div>
+<% end %>
+<!--Detail media end-->

@@ -1,0 +1,91 @@
+<div class="row">
+  <%= form_for [@challenge,@submission],
+        html: {
+          class: "directUpload dbl-col",
+          multipart: true },
+        data: {
+          'form-data' => (@s3_direct_post.fields),
+          'url' => @s3_direct_post.url,
+          'host' => URI.parse(@s3_direct_post.url).host } do |f| %>
+
+      <label>
+        <% if @challenge.submission_instructions %>
+          <%= @challenge.submission_instructions.html_safe %>
+        <% end %>
+      </label>
+      <fieldset>
+        <%= f.label :clef_method_description,
+              'Method description' %>
+        <span class="required">*</span>
+        <%= f.text_area :clef_method_description,
+              class: "txt-med" %>
+
+        <div class="twin-container">
+          <div class="twin-field">
+            <%= f.label :clef_retrieval_type, 'Retrieval Type' %>
+            <span class="required">*</span>
+            <%= f.select :clef_retrieval_type, Submission::CLEF_RETRIEVAL_TYPES, include_blank: false %>
+          </div>
+          <div class="twin-field">
+            <%= f.label :clef_run_type, 'Run Type' %>
+            <span class="required">*</span>
+            <%= f.select :clef_run_type, Submission::CLEF_RUN_TYPES, include_blank: false %>
+          </div>
+        </div>
+
+        <fieldset class="checkbox">
+          <div>
+            <%= f.check_box :clef_primary_run,
+                  { disabled: @clef_primary_run_disabled },
+                  "true", "false"  %>
+            <label for="">Primary Run?</label>
+            <span class="hint">Select this if you think these submission results are your the best ones for this challenge.</span><br/>
+            <span class="hint">Only one single submission can be set as primary run.</span>
+          </div>
+        </fieldset>
+
+        <%= f.label :clef_other_info, 'Other information' %>
+        <%= f.text_area :clef_other_info, class: "txt-med" %>
+
+        <%= f.label :clef_additional, 'Additional resources used' %>
+        <%= f.text_area :clef_additional, class: "txt-med" %>
+
+        <% if @challenge.license %>
+          <p class="margin-bottom">
+            <%= @challenge.license.html_safe %>
+          </p>
+        <% else %>
+          <p class="margin-bottom">
+            After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC).<br>
+              By making your submission you indicate your agreement with these terms.
+            </p>
+        <% end %>
+        <%= f.fields_for :submission_files do |f| %>
+
+          <div class="nested-fields">
+            <p><%#= @challenge.submission_file_definitions[file.index].submission_file_help_text %></p>
+            <%= f.hidden_field :seq %><!-- populated by controller -->
+            <%= f.file_field :submission_file_s3_key,
+                  as: :file,
+                  label: "Submissions file",
+                  class: 'file-upload s3File' %>
+          </div>
+        <% end %>
+        <p class="margin-bottom">
+          <% if @reset_dttm %>
+            <strong>You have <%= pluralize(@submissions_remaining,'submission') %> remaining until <%= @reset_dttm %>."</strong>
+          <% else %>
+            <strong>You have <%= pluralize(@submissions_remaining,'submission') %> remaining.</strong>
+          <% end %>
+        </p>
+
+        <div class="button-group">
+          <%#= f.button "Submit Entry", class: 'btn btn-primary' %>
+          <%#= button_to challenge_path(@challenge),
+                class: "btn btn-secondary" do %>
+              <%# end %>
+        </div>
+      </fieldset>
+
+    <% end %>
+  </div>

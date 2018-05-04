@@ -10,13 +10,15 @@ class OrganizerApplicationsController < ApplicationController
 
   private
   def organizer_application_params
-    params.require(:organizer_application)
-          .permit(:contact_name,
-                  :email,
-                  :phone,
-                  :organization,
-                  :organization_description,
-                  :challenge_description)
+    params
+      .require(:organizer_application)
+      .permit(
+        :contact_name,
+        :email,
+        :phone,
+        :organization,
+        :organization_description,
+        :challenge_description)
   end
 
 end

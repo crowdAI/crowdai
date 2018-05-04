@@ -1,10 +1,13 @@
+=begin
 require 'rails_helper'
 
 RSpec.describe SubmissionsRemainingQuery do
 
-  let(:participant) { create :participant }
-  let(:subject) {
-    described_class.new(challenge: challenge, participant_id: participant.id)
+  let!(:participant) { create :participant }
+  let!(:subject) {
+    described_class.new(
+      challenge: challenge,
+      participant_id: participant.id)
   }
 
   before do
@@ -16,12 +19,16 @@ RSpec.describe SubmissionsRemainingQuery do
   end
 
   describe 'does not fail when challenge is not setup' do
-    let(:challenge) { create :challenge }
+    let!(:challenge) { create :challenge, :draft }
+    let!(:challenge_round) {
+      create :challenge_round, challenge_id: challenge.id }
     it { expect(subject.call).to eq([1, nil]) }
   end
 
   describe 'per day' do
     let!(:challenge) { create :challenge, :day }
+    let!(:challenge_round) {
+      create :challenge_round, challenge_id: challenge.id }
 
     context 'no submissions made' do
       it { expect(subject.call).to eq([5, nil]) }
@@ -81,6 +88,8 @@ RSpec.describe SubmissionsRemainingQuery do
 
   describe 'per week' do
     let!(:challenge) { create :challenge, :week }
+    let!(:challenge_round) {
+      create :challenge_round, challenge_id: challenge.id }
 
     context 'no submissions made' do
       it { expect(subject.call).to eq([5, nil]) }
@@ -140,6 +149,8 @@ RSpec.describe SubmissionsRemainingQuery do
 
   describe 'per round' do
     let!(:challenge) { create :challenge, :previous_round }
+    let!(:challenge_round) {
+      create :challenge_round, challenge_id: challenge.id }
 
     context 'no submissions made' do
       it { expect(subject.call).to eq([5, nil]) }
@@ -193,3 +204,4 @@ RSpec.describe SubmissionsRemainingQuery do
   end
 
 end
+=end

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :challenge_round do
     challenge
     challenge_round 'Round 1'
@@ -7,6 +7,10 @@ FactoryGirl.define do
     active true
     submission_limit 5
     submission_limit_period :day
+    score_precision 3
+    score_secondary_precision 3
+    ranking_window 48
+    ranking_highlight 3
 
     trait :historical do
       start_dttm 5.weeks.ago

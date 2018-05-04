@@ -9,7 +9,14 @@ class LeaderboardPolicy < ApplicationPolicy
   end
 
   def submission_detail?
-    participant && (participant.admin? || @record.organizer_id == participant.organizer_id || @record.participant_id == participant.id)
+    participant &&
+      (participant.admin? ||
+        @record.participant_id == participant.id ||
+        ChallengeOrganizerParticipant.where(
+          participant_id: participant.id,
+          id: @record.challenge_id
+        ).present?
+      )
   end
 
 end

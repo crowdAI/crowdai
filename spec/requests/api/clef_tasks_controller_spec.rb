@@ -5,9 +5,17 @@ RSpec.describe Api::ClefTasksController, type: :request do
   let!(:organizer) { create :organizer, api_key: '3d1efc2332200314c86d2921dd33434c' }
   let!(:participant) { create :participant }
   let!(:participant2) { create :participant }
-  let!(:clef_task) { create :clef_task, organizer: organizer }
-  let!(:participant_clef_task) { create :participant_clef_task, clef_task: clef_task, participant: participant }
-  let!(:participant_clef_task2) { create :participant_clef_task, clef_task: clef_task, participant: participant2, status_cd: 'submitted' }
+  let!(:clef_task) {
+    create :clef_task, organizer: organizer }
+  let!(:participant_clef_task) {
+    create :participant_clef_task,
+    clef_task: clef_task,
+    participant: participant }
+  let!(:participant_clef_task2) {
+    create :participant_clef_task,
+    clef_task: clef_task,
+    participant: participant2,
+    status_cd: 'submitted' }
 
   describe "validate user API key" do
     context "with organiser auth key" do

@@ -1,0 +1,6 @@
+<div>
+  <h5><%= link_to post.title, blog_path(post) %></h5>
+  <span class="light">
+    <%= post.created_at.strftime("%-d %B %Y") %>
+  </span>
+</div>

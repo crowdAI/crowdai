@@ -11,10 +11,10 @@ RSpec.describe Api::ExternalGradersController, type: :request do
   end
 
   let!(:organizer) { create :organizer, api_key: '3d1efc2332200314c86d2921dd33434c' }
-  let!(:challenge) { create :challenge,
-                            :running,
-                            organizer: organizer,
-                            daily_submissions: 5 }
+  let!(:challenge) {
+    create :challenge,
+    :running,
+    organizer: organizer }
   let!(:challenge_round) { create :challenge_round,
                                   challenge_id: challenge.id,
                                   start_dttm: 4.weeks.ago,

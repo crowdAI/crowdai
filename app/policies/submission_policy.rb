@@ -7,7 +7,24 @@ class SubmissionPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    @record.graded? && @record.challenge.submissions_page.present?
+  end
+
+  def new?
+    ChallengePolicy.new(participant, @record.challenge).submissions_allowed?
+  end
+
+  def create?
+    new?
+  end
+
+  def edit?
+    participant && (participant.admin? ||
+      @record.challenge.organizer_id == participant.organizer_id )
+  end
+
+  def update?
+    edit?
   end
 
 end

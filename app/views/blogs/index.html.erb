@@ -1,0 +1,15 @@
+<div class="content">
+  <div class="row">
+    <h1>crowdAI Blog</h1>
+    <p class="large">Everything about crowdAI: press releases, technical papers, challenge releases, general trivia and more.</p>
+  </div>
+
+  <div class="row">
+    <!-- every four posts (each row @desktop) need to be wrapped in .grid-blog -->
+    <div class="grid-blog">
+      <% @blogs.each_with_index do |blog,index| %>
+        <%= render partial: 'blog_post', locals: { blog: blog } %>
+      <% end %>
+    </div>
+  </div>
+</div>

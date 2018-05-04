@@ -10,6 +10,17 @@
     </div>
   </div>
 
+  <% if policy(:article).new? %>
+  <div class="sub-nav">
+    <div class="row">
+      <%= link_to 'Create Tutorial',
+            new_article_path,
+            class: "btn btn-secondary pull-right" %>
+    </div>
+  </div>
+  <% end %>
+
+
   <div class="row">
     <ul class="list-tutorials">
       <% @articles.each do |article| %>

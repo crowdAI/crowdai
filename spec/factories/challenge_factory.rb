@@ -1,8 +1,8 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :challenge, class: Challenge do
     organizer
     challenge { FFaker::Lorem.unique.sentence(3) }
-    sequence(:challenge_client_name) { |n| "client_name_#{n}" }
+    challenge_client_name { FFaker::Internet.unique.user_name }
     tagline { FFaker::Lorem.unique.sentence(3) }
     status :draft
     description_markdown "### The description"
@@ -14,15 +14,14 @@ FactoryGirl.define do
     submission_instructions_markdown "## Submission instructions"
     primary_sort_order_cd 'ascending'
     secondary_sort_order_cd 'descending'
-    grader 'f1_logloss'
-    grading_factor 0.3
     license_markdown '## This is a license'
+    submissions_page true
 
     trait :running do
       status :running
       dataset_files {[ build(:dataset_file) ]}
       after(:create) do |challenge|
-        FactoryGirl.create(:challenge_round, challenge: challenge)
+        FactoryBot.create(:challenge_round, challenge: challenge)
       end
     end
 
@@ -30,7 +29,7 @@ FactoryGirl.define do
       status :running
       dataset_files {[ build(:dataset_file) ]}
       after(:create) do |challenge|
-        FactoryGirl.create(
+        FactoryBot.create(
           :challenge_round,
           challenge: challenge,
           submission_limit_period: :day)
@@ -41,7 +40,7 @@ FactoryGirl.define do
       status :running
       dataset_files {[ build(:dataset_file) ]}
       after(:create) do |challenge|
-        FactoryGirl.create(
+        FactoryBot.create(
           :challenge_round,
           challenge: challenge,
           submission_limit_period: :week)
@@ -52,7 +51,7 @@ FactoryGirl.define do
       status :running
       dataset_files {[ build(:dataset_file) ]}
       after(:create) do |challenge|
-        FactoryGirl.create(
+        FactoryBot.create(
           :challenge_round,
           :historical,
           challenge: challenge,
@@ -61,7 +60,7 @@ FactoryGirl.define do
           submission_limit_period: :round,
           start_dttm: challenge.created_at - 5.weeks,
           end_dttm: challenge.created_at - 3.weeks)
-        FactoryGirl.create(
+        FactoryBot.create(
           :challenge_round,
           challenge: challenge,
           challenge_round: 'round 2',

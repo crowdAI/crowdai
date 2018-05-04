@@ -6,7 +6,11 @@
 
   <div class="row">
     <%= render partial: 'leaderboards/show/header',
-          locals: { participant: @participant, entry: @entry } %>
+          locals: {
+            challenge: @challenge,
+            participant: @participant,
+            entry: @entry,
+            submission_id: @entry.submission_id } %>
 
     <%= render partial: 'leaderboards/show/share',
           locals: { submission: @submission }%>
@@ -14,10 +18,15 @@
     <%= render partial: 'leaderboards/show/entry_description',
           locals: { entry: @entry, submission: @submission }  %>
 
+    <% if @grader_logs.present? %>
+      <%= render partial: 'submissions/show/codemirror' %>
+    <% end %>
+
     <%= render partial: 'leaderboards/show/comments',
           locals: {
             submission: @submission,
             entry: @entry } %>
   </div>
-  <%= render partial: 'leaderboards/show/meta', locals: { submission: @submission } %>
+  <%= render partial: 'leaderboards/show/meta',
+        locals: { submission: @submission } %>
 </div>

@@ -5,7 +5,9 @@ class ParticipantsController < ApplicationController
 
   def show
     @articles = Article.where(participant_id: @participant.id)
-    @challenges = @participant.challenges
+    challenge_ids = policy_scope(ParticipantChallenge)
+      .where(participant_id: @participant.id).pluck(:challenge_id)
+    @challenges = Challenge.where(id: challenge_ids)
     @posts = @participant.comments.order(created_at: :desc)
   end
 
@@ -59,26 +61,28 @@ class ParticipantsController < ApplicationController
   end
 
   def participant_params
-    params.require(:participant)
-          .permit(:email,
-                  :password,
-                  :password_confirmation,
-                  :phone_number,
-                  :name,
-                  :organizer_id,
-                  :email_public,
-                  :bio,
-                  :website,
-                  :github,
-                  :linkedin,
-                  :twitter,
-                  :image_file,
-                  :affiliation,
-                  :address,
-                  :city,
-                  :country_cd,
-                  :first_name,
-                  :last_name)
+    params
+      .require(:participant)
+      .permit(
+        :email,
+        :password,
+        :password_confirmation,
+        :phone_number,
+        :name,
+        :organizer_id,
+        :email_public,
+        :bio,
+        :website,
+        :github,
+        :linkedin,
+        :twitter,
+        :image_file,
+        :affiliation,
+        :address,
+        :city,
+        :country_cd,
+        :first_name,
+        :last_name)
     end
 
 end

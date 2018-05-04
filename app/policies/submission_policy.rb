@@ -7,7 +7,7 @@ class SubmissionPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    @record.graded? && @record.challenge.submissions_page.present?
   end
 
   def new?

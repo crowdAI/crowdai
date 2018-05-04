@@ -70,13 +70,6 @@ If the **Grader Logs Visible?** flag is set on the challenge, and the ```submiss
 grader_logs/{challenge.slug}/grader_logs_submission_{submission.id}.txt
 ```
 
-
-
-
-
-
-
-
 ## Technical Documentation
 
 - [Leaderboard](leaderboard.md)

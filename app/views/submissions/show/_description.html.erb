@@ -8,7 +8,7 @@
     </div>
     <div class="topic-content">
       <p class="details">
-        Posted by <%= link_to submission.participant.name, participant_path(submission.participant.id) %> <%= time_ago_in_words(entry.created_at) %>
+        Posted by <%= link_to submission.participant.name, participant_path(submission.participant.id) %> <%= time_ago_in_words(submission.created_at) %>
       </p>
       <div class="comment">
         <p><%= sanitize(submission.description) %></p>

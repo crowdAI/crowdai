@@ -7,10 +7,19 @@ RSpec.describe SubmissionsController, type: :controller do
     let!("submission_#{i + 1}") {
       create :submission,
         challenge: challenge,
-        participant: participant }
+        participant: participant,
+        grading_status_cd: 'graded' }
   end
-  let!(:meta) { create :submission, :with_meta, challenge: challenge, participant: participant }
-  let(:challenge) { create :challenge, :running }
+  let!(:meta) {
+    create :submission,
+    :with_meta,
+    challenge: challenge,
+    participant: participant,
+    grading_status_cd: 'graded' }
+  let(:challenge) {
+    create :challenge,
+    :running,
+    submissions_page: true }
   let(:participant) { create :participant }
 
   before do

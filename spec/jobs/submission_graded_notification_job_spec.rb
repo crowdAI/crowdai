@@ -24,12 +24,8 @@ RSpec.describe SubmissionGradedNotificationJob, type: :job do
 
     it 'queues the job' do
       expect { job
-      }.to change(ActiveJob::Base.queue_adapter.enqueued_jobs, :size).by(3)
+      }.to change(ActiveJob::Base.queue_adapter.enqueued_jobs, :size).by(1)
     end
-    # (byebug) ActiveJob::Base.queue_adapter.enqueued_jobs.first
-    # {:job=>CalculateLeaderboardJob, :args=>[{"challenge_round_id"=>1, "_aj_symbol_keys"=>["challenge_round_id"]}], :queue=>"default"}
-    # (byebug) ActiveJob::Base.queue_adapter.enqueued_jobs.second
-    # {:job=>SubmissionGradedNotificationJob, :args=>[{"_aj_globalid"=>"gid://crowdai/Submission/1"}], :queue=>"default"}
 
     it 'is placed on the default queue' do
       expect(described_class.new.queue_name).to eq('default')

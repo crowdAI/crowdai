@@ -6,6 +6,7 @@ class SubmissionsController < ApplicationController
   before_action :set_s3_direct_post,
     only: [:new, :edit, :create, :update]
   before_action :set_submissions_remaining
+  layout :set_layout
   respond_to :html, :js
 
   def index
@@ -17,21 +18,15 @@ class SubmissionsController < ApplicationController
     @challenge_round_id = @challenge.challenge_rounds.where(active: true)
   end
 
-  def leaderboard
-    if !@challenge.completed?
-      redirect_to '/'
-    else
-      participant_id = params[:participant_id]
-      @submissions = Submission.where(challenge_id: @challenge.id, participant_id: participant_id)
-    end
-  end
-
   def show
     if !@challenge.completed? && (@submission.participant_id != current_participant.id && !current_participant.admin?)
       redirect_to '/', notice: "You don't have permission for this action."
     else
-      @grader_logs = grader_logs
-      @participant = @submission.participant
+      @presenter = SubmissionDetailPresenter.new(
+        @submission,
+        @challenge,
+        view_context
+      )
       render :show
     end
   end
@@ -91,11 +86,7 @@ class SubmissionsController < ApplicationController
 
   private
     def set_submission
-      if params.include?(:submission_id)
-        @submission = Submission.find(params[:submission_id])
-      else
-        @submission = Submission.find(params[:id])
-      end
+      @submission = Submission.find(params[:id])
     end
 
     def set_challenge
@@ -168,6 +159,11 @@ class SubmissionsController < ApplicationController
       ]
       res = ActiveRecord::Base.connection.select_values(sql)
       res.any?
+    end
+
+    def set_layout
+      return 'bare' if action_name == 'show'
+      return 'application'
     end
 
 end

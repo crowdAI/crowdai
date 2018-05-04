@@ -8,7 +8,7 @@
       <span class="badge badge-accent">Admin</span>
     <% end %>
   </div>
-  <h4>Submission: <%= entry.challenge.challenge %></h4>
+  <h4>Submission: <%= challenge.challenge %></h4>
   <br/>
   <% if @submission.grading_status_cd == 'graded' %>
     <h5><%= "#{@challenge.score_title}: #{@submission.score}" %></h5>
@@ -31,7 +31,7 @@
 <% if challenge.media_on_leaderboard %>
   <div class="detail-media">
     <%= concept(Leaderboard::Cell::Media,
-          entry,
+          @submission,
           size: :large,
           submission_id: submission_id,
           current_participant: current_participant) %>

@@ -69,11 +69,13 @@
   </td>
   <td class='action'>
     <% if challenge.submissions_page %>
-      <%= link_to challenge_leaderboard_path(
-            entry.challenge, entry.submission_id),
+      <%= link_to challenge_submission_path(
+            entry.challenge_id, entry.submission_id),
             class: 'btn btn-secondary' do %>
               <i class="fa fa-arrows-alt" aria-hidden="true"></i>
       <% end %>
     <% end %>
+
+
   </td>
 </tr>

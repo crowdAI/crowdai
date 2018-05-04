@@ -1,17 +1,9 @@
 class LeaderboardsController < ApplicationController
   before_action :authenticate_participant!,
-    except: [:index, :show, :video_modal]
-  before_action :set_leaderboard,
-    only: [:show]
+    except: [:index, :video_modal]
   before_action :set_challenge
   respond_to :js, :html
   layout :set_layout
-
-  def show
-    @participant = @entry.participant
-    @submission = Submission.find(@entry.submission_id)
-    @grader_logs = grader_logs
-  end
 
   def index
     if @challenge.show_leaderboard == false
@@ -69,10 +61,6 @@ class LeaderboardsController < ApplicationController
   end
 
   private
-  def set_leaderboard
-    @entry = Leaderboard.where(submission_id: params[:id]).first
-  end
-
   def set_challenge
     @challenge = Challenge.friendly.find(params[:challenge_id])
   end
@@ -88,15 +76,6 @@ class LeaderboardsController < ApplicationController
   def set_layout
     return 'bare' if action_name == 'show'
     return 'application'
-  end
-
-  def grader_logs
-    if @challenge.grader_logs
-      s3_key = "grader_logs/#{@challenge.slug}/grader_logs_submission_#{@submission.id}.txt"
-      s3 = S3Service.new(s3_key)
-      @grader_logs = s3.filestream
-    end
-    return @grader_logs
   end
 
 end

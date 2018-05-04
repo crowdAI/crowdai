@@ -5,25 +5,25 @@
   <% end %>
 
   <div class="row">
-    <%= render partial: 'leaderboards/show/header',
+    <%= render partial: 'submissions/show/header',
           locals: {
-            challenge: @challenge,
-            participant: @participant,
+            challenge: @presenter.challenge,
+            participant: @presenter.participant,
             entry: @submission,
             submission_id: @submission.id } %>
 
-    <%= render partial: 'leaderboards/show/share',
+    <%= render partial: 'submissions/show/share',
           locals: { submission: @submission }%>
 
-    <%= render partial: 'leaderboards/show/entry_description',
-          locals: { entry: @submission, submission: @submission }  %>
+    <%= render partial: 'submissions/show/description',
+          locals: { submission: @submission }  %>
 
-    <% if @grader_logs.present? %>
+    <% if @presenter.grader_logs.present? %>
       <%= render partial: 'submissions/show/codemirror' %>
     <% end %>
 
-    <%= render partial: 'leaderboards/show/comments',
+    <%= render partial: 'submissions/show/comments',
           locals: { submission: @submission } %>
   </div>
-    <%= render partial: 'leaderboards/show/meta', locals: { submission: @submission } %>
+    <%= render partial: 'submissions/show/meta', locals: { submission: @submission } %>
 </div>

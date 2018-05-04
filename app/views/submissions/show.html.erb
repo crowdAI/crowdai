@@ -18,6 +18,11 @@
     <%= render partial: 'submissions/show/description',
           locals: { submission: @submission }  %>
 
+    <% if @presenter.grading_history? %>
+      <%= render partial: 'submissions/show/grading_history',
+            locals: { submission: @submission } %>
+    <% end %>
+
     <% if @presenter.grader_logs.present? %>
       <%= render partial: 'submissions/show/codemirror' %>
     <% end %>

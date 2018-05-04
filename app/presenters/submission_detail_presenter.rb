@@ -1,7 +1,21 @@
-class SubmissionDetailPresenter < Struct.new(:submission,:challenge,:view_context)
+class SubmissionDetailPresenter
+
+  def initialize(submission:,challenge:,view_context:)
+    @view = view_context
+    @submission = submission
+    @challenge = challenge
+  end
+
+  def challenge
+    @challenge
+  end
 
   def participant
-    @participant ||= submission.participant
+    @participant ||= @submission.participant
+  end
+
+  def grading_history?
+    false
   end
 
   def grader_logs
@@ -11,6 +25,10 @@ class SubmissionDetailPresenter < Struct.new(:submission,:challenge,:view_contex
       grader_logs = s3.filestream
     end
     return grader_logs
+  end
+
+  def h
+    @view
   end
 
 end

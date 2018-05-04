@@ -23,9 +23,9 @@ class SubmissionsController < ApplicationController
       redirect_to '/', notice: "You don't have permission for this action."
     else
       @presenter = SubmissionDetailPresenter.new(
-        @submission,
-        @challenge,
-        view_context
+        submission: @submission,
+        challenge: @challenge,
+        view_context: view_context
       )
       render :show
     end

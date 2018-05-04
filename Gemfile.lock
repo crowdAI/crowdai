@@ -485,6 +485,8 @@ GEM
       excon (>= 0.16.0, < 1.0)
       json (>= 1.7.7, < 2.0)
     memory_profiler (0.9.8)
+    meta-tags (2.9.0)
+      actionpack (>= 3.2.0, < 5.3)
     meta_request (0.4.3)
       callsite (~> 0.0, >= 0.0.11)
       rack-contrib (>= 1.1, < 3)
@@ -853,6 +855,7 @@ DEPENDENCIES
   lograge
   loofah (~> 2.2.1)
   mandrill-api
+  meta-tags
   meta_request
   mini_magick
   model_2_factory-rails

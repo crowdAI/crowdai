@@ -49,6 +49,7 @@ gem 'country_select'
 gem 'time_splitter'
 gem 'codemirror-rails'
 gem 'rails-html-sanitizer', '~> 1.0.4'
+gem 'meta-tags'
 
 # performance
 gem 'fast_blank'

@@ -26,16 +26,6 @@
       <%= f.text_area :resources_markdown, class: "txt-med" %>
     <% end %>
 
-    <label>Submission Instructions</label>
-    <%= markdown_editor do |m| %>
-      <%= f.text_area :submission_instructions_markdown, class: "txt-med" %>
-    <% end %>
-
-    <p>This license text is displayed on the submission upload page during and after the challenge</p>
-    <%= markdown_editor do |m| %>
-      <%= f.text_area :license_markdown, class: "txt-med", placeholder: "Please upload your submissions and include a detailed description of the methodology, techniques and insights leveraged with this submission. After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC)." %>
-    <% end %>
-
     <label>Datasets License</label>
     <%= markdown_editor do |m| %>
       <%= f.text_area :dataset_description_markdown, class: "txt-med" %>

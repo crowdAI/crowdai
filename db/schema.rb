@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180503150537) do
+ActiveRecord::Schema.define(version: 20180504121050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -222,6 +222,7 @@ ActiveRecord::Schema.define(version: 20180503150537) do
     t.boolean "online_submissions", default: false
     t.boolean "grader_logs", default: false
     t.boolean "require_registration", default: false
+    t.boolean "grading_history", default: false
     t.index ["clef_task_id"], name: "index_challenges_on_clef_task_id"
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id"
     t.index ["slug"], name: "index_challenges_on_slug", unique: true

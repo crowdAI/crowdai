@@ -48,6 +48,7 @@ The possible elements, in the order the will appear are:
 - participant name, admin / organizer badge, scores
 - grading status badge
 - media
+- - Show scores only if challenges.show_leaderboard is true
 
 Media is displayed only if the **Media on leaderboard?** configuration switch is set on the Challenge. If no media is available on the Submission, then a placeholder image (missing avatar) will be displayed.
 

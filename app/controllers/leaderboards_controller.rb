@@ -6,9 +6,6 @@ class LeaderboardsController < ApplicationController
   layout :set_layout
 
   def index
-    if @challenge.show_leaderboard == false && !(current_participant.admin? || @challenge.organizer_id == current_participant.organizer_id)
-      redirect_to '/', notice: "You don't have permission for this action."
-    end
     @current_round = current_round
     if @challenge.completed?
       if params[:post_challenge] == 'on'
@@ -18,21 +15,15 @@ class LeaderboardsController < ApplicationController
       end
     end
     if @post_challenge == 'on'
-      @leaderboards = @challenge
-        .ongoing_leaderboards
+      @leaderboards = policy_scope(OngoingLeaderboard)
         .where(challenge_round_id: current_round.id)
         .page(params[:page])
         .per(10)
     else
-      @leaderboards = @challenge
-        .leaderboards
+      @leaderboards = policy_scope(Leaderboard)
         .where(challenge_round_id: current_round.id)
         .page(params[:page])
         .per(10)
-    end
-
-    if current_participant && (current_participant.admin? || @challenge.organizer_id == current_participant.organizer_id)
-      @participant_submissions = ParticipantSubmission.where(challenge_id: @challenge.id)
     end
   end
 

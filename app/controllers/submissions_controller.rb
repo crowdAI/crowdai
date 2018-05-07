@@ -10,8 +10,8 @@ class SubmissionsController < ApplicationController
   respond_to :html, :js
 
   def index
-    @submissions = @challenge
-      .submissions
+    @submissions = policy_scope(Submission)
+      .where(challenge_id: @challenge.id)
       .order('created_at desc')
       .page(params[:page])
       .per(10)

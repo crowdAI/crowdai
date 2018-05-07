@@ -6,7 +6,9 @@
               challenge_path(challenge),
               class: tab_class('overview') %>
       </li>
-      <% unless challenge.challenge_rounds.none? || !challenge.show_leaderboard && !(current_participant.admin? || challenge.organizer_id == current_participant.organizer_id) %>
+      <% if challenge.challenge_rounds.present? &&
+            challenge.show_leaderboard ||
+            (current_participant && (current_participant.admin? || challenge.organizer_id == current_participant.organizer_id)) %>
         <li class=<%= tab_class('leaderboard') %> >
           <%= link_to 'Leaderboard',
                 challenge_leaderboards_path(challenge),
@@ -32,14 +34,11 @@
                 class: tab_class('dataset') %>
         </li>
       <% end %>
-
-      <% if challenge.submissions_page.present? || current_participant.admin? || challenge.organizer_id == current_participant.organizer_id %>
         <li class=<%= tab_class('submissions') %> >
           <%= link_to 'Submissions',
                 challenge_submissions_path(challenge),
                 class: tab_class('submissions') %>
         </li>
-      <% end %>
       <% if policy(challenge).edit? %>
         <% if challenge.clef_task #&& challenge.clef_task.eua_required? %>
           <li class=<%= tab_class('participants') %> >

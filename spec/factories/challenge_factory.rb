@@ -47,6 +47,17 @@ FactoryBot.define do
       end
     end
 
+    trait :round do
+      status :running
+      dataset_files {[ build(:dataset_file) ]}
+      after(:create) do |challenge|
+        FactoryBot.create(
+          :challenge_round,
+          challenge: challenge,
+          submission_limit_period: :round)
+      end
+    end
+
     trait :previous_round do
       status :running
       dataset_files {[ build(:dataset_file) ]}

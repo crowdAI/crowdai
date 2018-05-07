@@ -7,7 +7,7 @@ class SubmissionsRemainingQuery
 
   def call
     unless @challenge.running?
-      return [1,nil]
+      return [1,nil,[]]
     end
     remaining = send(@challenge.current_round.submission_limit_period_cd.to_s)
     return remaining
@@ -24,12 +24,14 @@ class SubmissionsRemainingQuery
     if submissions.blank?
       remaining = [
         (@challenge.current_round.submission_limit),
-        nil
+        nil,
+        previous_submissions(submissions: submissions)
       ]
     else
       remaining = [
         (@challenge.current_round.submission_limit - submissions.count),
-        (submissions.first.created_at + 1.day).to_s
+        (submissions.first.created_at + 1.day).to_s,
+        previous_submissions(submissions: submissions)
       ]
     end
     return remaining
@@ -45,12 +47,14 @@ class SubmissionsRemainingQuery
     if submissions.blank?
       remaining = [
         (@challenge.current_round.submission_limit),
-        nil
+        nil,
+        previous_submissions(submissions: submissions)
       ]
     else
       remaining = [
         (@challenge.current_round.submission_limit - submissions.count),
-        (submissions.first.created_at + 1.week).to_s
+        (submissions.first.created_at + 1.week).to_s,
+        previous_submissions(submissions: submissions)
       ]
     end
     return remaining
@@ -66,15 +70,21 @@ class SubmissionsRemainingQuery
     if submissions.blank?
       remaining = [
         (@challenge.current_round.submission_limit),
-        nil
+        nil,
+        previous_submissions(submissions: submissions)
       ]
     else
       remaining = [
         (@challenge.current_round.submission_limit - submissions.count),
-        nil
+        nil,
+        previous_submissions(submissions: submissions)
       ]
     end
     return remaining
+  end
+
+  def previous_submissions(submissions:)
+    submissions.map {|s| [s.id, s.grading_status_cd, s.created_at]}
   end
 
 end

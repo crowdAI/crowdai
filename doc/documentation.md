@@ -31,8 +31,7 @@ The links to the page are from:
 - Submissions row
 - Media thumbnail on the leaderboard
 
-The links will only be active if the **
-Submissions Details Visible?** switch is set in the Challenge configuration.
+The links will only be active if the **Submissions Details Visible?** switch is set in the Challenge configuration.
 
 The possible elements, in the order the will appear are:
 

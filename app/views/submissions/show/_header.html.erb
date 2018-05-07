@@ -10,7 +10,7 @@
   </div>
   <h4>Submission: <%= challenge.challenge %></h4>
   <br/>
-  <% if @submission.grading_status_cd == 'graded' %>
+  <% if @submission.grading_status_cd == 'graded'  && challenge.show_leaderboard %>
     <h5><%= "#{@challenge.score_title}: #{@submission.score}" %></h5>
     <% unless @challenge.secondary_sort_order_cd == 'not_used' %>
       <h5><%= "#{@challenge.score_secondary_title}: #{@submission.score_secondary}" %></h5>

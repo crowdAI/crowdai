@@ -5,11 +5,17 @@ class SubmissionPolicy < ApplicationPolicy
   end
 
   def show?
-    @record.challenge.submissions_page.present? #&&   SubmissionPolicy::Scope.new(participant,Submission).resolve.include?(@record)
+    @record.challenge.submissions_page.present? &&
+      SubmissionPolicy::Scope
+        .new(participant,Submission)
+        .resolve
+        .include?(@record)
   end
 
   def new?
-    ChallengePolicy.new(participant, @record.challenge).submissions_allowed?
+    ChallengePolicy
+      .new(participant, @record.challenge)
+      .submissions_allowed?
   end
 
   def create?
@@ -22,6 +28,10 @@ class SubmissionPolicy < ApplicationPolicy
   end
 
   def update?
+    edit?
+  end
+
+  def destroy?
     edit?
   end
 
@@ -59,6 +69,23 @@ class SubmissionPolicy < ApplicationPolicy
               FROM invitations
               WHERE invitations.challenge_id = c.id
               AND invitations.email = '#{email}'
+            )
+        OR EXISTS
+          (SELECT 'X'
+            FROM leaderboards l,
+                  challenges c
+            WHERE c.id = l.challenge_id
+            AND c.status_cd = 'running'
+            AND c.show_leaderboard IS TRUE
+            AND l.submission_id = submissions.id
+            AND (c.private_challenge IS FALSE
+                  OR (c.private_challenge IS TRUE
+                       AND EXISTS (SELECT 'X'
+                                 FROM invitations
+                                 WHERE invitations.challenge_id = c.id
+                                 AND invitations.email = '#{email}')
+                      )
+                )
             )
           )
         ]

@@ -32,16 +32,14 @@
                 class: tab_class('dataset') %>
         </li>
       <% end %>
-<<<<<<< HEAD
-=======
 
-      <% if challenge.submissions_page.present? || (current_participant &&  (current_participant.admin? || challenge.organizer_id == current_participant.organizer_id)) %>
->>>>>>> master
+      <% if current_participant %>
         <li class=<%= tab_class('submissions') %> >
           <%= link_to 'Submissions',
                 challenge_submissions_path(challenge),
                 class: tab_class('submissions') %>
         </li>
+      <% end %>
       <% if policy(challenge).edit? %>
         <% if challenge.clef_task #&& challenge.clef_task.eua_required? %>
           <li class=<%= tab_class('participants') %> >

@@ -19,6 +19,10 @@ The crowdAI Leaderboard is dynamic and may be configured via the Challenge confi
 - The organizers
 - The Admin
 
+### Submission Limits
+
+Detailed [here](./submission_limits.md)
+
 ### Submission Detail Page
 
 This page has a shortened url and buttons to share the page on Facebook, Twitter and other social media. For graded submissions, it is publicly viewable.

@@ -2,6 +2,7 @@ ActiveAdmin.register Submission do
   belongs_to :challenge, parent_class: Challenge
   navigation_menu :challenge
 
+  filter :id
   filter :participant_id
   filter :name
   filter :media_content_type

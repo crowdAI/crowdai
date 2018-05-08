@@ -12,11 +12,13 @@ ActiveAdmin.register Challenge do
     ul do
       li link_to "Leaderboard",   admin_challenge_leaderboards_path(challenge)
       li link_to "Submissions",   admin_challenge_submissions_path(challenge)
-      li link_to "Topics",        admin_challenge_topics_path(challenge)
+      li link_to "Topics", admin_challenge_topics_path(challenge)
     end
   end
 
+  filter :id
   filter :status_cd
+  filter :challenge
 
   index do
     selectable_column

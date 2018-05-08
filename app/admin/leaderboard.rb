@@ -4,9 +4,11 @@ ActiveAdmin.register Leaderboard do
 
   actions :index, :show
 
+  filter :id
   filter :participant_id
   filter :name
   filter :media_content_type
+  filter :submission_id
 
   index do
     selectable_column

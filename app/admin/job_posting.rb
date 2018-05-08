@@ -19,6 +19,7 @@ ActiveAdmin.register JobPosting do
     actions
   end
 
+  filter :id
   filter :country
   filter :remote
   filter :posting_date

@@ -5,7 +5,7 @@ class SubmissionPolicy < ApplicationPolicy
   end
 
   def show?
-    @record.challenge.submissions_page.present? &&   SubmissionPolicy::Scope.new(participant,Submission).resolve.include?(@record)
+    @record.challenge.submissions_page.present? #&&   SubmissionPolicy::Scope.new(participant,Submission).resolve.include?(@record)
   end
 
   def new?
@@ -40,7 +40,7 @@ class SubmissionPolicy < ApplicationPolicy
           (SELECT c.id
             FROM challenges c
             WHERE c.status_cd = 'completed'
-            AND c.private_challenge IS FALSE)
+            AND c.private_challenge IS FALSE
            UNION
            SELECT c.id
             FROM challenges c

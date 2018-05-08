@@ -6,9 +6,6 @@ class LeaderboardsController < ApplicationController
   layout :set_layout
 
   def index
-    if @challenge.show_leaderboard == false && !(current_participant.admin? || @challenge.organizer_id == current_participant.organizer_id)
-      redirect_to '/', notice: "You don't have permission for this action."
-    end
     @current_round = current_round
     if @challenge.completed?
       if params[:post_challenge] == 'on'
@@ -17,30 +14,21 @@ class LeaderboardsController < ApplicationController
         @post_challenge = 'off'
       end
     end
-    if @post_challenge == 'on'
-      @leaderboards = @challenge
-        .ongoing_leaderboards
-        .where(challenge_round_id: current_round.id)
-        .page(params[:page])
-        .per(10)
+    if @current_round.blank?
+      current_round_id = 0
     else
-      @leaderboards = @challenge
-        .leaderboards
-        .where(challenge_round_id: current_round.id)
-        .page(params[:page])
-        .per(10)
+      current_round_id = @current_round.id
     end
-
-    if current_participant && (current_participant.admin? || @challenge.organizer_id == current_participant.organizer_id)
-      @participant_submissions = ParticipantSubmission.where(challenge_id: @challenge.id)
-    end
-  end
-
-  def video_modal
-    @leaderboard = Leaderboard.where(submission_id: params[:submission_id]).first
-    respond_to do |format|
-      format.html { redirect_to challenge_leaderboards_path(@challenge) }
-      format.js { render 'leaderboards/ajax/video_modal' }
+    if @post_challenge == 'on'
+      @leaderboards = policy_scope(OngoingLeaderboard)
+          .where(challenge_round_id: current_round_id)
+          .page(params[:page])
+          .per(10)
+    else
+      @leaderboards = policy_scope(Leaderboard)
+          .where(challenge_round_id: current_round_id)
+          .page(params[:page])
+          .per(10)
     end
   end
 

@@ -13,7 +13,6 @@ gem 'puma_worker_killer'
 
 # user accounts / admin
 gem 'devise', '~> 4.4.1'
-gem 'authtrail'
 gem 'pundit'
 gem 'activeadmin'
 gem 'crowdai_admin'

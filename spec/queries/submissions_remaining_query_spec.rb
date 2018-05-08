@@ -144,9 +144,9 @@ RSpec.describe SubmissionsRemainingQuery do
     end
   end
 
-=begin
   describe 'per round' do
     let!(:challenge) { create :challenge, :round }
+    let!(:round) { challenge.challenge_rounds.first }
 
     context 'no submissions made' do
       it { expect(subject.call).to eq([5, nil, []]) }
@@ -156,18 +156,20 @@ RSpec.describe SubmissionsRemainingQuery do
       let!(:submission1) {
         create :submission,
           challenge: challenge,
+          challenge_round: round,
           participant: participant,
           created_at: 2.days.ago
       }
       let!(:submission2) {
         create :submission,
           challenge: challenge,
+          challenge_round: round,
           participant: participant,
           created_at: 2.hours.ago
       }
       it { expect((subject.call)[0]).to eq(3) }
       it { expect((subject.call)[1]).to eq(nil) }
-      it { expect((subject.call)[2].count).to eq(1) }
+      it { expect((subject.call)[2].count).to eq(2) }
     end
 
     context 'round:two submissions made, one outside window' do
@@ -199,11 +201,10 @@ RSpec.describe SubmissionsRemainingQuery do
             created_at: (6 - i).days.ago
         }
       end
-      it { expect((subject.call)[0]).to eq(4) }
+      it { expect((subject.call)[0]).to eq(5) }
       it { expect((subject.call)[1]).to eq(nil) }
-      it { expect((subject.call)[2].count).to eq(1) }
+      it { expect((subject.call)[2].count).to eq(0) }
     end
   end
-=end
 
 end

@@ -44,6 +44,13 @@ class ChallengePolicy < ApplicationPolicy
     update?
   end
 
+  def show_leaderboard?
+    @record.challenge_rounds.present? &&
+      @record.show_leaderboard == true ||
+        (participant &&
+          (participant.admin? || @record.organizer_id == participant.organizer_id))
+  end
+
   def submissions_allowed?
     return false unless @record.online_submissions
     if participant && participant.admin?

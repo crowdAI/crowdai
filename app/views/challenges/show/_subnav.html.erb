@@ -6,9 +6,7 @@
               challenge_path(challenge),
               class: tab_class('overview') %>
       </li>
-      <% if challenge.challenge_rounds.present? &&
-            challenge.show_leaderboard ||
-            (current_participant && (current_participant.admin? || challenge.organizer_id == current_participant.organizer_id)) %>
+      <% if policy(challenge).show_leaderboard? %>
         <li class=<%= tab_class('leaderboard') %> >
           <%= link_to 'Leaderboard',
                 challenge_leaderboards_path(challenge),

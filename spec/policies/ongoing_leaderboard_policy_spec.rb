@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe LeaderboardPolicy do
+describe OngoingLeaderboardPolicy do
   subject { described_class.new(participant, leaderboard_row) }
   let(:leaderboard_row) { Leaderboard.first }
 
@@ -12,6 +12,7 @@ describe LeaderboardPolicy do
         create :base_leaderboard,
           challenge_id: challenge.id,
           challenge_round_id: round.id,
+          leaderboard_type_cd: 'ongoing',
           row_num: i,
           score: 100 - i,
           score_secondary: i/100 }

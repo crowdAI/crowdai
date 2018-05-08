@@ -91,6 +91,9 @@ FactoryBot.define do
       status :completed
       challenge FFaker::Lorem.sentence(3)
       dataset_files {[ build(:dataset_file) ]}
+      after(:create) do |challenge|
+        FactoryBot.create(:challenge_round, challenge: challenge)
+      end
     end
 
     trait :starting_soon do

@@ -32,6 +32,11 @@
                 class: tab_class('dataset') %>
         </li>
       <% end %>
+<<<<<<< HEAD
+=======
+
+      <% if challenge.submissions_page.present? || (current_participant &&  (current_participant.admin? || challenge.organizer_id == current_participant.organizer_id)) %>
+>>>>>>> master
         <li class=<%= tab_class('submissions') %> >
           <%= link_to 'Submissions',
                 challenge_submissions_path(challenge),

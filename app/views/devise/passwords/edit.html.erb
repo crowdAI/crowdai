@@ -1,0 +1,23 @@
+<div class="content background-grey">
+  <div class="row">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: 'panel', method: :put }) do |f| %>
+    <%= devise_error_messages! %>
+    <%= f.hidden_field :reset_password_token %>
+    <fieldset>
+      <div class="panel-body">
+        <h2>Change your password</h2>
+        <br/>
+        <%= f.label :password, "New password" %>
+
+        <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+
+        <%= f.label :password_confirmation, "Confirm new password" %>
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+
+        <%= f.button 'Change my password', type: 'submit', class: 'btn btn-primary btn-login' %>
+
+      </div>
+    </fieldset>
+    <% end %>
+  </div>
+</div>

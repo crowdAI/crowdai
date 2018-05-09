@@ -1,6 +1,5 @@
 <div class="row">
   <%= form_for [@organizer,@challenge], validate: true, html: { class: "sgl-col", multipart: true } do |f| %>
-  
 
     <fieldset>
       <h4>Challenge Rounds</h4>
@@ -16,6 +15,7 @@
                   partial: 'challenges/form/challenge_round_fields' } %>
         </div>
       </div>
+      <br/><br/>
     </fieldset>
 
     <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>

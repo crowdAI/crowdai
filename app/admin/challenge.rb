@@ -51,8 +51,6 @@ ActiveAdmin.register Challenge do
       f.input :score_secondary_title
       f.input :secondary_sort_order
       f.input :perpetual_challenge
-      f.input :grading_factor
-      f.input :grader
       f.input :challenge_client_name
       f.input :description_markdown
       f.input :evaluation_markdown

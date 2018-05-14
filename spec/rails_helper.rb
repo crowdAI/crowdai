@@ -8,24 +8,23 @@ require 'devise'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'capybara-screenshot/rspec'
-require 'support/controller_helpers'
-require 'features/support/feature_spec_helpers'
-require 'support/helpers/header_helpers'
-require 'simplecov'
+
+Dir[File.dirname(__FILE__) + "/support/helpers/*.rb"]
+  .each { |f| require f }
+Dir[File.dirname(__FILE__) + "/support/matchers/*.rb"]
+  .each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
-
 Capybara.asset_host = 'http://localhost:3001'
 Capybara.javascript_driver = :webkit
-Capybara.server_port = 52508  # port registered with Amazon S3 CORS config
+Capybara.server_port = 52508 + ENV['TEST_ENV_NUMBER'].to_i
+#Capybara.server_port = 52508  # port registered with Amazon S3 CORS config
 Capybara.default_max_wait_time = 5
 Capybara::Screenshot.register_driver(:chrome) do |driver, path|
   filename = File.basename(path)
   driver.browser.save_screenshot("#{Rails.root}/tmp/capybara/#{filename}")
 end
 Capybara::Webkit.configure do |config|
-  #config.allow_url("cdn.mathjax.org")
-  #config.allow_url("www.gravatar.com")
   config.allow_url("use.fontawesome.com")
   config.allow_unknown_urls
   config.ignore_ssl_errors
@@ -43,17 +42,16 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :helper
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Warden::Test::Helpers, type: :feature
+  config.include ControllerSpecHelpers, type: :controller
+  config.include HeaderHelpers
+  config.include FeatureSpecHelpers, type: :feature
 
   Capybara.ignore_hidden_elements = true
-
-  config.include ControllerHelpers, type: :controller
-  config.include HeaderHelpers
-
-  config.include FeatureSpecHelpers, type: :feature
 
   config.use_transactional_fixtures = false
 
   config.before(:suite) do
+    FactoryBot.lint
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean_with(:truncation)
   end

@@ -1,4 +1,4 @@
-module ControllerHelpers
+module ControllerSpecHelpers
   def double_sign_in(participant = double('participant'))
     if participant.nil?
       allow(request.env['warden']).to receive(:authenticate!).and_throw(:warden, {:scope => :participant})

@@ -1,3 +1,4 @@
+=begin
 require "rails_helper"
 
 feature 'API key visibility' do
@@ -25,7 +26,6 @@ feature 'API key visibility' do
   end
 end
 
-=begin
 feature 'Email field visibility', js: true do
   let(:participant) { create :participant }
   let(:admin) { create :participant, :admin }

@@ -1,8 +1,10 @@
 <div class="row">
-  <%= form_for [@organizer,@challenge], validate: true, html: { class: "dbl-col" } do |f| %>
-  <fieldset>
-  
-    <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>
-  </fieldset>
+  <%= form_for [@organizer,@challenge],
+        html: { class: "dbl-col" } do |f| %>
+
+    <fieldset>
+      <%= render partial: 'challenges/form/submit_buttons',
+            locals: { f: f } %>
+    </fieldset>
   <% end %>
 </div>

@@ -1,5 +1,6 @@
 <div class="row">
-  <%= form_for [@organizer,@challenge], html: { class: "dbl-col" } do |f| %>
+  <%= form_for [@organizer,@challenge],
+        html: { class: "dbl-col" } do |f| %>
     <% @challenge.errors.full_messages.each do |error| %>
       <p><%= error %></p>
     <% end %>
@@ -54,11 +55,11 @@
 
     <div class="twin-container">
       <div class="twin-field">
-        <label>Challenge Client Name</label>
+        <%= f.label :challenge_client_name, 'Challenge Client Name' %>
         <%= f.text_field :challenge_client_name %>
       </div>
       <div class="twin-field">
-        <label>Grader Identifier</label>
+        <%= f.label :grader_identifier, 'Grader Identifier' %>
         <%= f.text_field :grader_identifier %>
       </div>
     </div>
@@ -68,15 +69,15 @@
         <fieldset class="checkbox">
           <div>
             <%= f.check_box :require_registration, {}, "true", "false" %>
-            <label for="">Registration required?</label>
+            <%= f.label :require_registration, 'Registration required?' %>
           </div>
           <div>
             <%= f.check_box :show_leaderboard, {}, "true", "false" %>
-            <label for="">Show leaderboard?</label>
+            <%= f.label :show_leaderboard, 'Show leaderboard?' %>
           </div>
           <div>
             <%= f.check_box :media_on_leaderboard, {}, "true", "false" %>
-            <label for="">Media on leaderboard?</label>
+            <%= f.label :media_on_leaderboard, 'Media on leaderboard?' %>
           </div>
         </fieldset>
       </div>
@@ -84,49 +85,48 @@
         <fieldset class="checkbox">
           <div>
             <%= f.check_box :submissions_page, {}, "true", "false" %>
-            <label for="">Submissions Details Visible?</label>
+            <%= f.label :submissions_page, 'Submissions Details Visible?' %>
           </div>
           <div>
             <%= f.check_box :grading_history, {}, "true", "false" %>
-            <label for="">Grading History Visible?</label>
+            <%= f.label :grading_history, 'Grading History Visible?' %>
           </div>
           <div>
             <%= f.check_box :grader_logs, {}, "true", "false" %>
-            <label for="">Grader Logs Visible?</label>
+            <%= f.label :grader_logs, 'Grader Logs Visible?' %>
           </div>
         </fieldset>
       </div>
     </div>
 
-
     <div class="twin-container">
       <div class="twin-field">
-        <label>Highlight rankings</label>
+        <%= f.label :ranking_highlight, 'Highlight rankings' %>
         <%= f.text_field :ranking_highlight %>
       </div>
       <div class="twin-field">
-        <label>Ranking window (hours)</label>
+        <%= f.label :ranking_window, 'Ranking window (hours)' %>
         <%= f.text_field :ranking_window %>
       </div>
     </div>
 
     <div class="twin-container">
       <div class="twin-field">
-        <label>Primary score title</label>
+        <%= f.label :score_title, 'Primary score title' %>
         <%= f.text_field :score_title %>
       </div>
       <div class="twin-field">
-        <label>Sort order</label>
+        <%= f.label :primary_sort_order, 'Sort order' %>
         <%= f.select :primary_sort_order, enum_option_pairs(Challenge, :primary_sort_order), include_blank: false %>
       </div>
     </div>
     <div class="twin-container">
       <div class="twin-field">
-        <label>Secondary score title</label>
+        <%= f.label :score_secondary_title, 'Secondary score title' %>
         <%= f.text_field :score_secondary_title %>
       </div>
       <div class="twin-field">
-        <label>Sort order</label>
+        <%= f.label :secondary_sort_order, 'Sort order' %>
         <%= f.select :secondary_sort_order, enum_option_pairs(Challenge, :secondary_sort_order), include_blank: false %>
       </div>
     </div>
@@ -134,11 +134,9 @@
     <fieldset class="checkbox">
       <div>
         <%= f.check_box :private_challenge, {}, "true", "false" %>
-        <label for="">Private challenge</label>
+        <%= f.label :private_challenge, 'Private challenge' %>
       </div>
     </fieldset>
-
-
 
     <%= render partial: 'challenges/form/invitations_table',
             locals: { challenge: @challenge, f: f } %>

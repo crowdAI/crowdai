@@ -10,6 +10,26 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@csstools/sass-import-resolve/-/sass-import-resolve-1.0.0.tgz#32c3cdb2f7af3cd8f0dca357b592e7271f3831b5"
 
+"@stimulus/core@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@stimulus/core/-/core-1.0.1.tgz#76e2c9e007df8a89dd5f8f707c63a64e1c6afef0"
+  dependencies:
+    "@stimulus/mutation-observers" "^1.0.0"
+
+"@stimulus/multimap@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@stimulus/multimap/-/multimap-0.9.0.tgz#ed63699b3efb273411c118a50955569b2565a6e8"
+
+"@stimulus/mutation-observers@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@stimulus/mutation-observers/-/mutation-observers-1.0.0.tgz#5a54cf78ce697b72f47a7c4f4594c024a7c2656e"
+  dependencies:
+    "@stimulus/multimap" "^0.9.0"
+
+"@stimulus/webpack-helpers@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@stimulus/webpack-helpers/-/webpack-helpers-1.0.0.tgz#f38b8281182436085d3472dc963dcbd81d731141"
+
 abab@^1.0.3, abab@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.4.tgz#5faad9c2c07f60dd76770f71cf025b62a63cfd4e"
@@ -7708,6 +7728,13 @@ stdout-stream@^1.4.0:
 stealthy-require@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/stealthy-require/-/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
+
+stimulus@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/stimulus/-/stimulus-1.0.1.tgz#34418d9e05039920359c02590841147bce78b555"
+  dependencies:
+    "@stimulus/core" "^1.0.1"
+    "@stimulus/webpack-helpers" "^1.0.0"
 
 stream-browserify@^2.0.1:
   version "2.0.1"

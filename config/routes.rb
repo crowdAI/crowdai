@@ -73,7 +73,7 @@ Rails.application.routes.draw do
     resources :task_dataset_file_downloads
   end
 
-  resources :challenges do
+  resources :challenges, only: [:index,:show] do
     resources :dataset_files
     resources :participant_challenges, only: [:index] do
       get :approve, on: :collection

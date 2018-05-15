@@ -1,7 +1,42 @@
 module FeatureSpecHelpers
-  def current_path
-    URI.parse(current_url).path
+
+  def log_in(participant)
+    visit new_participant_session_path
+    fill_in 'Email address', with: participant.email
+    fill_in 'Password', with: participant.password
+    click_button 'Log In'
   end
+
+  def expect_sign_in
+    expect(current_path).to eq new_participant_session_path
+    expect(page).to have_text 'You need to sign in or sign up before continuing'
+  end
+
+  def expect_unauthorized
+    expect(current_path).to eq '/'
+    expect(page).to have_text 'You are not authorised to access this page.'
+  end
+
+  def visit_review
+    click_on 'Review'
+  end
+
+  def visit_grammar_notes
+    visit_review
+    click_link 'Grammar'
+  end
+
+  def visit_decks
+    save_and_open_page
+    visit_review
+    click_link 'Decks'
+  end
+
+  def visit_courses
+    click_link('Courses', match: :first)
+  end
+
+
 
   def visit_landing_page
     visit '/'
@@ -60,16 +95,4 @@ module FeatureSpecHelpers
     click_link 'Password'
   end
 
-  def log_in(participant)
-    visit '/'
-    click_link 'Log in', :match => :first
-    fill_in 'Email address',      with: participant.email
-    fill_in 'Password',   with: participant.password
-    click_button 'Log In'
-  end
-
-  def log_out(participant)
-    open_menu
-    click_link 'Log Out'
-  end
 end

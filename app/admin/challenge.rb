@@ -32,6 +32,7 @@ ActiveAdmin.register Challenge do
   end
 
   controller do
+    actions :all, except: [:edit,:new]
     def find_resource
       scoped_collection.friendly.find(params[:id])
     end
@@ -39,32 +40,5 @@ ActiveAdmin.register Challenge do
       params.permit!
     end
   end
-
-  form do |f|
-    f.inputs "Challenge" do
-      f.input :organizer, :as => :select, :collection => Organizer.all.collect {|organizer| [organizer.organizer, organizer.id] }
-      f.input :challenge
-      f.input :status
-      f.input :tagline
-      f.input :score_title
-      f.input :primary_sort_order
-      f.input :score_secondary_title
-      f.input :secondary_sort_order
-      f.input :perpetual_challenge
-      f.input :grading_factor
-      f.input :grader
-      f.input :challenge_client_name
-      f.input :description_markdown
-      f.input :evaluation_markdown
-      f.input :rules_markdown
-      f.input :prizes_markdown
-      f.input :resources_markdown
-      f.input :submission_instructions_markdown
-      f.input :license_markdown
-      f.input :dataset_description_markdown
-    end
-    f.actions
-  end
-
 
 end

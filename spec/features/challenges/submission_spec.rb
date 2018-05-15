@@ -1,49 +1,67 @@
 require "rails_helper"
-=begin
-feature "competitor submissions for python grading", js: true do
-  let!(:participant) { create(:participant) }
-  let!(:admin_participant) { create(:participant, :admin) }
-  let!(:challenge) { create(:challenge) }
 
-  before (:example) do
-    sign_in(participant)
-    access_submission(challenge)
+feature 'submissions not allowed' do
+  let!(:running) { create :challenge, :running, online_submissions: true }
+  let!(:draft) { create :challenge }
+  let!(:starting_soon) {
+    create :challenge, :starting_soon }
+  let!(:completed_closed) {
+    create :challenge,
+      :completed,
+      online_submissions: true,
+      post_challenge_submissions: false }
+  let(:participant) { create :participant }
+
+  scenario 'public user' do
+    visit new_challenge_submission_path(running)
+    expect_sign_in
+    visit new_challenge_submission_path(draft)
+    expect_sign_in
+    visit new_challenge_submission_path(starting_soon)
+    expect_sign_in
+    visit new_challenge_submission_path(completed_closed)
+    expect_sign_in
   end
 
-  scenario "a python-graded challenge does not show the docker select box" do
-    expect(page).to have_text("Will be graded by #{challenge.grader}")
-    expect(page).not_to have_text "Docker configuration"
-  end
-
-
-  scenario "a participant can submit to the challenge" do
-    page.attach_file('File 1', Rails.root + 'spec/support/files/test_csv_file.csv')
-    fill_in 'submission_description_markdown', with: 'Submission message'
-    click_button 'Create Submission'
-    expect(page).to have_text("Submission accepted.")
-   end
-
-
-  scenario "a competitor must provide a submission message" do
-    page.attach_file('File 1', Rails.root + 'spec/support/files/test_csv_file.csv')
-    click_button 'Create Submission'
-    expect(page).to have_text("can't be blank")
+  scenario 'participant' do
+    log_in participant
+    visit new_challenge_submission_path(draft)
+    expect_unauthorized
+    visit new_challenge_submission_path(starting_soon)
+    expect_unauthorized
+    visit new_challenge_submission_path(completed_closed)
+    expect_unauthorized
   end
 end
 
-feature "competitor submissions for docker grading", js: true do
-  let!(:participant) { create(:participant) }
-  let!(:admin_participant) { create(:participant, :admin) }
-  let!(:challenge) { create(:challenge, :with_milestones, grader: :docker_container) }
+feature 'challenge running' do
+  let!(:running) { create :challenge, :running, online_submissions: true }
+  let(:participant) { create :participant }
+  scenario do
+    log_in participant
+    visit new_challenge_submission_path(running)
+    expect(page).to have_text 'Create Submission'
+  end
+end
 
-  before (:example) do
-    sign_in(participant)
-    access_submission(challenge)
+feature 'challenge ended' do
+  let!(:challenge) {
+    create :challenge,
+      :completed,
+      online_submissions: true,
+      post_challenge_submissions: true }
+  let(:participant) { create :participant }
+  scenario do
+    log_in participant
+    visit new_challenge_submission_path(challenge)
+    expect(page).to have_text 'Create Submission'
+    expect(page).to have_text 'This challenge is now completed. You may continue to make submissions and your entries will appear on the Ongoing Leaderboard.'
   end
 
-  #scenario "a docker-graded challenge requries selecting the docker file" do
-  #  expect(page).not_to have_text("Will be graded by #{challenge.grader}")
-  #  expect(page).to have_text "Docker configuration"
-  #end
+  scenario do
+    challenge.update(post_challenge_submissions: false)
+    log_in participant
+    visit new_challenge_submission_path(challenge)
+    expect_unauthorized
+  end
 end
-=end

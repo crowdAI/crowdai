@@ -1,4 +1,8 @@
 <div class="row">
+  <% if @challenge.completed? %>
+    <br/>
+    <p>This challenge is now completed. You may continue to make submissions and your entries will appear on the Ongoing Leaderboard.</p>
+  <% end %>
   <%= form_for [@challenge,@submission],
         html: {
           class: "directUpload dbl-col",
@@ -71,13 +75,15 @@
                   class: 'file-upload s3File' %>
           </div>
         <% end %>
-        <p class="margin-bottom">
-          <% if @reset_dttm %>
-            <strong>You have <%= pluralize(@submissions_remaining,'submission') %> remaining until <%= @reset_dttm %>."</strong>
-          <% else %>
-            <strong>You have <%= pluralize(@submissions_remaining,'submission') %> remaining.</strong>
-          <% end %>
-        </p>
+        <% if @challenge.running? %>
+          <p class="margin-bottom">
+            <% if @reset_dttm %>
+              <strong>You have <%= pluralize(@submissions_remaining,'submission') %> remaining until <%= @reset_dttm %>."</strong>
+            <% else %>
+              <strong>You have <%= pluralize(@submissions_remaining,'submission') %> remaining.</strong>
+            <% end %>
+          </p>
+        <% end %>
 
         <div class="button-group">
           <%#= f.button "Submit Entry", class: 'btn btn-primary' %>

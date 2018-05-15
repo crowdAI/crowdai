@@ -36,9 +36,6 @@ class SubmissionsController < ApplicationController
     @submission = @challenge.submissions.new
     @submission.submission_files.build
     authorize @submission
-    #@challenge.submission_file_definitions.each do |file|
-    #  @submission.submission_files.build(seq: file.seq)
-    #end
   end
 
   def create

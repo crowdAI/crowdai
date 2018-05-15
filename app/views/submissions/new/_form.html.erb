@@ -1,72 +1,88 @@
-<%= form_for([@challenge, @submission],
-            html: { class: "directUpload" },
-            data: { 'form-data' => (@s3_direct_post.fields),
-                    'url' => @s3_direct_post.url,
-                    'host' => URI.parse(@s3_direct_post.url).host }
-            ) do |f| %>
-<%= f.error_notification %>
+<div class="row">
+  <% if @challenge.completed? %>
+    <br/>
+    <p>This challenge is now completed. You may continue to make submissions and your entries will appear on the Ongoing Leaderboard.</p>
+  <% end %>
+  <%= form_for [@challenge,@submission],
+        html: {
+          class: "directUpload dbl-col",
+          multipart: true },
+        data: {
+          'form-data' => (@s3_direct_post.fields),
+          'url' => @s3_direct_post.url,
+          'host' => URI.parse(@s3_direct_post.url).host } do |f| %>
 
-<div class="form-inputs">
-  <%= f.association :challenge, as: :hidden %>
-  <%= f.hidden_field :participant_id, value: current_participant.id %>
+      <label>
+        <% if @challenge.submission_instructions %>
+          <%= @challenge.submission_instructions.html_safe %>
+        <% end %>
+      </label>
+      <fieldset>
+        <div class="markdown-editor">
+          <ul class="nav nav-tabs" data-tabs="tabs">
+            <li class="active">
+              <a href="#editor-pane-description" data-toggle="tab">Write</a>
+            </li>
+            <li>
+              <a href="#preview-pane-description" class="preview-pane-link" data-toggle="tab">Preview</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="editor-pane-description">
+              <%= render 'markdown_editor/toolbar' %>
+              <%= f.text_area :description_markdown,
+                              class: 'form-control markdown-textarea',
+                              placeholder: 'Please describe your submission.',
+                              required: true,
+                              rows: 10 %>
+            </div>
+            <div class="tab-pane markdown-preview-pane" id="preview-pane-description">
+              <div id="markdown-preview"></div>
+            </div>
+          </div>
+        </div>
+        <p>
+          <%= @submission.errors[:description_markdown].first if @submission.errors[:description_markdown] %>
+        </p>
 
-  <div class='row'>
-    <div class='col-md-4'>
-      <% if @challenge.grader == :docker_container %>
-        <%= f.input :docker_configuration_id, collection: @challenge.docker_configurations, label_method: :name, value_method: :id, include_blank: false %>
-      <% else %>
-        <h3><%= "Will be graded by #{@challenge.grader}" %><h3>
-      <% end %>
-    </div>
+        <% if @challenge.license %>
+          <p class="margin-bottom">
+            <%= @challenge.license.html_safe %>
+          </p>
+        <% else %>
+          <p class="margin-bottom">
+            After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC).<br>
+              By making your submission you indicate your agreement with these terms.
+            </p>
+        <% end %>
+        <%= f.fields_for :submission_files do |f| %>
 
-    <% if @challenge.api_required %>
-      <div class='col-md-4'>
-        <%= f.input :api, :collection => Submission::APIS.sort.map {|k,v| [v,k]} %>
-      </div>
+          <div class="nested-fields">
+            <p><%#= @challenge.submission_file_definitions[file.index].submission_file_help_text %></p>
+            <%= f.hidden_field :seq %><!-- populated by controller -->
+            <%= f.file_field :submission_file_s3_key,
+                  as: :file,
+                  label: "Submissions file",
+                  class: 'file-upload s3File' %>
+          </div>
+        <% end %>
+        <% if @challenge.running? %>
+          <p class="margin-bottom">
+            <% if @reset_dttm %>
+              <strong>You have <%= pluralize(@submissions_remaining,'submission') %> remaining until <%= @reset_dttm %>."</strong>
+            <% else %>
+              <strong>You have <%= pluralize(@submissions_remaining,'submission') %> remaining.</strong>
+            <% end %>
+          </p>
+        <% end %>
+
+        <div class="button-group">
+          <%#= f.button "Submit Entry", class: 'btn btn-primary' %>
+          <%#= button_to challenge_path(@challenge),
+                class: "btn btn-secondary" do %>
+              <%# end %>
+        </div>
+      </fieldset>
+
     <% end %>
   </div>
-
-  <%= f.simple_fields_for :submission_files do |file| %>
-    <hr/>
-    <div class="nested-fields">
-      <p><%= @challenge.submission_file_definitions[file.index].submission_file_help_text %></p>
-      <%= file.hidden_field :seq %><!-- populated by controller -->
-      <%= file.input :submission_file_s3_key, as: :file, label: @challenge.submission_file_definitions[file.index].submission_file_description, input_html: { class: 's3File', accept: @challenge.submission_file_definitions[file.index].file_accept } %>
-    </div>
-  <% end %>
-
-
-  <div class="markdown-editor">
-    <ul class="nav nav-tabs" data-tabs="tabs">
-      <li class="active">
-        <a href="#editor-pane-description" data-toggle="tab">Write</a>
-      </li>
-      <li>
-        <a href="#preview-pane-description" class="preview-pane-link" data-toggle="tab">Preview</a>
-      </li>
-    </ul>
-    <div class="tab-content">
-      <div class="tab-pane active" id="editor-pane-description">
-        <%= render 'markdown_editor/toolbar' %>
-        <%= f.text_area :description_markdown,
-                        class: 'form-control markdown-textarea',
-                        placeholder: 'Please describe your submission.',
-                        required: true,
-                        rows: 10 %>
-      </div>
-      <div class="tab-pane markdown-preview-pane" id="preview-pane-description">
-        <div id="markdown-preview"></div>
-      </div>
-    </div>
-  </div>
-  <p>
-    <%= @submission.errors[:description_markdown].first if @submission.errors[:description_markdown] %>
-  </p>
-
-
-</div>
-<br/>
-<div class="form-actions">
-  <%= f.button :submit %>
-</div>
-<% end %>

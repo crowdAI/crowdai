@@ -53,7 +53,7 @@ class ChallengePolicy < ApplicationPolicy
 
   def submissions_allowed?
     return false unless @record.online_submissions
-    if participant && participant.admin?
+    if participant && (participant.admin? || @record.organizer_id == participant.organizer_id)
       return true
     end
     if @record.running?
@@ -66,9 +66,11 @@ class ChallengePolicy < ApplicationPolicy
       else
         return true #return true if running and no clef challenge
       end
-    else
-      return false #return false if challenge not running
     end
+    if @record.completed? && @record.post_challenge_submissions
+      return true
+    end
+    return false # no positive condition met
   end
 
   def clef_participant_registered?(challenge)

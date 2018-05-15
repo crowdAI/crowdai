@@ -14,8 +14,12 @@ FactoryBot.define do
     submission_instructions_markdown "## Submission instructions"
     primary_sort_order_cd 'ascending'
     secondary_sort_order_cd 'descending'
+    score_title 'Title_primary'
+    score_secondary_title 'Title_secondary'
     license_markdown '## This is a license'
     submissions_page true
+    ranking_window 48
+    ranking_highlight 3
 
     trait :running do
       status :running

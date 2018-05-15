@@ -1,5 +1,6 @@
-require "rails_helper"
 =begin
+require "rails_helper"
+
 feature "host a challenge" do
   scenario "user vists host a challenge" do
     visit '/'

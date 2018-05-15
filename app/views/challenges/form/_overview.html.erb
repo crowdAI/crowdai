@@ -30,7 +30,6 @@
     <%= markdown_editor do |m| %>
       <%= f.text_area :dataset_description_markdown, class: "txt-med" %>
     <% end %>
-    <%= render partial: 'challenges/form/clef_fields', locals: { f: f } %>
 
     <fieldset>
       <h4>Submission File Definitions</h4>

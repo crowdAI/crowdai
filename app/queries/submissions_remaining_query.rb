@@ -6,12 +6,16 @@ class SubmissionsRemainingQuery
   end
 
   def call
-    unless @challenge.running?
+    if @challenge.running?
+      remaining = send(@challenge
+        .current_round
+        .submission_limit_period_cd.to_s)
+    else
       return [1,nil,[]]
     end
-    remaining = send(@challenge.current_round.submission_limit_period_cd.to_s)
     return remaining
   end
+
 
   def day
     submissions = @challenge

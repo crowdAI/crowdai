@@ -1,6 +1,6 @@
+=begin
 require 'rails_helper'
 
-=begin
 feature 'update participant data', js: true do
 
   let!(:participant) { create(:participant) }
@@ -51,9 +51,7 @@ feature 'update participant data', js: true do
       expect(find('#email_preference_my_topic_post').checked?).to be true
       expect(find('#email_preference_any_leaderboard').checked?).to be true
     end
-=end
 
-=begin
     scenario "email preference check boxes uncheck and recheck all" do
       visit_own_profile(participant)
       click_link('Email preferences')
@@ -80,9 +78,8 @@ feature 'update participant data', js: true do
       expect(find('#email_preference_my_topic_post').checked?).to be true
       expect(find('#email_preference_any_leaderboard').checked?).to be true
     end
-=end
 
-=begin
+
     scenario 'clicking "crowdAI Newsletter" after opt out all turns off opt out all' do
       visit_own_profile(participant)
       click_link('Email preferences')
@@ -138,4 +135,5 @@ feature 'update participant data', js: true do
       expect(find('#email_preference_any_leaderboard').checked?).to be true
       expect(find('#email_preference_opt_out_all').checked?).not_to be true
     end
+end
 =end

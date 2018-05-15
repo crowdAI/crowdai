@@ -150,7 +150,5 @@ feature "participant accesses challenge", js: true do
     end
   end
 
-
-
 end
 =end

@@ -19,6 +19,8 @@ The crowdAI Leaderboard is dynamic and may be configured via the Challenge confi
 - The organizers
 - The Admin
 
+A challenge can be configured to allow submissions via the Python Client or via the online submissions page (or both). Submissions can also be made [after the challenge round is over](./post_challenge_submissions.md).
+
 ### Submission Limits
 
 Detailed [here](./submission_limits.md)

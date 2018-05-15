@@ -175,6 +175,7 @@ class ChallengesController < ApplicationController
         :online_submissions,
         :grader_logs,
         :grading_history,
+        :post_challenge_submissions,
         dataset_attributes: [
           :id,
           :challenge_id,

@@ -5,7 +5,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = true
   config.read_encrypted_secrets = false
   config.public_file_server.enabled = true
-  config.assets.js_compressor = :uglifier
+  config.assets.js_compressor = Uglifier.new(harmony: true)
   config.assets.css_compressor = :sass
   config.assets.compile = true
   config.force_ssl = true

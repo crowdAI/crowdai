@@ -54,7 +54,7 @@ gem 'meta-tags'
 gem 'fast_blank'
 
 # javascript
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '~> 4.1.10'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'jquery-ui-rails'

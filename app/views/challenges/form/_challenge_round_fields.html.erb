@@ -3,8 +3,12 @@
   <div class="twin-container">
     <div class="twin-field">
       <div class="switch-container">
-        <%= f.check_box :active, {class: 'switch active-switch'}, "true", "false"  %>
-        <%= f.label :active, 'Current Round', data: { on: 'true', off: 'false' } %>
+        <%= f.check_box :active,
+              { class: 'switch active-switch' },
+              "true", "false"  %>
+        <%= f.label :active,
+              'Current Round',
+              data: { on: 'true', off: 'false' } %>
       </div>
     </div>
     <div class="twin-field"></div>
@@ -66,25 +70,27 @@
 
   <div class="twin-container">
     <div class="twin-field">
-      <label>Start Date</label>
-      <%= f.text_field :start_dttm_date, class: 'datepicker', placeholder: "yyyy-mm-dd"  %>
+      <%= f.label :start_dttm, 'Round Start (UTC)' %>
+      <%= f.text_field :start_dttm,
+            data: {
+              controller: 'flatpickr',
+              flatpickr_enable_time: true,
+              flatpickr_format: "d-m-Y H:i",
+              flatpickr_minute_increment: 1
+            } %>
     </div>
     <div class="twin-field">
-      <label>End Date</label>
-      <%= f.text_field :end_dttm_date, class: 'datepicker', placeholder: "yyyy-mm-dd"  %>
+      <%= f.label :end_dttm, 'Round End (UTC)' %>
+      <%= f.text_field :end_dttm,
+            data: {
+              controller: 'flatpickr',
+              flatpickr_enable_time: true,
+              flatpickr_format: "d-m-Y H:i",
+              flatpickr_minute_increment: 1
+            } %>
     </div>
   </div>
 
-  <div class="twin-container">
-    <div class="twin-field">
-      <label>Start Time (<abbr title="Coordinated Universal Time">UTC</abbr>)</label>
-        <%= f.text_field :start_dttm_time, as: :time, placeholder: 'AM/PM'  %>
-    </div>
-    <div class="twin-field">
-      <label>End Time (<abbr title="Coordinated Universal Time">UTC</abbr>)</label>
-        <%= f.text_field :end_dttm_time, placeholder: 'AM/PM'  %>
-    </div>
-  </div>
   <% if current_participant.admin? && f.object.persisted?%>
     round_id: <%= f.object.id %>
   <% end %>

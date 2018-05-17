@@ -1,15 +1,6 @@
 require 'rails_helper'
 
 describe ArticleSection do
-  context 'associations' do
-    it { is_expected.to belong_to(:article) }
-  end
-
-  context 'validations' do
-    it { is_expected.to validate_presence_of(:section) }
-    it { is_expected.to validate_uniqueness_of(:section) }
-  end
-
   context 'methods' do
     it '#cache_rendered_markdown' do
       s = create(:article_section, description_markdown: '# Heading')

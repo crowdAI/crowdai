@@ -1,31 +1,6 @@
 require 'rails_helper'
 
 describe Challenge do
-  context 'associations' do
-    it { is_expected.to belong_to(:organizer) }
-    it { is_expected.to have_many(:dataset_files) }
-    it { is_expected.to have_many(:submission_file_definitions) }
-    it { is_expected.to accept_nested_attributes_for :submission_file_definitions }
-    it { is_expected.to have_many(:challenge_partners) }
-    it { is_expected.to accept_nested_attributes_for :challenge_partners }
-    it { is_expected.to have_many(:submissions) }
-    it { is_expected.to have_many(:leaderboards) }
-    it { is_expected.to have_many(:ongoing_leaderboards) }
-    it { is_expected.to have_many(:participant_challenges) }
-    it { is_expected.to have_many(:topics) }
-    it { is_expected.to have_many(:votes) }
-    it { is_expected.to have_many(:follows) }
-    it { is_expected.to have_many(:challenge_rounds) }
-  end
-
-
-
-  context 'validations' do
-    it { is_expected.to validate_presence_of(:challenge) }
-    it { is_expected.to validate_presence_of(:status) }
-    it { is_expected.to validate_presence_of(:organizer_id) }
-    it { is_expected.to validate_presence_of(:primary_sort_order) }
-  end
 
   context 'methods' do
     describe 'validate markdown fields' do

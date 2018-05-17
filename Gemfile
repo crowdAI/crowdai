@@ -170,9 +170,9 @@ group :test do
   gem 'nokogiri' #, '~> 1.8'
   gem 'database_cleaner'
   gem "launchy"
-  gem 'shoulda'
   gem 'timecop'
-  gem 'shoulda-matchers', '~> 3.1'
+  #gem 'shoulda', '~> 3.5'
+  #gem 'shoulda-matchers', '~> 3.1'
   gem 'rails-controller-testing'
   gem 'pundit-matchers', git: 'https://github.com/crowdAI/pundit-matchers'
 end

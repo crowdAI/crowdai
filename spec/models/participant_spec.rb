@@ -1,30 +1,6 @@
 require 'rails_helper'
 
 describe Participant do
-  context 'associations' do
-    it { is_expected.to belong_to(:organizer) }
-    it { is_expected.to have_many(:submissions) }
-    it { is_expected.to have_many(:votes) }
-    it { is_expected.to have_many(:comments) }
-    it { is_expected.to have_many(:articles) }
-    it { is_expected.to have_many(:leaderboards) }
-    it { is_expected.to have_many(:ongoing_leaderboards) }
-    it { is_expected.to have_many(:participant_challenges) }
-    it { is_expected.to have_many(:dataset_file_downloads) }
-    it { is_expected.to have_many(:email_preferences_tokens) }
-  end
-
-  context 'validations' do
-    it { is_expected.to validate_presence_of(:email) }
-    it { is_expected.to validate_presence_of(:name) }
-    it { is_expected.to validate_uniqueness_of(:name).case_insensitive }
-    it { is_expected.to validate_length_of(:name).is_at_least(2) }
-    it { is_expected.to allow_value(FFaker::Lorem.characters(8)).for :password }
-    it { is_expected.not_to allow_value(FFaker::Lorem.characters(7)).for :password }
-    it { is_expected.to allow_value(FFaker::Lorem.characters(72)).for :password }
-    it { is_expected.not_to allow_value(FFaker::Lorem.characters(73)).for :password }
-  end
-
   context 'validations with instance variable' do
     before do
       @participant = build(:participant)

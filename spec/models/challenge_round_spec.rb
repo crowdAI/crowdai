@@ -1,13 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ChallengeRound, type: :model do
-  context 'associations' do
-    it { is_expected.to belong_to :challenge }
-  end
-
-  context 'validations' do
-    it { is_expected.to validate_presence_of(:challenge_round) }
-  end
 
   context 'limit and period are both or none' do
     let(:challenge) { build :challenge }

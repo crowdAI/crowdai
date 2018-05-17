@@ -36,7 +36,6 @@ gem 'paper_trail'
 gem 'valid_email2'
 gem "active_model_serializers"
 
-
 # forms / data manipulation / charts
 gem 'cocoon'
 gem 'kramdown'

@@ -96,7 +96,14 @@ class SubmissionPolicy < ApplicationPolicy
         scope.all
       else
         if participant && participant.organizer_id
-          scope.where("challenge_id IN (SELECT c.id FROM challenges c WHERE c.organizer_id = ?)",participant.organizer_id)
+          sql = %Q[
+            #{participant_sql(participant)}
+            OR challenge_id IN
+              (SELECT c.id
+                FROM challenges c
+                WHERE c.organizer_id = #{participant.organizer_id})
+          ]
+          scope.where(sql)
         else
           scope.where(participant_sql(participant))
         end

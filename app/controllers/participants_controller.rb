@@ -1,12 +1,14 @@
 class ParticipantsController < ApplicationController
   before_action :authenticate_participant!, except: [:show]
-  before_action :set_participant, only: [:show, :edit, :update, :destroy]
+  before_action :set_participant,
+    only: [:show, :edit, :update, :destroy]
   respond_to :html, :js
 
   def show
     @articles = Article.where(participant_id: @participant.id)
     challenge_ids = policy_scope(ParticipantChallenge)
-      .where(participant_id: @participant.id).pluck(:challenge_id)
+      .where(participant_id: @participant.id)
+      .pluck(:challenge_id)
     @challenges = Challenge.where(id: challenge_ids)
     @posts = @participant.comments.order(created_at: :desc)
   end
@@ -52,7 +54,8 @@ class ParticipantsController < ApplicationController
     authorize @participant
     @participant.remove_image_file!
     @participant.save
-    redirect_to edit_participant_path(@participant),notice: 'Image removed.'
+    redirect_to edit_participant_path(@participant),
+      notice: 'Image removed.'
   end
 
   private

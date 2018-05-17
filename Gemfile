@@ -35,7 +35,6 @@ gem 'paper_trail'
 gem 'valid_email2'
 gem "active_model_serializers"
 
-
 # forms / data manipulation / charts
 gem 'cocoon'
 gem 'kramdown'
@@ -44,7 +43,6 @@ gem 'rouge'
 gem 'friendly_id', '~> 5.1.0'
 gem 'client_side_validations'
 gem 'country_select'
-gem 'time_splitter'
 gem 'codemirror-rails'
 gem 'rails-html-sanitizer', '~> 1.0.4'
 gem 'meta-tags'

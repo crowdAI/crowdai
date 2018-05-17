@@ -105,6 +105,13 @@ describe SubmissionPolicy do
       it { expect(Pundit.policy_scope(participant,Submission).sort)
         .to eq(Submission.all.sort) }
     end
+
+    context 'for the organizer of another challenge' do
+      let(:other_organizer) { create :organizer }
+      let(:participant) { create :participant, organizer_id: other_organizer.id }
+      it { expect(Pundit.policy_scope(participant,Submission))
+        .to be_empty }
+    end
   end
 
   context 'challenge completed' do
@@ -148,6 +155,13 @@ describe SubmissionPolicy do
 
     context 'for the organizer' do
       let(:participant) { create :participant, organizer_id: challenge.organizer_id }
+      it { expect(Pundit.policy_scope(participant,Submission).sort)
+        .to eq(Submission.all.sort) }
+    end
+
+    context 'for the organizer of another challenge' do
+      let(:other_organizer) { create :organizer }
+      let(:participant) { create :participant, organizer_id: other_organizer.id }
       it { expect(Pundit.policy_scope(participant,Submission).sort)
         .to eq(Submission.all.sort) }
     end

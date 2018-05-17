@@ -32,6 +32,32 @@ describe LeaderboardPolicy do
         .pluck(:participant_id))
         .to eq(Leaderboard.all.pluck(:participant_id)) }
     end
+
+    context 'for an admin' do
+      let(:participant) { create(:participant, :admin) }
+      it { is_expected.to permit_action(:index) }
+      it { expect(Pundit.policy_scope(participant,Leaderboard)
+        .pluck(:participant_id))
+        .to eq(Leaderboard.all.pluck(:participant_id)) }
+    end
+
+    context 'for the organizer' do
+      let(:participant) { create(:participant, organizer_id: challenge.organizer_id ) }
+      it { is_expected.to permit_action(:index) }
+      it { expect(Pundit.policy_scope(participant,Leaderboard)
+        .pluck(:participant_id))
+        .to eq(Leaderboard.all.pluck(:participant_id)) }
+    end
+
+    context 'for an organizer of a different challenge' do
+      let(:other_organizer) { create :organizer }
+      let(:participant) {
+        create :participant, organizer_id: other_organizer.id }
+      it { is_expected.to permit_action(:index) }
+      it { expect(Pundit.policy_scope(participant,Leaderboard)
+        .pluck(:participant_id))
+        .to eq(Leaderboard.all.pluck(:participant_id)) }
+    end
   end
 
   context 'leaderboard not visible' do
@@ -51,13 +77,15 @@ describe LeaderboardPolicy do
     context 'for a public participant' do
       let(:participant) { nil }
       it { is_expected.to permit_action(:index) }
-      it { expect(Pundit.policy_scope(participant,Leaderboard)).to be_empty }
+      it { expect(Pundit.policy_scope(participant,Leaderboard))
+        .to be_empty }
     end
 
     context 'for a participant' do
       let(:participant) { create(:participant) }
       it { is_expected.to permit_action(:index) }
-      it { expect(Pundit.policy_scope(participant,Leaderboard)).to be_empty }
+      it { expect(Pundit.policy_scope(participant,Leaderboard))
+        .to be_empty }
     end
 
     context 'for an admin' do
@@ -94,13 +122,15 @@ describe LeaderboardPolicy do
     context 'for a public participant' do
       let(:participant) { nil }
       it { is_expected.to permit_action(:index) }
-      it { expect(Pundit.policy_scope(participant,Leaderboard)).to be_empty }
+      it { expect(Pundit.policy_scope(participant,Leaderboard))
+        .to be_empty }
     end
 
     context 'for a participant' do
       let(:participant) { create(:participant) }
       it { is_expected.to permit_action(:index) }
-      it { expect(Pundit.policy_scope(participant,Leaderboard)).to be_empty }
+      it { expect(Pundit.policy_scope(participant,Leaderboard))
+        .to be_empty }
     end
 
     context 'for a private participant' do

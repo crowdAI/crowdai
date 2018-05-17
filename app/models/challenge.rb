@@ -1,8 +1,6 @@
 class Challenge < ApplicationRecord
   include FriendlyId
   include Markdownable
-  include ActiveModel::Validations
-  validates_with RoundDateTimeValidator
 
   friendly_id :challenge,
     use: [:slugged, :finders, :history]

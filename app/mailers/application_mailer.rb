@@ -20,7 +20,9 @@ class ApplicationMailer < ActionMailer::Base
       global_merge_vars:  options[:global_merge_vars]
     }
 
-    res = MANDRILL.messages.send_template( options[:template], [], message) unless Rails.env.staging?
+    if Rails.env.development? || Rails.env.production?
+      res = MANDRILL.messages.send_template( options[:template], [], message)
+    end
     MandrillMessage.create!(res: res, message: message, meta: options[:meta])
     return [res, message]
 

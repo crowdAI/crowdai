@@ -1,0 +1,84 @@
+version: '3'
+services:
+  #redis:
+  #  image: 'redis:4.0-alpine'
+  #  command: redis-server --requirepass redis
+  #  ports:
+  #    - '6381:6379'
+  #  volumes:
+  #    - 'redis:/data'
+
+  #fakes3:
+  #image: 'lphoward/fake-s3'
+  #    ports:
+  #      - '4569:4569'
+  #    volumes:
+  #      - 'fakes3:/data'
+
+  #broker:
+  #  image: "node:8"
+  #  user: "node"
+  #  depends_on:
+  #    - 'redis'
+  #  build: ./docker/broker
+  #  ports:
+  #    - "8081:8081"
+  #  command: "npm start"
+
+  #factory:
+  #  image: "ubuntu:16.04"
+  #  build: ./docker/factory
+  #  volumes:
+  #    - ./docker/factory/config.py.docker:/app/config.py
+  #    - ./docker/factory/ground_truth.csv:/app/data/ground_truth.csv
+
+
+  postgres:
+    image: 'postgres:9.6-alpine'
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
+
+  redis:
+    image: 'redis:4.0-alpine'
+    command: redis-server
+    ports:
+      - '6379:6379'
+    volumes:
+      - 'redis:/data'
+
+  web:
+    depends_on:
+      - 'postgres'
+      - 'redis'
+    build: .
+    environment:
+      RAILS_ENV: development
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+      - "8080:8080"
+
+
+
+#  sidekiq:
+#    depends_on:
+#      - 'postgres'
+#      - 'redis'
+#    build: .
+#    command: bundle exec sidekiq -C config/sidekiq.yml
+#    volumes:
+#      - '.:/app'
+
+volumes:
+  redis:
+    driver: local
+#  broker:
+  #factory:
+  postgres:
+    driver: local
+#  redis2:
+#  broker:
+#  fakes3:

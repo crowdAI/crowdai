@@ -28,6 +28,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.web_console.whiny_requests = false
+  config.logger = Logger.new(STDOUT)
 end
 
 

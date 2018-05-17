@@ -124,16 +124,14 @@ class Challenge < ApplicationRecord
   end
 
   def current_round
-    @current_round ||= self
-                         .challenge_round_summaries
-                         .where(round_status_cd: 'current')
-                         .first
+    @current_round ||= self.challenge_round_summaries
+      .where(round_status_cd: 'current')
+      .first
   end
 
   def previous_round
     return nil if current_round.row_num == 1
-    self
-      .challenge_round_summaries
+    self.challenge_round_summaries
       .where(row_num: current_round.row_num - 1)
       .first
   end

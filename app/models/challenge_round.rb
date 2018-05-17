@@ -1,5 +1,6 @@
 class ChallengeRound < ApplicationRecord
   extend TimeSplitter::Accessors
+
   split_accessor :start_dttm, :end_dttm, time_format: "%I:%M%p"
   belongs_to :challenge
   has_many :submissions,

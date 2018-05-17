@@ -5,8 +5,7 @@ source 'https://rails-assets.org'
 gem 'rails-assets-isInViewport'
 gem 'rails-assets-jQuery-File-Upload'
 
-ruby "2.5.0"
-gem 'rails', '5.1.5'
+gem 'rails', '5.2.0'
 gem 'pg'
 gem 'puma'
 gem 'puma_worker_killer'
@@ -140,7 +139,6 @@ group :development do
   gem 'sdoc', '~> 0.4.0'
   gem 'web-console'
   gem 'scss_lint', require: false
-  gem 'shog'
   gem 'meta_request'
   gem 'model_2_factory-rails'
 end
@@ -157,7 +155,6 @@ group :development, :test do
   gem 'table_print'
   gem 'rspec-rails', '~> 3.6'
   gem 'rspec-kickstarter'
-  gem 'traceroute'
   gem 'parallel_tests'
   gem 'oauth2'
 end
@@ -175,7 +172,7 @@ group :test do
   gem "launchy"
   gem 'shoulda'
   gem 'timecop'
-  gem 'shoulda-matchers', require: false
+  gem 'shoulda-matchers', '~> 3.1'
   gem 'rails-controller-testing'
   gem 'pundit-matchers', git: 'https://github.com/crowdAI/pundit-matchers'
 end

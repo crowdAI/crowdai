@@ -96,9 +96,6 @@ class Api::ExternalGradersController < Api::BaseController
         end
       end
 
-      submission.update({meta: params[:meta]})
-
-=begin
       # Handle `meta` param
       if params[:meta].present?
         # Standardise params[:meta] to a Hash, irrespective of the
@@ -124,7 +121,7 @@ class Api::ExternalGradersController < Api::BaseController
         end
         submission.update({meta: meta})
       end
-=end
+
       if params[:grading_status].present?
         submission.submission_grades.create!(grading_params)
       end

@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/thoughtbot/capybara-webkit.git
+  revision: 7bb9385421fcb1efed98c0431cb7673f32061b1c
+  branch: master
+  specs:
+    capybara-webkit (1.15.0)
+      capybara (>= 2.3, < 4.0)
+      json
+
+GIT
   remote: https://github.com/crowdAI/pundit-matchers
   revision: 4cd01555ee0c04c66f02f35d6f8bb4c046b533a0
   specs:
@@ -119,9 +128,6 @@ GEM
     capybara-screenshot (1.0.21)
       capybara (>= 1.0, < 4)
       launchy
-    capybara-webkit (1.15.0)
-      capybara (>= 2.3, < 4.0)
-      json
     carrierwave (1.2.2)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
@@ -807,7 +813,7 @@ DEPENDENCIES
   capybara
   capybara-email
   capybara-screenshot
-  capybara-webkit (= 1.15.0)
+  capybara-webkit!
   carrierwave (~> 1.0)
   cells
   cells-erb

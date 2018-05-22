@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 feature "partner visibility" do
@@ -21,3 +22,4 @@ feature "partner visibility" do
     expect(page).to have_css(".users-group-5", count: 1)
   end
 end
+=end

@@ -164,7 +164,7 @@ group :test do
   gem 'capybara'
   gem 'capybara-email'
   gem 'capybara-screenshot'
-  gem 'capybara-webkit', '1.15.0'
+  gem 'capybara-webkit', github: 'thoughtbot/capybara-webkit', branch: 'master'
   gem 'nokogiri' #, '~> 1.8'
   gem 'database_cleaner'
   gem "launchy"

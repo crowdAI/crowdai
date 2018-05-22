@@ -150,4 +150,8 @@ class Challenge < ApplicationRecord
     end
   end
 
+  def post_challenge_submissions?
+    self.post_challenge_submissions
+  end
+
 end

@@ -56,7 +56,7 @@ class ChallengePolicy < ApplicationPolicy
     if participant && (participant.admin? || @record.organizer_id == participant.organizer_id)
       return true
     end
-    if @record.running?
+    if @record.running? || (@record.completed? && @record.post_challenge_submissions?)
       if @record.clef_challenge.present?
         if clef_participant_registered?(@record)
           return true #return true if running and clef challenge and registered
@@ -66,9 +66,6 @@ class ChallengePolicy < ApplicationPolicy
       else
         return true #return true if running and no clef challenge
       end
-    end
-    if @record.completed? && @record.post_challenge_submissions
-      return true
     end
     return false # no positive condition met
   end

@@ -11,6 +11,7 @@ class SubmissionsController < ApplicationController
 
   def index
     @submissions = policy_scope(Submission)
+      .where(challenge_id: @challenge.id)
       .order('created_at desc')
       .page(params[:page])
       .per(10)

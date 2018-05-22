@@ -1,4 +1,4 @@
-<% @submissions.where(challenge_round_id: @challenge_round_id).each do |submission| %>
+<% @submissions.each do |submission| %>
   <tr id='participant-<%= submission.participant_id %>'>
     <td><%= submission.id %></td>
     <td class="participant">

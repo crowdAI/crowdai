@@ -18,7 +18,9 @@ RSpec.describe LeaderboardsController, type: :controller do
     end
 
     describe 'GET #index' do
-      before { get :index, params: { challenge_id: submission_1.challenge_id } }
+      before {
+        get :index, params: { challenge_id: submission_1.challenge_id }
+      }
       #it { expect(assigns(:leaderboards).count).to eq(3) }
       it { expect(response).to render_template :index }
     end

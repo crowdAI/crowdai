@@ -13,10 +13,6 @@ RSpec.describe SubmissionsRemainingQuery do
     Timecop.freeze(DateTime.new(2017, 10, 30, 10, 0, 0, "UTC"))
   end
 
-  after do
-    Timecop.return
-  end
-
   describe 'does not fail when challenge is not setup' do
     let!(:challenge) { create :challenge, :draft }
     let!(:challenge_round) {
@@ -54,7 +50,7 @@ RSpec.describe SubmissionsRemainingQuery do
         create :submission,
           challenge: challenge,
           participant: participant,
-          created_at: 28.hours.ago
+          created_at: 30.hours.ago
       }
       let!(:submission2) {
         create :submission,
@@ -145,7 +141,10 @@ RSpec.describe SubmissionsRemainingQuery do
   end
 
   describe 'per round' do
-    let!(:challenge) { create :challenge, :round }
+    let!(:challenge) {
+      create :challenge,
+      :round,
+      created_at: 2.weeks.ago }
     let!(:round) { challenge.challenge_rounds.first }
 
     context 'no submissions made' do
@@ -184,7 +183,7 @@ RSpec.describe SubmissionsRemainingQuery do
         create :submission,
           challenge: challenge,
           participant: participant,
-          created_at: 4.days.ago
+          created_at: 8.weeks.since
       }
       it { expect((subject.call)[0]).to eq(4) }
       it { expect((subject.call)[1]).to eq(nil) }
@@ -201,10 +200,12 @@ RSpec.describe SubmissionsRemainingQuery do
             created_at: (6 - i).days.ago
         }
       end
-      it { expect((subject.call)[0]).to eq(5) }
+      it { expect((subject.call)[0]).to eq(0) }
       it { expect((subject.call)[1]).to eq(nil) }
-      it { expect((subject.call)[2].count).to eq(0) }
+      it { expect((subject.call)[2].count).to eq(5) }
     end
   end
+
+  Timecop.return
 
 end

@@ -21,9 +21,9 @@ class Submission < ApplicationRecord
   as_enum :grading_status,
     [:ready, :submitted, :initiated, :graded, :failed], map: :string
 
-  validates :participant_id,            presence: true
-  validates :challenge_id,              presence: true
-  validates :grading_status,            presence: true
+  validates :participant_id, presence: true
+  validates :challenge_id, presence: true
+  validates :grading_status, presence: true
   validate :clef_validations
 
   def clef_validations
@@ -35,22 +35,34 @@ class Submission < ApplicationRecord
   end
 
   after_create do
-    rnd = self.challenge.challenge_rounds.where('start_dttm <= ? and end_dttm >= ?',self.created_at,self.created_at).first
+    rnd = self.challenge
+      .challenge_rounds
+      .where(
+        'start_dttm <= ? and end_dttm >= ?',
+        self.created_at,self.created_at).first
+    if rnd.blank?
+      rnd = self.challenge.challenge_rounds.last
+    end
     if rnd.present?
       self.update(challenge_round_id: rnd.id)
+      if self.created_at > rnd.end_dttm
+        self.update(post_challenge: true)
+      end
+    else
+      raise ChallengeRoundIDMissing
     end
   end
 
   after_save do
     if self.grading_status_cd == 'graded'
       CalculateLeaderboardJob
-        .perform_later(challenge_round_id: challenge_round_id)
+        .perform_later(challenge_round_id: self.challenge_round_id)
     end
   end
 
   after_destroy do
     CalculateLeaderboardJob
-      .perform_later(challenge_round_id: challenge_round_id)
+      .perform_later(challenge_round_id: self.challenge_round_id)
   end
 
   def ready?
@@ -98,4 +110,9 @@ class Submission < ApplicationRecord
     end
   end
 
+  class ChallengeRoundIDMissing < StandardError
+    def initialize(msg='No Challenge Round ID can be found for this submission')
+      super
+    end
+  end
 end

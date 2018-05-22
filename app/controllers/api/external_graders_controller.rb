@@ -138,10 +138,12 @@ class Api::ExternalGradersController < Api::BaseController
       message = e
     ensure
       Rails.logger.info "API: #{message}"
-      render json: { message: message,
-                     submission_id: submission_id,
-                     submissions_remaining: submissions_remaining,
-                     reset_date: reset_date }, status: status
+      render json: {
+        message: message,
+        submission_id: submission_id,
+        submissions_remaining: submissions_remaining,
+        reset_date: reset_date },
+        status: status
     end
   end
 

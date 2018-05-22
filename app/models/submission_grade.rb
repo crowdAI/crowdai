@@ -10,16 +10,18 @@ class SubmissionGrade < ApplicationRecord
   validates :grading_status, presence: true
 
   def update_submission
-    Submission.update(self.submission_id,
-                      grading_status: self.grading_status,
-                      grading_message: self.grading_message,
-                      score: self.score,
-                      score_secondary: self.score_secondary)
+    Submission.update(
+      self.submission_id,
+      grading_status: self.grading_status,
+      grading_message: self.grading_message,
+      score: self.score,
+      score_secondary: self.score_secondary)
   end
 
   def schedule_leaderboard_email
     if self.grading_status == :graded
-      LeaderboardNotificationJob.perform_later(self.submission)
+      LeaderboardNotificationJob.perform_later(
+        self.submission)
     end
   end
 

@@ -26,6 +26,7 @@ gem 'mini_magick'
 gem 'rollbar'
 gem 'oj', '~> 3.0'
 gem 'lograge'
+gem 'erbse', '0.1.1'
 
 # model
 gem 'simple_enum'

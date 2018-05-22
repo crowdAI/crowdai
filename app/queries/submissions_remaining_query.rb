@@ -1,9 +1,14 @@
-class SubmissionsRemainingQuery
+  class SubmissionsRemainingQuery
 
   def initialize(challenge:, participant_id:)
     @challenge = challenge
     @participant_id = participant_id
   end
+
+  # returns:
+  # submissions remaining
+  # reset dttm
+  # array of submissions already made in this period
 
   def call
     if @challenge.running?
@@ -68,7 +73,7 @@ class SubmissionsRemainingQuery
     submissions = @challenge
       .submissions
       .where(
-        "participant_id = ? and challenge_round_id = ?",
+        "post_challenge IS FALSE and participant_id = ? and challenge_round_id = ?",
         @participant_id,
         @challenge.current_round.id)
     if submissions.blank?

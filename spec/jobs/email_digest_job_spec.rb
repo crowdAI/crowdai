@@ -39,7 +39,7 @@ RSpec.describe EmailDigestJob, type: :job do
   end
 
   describe 'participant - daily digest: comments only' do
-    let!(:challenge) { create :challenge }
+    let!(:challenge) { create :challenge, :running }
     let!(:participant) { create :participant, :daily }
     let!(:topic_author1) { create :participant, :every_email }
 
@@ -93,7 +93,7 @@ RSpec.describe EmailDigestJob, type: :job do
   end
 
   describe 'participant - weekly digest: comments only' do
-    let!(:challenge) { create :challenge }
+    let!(:challenge) { create :challenge, :running }
     let!(:participant) { create :participant, :daily }
     let!(:topic_author1) { create :participant, :every_email }
 
@@ -155,7 +155,7 @@ RSpec.describe EmailDigestJob, type: :job do
 
     it 'daily' do
       Timecop.freeze(Time.now - 12.hours)
-        challenge = FactoryBot.create :challenge
+        challenge = FactoryBot.create :challenge, :running
         topic = FactoryBot.create :topic, challenge: challenge, participant: topic_author1, topic: 'topic1'
         comment1 = FactoryBot.create :comment, topic: topic, participant: topic_author1, comment: 'topic1_comment1'
         comment2 = FactoryBot.create :comment, topic: topic, participant: admin, comment: 'topic1_comment2'

@@ -7,7 +7,8 @@ RSpec.describe LeaderboardsController, type: :controller do
       let!("submission_#{i + 1}") {
         create :submission,
           challenge: challenge,
-          participant: participant }
+          participant: participant,
+          grading_status_cd: 'graded' }
     end
     let(:challenge) { create :challenge, :running }
     let(:participant) { create :participant }

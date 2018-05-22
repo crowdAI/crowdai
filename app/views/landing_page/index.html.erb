@@ -28,7 +28,7 @@
 
       <div class="grid-users">
         <% @partners.each_with_index do |partner,index| %>
-          <%= image_tag partner.image_file, class: users_group(index) %>
+          <%= image_tag partner.image_file.url, class: users_group(index) %>
         <% end %>
       </div>
     </div>

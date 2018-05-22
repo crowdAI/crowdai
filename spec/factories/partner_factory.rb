@@ -4,6 +4,6 @@ FactoryBot.define do
     name 'EPFL'
     visible true
     seq 1
-    image_file nil #File.open("#{Rails.root}/spec/support/files/p_image5.jpg", 'r')
+    image_file File.open("#{Rails.root}/spec/support/files/p_image5.jpg", 'r')
   end
 end

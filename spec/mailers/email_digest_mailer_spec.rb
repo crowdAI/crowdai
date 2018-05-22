@@ -1,8 +1,9 @@
 require "rails_helper"
 
 RSpec.describe EmailDigestMailer, type: :mailer do
-  let(:challenge) { create :challenge }
-  let(:other_participant) { create :participant, :every_email }
+  let(:challenge) { create :challenge, :running }
+  let(:other_participant) {
+    create :participant, :every_email }
   let(:comment) { create :comment, participant: other_participant }
   let(:submission) { create :submission, challenge: challenge }
 

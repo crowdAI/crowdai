@@ -36,6 +36,8 @@ FactoryBot.define do
         FactoryBot.create(
           :challenge_round,
           challenge: challenge,
+          start_dttm: challenge.created_at - 2.weeks,
+          end_dttm: challenge.created_at + 3.weeks,
           submission_limit_period: :day)
       end
     end
@@ -47,6 +49,8 @@ FactoryBot.define do
         FactoryBot.create(
           :challenge_round,
           challenge: challenge,
+          start_dttm: challenge.created_at - 2.weeks,
+          end_dttm: challenge.created_at + 3.weeks,
           submission_limit_period: :week)
       end
     end
@@ -58,6 +62,8 @@ FactoryBot.define do
         FactoryBot.create(
           :challenge_round,
           challenge: challenge,
+          start_dttm: challenge.created_at - 2.weeks,
+          end_dttm: challenge.created_at + 3.weeks,
           submission_limit_period: :round)
       end
     end

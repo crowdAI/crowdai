@@ -1,16 +1,6 @@
 require 'rails_helper'
 
 describe Organizer do
-  context 'associations' do
-    it { is_expected.to have_many(:challenges) }
-    it { is_expected.to have_many(:participants) }
-  end
-
-  context 'validations' do
-    it { is_expected.to validate_presence_of :organizer }
-    it { is_expected.to validate_presence_of :tagline }
-  end
-
   context 'API key' do
     let!(:organizer) { create :organizer }
     it 'API key is created when organizer account created' do

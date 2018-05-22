@@ -1,12 +1,7 @@
 require 'rails_helper'
 
 describe Submission do
-  context 'associations' do
-    it { is_expected.to belong_to(:challenge) }
-    it { is_expected.to have_many(:submission_files).dependent(:destroy) }
-    it { is_expected.to have_many(:submission_grades).dependent(:destroy) }
-    it { is_expected.to have_many(:votes) }
-
+  context 'order by' do
     it 'is ordered by seq when seq 0 is created first' do
       submission = create(:submission)
       create(:submission_file, submission: submission, seq: 1)
@@ -24,17 +19,6 @@ describe Submission do
       expect(submission.submission_files.first.seq).to eq(0)
       expect(submission.submission_files.last.seq).to eq(1)
     end
-  end
-
-  context 'indexes' do
-    it { is_expected.to have_db_index ["challenge_id"] }
-    it { is_expected.to have_db_index ["participant_id"] }
-  end
-
-  context 'validations' do
-    #it { is_expected.to validate_presence_of(:participant_id) }
-    #it { is_expected.to validate_presence_of(:challenge_id) }
-    #it { is_expected.to validate_presence_of(:grading_status) }
   end
 
   context 'methods' do

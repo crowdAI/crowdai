@@ -1,20 +1,6 @@
 require 'rails_helper'
 
 describe Article do
-  context 'associations' do
-    it { is_expected.to belong_to(:participant) }
-    it { is_expected.to have_many(:votes) }
-    it { is_expected.to have_many(:article_sections).dependent(:destroy) }
-    it { is_expected.to accept_nested_attributes_for :article_sections }
-  end
-
-  context 'validations' do
-    it { is_expected.to validate_presence_of(:participant_id) }
-    it { is_expected.to validate_presence_of(:article) }
-    it { is_expected.to validate_presence_of(:summary) }
-    it { is_expected.to validate_presence_of(:view_count) }
-    it { is_expected.to validate_presence_of(:vote_count) }
-  end
 
   context 'methods' do
     describe '#record_page_view' do

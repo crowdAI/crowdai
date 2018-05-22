@@ -7,7 +7,8 @@ RSpec.describe LeaderboardsController, type: :controller do
       let!("submission_#{i + 1}") {
         create :submission,
           challenge: challenge,
-          participant: participant }
+          participant: participant,
+          grading_status_cd: 'graded' }
     end
     let(:challenge) { create :challenge, :running }
     let(:participant) { create :participant }
@@ -18,7 +19,9 @@ RSpec.describe LeaderboardsController, type: :controller do
     end
 
     describe 'GET #index' do
-      before { get :index, params: { challenge_id: submission_1.challenge_id } }
+      before {
+        get :index, params: { challenge_id: submission_1.challenge_id }
+      }
       #it { expect(assigns(:leaderboards).count).to eq(3) }
       it { expect(response).to render_template :index }
     end

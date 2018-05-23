@@ -10,16 +10,27 @@
                 current_participant: current_participant) %>
 
   <div class="row">
-    <table class="leaderboard">
-      <%= concept(Leaderboard::Cell::TableHead,
-                    @leaderboards,
-                    challenge: @challenge,
-                    current_round: @current_round,
-                    current_participant: current_participant) %>
-      <tbody>
-        <%= render partial: 'leaderboards' %>
-      </tbody>
-    </table>
+    <% if policy(@challenge).show_leaderboard? %>
+      <% unless @challenge.show_leaderboard? %>
+        <div class="leaderboard-important-msg">
+          <p>Leaderboard is only visible to organizers</p>
+        </div>
+      <% end %>
+      <table class="leaderboard">
+          <%= concept(Leaderboard::Cell::TableHead,
+                        @leaderboards,
+                        challenge: @challenge,
+                        current_round: @current_round,
+                        current_participant: current_participant) %>
+          <tbody>
+            <%= render partial: 'leaderboards' %>
+          </tbody>
+      </table>
+    <% else %>
+      <div class="leaderboard-msg">
+        <p>Leaderboard is not displayed yet.</p>
+      </div>
+    <% end %>
   </div>
 
   <% if @post_challenge == 'off' %>

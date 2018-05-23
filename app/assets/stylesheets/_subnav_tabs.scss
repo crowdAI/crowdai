@@ -23,3 +23,13 @@
 .md-tab-content.active {
   display: block;
 }
+
+.leaderboard-msg {
+  margin: 32px 0 32px 0;
+}
+
+.leaderboard-important-msg {
+  margin-top: 32px;
+  font-style: italic;
+  color: red;
+}

@@ -47,6 +47,7 @@ gem 'country_select'
 gem 'codemirror-rails'
 gem 'rails-html-sanitizer', '~> 1.0.4'
 gem 'meta-tags'
+gem 'rails-gdpr-export'
 
 # performance
 gem 'fast_blank'
@@ -159,7 +160,6 @@ group :development, :test do
 end
 
 group :test do
-  # gem 'rspec-sidekiq'
   gem "factory_bot_rails"
   gem 'simplecov', :require => false
   gem 'capybara'
@@ -170,8 +170,6 @@ group :test do
   gem 'database_cleaner'
   gem "launchy"
   gem 'timecop'
-  #gem 'shoulda', '~> 3.5'
-  #gem 'shoulda-matchers', '~> 3.1'
   gem 'rails-controller-testing'
   gem 'pundit-matchers', git: 'https://github.com/crowdAI/pundit-matchers'
 end

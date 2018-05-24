@@ -605,6 +605,7 @@ GEM
       activesupport (>= 3.2)
       choice (~> 0.2.0)
       ruby-graphviz (~> 1.2)
+    rails-gdpr-export (2.0.1)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
     railties (5.2.0)
@@ -879,6 +880,7 @@ DEPENDENCIES
   rails-assets-jQuery-File-Upload
   rails-controller-testing
   rails-erd
+  rails-gdpr-export
   rails-html-sanitizer (~> 1.0.4)
   ransack
   record_tag_helper (~> 1.0)

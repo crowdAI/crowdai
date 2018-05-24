@@ -17,7 +17,8 @@ class ApplicationMailer < ActionMailer::Base
           type:     "to"
         }
       ],
-      global_merge_vars:  options[:global_merge_vars]
+      global_merge_vars:  options[:global_merge_vars],
+      attachments: options[:attachments]
     }
 
     res = MANDRILL.messages

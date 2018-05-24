@@ -10,7 +10,7 @@ services:
     - redis-server
 
 rvm:
-  - 2.5.0
+  - 2.5.1
 
 env:
   - DB=postgres
@@ -26,3 +26,7 @@ before_install:
 script:
   - bundle exec rake parallel:setup
   - bundle exec rake parallel:spec
+
+branches:
+  only:
+    - master

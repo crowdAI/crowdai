@@ -5,7 +5,6 @@ class GdprExportsController < ApplicationController
   def create
     GdprExportJob.perform_later(
       participant_id: current_participant.id)
-    render js: 'create'
   end
 
 end

@@ -46,6 +46,7 @@ Rails.application.routes.draw do
     resources :email_preferences, only: [:edit, :update]
   end
   resources :job_postings, only: [:index, :show]
+  resources :gdpr_exports, only: [:create]
 
   resources :landing_page, only: [:index]
   match '/landing_page/host', to: 'landing_page#host', via: :get

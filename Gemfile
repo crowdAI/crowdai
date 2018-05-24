@@ -5,6 +5,7 @@ source 'https://rails-assets.org'
 gem 'rails-assets-isInViewport'
 gem 'rails-assets-jQuery-File-Upload'
 
+ruby '2.5.1'
 gem 'rails', '5.2.0'
 gem 'pg'
 gem 'puma'

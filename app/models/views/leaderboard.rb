@@ -4,6 +4,7 @@ class Leaderboard < SqlView
 
   belongs_to :challenge
   belongs_to :participant
+  belongs_to :challenge_round
 
   default_scope { order(row_num: :asc) }
 end

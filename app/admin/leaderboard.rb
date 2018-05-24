@@ -9,10 +9,15 @@ ActiveAdmin.register Leaderboard do
   filter :name
   filter :media_content_type
   filter :submission_id
+  filter :challenge_round_id
 
   index do
     selectable_column
     column :id
+    column :challenge_round_id
+    column "Round" do |res|
+      res.challenge_round.challenge_round
+    end
     column :participant_id
     column :name
     column :score

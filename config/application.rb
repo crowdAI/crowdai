@@ -25,7 +25,10 @@ module Crowdai
     config.ssl_options = { hsts: { subdomains: false } }
     config.assets.precompile += %w( application.scss )
 
-    #config.action_view.sanitized_allowed_tags = ['table', 'tr', 'td']
+    config.action_view.sanitized_allowed_tags =
+      Set.new(%w(strong em b i p code pre tt samp kbd var sub
+        sup dfn cite big small address hr br div span h1 h2 h3 h4 h5 h6 ul ol li dl dt dd abbr
+        acronym a img blockquote del ins table tr td))
 
     config.generators do |g|
       g.test_framework :rspec

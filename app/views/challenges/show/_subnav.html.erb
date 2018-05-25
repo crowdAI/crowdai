@@ -39,7 +39,7 @@
         </li>
       <% end %>
       <% if policy(challenge).edit? %>
-        <% if challenge.clef_task #&& challenge.clef_task.eua_required? %>
+        <% if challenge.clef_task %>
           <li class=<%= tab_class('participants') %> >
             <%= link_to 'Participants',
                   challenge_clef_task_path(challenge),

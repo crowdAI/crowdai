@@ -6,13 +6,11 @@
               challenge_path(challenge),
               class: tab_class('overview') %>
       </li>
-      <% if policy(challenge).show_leaderboard? %>
-        <li class=<%= tab_class('leaderboard') %> >
+      <li class=<%= tab_class('leaderboard') %> >
           <%= link_to 'Leaderboard',
                 challenge_leaderboards_path(challenge),
                 class: tab_class('leaderboard') %>
-        </li>
-      <% end %>
+      </li>
       <li class=<%= tab_class('discussion') %> >
         <%= link_to 'Discussion',
               challenge_topics_path(challenge),

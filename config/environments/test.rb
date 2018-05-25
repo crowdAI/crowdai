@@ -26,5 +26,6 @@ Rails.application.configure do
   config.active_record.logger = nil
 
   #   config.assets.quiet = true
+  config.active_storage.service = :test
 end
 Rails.application.routes.default_url_options[:host] = ENV['HOST']

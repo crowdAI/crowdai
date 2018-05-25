@@ -36,6 +36,7 @@ gem 'validate_url'
 gem 'paper_trail'
 gem 'valid_email2'
 gem "active_model_serializers"
+gem 'activestorage'
 
 # forms / data manipulation / charts
 gem 'cocoon'

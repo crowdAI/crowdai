@@ -8,8 +8,9 @@ class Participant < ApplicationRecord
   before_save :process_urls
   after_create :set_email_preferences
   after_save :refresh_materialized_view
-  mount_uploader :image_file, ImageUploader
-  validates :image_file, file_size: { less_than: 5.megabytes }
+  #mount_uploader :image_file, ImageUploader
+  #validates :image_file, file_size: { less_than: 5.megabytes }
+  has_one_attached :avatar
 
   devise :confirmable,
     :database_authenticatable,

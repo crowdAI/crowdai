@@ -807,6 +807,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   activeadmin
+  activestorage
   aws-sdk (~> 2.2)
   brakeman
   browser

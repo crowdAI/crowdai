@@ -11,6 +11,7 @@
 //= require jquery.atwho
 //= require social-share-button
 //= require codemirror
+//= require activestorage
 
 // --------------------- Vendor ------------------------ //
 //= require jQuery-File-Upload

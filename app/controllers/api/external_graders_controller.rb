@@ -105,7 +105,7 @@ class Api::ExternalGradersController < Api::BaseController
         if submission.meta.nil?
           meta = params[:meta]
         else
-          if params[:meta_overwrite].present? && pararms[:meta_overwrite]
+          if params[:meta_overwrite].present? && params[:meta_overwrite]
             # When the provided parameters have a `meta_overwrite=True`
             # parrameter, then a merge between the provided meta param
             # and the submission meta param will *NOT* happen. In this

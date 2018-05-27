@@ -116,7 +116,7 @@ class Api::ExternalGradersController < Api::BaseController
             # Standardise submission.meta to a Hash, irrespective of the
             # version of the API
             submission_meta = clean_meta(submission.meta)
-            meta = submission_meta.deep_merge(params[:meta])
+            meta = submission_meta.reverse_merge!(params[:meta])
           end
         end
         submission.update({meta: meta})

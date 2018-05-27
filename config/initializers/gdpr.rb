@@ -1,3 +1,4 @@
+=begin
 require 'gdpr_exporter'
 ActiveRecord::Base.send :include, GdprExporter
 
@@ -27,3 +28,4 @@ Participant.gdpr_collect :email,
       last_sign_in_ip: "previously used IP address"
     }
   }
+=end

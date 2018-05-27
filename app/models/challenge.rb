@@ -73,6 +73,7 @@ class Challenge < ApplicationRecord
   validates :challenge_client_name,
     format: { with: /\A[a-zA-Z0-9]/ }
   validates_presence_of :challenge_client_name
+  has_one_attached :avatar
 
   default_scope {
     order("challenges.featured_sequence DESC,

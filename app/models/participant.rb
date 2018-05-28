@@ -20,6 +20,7 @@ class Participant < ApplicationRecord
     :trackable,
     :validatable
 
+  default_scope { order('name ASC') }
   belongs_to :organizer, optional: true
   has_many :submissions, dependent: :nullify
   has_many :votes, dependent: :destroy

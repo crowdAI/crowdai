@@ -3,7 +3,7 @@
     <fieldset class="checkbox">
       <div>
         <%= f.check_box :winners_tab_active, {}, "true", "false" %>
-        <label for="">Winner's Tab Active?</label>
+        <%= f.label :winners_tab_active, "Winner's Tab Active?" %>
       </div>
       <label>Winner's Tab (Markdown)</label>
       <%= markdown_editor do |m| %>

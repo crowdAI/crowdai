@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_25_103442) do
+ActiveRecord::Schema.define(version: 2018_05_28_120632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -237,8 +237,6 @@ ActiveRecord::Schema.define(version: 2018_05_25_103442) do
     t.boolean "submissions_page"
     t.boolean "private_challenge", default: false
     t.boolean "show_leaderboard", default: true
-    t.integer "ranking_window"
-    t.integer "ranking_highlight"
     t.string "grader_identifier"
     t.boolean "online_submissions", default: false
     t.boolean "grader_logs", default: false

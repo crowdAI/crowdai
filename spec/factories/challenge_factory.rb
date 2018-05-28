@@ -18,8 +18,6 @@ FactoryBot.define do
     score_secondary_title 'Title_secondary'
     license_markdown '## This is a license'
     submissions_page true
-    ranking_window 48
-    ranking_highlight 3
 
     trait :running do
       status :running

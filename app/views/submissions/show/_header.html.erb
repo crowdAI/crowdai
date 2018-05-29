@@ -8,7 +8,9 @@
       <span class="badge badge-accent">Admin</span>
     <% end %>
   </div>
-  <h4>Submission: <%= challenge.challenge %></h4>
+  <%= link_to challenge_path(challenge) do %>
+    <h4>Submission: <%= challenge.challenge %></h4>
+  <% end %>
   <br/>
   <% if @submission.grading_status_cd == 'graded' %>
     <h5><%= "#{@challenge.score_title}: #{@submission.score}" %></h5>

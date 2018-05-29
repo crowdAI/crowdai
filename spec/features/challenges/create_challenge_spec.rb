@@ -35,10 +35,6 @@ feature 'An organizer creates a challenge' do
     fill_in "Tagline", with: challenge.tagline
     fill_in "Challenge Client Name",
       with: challenge.challenge_client_name
-    fill_in "Highlight rankings",
-      with: challenge.ranking_highlight
-    fill_in "Ranking window (hours)",
-      with: challenge.ranking_window
     fill_in "Primary score title",
       with: challenge.score_title
     fill_in "Secondary score title",

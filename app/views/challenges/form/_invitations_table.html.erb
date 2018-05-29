@@ -21,8 +21,11 @@
     </table>
     <br/><br/>
     <div class='links'>
-      <%= link_to_add_association '+ Invite participant', f, :invitations,
-                              html_options = { partial: 'challenges/form/invitation_fields' } %>
+      <%= link_to_add_association '+ Invite participant',
+            f,
+            :invitations,
+            html_options = {
+              partial: 'challenges/form/invitation_fields' } %>
     </div>
     <br/><br/>
 

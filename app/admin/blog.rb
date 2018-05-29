@@ -28,17 +28,18 @@ ActiveAdmin.register Blog do
     f.actions
   end
 
-  show do
+  show do |blog|
     attributes_table do
       row :participant
       row :title
       row :seq
       row :published
-      row :body
+      row :body do
+        sanitize(blog.body)
+      end
       row :created_at
       row :updated_at
     end
   end
-
 
 end

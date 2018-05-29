@@ -17,7 +17,6 @@ class Participant < ApplicationRecord
     :recoverable,
     :registerable,
     :rememberable,
-    :trackable,
     :validatable
 
   default_scope { order('name ASC') }

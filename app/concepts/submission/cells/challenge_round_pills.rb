@@ -12,16 +12,21 @@ class Submission::Cell::ChallengeRoundPills < Submission::Cell
     model
   end
 
-  def current_round
-    options[:current_round]
+  def current_round_id
+    options[:current_round_id]
+  end
+
+  def my_submissions
+    options[:my_submissions]
   end
 
   def challenge_rounds
-    challenge.challenge_round_summaries.where(round_status_cd: ['history','current'])
+    challenge.challenge_round_summaries.where(
+      round_status_cd: ['history','current'])
   end
 
   def tab_class(challenge_round)
-    if challenge_round.id == current_round.id
+    if challenge_round.id == current_round_id
       return 'nav-link active'
     else
       return 'nav-link'

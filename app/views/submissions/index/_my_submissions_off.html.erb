@@ -1,0 +1,8 @@
+<div class="row">
+  <form class="leaderboard">
+    <%= link_to challenge_submissions_path(challenge, my_submissions: 'on',current_round_id: current_round_id) do %>
+      <input type="checkbox" id="switch" name="switch" class="switch">
+      <label for="switch">My Submissions</label>
+    <% end %>
+  </form>
+</div>

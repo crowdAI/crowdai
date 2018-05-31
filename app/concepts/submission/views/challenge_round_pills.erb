@@ -5,10 +5,14 @@
         <li class='sub-nav-item'>
           <%= link_to challenge_round.challenge_round,
                       challenge_submissions_path(
-                        challenge, challenge_round_id: challenge_round.id),
-                        class: tab_class(challenge_round) %>
+                        challenge,
+                        challenge_round_id: challenge_round.id,
+                        current_round_id: current_round_id,
+                        my_submissions: my_submissions),
+              class: tab_class(challenge_round) %>
         </li>
       <% end %>
     </ul>
+
   </div>
 </div>

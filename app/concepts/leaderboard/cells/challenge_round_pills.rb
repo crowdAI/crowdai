@@ -1,8 +1,8 @@
-class Leaderboard::Cell::LeaderboardSubnav < Leaderboard::Cell
+class Leaderboard::Cell::ChallengeRoundPills < Leaderboard::Cell
 
   def show
     if challenge_rounds.count > 1
-      render :leaderboard_subnav
+      render :challenge_round_pills
     else
       nil
     end

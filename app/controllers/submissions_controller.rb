@@ -10,8 +10,11 @@ class SubmissionsController < ApplicationController
   respond_to :html, :js
 
   def index
+    @current_round = current_round
     @submissions = policy_scope(Submission)
-      .where(challenge_id: @challenge.id)
+      .where(
+        challenge_id: @challenge.id,
+        challenge_round_id: current_round.id)
       .order('created_at desc')
       .page(params[:page])
       .per(10)
@@ -152,6 +155,14 @@ class SubmissionsController < ApplicationController
       ]
       res = ActiveRecord::Base.connection.select_values(sql)
       res.any?
+    end
+
+    def current_round
+      if params[:challenge_round_id].present?
+        ChallengeRound.find(params[:challenge_round_id].to_i)
+      else
+        @challenge.challenge_rounds.where(active: true).first
+      end
     end
 
     def set_layout

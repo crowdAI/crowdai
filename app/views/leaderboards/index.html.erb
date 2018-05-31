@@ -4,7 +4,7 @@
                 current_participant: current_participant) %>
   <%= render partial: 'challenges/show/subnav',
         locals: { challenge: @challenge } %>
-  <%= concept(Leaderboard::Cell::LeaderboardSubnav,
+  <%= concept(Leaderboard::Cell::ChallengeRoundPills,
                 @challenge,
                 current_round: @current_round,
                 current_participant: current_participant) %>

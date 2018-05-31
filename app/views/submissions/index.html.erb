@@ -4,6 +4,10 @@
                 current_participant: current_participant) %>
   <%= render partial: 'challenges/show/subnav',
         locals: { challenge: @challenge } %>
+  <%= concept(Submission::Cell::ChallengeRoundPills,
+        @challenge,
+        current_round: @current_round,
+        current_participant: current_participant) %>
 
   <div class="row">
     <table class="submissions">

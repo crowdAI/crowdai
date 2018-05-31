@@ -10,6 +10,18 @@
         my_submissions: @my_submissions,
         current_participant: current_participant) %>
 
+  <% if @my_submissions == 'on' %>
+    <div class='row'>
+      <div class="leaderboard-msg">
+        <p>You have <%= @submissions_remaining[0] %> submissions available.
+        <% if @submissions_remaining[1].present? %>
+          Reset DTTM: <%= @submissions_remaining[1] %>
+        <% end %>
+      </p>
+      </div>
+    </div>
+  <% end %>
+
   <div class="row">
     <table class="submissions">
       <thead>

@@ -9,6 +9,14 @@
                 current_round: @current_round,
                 current_participant: current_participant) %>
 
+  <% if @challenge.leaderboard_message.present? %>
+    <div class='row'>
+      <div class="leaderboard-msg">
+        <%= sanitize(@challenge.leaderboard_message) %>
+      </div>
+    </div>
+  <% end %>
+
   <div class="row">
     <% if policy(@challenge).show_leaderboard? %>
       <% unless @challenge.show_leaderboard? %>
@@ -18,10 +26,10 @@
       <% end %>
       <table class="leaderboard">
           <%= concept(Leaderboard::Cell::TableHead,
-                        @leaderboards,
-                        challenge: @challenge,
-                        current_round: @current_round,
-                        current_participant: current_participant) %>
+                @leaderboards,
+                challenge: @challenge,
+                current_round: @current_round,
+                current_participant: current_participant) %>
           <tbody>
             <%= render partial: 'leaderboards' %>
           </tbody>

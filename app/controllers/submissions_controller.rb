@@ -25,6 +25,10 @@ class SubmissionsController < ApplicationController
         .order('created_at desc')
         .page(params[:page])
         .per(10)
+      @submissions_remaining = SubmissionsRemainingQuery.new(
+          challenge: @challenge,
+          participant_id: current_participant.id)
+        .call
     else
       @submissions = policy_scope(Submission)
         .where(

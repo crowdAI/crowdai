@@ -2,7 +2,7 @@
 
 There are three interrelated pages for submissions, scores and leaderboards. Access to this data is controlled by ApplicationPolicy objects and challenge configurations.
 
-![configuration](../images/leaderboard_submissions_visibility/challenge_settings.png)
+![configuration](images/leaderboard_submissions_visibility/challenge_settings.png)
 
 ### Leaderboard
 
@@ -14,7 +14,7 @@ The grader knows that score, score_secondary, message will be viewable by everyo
 
 If the **Show leaderboard?** setting is off, the leaderboard is viewable only by admins and challenge organizers. The Leaderboard tab will remain, and for other users, a message will appear.
 
-![leaderboard](../images/leaderboard_submissions_visibility/leaderboard_not_displayed.png)
+![leaderboard](images/leaderboard_submissions_visibility/leaderboard_not_displayed.png)
 
 ### Submissions
 

@@ -16,6 +16,10 @@ If the **Show leaderboard?** setting is off, the leaderboard is viewable only by
 
 ![leaderboard](images/leaderboard_submissions_visibility/leaderboard_not_displayed.png)
 
+When the leaderboard is not generally visible, a message reminds the organizer that only they can see it.
+
+![leaderboard](images/leaderboard_submissions_visibility/leaderboard_visible_to_organizers.png)
+
 ### Submissions
 
 When **Show leaderboard?** setting is on :   

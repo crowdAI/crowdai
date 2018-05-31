@@ -10,11 +10,34 @@ class SubmissionsController < ApplicationController
   respond_to :html, :js
 
   def index
-    @submissions = policy_scope(Submission)
-      .where(challenge_id: @challenge.id)
-      .order('created_at desc')
-      .page(params[:page])
-      .per(10)
+    @current_round_id = current_round_id
+    if params[:my_submissions] == 'on'
+      @my_submissions = 'on'
+    else
+      @my_submissions = 'off'
+    end
+    if @my_submissions == 'on'
+      @submissions = policy_scope(Submission)
+        .where(
+          challenge_id: @challenge.id,
+          challenge_round_id: @current_round_id,
+          participant_id: current_participant.id)
+        .order('created_at desc')
+        .page(params[:page])
+        .per(10)
+      @submissions_remaining = SubmissionsRemainingQuery.new(
+          challenge: @challenge,
+          participant_id: current_participant.id)
+        .call
+    else
+      @submissions = policy_scope(Submission)
+        .where(
+          challenge_id: @challenge.id,
+          challenge_round_id: @current_round_id)
+        .order('created_at desc')
+        .page(params[:page])
+        .per(10)
+    end
   end
 
   def show
@@ -152,6 +175,19 @@ class SubmissionsController < ApplicationController
       ]
       res = ActiveRecord::Base.connection.select_values(sql)
       res.any?
+    end
+
+    def current_round_id
+      if params[:challenge_round_id].present?
+        round = ChallengeRound.find(params[:challenge_round_id].to_i)
+      else
+        round = @challenge.challenge_rounds.where(active: true).first
+      end
+      if round.present?
+        return round.id
+      else
+        return nil
+      end
     end
 
     def set_layout

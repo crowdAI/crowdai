@@ -1,5 +1,7 @@
 ## crowdAI Leaderboard
 
+**OUT OF DATE - needs a rewrite**
+
 The crowdAI leaderboard is completely dynamic and built from submission data via a series of SQL views, using the Scenic gem (from Thoughbot).
 
 Essential the process is:

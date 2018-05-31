@@ -66,6 +66,4 @@ feature "leaderboard invisible challenge completed" do
     expect(page).to have_content('98')
   end
 
-
-
 end

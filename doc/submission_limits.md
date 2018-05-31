@@ -6,7 +6,7 @@ Challenge Rounds are configured with submission limits of either:
 - Week
 - Round
 
-![round](../images/challenge_round.png)
+![round](images/challenge_round.png)
 
 When a submission is made, crowdAI determines if the participant is still eligible to make submissions in this round, based on the Submission Limit settings.
 

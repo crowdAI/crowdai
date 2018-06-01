@@ -1,7 +1,7 @@
 class SubmissionPolicy < ApplicationPolicy
 
   def index?
-    participant
+    true
   end
 
   def show?
@@ -58,7 +58,6 @@ class SubmissionPolicy < ApplicationPolicy
             FROM challenges c
             WHERE c.show_leaderboard IS TRUE
             AND c.private_challenge IS FALSE
-            AND c.status_cd = 'completed'
           UNION
            SELECT c.id
             FROM challenges c
@@ -69,23 +68,6 @@ class SubmissionPolicy < ApplicationPolicy
               FROM invitations
               WHERE invitations.challenge_id = c.id
               AND invitations.email = '#{email}'
-            )
-        OR EXISTS
-          (SELECT 'X'
-            FROM leaderboards l,
-                  challenges c
-            WHERE c.id = l.challenge_id
-            AND c.status_cd = 'running'
-            AND c.show_leaderboard IS TRUE
-            AND l.submission_id = submissions.id
-            AND (c.private_challenge IS FALSE
-                  OR (c.private_challenge IS TRUE
-                       AND EXISTS (SELECT 'X'
-                                 FROM invitations
-                                 WHERE invitations.challenge_id = c.id
-                                 AND invitations.email = '#{email}')
-                      )
-                )
             )
           )
         ]

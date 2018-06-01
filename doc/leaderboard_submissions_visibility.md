@@ -35,6 +35,14 @@ When **Show leaderboard?** setting is off:
 
 Participants will get feedback if their submission was successful or not; but not any feedback about their scores.
 
+#### Private Challenges
+
+For private challenges, when the **Show Leaderboard?** setting is off:
+
+- Admins and organisers can view full submission details.
+
+- Participants can see their own submission information, including scores.
+
 
 ### Submissions Detail
 

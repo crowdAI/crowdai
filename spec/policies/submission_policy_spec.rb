@@ -424,6 +424,7 @@ describe SubmissionPolicy do
         create(:challenge,
           :running,
           private_challenge: true,
+          show_leaderboard: false,
           submissions_page: true) }
       let!(:round) { challenge.challenge_rounds.first }
       let!(:p1) { create :participant }

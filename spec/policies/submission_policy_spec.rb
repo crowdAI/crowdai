@@ -16,7 +16,7 @@ describe SubmissionPolicy do
 
     context 'for a public participant' do
       let(:participant) { nil }
-      it { is_expected.to forbid_action(:index) }
+      it { is_expected.to permit_action(:index) }
       it { is_expected.to forbid_action(:create) }
       it { is_expected.to forbid_action(:new) }
       it { is_expected.to forbid_action(:update) }
@@ -58,7 +58,9 @@ describe SubmissionPolicy do
 
   context 'challenge running / no leaderboard' do
     let!(:challenge) {
-      create(:challenge, :running) }
+      create(:challenge,
+        :running,
+        show_leaderboard: false) }
     let!(:round) { challenge.challenge_rounds.first }
     let!(:p1) { create :participant }
     let!(:p2) { create :participant }
@@ -277,7 +279,9 @@ describe SubmissionPolicy do
   describe '#show' do
     context 'challenge running' do
       let!(:challenge) {
-        create(:challenge, :running) }
+        create(:challenge,
+          :running,
+          submissions_page: true) }
       let!(:round) { challenge.challenge_rounds.first }
       let!(:p1) { create :participant }
       let!(:s1) { create :submission,
@@ -323,12 +327,12 @@ describe SubmissionPolicy do
 
         context 'for a public participant' do
           let(:participant) { nil }
-          it { is_expected.to forbid_action(:show) }
+          it { is_expected.to permit_action(:show) }
         end
 
         context 'for any public participant' do
           let(:participant) { create(:participant) }
-          it { is_expected.to forbid_action(:show) }
+          it { is_expected.to permit_action(:show) }
         end
 
         context 'for the participant' do
@@ -346,7 +350,9 @@ describe SubmissionPolicy do
 
     context 'challenge completed' do
       let!(:challenge) {
-        create(:challenge, :completed) }
+        create(:challenge,
+          :completed,
+          submissions_page: true) }
       let!(:round) { challenge.challenge_rounds.first }
       let!(:p1) { create :participant }
       let!(:s1) { create :submission,
@@ -415,7 +421,11 @@ describe SubmissionPolicy do
 
     context 'private challenge running' do
       let!(:challenge) {
-        create(:challenge, :running, private_challenge: true) }
+        create(:challenge,
+          :running,
+          private_challenge: true,
+          show_leaderboard: false,
+          submissions_page: true) }
       let!(:round) { challenge.challenge_rounds.first }
       let!(:p1) { create :participant }
       let!(:i1) { create(:invitation,
@@ -455,12 +465,12 @@ describe SubmissionPolicy do
 
         context 'for the participant' do
           let(:participant) { p1 }
-          it { is_expected.to permit_action(:show) }
+          it { is_expected.to forbid_action(:show) }
         end
 
         context 'for a private participant' do
           let(:participant) { p2 }
-          it { is_expected.to permit_action(:show) }
+          it { is_expected.to forbid_action(:show) }
         end
 
         context 'for the organizer' do
@@ -485,7 +495,7 @@ describe SubmissionPolicy do
 
         context 'for the participant' do
           let(:participant) { p1 }
-          it { is_expected.to permit_action(:show) }
+          it { is_expected.to forbid_action(:show) }
         end
 
         context 'for a private participant' do
@@ -588,6 +598,112 @@ describe SubmissionPolicy do
         end
       end
     end # private challenge completed
+
+    context 'submission details not visible' do
+      let!(:challenge) {
+        create(:challenge,
+          :completed,
+          submissions_page: false) }
+      let!(:round) { challenge.challenge_rounds.first }
+      let!(:p1) { create :participant }
+      let!(:s1) { create :submission,
+          challenge_id: challenge.id,
+          challenge_round_id: round.id,
+          participant_id: p1.id }
+      let!(:s2) { create :submission,
+          challenge_id: challenge.id,
+          challenge_round_id: round.id,
+          participant_id: p1.id }
+      let!(:l1) { create :base_leaderboard,
+          challenge_id: challenge.id,
+          challenge_round_id: round.id,
+          submission_id: s1.id }
+
+      context 'submission details not visible' do
+        let(:submission) { s1 }
+
+        context 'for a public participant' do
+          let(:participant) { nil }
+          it { is_expected.to forbid_action(:show) }
+        end
+
+        context 'for any participant' do
+          let(:participant) { create(:participant) }
+          it { is_expected.to forbid_action(:show) }
+        end
+
+        context 'for the participant' do
+          let(:participant) { p1 }
+          it { is_expected.to forbid_action(:show) }
+        end
+
+        context 'for the organizer' do
+          let(:participant) {
+            create :participant, organizer_id: challenge.organizer_id }
+          it { is_expected.to forbid_action(:show) }
+        end
+
+        context 'for the admin' do
+          let(:participant) {
+            create :participant, :admin }
+          it { is_expected.to forbid_action(:show) }
+        end
+      end
+    end
+
+    context 'submission details on / show leaderboard off' do
+      let!(:challenge) {
+        create(:challenge,
+          :completed,
+          show_leaderboard: false,
+          submissions_page: true) }
+      let!(:round) { challenge.challenge_rounds.first }
+      let!(:p1) { create :participant }
+      let!(:s1) { create :submission,
+          challenge_id: challenge.id,
+          challenge_round_id: round.id,
+          participant_id: p1.id }
+      let!(:s2) { create :submission,
+          challenge_id: challenge.id,
+          challenge_round_id: round.id,
+          participant_id: p1.id }
+      let!(:l1) { create :base_leaderboard,
+          challenge_id: challenge.id,
+          challenge_round_id: round.id,
+          submission_id: s1.id }
+
+      context 'submission details not visible' do
+        let(:submission) { s1 }
+
+        context 'for a public participant' do
+          let(:participant) { nil }
+          it { is_expected.to forbid_action(:show) }
+        end
+
+        context 'for any public participant' do
+          let(:participant) { create(:participant) }
+          it { is_expected.to forbid_action(:show) }
+        end
+
+        context 'for the participant' do
+          let(:participant) { p1 }
+          it { is_expected.to forbid_action(:show) }
+        end
+
+        context 'for the organizer' do
+          let(:participant) {
+            create :participant, organizer_id: challenge.organizer_id }
+          it { is_expected.to permit_action(:show) }
+        end
+
+        context 'for the admin' do
+          let(:participant) {
+            create :participant, :admin }
+          it { is_expected.to permit_action(:show) }
+        end
+      end
+    end
+
 
   end #show
 

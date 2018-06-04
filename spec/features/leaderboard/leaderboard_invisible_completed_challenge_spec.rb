@@ -54,8 +54,8 @@ feature "leaderboard invisible challenge completed" do
     expect(page).to have_content('99')
     expect(page).to have_content('98')
 
-    click_link("#participant-link-#{other_participant.id}")
-    expect(page).to have_content('100')
+    #click_link("#participant-link-#{other_participant.id}")
+    #expect(page).to have_content('100')
   end
 
   scenario 'admin' do
@@ -65,7 +65,5 @@ feature "leaderboard invisible challenge completed" do
     expect(page).to have_content('99')
     expect(page).to have_content('98')
   end
-
-
 
 end

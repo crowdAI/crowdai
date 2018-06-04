@@ -465,12 +465,12 @@ describe SubmissionPolicy do
 
         context 'for the participant' do
           let(:participant) { p1 }
-          it { is_expected.to permit_action(:show) }
+          it { is_expected.to forbid_action(:show) }
         end
 
         context 'for a private participant' do
           let(:participant) { p2 }
-          it { is_expected.to permit_action(:show) }
+          it { is_expected.to forbid_action(:show) }
         end
 
         context 'for the organizer' do
@@ -495,7 +495,7 @@ describe SubmissionPolicy do
 
         context 'for the participant' do
           let(:participant) { p1 }
-          it { is_expected.to permit_action(:show) }
+          it { is_expected.to forbid_action(:show) }
         end
 
         context 'for a private participant' do

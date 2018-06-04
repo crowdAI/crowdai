@@ -5,13 +5,15 @@ class SubmissionPolicy < ApplicationPolicy
   end
 
   def show?
-    participant && (participant.admin? ||
-      @record.challenge.organizer_id == participant.organizer_id ) || (
-    @record.challenge.submissions_page.present? &&
-      SubmissionPolicy::Scope
-        .new(participant,Submission)
-        .resolve
-        .include?(@record) )
+    @record.challenge.submissions_page.present? && (
+      (participant && (participant.admin? ||
+        @record.challenge.organizer_id == participant.organizer_id )) ||
+      (@record.challenge.submissions_page.present? && @record.challenge.show_leaderboard.present? &&
+        SubmissionPolicy::Scope
+          .new(participant,Submission)
+          .resolve
+          .include?(@record))
+    )
   end
 
   def new?

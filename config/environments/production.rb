@@ -23,7 +23,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.active_support.deprecation = :notify
 
-  config.active_storage.service = :aws
+  config.active_storage.service = :local
 
 
   # Use a different logger for distributed setups.

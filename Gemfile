@@ -49,7 +49,6 @@ gem 'country_select'
 gem 'codemirror-rails'
 gem 'rails-html-sanitizer', '~> 1.0.4'
 gem 'meta-tags'
-#gem 'rails-gdpr-export'
 
 # performance
 gem 'fast_blank'

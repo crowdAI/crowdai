@@ -27,6 +27,7 @@ GDPR_FIELDS = [
     id_field: 'participant_id',
     fields: [
       :id,
+      :created_at,
       :topic
     ]
   },
@@ -35,6 +36,7 @@ GDPR_FIELDS = [
     id_field: 'participant_id',
     fields: [
       :id,
+      :created_at,
       :comment_markdown
     ]
   }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_31_120856) do
+ActiveRecord::Schema.define(version: 2018_06_05_144750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(version: 2018_05_31_120856) do
     t.datetime "updated_at", null: false
     t.text "body_markdown"
     t.integer "seq"
+    t.datetime "posted_at"
     t.index ["participant_id"], name: "index_blogs_on_participant_id"
   end
 

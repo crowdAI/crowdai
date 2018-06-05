@@ -14,6 +14,7 @@ ActiveAdmin.register Blog do
     column :published
     column :vote_count
     column :view_count
+    column :posted_at
     actions
   end
 
@@ -24,6 +25,7 @@ ActiveAdmin.register Blog do
       f.input :seq
       f.input :published
       f.input :body_markdown
+      f.input :posted_at
     end
     f.actions
   end
@@ -37,6 +39,7 @@ ActiveAdmin.register Blog do
       row :body do
         sanitize(blog.body)
       end
+      row :posted_at
       row :created_at
       row :updated_at
     end

@@ -111,6 +111,7 @@ gem 'file_validators'
 # Amazon
 gem 'aws-sdk', '~> 2.2'
 gem 'fog'
+#gem "aws-sdk-s3", require: false  # ActiveStorage
 
 # View
 gem "trailblazer"

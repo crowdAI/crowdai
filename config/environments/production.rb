@@ -23,6 +23,9 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.active_support.deprecation = :notify
 
+  config.active_storage.service = :aws
+
+
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')

@@ -14,6 +14,8 @@ Rails.application.configure do
   config.active_support.deprecation = :notify
   #config.log_formatter = ::Logger::Formatter.new
   config.active_record.dump_schema_after_migration = false
+  config.active_storage.service = :aws
+
   config.action_mailer.default_url_options = { host: ENV["HOST"] }
   config.action_controller.asset_host = "https://#{ENV['CLOUDFRONT_ASSETS_DOMAIN']}"
 end

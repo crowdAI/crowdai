@@ -7,9 +7,9 @@ local:
   root: <%= Rails.root.join("storage") %>
   #host: http://localhost:5000  # if running with foreman
 
-aws:
-  service: S3
-  access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
-  secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
-  region: eu-central-1
-  bucket: <%= ENV['AWS_S3_BUCKET'] %>
+#aws:
+#  service: S3
+#  access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+#  secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+#  region: eu-central-1
+#  bucket: <%= ENV['AWS_S3_BUCKET'] %>

@@ -5134,6 +5134,10 @@ midi-player-js@^1.1.4:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/midi-player-js/-/midi-player-js-1.1.4.tgz#ea84613425e98f9f93c44706b7534b376a682060"
 
+midi-player-js@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/midi-player-js/-/midi-player-js-2.0.3.tgz#b2c2c3d0bd6ccde2845b882675890dc70763adca"
+
 midimessage@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/midimessage/-/midimessage-1.0.5.tgz#ad99f04d863a053a2563d553c5bf35070b48802c"

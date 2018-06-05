@@ -14,7 +14,7 @@ class GdprExportMailer < ApplicationMailer
   end
 
   def encoded_attachment(participant_id:)
-    Base64.encode64(GdprExporter.export(participant_id))
+    Base64.encode64(build_csv(participant_id: participant_id))
   end
 
   def email_body
@@ -60,6 +60,30 @@ class GdprExportMailer < ApplicationMailer
         }
       ]
     }
+  end
+
+  def build_csv(participant_id:)
+    CSV.generate(force_quotes: true) do |csv|
+      GDPR_FIELDS.each do |rec|
+        csv << [rec[:table]]
+        rows(rec: rec,participant_id: participant_id).each do |row|
+          csv << row
+        end
+      end
+    end
+  end
+
+  def rows(rec:,participant_id:)
+    query = "#{query(rec: rec, participant_id: participant_id)}.pluck('#{plucked(rec: rec)}')"
+    eval(query)
+  end
+
+  def query(rec:,participant_id:)
+    "#{rec[:table]}.where(#{rec[:id_field]}: #{participant_id})"
+  end
+
+  def plucked(rec:)
+    rec[:fields].join(',')
   end
 
 end

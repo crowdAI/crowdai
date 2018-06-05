@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_25_103442) do
+ActiveRecord::Schema.define(version: 2018_05_31_120856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -237,14 +237,14 @@ ActiveRecord::Schema.define(version: 2018_05_25_103442) do
     t.boolean "submissions_page"
     t.boolean "private_challenge", default: false
     t.boolean "show_leaderboard", default: true
-    t.integer "ranking_window"
-    t.integer "ranking_highlight"
     t.string "grader_identifier"
     t.boolean "online_submissions", default: false
     t.boolean "grader_logs", default: false
     t.boolean "require_registration", default: false
     t.boolean "grading_history", default: false
     t.boolean "post_challenge_submissions", default: false
+    t.text "leaderboard_message_markdown"
+    t.text "leaderboard_message"
     t.index ["clef_task_id"], name: "index_challenges_on_clef_task_id"
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id"
     t.index ["slug"], name: "index_challenges_on_slug", unique: true
@@ -530,11 +530,6 @@ ActiveRecord::Schema.define(version: 2018_05_25_103442) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet "current_sign_in_ip"
-    t.inet "last_sign_in_ip"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
@@ -1007,36 +1002,6 @@ ActiveRecord::Schema.define(version: 2018_05_25_103442) do
             ORDER BY x.challenge_id, x.participant_id) y;
   SQL
 
-  create_view "participant_challenges",  sql_definition: <<-SQL
-      SELECT DISTINCT p.id,
-      cr.challenge_id,
-      cr.participant_id,
-      c.organizer_id,
-      c.status_cd,
-      c.challenge,
-      c.private_challenge,
-      c.description,
-      c.rules,
-      c.prizes,
-      c.resources,
-      c.tagline,
-      c.image_file,
-      c.submission_count,
-      c.participant_count,
-      c.page_views,
-      p.name,
-      p.email,
-      p.last_sign_in_at,
-      p.bio,
-      p.github,
-      p.linkedin,
-      p.twitter
-     FROM participants p,
-      challenges c,
-      challenge_registrations cr
-    WHERE ((cr.participant_id = p.id) AND (cr.challenge_id = c.id));
-  SQL
-
   create_view "participant_sign_ups",  sql_definition: <<-SQL
       SELECT count(participants.id) AS count,
       (date_part('month'::text, participants.created_at))::integer AS mnth,
@@ -1117,6 +1082,35 @@ ActiveRecord::Schema.define(version: 2018_05_25_103442) do
       base_leaderboards.post_challenge
      FROM base_leaderboards
     WHERE ((base_leaderboards.leaderboard_type_cd)::text = 'previous_ongoing'::text);
+  SQL
+
+  create_view "participant_challenges",  sql_definition: <<-SQL
+      SELECT DISTINCT p.id,
+      cr.challenge_id,
+      cr.participant_id,
+      c.organizer_id,
+      c.status_cd,
+      c.challenge,
+      c.private_challenge,
+      c.description,
+      c.rules,
+      c.prizes,
+      c.resources,
+      c.tagline,
+      c.image_file,
+      c.submission_count,
+      c.participant_count,
+      c.page_views,
+      p.name,
+      p.email,
+      p.bio,
+      p.github,
+      p.linkedin,
+      p.twitter
+     FROM participants p,
+      challenges c,
+      challenge_registrations cr
+    WHERE ((cr.participant_id = p.id) AND (cr.challenge_id = c.id));
   SQL
 
 end

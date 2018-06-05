@@ -11,6 +11,7 @@ FactoryBot.define do
     city FFaker::Address.city
     country_cd FFaker::Address.country_code
     organizer nil
+    timezone 'GMT'
 
     trait :admin do
       admin true

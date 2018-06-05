@@ -55,7 +55,7 @@
       <% end %>
       <% if challenge.winners_tab_active.present? %>
         <li class=<%= tab_class('winner') %> >
-          <%= link_to 'Winner',
+          <%= link_to 'Winners',
                 challenge_winners_path(challenge),
                 class: tab_class('winner') %>
         </li>

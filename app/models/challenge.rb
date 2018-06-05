@@ -8,8 +8,6 @@ class Challenge < ApplicationRecord
   belongs_to :organizer
   belongs_to :clef_task,
     optional: true
-  belongs_to :challenge_round,
-    optional: true
   has_many :dataset_files,
     dependent: :destroy
   mount_uploader :image_file, ImageUploader

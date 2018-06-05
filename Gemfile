@@ -143,6 +143,7 @@ group :development do
   gem 'scss_lint', require: false
   gem 'meta_request'
   gem 'model_2_factory-rails'
+  gem "lol_dba"
 end
 
 # Added to fix GitHub vulnerability messages

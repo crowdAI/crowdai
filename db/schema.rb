@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_05_144750) do
+ActiveRecord::Schema.define(version: 2018_06_05_180520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -331,6 +331,7 @@ ActiveRecord::Schema.define(version: 2018_06_05_144750) do
     t.integer "participant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["followable_id", "followable_type"], name: "index_follows_on_followable_id_and_followable_type"
     t.index ["participant_id"], name: "index_follows_on_participant_id"
   end
 
@@ -668,6 +669,7 @@ ActiveRecord::Schema.define(version: 2018_06_05_144750) do
     t.float "score_display"
     t.float "score_secondary_display"
     t.index ["challenge_id"], name: "index_submissions_on_challenge_id"
+    t.index ["challenge_round_id"], name: "index_submissions_on_challenge_round_id"
     t.index ["participant_id"], name: "index_submissions_on_participant_id"
   end
 
@@ -726,6 +728,7 @@ ActiveRecord::Schema.define(version: 2018_06_05_144750) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["participant_id"], name: "index_votes_on_participant_id"
+    t.index ["votable_id", "votable_type"], name: "index_votes_on_votable_id_and_votable_type"
   end
 
   add_foreign_key "article_sections", "articles"

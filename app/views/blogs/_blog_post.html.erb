@@ -1,7 +1,7 @@
 <div class="blog-post">
   <h5><%= link_to blog.title, blog_path(blog) %></h5>
   <p>
-    <%= truncate(blog.body,
+    <%= truncate(strip_tags(blog.body),
            length: 100,
            omission: "" ,
            escape: false) %>...

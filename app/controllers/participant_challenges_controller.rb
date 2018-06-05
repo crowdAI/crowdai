@@ -6,7 +6,7 @@ class ParticipantChallengesController < ApplicationController
   def index
     @participant_challenges = @challenge
       .participant_challenges
-      .order(last_sign_in_at: :desc)
+      .order(name: :asc)
       .page(params[:page])
       .per(20)
     authorize @participant_challenges

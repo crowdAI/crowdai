@@ -99,16 +99,10 @@
       </div>
     </div>
 
-    <div class="twin-container">
-      <div class="twin-field">
-        <%= f.label :ranking_highlight, 'Highlight rankings' %>
-        <%= f.text_field :ranking_highlight %>
-      </div>
-      <div class="twin-field">
-        <%= f.label :ranking_window, 'Ranking window (hours)' %>
-        <%= f.text_field :ranking_window %>
-      </div>
-    </div>
+    <label>Leaderboard Message</label>
+    <%= markdown_editor do |m| %>
+      <%= f.text_area :leaderboard_message_markdown, class: "txt-med" %>
+    <% end %>
 
     <div class="twin-container">
       <div class="twin-field">

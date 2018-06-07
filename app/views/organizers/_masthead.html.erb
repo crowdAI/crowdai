@@ -7,7 +7,7 @@
       <div class="heading-w-icon">
         <h2><%= organizer.organizer %></h2>
         <% if policy(organizer).edit? %>
-          <%= link_to edit_organizer_path(organizer), title: "Edit profile" do %>
+          <%= link_to edit_organizer_path(organizer), title: "Edit profile", data: { turbolinks: false } do %>
             <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
           <% end %>
         <% end %>

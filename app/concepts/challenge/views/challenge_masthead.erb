@@ -7,14 +7,14 @@
       <div class="heading-w-icon">
         <h2><%= challenge.challenge %></h2>
         <% if policy(challenge).edit? %>
-          <%= link_to edit_organizer_challenge_path(challenge.organizer,challenge), title: "Edit challenge" do %>
+          <%= link_to edit_organizer_challenge_path(challenge.organizer,challenge), title: "Edit challenge", data: { turbolinks: false } do %>
             <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
           <% end %>
         <% end %>
       </div>
       <p class="large"><%= challenge.tagline %></p>
       <%= organizer_view %>
-    
+
       <progress max="100" value="<%= progress %>"></progress>
       <div class="stats">
         <div class="stat-fl">

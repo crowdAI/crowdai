@@ -15,7 +15,7 @@
 
         <div class="button-group">
           <%= f.button 'Save', type: 'submit', class: 'btn btn-primary' %>
-          <%= button_to edit_participant_registration_path, class: 'btn btn-secondary' do %>
+          <%= button_to edit_participant_registration_path, class: 'btn btn-secondary', data: { turbolinks: false } do %>
             Cancel
           <% end %>
         </div>

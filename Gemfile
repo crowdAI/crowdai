@@ -99,7 +99,7 @@ gem "sidekiq-cron", "~> 0.6.3"
 gem 'sidekiq-history'
 gem 'sidekiq-failures'
 gem 'sidekiq-unique-jobs'
-gem 'sinatra', '~> 2.0.1', :require => nil
+gem 'sinatra', '~> 2.0.2', :require => nil
 
 # images
 gem 'carrierwave', '~> 1.0'

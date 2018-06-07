@@ -11,16 +11,12 @@ module Crowdai
   DATE_FORMAT = '%d %B %Y'
 
   class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
-    #config.load_defaults 5.1
     config.load_defaults 5.2
 
     config.assets.version = '2.0'
 
     config.active_job.queue_adapter = :sidekiq
-    #config.autoload_paths += Dir[Rails.root.join('app', 'models', '{*/}')]
     config.secret_key_base = ENV["SECRET_KEY_BASE"]
-    #config.action_controller.default_url_options = {:host => ENV['HOST']}
     config.autoload_paths << Rails.root.join('lib')
     config.autoload_paths += Dir["#{Rails.root.to_s}/app/models/**/"]
     config.autoload_paths += Dir["#{Rails.root.to_s}/app/queries/**/"]

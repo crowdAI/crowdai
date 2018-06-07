@@ -50,7 +50,7 @@ RSpec.describe GdprExportMailer, type: :mailer do
           rec: GDPR_FIELDS[0],
           participant_id: participant.id)
         expect(rows.first).to eq(
-          [participant.email, participant.address, participant.name ])
+          [participant.id, participant.email, participant.address, participant.name ])
       end
 
       it '#plucked' do

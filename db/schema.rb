@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_05_180520) do
+ActiveRecord::Schema.define(version: 2018_06_12_154146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -313,6 +313,7 @@ ActiveRecord::Schema.define(version: 2018_06_05_180520) do
     t.boolean "receive_every_email", default: false
     t.boolean "receive_daily_digest", default: true
     t.boolean "receive_weekly_digest", default: false
+    t.string "email_frequency", default: "daily"
     t.index ["participant_id"], name: "index_email_preferences_on_participant_id"
   end
 

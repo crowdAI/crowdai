@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::MailchimpsController, type: :request do
+RSpec.describe Api::MailchimpsController, type: :request, api: true do
 
   def valid_unsubscribe_params
     {

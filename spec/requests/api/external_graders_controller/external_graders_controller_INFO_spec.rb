@@ -32,9 +32,9 @@ RSpec.describe Api::ExternalGradersController, type: :request do
         get "/api/external_graders/#{submission1.id}/submission_info",
           headers: {
             'Accept': 'application/vnd.api+json',
-            'Content-Type': 'application/vnd.api+json'
-          },
-          headers: { 'Authorization': auth_header(organizer.api_key) }
+            'Content-Type': 'application/vnd.api+json',
+            'Authorization': auth_header(organizer.api_key)
+          }
         }
       it { expect(response).to have_http_status(200) }
       it { expect(json(response.body)[:message]).to eq('Submission details found.') }

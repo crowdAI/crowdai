@@ -1,5 +1,5 @@
 require 'spec_helper'
-RSpec.describe Organizer::EuaNotificationMailer, type: :mailer do
+RSpec.describe Organizer::EuaNotificationMailer, type: :mailer, api: true do
 
   describe 'methods' do
     let!(:organizer_participant) { create :participant, organizer: organizer }

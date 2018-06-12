@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe CommentNotificationMailer, type: :mailer do
+RSpec.describe CommentNotificationMailer, type: :mailer, api: true do
 
   describe 'methods' do
     let!(:challenge) { create :challenge }

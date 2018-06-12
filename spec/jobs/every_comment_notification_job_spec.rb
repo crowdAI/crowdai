@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe EveryCommentNotificationJob, type: :job do
+RSpec.describe EveryCommentNotificationJob, type: :job, api: true do
   include ActiveJob::TestHelper
 
   describe 'receive_every_email' do

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe SubmissionGradedNotificationMailer, type: :mailer do
+RSpec.describe SubmissionGradedNotificationMailer, type: :mailer, api: true do
 
   describe 'methods' do
     let(:challenge) { create :challenge, :running }

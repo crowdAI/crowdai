@@ -1,5 +1,5 @@
 require 'spec_helper'
-RSpec.describe Admin::SubmissionNotificationMailer, type: :mailer do
+RSpec.describe Admin::SubmissionNotificationMailer, type: :mailer, api: true do
 
   describe 'methods' do
     let(:challenge) { create :challenge, :running }

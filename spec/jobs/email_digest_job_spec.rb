@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe EmailDigestJob, type: :job do
+RSpec.describe EmailDigestJob, type: :job, api: true do
   include ActiveJob::TestHelper
 
   describe 'executes the daily digest' do

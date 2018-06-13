@@ -1,15 +1,22 @@
 import { Controller } from 'stimulus';
 
 export default class extends Controller {
-  static targets = ['challenges-followed','mentions','frequency'];
+  static targets = ['challengesFollowed','mentions','frequency'];
 
-  toggleFrequency(event){
-    if(event.target.checked == true) {
-      console.log('show');
-      this.frequencyTarget.display = 'block';
+  initialize(){
+    if(this.challengesFollowedTarget.checked || this.mentionsTarget.checked) {
+      this.frequencyTarget.style.display = 'block';
     } else {
-      console.log('hide');
-      this.frequencyTarget.display = 'none';
+      this.frequencyTarget.style.display = 'none';
     }
   }
+
+  toggleFrequency(event){
+    if(event.target.checked) {
+      this.frequencyTarget.style.display = 'block';
+    } else {
+      this.frequencyTarget.style.display = 'none';
+    }
+  }
+
 }

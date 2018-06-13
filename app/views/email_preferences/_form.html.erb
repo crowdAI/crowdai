@@ -13,7 +13,7 @@
       <div>
         <%= f.check_box :challenges_followed,
             { data:
-              { target: 'challenges-followed',
+              { target: 'email-preferences.challengesFollowed',
               action: 'click->email-preferences#toggleFrequency' }
             }, "true", "false" %>
         <%= f.label :challenges_followed, 'Receive email for challenges which I am following' %>
@@ -47,6 +47,7 @@
           <%= f.radio_button :email_frequency, 'weekly' %>
         </div>
       </fieldset>
+      <br/>
       <%= f.hidden_field :unsubscribe_token, value: params[:unsubscribe_token] %>
     </div>
     <div class="button-group">

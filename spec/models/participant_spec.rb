@@ -92,9 +92,7 @@ describe Participant do
         expect(pref.newsletter).to be true
         expect(pref.challenges_followed).to be true
         expect(pref.mentions).to be true
-        expect(pref.receive_every_email).to be false
-        expect(pref.receive_daily_digest).to be true
-        expect(pref.receive_weekly_digest).to be false
+        expect(pref.email_frequency).to eq(:daily)
       end
     end
 

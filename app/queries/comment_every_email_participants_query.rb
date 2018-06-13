@@ -20,7 +20,7 @@ class CommentEveryEmailParticipantsQuery
        WHERE c.topic_id = t.id
          AND p.participant_id = c.participant_id
          AND p.mentions IS TRUE
-         AND p.receive_every_email IS TRUE
+         AND p.email_frequency_cd = 'every'
          AND t.id IN (SELECT c1.topic_id
                         FROM comments c1
                        WHERE c1.id = #{@comment_id})
@@ -36,7 +36,7 @@ class CommentEveryEmailParticipantsQuery
          AND t.challenge_id = f.followable_id
          AND c.topic_id = t.id
          AND p.challenges_followed IS TRUE
-         AND p.receive_every_email IS TRUE
+         AND p.email_frequency_cd = 'every'
     ]
   end
 

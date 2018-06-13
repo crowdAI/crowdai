@@ -12,11 +12,11 @@ RSpec.describe SubmissionGradedNotificationJob, type: :job do
   let!(:admin) { create :participant, :admin }
   let!(:email_preference1) {
     create :email_preference,
-    :every_email,
+    email_frequency: :every,
     participant: participant }
   let!(:email_preference2) {
     create :email_preference,
-    :every_email,
+    email_frequency: :every,
     participant: admin }
 
   describe 'queues the job' do

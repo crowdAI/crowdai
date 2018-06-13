@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe EmailDigestMailer, type: :mailer, api: true do
+RSpec.describe EmailDigestMailer, type: :mailer do
   let(:challenge) { create :challenge, :running }
   let(:other_participant) {
     create :participant, :every_email }

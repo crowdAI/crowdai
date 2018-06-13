@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe GdprExportMailer, type: :mailer do
+RSpec.describe GdprExportMailer, type: :mailer, api: true do
   let!(:participant) { create :participant }
   let!(:comment) { create :comment, participant: participant }
   let!(:comment2) { create :comment, participant: participant }

@@ -31,19 +31,19 @@ FactoryBot.define do
 
     trait :every_email do
       after :create do |participant|
-        participant.email_preferences.first.update_columns(receive_every_email: true, receive_daily_digest: false, receive_weekly_digest: false)
+        participant.email_preferences.first.update(    email_frequency: :every)
       end
     end
 
     trait :daily do
       after :create do |participant|
-        participant.email_preferences.first.update_columns(receive_every_email: false, receive_daily_digest: true, receive_weekly_digest: false)
+        participant.email_preferences.first.update(    email_frequency: :daily)
       end
     end
 
     trait :weekly do
       after :create do |participant|
-        participant.email_preferences.first.update_columns(receive_every_email: false, receive_daily_digest: false, receive_weekly_digest: true)
+        participant.email_preferences.first.update(    email_frequency: :weekly)
       end
     end
 

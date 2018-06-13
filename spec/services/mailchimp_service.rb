@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe MailchimpService do
+RSpec.describe MailchimpService, api: true do
 
   let!(:participant) { create :participant }
 

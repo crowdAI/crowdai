@@ -26,8 +26,7 @@ class CommentsDigestQuery
                              WHERE participant_id = #{@participant_id}
                                AND created_at >= '#{@start_dttm}')
          AND p.participant_id = c.participant_id
-         AND (p.receive_daily_digest IS TRUE
-              OR p.receive_weekly_digest IS TRUE)
+         AND p.email_frequency_cd IN ('daily','weekly')
          AND p.mentions IS TRUE
       UNION
       SELECT c.id AS id

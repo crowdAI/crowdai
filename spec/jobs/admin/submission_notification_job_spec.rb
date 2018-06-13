@@ -3,7 +3,10 @@ RSpec.describe Admin::SubmissionNotificationJob, type: :job do
   include ActiveJob::TestHelper
 
   let(:submission) { create :submission }
-  let!(:email_preference) { create :email_preference, :every_email, participant: submission.participant }
+  let!(:email_preference) {
+    create :email_preference,
+    email_frequency: :every,
+    participant: submission.participant }
 
   subject(:job) { described_class.perform_later(submission) }
 

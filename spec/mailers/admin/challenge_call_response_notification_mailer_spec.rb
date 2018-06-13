@@ -1,5 +1,5 @@
 require 'spec_helper'
-RSpec.describe Admin::ChallengeCallResponseNotificationMailer, type: :mailer do
+RSpec.describe Admin::ChallengeCallResponseNotificationMailer, type: :mailer, api: true do
 
   describe 'methods' do
     let(:participant) { create :participant, :admin }

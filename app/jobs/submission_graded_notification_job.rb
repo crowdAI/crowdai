@@ -4,7 +4,7 @@ class SubmissionGradedNotificationJob < ApplicationJob
   def perform(submission)
     recipient_ids(submission).each do |participant_id|
       email_preference = EmailPreference.where(participant_id: participant_id).first
-      if email_preference.receive_every_email
+      if email_preference.email_frequency == :every
         SubmissionGradedNotificationMailer.new.sendmail(submission.participant_id, submission.id)
       end
     end

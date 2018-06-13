@@ -1,5 +1,9 @@
 <div class="row">
-  <%= form_for [@participant,@email_preference], html: {class: 'sgl-col' } do |f| %>
+  <%= form_for [@participant,@email_preference],
+        html: {
+          class: 'sgl-col',
+            data: { controller: 'email-preferences' }
+        } do |f| %>
     <%= render "shared/error_messages", target: @email_preference %>
     <fieldset class="checkbox">
       <div>
@@ -7,30 +11,45 @@
         <%= f.label :newsletter, 'Receive the crowdAI Newsletter' %>
       </div>
       <div>
-        <%= f.check_box :challenges_followed %>
+        <%= f.check_box :challenges_followed,
+            { data:
+              { target: 'email-preferences.challengesFollowed',
+              action: 'click->email-preferences#toggleFrequency' }
+            }, "true", "false" %>
         <%= f.label :challenges_followed, 'Receive email for challenges which I am following' %>
       </div>
       <div>
-        <%= f.check_box :mentions %>
+        <%= f.check_box :mentions,
+            { data:
+              { target: 'email-preferences.mentions',
+              action: 'click->email-preferences#toggleFrequency' }
+            }, "true", "false" %>
         <%= f.label :mentions, 'Receive emails when someone mentions me in a comment/post' %>
       </div>
     </fieldset>
-    <fieldset class="checkbox" id='email-frequency'>
+    <div data-target='email-preferences.frequency'>
 		  <h4>Email Frequency</h4>
-		  <div>
-        <%= f.check_box :receive_every_email %>
-        <%= f.label :receive_every_email, 'Receive every email' %>
-      </div>
-      <div>
-        <%= f.check_box :receive_daily_digest %>
-        <%= f.label :receive_daily_digest, 'Receive a daily digest email' %>
-      </div>
-      <div>
-        <%= f.check_box :receive_weekly_digest %>
-        <%= f.label :receive_weekly_digest, 'Receive a weekly digest email' %>
-      </div>
+      <fieldset class='radiogroup'>
+        <div>
+          <%= f.label :email_frequency_every, 'Receive every email' %>
+          <%= f.radio_button :email_frequency, 'every' %>
+        </div>
+      </fieldset>
+      <fieldset class='radiogroup'>
+        <div>
+          <%= f.label :email_frequency_daily, 'Receive a daily digest email' %>
+          <%= f.radio_button :email_frequency, 'daily' %>
+        </div>
+      </fieldset>
+      <fieldset class='radiogroup'>
+        <div>
+          <%= f.label :email_frequency_weekly, 'Receive a weekly digest email' %>
+          <%= f.radio_button :email_frequency, 'weekly' %>
+        </div>
+      </fieldset>
+      <br/>
       <%= f.hidden_field :unsubscribe_token, value: params[:unsubscribe_token] %>
-    </fieldset>
+    </div>
     <div class="button-group">
       <%= f.button 'Save', type: 'submit', class: 'btn btn-primary' %>
       <%= button_to edit_participant_email_preference_path, class: 'btn btn-secondary' do %>

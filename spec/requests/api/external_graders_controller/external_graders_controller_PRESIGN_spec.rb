@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::ExternalGradersController, type: :request do
+RSpec.describe Api::ExternalGradersController, type: :request, api: true do
 
   before do
     Timecop.freeze(DateTime.new(2017, 10, 30, 2, 2, 2, "+02:00"))

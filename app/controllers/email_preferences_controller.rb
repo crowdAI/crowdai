@@ -48,7 +48,8 @@ class EmailPreferencesController < ApplicationController
         :mentions,
         :receive_every_email,
         :receive_daily_digest,
-        :receive_weekly_digest)
+        :receive_weekly_digest,
+        :email_frequency)
   end
 
 

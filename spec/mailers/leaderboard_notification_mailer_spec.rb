@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe LeaderboardNotificationMailer, type: :mailer do
+RSpec.describe LeaderboardNotificationMailer, type: :mailer, api: true do
 
   describe 'methods' do
     let!(:challenge) { create :challenge, :running }

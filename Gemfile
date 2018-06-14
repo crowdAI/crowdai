@@ -12,15 +12,13 @@ gem 'puma'
 gem 'puma_worker_killer'
 
 # user accounts / admin
-gem 'devise', '~> 4.4.1'
+gem 'devise'
 gem 'pundit'
 gem 'activeadmin'
 gem 'crowdai_admin'
 #gem 'crowdai_admin',
 #      path: '/Users/sean/src/crowdai/crowdai_admin'
-gem 'doorkeeper',
-      git: 'https://github.com/doorkeeper-gem/doorkeeper',
-      :branch => 'master'
+gem 'doorkeeper', '~> 5.0.0.rc1'
 
 # monitoring
 gem 'mini_magick'

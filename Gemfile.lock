@@ -16,14 +16,6 @@ GIT
       rspec-rails (>= 3.0.0)
 
 GIT
-  remote: https://github.com/doorkeeper-gem/doorkeeper
-  revision: 37abb5e5484cb90d8f8d53cb8b46176b69cf284e
-  branch: master
-  specs:
-    doorkeeper (5.0.0.rc1)
-      railties (>= 4.2)
-
-GIT
   remote: https://github.com/trailblazer/cells-rails
   revision: 9f2c060137db86c42e50af801fc475bb756e9efe
   specs:
@@ -220,6 +212,8 @@ GEM
       representable (>= 2.4.0, <= 3.1.0)
       uber (< 0.2.0)
     docile (1.3.1)
+    doorkeeper (5.0.0.rc1)
+      railties (>= 4.2)
     erbse (0.1.1)
       temple
     erubi (1.7.1)
@@ -837,8 +831,8 @@ DEPENDENCIES
   crowdai_admin
   database_cleaner
   derailed_benchmarks
-  devise (~> 4.4.1)
-  doorkeeper!
+  devise
+  doorkeeper (~> 5.0.0.rc1)
   erbse (= 0.1.1)
   excon
   factory_bot_rails

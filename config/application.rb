@@ -37,5 +37,11 @@ module Crowdai
       g.view false
       g.fixture_replacement :factory_bot, dir: 'spec/factories'
     end
+
+    config.to_prepare do
+      Doorkeeper::ApplicationsController.layout "application"
+      Doorkeeper::AuthorizationsController.layout "application"
+      Doorkeeper::AuthorizedApplicationsController.layout "application"
+    end
   end
 end

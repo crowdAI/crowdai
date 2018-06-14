@@ -120,6 +120,7 @@ gem "cells-rails", git: 'https://github.com/trailblazer/cells-rails'
 gem "cells"
 gem "cells-erb"
 gem 'record_tag_helper', '~> 1.0'
+gem 'cookies_eu'
 
 
 group :development, :test do

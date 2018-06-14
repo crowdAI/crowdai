@@ -12,6 +12,7 @@
 //= require social-share-button
 //= require codemirror
 //= require activestorage
+//= require cookies_eu
 
 // --------------------- Vendor ------------------------ //
 //= require jQuery-File-Upload

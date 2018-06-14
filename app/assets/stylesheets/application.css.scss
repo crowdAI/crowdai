@@ -67,6 +67,7 @@ $flag-css-png-path: 'flags/png' !default;
 @import "notebook";
 @import "prism";
 @import 'cookies';
+@import 'doorkeeper';
 
 .cookies-eu-ok {
   background: $color-accent;

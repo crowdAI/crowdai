@@ -1,0 +1,40 @@
+<div class='content'>
+  <div class="masthead">
+    <div class="row">
+      <div class="info">
+        <h2>crowdAI GitLab Authorization</h2>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="article">
+      <p><b>crowdAI GitLab</b> is a private GitLab service run by crowdAI at gitlab.crowdai.org. In order to log into <b>crowdAI GitLab</b> with your crowdAI ID, you must authorize it on this page.</p>
+      <p><b>gitlab.crowdai.org</b> will have the ability to read your participant profile. This application is governed by the crowdAI <a href='/privacy'>privacy policy</a> and <a href='/terms'>terms of service</a></p>
+      <hr/>
+      <%= raw t('.prompt', client_name: content_tag(:strong, class: 'text-info') { @pre_auth.client.name }) %>
+
+
+      <div class="doorkeeper-forms">
+        <%= form_tag oauth_authorization_path, method: :post do %>
+          <%= hidden_field_tag :client_id, @pre_auth.client.uid %>
+          <%= hidden_field_tag :redirect_uri, @pre_auth.redirect_uri %>
+          <%= hidden_field_tag :state, @pre_auth.state %>
+          <%= hidden_field_tag :response_type, @pre_auth.response_type %>
+          <%= hidden_field_tag :scope, @pre_auth.scope %>
+          <%= hidden_field_tag :code_challenge, @pre_auth.code_challenge %>
+          <%= hidden_field_tag :code_challenge_method, @pre_auth.code_challenge_method %>
+          <%= submit_tag t('doorkeeper.authorizations.buttons.authorize'), class: "btn btn-primary" %>
+        <% end %>
+        <%= form_tag oauth_authorization_path, method: :delete do %>
+          <%= hidden_field_tag :client_id, @pre_auth.client.uid %>
+          <%= hidden_field_tag :redirect_uri, @pre_auth.redirect_uri %>
+          <%= hidden_field_tag :state, @pre_auth.state %>
+          <%= hidden_field_tag :response_type, @pre_auth.response_type %>
+          <%= hidden_field_tag :scope, @pre_auth.scope %>
+          <%= hidden_field_tag :code_challenge, @pre_auth.code_challenge %>
+          <%= hidden_field_tag :code_challenge_method, @pre_auth.code_challenge_method %>
+          <%= submit_tag t('doorkeeper.authorizations.buttons.deny'), class: "btn btn-secondary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>

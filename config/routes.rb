@@ -132,6 +132,8 @@ Rails.application.routes.draw do
   match '/privacy', to: 'pages#privacy', via: :get
   match '/terms',   to: 'pages#terms',   via: :get
   match '/faq',     to: 'pages#faq',     via: :get
+  match '/cookies', to: 'pages#cookies', via: :get
+
 
   resources :markdown_editors, only: [:index, :create] do
     put :presign, on: :collection

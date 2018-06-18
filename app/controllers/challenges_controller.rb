@@ -104,7 +104,7 @@ class ChallengesController < ApplicationController
     authorize @challenge
     @challenge.remove_image_file!
     @challenge.save
-    redirect_to edit_challenge_path(@challenge), notice: 'Image removed.'
+    redirect_to edit_organizer_challenge_path(@challenge.organizer, @challenge), notice: 'Image removed.'
   end
 
   private

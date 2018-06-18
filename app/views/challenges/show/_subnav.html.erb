@@ -76,8 +76,7 @@
     <% if policy(challenge).submissions_allowed? && current_tab != 'dataset' %>
       <%= link_to 'Create Submission',
             new_challenge_submission_path(challenge),
-            class: "btn btn-secondary pull-right",
-               data: { turbolinks: false } %>
+            class: "btn btn-secondary pull-right" %>
     <% end %>
 
   </div>

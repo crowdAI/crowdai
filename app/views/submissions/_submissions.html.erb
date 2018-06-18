@@ -48,8 +48,7 @@
     </td>
     <td class='action'>
       <% if policy(submission).update? %>
-        <%= link_to edit_challenge_submission_path(@challenge,submission),
-         data: { turbolinks: false } do %>
+        <%= link_to edit_challenge_submission_path(@challenge,submission) do %>
           <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
         <% end %>
       <% end %>

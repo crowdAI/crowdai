@@ -21,9 +21,9 @@
       <%= link_to "Quote", new_topic_comment_path(comment.topic, quoted_comment_id: comment.id) %>
       <%= admin_actions %>
     </p>
-    <%= div_for(comment, class: "comment") do %>
+    <div id='comment-<%= comment.id %>' class='comment'>
       <p><%= comment.comment %></p>
-    <% end %>
+    </div>
   </div>
   <%= concept(Vote::Cell, comment, current_participant: current_participant) %>
 </div>

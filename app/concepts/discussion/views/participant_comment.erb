@@ -5,9 +5,9 @@
         <%= challenge.challenge %> |&nbsp;
         <%= topic.topic %> |&nbsp; <%= time_ago_in_words(comment.created_at) %> ago
       </p>
-      <%= div_for(comment, class: "comment") do %>
+      <div class='comment' id='comment_<%= comment.id %>'
         <p><%= comment.comment %></p>
-      <% end %>
+      </div>
       <%= concept(Vote::Cell, comment, current_participant: current_participant) %>
     <% end %>
   </div>

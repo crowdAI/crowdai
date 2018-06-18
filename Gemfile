@@ -22,9 +22,7 @@ gem 'doorkeeper', '~> 5.0.0.rc1'
 
 # monitoring
 gem 'mini_magick'
-gem 'rollbar'
 gem 'oj', '~> 3.0'
-gem 'lograge'
 gem 'erbse', '0.1.1'
 
 # model
@@ -34,7 +32,6 @@ gem 'validate_url'
 gem 'paper_trail'
 gem 'valid_email2'
 gem "active_model_serializers"
-gem 'activestorage'
 
 # forms / data manipulation / charts
 gem 'cocoon'
@@ -42,11 +39,10 @@ gem 'kramdown'
 gem 'groupdate'
 gem 'rouge'
 gem 'friendly_id', '~> 5.1.0'
-gem 'client_side_validations'
 gem 'country_select'
 gem 'codemirror-rails'
 gem 'rails-html-sanitizer', '~> 1.0.4'
-gem 'meta-tags'
+gem 'client_side_validations'
 
 # performance
 gem 'fast_blank'
@@ -56,7 +52,7 @@ gem 'uglifier', '~> 4.1.10'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'turbolinks', '~> 5.0.0'
+gem 'turbolinks', '~> 5.1'
 gem 'lodash-rails'
 gem 'browser'
 gem 'coffee-rails'
@@ -77,7 +73,7 @@ gem 'include_media_rails'
 # search / pagination
 gem 'ransack'
 gem 'kaminari'
-gem 'kaminari-cells'
+#gem 'kaminari-cells'
 
 # API / Docker
 # gem 'rack-attack'
@@ -114,10 +110,9 @@ gem 'fog'
 # View
 gem "trailblazer"
 gem "trailblazer-rails"
-gem "cells-rails", git: 'https://github.com/trailblazer/cells-rails'
+gem "cells-rails"
 gem "cells"
 gem "cells-erb"
-gem 'record_tag_helper', '~> 1.0'
 gem 'cookies_eu'
 
 

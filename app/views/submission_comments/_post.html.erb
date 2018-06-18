@@ -2,9 +2,9 @@
     <div class='markdown-wrap'>
       <%= sanitize(post.post) if post.post %>
     </div>
-    <%= link_to "Quote", new_topic_post_path(@topic, :quote => post), class: 'btn btn-primary', data: { turbolinks: false } %>
+    <%= link_to "Quote", new_topic_post_path(@topic, :quote => post), class: 'btn btn-primary' %>
     <% if current_participant.admin? || current_participant == post.participant %>
-      <%= link_to 'Edit', edit_topic_post_path(@topic, post), class: 'btn btn-primary', data: { turbolinks: false } %>
+      <%= link_to 'Edit', edit_topic_post_path(@topic, post), class: 'btn btn-primary' %>
       <%= link_to 'Delete', [@topic, post], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary' %>
     <% end %>
     <div class="pull-right">

@@ -4,7 +4,6 @@
 //= require jquery-ui
 //= require jquery.remotipart
 //= require cocoon
-//= require rails.validations
 //= require isInViewport
 //= require turbolinks
 //= require paloma
@@ -13,6 +12,7 @@
 //= require codemirror
 //= require activestorage
 //= require cookies_eu
+//= require rails.validations
 
 // --------------------- Vendor ------------------------ //
 //= require jQuery-File-Upload
@@ -50,10 +50,13 @@
 
 
 // ------------------------ STARTUP -------------------------- //
+
+/*
 $(document).on('ajax:error', function(xhr, status, error) {
   console.log(status.responseText);
   console.log(error);
 });
+*/
 
 $(document).on('turbolinks:load', function() {
   $('[data-remodal-id=modal]').remodal();

@@ -8,8 +8,7 @@
         <h2><%= article.article %></h2>
         <% if policy(article).edit? %>
           <%= link_to edit_article_path(article),
-                title: "Edit article",
-                data: { turbolinks: false } do %>
+                title: "Edit article" do %>
             <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
           <% end %>
         <% end %>

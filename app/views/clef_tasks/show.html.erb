@@ -6,8 +6,7 @@
           <h6><%= @clef_task.organizer.organizer %></h6>
           <h2><%= @clef_task.task %></h2>
           <% if policy(@clef_task).edit? %>
-            <%= link_to edit_organizer_clef_task_path(@organizer,@clef_task), title: "Edit task",
-             data: { turbolinks: false } do %>
+            <%= link_to edit_organizer_clef_task_path(@organizer,@clef_task), title: "Edit task" do %>
               <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
             <% end %>
           <% end %>

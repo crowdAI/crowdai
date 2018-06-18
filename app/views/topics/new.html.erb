@@ -25,7 +25,7 @@
             <%= f.fields_for :comments do |comment| %>
               <label>Comment</label>
               <%= comment.text_area :comment_markdown,
-                    placeholder: "Add a comment..." %>
+                    placeholder: "Add a comment...", data: { behavior: "mentions" } %>
               <%= comment.hidden_field :participant_id,
                     value: current_participant.id %>
             <% end %>

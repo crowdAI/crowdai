@@ -21,7 +21,7 @@
         <%= f.text_field :topic %>
         <%= f.fields_for @topic.comments.first do |comment| %>
         <label>Comment</label>
-        <%= comment.text_area :comment_markdown, placeholder: "Add a comment..." %>
+        <%= comment.text_area :comment_markdown, placeholder: "Add a comment...", data: { behavior: "mentions" } %>
         <% if comment.object.persisted? %>
           <%= comment.hidden_field :participant_id, value: comment.object.participant.id %>
         <% else %>

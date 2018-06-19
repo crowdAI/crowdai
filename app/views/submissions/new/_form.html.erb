@@ -12,45 +12,23 @@
           'url' => @s3_direct_post.url,
           'host' => URI.parse(@s3_direct_post.url).host } do |f| %>
 
-      <label>
-        <% if @challenge.submission_instructions %>
+      <% if @challenge.submission_instructions.present? %>
+        <label>
           <%= @challenge.submission_instructions.html_safe %>
-        <% end %>
-      </label>
-      <fieldset>
-        <div class="markdown-editor">
-          <ul class="nav nav-tabs" data-tabs="tabs">
-            <li class="active">
-              <a href="#editor-pane-description" data-toggle="tab">Write</a>
-            </li>
-            <li>
-              <a href="#preview-pane-description" class="preview-pane-link" data-toggle="tab">Preview</a>
-            </li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane active" id="editor-pane-description">
-              <%= render 'markdown_editor/toolbar' %>
-              <%= f.text_area :description_markdown,
-                              class: 'form-control markdown-textarea',
-                              placeholder: 'Please describe your submission.',
-                              required: true,
-                              rows: 10 %>
-            </div>
-            <div class="tab-pane markdown-preview-pane" id="preview-pane-description">
-              <div id="markdown-preview"></div>
-            </div>
-          </div>
-        </div>
-        <p>
-          <%= @submission.errors[:description_markdown].first if @submission.errors[:description_markdown] %>
-        </p>
+        </label>
+      <% end %>
 
-        <% if @challenge.license %>
-          <p class="margin-bottom">
-            <%= @challenge.license.html_safe %>
-          </p>
-        <% else %>
-          <p class="margin-bottom">
+      <label>Submission description</label>
+      <%= markdown_editor do |m| %>
+        <%= f.text_area :description_markdown, class: "txt-med" %>
+      <% end %>
+
+      <% if @challenge.license.present? %>
+        <p class="margin-bottom">
+          <%= @challenge.license.html_safe %>
+        </p>
+      <% else %>
+        <p class="margin-bottom">
             After the end of the challenge, these comments will be made public, and the submitted code and models will be freely available to other crowdAI participants. All submitted content will be licensed under Creative Commons (CC).<br>
               By making your submission you indicate your agreement with these terms.
             </p>
@@ -69,7 +47,7 @@
         <% if @challenge.running? %>
           <p class="margin-bottom">
             <% if @reset_dttm %>
-              <strong>You have <%= pluralize(@submissions_remaining,'submission') %> remaining until <%= @reset_dttm %>."</strong>
+              <strong>You have <%= pluralize(@submissions_remaining,'submission') %> remaining until <%= @reset_dttm %>.</strong>
             <% else %>
               <strong>You have <%= pluralize(@submissions_remaining,'submission') %> remaining.</strong>
             <% end %>
@@ -82,7 +60,6 @@
                 class: "btn btn-secondary" do %>
               <%# end %>
         </div>
-      </fieldset>
 
     <% end %>
   </div>

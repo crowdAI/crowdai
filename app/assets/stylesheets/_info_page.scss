@@ -1,0 +1,24 @@
+/* Info page with sparse text */
+
+.info-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  p {
+    font-size: 20px;
+    margin: 3em 1em 0 1em;
+    @media screen and (max-width: 768px) {
+    	font-size: 18px;
+      margin-top: 2em;
+    }
+    @media screen and (max-width: 480px) {
+      margin-top: 1em;
+    }
+  }
+  .btn {
+    margin-top: 10px;
+    width: 240px;
+  }
+}

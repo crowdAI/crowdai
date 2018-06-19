@@ -1,9 +1,12 @@
+<div class='info-content'>
 <% if @reset_dttm.nil? %>
   <% if @challenge.challenge_rounds.count > 1 %>
     <p>You do not have any submissions remaining for this period.</p>
   <% else %>
-    <p>You do not have any submissions remaining for this challenge.</p>
+    <p class='text-center'>You do not have any submissions remaining for this challenge.</p>
   <% end %>
 <% else %>
-  <h3>You do not have any submissions remaining, you will be able to submit again as of <%= @reset_dttm %></h3>
+  <p>You do not have any submissions remaining.</p>
+  <p>Submissions will be possible as of <%= @reset_dttm %>.</p>
 <% end %>
+</div>

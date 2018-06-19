@@ -43,6 +43,7 @@ gem 'country_select'
 gem 'codemirror-rails'
 gem 'rails-html-sanitizer', '~> 1.0.4'
 gem 'client_side_validations'
+gem 'sprockets', '~> 3.7.2'
 
 # performance
 gem 'fast_blank'

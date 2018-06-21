@@ -9,29 +9,25 @@
 	</div>
 
   <div class="row">
-  <%= form_for [@challenge, @submission], html: { class: "sgl-col" } do |f| %>
-    <fieldset>
-      <div class="twin-container">
-        <div class="twin-field">
-          <%= f.label :score %>
-          <%= f.text_field :score %>
+    <%= form_for [@challenge, @submission], html: { class: "sgl-col" } do |f| %>
+      <fieldset>
+        <div class="twin-container">
+          <div class="twin-field">
+            <%= f.label :score %>
+            <%= f.text_field :score %>
+          </div>
+          <div class="twin-field">
+            <%= f.label :score_secondary %>
+            <%= f.text_field :score_secondary %>
+          </div>
         </div>
-        <div class="twin-field">
-          <%= f.label :score_secondary %>
-          <%= f.text_field :score_secondary %>
-        </div>
+        <%= f.label :grading_message %>
+        <%= f.text_field :grading_message %>
+      </fieldset>
+
+      <div class="button-group">
+        <%= f.button "Update Submission", class: 'btn btn-primary' %> <%= link_to 'Cancel', challenges_path, class: "btn btn-secondary" %>
       </div>
-      <%= f.label :grading_message %>
-      <%= f.text_field :grading_message %>
-    </fieldset>
-
-    <div class="button-group">
-      <%= f.button "Update Submission", class: 'btn btn-primary' %>
-      <%= button_to challenges_path, class: "btn btn-secondary" do %>
-        Cancel
-      <% end %>
-    </div>
-  <% end %>
+    <% end %>
   </div>
-
 </div>

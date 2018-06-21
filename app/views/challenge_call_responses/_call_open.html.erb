@@ -49,6 +49,6 @@
 
   <div class="button-group">
     <%= f.button :submit, class: "btn btn-primary" %>
-    <button class="btn btn-secondary" data-remodal-action="cancel">Cancel</button>
+    <%= link_to 'Cancel', root_path, class: 'btn btn-secondary' %>
   </div>
 <% end %>

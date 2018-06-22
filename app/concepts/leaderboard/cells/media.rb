@@ -60,7 +60,11 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
 
   def video
     if public_url.present?
-      return video_tag(public_url, size: dimensions)
+      if size == :large
+        return video_tag(public_url, size: dimensions, controls: true, autoplay: true, loop: true)
+      else
+        return video_tag(public_url, size: dimensions)
+      end
     else
       return video_tag(default_image_url, size: dimensions)
     end

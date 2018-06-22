@@ -1,4 +1,4 @@
-## Dynamic Challenge Content 
+## Dynamic Challenge Content
 
 crowdAI supports a Dynamic Content page which can be used to inject challenge-specific ERB code, including JavaScript enclosed in ```<script></script>``` tags. The content is added to a new tab in the challenge view, the title of which is also configurable.
 
@@ -14,9 +14,6 @@ As these are regular Rails instance variables, they can be chained using dot not
 
 ![config](../images/dynamic_content_configuration.png)
 ![output](../images/dynamic_content_output.png)
-
-
-
 
 
 ## Security

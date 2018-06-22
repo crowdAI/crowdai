@@ -51,3 +51,7 @@ This page is usually a public, sharable view of details about the submission, in
 The visibility for this page is controlled via the **Submissions Details Visible?** configuration setting. If set to OFF, the page is completely inaccessible, even to admins.
 
 When **Submissions Details Visible?** is on, and challenge **Show leaderboard?** is off, then *only* admins and organisers should have access to the detail page. The participant themself will not be able to see it.
+
+When **Submissions Details Visible?** is on and **Show leaderboard?** is on, any user (logged in or not) can see the submission detail page, unless it is a private challenge.
+
+For a private challenge, when **Submissions Details Visible?** is on and **Show leaderboard?** is on, any member of the private challenge can see the submission detail page.

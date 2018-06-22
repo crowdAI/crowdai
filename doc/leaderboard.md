@@ -1,5 +1,19 @@
 ## crowdAI Leaderboard
 
+The crowdAI leaderboard is a summarized view of submissions made against a challenge, for each challenge round. The leaderboard will
+contain a single entry for each participant, which is their personal top score for the round.
+
+### Submissions
+
+The leaderboard nominates how many submissions have been made by a participant, and these can be accessed via an accordion.
+
+### Highlighted rows
+
+
+### Ranking Window
+
+
+
 **OUT OF DATE - needs a rewrite**
 
 The crowdAI leaderboard is completely dynamic and built from submission data via a series of SQL views, using the Scenic gem (from Thoughbot).

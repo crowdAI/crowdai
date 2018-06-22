@@ -2,6 +2,7 @@ class ChallengeRound < ApplicationRecord
   belongs_to :challenge
   has_many :submissions,
     dependent: :restrict_with_error
+  has_many :leaderboards
   after_initialize :defaults,
     unless: :persisted?
 

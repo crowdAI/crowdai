@@ -13,11 +13,16 @@ The crowdAI Leaderboard is dynamic and may be configured via the Challenge confi
 
 ### Submissions
 
-- During the challenge, the content of the submissions page is viewable only by:
+Submission information may be seen in four places:
 
-- The participant themselves
-- The organizers
-- The Admin
+TODO - insert screen shots
+
+- Leaderboard row
+- Leaderboard accordion submission row
+- Submissions tab
+- Submission Detail page
+
+Access to submission information dependent on challenge configuration and running status, and is [detailed here](./leaderboard_submission_visibility.md).
 
 A challenge can be configured to allow submissions via the Python Client or via the online submissions page (or both). Submissions can also be made [after the challenge round is over](./post_challenge_submissions.md).
 

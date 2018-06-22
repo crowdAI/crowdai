@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_13_091620) do
+ActiveRecord::Schema.define(version: 2018_06_22_125708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -437,52 +437,6 @@ ActiveRecord::Schema.define(version: 2018_06_13_091620) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
-  end
-
-  create_table "old_leaderboard", id: false, force: :cascade do |t|
-    t.integer "id"
-    t.bigint "row_num"
-    t.bigint "previous_row_num"
-    t.integer "submission_id"
-    t.integer "challenge_id"
-    t.integer "challenge_round_id"
-    t.integer "participant_id"
-    t.string "slug"
-    t.integer "organizer_id"
-    t.string "name"
-    t.bigint "entries"
-    t.float "score"
-    t.float "score_secondary"
-    t.string "media_large"
-    t.string "media_thumbnail"
-    t.string "media_content_type"
-    t.text "description"
-    t.text "description_markdown"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "old_ongoing_leaderboards", id: false, force: :cascade do |t|
-    t.integer "id"
-    t.bigint "row_num"
-    t.bigint "previous_row_num"
-    t.integer "submission_id"
-    t.integer "challenge_id"
-    t.integer "challenge_round_id"
-    t.integer "participant_id"
-    t.string "slug"
-    t.integer "organizer_id"
-    t.string "name"
-    t.bigint "entries"
-    t.float "score"
-    t.float "score_secondary"
-    t.string "media_large"
-    t.string "media_thumbnail"
-    t.string "media_content_type"
-    t.text "description"
-    t.text "description_markdown"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "organizer_applications", id: :serial, force: :cascade do |t|

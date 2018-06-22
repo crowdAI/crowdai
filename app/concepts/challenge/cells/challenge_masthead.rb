@@ -39,10 +39,10 @@ class Challenge::Cell::ChallengeMasthead < Challenge::Cell
   end
 
   def organizer_view
-    case challenge.slug
-    when 'nips-2018-ai-for-prosthetics-challenge'
+    case challenge.id
+    when 31
       render 'nips-2018-ai-for-prosthetics-challenge'
-    when 'nips-2018-adversarial-vision-challenge'
+    when 28, 39, 40
       render 'nips-2018-adversarial-vision-challenge'
     else
       render 'organizer_view'

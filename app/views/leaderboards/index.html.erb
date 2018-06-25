@@ -9,10 +9,10 @@
                 current_round: @current_round,
                 current_participant: current_participant) %>
 
-  <% if @challenge.leaderboard_message.present? %>
+  <% if @current_round.leaderboard_note.present? %>
     <div class='row'>
-      <div class="leaderboard-msg">
-        <%= sanitize(@challenge.leaderboard_message) %>
+      <div class="leaderboard-note">
+        <%= sanitize(@current_round.leaderboard_note) %>
       </div>
     </div>
   <% end %>

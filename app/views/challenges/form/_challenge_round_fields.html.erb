@@ -89,6 +89,13 @@
               flatpickr_minute_increment: 1
             } %>
     </div>
+
+    <fieldset>
+      <label>Leaderboard Message</label>
+      <%= markdown_editor do |m| %>
+        <%= f.text_area :leaderboard_note_markdown, class: "txt-med" %>
+      <% end %>
+    </fieldset>
   </div>
 
   <% if current_participant.admin? && f.object.persisted?%>

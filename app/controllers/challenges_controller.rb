@@ -176,7 +176,6 @@ class ChallengesController < ApplicationController
         :grader_logs,
         :grading_history,
         :post_challenge_submissions,
-        :leaderboard_message_markdown,
         dataset_attributes: [
           :id,
           :challenge_id,
@@ -215,6 +214,7 @@ class ChallengesController < ApplicationController
           :ranking_highlight,
           :score_significant_digits,
           :score_secondary_significant_digits,
+          :leaderboard_note_markdown,
           :_destroy],
         challenge_partners_attributes: [
           :id,

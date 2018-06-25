@@ -41,7 +41,7 @@ feature 'An organizer creates a challenge' do
       with: challenge.score_secondary_title
 
     click_button 'CREATE CHALLENGE'
-    #expect(page).to have_text "Challenge created."
+    expect(page).to have_text "Challenge created."
   end
 
 end

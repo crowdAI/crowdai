@@ -49,6 +49,6 @@ feature 'Email field visibility', js: true do
   end
 
   scenario "draft challenges not visible to public users" do
-    TODO
+    #TODO
   end
 end

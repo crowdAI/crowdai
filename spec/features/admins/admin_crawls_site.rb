@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "site navigation for authenticated participant" do
+feature "site navigation for admin" do
   let!(:participant) { create(:participant, :admin) }
   3.times do |i|
     let!("challenge_#{i + 1}") { create :challenge, :running }
@@ -9,31 +9,6 @@ feature "site navigation for authenticated participant" do
   3.times do |i|
     let!("article_#{i + 1}") { create :article, :with_sections }
   end
-
-  context 'log in flow', js: true do
-    scenario do
-      log_in(participant)
-      expect(page).to have_text 'Signed in successfully.'
-
-      expect(page).to have_text 'Challenges'
-      expect(page).not_to have_link 'Sign up'
-      expect(page).not_to have_link 'Log in'
-    end
-  end
-
-=begin
-  context 'log out' do
-    scenario do
-      log_in(participant)
-      log_out(participant)
-      save_and_open_page
-      #expect(page).to have_text 'Signed out successfully.'
-      #expect(page).to have_link 'Sign up'
-      #expect(page).to have_link 'Log in'
-      #save_and_open_page
-    end
-  end
-=end
 
   context "landing page" do
     scenario do

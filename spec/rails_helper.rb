@@ -15,19 +15,14 @@ Dir[File.dirname(__FILE__) + "/support/matchers/*.rb"]
   .each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
-Capybara.asset_host = 'http://localhost:3001'
-Capybara.javascript_driver = :webkit
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
 Capybara.server_port = 52508 + ENV['TEST_ENV_NUMBER'].to_i
-#Capybara.server_port = 52508  # port registered with Amazon S3 CORS config
-Capybara.default_max_wait_time = 5
+Capybara.asset_host = 'http://localhost:3000'
 Capybara::Screenshot.register_driver(:chrome) do |driver, path|
   filename = File.basename(path)
   driver.browser.save_screenshot("#{Rails.root}/tmp/capybara/#{filename}")
-end
-Capybara::Webkit.configure do |config|
-  config.allow_url("use.fontawesome.com")
-  config.allow_unknown_urls
-  config.ignore_ssl_errors
 end
 
 RSpec.configure do |config|

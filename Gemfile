@@ -172,4 +172,5 @@ group :test do
   gem 'pundit-matchers', git: 'https://github.com/crowdAI/pundit-matchers'
   gem "launchy"
   gem 'nokogiri' #, '~> 1.8'
+  gem 'rspec-retry'
 end

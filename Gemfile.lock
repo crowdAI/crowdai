@@ -655,6 +655,8 @@ GEM
       rspec-expectations (~> 3.7.0)
       rspec-mocks (~> 3.7.0)
       rspec-support (~> 3.7.0)
+    rspec-retry (0.6.1)
+      rspec-core (> 3.3)
     rspec-support (3.7.1)
     ruby-graphviz (1.2.3)
     ruby_dep (1.5.0)
@@ -871,6 +873,7 @@ DEPENDENCIES
   rspec-cells
   rspec-kickstarter
   rspec-rails (~> 3.6)
+  rspec-retry
   sanitize (~> 4.6.3)
   sass-rails
   scenic (~> 1.3)

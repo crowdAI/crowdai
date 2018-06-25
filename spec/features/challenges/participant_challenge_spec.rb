@@ -28,7 +28,7 @@ let!(:participant) { create(:participant) }
   end
 
   describe "participant" do
-    before(:example) do
+    before do
       log_in participant
       visit '/'
       click_link challenge.challenge

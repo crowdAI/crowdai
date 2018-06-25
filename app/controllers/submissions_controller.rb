@@ -1,11 +1,11 @@
 class SubmissionsController < ApplicationController
-  before_action :authenticate_participant!
+  before_action :authenticate_participant!, except: :show
   before_action :set_submission,
     only: [:show, :edit, :update ]
   before_action :set_challenge
   before_action :set_s3_direct_post,
     only: [:new, :edit, :create, :update]
-  before_action :set_submissions_remaining
+  before_action :set_submissions_remaining, except: :show
   layout :set_layout
   respond_to :html, :js
 

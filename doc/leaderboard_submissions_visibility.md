@@ -46,6 +46,8 @@ For private challenges, when the **Show Leaderboard?** setting is off:
 
 ### Submissions Detail
 
+*submissions#show*
+
 This page is usually a public, sharable view of details about the submission, including visualizations, logfiles, grading status and scores.
 
 The visibility for this page is controlled via the **Submissions Details Visible?** configuration setting. If set to OFF, the page is completely inaccessible, even to admins.

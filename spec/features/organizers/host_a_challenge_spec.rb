@@ -1,4 +1,3 @@
-=begin
 require "rails_helper"
 
 feature "host a challenge" do
@@ -30,4 +29,3 @@ feature "host a challenge" do
 
   end
 end
-=end

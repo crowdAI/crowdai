@@ -1,4 +1,3 @@
-=begin
 require "rails_helper"
 
 feature 'Topics CRUD', js: true do
@@ -66,4 +65,3 @@ feature 'Topics CRUD', js: true do
 
   end
 end
-=end

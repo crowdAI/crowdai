@@ -1,4 +1,3 @@
-=begin
 require 'rails_helper'
 
 feature "participant accesses challenge", js: true do
@@ -151,4 +150,3 @@ feature "participant accesses challenge", js: true do
   end
 
 end
-=end

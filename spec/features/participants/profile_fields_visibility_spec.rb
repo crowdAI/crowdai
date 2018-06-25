@@ -1,4 +1,3 @@
-=begin
 require "rails_helper"
 
 feature 'API key visibility' do
@@ -53,4 +52,3 @@ feature 'Email field visibility', js: true do
     TODO
   end
 end
-=end

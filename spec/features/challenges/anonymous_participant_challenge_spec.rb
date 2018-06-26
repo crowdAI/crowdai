@@ -1,6 +1,6 @@
   require 'rails_helper'
 
-feature "challenge", js: true do
+feature "challenge" do
   let!(:challenge) { create(:challenge, :running) }
   let!(:draft_challenge) { create(:challenge, :draft) }
   let!(:participant) { create(:participant) }

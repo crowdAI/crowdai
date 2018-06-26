@@ -7,7 +7,7 @@
       <div class="heading-w-icon">
         <h2><%= challenge.challenge %></h2>
         <% if policy(challenge).edit? %>
-          <%= link_to edit_organizer_challenge_path(challenge.organizer,challenge), title: "Edit challenge", data: { turbolinks: false } do %>
+          <%= link_to edit_organizer_challenge_path(challenge.organizer,challenge), title: "Edit challenge" do %>
             <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
           <% end %>
         <% end %>

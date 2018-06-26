@@ -68,7 +68,7 @@
   .details {
     flex: 2 1 auto;
     h5 {
-      margin-bottom: 17px;
+      margin-bottom: 6px;
 
       @media screen and (max-width: 640px) {
         margin-bottom: 2px;
@@ -96,6 +96,11 @@
     @media screen and (max-width: 900px) {
       display: none;
     }
+  }
+  .badge-red,
+  .badge-amber,
+  .badge-green {
+    margin-top: 16px;
   }
 }
 

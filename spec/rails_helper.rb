@@ -15,19 +15,14 @@ Dir[File.dirname(__FILE__) + "/support/matchers/*.rb"]
   .each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
-Capybara.asset_host = 'http://localhost:3001'
-Capybara.javascript_driver = :webkit
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
 Capybara.server_port = 52508 + ENV['TEST_ENV_NUMBER'].to_i
-#Capybara.server_port = 52508  # port registered with Amazon S3 CORS config
-Capybara.default_max_wait_time = 5
+Capybara.asset_host = 'http://localhost:3000'
 Capybara::Screenshot.register_driver(:chrome) do |driver, path|
   filename = File.basename(path)
   driver.browser.save_screenshot("#{Rails.root}/tmp/capybara/#{filename}")
-end
-Capybara::Webkit.configure do |config|
-  config.allow_url("use.fontawesome.com")
-  config.allow_unknown_urls
-  config.ignore_ssl_errors
 end
 
 RSpec.configure do |config|
@@ -45,6 +40,26 @@ RSpec.configure do |config|
   config.include ControllerSpecHelpers, type: :controller
   config.include HeaderHelpers
   config.include FeatureSpecHelpers, type: :feature
+
+  ## RSPEC RETRY
+  # show retry status in spec process
+  config.verbose_retry = true
+  # show exception that triggers a retry if verbose_retry is set to true
+  config.display_try_failure_messages = true
+
+  # run retry only on features
+  config.around :each, :js do |ex|
+    ex.run_with_retry retry: 3
+  end
+
+  # callback to be run between retries
+  config.retry_callback = proc do |ex|
+    # run some additional clean up task - can be filtered by example metadata
+    if ex.metadata[:js]
+      Capybara.reset!
+    end
+  end
+  ## RSPEC RETRY END
 
   Capybara.ignore_hidden_elements = true
 

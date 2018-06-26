@@ -5,6 +5,10 @@ class SubmissionPolicy < ApplicationPolicy
   end
 
   def show?
+    challenge = @record.challenge
+    if challenge.show_leaderboard.present? && challenge.submissions_page.present? && challenge.private_challenge.blank?
+      return true
+    end
     @record.challenge.submissions_page.present? && (
       (participant && (participant.admin? ||
         @record.challenge.organizer_id == participant.organizer_id )) ||

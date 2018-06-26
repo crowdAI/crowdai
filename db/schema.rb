@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_22_125708) do
+ActiveRecord::Schema.define(version: 2018_06_25_150458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -183,6 +183,8 @@ ActiveRecord::Schema.define(version: 2018_06_22_125708) do
     t.integer "ranking_highlight"
     t.integer "score_precision"
     t.integer "score_secondary_precision"
+    t.text "leaderboard_note_markdown"
+    t.text "leaderboard_note"
     t.index ["challenge_id"], name: "index_challenge_rounds_on_challenge_id"
   end
 
@@ -244,8 +246,6 @@ ActiveRecord::Schema.define(version: 2018_06_22_125708) do
     t.boolean "require_registration", default: false
     t.boolean "grading_history", default: false
     t.boolean "post_challenge_submissions", default: false
-    t.text "leaderboard_message_markdown"
-    t.text "leaderboard_message"
     t.index ["clef_task_id"], name: "index_challenges_on_clef_task_id"
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id"
     t.index ["slug"], name: "index_challenges_on_slug", unique: true

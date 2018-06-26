@@ -1,6 +1,6 @@
 ## GDPR
 
-crowdAI addresses GDPR concerns in three ways
+crowdAI addresses GDPR concerns in three ways:
 
 - minimal personal data collection
 - full deletion of participant information

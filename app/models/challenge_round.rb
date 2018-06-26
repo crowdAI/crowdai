@@ -1,4 +1,6 @@
 class ChallengeRound < ApplicationRecord
+  include Markdownable
+
   belongs_to :challenge
   has_many :submissions,
     dependent: :restrict_with_error

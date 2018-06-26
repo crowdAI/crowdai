@@ -10,7 +10,7 @@ class Challenge::Cell::ListDetail < Challenge::Cell
 
   def remaining_text
     case challenge.status
-    when :running, :perpetual
+    when :running
       if remaining_time_in_days > 7
         "#{pluralize(remaining_time_in_days,'day')} left"
       elsif remaining_time_in_days <= 7 and remaining_time_in_days >= 1
@@ -29,6 +29,26 @@ class Challenge::Cell::ListDetail < Challenge::Cell
     when :starting_soon
       "Starting soon"
     end
+  end
+
+  def badge_color
+    case challenge.status
+    when :running
+      'green'
+    when :draft, :starting_soon
+      'amber'
+    when :completed
+      'red'
+    end
+  end
+
+  def status_badge
+    "<div class='badge-#{badge_color}'>
+      <span class='badge-square'></span>
+      <span class='badge-text'>
+        #{remaining_text}
+      </span>
+    </div>".html_safe
   end
 
 end

@@ -14,6 +14,8 @@ When a submission is made, crowdAI determines if the participant is still eligib
 
 Both successful and errored submissions are counted towards submission limits. The submission status is recorded by the **submissions.grading_status_cd** field.
 
+There is an [open issue](https://github.com/crowdAI/crowdai/issues/708) to allow an configurable number of failed submissions per challenge. 
+
 ### Round
 
 For Challenge Rounds with a Submission Limit Period of **round**, a simple count of previous submissions made during this round is compared against the Submission Limit setting configured on the Challenge.
@@ -34,7 +36,7 @@ The Reset Time is returned by crowdAI when the submission is attempted. This is 
 
 ### Submissions Query
 
-Internally, the submission limits are determined by the SubmissionsRemainingQuery. This query accepts a Challenge instance and a participant_id.
+Internally, the submission limits are determined by the **SubmissionsRemainingQuery**. This query accepts a Challenge instance and a participant_id.
 
 It then returns the following information:
 

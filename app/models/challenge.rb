@@ -53,7 +53,7 @@ class Challenge < ApplicationRecord
     allow_destroy: true
 
   as_enum :status,
-    [:draft, :running, :completed, :terminated, :starting_soon],
+    [:draft, :running, :completed, :starting_soon],
     map: :string
   as_enum :primary_sort_order,
     [:ascending, :descending],
@@ -78,9 +78,8 @@ class Challenge < ApplicationRecord
               WHEN 'running' THEN 1
               WHEN 'starting_soon' THEN 2
               WHEN 'completed' THEN 3
-              WHEN 'cancelled' THEN 4
-              WHEN 'draft' THEN 5
-              ELSE 6
+              WHEN 'draft' THEN 4
+              ELSE 5
             END, challenges.participant_count DESC")
   }
 

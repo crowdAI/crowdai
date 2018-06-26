@@ -160,14 +160,17 @@ end
 group :test do
   gem "factory_bot_rails"
   gem 'simplecov', :require => false
+
+  gem 'chromedriver-helper'
   gem 'capybara'
   gem 'capybara-email'
   gem 'capybara-screenshot'
-  gem 'capybara-webkit', github: 'thoughtbot/capybara-webkit', branch: 'master'
-  gem 'nokogiri' #, '~> 1.8'
+  gem 'selenium-webdriver'
   gem 'database_cleaner'
-  gem "launchy"
   gem 'timecop'
   gem 'rails-controller-testing'
   gem 'pundit-matchers', git: 'https://github.com/crowdAI/pundit-matchers'
+  gem "launchy"
+  gem 'nokogiri' #, '~> 1.8'
+  gem 'rspec-retry'
 end

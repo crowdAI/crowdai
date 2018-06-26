@@ -1,5 +1,63 @@
 ## crowdAI Leaderboard
 
+The crowdAI leaderboard is a summarized view of submissions made against a challenge, for each challenge round. The leaderboard will
+contain a single entry for each participant, which is their personal top score for the round.
+
+Currently, at the [challenge level](https://github.com/crowdAI/crowdai/issues/865), the following settings are possible:
+
+- Score and secondary score title
+- Score and secondary score sort order. This determines the leaderboard ranking. The secondary score can be set to 'Not used', which means only a single scoring metric is used.
+
+No more than two scoring metrics are possible.
+
+There is a different leaderboard for each challenge round, and for each round the following parameters are configurable:
+
+- Round title
+- Minimum score / secondary score of prior round to be eligible to submit to this round.
+- Submission limits per day, week or round. This can also be set to 0 for unlimited.
+- Number of top-n rows to highlight on the leaderboard
+- Ranking window for calculating leaderboard movement.
+- Score and secondary score precision.
+
+### Submissions
+
+The leaderboard nominates how many submissions have been made by a participant, and these can be accessed via an accordion.
+
+### Highlighted rows
+
+The **Highlight rankings** configuration on challenge rounds is used to define which rows are highlighted in the leaderboard. (eg: top 3).
+
+### Ranking Window
+
+The leaderboard displays a ranking change against each entry which indicates the rank movement. This is calculated according to a window from the between the most recent submission (by any user for this challenge).
+
+For each user, the current ranking on the leaderboard is compared against their ranking at the end of the ranking window. The movement and the previous ranking are then displayed on the leaderboard.
+
+This is calculated on each submission, via the **CalculateLeaderboardService**.
+
+### Post Challenge Submission
+
+Each submission row has a flag indicating if it is a **post-challenge** submission. This indicator is calculated either by the inbound API from the grader by comparing the submission **created_at** to the challenge's rounds.
+
+In some challenges, the grader will pass the submission rows across with this flag already set, in which case the inbound API will not change it.
+
+There are two views of leaderboard: the leaderboard as it was during the challenge, and the leaderboard with post-submission entries interleaved. These views can be alternated using a switch on the leaderboard.
+
+### Leaderboard Calculation
+
+Effectively, there are 4 leaderboards for a given challenge. These are derived from base tables (as described below) and presented in model-backed SQL views.
+
+- Current Leaderboard
+- Previous Leaderboard
+- Ongoing Leaderboard
+- Previous Ongoing Leaderboard
+
+#### Current Leaderboard
+
+
+
+
+
 **OUT OF DATE - needs a rewrite**
 
 The crowdAI leaderboard is completely dynamic and built from submission data via a series of SQL views, using the Scenic gem (from Thoughbot).

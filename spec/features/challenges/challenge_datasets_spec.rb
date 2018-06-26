@@ -23,14 +23,12 @@ feature "download dataset links" do
       visit challenge_dataset_files_path(challenge, wait: 1)
       expect(page).to have_link 'delete'
     end
+    scenario 'download file', js: true do
+      log_in(admin)
+      visit challenge_dataset_files_path(challenge, wait: 1)
+      click_link 'first_file'
+      expect(DatasetFileDownload.count).to eq(1)
+    end
   end
 
-  #context 'download count' do
-  #  scenario 'participant' do
-  #    log_in(participant)
-  #    visit challenge_dataset_files_path(challenge)
-      #click_link 'first_file'
-      #expect(DatasetFileDownload.count).to eq(1)
-  #  end
-  #end
 end

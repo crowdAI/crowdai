@@ -1,5 +1,7 @@
 ## Image Uploads
 
+**TODO: to be replaced with ActiveStorage**
+
 Static image uploads and managed using Carrierwave, and there is an uploader to control this ```ImageUploader```
 
 #### Model Layer

@@ -293,4 +293,26 @@ ActiveAdmin.setup do |config|
   meta_tags_options = { viewport: 'width=device-width, initial-scale=1' }
   config.meta_tags = meta_tags_options
   config.meta_tags_for_logged_out_pages = meta_tags_options
+
+end
+
+module ActiveAdmin
+  module Views
+    module Pages
+      module FontAwesomeBuilder
+        def build(*args)
+          super(*args)
+          add_font_awesome
+        end
+
+        def add_font_awesome
+          within @head do
+            render 'layouts/font_awesome'
+          end
+        end
+      end
+
+      Base.prepend(FontAwesomeBuilder)
+    end
+  end
 end

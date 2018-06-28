@@ -7,13 +7,14 @@ class Notification < ApplicationRecord
   scope :unread, -> { where(read_at: nil) }
 
   validates :notification_type, presence: true
-  
+
   NOTIFICATION_TYPE = {
     'Comment' => :comment,
     'Mention' => :mention,
     'Graded' => :graded,
     'Grading Failed' => :grading_failed,
-    'Leaderboard' => :leaderboard
+    'Leaderboard' => :leaderboard,
+    'Article' => :article
   }
 
   def read?

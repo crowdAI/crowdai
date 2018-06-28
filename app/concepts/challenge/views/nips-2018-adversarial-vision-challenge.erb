@@ -1,26 +1,26 @@
 <div class="nips-user-link">
   <div class='nips-spacer'>
-    <%= link_to organizer_path(organizer) do %>
+    <%= link_to organizer_path(organizer), data: { toggle: 'tooltip'},
+    title: "Bethgelab" do %>
       <%= concept(Image::Cell,organizer,size: :medium) %>
     <% end %>
-    <p><%= link_to organizer.organizer, organizer_path(organizer) %></p>
   </div>
   <div class='nips-spacer'>
-    <%= link_to '/' do %>
+    <%= link_to '/', data: { toggle: 'tooltip'},
+    title: "crowdAI" do %>
       <%= image_tag('misc/crowdai-head.svg') %>
     <% end %>
-    <p><%= link_to 'crowdAI', '/' %></p>
   </div>
   <div class='nips-spacer'>
-    <%= link_to 'https://research.google.com/teams/brain/' do %>
+    <%= link_to 'https://research.google.com/teams/brain/', data: { toggle: 'tooltip'},
+    title: "Google Brain" do %>
       <%= image_tag('misc/google_brain.png') %>
     <% end %>
-    <p><%= link_to 'Google Brain', 'https://research.google.com/teams/brain/' %></p>
   </div>
   <div>
-    <%= link_to 'https://www.digitalepidemiologylab.org/' do %>
+    <%= link_to 'https://www.digitalepidemiologylab.org/', data: { toggle: 'tooltip'},
+    title: "EPFL Digital Epidemiology Lab" do %>
       <%= image_tag('misc/EPFL-Logo-RVB-96.jpg', class: 'rectangle') %>
     <% end %>
-    <p><%= link_to 'EPFL Digital Epidemiology Lab', 'https://www.digitalepidemiologylab.org/' %></p>
   </div>
 </div>

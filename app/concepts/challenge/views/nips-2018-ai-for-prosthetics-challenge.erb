@@ -1,22 +1,21 @@
 <div class="nips-user-link">
   <div class='nips-spacer'>
-    <%= link_to organizer_path(organizer) do %>
+    <%= link_to organizer_path(organizer), data: { toggle: 'tooltip'},
+    title: "Stanford Neuromuscular
+Biomechanics Laboratory" do %>
       <%= concept(Image::Cell,organizer,size: :medium) %>
     <% end %>
-    <p><%= link_to organizer_path(organizer) do %>
-      Stanford Neuromuscular <br/>Biomechanics Laboratory
-    <% end %></p>
   </div>
   <div class='nips-spacer'>
-    <%= link_to '/' do %>
+    <%= link_to '/', data: { toggle: 'tooltip'},
+    title: 'crowdAI' do %>
       <%= image_tag('misc/crowdai-head.svg') %>
     <% end %>
-    <p><%= link_to 'crowdAI', '/' %></p>
   </div>
   <div>
-    <%= link_to 'https://www.digitalepidemiologylab.org/' do %>
+    <%= link_to 'https://www.digitalepidemiologylab.org/', data: { toggle: 'tooltip'},
+    title: 'EPFL Digital Epidemiology Lab' do %>
       <%= image_tag('misc/EPFL-Logo-RVB-96.jpg', class: 'rectangle') %>
     <% end %>
-    <p><%= link_to 'EPFL Digital Epidemiology Lab', 'https://www.digitalepidemiologylab.org/' %></p>
   </div>
 </div>

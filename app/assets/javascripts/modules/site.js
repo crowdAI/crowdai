@@ -56,9 +56,3 @@ $(document).on('turbolinks:load', function() {
 		$(".mde-img input").trigger('click');
  	});
 });
-
-
-// Form Date Picker
-$(document).on('turbolinks:load',function(){
-	//$('.datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val();
-});

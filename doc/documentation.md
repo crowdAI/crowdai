@@ -133,10 +133,11 @@ grader_logs/{challenge.slug}/grader_logs_submission_{submission.id}.txt
 - [Grader API](./grader_api.md)
 - [crowdAI API](./crowdai_api.md)
 - [Media Objects](./media_objects_on_s3.md)
+- [Markdown editor](./markdown_editor.md)
 - [Launching a Challenge](./launching_a_challenge.md)
 - [Challenge Configuration](./challenge_configuration.md)
 - [Image Uploads](./image_uploads.md)
-- [Code Repositories][./code_repositories.md]
+- [Code Repositories](./code_repositories.md)
 - [GitLab-based Grading](./gitlab_based_grading.md)
 
 

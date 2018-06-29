@@ -4,10 +4,6 @@
                 current_participant: current_participant) %>
   <%= render partial: 'challenges/show/subnav',
         locals: { challenge: @challenge } %>
-  <%#= concept(Challenge::Cell::ChallengeSubnav,
-                @challenge,
-                tab: 'discussion',
-                current_participant: current_participant) %>
   <div class="row">
     <div class="discussion-topic">
       <div class="pic">
@@ -48,8 +44,19 @@
     </div>
 
     <% if current_participant %>
-      <%= render partial: 'form', locals: { topic: @topic, comment: @comment } %>
+      <div class="discussion-comment">
+        <div class="pic">
+          <%= link_to
+              participant_path(current_participant) do %>
+              <%= concept(Image::Cell,current_participant) %>
+          <% end %>
+        </div>
+        <%= render partial: 'form',
+            locals: {
+              topic: @topic, comment: @comment } %>
+      </div>
     <% end %>
+    
     <%= concept(Discussion::Cell::Comment,
                   collection: @comments,
                   current_participant: current_participant) %>

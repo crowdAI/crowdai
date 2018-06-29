@@ -1,1 +1,1 @@
-$('#comment_<%= @comment.id %>').replaceWith("<%= escape_javascript(render 'edit') %>");
+$('#comment-<%= @comment.id %>').replaceWith("<%= j render partial: 'form', locals: { topic: @topic, comment: @comment } %>");

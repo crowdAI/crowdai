@@ -1,4 +1,4 @@
-<div class="discussion-comment" data-cell='Discussion::Cell::Comment'>
+<div class="discussion-comment" id='comment-<%= comment.id %>'  data-cell='Discussion::Cell::Comment'>
   <div class="pic">
     <% if comment.participant.is_a? NullParticipant %>
       <%= link_to '#' do %>
@@ -21,7 +21,7 @@
       <%= link_to "Quote", new_topic_comment_path(comment.topic, quoted_comment_id: comment.id) %>
       <%= admin_actions %>
     </p>
-    <div id='comment-<%= comment.id %>' class='comment'>
+    <div class='comment'>
       <p><%= comment.comment %></p>
     </div>
   </div>

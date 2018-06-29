@@ -1,4 +1,4 @@
-<div class="discussion-comment">
+<div class="discussion-comment" id='comment-<%= comment.id %>'>
   <div class="pic">
     <%= link_to participant_path(current_participant) do %>
       <%= concept(Image::Cell,current_participant) %>
@@ -12,7 +12,7 @@
       <%= f.hidden_field :participant_id, value: current_participant.id %>
     <% end %>
     <%= f.hidden_field :mentions_cache %>
-    <%= f.submit 'Add comment', class: 'btn btn-primary pull-right' %>
+    <%= f.submit (f.object.new_record? ? "Add Comment" : "Update Comment"), class: 'btn btn-primary pull-right' %>
     <p class='markdown-instructions'>You can use
       <a href="https://kramdown.gettalong.org/">kramdown</a> and <b>@mentions</b> in this field.
     </p>

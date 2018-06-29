@@ -21,3 +21,29 @@ The directory structure in S3 is:
 - image
 
 The two files (thumb and large) are written with a unique key, prepended by 'large' or 'thumb'.
+
+### Transmission
+
+The media fields are sent via the API with these params:
+
+- media_large
+- media_thumbnail
+- media_content_type
+
+Both ```media_large``` and ```media_thumbnail``` need to be populated with a S3 key the crowdAI bucket, although they can both point to the same key.
+
+crowdAI will make these assets ```public read``` when they are received by the API.
+
+The content type should be:
+
+- image/<type>
+- video/<type>
+
+Example
+
+- 'image/png'
+- 'video/mp4'
+
+### Display
+
+The **media on leaderboard?** setting must be ON in the challenge.

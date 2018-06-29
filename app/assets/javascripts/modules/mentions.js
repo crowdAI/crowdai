@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function() {
+function startMentions(){
   $('[data-behavior="mentions"]').atwho({
     at: "@",
     displayTpl: "<li class='atwho_participant_suggestions'><img src='${thumbnail_url}' height='20' width='20' /> ${name} </li>",
@@ -20,4 +20,9 @@ $(document).on('turbolinks:load', function() {
       }
       $('#comment_mentions_cache').val(JSON.stringify(cacheArr));
   });
+}
+
+
+document.addEventListener("turbolinks:load", function() {
+  startMentions();
 });

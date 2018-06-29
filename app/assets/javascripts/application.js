@@ -19,10 +19,10 @@
 //= require remodal
 
 // ------------------ Vendor / Notebooks --------------- //
-//= require ansi_up.min
-//= require es5-shim.min
-//= require marked.min
-//= require notebook.min
+// require ansi_up.min
+// require es5-shim.min
+// require marked.min
+// require notebook.min
 //= require prism.min
 
 // ---------------------- Modules ---------------------- //

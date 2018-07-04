@@ -45,18 +45,12 @@
 
     <% if current_participant %>
       <div class="discussion-comment">
-        <div class="pic">
-          <%= link_to
-              participant_path(current_participant) do %>
-              <%= concept(Image::Cell,current_participant) %>
-          <% end %>
-        </div>
         <%= render partial: 'form',
             locals: {
               topic: @topic, comment: @comment } %>
       </div>
     <% end %>
-    
+
     <%= concept(Discussion::Cell::Comment,
                   collection: @comments,
                   current_participant: current_participant) %>

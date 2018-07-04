@@ -34,6 +34,7 @@ class SubmissionsController < ApplicationController
         .where(
           challenge_id: @challenge.id,
           challenge_round_id: @current_round_id)
+        .where.not(participant_id: nil)
         .order('created_at desc')
         .page(params[:page])
         .per(10)

@@ -27,7 +27,8 @@
       <%= render partial: 'submissions/show/codemirror' %>
     <% end %>
 
-    <%= render partial: 'submissions/show/comments',
+    <%# removed by Yannis as a short Term fix %>
+    <%# render partial: 'submissions/show/comments',
           locals: { submission: @submission } %>
   </div>
     <%= render partial: 'submissions/show/meta', locals: { submission: @submission } %>

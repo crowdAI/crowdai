@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/robots.txt' => RobotsTxt
   use_doorkeeper
 
+  get 'test_gauge', to: 'test#gauge'
+
   admin = lambda do |request|
     request.env['warden'].authenticate? && request.env['warden'].user.admin?
   end

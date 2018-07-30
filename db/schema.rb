@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_25_150458) do
+ActiveRecord::Schema.define(version: 2018_07_30_115545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -321,6 +321,14 @@ ActiveRecord::Schema.define(version: 2018_06_25_150458) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["participant_id"], name: "index_email_preferences_tokens_on_participant_id"
+  end
+
+  create_table "event_logs", force: :cascade do |t|
+    t.string "event_name"
+    t.jsonb "payload"
+    t.integer "count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "follows", id: :serial, force: :cascade do |t|

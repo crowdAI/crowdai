@@ -538,6 +538,8 @@ GEM
     pipetree (0.1.1)
     polyamorous (1.3.3)
       activerecord (>= 3.0)
+    prometheus-client (0.8.0)
+      quantile (~> 0.2.1)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -548,6 +550,7 @@ GEM
       puma (>= 2.7, < 4)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
+    quantile (0.2.1)
     raabro (1.1.5)
     rack (2.0.5)
     rack-contrib (2.0.1)
@@ -857,6 +860,7 @@ DEPENDENCIES
   paper_trail
   parallel_tests
   pg
+  prometheus-client
   puma
   puma_worker_killer
   pundit

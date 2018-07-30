@@ -58,6 +58,7 @@ class Submission < ApplicationRecord
       CalculateLeaderboardJob
         .perform_later(challenge_round_id: self.challenge_round_id)
     end
+    Prometheus::SubmissionCounterService.new(submission_id: self.id).call
   end
 
   after_destroy do

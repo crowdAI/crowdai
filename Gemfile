@@ -24,6 +24,7 @@ gem 'doorkeeper', '~> 5.0.0.rc1'
 gem 'mini_magick'
 gem 'oj', '~> 3.0'
 gem 'erbse', '0.1.1'
+gem 'prometheus-client'
 
 # model
 gem 'simple_enum'

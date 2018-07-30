@@ -8,7 +8,7 @@ RSpec.describe Prometheus::SubmissionCounterService do
     #  expect {
     #    described_class.new(submission_id: submission.id).call
     #  }.to change{EventLog.count}.by(1)
-    end
+    #end
   end
 
 end

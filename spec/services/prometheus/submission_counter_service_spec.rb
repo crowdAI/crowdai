@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 RSpec.describe Prometheus::SubmissionCounterService do
@@ -12,3 +13,4 @@ RSpec.describe Prometheus::SubmissionCounterService do
   #end
 
 end
+=end

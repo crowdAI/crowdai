@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 RSpec.describe Prometheus::ParticipantCounterService do
@@ -11,3 +12,4 @@ RSpec.describe Prometheus::ParticipantCounterService do
   end
 
 end
+=end

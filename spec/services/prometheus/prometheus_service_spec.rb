@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 RSpec.describe Prometheus::PrometheusService do
@@ -16,3 +17,4 @@ RSpec.describe Prometheus::PrometheusService do
 
 
 end
+=end

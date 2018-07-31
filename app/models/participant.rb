@@ -1,4 +1,6 @@
 class Participant < ApplicationRecord
+  has_merit
+
   include FriendlyId
   include ApiKey
   include Countries

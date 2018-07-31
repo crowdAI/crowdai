@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_30_115545) do
+ActiveRecord::Schema.define(version: 2018_07_31_132752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -80,6 +80,16 @@ ActiveRecord::Schema.define(version: 2018_07_30_115545) do
     t.string "notebook_url"
     t.index ["participant_id"], name: "index_articles_on_participant_id"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
+  end
+
+  create_table "badges_sashes", force: :cascade do |t|
+    t.integer "badge_id"
+    t.integer "sash_id"
+    t.boolean "notified_user", default: false
+    t.datetime "created_at"
+    t.index ["badge_id", "sash_id"], name: "index_badges_sashes_on_badge_id_and_sash_id"
+    t.index ["badge_id"], name: "index_badges_sashes_on_badge_id"
+    t.index ["sash_id"], name: "index_badges_sashes_on_sash_id"
   end
 
   create_table "base_leaderboards", force: :cascade do |t|
@@ -390,6 +400,41 @@ ActiveRecord::Schema.define(version: 2018_07_30_115545) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "merit_actions", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "action_method"
+    t.integer "action_value"
+    t.boolean "had_errors", default: false
+    t.string "target_model"
+    t.integer "target_id"
+    t.text "target_data"
+    t.boolean "processed", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "merit_activity_logs", force: :cascade do |t|
+    t.integer "action_id"
+    t.string "related_change_type"
+    t.integer "related_change_id"
+    t.string "description"
+    t.datetime "created_at"
+  end
+
+  create_table "merit_score_points", force: :cascade do |t|
+    t.bigint "score_id"
+    t.integer "num_points", default: 0
+    t.string "log"
+    t.datetime "created_at"
+    t.index ["score_id"], name: "index_merit_score_points_on_score_id"
+  end
+
+  create_table "merit_scores", force: :cascade do |t|
+    t.bigint "sash_id"
+    t.string "category", default: "default"
+    t.index ["sash_id"], name: "index_merit_scores_on_sash_id"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.bigint "participant_id"
     t.string "notification_type"
@@ -526,6 +571,8 @@ ActiveRecord::Schema.define(version: 2018_07_30_115545) do
     t.string "first_name"
     t.string "last_name"
     t.boolean "clef_email", default: false
+    t.integer "sash_id"
+    t.integer "level", default: 0
     t.index ["confirmation_token"], name: "index_participants_on_confirmation_token", unique: true
     t.index ["email"], name: "index_participants_on_email", unique: true
     t.index ["organizer_id"], name: "index_participants_on_organizer_id"
@@ -543,6 +590,11 @@ ActiveRecord::Schema.define(version: 2018_07_30_115545) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.index ["organizer_id"], name: "index_partners_on_organizer_id"
+  end
+
+  create_table "sashes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "settings", force: :cascade do |t|

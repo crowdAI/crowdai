@@ -6,8 +6,6 @@ class Prometheus::SubmissionCounterService < Prometheus::PrometheusService
   end
 
   def call
-    GAUGE_EXAMPLE
-      .set({route: :gauge}, rand(0..100))
     count = 1
     payload = {
       challenge: @submission.challenge.challenge,

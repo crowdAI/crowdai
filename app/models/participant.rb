@@ -8,6 +8,7 @@ class Participant < ApplicationRecord
   before_save :process_urls
   after_create :set_email_preferences
   after_save :refresh_materialized_view
+  after_save :publish_to_prometheus
   mount_uploader :image_file, ImageUploader
   validates :image_file, file_size: { less_than: 5.megabytes }
 
@@ -189,6 +190,10 @@ class Participant < ApplicationRecord
     if saved_change_to_attribute?(:organizer_id)
       RefreshChallengeOrganizerParticipantViewJob.perform_later
     end
+  end
+
+  def publish_to_prometheus
+    Prometheus::ParticipantCounterService.new.call
   end
 
 end

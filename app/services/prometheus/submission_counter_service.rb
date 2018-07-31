@@ -6,18 +6,13 @@ class Prometheus::SubmissionCounterService < Prometheus::PrometheusService
   end
 
   def call
-    count = 1
     payload = {
       challenge: @submission.challenge.challenge,
       challenge_id: @submission.challenge_id,
       participant_id: @submission.participant_id,
       status: @submission.grading_status_cd
     }
-    SUBMISSION_COUNTER.increment(payload, count)
-    event_logger(
-      event_name: 'SUBMISSION_COUNTER',
-      payload: payload,
-      count: count)
+    SUBMISSION_COUNTER.increment(payload, 1)
   end
 
 end

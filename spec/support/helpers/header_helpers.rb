@@ -8,4 +8,11 @@ module HeaderHelpers
     ActionController::HttpAuthentication::Token.encode_credentials(api_key)
   end
 
+  def http_basic_login
+    @env ||= {}
+    user = 'username'
+    pw = env['CROWDAI_API_KEY']
+    @env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user,pw)
+  end
+
 end

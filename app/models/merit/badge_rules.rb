@@ -24,6 +24,12 @@ module Merit
       # If it creates user, grant badge
       # Should be "current_user" after registration for badge to be granted.
       # Find badge by badge_id, badge_id takes presidence over badge
+
+      grant_on ['articles#create','articles#update'], badge_id: 13, to: :participant do |article|
+        article.published?
+      end
+
+
       # grant_on 'users#create', badge_id: 7, badge: 'just-registered', to: :itself
 
       # If it has 10 comments, grant commenter-10 badge

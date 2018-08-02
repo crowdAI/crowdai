@@ -194,8 +194,3 @@ Merit::Badge.create!(
   description: "In the top 10 for a challenge - 20 times",
   custom_fields: { difficulty: :gold }
 )
-
-Merit::Badge.create!(
-  id: 25,
-  name: 'participant'
-)

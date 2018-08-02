@@ -55,7 +55,7 @@ RSpec.describe ArticlesController, type: :controller do
 
         it "creates a placeholder section" do
           post :create, params: { article: valid_attributes}
-          expect(assigns(:article).article_sections.first.section).to eq('Introduction')
+          expect(assigns(:article).article_sections.first.section).to eq('Intro')
         end
 
         it "redirects to the created article" do

@@ -43,7 +43,7 @@ class ArticlesController < ApplicationController
 
     if @article.save
       unless @article.notebook_url.present?
-        @article.article_sections.create!(section: 'Introduction')
+        @article.article_sections.create!(section: 'Intro')
       end
       redirect_to @article
     else

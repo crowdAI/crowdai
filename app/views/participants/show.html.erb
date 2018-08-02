@@ -29,6 +29,11 @@
             <a href="#" onclick="return false;">Contact</a>
           </li>
         <% end %>
+        <% if current_participant.admin? %>
+          <li data-tab='tab-badges'>
+            <a href="#" onclick="return false;">Badges</a>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
@@ -165,4 +170,28 @@
         </div>
       </div>
   <% end %>
-</div>
+
+  <% if current_participant.admin? %>
+    <div id='tab-badges' class='tab-content'>
+      <div class="row">
+        <div class="article">
+          <% if @participant.badges.present? %>
+            <ul>
+              <% @participant.badges.each do |badge| %>
+                <li class='badge badge-accent'>
+                  <%= badge.name %><br/>
+                  <%= badge.description %>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class='light'>
+              No badges yet.
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+</div><!-- .content -->

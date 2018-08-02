@@ -53,10 +53,15 @@ RSpec.describe ArticlesController, type: :controller do
           expect(assigns(:article)).to be_persisted
         end
 
-        #it "redirects to the created article" do
-        #  post :create, params: { article: valid_attributes}
-        #  expect(response).to redirect_to(Article.last)
-        #end
+        it "creates a placeholder section" do
+          post :create, params: { article: valid_attributes}
+          expect(assigns(:article).article_sections.first.section).to eq('Intro')
+        end
+
+        it "redirects to the created article" do
+          post :create, params: { article: valid_attributes}
+          expect(response).to redirect_to(assigns(:article))
+        end
       end
 
       context "with invalid params" do

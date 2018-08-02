@@ -8,6 +8,7 @@ FactoryBot.define do
     vote_count 0
     view_count 0
     article_type 'markdown'
+    notebook_url nil
 
     trait :with_sections do
       article_sections { [ build(:article_section, seq: 0),

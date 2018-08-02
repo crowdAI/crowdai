@@ -42,4 +42,8 @@ class Article < ApplicationRecord
     article_changed?
   end
 
+  def published?
+    self.published
+  end
+
 end

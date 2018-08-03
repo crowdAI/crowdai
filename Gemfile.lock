@@ -8,7 +8,7 @@ GIT
 
 GEM
   remote: https://rubygems.org/
-  remote: https://rails-assets.org/
+  remote: http://insecure.rails-assets.org/
   specs:
     CFPropertyList (2.3.6)
     actioncable (5.2.0)

@@ -1,5 +1,5 @@
-class Prometheus::SubmissionCounterService < Prometheus::PrometheusService
-  include Prometheus::Controller
+class Prometheus::SubmissionCounterService
+  include Prometheus::Configuration
 
   def initialize(submission_id:)
     @submission = Submission.find(submission_id)

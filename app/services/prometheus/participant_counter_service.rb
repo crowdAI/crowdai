@@ -1,5 +1,5 @@
-class Prometheus::ParticipantCounterService < Prometheus::PrometheusService
-  include Prometheus::Controller
+class Prometheus::ParticipantCounterService
+  include Prometheus::Configuration
 
   def call
     payload = { action: 'create' }

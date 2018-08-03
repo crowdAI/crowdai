@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
+
 # Rails assets gems
 gem 'rails-assets-isInViewport'
 gem 'rails-assets-jQuery-File-Upload'

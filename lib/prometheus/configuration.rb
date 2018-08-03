@@ -1,5 +1,5 @@
 module Prometheus
-  module Controller
+  module Configuration
 
     # Create a default Prometheus registry for our metrics.
     prometheus = Prometheus::Client.registry

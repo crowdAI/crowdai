@@ -2,11 +2,12 @@ require 'rails_helper'
 RSpec.describe Admin::SubmissionNotificationJob, type: :job do
   include ActiveJob::TestHelper
 
-  let(:submission) { create :submission }
-  let!(:email_preference) {
-    create :email_preference,
-    email_frequency: :every,
-    participant: submission.participant }
+  let!(:submission) { create :submission }
+  let!(:admin) { create :participant, :admin }
+
+  before do
+    admin.email_preferences.first.update(email_frequency: :every)
+  end
 
   subject(:job) { described_class.perform_later(submission) }
 

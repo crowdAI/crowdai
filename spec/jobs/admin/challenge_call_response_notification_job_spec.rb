@@ -3,6 +3,12 @@ RSpec.describe Admin::ChallengeCallResponseNotificationJob, type: :job do
   include ActiveJob::TestHelper
 
   let(:challenge_call_response) { create :challenge_call_response }
+  let!(:admin) { create :participant, :admin }
+
+  before do
+    admin.email_preferences.first.update(email_frequency: :every)
+  end
+  
   subject(:job) { described_class.perform_later(challenge_call_response) }
 
   describe 'queues the job' do

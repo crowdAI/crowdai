@@ -74,7 +74,7 @@ class Participant < ApplicationRecord
   validates :linkedin, :url => { allow_blank: true }
   validates :twitter, :url => { allow_blank: true }
   validates :name, format: {
-    with: /[a-zA-Z0-9-_]/,
+    with: /[a-zA-Z0-9\-_]/,
     message: 'cannot contain spaces or special characters'
   }
   validates :name,

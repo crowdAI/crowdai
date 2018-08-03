@@ -73,15 +73,13 @@ class Participant < ApplicationRecord
   validates :github, :url => { allow_blank: true }
   validates :linkedin, :url => { allow_blank: true }
   validates :twitter, :url => { allow_blank: true }
-  validates :name, presence: true
+  validates :name, format: {
+    with: /[a-zA-Z0-9-_]/,
+    message: 'cannot contain spaces or special characters'
+  }
   validates :name,
     length: { minimum: 2 },
-    allow_blank: false,
-    uniqueness: { case_sensitive: false },
-    format: {
-      without: /\s/,
-      message: 'cannot contain spaces'
-    }
+    uniqueness: { case_sensitive: false }
   validates :affiliation,
     length: { in: 2...100},
     allow_blank: true

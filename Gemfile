@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
+#source 'https://rails-assets.org'
+source 'http://insecure.rails-assets.org' # something wrong with Rails assets
 
 # Rails assets gems
 gem 'rails-assets-isInViewport'

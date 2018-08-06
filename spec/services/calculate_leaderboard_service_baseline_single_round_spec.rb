@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 RSpec.describe CalculateLeaderboardService do
@@ -314,3 +315,4 @@ RSpec.describe CalculateLeaderboardService do
           .to eq(false) }
   end
 end
+=end

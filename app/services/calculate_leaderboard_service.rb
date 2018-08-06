@@ -21,6 +21,8 @@ class CalculateLeaderboardService
       update_leaderboard_rankings(
         leaderboard: 'ongoing',
         prev: 'previous_ongoing')
+      insert_baseline_rows(leaderboard_type: 'leaderboard')
+      insert_baseline_rows(leaderboard_type: 'ongoing')
     end
     return true
   end
@@ -70,7 +72,7 @@ class CalculateLeaderboardService
     ActiveRecord::Base.connection.execute "delete from base_leaderboards where challenge_round_id = #{@round.id};"
   end
 
-  def create_leaderboard(leaderboard_type:)
+  def leaderboard_params(leaderboard_type:)
     case leaderboard_type
     when 'leaderboard'
       post_challenge = '(FALSE)'
@@ -85,6 +87,11 @@ class CalculateLeaderboardService
       post_challenge = '(TRUE,FALSE)'
       cuttoff_dttm = window_border_dttm
     end
+    return [post_challenge,cuttoff_dttm]
+  end
+
+  def create_leaderboard(leaderboard_type:)
+    post_challenge, cuttoff_dttm = leaderboard_params(leaderboard_type: leaderboard_type)
 
     sql = %Q[
       INSERT INTO base_leaderboards (
@@ -93,6 +100,7 @@ class CalculateLeaderboardService
         challenge_round_id,
         participant_id,
         submission_id,
+        seq,
         row_num,
         previous_row_num,
         slug,
@@ -117,6 +125,7 @@ class CalculateLeaderboardService
         l.challenge_round_id,
         l.participant_id,
         l.id,
+        0 as SEQ,
         ROW_NUMBER() OVER (
           PARTITION by l.challenge_id,
                        l.challenge_round_id
@@ -182,7 +191,8 @@ class CalculateLeaderboardService
             AND s.challenge_id = c.id
             AND cnt.challenge_id = s.challenge_id
             AND cnt.challenge_round_id = s.challenge_round_id
-            AND cnt.participant_id = s.participant_id) l,
+            AND cnt.participant_id = s.participant_id
+            AND s.baseline IS FALSE) l,
           challenges c
         WHERE l.submission_ranking = 1
         AND c.id = l.challenge_id
@@ -217,6 +227,10 @@ class CalculateLeaderboardService
       AND base_leaderboards.participant_id = lb.participant_id
     ]
     @conn.execute sql
+  end
+
+  def insert_baseline_rows(leaderboard_type:)
+    post_challenge, cuttoff_dttm = leaderboard_params(leaderboard_type: leaderboard_type)
   end
 
 end

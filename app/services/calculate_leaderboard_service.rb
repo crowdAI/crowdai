@@ -23,6 +23,8 @@ class CalculateLeaderboardService
         prev: 'previous_ongoing')
       insert_baseline_rows(leaderboard_type: 'leaderboard')
       insert_baseline_rows(leaderboard_type: 'ongoing')
+      set_leaderboard_sequences(leaderboard_type: 'leaderboard')
+      set_leaderboard_sequences(leaderboard_type: 'ongoing')
     end
     return true
   end
@@ -231,6 +233,87 @@ class CalculateLeaderboardService
 
   def insert_baseline_rows(leaderboard_type:)
     post_challenge, cuttoff_dttm = leaderboard_params(leaderboard_type: leaderboard_type)
+    sql = %Q[
+      INSERT INTO base_leaderboards (
+        id,
+        challenge_id,
+        challenge_round_id,
+        participant_id,
+        submission_id,
+        seq,
+        row_num,
+        previous_row_num,
+        slug,
+        name,
+        entries,
+        score,
+        score_secondary,
+        media_large,
+        media_thumbnail,
+        media_content_type,
+        description,
+        description_markdown,
+        leaderboard_type_cd,
+        post_challenge,
+        refreshed_at,
+        created_at,
+        updated_at
+      )
+      SELECT
+        nextval('base_leaderboards_id_seq'::regclass),
+        s.challenge_id,
+        s.challenge_round_id,
+        s.participant_id,
+        s.id as submission_id,
+        0 as seq,
+        0 as row_num,
+        0 as previous_row_num,
+        NULL as slug,
+        NULL as name,
+        0 as entries,
+        s.score,
+        s.score_secondary,
+        s.media_large,
+        s.media_thumbnail,
+        s.media_content_type,
+        s.description,
+        s.description_markdown,
+        '#{leaderboard_type}',
+        s.post_challenge,
+        '#{DateTime.now.to_s(:db)}',
+        s.created_at,
+        s.updated_at
+      FROM submissions s
+      WHERE s.challenge_round_id = #{@round.id}
+      AND s.grading_status_cd = 'graded'
+      AND s.post_challenge IN #{post_challenge}
+      AND s.created_at <= #{cuttoff_dttm}
+      AND s.baseline IS TRUE
+    ]
+    @conn.execute sql
+  end
+
+  def set_leaderboard_sequences(leaderboard_type:)
+    post_challenge, cuttoff_dttm = leaderboard_params(leaderboard_type: leaderboard_type)
+    sql = %Q[
+        WITH lb AS (
+        SELECT
+          l.id,
+          l.submission_id,
+          l.row_num,
+          ROW_NUMBER() OVER (
+            PARTITION by l.challenge_id,
+                         l.challenge_round_id,
+                         l.leaderboard_type_cd
+            ORDER BY l.score DESC) AS SEQ
+        FROM base_leaderboards l
+        WHERE l.challenge_round_id = #{@round.id})
+      UPDATE base_leaderboards
+      SET seq = lb.seq
+      FROM lb
+      WHERE base_leaderboards.id = lb.id
+    ]
+    @conn.execute sql
   end
 
 end

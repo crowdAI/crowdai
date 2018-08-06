@@ -5,5 +5,5 @@ class OngoingLeaderboard < SqlView
   belongs_to :challenge
   belongs_to :participant
 
-  default_scope { order(row_num: :asc) }
+  default_scope { order(seq: :asc) }
 end

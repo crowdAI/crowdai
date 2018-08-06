@@ -139,6 +139,8 @@ class SubmissionsController < ApplicationController
           :clef_other_info,
           :clef_additional,
           :online_submission,
+          :baseline,
+          :baseline_comment,
           submission_files_attributes: [
             :id,
             :seq,

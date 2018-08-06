@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_06_091705) do
+ActiveRecord::Schema.define(version: 2018_08_06_092847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -675,7 +675,7 @@ ActiveRecord::Schema.define(version: 2018_08_06_091705) do
     t.boolean "online_submission", default: false
     t.float "score_display"
     t.float "score_secondary_display"
-    t.boolean "baseline"
+    t.boolean "baseline", default: false
     t.string "baseline_comment"
     t.index ["challenge_id"], name: "index_submissions_on_challenge_id"
     t.index ["challenge_round_id"], name: "index_submissions_on_challenge_round_id"

@@ -182,6 +182,7 @@ class CalculateLeaderboardService
                     WHERE c_1.challenge_round_id = #{@round.id}
                     AND c_1.post_challenge IN #{post_challenge}
                     AND c_1.created_at <= #{cuttoff_dttm}
+                    AND c_1.baseline IS FALSE
                     GROUP BY c_1.challenge_id,
                              c_1.challenge_round_id,
                              c_1.participant_id) cnt

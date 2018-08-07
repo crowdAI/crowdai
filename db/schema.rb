@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_06_092847) do
+ActiveRecord::Schema.define(version: 2018_08_06_134654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -90,6 +90,31 @@ ActiveRecord::Schema.define(version: 2018_08_06_092847) do
     t.index ["badge_id", "sash_id"], name: "index_badges_sashes_on_badge_id_and_sash_id"
     t.index ["badge_id"], name: "index_badges_sashes_on_badge_id"
     t.index ["sash_id"], name: "index_badges_sashes_on_sash_id"
+  end
+
+  create_table "base_leaderboard_orig", id: false, force: :cascade do |t|
+    t.bigint "id"
+    t.bigint "challenge_id"
+    t.bigint "challenge_round_id"
+    t.bigint "participant_id"
+    t.integer "row_num"
+    t.integer "previous_row_num"
+    t.string "slug"
+    t.string "name"
+    t.integer "entries"
+    t.float "score"
+    t.float "score_secondary"
+    t.string "media_large"
+    t.string "media_thumbnail"
+    t.string "media_content_type"
+    t.string "description"
+    t.string "description_markdown"
+    t.string "leaderboard_type_cd"
+    t.datetime "refreshed_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer "submission_id"
+    t.boolean "post_challenge"
   end
 
   create_table "base_leaderboards", force: :cascade do |t|

@@ -255,6 +255,8 @@ class CalculateLeaderboardService
         description_markdown,
         leaderboard_type_cd,
         post_challenge,
+        baseline,
+        baseline_comment,
         refreshed_at,
         created_at,
         updated_at
@@ -280,6 +282,8 @@ class CalculateLeaderboardService
         s.description_markdown,
         '#{leaderboard_type}',
         s.post_challenge,
+        s.baseline,
+        s.baseline_comment,
         '#{DateTime.now.to_s(:db)}',
         s.created_at,
         s.updated_at

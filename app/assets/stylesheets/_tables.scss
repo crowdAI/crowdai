@@ -90,6 +90,9 @@ table.leaderboard {
   tr.leader {
     background: #F0FFF0;
   }
+  tr.baseline {
+    background: $color-grey-10;
+  }
 }
 
 /* Table - Submissions */

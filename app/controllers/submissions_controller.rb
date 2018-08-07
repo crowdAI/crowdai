@@ -11,33 +11,43 @@ class SubmissionsController < ApplicationController
 
   def index
     @current_round_id = current_round_id
-    if params[:my_submissions] == 'on'
-      @my_submissions = 'on'
-    else
-      @my_submissions = 'off'
-    end
-    if @my_submissions == 'on'
-      @submissions = policy_scope(Submission)
+    if 1 == 1
+      @search = policy_scope(Submission)
         .where(
           challenge_id: @challenge.id,
           challenge_round_id: @current_round_id,
-          participant_id: current_participant.id)
-        .order('created_at desc')
-        .page(params[:page])
-        .per(10)
-      @submissions_remaining = SubmissionsRemainingQuery.new(
-          challenge: @challenge,
-          participant_id: current_participant.id)
-        .call
+          participant_id: current_participant.id).search(search_params)
+      @search.sorts = 'created_at desc' if @search.sorts.empty?
+      @submissions = @search.result.page(params[:page]).per(50)
     else
-      @submissions = policy_scope(Submission)
-        .where(
-          challenge_id: @challenge.id,
-          challenge_round_id: @current_round_id)
-        .where.not(participant_id: nil)
-        .order('created_at desc')
-        .page(params[:page])
-        .per(10)
+      if params[:my_submissions] == 'on'
+        @my_submissions = 'on'
+      else
+        @my_submissions = 'off'
+      end
+      if @my_submissions == 'on'
+        @submissions = policy_scope(Submission)
+          .where(
+            challenge_id: @challenge.id,
+            challenge_round_id: @current_round_id,
+            participant_id: current_participant.id)
+          .order('created_at desc')
+          .page(params[:page])
+          .per(10)
+        @submissions_remaining = SubmissionsRemainingQuery.new(
+            challenge: @challenge,
+            participant_id: current_participant.id)
+          .call
+      else
+        @submissions = policy_scope(Submission)
+          .where(
+            challenge_id: @challenge.id,
+            challenge_round_id: @current_round_id)
+          .where.not(participant_id: nil)
+          .order('created_at desc')
+          .page(params[:page])
+          .per(10)
+      end
     end
   end
 

@@ -24,17 +24,22 @@
 
   <div class="row">
     <table class="submissions">
-      <thead>
-        <tr>
-          <th class='id'>ID</th>
-          <th>Participant</th>
-          <th>Status</th>
-          <th>Message</th>
-          <th class="submission">Submission (UTC)</th>
-          <th class="action"></th>
-          <th class="action"></th>
-        </tr>
-      </thead>
+      <%= search_form_for @search,
+            :remote=>"true",
+            url: challenge_submissions_path(@challenge),
+            method: :get do |f| %>
+        <thead>
+          <tr>
+            <th class='id'><%= sort_link(@search, :id,"ID") %></th>
+            <th><%= sort_link(@search, :name,"Participant") %></th>
+            <th><%= sort_link(@search, :grading_status_cd,"Status") %></th>
+            <th><%= sort_link(@search, :grading_message,"Message") %></th>
+            <th class="submission"><%= sort_link(@search, :created_at,"Submission (UTC)") %></th>
+            <th class="action"></th>
+            <th class="action"></th>
+          </tr>
+        </thead>
+      <% end %>
       <tbody>
         <%= render partial: 'submissions' %>
       </tbody>

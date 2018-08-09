@@ -20,7 +20,11 @@
       <div class="twin-container">
         <div class="twin-field">
           <%= f.label :status, 'Challenge Status' %>
-          <%= status_dropdown_helper(builder: f) %>
+          <% if current_participant.admin? %>
+            <%= status_dropdown_helper(builder: f) %>
+          <% else %>
+            <%= f.text_field :status_cd, readonly: true %>
+          <% end %>
         </div>
         <div class="twin-field">
           <%= f.label :featured_sequence, 'Featured Sequence' %>

@@ -1,9 +1,9 @@
 class ShortUrlsController < ApplicationController
 
   def show
-    leaderboard = Submission.find_by(short_url: params[:short])
-    if leaderboard.present?
-      redirect_to challenge_leaderboard_path(leaderboard.challenge_id, leaderboard.id)
+    submission = Submission.find_by(short_url: params[:short])
+    if submission.present?
+      redirect_to challenge_submission_path(submission.challenge_id, submission.id)
     else
       raise ActionController::RoutingError.new('Not Found')
     end

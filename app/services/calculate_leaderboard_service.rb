@@ -3,6 +3,7 @@ class CalculateLeaderboardService
   def initialize(challenge_round_id:)
     @round = ChallengeRound.find(challenge_round_id)
     @order_by = get_order_by
+    @base_order_by = get_base_order_by
     @conn = ActiveRecord::Base.connection
   end
 
@@ -59,6 +60,15 @@ class CalculateLeaderboardService
     end
   end
 
+  # TODO refactor this out
+  def get_base_order_by
+    challenge = @round.challenge
+    if (challenge.secondary_sort_order_cd.blank? || challenge.secondary_sort_order_cd == 'not_used')
+        return "score #{sort_map(challenge.primary_sort_order_cd)}"
+    else
+      return "score #{sort_map(challenge.primary_sort_order_cd)}, score_secondary #{sort_map(challenge.secondary_sort_order_cd)}"
+    end
+  end
   def sort_map(sort_field)
     case sort_field
     when 'ascending'
@@ -310,7 +320,7 @@ class CalculateLeaderboardService
             PARTITION by l.challenge_id,
                          l.challenge_round_id,
                          l.leaderboard_type_cd
-            ORDER BY l.score DESC) AS SEQ
+            ORDER BY #{@base_order_by}) AS SEQ
         FROM base_leaderboards l
         WHERE l.challenge_round_id = #{@round.id})
       UPDATE base_leaderboards

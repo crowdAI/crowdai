@@ -219,7 +219,7 @@ RSpec.describe CalculateLeaderboardService do
           .to eq(false) }
   end
 
-  describe 'order by primary asc, secondary asc' do
+  describe 'order by primary asc, secondary asc sfc' do
     # Leaderboard
     # Row | Submission | Part | Primary | Secondary | Entries
     # ----|------------|------|---------|-----------|---------
@@ -246,6 +246,7 @@ RSpec.describe CalculateLeaderboardService do
     end
 
     # leaderboard
+    #it { byebug }
     it { expect(Leaderboard.first.participant_id)
           .to eq(participant2.id) }
     it { expect(Leaderboard.first.row_num)

@@ -1,7 +1,7 @@
 class ChallengeRound < ApplicationRecord
   include Markdownable
 
-  belongs_to :challenge
+  belongs_to :challenge, inverse_of: :challenge_rounds
   has_many :submissions,
     dependent: :restrict_with_error
   has_many :leaderboards
@@ -30,16 +30,19 @@ class ChallengeRound < ApplicationRecord
     greater_than_or_equal_to: 1,
     allow_nil: true
 
-  validate :validate_period_and_duration
+  validates :submission_limit, presence: true
+  validates :submission_limit_period, presence: true
 
-  def validate_period_and_duration
-    unless (submission_limit.blank? &&
-            submission_limit_period.blank?) ||
-            (submission_limit.present? &&
-            submission_limit_period.present?)
-      errors.add(:submission_limit,"Complete both submission Limit and period or neither.")
-    end
-  end
+  #validate :validate_period_and_duration
+
+  #def validate_period_and_duration
+  #  unless (submission_limit.blank? &&
+  #          submission_limit_period.blank?) ||
+  #          (submission_limit.present? &&
+  #          submission_limit_period.present?)
+  #    errors.add(:submission_limit,"Complete both submission Limit and period or neither.")
+  #  end
+  #end
 
   as_enum :submission_limit_period,
     [:day, :week, :round], map: :string

@@ -3,6 +3,8 @@ class Api::ExternalGradersController < Api::BaseController
   before_action :auth_by_api_key_and_client_id, only: [:create]
 
   def show #GET
+    Rails.logger.info "[api] Api::ExternalGradersController#get"
+    Rails.logger.info "[api] params: #{params}"
     participant = Participant.where(api_key: params[:id]).first
     if participant.present?
       message = "Developer API key is valid"
@@ -19,6 +21,8 @@ class Api::ExternalGradersController < Api::BaseController
 
 
   def create #POST
+    Rails.logger.info "[api] Api::ExternalGradersController#create"
+    Rails.logger.info "[api] params: #{params}"
     message = nil
     status = nil
     submission_id = nil
@@ -74,6 +78,8 @@ class Api::ExternalGradersController < Api::BaseController
   end
 
   def update #PATCH
+    Rails.logger.info "[api] Api::ExternalGradersController#update"
+    Rails.logger.info "[api] params: #{params}"
     message = nil
     status = nil
     submission_id = params[:id]

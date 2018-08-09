@@ -5,7 +5,7 @@ class ShortUrlsController < ApplicationController
     if submission.present?
       redirect_to challenge_submission_path(submission.challenge_id, submission.id)
     else
-      redirect_to '/'
+      raise ActionController::RoutingError.new('Not Found')
     end
   end
 

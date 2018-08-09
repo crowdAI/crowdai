@@ -35,7 +35,7 @@ class CommentNotificationMailer < ApplicationMailer
   end
 
   def challenge_link(challenge)
-    link_to challenge.challenge, challenges_url(challenge)
+    link_to challenge.challenge, challenge_url(challenge)
   end
 
   def comment_link(topic)

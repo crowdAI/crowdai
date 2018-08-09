@@ -12,14 +12,15 @@ RSpec.describe CalculateLeaderboardService do
     Timecop.return
   end
 
-  #  Sub  | Part | Score     | Secondary | Post? | Window  | Ago
-  # ------|------|-----------|-------------------|---------|-----
-  #  p1s1 |  p1  | 30.050123 | 0.001999  |  No   | Prev    | 52h
-  #  p1s2 |  p1  | 30.0509   | 0.001     |  No   | Prev    | 50h
-  #  p1s3 |  p1  | 32.0501   | 0.001     |  No   | Current | 1m
-  #  p1s4 |  p1  | 32.05     | 0.002     |  No   | Current | 20h
-  #  p2s1 |  p2  | 29.00     | 0.003     |  No   | Prev    | 70h
-  #  p2s2 |  p2  | 36.00     | 0.003     |  No   | Current |  5h
+  #  Sub  | Part | Score     | Secondary | Post? | Window  | Ago | Baseline
+  # ------|------|-----------|-------------------|---------|-----| --------
+  #  p1s1 |  p1  | 30.050123 | 0.001999  |  No   | Prev    | 52h |  No
+  #  p1s2 |  p1  | 30.0509   | 0.001     |  No   | Prev    | 50h |  No
+  #  p1s3 |  p1  | 32.0501   | 0.001     |  No   | Current | 1m  |  No
+  #  p1s4 |  p1  | 32.05     | 0.002     |  No   | Current | 20h |  No
+  #  p2s1 |  p2  | 29.00     | 0.003     |  No   | Prev    | 70h |  No
+  #  p2s2 |  p2  | 36.00     | 0.003     |  No   | Current |  5h |  No
+  #  p3s1 |  p3  | 31.00     | 0.001     |  No   | Current |  3h |  Yes
 
 
   let!(:challenge) { create :challenge, :running }
@@ -27,6 +28,7 @@ RSpec.describe CalculateLeaderboardService do
   # Ranking Window = 48 hours
   let!(:participant1) { create :participant }
   let!(:participant2) { create :participant }
+  let!(:participant3) { create :participant }
   let!(:p1s1) {
     create :submission,
       participant: participant1,
@@ -81,6 +83,17 @@ RSpec.describe CalculateLeaderboardService do
       score: 36.00,
       score_secondary: 0.003,
       created_at: 5.hours.ago }
+  let!(:p3s1) {
+    create :submission,
+      participant: participant3,
+      challenge: challenge,
+      challenge_round_id: challenge_round.id,
+      grading_status: :graded,
+      score: 31.00,
+      score_secondary: 0.001,
+      created_at: 3.hours.ago,
+      baseline: true,
+      baseline_comment: 'BASELINE'}
 
   describe 'counts and rounding' do
     before do
@@ -95,11 +108,12 @@ RSpec.describe CalculateLeaderboardService do
       p1s4.reload
       p2s1.reload
       p2s2.reload
+      p3s1.reload
     end
 
     # counts
-    it { expect(Leaderboard.count).to eq(2) }
-    it { expect(OngoingLeaderboard.count).to eq(2) }
+    it { expect(Leaderboard.count).to eq(3) }
+    it { expect(OngoingLeaderboard.count).to eq(3) }
     it { expect(PreviousLeaderboard.count).to eq(2) }
     it { expect(PreviousOngoingLeaderboard.count).to eq(2) }
 
@@ -219,7 +233,7 @@ RSpec.describe CalculateLeaderboardService do
           .to eq(false) }
   end
 
-  describe 'order by primary asc, secondary asc sfc' do
+  describe 'order by primary asc, secondary asc' do
     # Leaderboard
     # Row | Submission | Part | Primary | Secondary | Entries
     # ----|------------|------|---------|-----------|---------
@@ -246,7 +260,6 @@ RSpec.describe CalculateLeaderboardService do
     end
 
     # leaderboard
-    #it { byebug }
     it { expect(Leaderboard.first.participant_id)
           .to eq(participant2.id) }
     it { expect(Leaderboard.first.row_num)

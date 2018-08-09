@@ -1,7 +1,11 @@
 class Leaderboard::Cell::TableRow < Leaderboard::Cell
 
   def show
-    render :table_row
+    if entry.baseline
+      render :baseline_row
+    else
+      render :table_row
+    end
   end
 
   def entry

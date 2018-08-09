@@ -11,34 +11,42 @@ class SubmissionsController < ApplicationController
 
   def index
     @current_round_id = current_round_id
-    if params[:my_submissions] == 'on'
-      @my_submissions = 'on'
-    else
-      @my_submissions = 'off'
-    end
-    if @my_submissions == 'on'
-      @submissions = policy_scope(Submission)
+    if params[:baselines] == 'on'
+      @search = policy_scope(Submission)
         .where(
           challenge_id: @challenge.id,
           challenge_round_id: @current_round_id,
-          participant_id: current_participant.id)
-        .order('created_at desc')
-        .page(params[:page])
-        .per(10)
-      @submissions_remaining = SubmissionsRemainingQuery.new(
-          challenge: @challenge,
-          participant_id: current_participant.id)
-        .call
+          baseline: true)
+        .search(search_params)
+      @baselines = 'on'
     else
-      @submissions = policy_scope(Submission)
-        .where(
-          challenge_id: @challenge.id,
-          challenge_round_id: @current_round_id)
-        .where.not(participant_id: nil)
-        .order('created_at desc')
-        .page(params[:page])
-        .per(10)
+      @baselines = 'off'
+      if params[:my_submissions] == 'on'
+        @my_submissions = 'on'
+      else
+        @my_submissions = 'off'
+      end
+      if @my_submissions == 'on'
+        @search = policy_scope(Submission)
+          .where(
+            challenge_id: @challenge.id,
+            challenge_round_id: @current_round_id,
+            participant_id: current_participant.id)
+          .search(search_params)
+        @submissions_remaining = SubmissionsRemainingQuery.new(
+            challenge: @challenge,
+            participant_id: current_participant.id)
+          .call
+      else
+        @search = policy_scope(Submission)
+          .where(
+            challenge_id: @challenge.id,
+            challenge_round_id: @current_round_id)
+          .search(search_params)
+      end
     end
+    @search.sorts = 'created_at desc' if @search.sorts.empty?
+    @submissions = @search.result.page(params[:page]).per(10)
   end
 
   def show
@@ -139,6 +147,8 @@ class SubmissionsController < ApplicationController
           :clef_other_info,
           :clef_additional,
           :online_submission,
+          :baseline,
+          :baseline_comment,
           submission_files_attributes: [
             :id,
             :seq,

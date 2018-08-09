@@ -1,0 +1,37 @@
+<tr class='baseline'>
+  <td></td>
+  <td></td>
+  <td class='change'></td>
+  <td class="position"></td>
+  <td class="participant">
+    <div class='badge badge-accent'><%= entry.baseline_comment %></div>
+    <div class='stats'>BASELINE</div>
+  </td>
+
+  <% if cols.include?(:media) %>
+    <td class="video">
+      <%= concept(Leaderboard::Cell::Media,
+            entry,
+            size: :thumb,
+            submission_id: entry.submission_id,
+            current_participant: current_participant) %>
+    </td>
+  <% end %>
+
+  <td class="score">
+    <strong><%= entry.score %></strong>
+  </td>
+
+  <% if cols.include?(:score_secondary) %>
+    <td class="score">
+      <strong><%= entry.score_secondary %></strong>
+    </td>
+  <% end %>
+  <td class="entries"></td>
+  <td class="last-submission">
+    <%= entry.created_at.strftime("%a, %e %b %Y %R") %>
+  </td>
+  <td class='action'></td>
+  <td></td>
+  <td></td>
+</tr>

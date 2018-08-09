@@ -272,7 +272,7 @@ class Api::ExternalGradersController < Api::BaseController
                 challenge.id,
                 round_status_cd: 'current')
               .where("current_timestamp between start_dttm and end_dttm")
-    return false if round.empty?
+    return false if round.blank?
   end
 
   def participant_qualified?(challenge,participant)
@@ -324,7 +324,7 @@ class Api::ExternalGradersController < Api::BaseController
         grading_status_cd: 'submitted',
         grading_message: params[:grading_message] }
     when 'failed'
-      raise GradingMessageMissing if params[:grading_message].empty?
+      raise GradingMessageMissing if params[:grading_message].blank?
       { score: nil,
         score_secondary: nil,
         grading_status_cd: 'failed',

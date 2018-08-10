@@ -2,6 +2,13 @@ ActiveAdmin.register Submission do
   belongs_to :challenge, parent_class: Challenge
   navigation_menu :challenge
 
+  sidebar "Submission Details", only: [:show, :edit] do
+    ul do
+      li link_to "Submission Files", admin_submission_submission_files_path(submission)
+      li link_to "Submission Grades", admin_submission_submission_grades_path(submission)
+    end
+  end
+
   filter :id
   filter :participant_id
   filter :name

@@ -6,10 +6,18 @@ class EmailDigestMailer < ApplicationMailer
     start_dttm = set_start_dttm(digest_type)
     comments = comments(participant,start_dttm)
     submissions = submissions(participant,start_dttm)
-    return if comments.none? && submissions.none?
+    topics = topics(participant,start_dttm)
+    unless participant.admin?
+      return if comments.blank? && submissions.blank? && topics.blank?
+    end
 
     subject = build_subject(digest_type)
-    body = build_body(participant,digest_type,comments,submissions)
+    body = build_body(
+      participant,
+      digest_type,
+      comments,
+      submissions,
+      topics)
     options = format_options(participant,subject,body)
 
     @model_id = nil
@@ -26,15 +34,24 @@ class EmailDigestMailer < ApplicationMailer
     "[crowdAI] #{digest_type.capitalize} digest"
   end
 
-  def build_body(participant,digest_type,comments,submissions)
+  def build_body(participant,digest_type,comments,submissions,topics)
     body = body_header(digest_type) << '<br/>'
+    if participant.admin?
+      body << render_sign_ups
+    end
     body << render_comments(comments) << '<br/>'
     body << render_submissions(submissions) << '<br/>'
+    body << render_topics(topics) << '<br/>'
     return "<div>#{body}</div>"
   end
 
   def body_header(digest_type)
     "<div>Here's a #{digest_type} summary of activity in crowdAI.</div>"
+  end
+
+  def topics(participant,start_dttm)
+    topic_ids = TopicsDigestQuery.new(participant,start_dttm).call
+    topics = Topic.where(id: topic_ids).order('created_at DESC')
   end
 
   def comments(participant,start_dttm)
@@ -45,6 +62,21 @@ class EmailDigestMailer < ApplicationMailer
   def submissions(participant,start_dttm)
     return Submission.none if !participant.admin?
     submissions = Submission.where('created_at >= ?',start_dttm).order('created_at DESC')
+  end
+
+  def render_sign_ups
+    sign_ups = ParticipantSignUpsQuery.new.call
+    body = render(partial: 'mailers/sign_ups', locals: { sign_ups: sign_ups })
+    return body
+  end
+
+  def render_topics(topics)
+    if topics.any?
+      body = render(partial: "mailers/topics_digest", locals: { comments: comments })
+    else
+      body = "<span></span>"
+    end
+    return body
   end
 
   def render_comments(comments)

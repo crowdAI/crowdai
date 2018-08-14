@@ -40,6 +40,7 @@ class CommentsDigestQuery
          AND c.topic_id = t.id
          AND t.challenge_id = f.followable_id
          AND c.created_at >= '#{@start_dttm}'
+         AND p.email_frequency_cd IN ('daily','weekly')
          AND p.challenges_followed IS TRUE
     ]
   end

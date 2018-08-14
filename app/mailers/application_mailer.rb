@@ -23,13 +23,25 @@ class ApplicationMailer < ActionMailer::Base
 
     res = MANDRILL.messages
       .send_template( options[:template], [], message)
+
     MandrillMessage.create!(
-      res: res, message: message, meta: options[:meta])
+      res: res,
+      message: message,
+      meta: options[:meta],
+      participant_id: participant_id(options))
     return [res, message]
 
     rescue Mandrill::UnknownTemplateError => e
       Rails.logger.debug("#{e.class}: #{e.message}")
       raise
+  end
+
+  def participant_id(options)
+    if options[:participant].present?
+      participant_id = participant.id
+    else
+      participant_id = nil
+    end
   end
 
 end

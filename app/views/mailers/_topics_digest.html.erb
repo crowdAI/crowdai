@@ -1,0 +1,6 @@
+<h3>Topics Summary</h3>
+
+<% topics.each do |topic| %>
+  <div><%= link_to topic.topic, new_topic_comment_url(topic) %></div>
+<% end %>
+<hr/>

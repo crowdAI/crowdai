@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_14_070229) do
+ActiveRecord::Schema.define(version: 2018_08_14_115657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -414,6 +414,7 @@ ActiveRecord::Schema.define(version: 2018_08_14_070229) do
     t.jsonb "meta"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "participant_id"
   end
 
   create_table "merit_actions", force: :cascade do |t|

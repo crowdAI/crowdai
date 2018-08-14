@@ -3,5 +3,6 @@ FactoryBot.define do
     participant
     mentions true
     newsletter true
+    email_frequency :weekly
   end
 end

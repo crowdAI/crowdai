@@ -1,17 +1,21 @@
 require 'rails_helper'
 
-RSpec.describe EveryCommentNotificationJob, type: :job, api: true do
+RSpec.describe EveryTopicNotificationJob, type: :job do
   include ActiveJob::TestHelper
 
   describe 'receive_every_email' do
-    let!(:participant) { create :participant }
+    let!(:author) { create :participant }
+    let!(:follower) { create :participant }
     let!(:email_preference) {
       create :email_preference,
       email_frequency: :every,
-      participant: participant }
-    let!(:topic) { create :topic, participant: participant }
-    let!(:comment) { create :comment, topic: topic, participant: participant }
-    subject(:job) { described_class.perform_later(comment.id) }
+      participant: follower }
+    let!(:follow) { create :follow, participant: follower }
+    let!(:topic) {
+      create :topic,
+      challenge_id: follow.followable_id,
+      participant: author }
+    subject(:job) { described_class.perform_later(topic.id) }
 
     it 'queues the job' do
       expect { job }.to change(ActiveJob::Base.queue_adapter.enqueued_jobs, :size).by(1)
@@ -39,14 +43,14 @@ RSpec.describe EveryCommentNotificationJob, type: :job, api: true do
   end
 
   describe 'daily_digest' do
-    let!(:participant) { create :participant }
+    let!(:author) { create :participant }
+    let!(:follower) { create :participant }
     let!(:email_preference) {
       create :email_preference,
       email_frequency: :daily,
-      participant: participant }
-    let!(:topic) { create :topic, participant: participant }
-    let!(:comment) { create :comment, topic: topic, participant: participant }
-    subject(:job) { described_class.perform_later(comment.id) }
+      participant: follower }
+    let!(:topic) { create :topic, participant: author }
+    subject(:job) { described_class.perform_later(topic.id) }
 
     it 'queues the job' do
       expect { job }.to change(ActiveJob::Base.queue_adapter.enqueued_jobs, :size).by(1)
@@ -67,14 +71,14 @@ RSpec.describe EveryCommentNotificationJob, type: :job, api: true do
   end
 
   describe 'weekly digest' do
-    let!(:participant) { create :participant }
+    let!(:author) { create :participant }
+    let!(:follower) { create :participant }
     let!(:email_preference) {
       create :email_preference,
       email_frequency: :weekly,
-      participant: participant }
-    let!(:topic) { create :topic, participant: participant }
-    let!(:comment) { create :comment, topic: topic, participant: participant }
-    subject(:job) { described_class.perform_later(comment.id) }
+      participant: follower }
+    let!(:topic) { create :topic, participant: author }
+    subject(:job) { described_class.perform_later(topic.id) }
 
     it 'queues the job' do
       expect { job }.to change(ActiveJob::Base.queue_adapter.enqueued_jobs, :size).by(1)

@@ -32,6 +32,26 @@ class NotificationService
     return true
   end
 
+  def topic
+    message = "#{@notifiable.participant.name} posted a topic in a challenge you are following."
+    if @notifiable.participant.image_file.file.present?
+      thumbnail_url = @notifiable.participant.image_file.url
+    else
+      thumbnail_url = 'users/avatar-default.png'
+    end
+    notification_url = new_topic_discussion_url(@notifiable.topic)
+    Notification
+      .create!(
+        participant: @participant,
+        notifiable: @notifiable,
+        notification_type: @notification_type,
+        message: message,
+        thumbnail_url: thumbnail_url,
+        notification_url: notification_url,
+        is_new: true)
+    return true
+  end
+
   def mention
     message = "#{@notifiable.participant.name} mentioned you in a post."
     if @notifiable.participant.image_file.file.present?

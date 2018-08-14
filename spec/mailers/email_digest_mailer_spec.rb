@@ -44,13 +44,24 @@ RSpec.describe EmailDigestMailer, type: :mailer do
       before do
         @submissions = Submission.all
         @comments = Comment.all
+        @topics = Topic.all
       end
       it 'daily' do
-        body = described_class.new.build_body(participant,'daily',@comments,@submissions)
+        body = described_class.new.build_body(
+          participant,
+          'daily',
+          @comments,
+          @submissions,
+          @topics)
         expect(body).to be_a_valid_html_fragment
       end
       it 'weekly' do
-        body = described_class.new.build_body(participant,'weekly',@comments,@submissions)
+        body = described_class.new.build_body(
+          participant,
+          'weekly',
+          @comments,
+          @submissions,
+          @topics)
         expect(body).to be_a_valid_html_fragment
       end
     end

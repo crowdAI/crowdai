@@ -24,7 +24,6 @@ class TopicsController < ApplicationController
       EveryTopicNotificationJob
         .set(wait: 5.minutes)
         .perform_later(@topic.id)
-      end
       redirect_to challenge_topics_path(@challenge), notice: 'Topic was successfully created.'
     else
       render :new

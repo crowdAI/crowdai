@@ -7,7 +7,9 @@ class EmailDigestMailer < ApplicationMailer
     comments = comments(participant,start_dttm)
     submissions = submissions(participant,start_dttm)
     topics = topics(participant,start_dttm)
-    return if comments.blank? && submissions.blank? && topics.blank?
+    unless participant.admin?
+      return if comments.blank? && submissions.blank? && topics.blank?
+    end
 
     subject = build_subject(digest_type)
     body = build_body(
@@ -34,6 +36,9 @@ class EmailDigestMailer < ApplicationMailer
 
   def build_body(participant,digest_type,comments,submissions,topics)
     body = body_header(digest_type) << '<br/>'
+    if participant.admin?
+      body << render_sign_ups
+    end
     body << render_comments(comments) << '<br/>'
     body << render_submissions(submissions) << '<br/>'
     body << render_topics(topics) << '<br/>'
@@ -57,6 +62,12 @@ class EmailDigestMailer < ApplicationMailer
   def submissions(participant,start_dttm)
     return Submission.none if !participant.admin?
     submissions = Submission.where('created_at >= ?',start_dttm).order('created_at DESC')
+  end
+
+  def render_sign_ups
+    sign_ups = ParticipantSignUpsQuery.new.call
+    body = render(partial: 'mailers/sign_ups', locals: { sign_ups: sign_ups })
+    return body
   end
 
   def render_topics(topics)

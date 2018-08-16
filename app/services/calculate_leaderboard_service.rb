@@ -163,7 +163,7 @@ class CalculateLeaderboardService
                 PARTITION BY s.challenge_id,
                              s.challenge_round_id,
                              s.participant_id
-                ORDER BY #{@order_by} ) AS submission_ranking,
+                ORDER BY #{@order_by}) AS submission_ranking,
               s.id,
               s.challenge_id,
               s.challenge_round_id,
@@ -320,7 +320,7 @@ class CalculateLeaderboardService
             PARTITION by l.challenge_id,
                          l.challenge_round_id,
                          l.leaderboard_type_cd
-            ORDER BY #{@base_order_by}) AS SEQ
+            ORDER BY #{@base_order_by},l.row_num asc) AS SEQ
         FROM base_leaderboards l
         WHERE l.challenge_round_id = #{@round.id})
       UPDATE base_leaderboards

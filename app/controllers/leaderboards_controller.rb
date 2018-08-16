@@ -24,11 +24,13 @@ class LeaderboardsController < ApplicationController
           .where(challenge_round_id: current_round_id)
           .page(params[:page])
           .per(10)
+          .order(:seq)
     else
       @leaderboards = policy_scope(Leaderboard)
           .where(challenge_round_id: current_round_id)
           .page(params[:page])
           .per(10)
+          .order(:seq)
     end
   end
 

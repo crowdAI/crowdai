@@ -1,8 +1,9 @@
-class CalculateLeaderboardService
+class CalculateLeaderboardServiceNew
 
   def initialize(challenge_round_id:)
     @round = ChallengeRound.find(challenge_round_id)
     @order_by = get_order_by
+    @base_order_by = get_base_order_by
     @conn = ActiveRecord::Base.connection
   end
 
@@ -21,6 +22,10 @@ class CalculateLeaderboardService
       update_leaderboard_rankings(
         leaderboard: 'ongoing',
         prev: 'previous_ongoing')
+      #insert_baseline_rows(leaderboard_type: 'leaderboard')
+      #insert_baseline_rows(leaderboard_type: 'ongoing')
+      set_leaderboard_sequences(leaderboard_type: 'leaderboard')
+      set_leaderboard_sequences(leaderboard_type: 'ongoing')
     end
     return true
   end
@@ -55,6 +60,15 @@ class CalculateLeaderboardService
     end
   end
 
+  # TODO refactor this out
+  def get_base_order_by
+    challenge = @round.challenge
+    if (challenge.secondary_sort_order_cd.blank? || challenge.secondary_sort_order_cd == 'not_used')
+        return "score #{sort_map(challenge.primary_sort_order_cd)}"
+    else
+      return "score #{sort_map(challenge.primary_sort_order_cd)}, score_secondary #{sort_map(challenge.secondary_sort_order_cd)}"
+    end
+  end
   def sort_map(sort_field)
     case sort_field
     when 'ascending'
@@ -70,7 +84,7 @@ class CalculateLeaderboardService
     ActiveRecord::Base.connection.execute "delete from base_leaderboards where challenge_round_id = #{@round.id};"
   end
 
-  def create_leaderboard(leaderboard_type:)
+  def leaderboard_params(leaderboard_type:)
     case leaderboard_type
     when 'leaderboard'
       post_challenge = '(FALSE)'
@@ -85,6 +99,11 @@ class CalculateLeaderboardService
       post_challenge = '(TRUE,FALSE)'
       cuttoff_dttm = window_border_dttm
     end
+    return [post_challenge,cuttoff_dttm]
+  end
+
+  def create_leaderboard(leaderboard_type:)
+    post_challenge, cuttoff_dttm = leaderboard_params(leaderboard_type: leaderboard_type)
 
     sql = %Q[
       INSERT INTO base_leaderboards (
@@ -93,6 +112,7 @@ class CalculateLeaderboardService
         challenge_round_id,
         participant_id,
         submission_id,
+        seq,
         row_num,
         previous_row_num,
         slug,
@@ -117,6 +137,7 @@ class CalculateLeaderboardService
         l.challenge_round_id,
         l.participant_id,
         l.id,
+        0 as SEQ,
         ROW_NUMBER() OVER (
           PARTITION by l.challenge_id,
                        l.challenge_round_id
@@ -171,6 +192,7 @@ class CalculateLeaderboardService
                     WHERE c_1.challenge_round_id = #{@round.id}
                     AND c_1.post_challenge IN #{post_challenge}
                     AND c_1.created_at <= #{cuttoff_dttm}
+                    AND c_1.baseline IS FALSE
                     GROUP BY c_1.challenge_id,
                              c_1.challenge_round_id,
                              c_1.participant_id) cnt
@@ -182,7 +204,8 @@ class CalculateLeaderboardService
             AND s.challenge_id = c.id
             AND cnt.challenge_id = s.challenge_id
             AND cnt.challenge_round_id = s.challenge_round_id
-            AND cnt.participant_id = s.participant_id) l,
+            AND cnt.participant_id = s.participant_id
+            AND s.baseline IS FALSE) l,
           challenges c
         WHERE l.submission_ranking = 1
         AND c.id = l.challenge_id
@@ -215,6 +238,95 @@ class CalculateLeaderboardService
       AND base_leaderboards.challenge_round_id = lb.challenge_round_id
       AND base_leaderboards.challenge_round_id = #{@round.id}
       AND base_leaderboards.participant_id = lb.participant_id
+    ]
+    @conn.execute sql
+  end
+
+  def insert_baseline_rows(leaderboard_type:)
+    post_challenge, cuttoff_dttm = leaderboard_params(leaderboard_type: leaderboard_type)
+    sql = %Q[
+      INSERT INTO base_leaderboards (
+        id,
+        challenge_id,
+        challenge_round_id,
+        participant_id,
+        submission_id,
+        seq,
+        row_num,
+        previous_row_num,
+        slug,
+        name,
+        entries,
+        score,
+        score_secondary,
+        media_large,
+        media_thumbnail,
+        media_content_type,
+        description,
+        description_markdown,
+        leaderboard_type_cd,
+        post_challenge,
+        baseline,
+        baseline_comment,
+        refreshed_at,
+        created_at,
+        updated_at
+      )
+      SELECT
+        nextval('base_leaderboards_id_seq'::regclass),
+        s.challenge_id,
+        s.challenge_round_id,
+        s.participant_id,
+        s.id as submission_id,
+        0 as seq,
+        0 as row_num,
+        0 as previous_row_num,
+        NULL as slug,
+        NULL as name,
+        0 as entries,
+        s.score,
+        s.score_secondary,
+        s.media_large,
+        s.media_thumbnail,
+        s.media_content_type,
+        s.description,
+        s.description_markdown,
+        '#{leaderboard_type}',
+        s.post_challenge,
+        s.baseline,
+        s.baseline_comment,
+        '#{DateTime.now.to_s(:db)}',
+        s.created_at,
+        s.updated_at
+      FROM submissions s
+      WHERE s.challenge_round_id = #{@round.id}
+      AND s.grading_status_cd = 'graded'
+      AND s.post_challenge IN #{post_challenge}
+      AND s.created_at <= #{cuttoff_dttm}
+      AND s.baseline IS TRUE
+    ]
+    @conn.execute sql
+  end
+
+  def set_leaderboard_sequences(leaderboard_type:)
+    post_challenge, cuttoff_dttm = leaderboard_params(leaderboard_type: leaderboard_type)
+    sql = %Q[
+        WITH lb AS (
+        SELECT
+          l.id,
+          l.submission_id,
+          l.row_num,
+          ROW_NUMBER() OVER (
+            PARTITION by l.challenge_id,
+                         l.challenge_round_id,
+                         l.leaderboard_type_cd
+            ORDER BY #{@base_order_by}) AS SEQ
+        FROM base_leaderboards l
+        WHERE l.challenge_round_id = #{@round.id})
+      UPDATE base_leaderboards
+      SET seq = lb.seq
+      FROM lb
+      WHERE base_leaderboards.id = lb.id
     ]
     @conn.execute sql
   end

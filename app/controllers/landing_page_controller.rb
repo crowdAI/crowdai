@@ -4,7 +4,7 @@ class LandingPageController < ApplicationController
   def index
     @challenges = policy_scope(Challenge)
       .order(featured_sequence: :desc)
-      .limit(5)
+      .limit(6)
     @partners = Partner
       .where(visible: true)
       .where.not(image_file: nil)

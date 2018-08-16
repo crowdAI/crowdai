@@ -9,7 +9,7 @@ class CalculateLeaderboardServiceNew
 
   def call
     return false if @round.submissions.blank?
-    ActiveRecord::Base.transaction do
+    #ActiveRecord::Base.transaction do
       truncate_scores
       purge_leaderboard
       create_leaderboard(leaderboard_type: 'leaderboard')
@@ -22,11 +22,11 @@ class CalculateLeaderboardServiceNew
       update_leaderboard_rankings(
         leaderboard: 'ongoing',
         prev: 'previous_ongoing')
-      #insert_baseline_rows(leaderboard_type: 'leaderboard')
-      #insert_baseline_rows(leaderboard_type: 'ongoing')
+      insert_baseline_rows(leaderboard_type: 'leaderboard')
+      insert_baseline_rows(leaderboard_type: 'ongoing')
       set_leaderboard_sequences(leaderboard_type: 'leaderboard')
       set_leaderboard_sequences(leaderboard_type: 'ongoing')
-    end
+    #end
     return true
   end
 
@@ -163,7 +163,7 @@ class CalculateLeaderboardServiceNew
                 PARTITION BY s.challenge_id,
                              s.challenge_round_id,
                              s.participant_id
-                ORDER BY #{@order_by} ) AS submission_ranking,
+                ORDER BY #{@order_by}, s.created_at asc ) AS submission_ranking,
               s.id,
               s.challenge_id,
               s.challenge_round_id,
@@ -320,7 +320,7 @@ class CalculateLeaderboardServiceNew
             PARTITION by l.challenge_id,
                          l.challenge_round_id,
                          l.leaderboard_type_cd
-            ORDER BY #{@base_order_by}) AS SEQ
+            ORDER BY #{@base_order_by},l.created_at asc) AS SEQ
         FROM base_leaderboards l
         WHERE l.challenge_round_id = #{@round.id})
       UPDATE base_leaderboards

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CalculateLeaderboardService do
+RSpec.describe CalculateLeaderboardService, api: true do
 
   describe 'compare row_num and seq' do
     let!(:arr1){ [] }

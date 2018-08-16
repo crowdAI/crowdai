@@ -23,7 +23,7 @@ ActiveAdmin.register Partner do
   index do
     selectable_column
     column "Image" do |partner|
-      image_tag(partner.image_file, width: '50')
+      image_tag(partner.image_file.url, width: '50')
     end
     column :name
     column :organizer
@@ -36,7 +36,7 @@ ActiveAdmin.register Partner do
     attributes_table do
       row :name
       row :image_file do
-        image_tag(partner.image_file, width: 150)
+        image_tag(partner.image_file.url, width: 150)
       end
       row :organizer
       row :visible
@@ -52,7 +52,7 @@ ActiveAdmin.register Partner do
       f.input :name
       f.input :image_file,
         as: :file,
-        hint: f.object.image_file.present? ? image_tag(f.object.image_file) : content_tag(:span, "no portrait yet")
+        hint: f.object.image_file.present? ? image_tag(f.object.image_file.url) : content_tag(:span, "no portrait yet")
       f.input :visible
       f.input :seq
     end

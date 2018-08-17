@@ -27,6 +27,7 @@ class Submission < ApplicationRecord
   validate :clef_validations
 
   def clef_validations
+    return true
     return true unless self.challenge.organizer.clef?
     if clef_method_description.length < 5
       errors.add(:clef_method_description,

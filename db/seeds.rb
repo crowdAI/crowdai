@@ -1,3 +1,55 @@
+if Rails.env == 'development'
+
+  # Admin
+  Participant.create!(
+    email: 'admin@example.com',
+    password: 'password',
+    password_confirmation: 'password',
+    admin: true,
+    name: 'admin',
+    confirmed_at: Time.now)
+
+    # Users
+    participant_ids =
+      [6791, 7071, 5366, 7358, 5984, 5442, 1780, 6905, 6625, 4913, 6792, 7, 4839, 1, 5579, 374, 5471, 7453, 6439, 5593, 7230, 7294, 3272]
+
+    participant_ids.each do |id|
+      Participant.create!(
+        email: "p#{id}@example.com",
+        password: 'password',
+        password_confirmation: 'password',
+        name: "p#{id}",
+        confirmed_at: Time.now)
+    end
+
+end
+
+=begin
+
+
+let!(:challenge) {
+  create :challenge,
+  id: 30,
+  status_cd: "completed",
+  primary_sort_order_cd: "ascending",
+  secondary_sort_order_cd: "ascending",
+  perpetual_challenge: false,
+  media_on_leaderboard: true }
+let!(:challenge_round) {
+  create :challenge_round,
+  id: 32,
+  challenge_id: 30,
+  active: true,
+  submission_limit: 2,
+  submission_limit_period_cd: "day",
+  start_dttm: "2018-07-13 12:00:00",
+  end_dttm: "2018-08-12 23:59:00",
+  minimum_score: nil,
+  minimum_score_secondary: nil,
+  ranking_window: 24,
+  ranking_highlight: 3,
+  score_precision: 3, score_secondary_precision: 3
+}
 
 
 if Rails.env != 'test'
@@ -154,9 +206,3 @@ if Rails.env != 'test'
   p760.image_file = Rails.root.join("scripts/v2/participants/760.M13.jpg").open
   p760.save!
 =end
-
-
-end
-Participant.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password', admin: true, name: 'Admin1',confirmed_at: Time.now) if Rails.env.development?
-Participant.create!(email: 'participant1@example.com', password: 'password', password_confirmation: 'password', name: 'Participant1',confirmed_at: Time.now) if Rails.env.development?
-Participant.create!(email: 'participant2@example.com', password: 'password', password_confirmation: 'password', name: 'Participant2',confirmed_at: Time.now) if Rails.env.development?

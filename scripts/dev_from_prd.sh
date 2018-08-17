@@ -21,6 +21,7 @@ set -x
 dropdb crowdai_development
 createdb crowdai_development
 pg_restore --no-acl --no-owner -d crowdai_development tmp/crowdai-prd.dmp
+psql -d crowdai_development -c "update ar_internal_metadata set value = 'development' where key = 'environment'; "
 #echo "Resetting Participant account passwords"
 #echo "Participant.find_each do |p|; p.password = 'password'; p.save; end" | rails c > /dev/null 2>&1
 EOF

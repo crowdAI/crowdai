@@ -9,6 +9,19 @@
 	</div>
 
   <div class="row">
+
+    <br/>
+    <% if @challenge.submissions_downloadable || current_participant.admin? %>
+      <fieldset>
+        <label>Submission Files</label>
+        <% @submission.submission_files.each do |file| %>
+            <%= link_to "Download file #{file.id}",
+                  s3_expiring_url(file.submission_file_s3_key)
+            %><br/>
+        <% end %>
+      </fieldset>
+    <% end %>
+
     <%= form_for [@challenge, @submission],
           html: {
             class: "sgl-col",

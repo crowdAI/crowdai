@@ -1,7 +1,7 @@
 // ---------------------- Gems ----------------------- //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
+// require jquery-ui
 //= require jquery.remotipart
 //= require cocoon
 //= require isInViewport
@@ -16,7 +16,7 @@
 
 // --------------------- Vendor ------------------------ //
 //= require jQuery-File-Upload
-//= require remodal
+// require remodal
 
 // ------------------ Vendor / Notebooks --------------- //
 // require ansi_up.min

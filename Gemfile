@@ -9,15 +9,15 @@ gem 'rails-assets-jQuery-File-Upload'
 ruby '2.5.1'
 gem 'rails', '5.2.0'
 
-gem "active_model_serializers"
+gem 'active_model_serializers'
 gem 'activeadmin'
 gem 'authtrail'
 gem 'aws-sdk', '~> 2.2'
 gem 'browser'
 gem 'carrierwave', '~> 1.0'
-gem "cells-rails"
-gem "cells"
-gem "cells-erb"
+gem 'cells-rails'
+gem 'cells'
+gem 'cells-erb'
 gem 'cookies_eu'
 gem 'cocoon'
 gem 'country_select'
@@ -64,7 +64,7 @@ gem 'puma'
 gem 'puma_worker_killer'
 gem 'pundit'
 gem 'prometheus-client'
-gem "remotipart"
+gem 'remotipart'
 gem 'ransack'
 gem 'rouge'
 gem 'rails-html-sanitizer', '~> 1.0.4'
@@ -75,15 +75,15 @@ gem 'sprockets', '~> 3.7.2'
 gem 'social-share-button'
 gem 'sass-rails'
 gem 'sidekiq', '~> 5.1.1'
-gem "sidekiq-cron", "~> 0.6.3"
+gem 'sidekiq-cron', '~> 0.6.3'
 gem 'sidekiq-history'
 gem 'sidekiq-failures'
 gem 'sidekiq-unique-jobs'
 gem 'sinatra', '~> 2.0.2', :require => nil
 gem 'therubyracer', platforms: :ruby
 gem 'turbolinks', '~> 5.1'
-gem "trailblazer"
-gem "trailblazer-rails"
+gem 'trailblazer'
+gem 'trailblazer-rails'
 gem 'uglifier', '~> 4.1.10'
 gem 'validate_url'
 gem 'valid_email2'
@@ -93,7 +93,7 @@ group :development do
   gem 'brakeman', :require => false
   gem 'derailed_benchmarks'
   gem 'guard'
-  gem "lol_dba"
+  gem 'lol_dba'
   gem 'meta_request'
   gem 'model_2_factory-rails'
   gem 'rails-erd'
@@ -107,7 +107,7 @@ end
 group :development, :test do
   gem 'byebug'
   gem 'ffaker'
-  gem "rspec-cells"
+  gem 'rspec-cells'
   gem 'rspec-rails', '~> 3.6'
   gem 'rspec-kickstarter'
   gem 'oauth2'
@@ -117,13 +117,13 @@ group :development, :test do
 end
 
 group :test do
-  gem "factory_bot_rails"
+  gem 'factory_bot_rails'
   gem 'chromedriver-helper'
   gem 'capybara'
   gem 'capybara-email'
   gem 'capybara-screenshot'
   gem 'database_cleaner'
-  gem "launchy"
+  gem 'launchy'
   gem 'nokogiri' #, '~> 1.8'
   gem 'pundit-matchers', git: 'https://github.com/crowdAI/pundit-matchers'
   gem 'rails-controller-testing'

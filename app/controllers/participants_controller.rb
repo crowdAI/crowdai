@@ -2,6 +2,7 @@ class ParticipantsController < ApplicationController
   before_action :authenticate_participant!, except: [:show]
   before_action :set_participant,
     only: [:show, :edit, :update, :destroy]
+
   respond_to :html, :js
 
   def show
@@ -87,5 +88,6 @@ class ParticipantsController < ApplicationController
         :first_name,
         :last_name)
     end
+
 
 end

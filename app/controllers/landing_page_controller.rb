@@ -19,4 +19,5 @@ class LandingPageController < ApplicationController
   def host
     @crowdai = ChallengeCall.where(crowdai: true).first
   end
+
 end

@@ -1,0 +1,5 @@
+meta_product_name: "crowdAI"
+meta_title: "crowdAI - Fighting for O"
+meta_description: "Fighting for Open Science with Open Data"
+meta_image: "cover.png"                       # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account"   # required for Twitter Cards

@@ -4,10 +4,6 @@
                 current_participant: current_participant) %>
   <%= render partial: 'challenges/show/subnav',
         locals: { challenge: @challenge } %>
-  <%#= concept(Challenge::Cell::ChallengeSubnav,
-                @challenge,
-                tab: 'dataset',
-                current_participant: current_participant) %>
   <%= concept(ParticipantClefTask::Cell,
                 @clef_task,
                 current_participant: current_participant,

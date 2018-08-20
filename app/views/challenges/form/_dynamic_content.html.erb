@@ -1,14 +1,23 @@
 <div class="row">
   <%= form_for [@organizer,@challenge], validate: true, html: { class: "dbl-col" } do |f| %>
+
+    <fieldset class="checkbox">
+      <div>
+        <%= f.check_box :submissions_downloadable, {}, "true", "false" %>
+        <label for="">Organizer submission file access?</label>
+      </div>
+    </fieldset>
+
     <fieldset class="checkbox">
       <div>
         <%= f.check_box :dynamic_content_flag, {}, "true", "false" %>
         <label for="">Dynamic content?</label>
       </div>
-      <label>Tab description</label>
-      <%= f.text_field :dynamic_content_tab %>
-      <%= f.text_area :dynamic_content, cols: 80, rows: 80, placeholder: 'Enter ERB content here...' %>
     </fieldset>
+    <label>Tab description</label>
+    <%= f.text_field :dynamic_content_tab %>
+    <%= f.text_area :dynamic_content, cols: 80, rows: 80, placeholder: 'Enter ERB content here...' %>
+
     <%= render partial: 'challenges/form/submit_buttons', locals: { f: f } %>
   <% end %>
 </div>

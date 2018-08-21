@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_20_075739) do
+ActiveRecord::Schema.define(version: 2018_08_21_134040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -1098,15 +1098,6 @@ ActiveRecord::Schema.define(version: 2018_08_20_075739) do
     WHERE ((cr.participant_id = p.id) AND (cr.challenge_id = c.id));
   SQL
 
-  create_view "participant_sign_ups",  sql_definition: <<-SQL
-      SELECT count(participants.id) AS count,
-      (date_part('month'::text, participants.created_at))::integer AS mnth,
-      (date_part('year'::text, participants.created_at))::integer AS yr
-     FROM participants
-    GROUP BY ((date_part('month'::text, participants.created_at))::integer), ((date_part('year'::text, participants.created_at))::integer)
-    ORDER BY ((date_part('year'::text, participants.created_at))::integer), ((date_part('month'::text, participants.created_at))::integer);
-  SQL
-
   create_view "participant_submissions",  sql_definition: <<-SQL
       SELECT s.id,
       s.challenge_id,
@@ -1184,6 +1175,39 @@ ActiveRecord::Schema.define(version: 2018_08_20_075739) do
       base_leaderboards.baseline_comment
      FROM base_leaderboards
     WHERE ((base_leaderboards.leaderboard_type_cd)::text = 'previous_ongoing'::text);
+  SQL
+
+  create_view "challenge_stats",  sql_definition: <<-SQL
+      SELECT row_number() OVER () AS id,
+      c.id AS challenge_id,
+      c.challenge,
+      r.id AS challenge_round_id,
+      r.challenge_round,
+      r.start_dttm,
+      r.end_dttm,
+      (r.end_dttm - r.start_dttm) AS duration,
+      ( SELECT count(s.id) AS count
+             FROM submissions s
+            WHERE (s.challenge_id = c.id)) AS submissions,
+      ( SELECT count(p.id) AS count
+             FROM participants p
+            WHERE (p.id IN ( SELECT s1.participant_id
+                     FROM submissions s1
+                    WHERE (s1.challenge_id = c.id)))) AS participants
+     FROM challenges c,
+      challenge_rounds r
+    WHERE (r.challenge_id = c.id)
+    ORDER BY (row_number() OVER ()), c.challenge;
+  SQL
+
+  create_view "participant_sign_ups",  sql_definition: <<-SQL
+      SELECT row_number() OVER () AS id,
+      count(participants.id) AS count,
+      (date_part('month'::text, participants.created_at))::integer AS mnth,
+      (date_part('year'::text, participants.created_at))::integer AS yr
+     FROM participants
+    GROUP BY ((date_part('month'::text, participants.created_at))::integer), ((date_part('year'::text, participants.created_at))::integer)
+    ORDER BY ((date_part('year'::text, participants.created_at))::integer), ((date_part('month'::text, participants.created_at))::integer);
   SQL
 
 end

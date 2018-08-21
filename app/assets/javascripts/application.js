@@ -15,8 +15,8 @@
 //= require rails.validations
 
 // --------------------- Vendor ------------------------ //
-//= require jQuery-File-Upload
-// require remodal
+// require jQuery-File-Upload
+//= require remodal
 
 // ------------------ Vendor / Notebooks --------------- //
 // require ansi_up.min

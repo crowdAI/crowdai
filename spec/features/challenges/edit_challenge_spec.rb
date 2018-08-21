@@ -5,7 +5,7 @@ feature 'An organizer edits a challenge' do
   let!(:participant) { create :participant, organizer: organizer }
   let!(:challenge) { create :challenge, organizer: organizer }
 
-  scenario 'edit challenge', js: true do
+  scenario 'edit challenge' do
     log_in participant
     visit edit_organizer_challenge_path(challenge.organizer_id,challenge.slug)
     expect(page).to have_text 'Details'

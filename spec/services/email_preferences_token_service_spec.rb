@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe EmailPreferencesTokenService do
+RSpec.describe EmailPreferencesTokenService, api: true do
 
   let!(:participant) { create :participant }
   let!(:email_preference) { create :email_preference, participant: participant }

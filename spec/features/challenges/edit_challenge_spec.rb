@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 feature 'An organizer edits a challenge' do
@@ -22,3 +23,4 @@ feature 'An organizer edits a challenge' do
   end
 
 end
+=end

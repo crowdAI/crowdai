@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CalculateLeaderboardService do
+RSpec.describe CalculateLeaderboardService, api: true do
 
   before do
     Timecop.freeze(

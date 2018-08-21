@@ -11,6 +11,7 @@ class ChallengesController < ApplicationController
     only: [:edit, :update]
   before_action :set_organizer,
     only: [:new, :create, :edit, :update]
+
   after_action :update_stats_job
   respond_to :html, :js
 

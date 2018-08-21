@@ -207,7 +207,7 @@ ActiveAdmin.setup do |config|
   # config.csv_options = { col_sep: ';' }
   #
   # Force the use of quotes
-  # config.csv_options = { force_quotes: true }
+  config.csv_options = { force_quotes: true }
 
   # == Menu System
   #
@@ -239,7 +239,7 @@ ActiveAdmin.setup do |config|
   #
   config.namespace :admin do |admin|
        # Disable the links entirely
-      admin.download_links = false
+      admin.download_links = [:csv,:json]
   end
   #
   #     # Only show XML & PDF options

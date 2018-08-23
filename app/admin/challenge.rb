@@ -41,13 +41,15 @@ ActiveAdmin.register Challenge do
     end
   end
 
-  #member_action :purge do
-  #  Submission.where(challenge_id: params[:id]).destroy_all
-  #  redirect_to(:back)
-  #end
+  member_action :purge, method: :delete do
+    submissions = Submission.where(challenge_id: params[:id])
+    submissions_count = submissions.count
+    submissions.destroy_all
+    redirect_to admin_challenge_path(params[:id]), flash: { notice: "#{submissions_count} submissions have been deleted." }
+  end
 
-  #action_item :delete_submissions, only: :show  do
-  #  link_to 'Delete submissions', purge_admin_challenge_path(resource), method: :delete, data: { confirm: 'Are you sure?' }
-  #end
+  action_item :delete_submissions, only: :show  do
+    link_to 'Delete all submissions', purge_admin_challenge_path(resource.id), method: :delete, data: { confirm: "You are about to delete all submissions for #{resource.challenge} challenge. Are you sure?" }
+  end
 
 end

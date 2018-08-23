@@ -43,7 +43,7 @@ class Admin::ChallengeCallResponseNotificationMailer < ApplicationMailer
       "<hr/>" +
       "<p>#{challenge_call_response.challenge_title}</p>" +
       "<p>#{challenge_call_response.challenge_description}</p>" +
-      "<a href='https//www.crowdai.org/admin/challenge_calls/#{challenge_call_response.challenge_call.slug}/challenge_call_responses/#{challenge_call_response.id}'>Full Description</a>" +
+      "<a href='https://www.crowdai.org/admin/challenge_calls/#{challenge_call_response.challenge_call.slug}/challenge_call_responses/#{challenge_call_response.id}'>Full Description</a>" +
     "</div>"
   end
 

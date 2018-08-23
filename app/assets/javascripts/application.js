@@ -1,7 +1,7 @@
 // ---------------------- Gems ----------------------- //
 //= require jquery
 //= require jquery_ujs
-// require jquery-ui
+//= require jquery-ui
 //= require jquery.remotipart
 //= require cocoon
 //= require isInViewport
@@ -15,7 +15,7 @@
 //= require rails.validations
 
 // --------------------- Vendor ------------------------ //
-// require jQuery-File-Upload
+//= require jQuery-File-Upload
 //= require remodal
 
 // ------------------ Vendor / Notebooks --------------- //

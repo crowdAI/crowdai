@@ -1,5 +1,5 @@
 require 'sidekiq'
-
+=begin
 Sidekiq.configure_client do |config|
   config.redis = { size: 1 }
 end
@@ -18,3 +18,4 @@ unless Rails.env.test?
   Sidekiq::Logging.logger.level = Logger::DEBUG
   Rails.logger = Sidekiq::Logging.logger
 end
+=end

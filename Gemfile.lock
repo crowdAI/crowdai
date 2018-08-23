@@ -882,6 +882,7 @@ DEPENDENCIES
   rails-erd
   rails-html-sanitizer (~> 1.0.4)
   ransack
+  redis
   remotipart
   rouge
   rspec-cells

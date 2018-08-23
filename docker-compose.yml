@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  redis:
+    restart: always
+    image: "redis:alpine"
+    ports:
+     - "6379:6379"
+
+  postgres:
+    image: postgres
+
+  web:
+    build: .
+    volumes:
+      - ./tmp:/tmp
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: "3000"
+      PGHOST: "postgres"
+      PGUSER: "postgres"
+      PGDBNAME: "app"
+    depends_on:
+      - postgres
+      - redis
+#      - webpack
+#    environment:
+#      - WEBPACKER_DEV_SERVER_HOST=webpack
+
+
+  webpack:
+    build: .
+    command: ./bin/webpack-dev-server
+    ports:
+      - 8080:8080
+#    environment:
+#      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
+
+  #sidekiq:
+  #  depends_on:
+  #    - postgres
+  #    - redis
+  #  build: .
+  #  command: sidekiq -C config/sidekiq.yml

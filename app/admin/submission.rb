@@ -34,6 +34,7 @@ ActiveAdmin.register Submission do
     actions
   end
 
+
   controller do
     def find_resource
       scoped_collection.find(params[:id])

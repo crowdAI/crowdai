@@ -28,7 +28,6 @@ services:
     environment:
       - WEBPACKER_DEV_SERVER_HOST=webpack
 
-
   webpack:
     build: .
     command: ./bin/webpack-dev-server
@@ -37,9 +36,17 @@ services:
     environment:
       - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
 
-  #sidekiq:
-  #  depends_on:
-  #    - postgres
-  #    - redis
-  #  build: .
-  #  command: sidekiq -C config/sidekiq.yml
+  sidekiq:
+    build: .
+    volumes:
+      - ./tmp:/tmp
+    ports:
+      - "3001:3001"
+    environment:
+      PORT: "3001"
+      PGHOST: "postgres"
+      PGUSER: "postgres"
+      PGDBNAME: "app"
+    depends_on:
+      - postgres
+      - redis

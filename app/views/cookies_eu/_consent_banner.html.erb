@@ -1,0 +1,9 @@
+<% if cookies && cookies['cookie_eu_consented'] != 'true' %>
+  <div class="cookies-eu js-cookies-eu">
+    <span class="cookies-eu-content-holder">Cookies help us deliver our services. By using our services, you agree to our use of cookies.</span>
+    <span class="cookies-eu-button-holder">
+      <button class="btn btn-primary cookies-eu-ok js-cookies-eu-ok"> OK </button>
+      <a href="/cookies" class=" btn cookies-eu-link" target="_blank"> Learn more </a>
+    </span>
+  </div>
+<% end %>

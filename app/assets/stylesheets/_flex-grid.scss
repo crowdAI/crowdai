@@ -152,3 +152,56 @@
     }
   }
 }
+
+.grid-users-awarded {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .user-award {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid $color-grey-10;
+    width: calc(50% - 20px);
+    padding: 20px 0 18px 0;
+    &:first-child {
+      border-top: 1px solid $color-grey-10;
+    }
+    &:nth-child(2) {
+      border-top: 1px solid $color-grey-10;
+      @media screen and (max-width: 480px) {
+        border-top: none;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      width: calc(50% - 16px);
+    }
+    @media screen and (max-width: 640px) {
+      width: calc(50% - 12px);
+      padding: 16px 0 14px 0;
+    }
+    @media screen and (max-width: 480px) {
+      width: 100%;
+      padding: 12px 0 10px 0;
+      &:nth-child(2) {
+        border-top: none;
+      }
+    }
+    img {
+      width: 40px;
+      margin-right: 12px;
+      border-radius: 2px;
+      @media screen and (max-width: 480px) {
+        margin-right: 10px;
+      }
+    }
+    a.username {
+      display: block;
+      font-weight: 500;
+      padding-bottom: 4px;
+    }
+    span {
+      display: block;
+      color: $color-grey-54;
+    }
+  }
+}

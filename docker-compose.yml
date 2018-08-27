@@ -1,21 +1,21 @@
 version: '3'
 
 services:
-  redis:
-    restart: always
-    image: "redis:alpine"
-    ports:
-     - "6379:6379"
-
   postgres:
-    image: postgres
-
+    image: postgres:9.6-alpine
+  webpacker:
+    build: .
+    command: ./bin/webpack-dev-server
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - '3035:3035'
   web:
     build: .
     volumes:
-      - ./tmp:/tmp
+      - .:/usr/src/app
     ports:
-      - "3000:3000"
+      - '3000:3000'
     environment:
       PORT: "3000"
       PGHOST: "postgres"
@@ -23,30 +23,3 @@ services:
       PGDBNAME: "app"
     depends_on:
       - postgres
-      - redis
-      - webpack
-    environment:
-      - WEBPACKER_DEV_SERVER_HOST=webpack
-
-  webpack:
-    build: .
-    command: ./bin/webpack-dev-server
-    ports:
-      - 8080:8080
-    environment:
-      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
-
-  sidekiq:
-    build: .
-    volumes:
-      - ./tmp:/tmp
-    ports:
-      - "3001:3001"
-    environment:
-      PORT: "3001"
-      PGHOST: "postgres"
-      PGUSER: "postgres"
-      PGDBNAME: "app"
-    depends_on:
-      - postgres
-      - redis

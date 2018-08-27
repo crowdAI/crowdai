@@ -1,4 +1,7 @@
-<!--Detail share start -->
+<% content_for :meta_title, submission.challenge.challenge %>
+<% content_for :meta_description, "Submission made by #{submission.participant.name}" %>
+<%# content_for :meta_image, cl_image_path(@offer.photo.path) %>
+
 <div class="detail-share">
   <div>
     <span>Share</span>

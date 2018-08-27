@@ -1,6 +1,8 @@
 <% content_for :meta_title, submission.challenge.challenge %>
 <% content_for :meta_description, "Submission made by #{submission.participant.name}" %>
-<%# content_for :meta_image, cl_image_path(@offer.photo.path) %>
+<% if submission.media_content_type.present? && submission.media_content_type.split('/').first == 'image' %>
+  <% content_for :meta_image, S3Service.new(submission.media_large).public_url %>
+<% end %>
 
 <div class="detail-share">
   <div>

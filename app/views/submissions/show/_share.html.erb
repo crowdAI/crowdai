@@ -1,4 +1,9 @@
-<!--Detail share start -->
+<% content_for :meta_title, submission.challenge.challenge %>
+<% content_for :meta_description, "Submission made by #{submission.participant.name}" %>
+<% if submission.media_content_type.present? && submission.media_content_type.split('/').first == 'image' %>
+  <% content_for :meta_image, S3Service.new(submission.media_large).public_url %>
+<% end %>
+
 <div class="detail-share">
   <div>
     <span>Share</span>

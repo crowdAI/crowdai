@@ -14,7 +14,7 @@
   <div>
     <span
       data-title="Check out this link on crowdAI "
-      data-desc='Share to Facebook'
+      data-desc="<%= submission.challenge.challenge %>"
       data-url='<%= "#{request.base_url}/#{submission.short_url}?utm_source=crowdAI&utm_medium=Facebook" %>'>
     <a
       class="btn btn-secondary btn-facebook"
@@ -28,7 +28,7 @@
   </span>
   <span
     data-title="Check out this link on crowdAI "
-    data-desc='Share to Twitter'
+    data-desc="<%= submission.challenge.challenge %>"
     data-url='<%= "#{request.base_url}/#{submission.short_url}?utm_source=crowdAI&utm_medium=Twitter" %>'>
     <a
       data-url='<%= "#{request.base_url}/#{submission.short_url}?utm_source=crowdAI&utm_medium=Twitter" %>'

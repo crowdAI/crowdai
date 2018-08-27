@@ -28,18 +28,10 @@
   }
 }
 
-.btn-small {
-  line-height: 20px;
-  height: 20px;
-  padding: 0 16px;
-  margin-right: 10px;
-  font-size: 12px;
-}
-
 .btn-primary {
   background: $color-accent;
   color: #fff;
-  border: none;
+  border: 1px solid transparent;
   &:hover {
     background: $color-accent-dark;
     color: #fff;
@@ -88,6 +80,11 @@ button {
     padding: 0;
     border: 0;
   }
+}
+
+.btn-block {
+  margin-top: 32px;
+  width: 100%;
 }
 
 /* Social buttons */

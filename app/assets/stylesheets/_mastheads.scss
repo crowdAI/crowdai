@@ -1,7 +1,8 @@
 /* Mastheads */
 
 .masthead,
-.masthead-detailed {
+.masthead-detailed,
+.masthead-minimal {
   background: $color-grey-03;
   padding: 60px 0 40px;
   border-bottom: 1px solid $color-grey-10;
@@ -229,5 +230,75 @@
         margin-top: 18px;
       }
     }
+  }
+}
+
+.masthead-minimal {
+  background: #FFF;
+  border-bottom: none;
+  padding: 0;
+  h1 {
+    margin-top: 114px;
+    @media screen and (max-width: 1024px) {
+      margin-top: 94px;
+    }
+    @media screen and (max-width: 800px) {
+      margin-top: 74px;
+    }
+    @media screen and (max-width: 640px) {
+      margin-top: 54px;
+    }
+    @media screen and (max-width: 640px) {
+      margin-top: 34px;
+    }
+  }
+  p.large {
+    max-width: 580px;
+    margin: 29px 0 48px 0;
+    @media screen and (max-width: 800px) {
+      margin-top: 21px;
+    }
+    @media screen and (max-width: 640px) {
+      margin: 29px 0 32px 0;
+    }
+  }
+}
+
+.masthead-icon {
+  display: flex;
+  padding: 60px 0 48px;
+  @media screen and (max-width: 800px) {
+    padding: 40px 0 36px;
+  }
+  @media screen and (max-width: 640px) {
+    padding: 28px 0 32px;
+  }
+  .icon {
+    height: 60px;
+    width: 51px;
+    margin: 8px 20px 0 0;
+    @media screen and (max-width: 1024px) {
+      margin-top: 4px;
+    }
+    @media screen and (max-width: 800px) {
+      margin: 4px 16px 0 0;
+    }
+    @media screen and (max-width: 400px) {
+      margin: 4px 12px 0 0;
+    }
+    .award-gold {
+      height: 60px;
+      width: 45px;
+    }
+    .award-silver,
+    .award-bronze {
+      height: 60px;
+      width: 51px;
+    }
+  }
+  p.large {
+    color: $color-grey-54;
+    margin-top: 4px;
+    max-width: 580px;
   }
 }

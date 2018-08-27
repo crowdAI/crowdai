@@ -51,18 +51,11 @@
 
 // ------------------------ STARTUP -------------------------- //
 
-/*
-$(document).on('ajax:error', function(xhr, status, error) {
-  console.log(status.responseText);
-  console.log(error);
-});
-*/
-
-$(document).on('turbolinks:load', function() {
+document.addEventListener("turbolinks:load", function() {
   $('[data-remodal-id=modal]').remodal();
 });
 
-$(document).on('turbolinks:load', function() {
+document.addEventListener("turbolinks:load", function() {
   Paloma.start();
 });
 
@@ -88,14 +81,14 @@ Turbolinks.ProgressBar.prototype.refresh = function() {}
 Turbolinks.ProgressBar.defaultCSS = ""
 var loaderTimer;
 
-$(document).on('turbolinks:click', function() {
+document.addEventListener("turbolinks:click", function() {
   loaderTimer = setTimeout(function(){
     $('#page-content').hide();
     $('#loader-container').show();
   }, 250);
 });
 
-$(document).on('turbolinks:load', function() {
+document.addEventListener("turbolinks:load", function() {
   clearTimeout(loaderTimer);
   $('#page-content').show();
   $('#loader-container').hide();

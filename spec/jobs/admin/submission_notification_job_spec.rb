@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.describe Admin::SubmissionNotificationJob, type: :job do
+RSpec.describe Admin::SubmissionNotificationJob, type: :job, api: true do
   include ActiveJob::TestHelper
 
   let!(:submission) { create :submission }

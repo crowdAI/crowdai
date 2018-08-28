@@ -15,9 +15,7 @@
 
         <div class="button-group">
           <%= f.button 'Save', type: 'submit', class: 'btn btn-primary' %>
-          <%= button_to edit_participant_registration_path, class: 'btn btn-secondary' do %>
-            Cancel
-          <% end %>
+          <%= link_to 'Cancel', edit_participant_registration_path, class: 'btn btn-secondary' %>
         </div>
       </fieldset>
     <% end %>

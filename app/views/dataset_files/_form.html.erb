@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="row">
-    <%= form_for [@challenge,@dataset_file], validate: true,
+    <%= form_for [@challenge,@dataset_file],
                     html: { class: "sgl-col directUpload", 'data-form-data' => @s3_direct_post.fields.to_json.html_safe, 'data-url' => @s3_direct_post.url, 'data-host' => URI.parse(@s3_direct_post.url).host } do |f| %>
       <fieldset>
         <label>File Title</label>
@@ -53,9 +53,7 @@
 
         <div class="button-group">
           <%= f.button (f.object.new_record? ? "Add File" : "Update File"), class: 'btn btn-primary', id: 'submitS3' %>
-          <%= button_to challenge_path(@challenge), class: "btn btn-secondary", validate: false do %>
-            Cancel
-          <% end %>
+          <%= link_to 'Cancel', challenge_path(@challenge), class: "btn btn-secondary" %>
         </div>
     <% end %>
   </div>

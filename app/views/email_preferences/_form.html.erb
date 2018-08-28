@@ -52,9 +52,7 @@
     </div>
     <div class="button-group">
       <%= f.button 'Save', type: 'submit', class: 'btn btn-primary' %>
-      <%= button_to edit_participant_email_preference_path, class: 'btn btn-secondary' do %>
-        Cancel
-      <% end %>
+      <%= link_to 'Cancel', edit_participant_email_preference_path, class: 'btn btn-secondary' %>
     </div>
   <% end %>
 </div>

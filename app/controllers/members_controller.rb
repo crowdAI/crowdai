@@ -1,7 +1,6 @@
 class MembersController < ApplicationController
   before_action :authenticate_participant!, except: [:show]
-  before_action :set_organizer#, only: [:index, :new, :create, :destroy]
-  #after_action :verify_authorized
+  before_action :set_organizer
 
   def index
     @challenges = @organizer.challenges
@@ -28,6 +27,9 @@ class MembersController < ApplicationController
   end
 
   def destroy
+    participant = Participant.friendly.find(params[:id])
+    participant.update(organizer_id: nil)
+    redirect_to organizer_members_path(@organizer)
   end
 
   private

@@ -21,7 +21,10 @@
     <div class="stats">
       <div class="stat-fr">
         Email<br>
-        <span><%= member.email %></span>
+        <span>
+          <%= link_to 'remove', organizer_member_path(@organizer,member), method: :delete %>
+          <%= member.email %>
+        </span>
       </div>
     </div>
   </li>

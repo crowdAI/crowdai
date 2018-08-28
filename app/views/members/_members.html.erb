@@ -1,0 +1,29 @@
+<ul class="list-host-members">
+  <% @members.each do |member| %>
+  <li>
+    <div class="pic">
+      <%= link_to participant_path(member) do %>
+        <%= concept(Image::Cell,member,size: :thumb) %>
+      <% end %>
+    </div>
+    <div class="details">
+      <h5>
+        <%= link_to member.name, participant_path(member) %>
+      </h5>
+      <% if @organizer.clef_tasks.any? &&  @organizer.clef_tasks.first.eua_required? %>
+        <% if member.clef_email %>
+          <%= link_to 'Email', organizer_clef_email_path(@organizer, participant_id: member.id), class: 'btn btn-primary btn-small' %>
+        <% else %>
+          <%= link_to 'Email', organizer_clef_email_path(@organizer, participant_id: member.id), class: 'btn btn-small' %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="stats">
+      <div class="stat-fr">
+        Email<br>
+        <span><%= member.email %></span>
+      </div>
+    </div>
+  </li>
+  <% end %>
+</ul>

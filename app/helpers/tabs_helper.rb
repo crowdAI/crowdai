@@ -23,12 +23,9 @@ module TabsHelper
     when 'clef_tasks'
       'tasks'
     when 'organizers'
-      if controller.action_name == 'show'
-        'challenges'
-      end
-      if controller.action_name == 'members'
-        'members'
-      end
+      'challenges'
+    when 'members'
+      'members'
     end
   end
 

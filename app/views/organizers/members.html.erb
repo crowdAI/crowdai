@@ -1,9 +1,6 @@
 <div class='content'>
   <%= render partial: 'masthead', locals: { organizer: @organizer } %>
-  <%= concept(Organizer::Cell::Subnav,
-                @organizer,
-                challenges: @challenges,
-                current_participant: current_participant) %>
+  <%= render partial: 'subnav', locals: { organizer: @organizer, challenges: @challenges } %>
 
   <div class="row">
     <ul class="list-host-members">

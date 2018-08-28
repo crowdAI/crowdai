@@ -58,7 +58,6 @@ Rails.application.routes.draw do
     resources :challenges
     get :remove_image
     get :regen_api_key
-    #get :members
     get :clef_email
     resources :clef_tasks
     resources :members

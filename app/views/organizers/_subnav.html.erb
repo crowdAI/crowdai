@@ -22,9 +22,9 @@
       <% if current_tab == 'challenges' %>
         <%= link_to 'Create Challenge', new_organizer_challenge_path(organizer), class: "btn btn-secondary pull-right" %>
       <% end %>
-      <%# if current_tab == 'members' %>
-        <%#= link_to 'Invite Member', '#', class: "btn btn-secondary pull-right" %>
-      <%# end %>
+      <% if current_tab == 'members' %>
+        <%= link_to 'Invite Member', '#', class: "btn btn-secondary pull-right" %>
+      <% end %>
       <% if current_tab == 'tasks' %>
         <%= link_to 'Create Task', new_organizer_clef_task_path(organizer), class: "btn btn-secondary pull-right" %>
       <% end %>

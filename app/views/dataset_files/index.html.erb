@@ -5,6 +5,14 @@
   <%= render partial: 'challenges/show/subnav',
         locals: { challenge: @challenge } %>
 
+  <% if @challenge.dataset_note.present? %>
+    <div class='row'>
+      <div class="leaderboard-note">
+        <%= sanitize(@challenge.dataset_note) %>
+      </div>
+    </div>
+  <% end %>
+
   <div class="row">
     <ul class="list-datasets">
         <%= concept(Dataset::Cell::ListDetail,

@@ -1,6 +1,4 @@
 <div class="button-group">
   <%= f.button (f.object.new_record? ? "Create Host" : "Update Host"), class: 'btn btn-primary' %>
-  <%= button_to challenges_path, class: "btn btn-secondary" do %>
-    Cancel
-  <% end %>
+  <%= link_to 'Cancel', challenges_path, class: "btn btn-secondary" %>
 </div>

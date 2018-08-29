@@ -6,6 +6,7 @@ class VotesController < ApplicationController
   def create
     @vote = @votable.votes.new
     @vote.participant = current_participant
+    authorize @vote
     @vote.save
     @votable.update(vote_count: @votable.votes.count)
     Rails.logger.debug("updated: #{@votable.id}")

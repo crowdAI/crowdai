@@ -62,6 +62,7 @@ class ParticipantsController < ApplicationController
   private
   def set_participant
     @participant = Participant.friendly.find(params[:id])
+    authorize @participant
   end
 
   def participant_params

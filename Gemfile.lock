@@ -729,6 +729,10 @@ GEM
       rack-protection (= 2.0.2)
       tilt (~> 2.0)
     sixarm_ruby_unaccent (1.2.0)
+    skylight (2.0.2)
+      skylight-core (= 2.0.2)
+    skylight-core (2.0.2)
+      activesupport (>= 4.2.0)
     social-share-button (1.1.0)
       coffee-rails
     sort_alphabetical (1.1.0)
@@ -903,6 +907,7 @@ DEPENDENCIES
   simple_enum
   simplecov
   sinatra (~> 2.0.2)
+  skylight
   social-share-button
   spring
   sprockets (~> 3.7.2)
@@ -923,4 +928,4 @@ RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   1.16.1
+   1.16.4

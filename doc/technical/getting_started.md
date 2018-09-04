@@ -8,6 +8,7 @@ In the terminal
 git clone git@github.com:crowdAI/crowdai.git
 cd crowdai
 bundle install
+yarn install
 rails db:reset
 foreman start -f Procfile.dev
 ```

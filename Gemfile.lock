@@ -422,6 +422,8 @@ GEM
       railties (>= 3.1, < 6)
       sass (>= 3.3, < 4)
     inflecto (0.0.2)
+    informant-rails (1.1.0)
+      rails (>= 3.0.0)
     inherited_resources (1.8.0)
       actionpack (>= 4.2, <= 5.2)
       has_scope (~> 0.6)
@@ -848,6 +850,7 @@ DEPENDENCIES
   guard
   httparty
   include_media_rails
+  informant-rails
   inline_svg
   jbuilder
   jquery-atwho-rails

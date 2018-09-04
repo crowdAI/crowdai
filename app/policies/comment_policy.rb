@@ -17,7 +17,7 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    edit?
+    participant && participant.admin?
   end
 
 end

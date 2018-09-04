@@ -4,51 +4,54 @@
       <div class="info info-tutorial">
         <h2 class='wrapper'><%= @job_posting.title %></h2>
         <p class="large"><%= @job_posting.organisation %></p>
-        <div class="user-link">
-          <p>
-            <% if @job_posting.contact_email.present? || @job_posting.contact_phone.present? || @job_posting.contact_name.present? %>
+        <p>
+          <% if @job_posting.contact_email.present? ||
+                @job_posting.contact_phone.present? || @job_posting.contact_name.present? %>
               Contact:<br/>
-            <% end %>
-            <% if  @job_posting.contact_name.present? %>
-              <b><%= @job_posting.contact_name %></b><br/>
-            <% end %>
-            <%= @job_posting.contact_email %>
-            <% if @job_posting.contact_email.present? && @job_posting.contact_phone.present? %>
+          <% end %>
+          <% if @job_posting.contact_name.present? %>
+            <b><%= @job_posting.contact_name %></b><br/>
+          <% end %>
+          <% if @job_posting.contact_email.present? %>
+            <%= @job_posting.contact_email %><br/>
+          <% end %>
+          <% if @job_posting.contact_email.present? &&
+              @job_posting.contact_phone.present? %>
               &middot;
-            <% end %>
-            <%= @job_posting.contact_phone %>
+          <% end %>
+          <%= @job_posting.contact_phone %>
 
-            <% if @job_posting.posting_date.present? %>
-              <br/>Posted
-              <%= @job_posting.posting_date %>
-            <% end %>
-            <% if @job_posting.closing_date.present? %>
-              <br/>Closes
-              <%= @job_posting.closing_date %>
-            <% end %>
-          </p>
-          <p>
-            <% if @job_posting.remote.present? %>
-              <b>Remote</b><br/>
-            <% end %>
-            <% if @job_posting.location.present? && @job_posting.country.present? %>
-                <%= @job_posting.location %>,&nbsp;
-                <%= @job_posting.country_name %>
-            <% end %>
-          </p>
+          <% if @job_posting.posting_date.present? %>
+            <br/>Posted
+            <%= @job_posting.posting_date %>
+          <% end %>
+          <% if @job_posting.closing_date.present? %>
+            <br/>Closes
+            <%= @job_posting.closing_date %>
+          <% end %>
+        </p>
+        <p>
+          <% if @job_posting.remote.present? %>
+            <b>Remote</b><br/>
+          <% end %>
+          <% if @job_posting.location.present? &&
+              @job_posting.country.present? %>
+            <%= @job_posting.location %>,&nbsp;
+            <%= @job_posting.country_name %>
+          <% end %>
+        </p>
 
-          <p>
-            <% if @job_posting.job_url %>
-              <% if @job_posting.job_url.include?("http://") || @job_posting.job_url.include?("https://") %>
-                <%= link_to URI.parse(@job_posting.job_url).host, @job_posting.job_url %>
-              <% end %>
+        <p>
+          <% if @job_posting.job_url %>
+            <% if @job_posting.job_url.include?("http://") || @job_posting.job_url.include?("https://") %>
+              <%= link_to URI.parse(@job_posting.job_url).host, @job_posting.job_url %>
             <% end %>
-          </p>
-        </div>
-
+          <% end %>
+        </p>
       </div>
     </div>
   </div>
+</div>
 
   <div class="row">
     <div class="article">

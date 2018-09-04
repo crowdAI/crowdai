@@ -4,6 +4,10 @@
 
 [![Code Climate](https://codeclimate.com/github/crowdAI/crowdai/badges/gpa.svg)](https://codeclimate.com/github/crowdAI/crowdai)
 [![Gitter chat](https://badges.gitter.im/crowdAI/gitter.png)](https://gitter.im/crowdAI/Lobby)
+[![View performance data on Skylight](https://badges.skylight.io/problem/oUp0YzF6iDnj.svg?token=Ua2ArP97LHD6wNgaYkCqktPVyIPZmSvc46A-YxM8B60)](https://www.skylight.io/app/applications/oUp0YzF6iDnj)
+[![View performance data on Skylight](https://badges.skylight.io/typical/oUp0YzF6iDnj.svg?token=Ua2ArP97LHD6wNgaYkCqktPVyIPZmSvc46A-YxM8B60)](https://www.skylight.io/app/applications/oUp0YzF6iDnj)
+[![View performance data on Skylight](https://badges.skylight.io/rpm/oUp0YzF6iDnj.svg?token=Ua2ArP97LHD6wNgaYkCqktPVyIPZmSvc46A-YxM8B60)](https://www.skylight.io/app/applications/oUp0YzF6iDnj)
+[![View performance data on Skylight](https://badges.skylight.io/status/oUp0YzF6iDnj.svg?token=Ua2ArP97LHD6wNgaYkCqktPVyIPZmSvc46A-YxM8B60)](https://www.skylight.io/app/applications/oUp0YzF6iDnj)
 
 ## Introduction
 crowdAI (www.crowdAI.org) is a not-for-profit platform for open data challenges.
@@ -25,7 +29,7 @@ Our Contribution guidelines are available at [CONTRIBUTING.md](CONTRIBUTING.md)
 
 # Documentation
 
-We are in the process of migrating our [documentation](doc/documentation.md) from the Wiki into this repository as markdown files. 
+We are in the process of migrating our [documentation](doc/documentation.md) from the Wiki into this repository as markdown files.
 
 ## Contact
 You can always reach out to us at [info@crowdai.org](mailto:info@crowdai.org)

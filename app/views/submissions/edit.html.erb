@@ -9,6 +9,9 @@
 	</div>
 
   <div class="row">
+    <br/>
+    <label>Participant</label>
+    <div><%= @submission.participant.name %></div>
 
     <br/>
     <% if @challenge.submissions_downloadable || current_participant.admin? %>
@@ -43,8 +46,10 @@
             <%= f.label :grading_status %>
             <%= f.select :grading_status, enum_option_pairs(Submission, :grading_status) %>
           </div>
+          <div class="twin-field"></div>
+        </div>
+        <div class="twin-container">
           <div class="twin-field">
-          </div>
         </div>
       </fieldset>
       <% if @submission.graded? %>
@@ -67,7 +72,11 @@
       <% end %>
 
       <div class="button-group">
-        <%= f.button "Update Submission", class: 'btn btn-primary' %> <%= link_to 'Cancel', challenge_submissions_path(@challenge), class: "btn btn-secondary" %>
+        <%= f.button "Update Submission", class: 'btn btn-primary' %> <%= link_to 'Cancel', challenge_submissions_path(@challenge), class: "btn" %>
+        <div class="twin-field">
+            <b><%= link_to 'Delete this submission', challenge_submission_path(@challenge, @submission),
+              data: { confirm: 'Are you sure?' }, method: :delete, class: 'pull-right' %></b>
+        </div>
       </div>
     <% end %>
   </div>

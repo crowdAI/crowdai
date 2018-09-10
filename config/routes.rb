@@ -84,7 +84,9 @@ Rails.application.routes.draw do
     end
     resources :events
     resources :winners, only: [:index]
-    resources :submissions
+    resources :submissions do
+      post :filter, on: :collection
+    end
     resources :dynamic_contents, only: [:index]
     resources :leaderboards, only: :index do
       get :submission_detail

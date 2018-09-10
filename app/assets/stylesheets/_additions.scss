@@ -117,3 +117,26 @@ blockquote p {
     color: $color-accent;
   }
 }
+
+.display-none {
+  display: none;
+}
+
+.filter-wrapper {
+  display: flex;
+  .filter-table {
+    flex: 4;
+  }
+  .filter-sidebar {
+    flex: 1;
+    margin: 0 20px;
+  }
+  .filter-sidebar h4 {
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 30px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    padding: 0;
+  }
+}

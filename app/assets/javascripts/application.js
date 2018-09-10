@@ -1,6 +1,7 @@
 // ---------------------- Gems ----------------------- //
 //= require jquery
-//= require jquery_ujs
+// require jquery_ujs
+//= require rails-ujs
 //= require jquery-ui
 //= require jquery.remotipart
 //= require cocoon

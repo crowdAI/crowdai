@@ -24,17 +24,15 @@
               <% end %>
     </td>
     <td>
-      <% if submission.grading_message.present? %>
-        <%= submission.grading_message %>
-      <% else %>
-        <% if submission.grading_status_cd == 'graded' %>
-          <% if @challenge.secondary_sort_order_cd == 'not_used' %>
-            <%= "#{@challenge.score_title}: #{submission.score_display}" %>
-          <% else %>
-            <%= "#{@challenge.score_title}: #{submission.score}, #{@challenge.score_secondary_title}: #{submission.score_secondary_display}" %>
-          <% end %>
-        <% end %>
-      <% end %>
+      <%= submission.score_display %>
+    </td>
+    <% unless @challenge.secondary_sort_order_cd == 'not_used' %>
+      <td>
+        <%= submission.score_secondary_display %>
+      </td>
+    <% end %>
+    <td>
+      <%= submission.grading_message %>
     </td>
     <td class='submission_date'><%= submission.created_at %></td>
     <td class='action'>

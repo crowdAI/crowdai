@@ -32,7 +32,7 @@
       <% end %>
 
       <% if current_participant %>
-        <li class=<%= tab_class('submissions') %> >
+        <li>
           <%= link_to 'Submissions',
                 challenge_submissions_path(challenge),
                 class: tab_class('submissions') %>

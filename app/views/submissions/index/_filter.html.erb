@@ -1,0 +1,73 @@
+<div class='filter-sidebar display-none' data-target='filter-sidebar.sidebar'>
+
+  <%= search_form_for @search,
+        url: filter_challenge_submissions_path(@challenge),
+        remote: 'true',
+        class: 'dbl-col',
+        method: :post,
+          data: {
+            target: 'filter-sidebar.form',
+            type: 'html',
+            action: 'ajax:success->filter-sidebar#onPostSuccess' } do |f| %>
+
+            <div class='icon-w-text'>
+              <i class="fa fa-eraser" aria-hidden="true"></i>
+              <%= link_to 'Clear filters', challenge_submissions_path(@challenge) %>
+            </div>
+
+            <h4>Participant</h4>
+            <%= f.text_field :participant_name_cont,
+              class: "form-input",
+              placeholder: "Name...",
+              data: {
+                action: 'keyup->filter-sidebar#filterChanged',
+                target: 'filter-sidebar.query'
+              } %>
+
+            <h4>Status</h4>
+            <%= f.select :grading_status_cd_eq,
+                  enum_option_pairs(Submission, :grading_status),
+                  { include_blank: true, selected: nil },
+                  { data: {
+                      action: 'change->filter-sidebar#filterChanged'
+                    }
+                  }
+            %>
+
+            <h4><%= @challenge.score_title %></h4>
+            <fieldset>
+              <div class="twin-container">
+                <div class="twin-field">
+                  <%= f.text_field :score_display_gteq,
+                    placeholder: 'From',
+                    data: { action: 'keyup->filter-sidebar#filterChanged'} %>
+                </div>
+                <div class="twin-field">
+                  <%= f.text_field :score_display_lteq,
+                    placeholder: 'Through',
+                    data: { action: 'keyup->filter-sidebar#filterChanged'} %>
+                </div>
+              </div>
+
+              <% unless @challenge.secondary_sort_order_cd == 'not_used' %>
+                <h4><%= @challenge.score_secondary_title %></h4>
+                <fieldset>
+                  <div class="twin-container">
+                    <div class="twin-field">
+                      <%= f.text_field :score_display_gteq,
+                        class: 'From',
+                          data: { action: 'keyup->filter-sidebar#filterChanged'} %>
+                    </div>
+                    <div class="twin-field">
+                      <%= f.text_field :score_display_lteq,
+                        class: 'Through',
+                          data: { action: 'keyup->filter-sidebar#filterChanged'} %>
+                    </div>
+                  </div>
+                </fieldset>
+              <% end %>
+
+            <%= f.button "Send", type: 'submit', class: 'display-none', data: { target: 'filter-sidebar.submit'} %>
+
+  <% end %>
+</div>

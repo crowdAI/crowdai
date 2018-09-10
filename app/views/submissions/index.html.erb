@@ -21,50 +21,79 @@
       </div>
     </div>
   <% end %>
+</div>
 
-  <div class="row">
-    <table class="submissions">
-      <%= search_form_for @search,
+<div class='row'>
+  <div class='filter-wrapper' data-controller='filter-sidebar'>
+    <%= render partial: 'submissions/index/filter' %>
+    <div class='filter-table'>
+      <table class='submissions'>
+        <%= search_form_for @search,
             :remote=>"true",
             url: challenge_submissions_path(@challenge),
             method: :get do |f| %>
-        <thead>
-          <tr>
-            <th class='id'><%= sort_link(@search, :id,"ID") %></th>
-            <th><%= sort_link(@search, :name,"Participant") %></th>
-            <th><%= sort_link(@search, :grading_status_cd,"Status") %></th>
-            <th><%= sort_link(@search, :grading_message,"Message") %></th>
-            <th class="submission"><%= sort_link(@search, :created_at,"Submission (UTC)") %></th>
-            <th class="action"></th>
-            <th class="action"></th>
-          </tr>
-        </thead>
-      <% end %>
-      <tbody>
-        <%= render partial: 'submissions' %>
-      </tbody>
-    </table>
+            <thead>
+              <tr>
+                <th class='id'>
+                  <%= sort_link(@search, :id,"ID") %>
+                </th>
+                <th>
+                  <%= sort_link(@search, :name,"Participant") %>
+                </th>
+                <th>
+                  <%= sort_link(@search, :grading_status_cd,"Status") %>
+                </th>
+                <th class="score">
+                  <%= sort_link(@search, :score_display,@challenge.score_title) %>
+                </th>
+                <% unless @challenge.secondary_sort_order_cd == 'not_used' %>
+                  <th class="score">
+                    <%= sort_link(@search, :score_secondary_display,@challenge.score_secondary_title) %>
+                  </th>
+                <% end %>
+                <th>
+                  <%= sort_link(@search, :grading_message, 'Message') %>
+                </th>
+                <th>
+                  <%= sort_link(@search, :created_at,"Submission (UTC)") %>
+                </th>
+                <th class="action"></th>
+                <th class="action">
+                  <i class="fa fa-filter"
+                    data-target='filter-sidebar.open' data-action="click->filter-sidebar#openSidebar"></i>
+                  <i class="fa fa-filter display-none"
+                    data-target='filter-sidebar.close' data-action="click->filter-sidebar#closeSidebar"></i>
+                </th>
+              </tr>
+            </thead>
+          <% end %>
+        <tbody data-target='filter-sidebar.submissions'>
+          <%= render @submissions %>
+        </tbody>
+      </table>
 
-    <% if @my_submissions == 'off' %>
+      <% if @my_submissions == 'off' %>
       <%= render partial: 'submissions/index/my_submissions_off',
             locals: { challenge: @challenge, current_round_id: @current_round_id } %>
-    <% end %>
-    <% if @my_submissions == 'on' %>
+      <% end %>
+      <% if @my_submissions == 'on' %>
       <%= render partial: 'submissions/index/my_submissions_on',
             locals: { challenge: @challenge, current_round_id: @current_round_id } %>
-    <% end %>
+      <% end %>
 
-    <% if @baselines == 'off' %>
+      <% if @baselines == 'off' %>
       <%= render partial: 'submissions/index/baselines_off',
             locals: { challenge: @challenge, current_round_id: @current_round_id } %>
-    <% end %>
-    <% if @baselines == 'on' %>
+      <% end %>
+      <% if @baselines == 'on' %>
       <%= render partial: 'submissions/index/baselines_on',
             locals: { challenge: @challenge, current_round_id: @current_round_id } %>
-    <% end %>
+      <% end %>
 
-    <span id='more-anchor'></span>
-    <%= render partial: 'shared/load_more',
-          locals: { collection: @submissions } %>
-  </div>
+      <span id='more-anchor'></span>
+      <%= render partial: 'shared/load_more',
+            locals: { collection: @submissions } %>
+    </div>
+    </div><!-- filter-wrapper -->
+  </div><!-- row -->
 </div>

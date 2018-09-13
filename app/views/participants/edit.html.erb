@@ -64,9 +64,7 @@
       <%= f.text_field :website, placeholder: "URL (e.g. www.crowdai.org)", class: 'url' %>
       <div class="button-group">
         <%= f.button "Save", class: 'btn btn-primary' %>
-        <%= button_to participant_path(@participant), class: "btn btn-secondary" do %>
-        Cancel
-        <% end %>
+        <%= link_to 'Cancel', participant_path(@participant), class: "btn btn-secondary" %>
       </div>
     </fieldset>
     <% end %>

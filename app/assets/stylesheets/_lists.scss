@@ -1,5 +1,6 @@
 /* Lists */
 
+.list-awards,
 .list-challenges,
 .list-datasets,
 .list-hosts,
@@ -51,6 +52,45 @@
   }
 }
 
+/* List - Awards */
+.list-awards {
+  li {
+    padding: 20px 0 18px 0;
+    border-bottom: 1px solid $color-grey-10;
+    &:last-of-type {
+      border-bottom: 1px solid $color-grey-10;
+    }
+    .icon {
+      flex: 0 0 auto;
+      height: 40px;
+      width: 34px;
+      margin-right: 20px;
+      .award-gold {
+        height: 40px;
+        width: 30px;
+      }
+      .award-silver,
+      .award-bronze,
+      .award-empty {
+        height: 40px;
+        width: 34px;
+      }
+    }
+    .details {
+      flex: 2 1 auto;
+      padding-top: 2px;
+    }
+    .date,
+    .awarded {
+      color: $color-grey-54;
+      padding-top: 2px;
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+    }
+  }
+}
+
 /* List - Challenges */
 
 .list-challenges {
@@ -68,7 +108,7 @@
   .details {
     flex: 2 1 auto;
     h5 {
-      margin-bottom: 17px;
+      margin-bottom: 6px;
 
       @media screen and (max-width: 640px) {
         margin-bottom: 2px;
@@ -96,6 +136,11 @@
     @media screen and (max-width: 900px) {
       display: none;
     }
+  }
+  .badge-red,
+  .badge-amber,
+  .badge-green {
+    margin-top: 16px;
   }
 }
 
@@ -337,9 +382,4 @@
   .btn {
     float: right;
   }
-}
-
-// added by Sean
-ul.list-job-details {
-  list-style-type: square;
 }

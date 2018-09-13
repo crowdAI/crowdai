@@ -26,6 +26,7 @@ class CommentsController < ApplicationController
     rendered_html, mentioned_participant_ids = MarkdownService.new(markdown: comment_params[:comment_markdown], mentions_cache: params[:comment][:mentions_cache]).call
     @comment = @topic.comments.new(comment_params)
     @comment.comment = rendered_html
+    authorize @comment
 
     if @comment.save
       EveryCommentNotificationJob
@@ -42,7 +43,6 @@ class CommentsController < ApplicationController
     else
       render :new
     end
-    authorize @comment
   end
 
   def edit
@@ -65,6 +65,7 @@ class CommentsController < ApplicationController
   private
     def set_comment
       @comment = Comment.find(params[:id])
+      authorize @comment
     end
 
     def set_topic_and_challenge

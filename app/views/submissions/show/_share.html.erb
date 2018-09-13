@@ -1,4 +1,9 @@
-<!--Detail share start -->
+<% content_for :meta_title, submission.challenge.challenge %>
+<% content_for :meta_description, "Submission made by #{submission.participant.name}" %>
+<% if submission.media_content_type.present? && submission.media_content_type.split('/').first == 'image' %>
+  <% content_for :meta_image, S3Service.new(submission.media_large).public_url %>
+<% end %>
+
 <div class="detail-share">
   <div>
     <span>Share</span>
@@ -14,7 +19,7 @@
   <div>
     <span
       data-title="Check out this link on crowdAI "
-      data-desc='Share to Facebook'
+      data-desc="<%= submission.challenge.challenge %>"
       data-url='<%= "#{request.base_url}/#{submission.short_url}?utm_source=crowdAI&utm_medium=Facebook" %>'>
     <a
       class="btn btn-secondary btn-facebook"
@@ -28,7 +33,7 @@
   </span>
   <span
     data-title="Check out this link on crowdAI "
-    data-desc='Share to Twitter'
+    data-desc="<%= submission.challenge.challenge %>"
     data-url='<%= "#{request.base_url}/#{submission.short_url}?utm_source=crowdAI&utm_medium=Twitter" %>'>
     <a
       data-url='<%= "#{request.base_url}/#{submission.short_url}?utm_source=crowdAI&utm_medium=Twitter" %>'

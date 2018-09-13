@@ -1,0 +1,9 @@
+<div class='content'>
+  <%= render partial: 'organizers/masthead', locals: { organizer: @organizer } %>
+  <%= render partial: 'organizers/subnav', locals: { organizer: @organizer, challenges: @challenges } %>
+
+  <div class="row">
+    <%= render partial: 'form' %>
+    <%= render partial: 'members' %>
+  </div>
+</div>

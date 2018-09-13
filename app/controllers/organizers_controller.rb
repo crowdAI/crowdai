@@ -52,13 +52,6 @@ class OrganizersController < ApplicationController
     redirect_to organizer_members_path(@organizer)
   end
 
-  def members
-    @organizer = Organizer.friendly.find(params[:organizer_id])
-    @challenges = @organizer.challenges
-    authorize @organizer
-    @members = @organizer.participants
-  end
-
   def remove_image
     @organizer = Organizer.friendly.find(params[:organizer_id])
     @organizer.remove_image_file!

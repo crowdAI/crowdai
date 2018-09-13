@@ -178,6 +178,7 @@ class ChallengesController < ApplicationController
         :grading_history,
         :post_challenge_submissions,
         :submissions_downloadable,
+        :dataset_note_markdown,
         dataset_attributes: [
           :id,
           :challenge_id,

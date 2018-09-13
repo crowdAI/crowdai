@@ -7737,9 +7737,9 @@ stealthy-require@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/stealthy-require/-/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
 
-stimulus-flatpickr@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/stimulus-flatpickr/-/stimulus-flatpickr-0.3.0.tgz#2f938b378fff8b5302b03c78344c979706be8130"
+stimulus-flatpickr@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/stimulus-flatpickr/-/stimulus-flatpickr-0.4.1.tgz#a86b4ee922617e055223335c494eded50a52efad"
   dependencies:
     flatpickr "^4.4.6"
     stimulus "^1.0.1"

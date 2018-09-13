@@ -3,6 +3,13 @@
         html: { class: "dbl-col" } do |f| %>
 
     <fieldset>
+      <label>Leaderboard Message</label>
+      <%= markdown_editor do |m| %>
+        <%= f.text_area :dataset_note_markdown, class: "txt-med" %>
+      <% end %>
+    </fieldset>
+
+    <fieldset>
       <%= render partial: 'challenges/form/submit_buttons',
             locals: { f: f } %>
     </fieldset>

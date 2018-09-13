@@ -58,9 +58,9 @@ Rails.application.routes.draw do
     resources :challenges
     get :remove_image
     get :regen_api_key
-    get :members
     get :clef_email
     resources :clef_tasks
+    resources :members
   end
   resources :blogs do
     resources :votes, only: [:create, :destroy]
@@ -84,7 +84,9 @@ Rails.application.routes.draw do
     end
     resources :events
     resources :winners, only: [:index]
-    resources :submissions
+    resources :submissions do
+      post :filter, on: :collection
+    end
     resources :dynamic_contents, only: [:index]
     resources :leaderboards, only: :index do
       get :submission_detail

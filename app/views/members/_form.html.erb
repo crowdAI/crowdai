@@ -1,0 +1,14 @@
+<div class='row'>
+  <%= form_for :member, url: organizer_members_path, method: :post, html: { class: "dbl-col" } do |f| %>
+    <fieldset>
+      <div class="twin-container">
+        <div class="twin-field">
+          <%= f.text_field :email, placeholder: 'Email address' %>
+        </div>
+        <div class="twin-field">
+          <%= f.submit 'Invite to team', class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+</div>

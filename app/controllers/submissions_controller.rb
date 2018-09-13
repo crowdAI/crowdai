@@ -46,7 +46,18 @@ class SubmissionsController < ApplicationController
       end
     end
     @search.sorts = 'created_at desc' if @search.sorts.empty?
-    @submissions = @search.result.page(params[:page]).per(10)
+    @submissions = @search.result.includes(:participant).page(params[:page]).per(10)
+  end
+
+  def filter
+    Rails.logger.debug('PARAMS Q')
+    Rails.logger.debug(params[:q])
+    @search = policy_scope(Submission).ransack(params[:q])
+    @submissions = @search.result
+      .where(
+        challenge_id: @challenge.id)
+      .page(1).per(10)
+    render @submissions
   end
 
   def show
@@ -139,6 +150,7 @@ class SubmissionsController < ApplicationController
           :grading_status,
           :grading_message,
           :api,
+          :grading_status_cd,
           :docker_configuration_id,
           :clef_method_description,
           :clef_retrieval_type,

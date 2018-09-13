@@ -13,9 +13,9 @@ ActiveAdmin.register Participant do
     column :name
     column :organizer
     column :admin
-    column :current_sign_in_at
-    column :sign_in_count
+    column :confirmed_at
     column :created_at
+    column :updated_at
     actions
   end
 

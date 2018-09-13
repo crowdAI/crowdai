@@ -72,22 +72,12 @@
     <div class="twin-field">
       <%= f.label :start_dttm, 'Round Start (UTC)' %>
       <%= f.text_field :start_dttm,
-            data: {
-              controller: 'flatpickr',
-              flatpickr_enable_time: true,
-              flatpickr_time_24hr: true,
-              flatpickr_minute_increment: 1
-            } %>
+            data: { controller: 'flatpickr' } %>
     </div>
     <div class="twin-field">
       <%= f.label :end_dttm, 'Round End (UTC)' %>
       <%= f.text_field :end_dttm,
-            data: {
-              controller: 'flatpickr',
-              flatpickr_enable_time: true,
-              flatpickr_format: "d-m-Y H:i",
-              flatpickr_minute_increment: 1
-            } %>
+            data: { controller: 'flatpickr' } %>
     </div>
 
     <fieldset>

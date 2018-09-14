@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_27_145811) do
+ActiveRecord::Schema.define(version: 2018_09_14_093818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -223,6 +223,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_145811) do
     t.integer "score_secondary_precision"
     t.text "leaderboard_note_markdown"
     t.text "leaderboard_note"
+    t.integer "failed_submissions", default: 0
     t.index ["challenge_id"], name: "index_challenge_rounds_on_challenge_id"
   end
 

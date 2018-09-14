@@ -16,6 +16,7 @@ class SubmissionsController < ApplicationController
         .where(
           challenge_id: @challenge.id,
           baseline: true)
+        .where.not(participant_id: nil)
         .search(search_params)
       @baselines = 'on'
     else
@@ -39,6 +40,7 @@ class SubmissionsController < ApplicationController
         @search = policy_scope(Submission)
           .where(
             challenge_id: @challenge.id)
+          .where.not(participant_id: nil)
           .search(search_params)
       end
     end
@@ -53,6 +55,7 @@ class SubmissionsController < ApplicationController
     @submissions = @search.result
       .where(
         challenge_id: @challenge.id)
+      .where.not(participant_id: nil)
       .page(1).per(10)
     render @submissions
   end

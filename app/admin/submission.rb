@@ -50,11 +50,7 @@ ActiveAdmin.register Submission do
         as: :select,
         collection: Challenge.all.collect {
           |challenge| [challenge.challenge, challenge.id] }
-      f.input :challenge_round,
-        as: :select,
-        collection: ChallengeRound
-          .where(challenge_id: f.object.challenge_id)
-          .collect {|rnd| ["#{rnd.challenge_round} - #{rnd.id}"] }
+      f.input :challenge_round_id
       f.input :participant_id,
         label: 'Participant',
         as: :select,

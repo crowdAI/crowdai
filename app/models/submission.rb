@@ -3,16 +3,13 @@ class Submission < ApplicationRecord
   before_validation :generate_short_url
 
   belongs_to :challenge
-  belongs_to :participant,
-    optional: true
-  belongs_to :challenge_round,
-    optional: true
-  has_many :submission_files,
-    dependent: :destroy
-  has_many :submission_grades,
-    dependent: :destroy
-  has_many :submission_comments,
-    dependent: :destroy
+  belongs_to :participant, optional: true
+  belongs_to :challenge_round, optional: true
+  with_options dependent: :destroy do |assoc|
+    assoc.has_many :submission_files
+    assoc.has_many :submission_grades
+    assoc.has_many :submission_comments
+  end
   accepts_nested_attributes_for :submission_files,
     reject_if: lambda { |f| f[:submission_file_s3_key].blank? },
     allow_destroy: true

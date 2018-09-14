@@ -213,6 +213,7 @@ class ChallengesController < ApplicationController
           :minimum_score_secondary,
           :submission_limit,
           :submission_limit_period,
+          :failed_submissions,
           :ranking_window,
           :ranking_highlight,
           :score_significant_digits,

@@ -31,8 +31,4 @@ class SubmissionDetailPresenter
     @view
   end
 
-  def gitlab_url
-    @submission.meta
-  end
-
 end

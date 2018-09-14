@@ -15,7 +15,6 @@ class SubmissionsController < ApplicationController
       @search = policy_scope(Submission)
         .where(
           challenge_id: @challenge.id,
-          challenge_round_id: @current_round_id,
           baseline: true)
         .search(search_params)
       @baselines = 'on'
@@ -30,7 +29,6 @@ class SubmissionsController < ApplicationController
         @search = policy_scope(Submission)
           .where(
             challenge_id: @challenge.id,
-            challenge_round_id: @current_round_id,
             participant_id: current_participant.id)
           .search(search_params)
         @submissions_remaining = SubmissionsRemainingQuery.new(
@@ -40,8 +38,7 @@ class SubmissionsController < ApplicationController
       else
         @search = policy_scope(Submission)
           .where(
-            challenge_id: @challenge.id,
-            challenge_round_id: @current_round_id)
+            challenge_id: @challenge.id)
           .search(search_params)
       end
     end

@@ -24,6 +24,14 @@
                 target: 'filter-sidebar.query'
               } %>
 
+            <h4>Submission ID</h4>
+            <%= f.text_field :id_eq,
+              class: "form-input",
+              data: {
+                action: 'keyup->filter-sidebar#filterChanged',
+                target: 'filter-sidebar.query'
+              } %>
+
             <h4>Status</h4>
             <%= f.select :grading_status_cd_eq,
                   enum_option_pairs(Submission, :grading_status),

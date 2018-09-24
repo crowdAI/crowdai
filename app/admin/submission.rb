@@ -19,6 +19,7 @@ ActiveAdmin.register Submission do
   filter :grading_status_cd
   filter :grading_message
 
+
   index do
     selectable_column
     column :id
@@ -34,8 +35,13 @@ ActiveAdmin.register Submission do
     actions
   end
 
-
   controller do
+    def index
+      index! { |format| format.json do
+          render json: Submission.where(challenge_id: collection.first.challenge_id).as_json
+        end
+      }
+    end
     def find_resource
       scoped_collection.find(params[:id])
     end
@@ -71,7 +77,7 @@ ActiveAdmin.register Submission do
     f.actions
   end
 
-  csv do
+ csv do
     column :id
     column :participant_id
     column(:participant) { |submission| submission.participant.name }
@@ -84,5 +90,6 @@ ActiveAdmin.register Submission do
     column :created_at
     column :updated_at
   end
+
 
 end

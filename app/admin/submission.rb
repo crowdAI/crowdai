@@ -37,10 +37,11 @@ ActiveAdmin.register Submission do
 
   controller do
     def index
-      index! { |format| format.json do
-          render json: Submission.where(challenge_id: collection.first.challenge_id).as_json
+      index! do |format|
+        format.json do
+          render json: Submission.where(challenge_id: collection.first.challenge_id).as_json(methods: :name)
         end
-      }
+      end
     end
     def find_resource
       scoped_collection.find(params[:id])

@@ -99,6 +99,12 @@ class Submission < ApplicationRecord
     'Manual' => :manual
   }
 
+  def as_json(options={})
+    super(
+      only: [:id, :participant_id, :score, :score_secondary, :grading_status_cd, :grading_message, :post_challenge, :media_content_type, :created_at, :updated_at],
+      include: { participant: { only: [:name] }}
+    )
+  end
 
   private
   def generate_short_url

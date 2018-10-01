@@ -316,3 +316,21 @@ module ActiveAdmin
     end
   end
 end
+
+module ActiveAdmin
+  class ResourceController
+    module DataAccess
+      def max_per_page
+        30_000
+      end
+
+      def per_page
+        return 30_000 if %w(text/csv application/xml application/json).include?(request.format)
+
+        return max_per_page if active_admin_config.paginate == false
+
+        @per_page || active_admin_config.per_page
+      end
+    end
+  end
+end

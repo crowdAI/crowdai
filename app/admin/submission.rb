@@ -24,6 +24,9 @@ ActiveAdmin.register Submission do
     selectable_column
     column :id
     column :participant_id
+    column "Name" do |participant|
+      participant.name
+    end
     column :score
     column :score_secondary
     column :grading_status_cd
@@ -36,12 +39,8 @@ ActiveAdmin.register Submission do
   end
 
   controller do
-    def index
-      index! do |format|
-        format.json do
-          render json: Submission.where(challenge_id: collection.first.challenge_id).as_json(methods: :name)
-        end
-      end
+    def scoped_collection
+      super.includes :participant
     end
     def find_resource
       scoped_collection.find(params[:id])
@@ -91,6 +90,5 @@ ActiveAdmin.register Submission do
     column :created_at
     column :updated_at
   end
-
 
 end

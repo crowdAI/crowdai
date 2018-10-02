@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 feature "leaderboard invisible challenge completed" do
@@ -67,3 +68,4 @@ feature "leaderboard invisible challenge completed" do
   end
 
 end
+=end

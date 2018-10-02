@@ -3579,6 +3579,13 @@ CREATE INDEX index_login_activities_on_user_type_and_user_id ON public.login_act
 
 
 --
+-- Name: index_merit_activity_logs_on_action_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_merit_activity_logs_on_action_id ON public.merit_activity_logs USING btree (action_id);
+
+
+--
 -- Name: index_merit_score_points_on_score_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3702,6 +3709,13 @@ CREATE INDEX index_participants_on_organizer_id ON public.participants USING btr
 --
 
 CREATE UNIQUE INDEX index_participants_on_reset_password_token ON public.participants USING btree (reset_password_token);
+
+
+--
+-- Name: index_participants_on_sash_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_participants_on_sash_id ON public.participants USING btree (sash_id);
 
 
 --
@@ -4588,6 +4602,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180921115746'),
 ('20180921123944'),
 ('20180925075651'),
-('20180925095414');
+('20180925095414'),
+('20181002125010');
 
 

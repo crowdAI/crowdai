@@ -92,45 +92,44 @@ gem 'valid_email2'
 gem 'webpacker', '~> 2.0'
 
 group :development do
-  gem 'brakeman', :require => false
-  gem 'derailed_benchmarks'
-  gem 'guard'
-  gem 'lol_dba'
-  gem 'meta_request'
-  gem 'model_2_factory-rails'
-  gem 'rails-erd'
-  gem 'stackprof'
-  gem 'seed_dump'
-  gem 'sdoc', '~> 0.4.0'
-  gem 'scss_lint', require: false
+  #gem 'brakeman', :require => false
+  #gem 'lol_dba'
+  #gem 'seed_dump'
+  #gem 'sdoc', '~> 0.4.0'
   gem 'web-console'
+  gem 'table_print'
+  gem 'listen'
 end
 
 group :development, :test do
   gem 'byebug'
   gem 'ffaker'
-  gem 'rspec-cells'
-  gem 'rspec-rails', '~> 3.6'
-  gem 'rspec-kickstarter'
+  #gem 'rspec-cells'
+  #gem 'rspec-rails', '~> 3.6'
+  #gem 'rspec-kickstarter'
+
+
+
   gem 'oauth2'
   gem 'parallel_tests'
   gem 'spring'
-  gem 'table_print'
+
 end
 
 group :test do
-  gem 'factory_bot_rails'
-  gem 'chromedriver-helper'
-  gem 'capybara'
-  gem 'capybara-email'
-  gem 'capybara-screenshot'
-  gem 'database_cleaner'
-  gem 'launchy'
-  gem 'nokogiri' #, '~> 1.8'
-  gem 'pundit-matchers', git: 'https://github.com/crowdAI/pundit-matchers'
-  gem 'rails-controller-testing'
-  gem 'rspec-retry'
-  gem 'simplecov', :require => false
+  #gem 'factory_bot_rails'
+  gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
-  gem 'timecop'
+  gem 'chromedriver-helper'
+  #gem 'capybara-email'
+  #gem 'capybara-screenshot'
+  #gem 'database_cleaner'
+  #gem 'launchy'
+  #gem 'nokogiri' #, '~> 1.8'
+  #gem 'pundit-matchers', git: 'https://github.com/crowdAI/pundit-matchers'
+  #gem 'rails-controller-testing'
+  #gem 'rspec-retry'
+  #gem 'simplecov', :require => false
+  #gem 'selenium-webdriver'
+  #gem 'timecop'
 end

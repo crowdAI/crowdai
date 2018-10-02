@@ -1,0 +1,20 @@
+<div class='content'>
+  <%= render partial: 'profile/masthead', locals: { participant: @participant } %>
+  <%= render partial: 'profile/subnav', locals: { participant: @participant } %>
+
+  <div class="row">
+    <% if @articles.any? %>
+      <ul class="list-tutorials">
+        <% @articles.each do |article| %>
+          <%= render partial: 'articles/article', locals: { article: article } %>
+        <% end %>
+      </ul>
+    <% else %>
+      <div class='article'>
+        <p class='light'>
+          <%= "#{@participant.name} hasn't authored any tutorials yet..." %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>

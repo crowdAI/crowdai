@@ -28,11 +28,13 @@ ActiveAdmin.register Challenge do
     column :page_views
     column :participant_count
     column :submission_count
-    actions
+    actions defaults: false do |challenge|
+      link_to 'view', admin_challenge_path(challenge), class: 'view_link member_link'
+    end
   end
 
   controller do
-    actions :all, except: [:edit,:new]
+    actions :all, except: [:edit, :new]
     def find_resource
       scoped_collection.friendly.find(params[:id])
     end

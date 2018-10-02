@@ -1,3 +1,4 @@
+=begin
 ActiveAdmin.register OrganizerApplication do
 
   controller do
@@ -16,6 +17,5 @@ ActiveAdmin.register OrganizerApplication do
     actions
   end
 
-
-
 end
+=end

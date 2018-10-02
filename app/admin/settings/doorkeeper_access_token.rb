@@ -1,4 +1,5 @@
 ActiveAdmin.register Doorkeeper::AccessToken do
+  menu parent: "Settings"
   actions :index, :show
 
   #belongs_to :application

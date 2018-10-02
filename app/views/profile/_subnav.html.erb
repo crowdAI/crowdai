@@ -1,0 +1,46 @@
+<div class="sub-nav">
+  <div class="row">
+    <ul>
+      <%= content_tag :li, class: (controller.controller_name == 'achievements' ? 'active' : nil) do %>
+        <%= link_to participant_path(participant) do %>
+          Achievements
+         <sup><%= @achievements.count %></sup>
+        <% end %>
+      <% end %>
+
+      <%= content_tag :li, class: (controller.controller_name == 'challenges' ? 'active' : nil) do %>
+        <%= link_to participant_challenges_path(participant) do %>
+          Challenges
+          <sup><%= @challenges.count %></sup>
+        <% end %>
+      <% end %>
+
+      <%= content_tag :li, class: (controller.controller_name == 'tutorials' ? 'active' : nil) do %>
+        <%= link_to participant_tutorials_path(participant) do %>
+          Tutorials
+          <sup><%= @articles.count %></sup>
+        <% end %>
+      <% end %>
+
+      <%= content_tag :li, class: (controller.controller_name == 'posts' ? 'active' : nil) do %>
+        <%= link_to participant_posts_path(participant) do %>
+          Posts <sup><%= @posts.count %></sup>
+        <% end %>
+      <% end %>
+
+      <%= content_tag :li, class: (controller.controller_name == 'bio' ? 'active' : nil) do %>
+        <%= link_to participant_bio_index_path(participant) do %>
+          Bio
+        <% end %>
+      <% end %>
+
+      <% if policy(participant).clef_access? %>
+        <%= content_tag :li, class: (controller.controller_name == 'contacts' ? 'active' : nil) do %>
+          <%= link_to participant_contacts_path(participant) do %>
+            Contact
+          <% end %>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>

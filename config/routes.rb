@@ -41,12 +41,23 @@ Rails.application.routes.draw do
   end
 
   devise_for :participants
-  resources :participants, only: [:show, :edit, :update, :destroy, :index] do
+  resources :participants, only: [:edit, :update, :destroy, :index] do
     get :sync_mailchimp
     get :regen_api_key
     get :remove_image
     resources :email_preferences, only: [:edit, :update]
+    scope module: :profile do
+      resources :achievements, only: [:index]
+      resources :challenges, only: [:index]
+      resources :tutorials, only: [:index]
+      resources :posts, only: [:index]
+      resources :bio, only: [:index]
+      resources :contacts, only: [:index]
+    end
   end
+  match '/participants/:id', to: 'profile/achievements#index', via: :get
+
+  resources :achievements, only: [:index, :show]
   resources :job_postings, only: [:index, :show]
   resources :gdpr_exports, only: [:create]
 
@@ -137,7 +148,6 @@ Rails.application.routes.draw do
   match '/terms',   to: 'pages#terms',   via: :get
   match '/faq',     to: 'pages#faq',     via: :get
   match '/cookies', to: 'pages#cookies', via: :get
-
 
   resources :markdown_editors, only: [:index, :create] do
     put :presign, on: :collection

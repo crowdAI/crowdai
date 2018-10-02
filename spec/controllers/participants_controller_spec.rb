@@ -18,13 +18,6 @@ RSpec.describe ParticipantsController, type: :controller do
       sign_in participant
     end
 
-    describe "GET #show" do
-      it "assigns the requested participant as @participant" do
-        get :show, params: { id: participant.id }
-        expect(assigns(:participant)).to eq(participant)
-      end
-    end
-
     describe "GET #edit" do
       it "assigns the requested participant as @participant" do
         get :edit, params: { id: participant.id }

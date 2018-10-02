@@ -1,0 +1,2 @@
+class LeaderboardSnapshot < ApplicationRecord
+end

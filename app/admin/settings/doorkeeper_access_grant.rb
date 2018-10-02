@@ -1,4 +1,5 @@
 ActiveAdmin.register Doorkeeper::AccessGrant do
+  menu parent: "Settings"
   actions :index, :show
 
   #belongs_to :doorkeeper_application

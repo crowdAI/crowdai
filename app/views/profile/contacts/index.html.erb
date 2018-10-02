@@ -1,0 +1,65 @@
+<div class='content'>
+  <%= render partial: 'profile/masthead', locals: { participant: @participant } %>
+  <%= render partial: 'profile/subnav', locals: { participant: @participant } %>
+
+  <div class="row">
+    <div class="article">
+      <table>
+        <tr>
+          <td>First name:</td>
+          <td>
+            <% if @participant.first_name.present? %>
+              <%= @participant.first_name %>
+            <% else %>
+              <span class="light">Not specified yet</span>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>Last name:</td>
+          <td>
+            <% if @participant.last_name.present? %>
+              <%= @participant.last_name %>
+            <% else %>
+              <span class="light">Not specified yet</span>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td><%= @participant.email %></td>
+        </tr>
+        <tr>
+          <td>Address:</td>
+          <td>
+            <% if @participant.address.present? %>
+              <%= @participant.address %>
+            <% else %>
+              <span class="light">Not specified yet</span>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>City:</td>
+          <td>
+            <% if @participant.city.present? %>
+              <%= @participant.city %>
+            <% else %>
+              <span class="light">Not specified yet</span>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>Country:</td>
+          <td>
+            <% if @participant.country_cd.present? %>
+              <%= "#{ISO3166::Country.find_country_by_alpha2(@participant.country_cd)} (#{@participant.country_cd})" %>
+            <% else %>
+              <span class="light">Not specified yet</span>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

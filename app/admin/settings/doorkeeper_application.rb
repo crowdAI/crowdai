@@ -1,4 +1,5 @@
 ActiveAdmin.register Doorkeeper::Application do
+  menu parent: "Settings"
   actions :index, :show
 
 =begin
@@ -23,6 +24,5 @@ ActiveAdmin.register Doorkeeper::Application do
     end
     actions
   end
-
 
 end

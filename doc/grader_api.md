@@ -65,10 +65,10 @@ returns:
 ### PATCH: Rescore Submission
 
 ```
-endpoint: /api/external_graders
-verb: PATCH
+endpoint: /api/external_graders/:id
+verb: PATCH / PUT
+id: submission_id
 auth: organizer API key
-- submission_id (required)
 - score (required - can be zero)
 - score_secondary (optional)
 - grading_status ('graded' | 'failed')
@@ -84,10 +84,10 @@ auth: organizer API key
 ### PATCH: Add Media
 
 ```
-endpoint: /api/external_graders
-verb: PATCH
+endpoint: /api/external_graders/:id
+verb: PATCH / PUT
+id: submission_id
 auth: organizer API key
-- submission_id (required)
 - media_large (optional)
 - media_thumbnail (optional)
 - media_content_type (optional)

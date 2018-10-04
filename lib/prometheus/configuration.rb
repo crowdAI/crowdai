@@ -7,7 +7,7 @@ module Prometheus
     PARTICIPANT_COUNTER =
     Prometheus::Client::Counter.new(:participant, 'A new participant has signed up to crowdAI.')
 
-    prometheus.register(SUBMISSION_COUNTER)
-    prometheus.register(PARTICIPANT_COUNTER)
+    #prometheus.register(SUBMISSION_COUNTER)
+    #prometheus.register(PARTICIPANT_COUNTER)
   end
 end

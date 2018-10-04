@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  challenge_id: 1
+  participant_id: 1
+  topic: MyString
+  sticky: false
+  views: 1
+  posts_count: 1
+  slug: MyString
+  vote_count: 1
+
+two:
+  challenge_id: 1
+  participant_id: 1
+  topic: MyString
+  sticky: false
+  views: 1
+  posts_count: 1
+  slug: MyString
+  vote_count: 1

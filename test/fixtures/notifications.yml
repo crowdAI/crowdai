@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  participant_id: 1
+  notification_type: MyString
+  notifiable_type: MyString
+  notifiable_id: 1
+  read_at: 2018-10-04 11:29:08
+  is_new: false
+  message: MyString
+  thumbnail_url: MyString
+  notification_url: MyString
+
+two:
+  participant_id: 1
+  notification_type: MyString
+  notifiable_type: MyString
+  notifiable_id: 1
+  read_at: 2018-10-04 11:29:08
+  is_new: false
+  message: MyString
+  thumbnail_url: MyString
+  notification_url: MyString

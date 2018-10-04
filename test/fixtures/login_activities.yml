@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  scope: MyString
+  strategy: MyString
+  identity: MyString
+  success: false
+  failure_reason: MyString
+  user_type: MyString
+  user_id: 1
+  context: MyString
+  ip: MyString
+  user_agent: MyText
+  referrer: MyText
+  city: MyString
+  region: MyString
+  country: MyString
+
+two:
+  scope: MyString
+  strategy: MyString
+  identity: MyString
+  success: false
+  failure_reason: MyString
+  user_type: MyString
+  user_id: 1
+  context: MyString
+  ip: MyString
+  user_agent: MyText
+  referrer: MyText
+  city: MyString
+  region: MyString
+  country: MyString

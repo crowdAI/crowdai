@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  participant_id: 1
+  clef_task_id: 1
+  organizer_id: 1
+  name: MyString
+  challenge: MyString
+
+two:
+  participant_id: 1
+  clef_task_id: 1
+  organizer_id: 1
+  name: MyString
+  challenge: MyString

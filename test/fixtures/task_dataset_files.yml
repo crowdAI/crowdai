@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  clef_task_id: 1
+  seq: 1
+  description: MyString
+  evaluation: false
+  title: MyString
+  dataset_file_s3_key: MyString
+
+two:
+  clef_task_id: 1
+  seq: 1
+  description: MyString
+  evaluation: false
+  title: MyString
+  dataset_file_s3_key: MyString

@@ -1,0 +1,49 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  challenge_id: 1
+  challenge_round_id: 1
+  participant_id: 1
+  row_num: 1
+  previous_row_num: 1
+  slug: MyString
+  name: MyString
+  entries: 1
+  score: 1.5
+  score_secondary: 1.5
+  media_large: MyString
+  media_thumbnail: MyString
+  media_content_type: MyString
+  description: MyString
+  description_markdown: MyString
+  leaderboard_type_cd: MyString
+  refreshed_at: 2018-10-04 11:31:43
+  submission_id: 1
+  post_challenge: false
+  seq: 1
+  baseline: false
+  baseline_comment: MyString
+
+two:
+  challenge_id: 1
+  challenge_round_id: 1
+  participant_id: 1
+  row_num: 1
+  previous_row_num: 1
+  slug: MyString
+  name: MyString
+  entries: 1
+  score: 1.5
+  score_secondary: 1.5
+  media_large: MyString
+  media_thumbnail: MyString
+  media_content_type: MyString
+  description: MyString
+  description_markdown: MyString
+  leaderboard_type_cd: MyString
+  refreshed_at: 2018-10-04 11:31:43
+  submission_id: 1
+  post_challenge: false
+  seq: 1
+  baseline: false
+  baseline_comment: MyString

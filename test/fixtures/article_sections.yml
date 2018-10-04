@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  article_id: 1
+  seq: 1
+  description_markdown: MyText
+  description: MyText
+  section: MyString
+  slug: MyString
+
+two:
+  article_id: 1
+  seq: 1
+  description_markdown: MyText
+  description: MyText
+  section: MyString
+  slug: MyString

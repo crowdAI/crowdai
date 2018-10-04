@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  organizer_id: 1
+  image_file: MyString
+  visible: false
+  seq: 1
+  name: MyString
+
+two:
+  organizer_id: 1
+  image_file: MyString
+  visible: false
+  seq: 1
+  name: MyString

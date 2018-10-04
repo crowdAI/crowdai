@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  challenge_id: 1
+  challenge_round: MyString
+  active: false
+  submission_limit: 1
+  submission_limit_period_cd: MyString
+  start_dttm: 2018-10-04 11:27:21
+  end_dttm: 2018-10-04 11:27:21
+  minimum_score: 1.5
+  minimum_score_secondary: 1.5
+  ranking_window: 1
+  ranking_highlight: 1
+  score_precision: 1
+  score_secondary_precision: 1
+  leaderboard_note_markdown: MyText
+  leaderboard_note: MyText
+  failed_submissions: 1
+
+two:
+  challenge_id: 1
+  challenge_round: MyString
+  active: false
+  submission_limit: 1
+  submission_limit_period_cd: MyString
+  start_dttm: 2018-10-04 11:27:21
+  end_dttm: 2018-10-04 11:27:21
+  minimum_score: 1.5
+  minimum_score_secondary: 1.5
+  ranking_window: 1
+  ranking_highlight: 1
+  score_precision: 1
+  score_secondary_precision: 1
+  leaderboard_note_markdown: MyText
+  leaderboard_note: MyText
+  failed_submissions: 1

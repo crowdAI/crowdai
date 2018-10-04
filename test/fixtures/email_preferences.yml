@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  participant_id: 1
+  newsletter: false
+  challenges_followed: false
+  mentions: false
+  email_frequency_cd: MyString
+
+two:
+  participant_id: 1
+  newsletter: false
+  challenges_followed: false
+  mentions: false
+  email_frequency_cd: MyString

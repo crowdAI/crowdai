@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  challenge_id: 1
+  participant_id: 1
+  organizer_id: 1
+  status_cd: MyString
+  challenge: MyString
+  private_challenge: false
+  description: MyText
+  rules: MyText
+  prizes: MyText
+  resources: MyText
+  tagline: MyString
+  image_file: MyString
+  submission_count: 1
+  participant_count: 1
+  page_views: 1
+  name: MyString
+  email: MyString
+  bio: MyText
+  github: MyString
+  linkedin: MyString
+  twitter: MyString
+
+two:
+  challenge_id: 1
+  participant_id: 1
+  organizer_id: 1
+  status_cd: MyString
+  challenge: MyString
+  private_challenge: false
+  description: MyText
+  rules: MyText
+  prizes: MyText
+  resources: MyText
+  tagline: MyString
+  image_file: MyString
+  submission_count: 1
+  participant_count: 1
+  page_views: 1
+  name: MyString
+  email: MyString
+  bio: MyText
+  github: MyString
+  linkedin: MyString
+  twitter: MyString

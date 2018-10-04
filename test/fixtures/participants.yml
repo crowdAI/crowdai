@@ -1,0 +1,29 @@
+sean:
+  email: sean@example.com
+  admin: false
+  organizer_id: 1
+  name: Sean
+  email_public: false
+  bio: MyText
+  website: "https://www.crowdai.org/"
+  github: "https://www.crowdai.org/"
+  linkedin: "https://www.crowdai.org/"
+  twitter: "https://www.crowdai.org/"
+  api_key: MyString
+  first_name: 'Sean'
+  last_name: 'Carroll'
+
+admin:
+  email: admin@example.com
+  admin: true
+  organizer_id: 1
+  name: Sean
+  email_public: false
+  bio: MyText
+  website: "https://www.crowdai.org/"
+  github: "https://www.crowdai.org/"
+  linkedin: "https://www.crowdai.org/"
+  twitter: "https://www.crowdai.org/"
+  api_key: MyString
+  first_name: 'Sean'
+  last_name: 'Carroll'

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  challenge_id: 1
+  image_file: MyString
+  partner_url: MyString
+
+two:
+  challenge_id: 1
+  image_file: MyString
+  partner_url: MyString

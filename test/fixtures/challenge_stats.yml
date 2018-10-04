@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  challenge_id: 1
+  challenge: MyString
+  challenge_round_id: 1
+  challenge_round: MyString
+  start_dttm: 2018-10-04 11:32:23
+  end_dttm: 2018-10-04 11:32:23
+  duration: 
+  submissions: 1
+  participants: 1
+
+two:
+  challenge_id: 1
+  challenge: MyString
+  challenge_round_id: 1
+  challenge_round: MyString
+  start_dttm: 2018-10-04 11:32:23
+  end_dttm: 2018-10-04 11:32:23
+  duration: 
+  submissions: 1
+  participants: 1

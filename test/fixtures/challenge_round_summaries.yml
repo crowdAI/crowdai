@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  challenge_round: MyString
+  row_num: 1
+  active_row_num: 1
+  round_status_cd: MyText
+  active: false
+  challenge_id: 1
+  start_dttm: 2018-10-04 11:32:07
+  end_dttm: 2018-10-04 11:32:07
+  submission_limit: 1
+  submission_limit_period_cd: MyString
+  failed_submissions: 1
+  minimum_score: 1.5
+  minimum_score_secondary: 1.5
+  status_cd: MyString
+
+two:
+  challenge_round: MyString
+  row_num: 1
+  active_row_num: 1
+  round_status_cd: MyText
+  active: false
+  challenge_id: 1
+  start_dttm: 2018-10-04 11:32:07
+  end_dttm: 2018-10-04 11:32:07
+  submission_limit: 1
+  submission_limit_period_cd: MyString
+  failed_submissions: 1
+  minimum_score: 1.5
+  minimum_score_secondary: 1.5
+  status_cd: MyString

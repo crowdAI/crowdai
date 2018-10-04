@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  article: MyString
+  participant_id: 1
+  published: false
+  vote_count: 1
+  category: MyString
+  view_count: 1
+  summary: MyString
+  slug: MyString
+  image_file: MyString
+  article_type_cd: MyString
+  notebook_url: MyString
+
+two:
+  article: MyString
+  participant_id: 1
+  published: false
+  vote_count: 1
+  category: MyString
+  view_count: 1
+  summary: MyString
+  slug: MyString
+  image_file: MyString
+  article_type_cd: MyString
+  notebook_url: MyString

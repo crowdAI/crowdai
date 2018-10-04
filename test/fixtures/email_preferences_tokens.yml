@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  participant_id: 1
+  email_preferences_token: MyString
+  token_expiration_dttm: 2018-10-04 11:28:04
+
+two:
+  participant_id: 1
+  email_preferences_token: MyString
+  token_expiration_dttm: 2018-10-04 11:28:04

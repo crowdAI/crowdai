@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  submission_id: 1
+  grading_status_cd: MyString
+  grading_message: MyString
+  grading_factor: 1.5
+  score: 1.5
+  score_secondary: 1.5
+  slug: MyString
+
+two:
+  submission_id: 1
+  grading_status_cd: MyString
+  grading_message: MyString
+  grading_factor: 1.5
+  score: 1.5
+  score_secondary: 1.5
+  slug: MyString

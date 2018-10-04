@@ -1,0 +1,21 @@
+one:
+  participant_id: 1
+  title: MyString
+  body: MyText
+  published: false
+  vote_count: 1
+  view_count: 1
+  body_markdown: MyText
+  seq: 1
+  posted_at: 2018-10-04 11:26:43
+
+two:
+  participant_id: 1
+  title: MyString
+  body: MyText
+  published: false
+  vote_count: 1
+  view_count: 1
+  body_markdown: MyText
+  seq: 1
+  posted_at: 2018-10-04 11:26:43

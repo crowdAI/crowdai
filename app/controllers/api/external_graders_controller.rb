@@ -33,6 +33,7 @@ class Api::ExternalGradersController < Api::BaseController
       raise DeveloperAPIKeyInvalid if participant.nil?
       challenge = Challenge.where(
                     challenge_client_name: params[:challenge_client_name]).first
+      #byebug
       challenge_round_id = get_challenge_round_id(
         challenge: challenge, params: params)
       raise ChallengeClientNameInvalid if challenge.nil?

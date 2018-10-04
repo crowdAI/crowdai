@@ -247,75 +247,6 @@ CREATE TABLE public.badges_sashes (
 
 
 --
--- Name: participants; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.participants (
-    id integer NOT NULL,
-    email character varying DEFAULT ''::character varying NOT NULL,
-    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
-    reset_password_token character varying,
-    reset_password_sent_at timestamp without time zone,
-    remember_created_at timestamp without time zone,
-    confirmation_token character varying,
-    confirmed_at timestamp without time zone,
-    confirmation_sent_at timestamp without time zone,
-    failed_attempts integer DEFAULT 0 NOT NULL,
-    unlock_token character varying,
-    locked_at timestamp without time zone,
-    admin boolean DEFAULT false,
-    verified boolean DEFAULT false,
-    verification_date date,
-    timezone character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    unconfirmed_email character varying,
-    organizer_id integer,
-    name character varying,
-    email_public boolean DEFAULT false,
-    bio text,
-    website character varying,
-    github character varying,
-    linkedin character varying,
-    twitter character varying,
-    account_disabled boolean DEFAULT false,
-    account_disabled_reason text,
-    account_disabled_dttm timestamp without time zone,
-    slug character varying,
-    api_key character varying,
-    image_file character varying,
-    affiliation character varying,
-    country_cd character varying,
-    address text,
-    city character varying,
-    first_name character varying,
-    last_name character varying,
-    clef_email boolean DEFAULT false,
-    sash_id integer,
-    level integer DEFAULT 0
-);
-
-
---
--- Name: badge_stats; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.badge_stats AS
- SELECT bc.badge_id,
-    bc.badge_count,
-    pc.participant_count,
-    ((100)::double precision - trunc(((((pc.participant_count - bc.badge_count))::double precision / (pc.participant_count)::double precision) * (100)::double precision))) AS percentile
-   FROM ( SELECT b.badge_id,
-            count(*) AS badge_count
-           FROM public.badges_sashes b,
-            public.participants p
-          WHERE (p.sash_id = b.sash_id)
-          GROUP BY b.badge_id) bc,
-    ( SELECT count(*) AS participant_count
-           FROM public.participants) pc;
-
-
---
 -- Name: badges_sashes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -623,6 +554,56 @@ CREATE TABLE public.organizers (
     challenge_proposal character varying,
     api_key character varying,
     clef_organizer boolean DEFAULT false
+);
+
+
+--
+-- Name: participants; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.participants (
+    id integer NOT NULL,
+    email character varying DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    confirmation_token character varying,
+    confirmed_at timestamp without time zone,
+    confirmation_sent_at timestamp without time zone,
+    failed_attempts integer DEFAULT 0 NOT NULL,
+    unlock_token character varying,
+    locked_at timestamp without time zone,
+    admin boolean DEFAULT false,
+    verified boolean DEFAULT false,
+    verification_date date,
+    timezone character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    unconfirmed_email character varying,
+    organizer_id integer,
+    name character varying,
+    email_public boolean DEFAULT false,
+    bio text,
+    website character varying,
+    github character varying,
+    linkedin character varying,
+    twitter character varying,
+    account_disabled boolean DEFAULT false,
+    account_disabled_reason text,
+    account_disabled_dttm timestamp without time zone,
+    slug character varying,
+    api_key character varying,
+    image_file character varying,
+    affiliation character varying,
+    country_cd character varying,
+    address text,
+    city character varying,
+    first_name character varying,
+    last_name character varying,
+    clef_email boolean DEFAULT false,
+    sash_id integer,
+    level integer DEFAULT 0
 );
 
 
@@ -1359,40 +1340,6 @@ CREATE SEQUENCE public.job_postings_id_seq
 --
 
 ALTER SEQUENCE public.job_postings_id_seq OWNED BY public.job_postings.id;
-
-
---
--- Name: leaderboard_snapshots; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.leaderboard_snapshots (
-    id bigint,
-    challenge_id bigint,
-    challenge_round_id bigint,
-    participant_id bigint,
-    row_num integer,
-    previous_row_num integer,
-    slug character varying,
-    name character varying,
-    entries integer,
-    score double precision,
-    score_secondary double precision,
-    media_large character varying,
-    media_thumbnail character varying,
-    media_content_type character varying,
-    description character varying,
-    description_markdown character varying,
-    leaderboard_type_cd character varying,
-    refreshed_at timestamp without time zone,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    submission_id integer,
-    post_challenge boolean,
-    seq integer,
-    baseline boolean,
-    baseline_comment character varying,
-    snapshot_instance integer
-);
 
 
 --
@@ -2432,26 +2379,6 @@ CREATE SEQUENCE public.task_dataset_files_id_seq
 --
 
 ALTER SEQUENCE public.task_dataset_files_id_seq OWNED BY public.task_dataset_files.id;
-
-
---
--- Name: tmp; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.tmp (
-    count bigint,
-    date_trunc date
-);
-
-
---
--- Name: tmp2; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.tmp2 (
-    cnt bigint,
-    date_trunc date
-);
 
 
 --
@@ -4584,10 +4511,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180827145811'),
 ('20180914093818'),
 ('20180914101925'),
-('20180914101940'),
-('20180921115746'),
-('20180921123944'),
-('20180925075651'),
-('20180925095414');
+('20180914101940');
 
 

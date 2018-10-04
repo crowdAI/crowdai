@@ -15,17 +15,19 @@ There are four possible API keys for use with crowdAI:
 
 ### GET: Verify Developer API Key
 
+```
 endpoint: /api/external_graders/:id
 verb: GET
 auth: organizer API key OR crowdAI API key
-id: dev_api_key
+id: api_key
 returns:
 - status 200
 - participant_id + 200
-
+```
 
 ### GET: Verify Team API Key - not yet implemented
 
+```
 endpoint: /api/external_graders/:id
 verb: GET
 auth: organizer API key OR crowdAI API key
@@ -33,15 +35,17 @@ id: team_api_key
 returns:
 - status 202
 - team leader participant_id + 200
+```
 
 ### POST: Graded Submission
 
+```
 endpoint: /api/external_graders
 verb: POST
 auth: organizer API key
 params:
-- dev_api_key (required)
-- challenge_client_id (required)
+- api_key (required)
+- challenge_client_name (required)
 - score (required - can be zero)
 - score_secondary (optional)
 - comment (markdown - optional - made by participant)
@@ -53,20 +57,23 @@ returns:
 - message: "Participant #{participant.name} scored"
 - submissions_remaining (today)
 - submission_reset_dttm (UTC - when the submission count starts again)
+```
 
 - Admins are sent an email
 
 
 ### PATCH: Rescore Submission
 
-endpoint: /api/external_graders
-verb: PATCH
+```
+endpoint: /api/external_graders/:id
+verb: PATCH / PUT
+id: submission_id
 auth: organizer API key
-- submission_id (required)
 - score (required - can be zero)
 - score_secondary (optional)
 - grading_status ('graded' | 'failed')
 - grading_message (required for grading_status = failed)
+```
 
 **Notes**
 
@@ -76,15 +83,17 @@ auth: organizer API key
 
 ### PATCH: Add Media
 
-endpoint: /api/external_graders
-verb: PATCH
+```
+endpoint: /api/external_graders/:id
+verb: PATCH / PUT
+id: submission_id
 auth: organizer API key
-- submission_id (required)
 - media_large (optional)
 - media_thumbnail (optional)
 - media_content_type (optional)
 - grading_status ('graded' | 'failed')
 - grading_message (required for grading_status = failed)
+```
 
 **Notes**
 

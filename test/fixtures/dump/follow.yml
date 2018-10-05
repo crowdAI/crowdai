@@ -1,0 +1,262 @@
+---
+follow_1:
+  id: 1
+  followable_id: 1
+  followable_type: Challenge
+  participant_id: 133
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2017-08-10 00:00:00.000000000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *3
+follow_2:
+  id: 2
+  followable_id: 1
+  followable_type: Challenge
+  participant_id: 313
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *5
+follow_3:
+  id: 3
+  followable_id: 1
+  followable_type: Challenge
+  participant_id: 345
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *7
+follow_4:
+  id: 4
+  followable_id: 1
+  followable_type: Challenge
+  participant_id: 333
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *9
+follow_5:
+  id: 5
+  followable_id: 1
+  followable_type: Challenge
+  participant_id: 652
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *11
+follow_6:
+  id: 6
+  followable_id: 1
+  followable_type: Challenge
+  participant_id: 575
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *13
+follow_7:
+  id: 7
+  followable_id: 1
+  followable_type: Challenge
+  participant_id: 476
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *15
+follow_8:
+  id: 8
+  followable_id: 1
+  followable_type: Challenge
+  participant_id: 404
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *17
+follow_9:
+  id: 9
+  followable_id: 1
+  followable_type: Challenge
+  participant_id: 956
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *19
+follow_10:
+  id: 10
+  followable_id: 1
+  followable_type: Challenge
+  participant_id: 243
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *20
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *21
+follow_11:
+  id: 11
+  followable_id: 1
+  followable_type: Challenge
+  participant_id: 416
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &22 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *22
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &23 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *23
+follow_12:
+  id: 12
+  followable_id: 1
+  followable_type: Challenge
+  participant_id: 443
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &24 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *24
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &25 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *25
+follow_13:
+  id: 13
+  followable_id: 1
+  followable_type: Challenge
+  participant_id: 579
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &26 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *26
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &27 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *27
+follow_14:
+  id: 14
+  followable_id: 1
+  followable_type: Challenge
+  participant_id: 767
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &28 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *28
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &29 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *29
+follow_15:
+  id: 15
+  followable_id: 1
+  followable_type: Challenge
+  participant_id: 308
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &30 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *30
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &31 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *31
+follow_16:
+  id: 16
+  followable_id: 1
+  followable_type: Challenge
+  participant_id: 909
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &32 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *32
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &33 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *33
+follow_17:
+  id: 17
+  followable_id: 1
+  followable_type: Challenge
+  participant_id: 655
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &34 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *34
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &35 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *35
+follow_18:
+  id: 18
+  followable_id: 1
+  followable_type: Challenge
+  participant_id: 422
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &36 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *36
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &37 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *37
+follow_19:
+  id: 19
+  followable_id: 1
+  followable_type: Challenge
+  participant_id: 435
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &38 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *38
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &39 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *39
+follow_20:
+  id: 20
+  followable_id: 1
+  followable_type: Challenge
+  participant_id: 501
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &40 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *40
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &41 2017-08-10 00:00:00.000000000 Z
+    zone: *2
+    time: *41

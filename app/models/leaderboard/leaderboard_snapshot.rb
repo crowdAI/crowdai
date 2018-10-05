@@ -1,2 +1,0 @@
-class LeaderboardSnapshot < ApplicationRecord
-end

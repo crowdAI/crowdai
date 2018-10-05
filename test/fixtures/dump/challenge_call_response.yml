@@ -1,0 +1,813 @@
+---
+challenge_call_response_9:
+  id: 9
+  challenge_call_id: 2
+  email: byrum.joe@principal.com
+  phone: "+1-515-984-0398"
+  organization: Principal Financial Group
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2018-01-15 22:24:18.107391000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2018-01-15 22:24:18.107391000 Z
+    zone: *2
+    time: *3
+  challenge_description: "Using the provided data sets of financial predictors and
+    semi-annual returns, participants are challenged to develop a model that will
+    help identify the best-performing stocks over time.\r\n\r\nResearch Question:
+    Which stocks will experience the highest and lowest returns over the next six
+    months?\r\n\r\nOut of the thousands of stocks in the market, small groups will
+    experience exceptionally high or low returns. Considering stock returns as a distribution,
+    a portfolio manager must buy the stocks on the right tail of the distribution
+    and avoid the stocks on the left tail. The performance of an entire equity portfolio
+    is often driven by these key investment decisions. The goal of this challenge
+    is to explore methodology that will increase the probability that portfolio managers
+    identify these stocks with extreme positive or negative returns.\r\n\r\nEach team
+    must create a model that ranks a set of stocks based on the expected return over
+    a forward 6-month window. This model can be a risk factor-based strategy (multi-factor
+    model), predictive model, or any other data-based heuristic. There are many ways
+    to approach this task and creative, non-traditional solutions are strongly encouraged.
+    The final model will be tested on each 6-month period from 2002 to 2017.\r\n"
+  contact_name: Joseph Byrum
+  challenge_title: A Universal Model For Stock Ranking
+  motivation: "Analysts rely on a mix of quantitative and qualitative methodology
+    to help investors weather the market’s ups and downs. It’s not enough to be investment
+    experts. Having the right data at the right time plays a critical role in successfully
+    anticipating economic and environmental changes that may impact investment performance.
+    \ Personalized solutions can be designed to help people realize a tailored mix
+    of risk and return.\r\n\r\nCurrent baseline solutions rely on simple regressions
+    and/or random forest solutions.  Current approaches have high explanatory value
+    and low predictive value.  Improved solutions would be those that increase predictive
+    accuracy."
+  timeline: "Teams are provided with predictors and semi-annual returns for a group
+    of stocks from 1996 to 2017. The data is separated into two sets: stock-level
+    attributes and market-level and macroeconomic conditions. This span of 21 years
+    is represented as 42 non-overlapping 6-month periods. In each of the 42 time periods,
+    roughly 900 stocks with the largest market capitalization (i.e., total market
+    value in USD) were selected. Therefore, the selected set of stocks at each time
+    period changes as companies increase or decrease in value. All stock identifiers
+    have been removed and all numeric variables have been anonymized and normalized.\r\n\r\nTraining
+    and test datasets were created by selecting a random sample of stocks at each
+    time period. 60% of stocks were sampled into the training set and the remaining
+    40% created the test set. Finally, all data from 2017 was allocated to the test
+    set. These two 6-month periods will provide a final out-of-sample test of the
+    model’s performance.\r\n\r\nThroughout the competition, teams will be given the
+    opportunity to evaluate their models on the test dataset. Teams can sign in and
+    upload their predictions up to 5 times per (? week). The model’s performance will
+    be calculated and reported to the team using 40% of the test data. The remaining
+    60% of the test data will be held for final evaluation after the competition ends.
+    This will provide an estimate for out-of-sample performance during the competition.
+    Teams should rely on internal model validation procedures and be careful not to
+    optimize results to this one small section of the test dataset.\r\n"
+  evaluation_criteria: "Consistent performance over time and varying market conditions
+    is crucial for any financial model. Each team must test their model using an expanding
+    window procedure. For a given time period, T, an expanding window test allows
+    the model to incorporate all available information up to time T, to generate predictions
+    for time T+1. For example, when predicting the stock rankings in the first half
+    of 2016, the model can include all data from 1990 to year-end 2015. Predictions
+    for the second half of 2016 could then include all the data from the first half
+    of 2016. It is very important that you do not leak data points into your training
+    set that are from a time period in or after your prediction period. This will
+    lead to optimistic results that do not generalize to out-of-sample data.\r\n\r\nThe
+    quality of the predicted rankings at each time period will be evaluated in two
+    ways, described below.\r\n\r\n\tSpearman correlation: This metric will describe
+    the relationship between the actual rankings and the predicted rankings from the
+    model. Higher values indicate better performance.\r\n\tTop decile performance:
+    In reality, portfolio managers will be most concerned with stocks ranked in the
+    top 10%. The predicted top 10% ranked stocks from the model will be compared to
+    the actual top 10% and bottom 10% observed in the future 6-month period. A good
+    model will maximize the proportion of highly ranked stocks in the top 10% and
+    minimize the proportion in the bottom 10%. This metric is described in more detail
+    below.\r\n\r\nIn addition to quantitative results, entries will be judged by the
+    clarity of the solution, the technical strength of the methodology, and the uniqueness
+    of the approach described in the team’s research paper. The template and requirements
+    for the research paper are provided upon registration.\r\n\r\nSpearman Correlation\r\n\r\nSpearman
+    correlation provides a simple metric to describe how well the model is ranking
+    the stocks at each time period. Spearman correlation is calculated using the formula
+    below.\r\n\r\nr=Vector of actual stock return ranks\r\nr ̂=Vector of predicted
+    stock ranks\r\n\r\nρ_Spearman=(Cov(r,r ̂))/(σ_r σ_r ̂  )\r\n\r\nSpearman correlation
+    has a range from -1 to 1. Models that rank stocks more accurately will produce
+    higher Spearman correlation values.\r\n\r\nTop Decile Performance\r\n\r\nAt each
+    6-month interval, top decile performance is calculated by the following procedure:\r\n\r\n\tOrder
+    all 1000 stocks based on the actual observed returns. (1 = highest, 1000 = lowest)\r\n\tGroup
+    the stocks into three categories. The 100 lowest returns create Group 3, middle
+    800 in Group 2, and the 100 highest returns in Group 1. This is illustrated in
+    the figure below.\r\n\tFrom the submitted rank predictions, subset the stocks
+    ranked in the top 10%.\r\n\tAllocate each stock in the predicted top 10% into
+    Groups 1-3 based on the actual observed rank.\r\n\tCalculate the percentages of
+    the predicted top 10% in each group.  (e.g., Group 1: 60%, Group 2: 30%,  Group
+    3: 10%)\r\n\r\nTeams will be evaluated by their model's ability to maximize exposure
+    of their top 10% ranked stocks to Group 1 (high returns) and minimize exposure
+    to Group 3 (low returns).\r\n \r\n\r\n"
+  organizers_bio: "Principal has not run any IEEE competitions in the past.\r\n\r\nI
+    have been actively involved in various INFORMS competitions in the past."
+  other: "At this time we have not secured any additional sponsorships.\r\n\r\nWe
+    are open to discussing a prize structure if the organizing committee feels it
+    is necessary.\r\n\r\nWe are open to having any discussion that makes this general
+    problem statement attractive to the participants.\r\n\r\nWe have the data available
+    to enable the competition.  "
+challenge_call_response_11:
+  id: 11
+  challenge_call_id: 1
+  email: noureldin.elmadany@ryerson.ca
+  phone: ''
+  organization: RU
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2018-02-03 15:48:24.613066000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2018-02-03 15:48:24.613066000 Z
+    zone: *2
+    time: *5
+  challenge_description: the
+  contact_name: RSU
+  challenge_title: IEEE
+  motivation: the
+  timeline: the
+  evaluation_criteria: the
+  organizers_bio: the
+  other: the
+challenge_call_response_12:
+  id: 12
+  challenge_call_id: 1
+  email: noureldin.elmadany@ryerson.ca
+  phone: ''
+  organization: RU
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2018-02-03 15:48:54.977602000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2018-02-03 15:48:54.977602000 Z
+    zone: *2
+    time: *7
+  challenge_description: the
+  contact_name: RSU
+  challenge_title: IEEE
+  motivation: the
+  timeline: the
+  evaluation_criteria: the
+  organizers_bio: the
+  other: the
+challenge_call_response_13:
+  id: 13
+  challenge_call_id: 1
+  email: romain.choukroun@dathena.io
+  phone: "+41 78 947 45 54"
+  organization: Dathena
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2018-02-20 15:22:21.788164000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2018-02-20 15:22:21.788164000 Z
+    zone: *2
+    time: *9
+  challenge_description: "The challenge is to combine Sentiment analysis and Entities
+    recognition methods to calculate the reputational index for each of the 2 proposed
+    companies: Keppel (Keppel Corporation Limited) and Prudential (Prudential Assurance
+    Company).\r\n We propose the creation of a ‘reputation index’ based on public
+    articles and all media resources, which are accessed on the internet and are relevant
+    to the particular company.\r\nOur approach is based on Sentiment analysis strategy
+    to evaluate all the events related to the company and its employees, client's
+    opinion and calculate the general index, which can define the level of the reputation."
+  contact_name: Romain Choukroun
+  challenge_title: Company Reputation Analysis
+  motivation: "Perhaps the most critical, strategic, and an enduring asset that a
+    corporation possesses is its reputation. Although corporate reputation is undoubtedly
+    a significant and relevant corporate asset, formidable measurement challenges
+    exist nowadays.\r\nSeveral studies have focused on the same topic of the sentiment
+    changes overtime in online media. Gilbert & Karahalios (2010) have estimated information
+    about future stock market prices based on the analysis of the emotions expressed
+    in\r\nblogs. Based on over 20 million posts made on the site LiveJournal, they
+    found that increases in expressions of anxiety predict downward pressure on the
+    S&P 500 index. O´Connor et al. (2010) have found that a relatively simple sentiment
+    detector based on Twitter data replicates consumer confidence and presidential
+    job approval polls."
+  timeline: "We propose to combine Sentiment analysis and Entities recognition methods
+    to calculate the reputational index for each of the 2 proposed companies: Keppel
+    (Keppel Corporation Limited) and Prudential (Prudential Assurance Company).\r\nWe
+    will provide a good number of PDFs, DOCs, and Excel articles about the two companies.\r\nThe
+    dataset is split into 2 parts for each company separately."
+  evaluation_criteria: The results of the competition will be evaluated manually,
+    a lot of attention will be paid to the path for final reputational index calculation.
+  organizers_bio: "Dathena is a Singapore-based startup whose purpose is to identify
+    and classify all documents across any organization's system.  Dathena will then
+    assist to protect, ​retain or delete documents according to customizable ​business-centric
+    rules.\r\n\r\nWe've worked with EPFL labs, and took EPFL students as interns in
+    the past. We want to reiterate the experience by challenging students once again
+    !"
+  other: We will interview the best teams for internship positions at Dathena, as
+    well as a prize to be determined during the week.
+challenge_call_response_14:
+  id: 14
+  challenge_call_id: 1
+  email: 1023647254@qq.com
+  phone: "+86 15827235896"
+  organization: wuhan university
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2018-03-01 12:15:29.559917000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2018-03-01 12:15:29.559917000 Z
+    zone: *2
+    time: *11
+  challenge_description: "Concept Detection Task\r\nCaption Prediction Task"
+  contact_name: 'Guobiao Zhang '
+  challenge_title: ImageCLEFCaption
+  motivation: As a first step to automatic image captioning and scene understanding,
+    participating systems are tasked with identifying the presence and location of
+    relevant concepts in a large corpus of medical images. Based on the visual image
+    content, this subtask provides the building blocks for the scene understanding
+    step by identifying the individual components from which captions are composed.
+    Evaluation is conducted in terms of set coverage metrics such as precision, recall
+    and combinations thereof. This task will be run on a subset of the data as manual
+    ground truthing is required.
+  timeline: As a first step to automatic image captioning and scene understanding,
+    participating systems are tasked with identifying the presence and location of
+    relevant concepts in a large corpus of medical images. Based on the visual image
+    content, this subtask provides the building blocks for the scene understanding
+    step by identifying the individual components from which captions are composed.
+    Evaluation is conducted in terms of set coverage metrics such as precision, recall
+    and combinations thereof. This task will be run on a subset of the data as manual
+    ground truthing is required.
+  evaluation_criteria: As a first step to automatic image captioning and scene understanding,
+    participating systems are tasked with identifying the presence and location of
+    relevant concepts in a large corpus of medical images. Based on the visual image
+    content, this subtask provides the building blocks for the scene understanding
+    step by identifying the individual components from which captions are composed.
+    Evaluation is conducted in terms of set coverage metrics such as precision, recall
+    and combinations thereof. This task will be run on a subset of the data as manual
+    ground truthing is required.
+  organizers_bio: 'NO'
+  other: 'No'
+challenge_call_response_15:
+  id: 15
+  challenge_call_id: 1
+  email: lenahicluj@qwfox.com
+  phone: '0603555632'
+  organization: test
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2018-03-13 16:25:31.599678000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2018-03-13 16:25:31.599678000 Z
+    zone: *2
+    time: *13
+  challenge_description: test
+  contact_name: test
+  challenge_title: test
+  motivation: test
+  timeline: test
+  evaluation_criteria: test
+  organizers_bio: test
+  other: test
+challenge_call_response_16:
+  id: 16
+  challenge_call_id: 1
+  email: iitmdl2018@gmail.com
+  phone: "+91 8849885407"
+  organization: IIT Madras
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2018-04-08 13:06:11.609611000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2018-04-08 13:06:11.609611000 Z
+    zone: *2
+    time: *15
+  challenge_description: 'The task is to summarize weather data in a sentence. '
+  contact_name: DL PA4
+  challenge_title: IITM DL PA4
+  motivation: This is a private classroom challenge to be conducted for the Deep Learning
+    course at IIT Madras.
+  timeline: 'Weather data has 100 features. The students are expected to submit a
+    weather summary  (1 line) for each example test data. '
+  evaluation_criteria: Evaluation will be done using BLEU score
+  organizers_bio: No, this is first time on crowdai.
+  other: There are no prizes for the challenge.
+challenge_call_response_17:
+  id: 17
+  challenge_call_id: 1
+  email: flow.fournier@rbbideas.com
+  phone: "+971585198809"
+  organization: RBBi
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2018-04-19 05:17:19.217469000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2018-04-19 05:17:19.217469000 Z
+    zone: *2
+    time: *17
+  challenge_description: We'd like to build a scalable solution to find new behavior-based
+    customer groups in our website, creating many custom dimensions in our Analytics
+    and trying to figure out via ML which combinations of dimensions are good predictors
+    of a certain set of behaviors (conversions)
+  contact_name: Flow
+  challenge_title: Identifying beta users for our website
+  motivation: "Today most companies in MENA look at their users through the lens of
+    their demographics, an inheritance of old-school marketing and statistics approach.
+    \r\nFor instance they'll try to build products or services to delight their \"25-35
+    female Arab segment\" assuming they all have the same behavior and expectations.\r\n\r\nWe
+    would like to explore how to challenge this approach and help businesses identify
+    the user segments that are unique to their own brand, regardless of the users'
+    demographics, but on the contrary solely based on their users' behavior on their
+    website or app. This will enable them to recruit beta users that are relevant
+    to them, and who can help them co-design services that are tailored for them."
+  timeline: "We will give access to our website's analytics with 12 months (18,000
+    users, 26,000 sessions) of data.\r\n\r\n"
+  evaluation_criteria: "We will look for solutions who can help us identify the best
+    behavior-based predictors for conversion on our website (e.g. could be visiting
+    a certain set of pages, a certain time of the day , a device....) basically finding
+    patterns across a large set of possible custom dimensions that will help us group
+    our users into clusters.\r\n\r\nCriteria will include:\r\n\r\n1- Can we easily
+    identify groups of users\r\n2- Can we target and contact such individuals to recruit
+    them as beta users"
+  organizers_bio: "It's our first time and attempt at running a challenge. Our team
+    has little exposure to the practice of Machine Learning, and we treat this as
+    an alternative to building the process from scratch ourselves. \r\nWe currently
+    rely on Analytics suites to analyse our data, and we feel this competition can
+    help us push the envelope in understanding customer segments."
+  other: "This needs to be discussed with the organizer.\r\nUpon successful completion
+    there is already another few challenges in the pipeline (e.g. predicting what
+    A/B tests are worth running when we design websites, predicting which client prospects
+    are the likeliest to be profitable)\r\n\r\nWe're a fairly young company but willing
+    to invest in this. Contacted Kaggle but they quoted prices that were way too high
+    for us at this point. But ML is an area that we consider part of our strategic
+    development, and as we grow our ML sourcing practice is yet to be built.\r\n"
+challenge_call_response_18:
+  id: 18
+  challenge_call_id: 1
+  email: redaction@management-datascience.org
+  phone: "+33(0)681208485"
+  organization: Management & Data Science
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2018-04-30 13:02:12.302898000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2018-04-30 13:02:12.302898000 Z
+    zone: *2
+    time: *19
+  challenge_description: "CONTEXTE\r\nLes marchés publics représentent entre 8 % et
+    25 % du Produit Intérieur Brut en fonction des pays. \r\nL’attribution des marchés
+    publics; c’est-à-dire à la décision d’un donneur d’ordre (état, collectivités,
+    organisations publiques) de sélectionner des fournisseurs efficaces est un enjeu
+    fondamental, tant pour les acheteurs publics que pour les entreprises.\r\n\r\nQUESTION
+    DE RECHERCHE\r\nComment prédire le montant et le niveau de concurrence d'un futur
+    appel d'offre?\r\n\r\nOBJECTIF\r\nL'objectif du challenge est de prévoir l'attribution
+    des marchés publics au sein de l'Union Européenne à travers deux variables: le
+    montant du marché et le nombre de candidatures reçues.\r\n\r\nSITE WEB\r\nhttp://www.challenge-datascience.org/"
+  contact_name: Olivier Mamavi, PhD
+  challenge_title: Prévoir l’attribution des marchés publics
+  motivation: "MOTIVATION\r\n1) Prévoir l'attribution d'un marché public permet à
+    une entreprise de décider de s'engager ou non (go/no go) à répondre à un appel
+    d'offre.\r\n2) Prévoir l'attribution d'un marché public permet à l'acheteur public
+    de savoir si l'appel d'offre sera fructueux.\r\n3) Prévoir l'attribution d'un
+    marché permet à l'Etat de savoir s'il y a des irrégularités dans la procédure."
+  timeline: "DONNEES\r\nLe jeu de données utilisé pour ce challenge est issu de la
+    commande publique de l’Union Européenne. Il s’agit des données ouvertes de l’attribution
+    des marchés publics de 2009 à 2017 qui comprend près d’un million de transactions
+    (nombre d’observations) et publié au Tender Electronic Daily (TED). Les données
+    sont au format CSV et couvrent les marchés publics pour l’Espace économique européen,
+    la Suisse et l’ancienne République yougoslave de Macédoine. Ces données incluent
+    les champs les plus importants de l’avis d’attribution de marché. Une notice détaillée
+    (en anglais) des données est fournie avec une description de chaque variable.\r\n\r\nCALENDRIER\r\n-
+    Clôture des inscriptions: 26 mai 2018\r\n- Démarrage de la compétition: 28 mai
+    2018\r\n- Réception des livrables: 14 au 18 juin 2018\r\n- Annonce du lauréat:
+    21 juin 2018\r\n- Remise du trophée: 28 juin 2018"
+  evaluation_criteria: "ROUND 1\r\nLes candidats auront accès à un jeu de données
+    d'apprentissage avec des variables indépendantes et dépendantes. \r\n\r\nROUND
+    2\r\nA la fin de la période de compétition, les candidats soumettront leur prévision
+    sur un jeu de données d'évaluation qui sera comparé aux valeurs réelles. \r\n\r\nROUND
+    3:\r\nLes 3 meilleures propositions iront en finale. Les candidats finalistes
+    présenteront leur résultat à un jury. Le jury désignera le vainqueur en fonction
+    de la pertinence du modèle. \r\nLe Jury sera présidé par le Professeur Stéphane
+    Saussier, directeur de la Chaire Economie des Partenariats Public-Privé de l’IAE
+    de Paris (Université Panthéon-Sorbonne). Il sera composé notamment des membres
+    du comité éditorial de la revue, des représentants des sponsors et des partenaires."
+  organizers_bio: "ORGANISATEUR\r\nLe challenge est organisé par Management & Data
+    Science (https://management-datascience.org/).\r\n\r\nManagement & Data Science
+    est une revue académique en libre accès (ISSN 2555-7017) publiée par une organisation
+    à but non lucratif,  déclarée à la préfecture de Paris (France). \r\n\r\nManagement
+    & Data Science a décidé d'organiser des challenges numériques pour favoriser l’innovation.
+    En s’appuyant sur le pilotage par la donnée, ces challenges permettent de proposer
+    une solution aux problèmes décisionnels que rencontrent les entreprises ou les
+    organisations.\r\n\r\nL’intérêt des challenges est double:\r\n- Pour les candidats,
+    il s’agit d’apporter une contribution scientifique ou technique, de valoriser
+    une expertise et de gagner des prix.\r\n- Pour les entreprises, il s’agit de trouver
+    la meilleure solution à un problème et d’identifier les meilleurs talents."
+  other: "PRIX\r\nLes 3 meilleures solutions se partageront un prix avec une dotation
+    de 3000 euros; une publication dans la revue Management & Data Science et de la
+    visibilité dans la presse.\r\n\r\nPARTENAIRES\r\n- Partenaire scientifique: Chaire
+    de recherche EPPP de l'IAE de Paris (Université de Paris Panthéon - Sorbonne)\r\n-
+    Sponsors: IBM et ENGIE\r\n- Fournisseur des données: Portail des données ouvertes
+    de l'Union Européenne\r\n- Partenaire presse : Maddyness"
+challenge_call_response_19:
+  id: 19
+  challenge_call_id: 1
+  email: erik.nygren@sbb.ch
+  phone: "+41768225183"
+  organization: SBB CFF FFS
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2018-05-08 14:33:37.394046000 Z
+    zone: *2
+    time: *20
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2018-05-08 14:33:37.394046000 Z
+    zone: *2
+    time: *21
+  challenge_description: The challenge concerns the problem of algorithmic support
+    for conflict-free train scheduling. Switzerland runs one of the densest and most
+    intensely-used railway systems in the world. To further increase the already high
+    number of trains and improve recovery after disturbances, new algorithmic methods
+    must be developed to support planners and dispatchers find feasible timetables
+    and rescheduling decisions. Challenge participants will try to find efficient
+    methods/algorithm to quickly find good quality solutions (i.e. timetables) for
+    a given set of problem instances, ranging from rather easy to very difficult.
+    To this end, we will define the input data structure (including the sample instances)
+    and the expected output data model. Challenge participants may decide themselves
+    on the methods, tools and algorithms used to produce the solution.
+  contact_name: Erik Nygren
+  challenge_title: Automated Scheduling
+  motivation: "The problem of algorithmic decision support for planning and rescheduling
+    is central to SBBs vision of railway operations. Currently, there is a large project
+    ongoing which at its core has the goal of generating complete timetables fully
+    automatically.\r\nSeveral approaches to this problem have been, and are, topics
+    of academic research. Typically, these employ commercial mixed-integer linear
+    programming (MILP) solvers. However, these have never been scaled to the size
+    of problem instances we must solve.\r\nOur team at SBB has also developed a MILP-based
+    solver that has good performance compared to the academic approaches, but still
+    far from what is needed.\r\nPossible improvement areas we envision are, among
+    others:\r\n-\tNew ways of heuristically finding good solutions quickly, rather
+    than trying to solve the full problem\r\n-\tDecomposing the full problem into
+    smaller subproblems, that are suitably coordinated\r\n-\tNew solver technologies
+    (Open Source or commercial)\r\n-\t…\r\n"
+  timeline: "            We will provide\r\n-\tDescription of the input data model,
+    which includes all trains to be scheduled and their requirements\r\n-\tDescription
+    of the set of rules that have to be satisfied in order for the produced solution
+    to be considered feasible and conflict-free. In addition, the objective function
+    to be minimized\r\n-\tDescription of the expected output format\r\n-\tA set of
+    problem instances (input), ranging in complexity from easy to very hard, including
+    a corresponding sample solution (output)\r\n-\tAccess via REST-interface to a
+    validation service that checks if solution satisfy all of the rules and evaluates
+    its objective function\r\n-\t(possibly, confirmation tbd): Access to the MILP-based
+    solver of SBB in order to compare solution time to this benchmark\r\n"
+  evaluation_criteria: "The submissions will be evaluated based on\r\n-\tRequired
+    solution time to produce a solution\r\n-\tObjective value of this solution (as
+    defined in the rule set)\r\n-\tFor difficult problems, we will define a time limit
+    that is to be observed. Algorithms may then be compared on the best solution provided
+    after, say, 2 minutes.\r\nIn addition to the published set of sample problem instances,
+    we will reserve a second set of problem instances to which participants shall
+    not have access. To avoid algorithms that are tuned to a specific problem instance.\r\n\r\nAs
+    described above, during the challenge the participants always have access to the
+    validation service where they can have their solution checked and evaluated.\r\n"
+  organizers_bio: We are new to this kind of problem solving. The data science community
+    within SBB strongly beliefs that we have many problems that can be solved with
+    help of crowd sourcing. Thus, this challenge will serve as a pilot to test such
+    an approach.
+  other: We can offer prices ranging from 10'000 CHF upwards. We would need to discuss
+    in detail to what extent prizes should go. Given the succes or failure of this
+    challenge we would image to do many more challenges in the future
+challenge_call_response_20:
+  id: 20
+  challenge_call_id: 1
+  email: 384293095@qq.com
+  phone: '1111'
+  organization: '1111'
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &22 2018-05-10 05:40:27.171722000 Z
+    zone: *2
+    time: *22
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &23 2018-05-10 05:40:27.171722000 Z
+    zone: *2
+    time: *23
+  challenge_description: '11111'
+  contact_name: '11111'
+  challenge_title: '1111'
+  motivation: '11111'
+  timeline: '1111'
+  evaluation_criteria: '111'
+  organizers_bio: '11'
+  other: '11111'
+challenge_call_response_21:
+  id: 21
+  challenge_call_id: 1
+  email: zhangzheng001@zju.edu.cn
+  phone: ''
+  organization: aa
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &24 2018-05-12 14:35:46.653504000 Z
+    zone: *2
+    time: *24
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &25 2018-05-12 14:35:46.653504000 Z
+    zone: *2
+    time: *25
+  challenge_description: 'plant '
+  contact_name: allen1
+  challenge_title: plant
+  motivation: 'plant '
+  timeline: 'plant '
+  evaluation_criteria: 'plant '
+  organizers_bio: 'plant '
+  other: 'plant '
+challenge_call_response_22:
+  id: 22
+  challenge_call_id: 1
+  email: nilanka.weeraman@dialog.lk
+  phone: '94773331167'
+  organization: Dialog Axiata PLC
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &26 2018-05-16 14:16:04.136711000 Z
+    zone: *2
+    time: *26
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &27 2018-05-16 14:16:04.136711000 Z
+    zone: *2
+    time: *27
+  challenge_description: "This will be a part of overarching data science hackathon
+    the organization is hosting.\r\nParticipants need to identify customers who are
+    going to churn on future 30 days. This will be a predictive modelling task. All
+    required labelled data and attributes will be provided."
+  contact_name: Nilanka Weeraman
+  challenge_title: Predict customer churn
+  motivation: "Best solution will be deployed in production enviornment. Organization's
+    internal team has also developed similar models, but now require to improve performance.
+    Challenge will help to blend new ideas and work with larger data sets to improve
+    upon existing model.\r\nAlso this is a first of the kind hackathon in the country
+    and it will have an impact on building data science community and encouraging
+    practitioners to take up challenges"
+  timeline: Training data will be provided. There is no web based evaluation facility
+    available and hence to use crowdai's evaluation platform
+  evaluation_criteria: based on precision and recall. Also some points to be given
+    (offline) for other engagement actives during the competition
+  organizers_bio: Dialog axiata is the largest telecommunication operator in Sri Lanka
+    and now focusing on building its data analytics capability. Dialog has successfully
+    organized hackathons in mobile application development for IoT and has a good
+    community engaged. We are hoping to do the same for data science by organizing
+    a hackathon, a first of its kind in the country which will help to boost the data
+    science talent in Sri Lanka.
+  other: Monetary prize (amount not decided yet)
+challenge_call_response_23:
+  id: 23
+  challenge_call_id: 1
+  email: craig@deepdrive.io
+  phone: '4804525458'
+  organization: Deepdrive
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &28 2018-06-29 21:33:56.982058000 Z
+    zone: *2
+    time: *28
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &29 2018-06-29 21:33:56.982058000 Z
+    zone: *2
+    time: *29
+  challenge_description: A virtual self-driving contest similar to the OpenAI retro
+    challenge, but in our simulator instead.
+  contact_name: Craig Quiter
+  challenge_title: Deepdrive Challenge
+  motivation: "Significance:\r\nCar accidents cause many fatalities, injuries, and
+    cost us trillions of dollars in damages.\r\n\r\nPrior work: \r\nThe DARPA Grand
+    Challenge spurred a new industry in self-driving. That industry is still using
+    very similar methods to those developed in the challenge. A virtual self-driving
+    challenge will allow us to try new methods to navigate complex environments without
+    risk to safety.\r\n\r\nBaselines:\r\nWe have released a baseline agent trained
+    with supervised learning on pixels and an oracle agent which drives along a spline.
+    Please see: https://github.com/deepdrive/deepdrive#benchmark\r\n\r\nWe are preparing
+    three more baselines for the competition which will be trained on a more complex
+    environment and include an RL agent: \r\nhttps://twitter.com/crizcraig/status/1008957580054441984
+    and a PID agent able to follow and pass other cars.\r\n\r\nImproving on the baseline:\r\nThe
+    Deepdrive Challenge will encourage much more experimentation in end-to-end driving
+    with participants able to use a combination of depth/lidar, camera, trajectory
+    optimization, and reinforcement learning techniques which are under-explored due
+    to safety risks in the real world and the limited complexity of open simulators
+    prior to 2017."
+  timeline: "The challenge will use the external graders API to submit scores of agents
+    tested on our evaluation machines. Contestants will submit Docker files and containers
+    similar to the OpenAI Retro challenge which we will test against a held out test
+    environment configuration. More detail is here: https://docs.google.com/document/d/1PMeS8sK5qIYVkaF7T5C2mZlIHA7zUixIEm0-xzbEvtI/edit#heading=h.g4d35ku3fiqs\r\n\r\nWe
+    currently provide the following dataset: \r\nhttps://github.com/deepdrive/deepdrive#dataset\r\n\r\nWe
+    will make a new dataset available before the challenge with traffic, lighting,
+    and other new features included to increase complexity and variation."
+  evaluation_criteria: "We will pull docker containers that contain the environment
+    and agent onto our evaluation servers. These will be evaluated end-to-end on a
+    benchmark that measures the speed, comfort, and safety of the cars. Random seeds
+    that control the traffic, sensors, handling, time of day, start position, and
+    obstacle placement will create unseen scenarios for agents. Validation evaluation
+    will take place over two months on validation seeds and videos of submissions
+    will be uploaded via the crowdAI API. Held out test seeds will be used at the
+    end of two months that control variation in the environment (please see doc below).
+    We will also build the leaders' docker container separately and review their code
+    to ensure everything is open source and is not reading memory of the game or cheating
+    in other ways.\r\n\r\nChallenge doc: https://docs.google.com/document/d/1PMeS8sK5qIYVkaF7T5C2mZlIHA7zUixIEm0-xzbEvtI/edit#heading=h.g4d35ku3fiqs"
+  organizers_bio: I have built open source self-driving simulators/AI for 3 years,
+    and sensorimotor environments/AI for 7 years. I released the GTAV integration
+    to OpenAI Universe in 2017 and worked on self-driving at UberATG for 1 year after.
+    I left Uber last November and built Deepdrive 2.0 on Unreal Engine with one other
+    contributor. Please see https://deepdrive.io for more.
+  other: We will be providing at least $10,000 to the winners of the challenge. A
+    few companies are interested in sponsoring that will likely contribute more to
+    the prize pool. We will hold a Winners' Workshop where contestants can share their
+    ideas, meet, and receive their prizes. We are working with sponsors to decide
+    an appropriate conference at which to hold the workshop.
+challenge_call_response_24:
+  id: 24
+  challenge_call_id: 1
+  email: merishna.suwal@archanalytics.ai
+  phone: '9843711656'
+  organization: Abc
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &30 2018-07-05 12:14:08.137504000 Z
+    zone: *2
+    time: *30
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &31 2018-07-05 12:14:08.137504000 Z
+    zone: *2
+    time: *31
+  challenge_description: "xtreme classification using machine learning\r\n"
+  contact_name: Meriha
+  challenge_title: Data science challenge
+  motivation: It mainly focuses on natural language  processing and multilabel classification
+  timeline: The data is splitted into train and test data which are in csv format.
+    The participants have to submit a csv file with the text and predicted classes
+    of text.
+  evaluation_criteria: The evaluation is solely based on the accuracy tested on the
+    test data.
+  organizers_bio: I am running the challenge as the main lead and yes I have run such
+    challenges before.
+  other: We have cash prizes for 1st and 2nd positions.
+challenge_call_response_25:
+  id: 25
+  challenge_call_id: 1
+  email: samir.naqvi@tr.com
+  phone: '2149840981'
+  organization: 'Thomson  Reuters '
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &32 2018-07-11 19:27:52.590306000 Z
+    zone: *2
+    time: *32
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &33 2018-07-11 19:27:52.590306000 Z
+    zone: *2
+    time: *33
+  challenge_description: Predict how many points a player will score next year.
+  contact_name: Samir Naqvi
+  challenge_title: NBA Point Prediction
+  motivation: Efficient Prediction Models, Comparison of Different Techniques, Data
+    Cleaning
+  timeline: Data Provided, must create a model, will use model to test on hidden data.
+  evaluation_criteria: 'RMSE '
+  organizers_bio: 'Want to run for GraceHopper 2018 '
+  other: "Apple Watch,\r\nInternship Interview\r\nPlease Contact for more  info"
+challenge_call_response_26:
+  id: 26
+  challenge_call_id: 1
+  email: nguyendinhthuc18@gmail.com
+  phone: "(84) 1216289389"
+  organization: FIOM
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &34 2018-08-21 09:45:11.012885000 Z
+    zone: *2
+    time: *34
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &35 2018-08-21 09:45:11.012885000 Z
+    zone: *2
+    time: *35
+  challenge_description: "You can use experimental data (to greatly speed up the learning
+    process)\r\nWe released the 3rd dimensions OpenSim model (the model can fall sideways)\r\nWe
+    added a prosthetic leg – the goal is to solve a medical challenge on modeling
+    how walking will change after getting a prosthesis. Your work can speed up design,
+    prototying, or tuning prosthetics!"
+  contact_name: nguyendinhthuc
+  challenge_title: 'NIPS 2018: AI for Prosthetics Challenge'
+  motivation: "You can use experimental data (to greatly speed up the learning process)\r\nWe
+    released the 3rd dimensions OpenSim model (the model can fall sideways)\r\nWe
+    added a prosthetic leg – the goal is to solve a medical challenge on modeling
+    how walking will change after getting a prosthesis. Your work can speed up design,
+    prototying, or tuning prosthetics!"
+  timeline: "You can use experimental data (to greatly speed up the learning process)\r\nWe
+    released the 3rd dimensions OpenSim model (the model can fall sideways)\r\nWe
+    added a prosthetic leg – the goal is to solve a medical challenge on modeling
+    how walking will change after getting a prosthesis. Your work can speed up design,
+    prototying, or tuning prosthetics!"
+  evaluation_criteria: "You can use experimental data (to greatly speed up the learning
+    process)\r\nWe released the 3rd dimensions OpenSim model (the model can fall sideways)\r\nWe
+    added a prosthetic leg – the goal is to solve a medical challenge on modeling
+    how walking will change after getting a prosthesis. Your work can speed up design,
+    prototying, or tuning prosthetics!"
+  organizers_bio: "You can use experimental data (to greatly speed up the learning
+    process)\r\nWe released the 3rd dimensions OpenSim model (the model can fall sideways)\r\nWe
+    added a prosthetic leg – the goal is to solve a medical challenge on modeling
+    how walking will change after getting a prosthesis. Your work can speed up design,
+    prototying, or tuning prosthetics!"
+  other: "You can use experimental data (to greatly speed up the learning process)\r\nWe
+    released the 3rd dimensions OpenSim model (the model can fall sideways)\r\nWe
+    added a prosthetic leg – the goal is to solve a medical challenge on modeling
+    how walking will change after getting a prosthesis. Your work can speed up design,
+    prototying, or tuning prosthetics!"
+challenge_call_response_27:
+  id: 27
+  challenge_call_id: 1
+  email: brianbrost@spotify.com
+  phone: "+447747831013"
+  organization: Spotify
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &36 2018-08-22 18:28:07.174118000 Z
+    zone: *2
+    time: *36
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &37 2018-08-22 18:28:07.174118000 Z
+    zone: *2
+    time: *37
+  challenge_description: "We are interested in hosting two related challenges on a
+    single dataset containing logs of user streaming sessions with interactions. The
+    first is to predict skips, and the second is to provide Session-based sequential
+    recommendations. \r\n\r\nWe would like for the challenges to go live relatively
+    soon if possible. We are flexible on this, but would be very interested in starting
+    discussions on what dates might be attainable as soon as possible. "
+  contact_name: Brian Brost
+  challenge_title: Music Streaming Skip Prediction and Session-Based Sequential Recommendations
+  motivation: "User modeling has had a big impact in areas such as web search, where
+    releases of click logs have enabled substantial research progress. Such progress
+    has not been possible for user modeling in streaming due to an absence of data.
+    To the best of our knowledge, this is the first dataset to detail how users interact
+    with streamed content. We hope that it will enable new research directions regarding
+    how users interact with streamed content. \r\n\r\nSequential recommendations are
+    of particular importance to music streaming services, since tracks are rarely
+    consumed in isolation. However to the best of our knowledge there are no datasets
+    detailing how users interact with sequences of recommended items. We believe this "
+  timeline: "We will provide a dataset with three components. The first component
+    will be a log containing 100 million streaming sessions with user interactions.
+    The second component will contain metadata and audio features for the approximately
+    3 million unique tracks streamed in those sessions. The third component will be
+    daily snapshots of the playlists from which 25% of the sessions were sampled.\r\n\r\nFor
+    the first challenge, participants will be provided session logs and will need
+    to predict if a given track encountered during the session was skipped or not.
+    \r\n\r\nFor the second challenge, participants will be provided session logs,
+    and will have to recommend the next item from the small pool provided by the relevant
+    playlist snapshot. "
+  evaluation_criteria: We are still finalizing the evaluation procedure for the two
+    challenges. We can provide more details if urgently needed, but otherwise we will
+    be ready to describe our evaluation procedure and metrics very soon once finalized.
+  organizers_bio: 'Spotify is one of the largest music streaming services. The team
+    working on this challenge consists of several researchers and engineers. Some
+    of us were involved in hosting the 2018 RecSys Challenge. '
+  other: 'The two challenges will form part of the WSDM Cup 2019. We have currently
+    committed approximately 20,000 USD for prize money. A paper describing the dataset
+    underlying the challenges was submitted as a paper to NIPS 2018 and is currently
+    awaiting final review notification. '
+challenge_call_response_28:
+  id: 28
+  challenge_call_id: 1
+  email: claudia.corbo@desjardins.com
+  phone: '514673506'
+  organization: Desjardins Lab
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &38 2018-08-22 21:00:52.724189000 Z
+    zone: *2
+    time: *38
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &39 2018-08-22 21:00:52.724189000 Z
+    zone: *2
+    time: *39
+  challenge_description: predictive modelling to see if someone will default in the
+    next 12 months
+  contact_name: Claudia Corbo
+  challenge_title: X Cup
+  motivation: 'sensabilisation of financial institutions'' data '
+  timeline: open source
+  evaluation_criteria: defaulting
+  organizers_bio: Desjardins Lab is an innovation lab
+  other: xxxx
+challenge_call_response_29:
+  id: 29
+  challenge_call_id: 1
+  email: danliligo@163.com
+  phone: '13041011761'
+  organization: lili
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &40 2018-09-11 11:04:44.263910000 Z
+    zone: *2
+    time: *40
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &41 2018-09-11 11:04:44.263910000 Z
+    zone: *2
+    time: *41
+  challenge_description: "Automatic\r\n generation\r\n of\r\n medical\r\n imaging\r\n
+    reports"
+  contact_name: lidan
+  challenge_title: lili
+  motivation: "Automatic\r\n generation\r\n of\r\n medical\r\n imaging\r\n reports"
+  timeline: "Automatic\r\n generation\r\n of\r\n medical\r\n imaging\r\n reports"
+  evaluation_criteria: "Automatic\r\n generation\r\n of\r\n medical\r\n imaging\r\n
+    reports"
+  organizers_bio: "Automatic\r\n generation\r\n of\r\n medical\r\n imaging\r\n reports"
+  other: "Automatic\r\n generation\r\n of\r\n medical\r\n imaging\r\n reports"

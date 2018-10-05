@@ -1,0 +1,262 @@
+---
+vote_1:
+  id: 1
+  votable_id: 1
+  votable_type: Post
+  participant_id: 1
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2016-05-27 10:04:33.315316000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2016-05-27 10:04:33.315316000 Z
+    zone: *2
+    time: *3
+vote_2:
+  id: 2
+  votable_id: 1
+  votable_type: Article
+  participant_id: 1
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2016-07-04 10:32:11.087094000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2016-07-04 10:32:11.087094000 Z
+    zone: *2
+    time: *5
+vote_8:
+  id: 8
+  votable_id: 2
+  votable_type: Article
+  participant_id: 95
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2016-08-28 07:08:07.343457000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2016-08-28 07:08:07.343457000 Z
+    zone: *2
+    time: *7
+vote_12:
+  id: 12
+  votable_id: 22
+  votable_type: Post
+  participant_id: 1
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2016-11-21 13:31:55.105225000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2016-11-21 13:31:55.105225000 Z
+    zone: *2
+    time: *9
+vote_13:
+  id: 13
+  votable_id: 86
+  votable_type: Submission
+  participant_id: 483
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2016-12-03 12:55:07.534201000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2016-12-03 12:55:07.534201000 Z
+    zone: *2
+    time: *11
+vote_14:
+  id: 14
+  votable_id: 2
+  votable_type: Article
+  participant_id: 525
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2016-12-23 01:20:56.360507000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2016-12-23 01:20:56.360507000 Z
+    zone: *2
+    time: *13
+vote_15:
+  id: 15
+  votable_id: 2
+  votable_type: Article
+  participant_id: 563
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2017-01-09 09:45:53.197841000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2017-01-09 09:45:53.197841000 Z
+    zone: *2
+    time: *15
+vote_16:
+  id: 16
+  votable_id: 56
+  votable_type: Post
+  participant_id: 604
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2017-02-21 19:57:13.486017000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2017-02-21 19:57:13.486017000 Z
+    zone: *2
+    time: *17
+vote_17:
+  id: 17
+  votable_id: 60
+  votable_type: Post
+  participant_id: 643
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2017-02-22 06:33:50.437165000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2017-02-22 06:33:50.437165000 Z
+    zone: *2
+    time: *19
+vote_18:
+  id: 18
+  votable_id: 60
+  votable_type: Post
+  participant_id: 643
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2017-02-22 06:33:52.827252000 Z
+    zone: *2
+    time: *20
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2017-02-22 06:33:52.827252000 Z
+    zone: *2
+    time: *21
+vote_19:
+  id: 19
+  votable_id: 60
+  votable_type: Post
+  participant_id: 643
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &22 2017-02-22 06:33:54.201510000 Z
+    zone: *2
+    time: *22
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &23 2017-02-22 06:33:54.201510000 Z
+    zone: *2
+    time: *23
+vote_20:
+  id: 20
+  votable_id: 60
+  votable_type: Post
+  participant_id: 643
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &24 2017-02-22 06:33:55.146493000 Z
+    zone: *2
+    time: *24
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &25 2017-02-22 06:33:55.146493000 Z
+    zone: *2
+    time: *25
+vote_21:
+  id: 21
+  votable_id: 59
+  votable_type: Post
+  participant_id: 643
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &26 2017-02-22 06:33:59.518099000 Z
+    zone: *2
+    time: *26
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &27 2017-02-22 06:33:59.518099000 Z
+    zone: *2
+    time: *27
+vote_22:
+  id: 22
+  votable_id: 34
+  votable_type: Post
+  participant_id: 1
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &28 2017-02-24 08:22:31.354407000 Z
+    zone: *2
+    time: *28
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &29 2017-02-24 08:22:31.354407000 Z
+    zone: *2
+    time: *29
+vote_23:
+  id: 23
+  votable_id: 36
+  votable_type: Post
+  participant_id: 1
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &30 2017-02-24 08:22:32.074696000 Z
+    zone: *2
+    time: *30
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &31 2017-02-24 08:22:32.074696000 Z
+    zone: *2
+    time: *31
+vote_24:
+  id: 24
+  votable_id: 78
+  votable_type: Post
+  participant_id: 604
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &32 2017-02-27 09:24:10.123198000 Z
+    zone: *2
+    time: *32
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &33 2017-02-27 09:24:10.123198000 Z
+    zone: *2
+    time: *33
+vote_25:
+  id: 25
+  votable_id: 77
+  votable_type: Post
+  participant_id: 604
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &34 2017-02-27 09:25:05.083235000 Z
+    zone: *2
+    time: *34
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &35 2017-02-27 09:25:05.083235000 Z
+    zone: *2
+    time: *35
+vote_1943:
+  id: 1943
+  votable_id: 28
+  votable_type: Challenge
+  participant_id: 7310
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &36 2018-08-07 05:20:27.769727000 Z
+    zone: *2
+    time: *36
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &37 2018-08-07 05:20:27.769727000 Z
+    zone: *2
+    time: *37
+vote_28:
+  id: 28
+  votable_id: 88
+  votable_type: Post
+  participant_id: 604
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &38 2017-03-09 12:33:16.612036000 Z
+    zone: *2
+    time: *38
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &39 2017-03-09 12:33:16.612036000 Z
+    zone: *2
+    time: *39
+vote_33:
+  id: 33
+  votable_id: 4
+  votable_type: Article
+  participant_id: 1
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &40 2017-03-10 16:35:19.692323000 Z
+    zone: *2
+    time: *40
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &41 2017-03-10 16:35:19.692323000 Z
+    zone: *2
+    time: *41

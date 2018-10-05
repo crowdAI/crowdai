@@ -1,0 +1,334 @@
+---
+submission_comment_1:
+  id: 1
+  submission_id: 2765
+  participant_id: 1
+  comment_markdown: Interesting dance moves!
+  comment: "<p>Interesting dance moves!</p>\n"
+  vote_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2017-10-19 11:43:00.973991000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2017-10-19 11:43:00.973991000 Z
+    zone: *2
+    time: *3
+submission_comment_2:
+  id: 2
+  submission_id: 3105
+  participant_id: 2828
+  comment_markdown: 过于平稳，速度不足
+  comment: "<p>过于平稳，速度不足</p>\n"
+  vote_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2017-10-31 12:22:11.851235000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2017-10-31 12:22:11.851235000 Z
+    zone: *2
+    time: *5
+submission_comment_3:
+  id: 3
+  submission_id: 3485
+  participant_id: 2894
+  comment_markdown: tf_l.58
+  comment: "<p>tf_l.58</p>\n"
+  vote_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2017-11-19 19:45:22.634994000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2017-11-19 19:45:22.634994000 Z
+    zone: *2
+    time: *7
+submission_comment_4:
+  id: 4
+  submission_id: 3452
+  participant_id: 1
+  comment_markdown: Wow, really cool!
+  comment: "<p>Wow, really cool!</p>\n"
+  vote_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2018-02-20 15:27:11.821222000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2018-02-20 15:27:17.035834000 Z
+    zone: *2
+    time: *9
+submission_comment_5:
+  id: 5
+  submission_id: 5275
+  participant_id: 5225
+  comment_markdown: 'This submission should be deleted. I accidentally trained the
+    model on future data when making past predictions. Thanks! '
+  comment: "<p>This submission should be deleted. I accidentally trained the model
+    on future data when making past predictions. Thanks!</p>\n"
+  vote_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2018-04-25 04:40:06.882585000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2018-04-25 04:40:06.882585000 Z
+    zone: *2
+    time: *11
+submission_comment_6:
+  id: 6
+  submission_id: 5433
+  participant_id: 7
+  comment_markdown: Test comment
+  comment: "<p>Test comment</p>\n"
+  vote_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2018-04-29 22:30:33.897374000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2018-04-29 22:30:33.897374000 Z
+    zone: *2
+    time: *13
+submission_comment_7:
+  id: 7
+  submission_id: 5780
+  participant_id: 7
+  comment_markdown: Test Comment
+  comment: "<p>Test Comment</p>\n"
+  vote_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2018-05-03 15:24:33.472185000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2018-05-03 15:24:33.472185000 Z
+    zone: *2
+    time: *15
+submission_comment_8:
+  id: 8
+  submission_id: 5777
+  participant_id: 1
+  comment_markdown: asdasd
+  comment: "<p>asdasd</p>\n"
+  vote_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2018-05-03 15:25:54.868460000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2018-05-03 15:25:54.868460000 Z
+    zone: *2
+    time: *17
+submission_comment_9:
+  id: 9
+  submission_id: 6202
+  participant_id: 3408
+  comment_markdown: "pls. add the method description (I have only one unique run)
+    from my failed submission (it worked after few tries!). I also submitted mistakenly
+    a run for concept instead of caption and got a BLUE score 0.0 (pls. ignore that).
+    Thanks.\r\nThanks."
+  comment: |
+    <p>pls. add the method description (I have only one unique run) from my failed submission (it worked after few tries!). I also submitted mistakenly a run for concept instead of caption and got a BLUE score 0.0 (pls. ignore that). Thanks.
+    Thanks.</p>
+  vote_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2018-05-10 16:06:00.381200000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2018-05-10 16:06:00.381200000 Z
+    zone: *2
+    time: *19
+submission_comment_10:
+  id: 10
+  submission_id: 6202
+  participant_id: 3408
+  comment_markdown: "pls. add the method description (I have only one unique run)
+    from my failed submission (it worked after few tries!). I also submitted mistakenly
+    a run for concept instead of caption and got a BLUE score 0.0 (pls. ignore that).
+    Thanks.\r\nThanks."
+  comment: |
+    <p>pls. add the method description (I have only one unique run) from my failed submission (it worked after few tries!). I also submitted mistakenly a run for concept instead of caption and got a BLUE score 0.0 (pls. ignore that). Thanks.
+    Thanks.</p>
+  vote_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2018-05-10 16:06:18.193835000 Z
+    zone: *2
+    time: *20
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2018-05-10 16:06:18.193835000 Z
+    zone: *2
+    time: *21
+submission_comment_11:
+  id: 11
+  submission_id: 6194
+  participant_id: 3408
+  comment_markdown: " I also submitted mistakenly a run for concept instead of caption
+    and got a BLUE score 0.0 (pls. ignore that). Thanks.\r\nThanks."
+  comment: |
+    <p>I also submitted mistakenly a run for concept instead of caption and got a BLUE score 0.0 (pls. ignore that). Thanks.
+    Thanks.</p>
+  vote_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &22 2018-05-10 16:07:08.572437000 Z
+    zone: *2
+    time: *22
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &23 2018-05-10 16:07:08.572437000 Z
+    zone: *2
+    time: *23
+submission_comment_12:
+  id: 12
+  submission_id: 6195
+  participant_id: 3408
+  comment_markdown: "pls. add the method description (I have only one unique run)
+    from my failed submission (it worked after few tries!). I also submitted mistakenly
+    a run for concept instead of caption and got a BLUE score 0.0 (pls. ignore that).
+    Thanks.\r\nThanks."
+  comment: |
+    <p>pls. add the method description (I have only one unique run) from my failed submission (it worked after few tries!). I also submitted mistakenly a run for concept instead of caption and got a BLUE score 0.0 (pls. ignore that). Thanks.
+    Thanks.</p>
+  vote_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &24 2018-05-10 16:07:47.111446000 Z
+    zone: *2
+    time: *24
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &25 2018-05-10 16:07:47.111446000 Z
+    zone: *2
+    time: *25
+submission_comment_13:
+  id: 13
+  submission_id: 6314
+  participant_id: 3537
+  comment_markdown: submission_HuberRegressor_no_scaling_target_and_feature_24_features_feature_v2_removing_highly_correlated_features_median_imputation.csv
+  comment: "<p>submission_HuberRegressor_no_scaling_target_and_feature_24_features_feature_v2_removing_highly_correlated_features_median_imputation.csv</p>\n"
+  vote_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &26 2018-05-14 17:01:00.903748000 Z
+    zone: *2
+    time: *26
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &27 2018-05-14 17:01:00.903748000 Z
+    zone: *2
+    time: *27
+submission_comment_14:
+  id: 14
+  submission_id: 6314
+  participant_id: 3537
+  comment_markdown: submission_HuberRegressor_no_scaling_target_and_feature_24_features_feature_v2_removing_highly_correlated_features_median_imputation.csv
+  comment: "<p>submission_HuberRegressor_no_scaling_target_and_feature_24_features_feature_v2_removing_highly_correlated_features_median_imputation.csv</p>\n"
+  vote_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &28 2018-05-14 17:01:12.567956000 Z
+    zone: *2
+    time: *28
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &29 2018-05-14 17:01:12.567956000 Z
+    zone: *2
+    time: *29
+submission_comment_15:
+  id: 15
+  submission_id: 6458
+  participant_id: 3537
+  comment_markdown: SVR
+  comment: "<p>SVR</p>\n"
+  vote_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &30 2018-05-18 16:25:44.942704000 Z
+    zone: *2
+    time: *30
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &31 2018-05-18 16:25:44.942704000 Z
+    zone: *2
+    time: *31
+submission_comment_16:
+  id: 16
+  submission_id: 6312
+  participant_id: 3537
+  comment_markdown: 'yes'
+  comment: "<p>yes</p>\n"
+  vote_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &32 2018-05-19 04:15:49.660496000 Z
+    zone: *2
+    time: *32
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &33 2018-05-19 04:15:49.660496000 Z
+    zone: *2
+    time: *33
+submission_comment_17:
+  id: 17
+  submission_id: 6423
+  participant_id: 1189
+  comment_markdown: "    reg = XGBRegressor(seed=2707, n_estimators=150, learning_rate=0.05,
+    max_depth=15,\r\n                      ) + nan"
+  comment: |
+    <pre><code>reg = XGBRegressor(seed=2707, n_estimators=150, learning_rate=0.05, max_depth=15,
+                      ) + nan
+    </code></pre>
+  vote_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &34 2018-05-20 02:59:24.971610000 Z
+    zone: *2
+    time: *34
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &35 2018-05-20 02:59:24.971610000 Z
+    zone: *2
+    time: *35
+submission_comment_18:
+  id: 18
+  submission_id: 6435
+  participant_id: 1189
+  comment_markdown: "    reg = XGBRegressor(seed=2707, n_estimators=150, learning_rate=0.05,
+    max_depth=5,\r\n                      ) + 0"
+  comment: |
+    <pre><code>reg = XGBRegressor(seed=2707, n_estimators=150, learning_rate=0.05, max_depth=5,
+                      ) + 0
+    </code></pre>
+  vote_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &36 2018-05-20 03:03:10.563859000 Z
+    zone: *2
+    time: *36
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &37 2018-05-20 03:03:10.563859000 Z
+    zone: *2
+    time: *37
+submission_comment_19:
+  id: 19
+  submission_id: 6434
+  participant_id: 1189
+  comment_markdown: "    reg = XGBRegressor(seed=2707, n_estimators=150, learning_rate=0.05,
+    max_depth=5,\r\n                      ) + nan"
+  comment: |
+    <pre><code>reg = XGBRegressor(seed=2707, n_estimators=150, learning_rate=0.05, max_depth=5,
+                      ) + nan
+    </code></pre>
+  vote_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &38 2018-05-20 03:03:15.893082000 Z
+    zone: *2
+    time: *38
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &39 2018-05-20 03:03:15.893082000 Z
+    zone: *2
+    time: *39
+submission_comment_20:
+  id: 20
+  submission_id: 6509
+  participant_id: 3537
+  comment_markdown: Final Submission
+  comment: "<p>Final Submission</p>\n"
+  vote_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &40 2018-05-20 16:31:45.496249000 Z
+    zone: *2
+    time: *40
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &41 2018-05-20 16:31:45.496249000 Z
+    zone: *2
+    time: *41

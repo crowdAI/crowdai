@@ -1366,7 +1366,7 @@ ALTER SEQUENCE public.job_postings_id_seq OWNED BY public.job_postings.id;
 --
 
 CREATE TABLE public.leaderboard_snapshots (
-    id bigint,
+    id bigint NOT NULL,
     challenge_id bigint,
     challenge_round_id bigint,
     participant_id bigint,
@@ -1377,22 +1377,35 @@ CREATE TABLE public.leaderboard_snapshots (
     entries integer,
     score double precision,
     score_secondary double precision,
-    media_large character varying,
-    media_thumbnail character varying,
-    media_content_type character varying,
-    description character varying,
-    description_markdown character varying,
     leaderboard_type_cd character varying,
     refreshed_at timestamp without time zone,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    submission_id integer,
+    submission_id bigint,
     post_challenge boolean,
     seq integer,
     baseline boolean,
     baseline_comment character varying,
-    snapshot_instance integer
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
+
+
+--
+-- Name: leaderboard_snapshots_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.leaderboard_snapshots_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: leaderboard_snapshots_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.leaderboard_snapshots_id_seq OWNED BY public.leaderboard_snapshots.id;
 
 
 --
@@ -2435,26 +2448,6 @@ ALTER SEQUENCE public.task_dataset_files_id_seq OWNED BY public.task_dataset_fil
 
 
 --
--- Name: tmp; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.tmp (
-    count bigint,
-    date_trunc date
-);
-
-
---
--- Name: tmp2; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.tmp2 (
-    cnt bigint,
-    date_trunc date
-);
-
-
---
 -- Name: topics_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -2685,6 +2678,13 @@ ALTER TABLE ONLY public.invitations ALTER COLUMN id SET DEFAULT nextval('public.
 --
 
 ALTER TABLE ONLY public.job_postings ALTER COLUMN id SET DEFAULT nextval('public.job_postings_id_seq'::regclass);
+
+
+--
+-- Name: leaderboard_snapshots id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.leaderboard_snapshots ALTER COLUMN id SET DEFAULT nextval('public.leaderboard_snapshots_id_seq'::regclass);
 
 
 --
@@ -3058,6 +3058,14 @@ ALTER TABLE ONLY public.invitations
 
 ALTER TABLE ONLY public.job_postings
     ADD CONSTRAINT job_postings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: leaderboard_snapshots leaderboard_snapshots_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.leaderboard_snapshots
+    ADD CONSTRAINT leaderboard_snapshots_pkey PRIMARY KEY (id);
 
 
 --
@@ -3558,6 +3566,34 @@ CREATE INDEX index_invitations_on_participant_id ON public.invitations USING btr
 
 
 --
+-- Name: index_leaderboard_snapshots_on_challenge_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_leaderboard_snapshots_on_challenge_id ON public.leaderboard_snapshots USING btree (challenge_id);
+
+
+--
+-- Name: index_leaderboard_snapshots_on_challenge_round_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_leaderboard_snapshots_on_challenge_round_id ON public.leaderboard_snapshots USING btree (challenge_round_id);
+
+
+--
+-- Name: index_leaderboard_snapshots_on_participant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_leaderboard_snapshots_on_participant_id ON public.leaderboard_snapshots USING btree (participant_id);
+
+
+--
+-- Name: index_leaderboard_snapshots_on_submission_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_leaderboard_snapshots_on_submission_id ON public.leaderboard_snapshots USING btree (submission_id);
+
+
+--
 -- Name: index_login_activities_on_identity; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3947,6 +3983,14 @@ ALTER TABLE ONLY public.article_sections
 
 ALTER TABLE ONLY public.comments
     ADD CONSTRAINT fk_rails_30b8c1c680 FOREIGN KEY (participant_id) REFERENCES public.participants(id);
+
+
+--
+-- Name: leaderboard_snapshots fk_rails_3aa46bb895; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.leaderboard_snapshots
+    ADD CONSTRAINT fk_rails_3aa46bb895 FOREIGN KEY (submission_id) REFERENCES public.submissions(id);
 
 
 --
@@ -4603,6 +4647,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180921123944'),
 ('20180925075651'),
 ('20180925095414'),
-('20181002125010');
+('20181002125010'),
+('20181005123309');
 
 

@@ -1,21 +1,11 @@
-one:
-  participant_id: 1
-  title: MyString
-  body: MyText
-  published: false
-  vote_count: 1
-  view_count: 1
-  body_markdown: MyText
-  seq: 1
-  posted_at: 2018-10-04 11:26:43
+published:
+  participant: admin
+  title: NIPS, Minecraft, and VizDoom
+  body_markdown: "This summer we have a lot of exciting things planned on crowdAI. We will start with the VizDoom  Challenge."
+  published: true
 
-two:
-  participant_id: 1
-  title: MyString
-  body: MyText
+unpublished:
+  participant: admin
+  title: A draft
+  body_markdown: "This is a blog post in draft."
   published: false
-  vote_count: 1
-  view_count: 1
-  body_markdown: MyText
-  seq: 1
-  posted_at: 2018-10-04 11:26:43

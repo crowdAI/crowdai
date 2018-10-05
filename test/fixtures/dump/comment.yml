@@ -1,0 +1,526 @@
+---
+comment_705:
+  id: 705
+  topic_id: 211
+  participant_id: 1
+  comment: "<p>This issue is resolved now.</p>\n"
+  flagged: false
+  notify: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2018-03-30 16:17:40.536753000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2018-03-30 16:17:40.536753000 Z
+    zone: *2
+    time: *3
+  vote_count: 0
+  slug: 
+  comment_markdown: This issue is resolved now.
+  mentions_cache: 
+comment_759:
+  id: 759
+  topic_id: 222
+  participant_id: 7
+  comment: |
+    <p>Hi @Trinh_Quoc_Anh  ,</p>
+
+    <p>Were you able to resolve this issue ?
+    Or are you still not able to submit your solution ?</p>
+
+    <p>Mohanty</p>
+  flagged: false
+  notify: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2018-04-18 11:37:57.980949000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2018-04-18 11:37:57.980949000 Z
+    zone: *2
+    time: *5
+  vote_count: 0
+  slug: 
+  comment_markdown: "Hi @Trinh_Quoc_Anh  ,\r\n\r\nWere you able to resolve this issue
+    ?\r\nOr are you still not able to submit your solution ?\r\n\r\nMohanty"
+  mentions_cache: 
+comment_290:
+  id: 290
+  topic_id: 81
+  participant_id: 7
+  comment: |
+    <p>Hi Waldermar,</p>
+
+    <p>I can confirm that it is 1000 steps.
+    And, we will update the instructions to clearly reflect the same.</p>
+
+    <p>Cheers,
+    Mohanty</p>
+  flagged: false
+  notify: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2017-08-11 14:52:41.517580000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2017-08-11 14:52:41.517580000 Z
+    zone: *2
+    time: *7
+  vote_count: 0
+  slug: 
+  comment_markdown: "Hi Waldermar,\r\n\r\nI can confirm that it is 1000 steps.\r\nAnd,
+    we will update the instructions to clearly reflect the same.\r\n\r\nCheers,\r\nMohanty"
+  mentions_cache: 
+comment_835:
+  id: 835
+  topic_id: 251
+  participant_id: 1189
+  comment: |
+    <p>@spMohanty
+    Yep. Requirement already up-to-date: crowdai in d:\program files\python\lib\site-packages (1.0.21)</p>
+
+    <p>Maybe the reason is that I’m from Russia and russian government recently blocked half of the internet? Is there way to check this using VPN?</p>
+  flagged: false
+  notify: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2018-05-14 16:36:57.503215000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2018-05-14 16:36:57.503215000 Z
+    zone: *2
+    time: *9
+  vote_count: 0
+  slug: 
+  comment_markdown: "@spMohanty\r\nYep. Requirement already up-to-date: crowdai in
+    d:\\program files\\python\\lib\\site-packages (1.0.21)\r\n\r\nMaybe the reason
+    is that I'm from Russia and russian government recently blocked half of the internet?
+    Is there way to check this using VPN?"
+  mentions_cache: 
+comment_903:
+  id: 903
+  topic_id: 275
+  participant_id: 6152
+  comment: |
+    <p>I have submitted, but not graded. maybe the model gait14dof22musc_pros_20180507.osim is not working at my windows 10.</p>
+
+    <p>I got this message when I ran python code.</p>
+
+    <p>Model ‘gait14dof22musc_pros’ has subcomponents with duplicate name ‘back’.
+    The duplicate is being renamed to ‘back_0’.
+    Model ‘gait14dof22musc_pros’ has subcomponents with duplicate name ‘pros_foot_r’.
+    The duplicate is being renamed to ‘pros_foot_r_0’.</p>
+  flagged: false
+  notify: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2018-06-18 05:58:12.171102000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2018-06-18 05:58:12.171102000 Z
+    zone: *2
+    time: *11
+  vote_count: 0
+  slug: 
+  comment_markdown: "I have submitted, but not graded. maybe the model gait14dof22musc_pros_20180507.osim
+    is not working at my windows 10.\r\n\r\nI got this message when I ran python code.\r\n\r\nModel
+    'gait14dof22musc_pros' has subcomponents with duplicate name 'back'.\r\nThe duplicate
+    is being renamed to 'back_0'.\r\nModel 'gait14dof22musc_pros' has subcomponents
+    with duplicate name 'pros_foot_r'.\r\nThe duplicate is being renamed to 'pros_foot_r_0'."
+  mentions_cache: 
+comment_289:
+  id: 289
+  topic_id: 80
+  participant_id: 7
+  comment: |
+    <p>Hi @Waldermar Lyubinetz,</p>
+
+    <p>Can please you check now ? It should be OK.</p>
+
+    <p>Cheers, Mohanty</p>
+  flagged: false
+  notify: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2017-08-11 14:47:15.939736000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2017-08-11 20:40:46.873898000 Z
+    zone: *2
+    time: *13
+  vote_count: 1
+  slug: 
+  comment_markdown: "Hi @Waldermar Lyubinetz,\r\n\r\nCan please you check now ? It
+    should be OK.\r\n\r\nCheers, Mohanty\r\n"
+  mentions_cache: 
+comment_305:
+  id: 305
+  topic_id: 82
+  participant_id: 1928
+  comment: "<p>Got it! Thank you all!</p>\n"
+  flagged: false
+  notify: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2017-08-14 10:52:56.956201000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2017-08-14 10:52:56.956201000 Z
+    zone: *2
+    time: *15
+  vote_count: 0
+  slug: 
+  comment_markdown: Got it! Thank you all!
+  mentions_cache: 
+comment_936:
+  id: 936
+  topic_id: 290
+  participant_id: 1764
+  comment: |
+    <p>It seems that the values of ‘z’ in ‘mass_center’ are not returned.</p>
+
+    <p>Could you check if it is intentional or not?</p>
+
+    <p>I copied the part from the simulator source codes.</p>
+
+    <p>class OsimModel(object):
+    …
+        def compute_state_desc(self):
+    …   <br />
+        ## Other
+            res[“misc”] = {}
+            res[“misc”][“mass_center_pos”] = [self.model.calcMassCenterPosition(self.state)[i] for i in range(2)]
+            res[“misc”][“mass_center_vel”] = [self.model.calcMassCenterVelocity(self.state)[i] for i in range(2)]
+            res[“misc”][“mass_center_acc”] = [self.model.calcMassCenterAcceleration(self.state)[i] for i in range(2)]</p>
+  flagged: false
+  notify: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2018-07-12 02:18:43.137759000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2018-07-12 02:18:43.137759000 Z
+    zone: *2
+    time: *17
+  vote_count: 0
+  slug: 
+  comment_markdown: "It seems that the values of 'z' in 'mass_center' are not returned.\r\n\r\nCould
+    you check if it is intentional or not?\r\n\r\nI copied the part from the simulator
+    source codes.\r\n\r\nclass OsimModel(object):\r\n...\r\n    def compute_state_desc(self):\r\n...
+    \    \r\n    ## Other\r\n        res[\"misc\"] = {}\r\n        res[\"misc\"][\"mass_center_pos\"]
+    = [self.model.calcMassCenterPosition(self.state)[i] for i in range(2)]\r\n        res[\"misc\"][\"mass_center_vel\"]
+    = [self.model.calcMassCenterVelocity(self.state)[i] for i in range(2)]\r\n        res[\"misc\"][\"mass_center_acc\"]
+    = [self.model.calcMassCenterAcceleration(self.state)[i] for i in range(2)]"
+  mentions_cache: 
+comment_1018:
+  id: 1018
+  topic_id: 300
+  participant_id: 6988
+  comment: "<p>I met the same problem, but I already set my bounds=(0,255)</p>\n"
+  flagged: false
+  notify: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2018-08-16 01:09:03.140880000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2018-08-16 01:09:03.140880000 Z
+    zone: *2
+    time: *19
+  vote_count: 0
+  slug: 
+  comment_markdown: I met the same problem, but I already set my bounds=(0,255)
+  mentions_cache: 
+comment_345:
+  id: 345
+  topic_id: 90
+  participant_id: 1250
+  comment: |
+    <p>for multiprocessing, I wrote a detailed example here.</p>
+
+    <p>https://github.com/stanfordnmbl/osim-rl/issues/58</p>
+
+    <p>you should also read every issue on github about osim-rl to avoid all kinds of problems.</p>
+  flagged: false
+  notify: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2017-08-19 16:04:57.349768000 Z
+    zone: *2
+    time: *20
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2017-08-19 16:04:57.349768000 Z
+    zone: *2
+    time: *21
+  vote_count: 0
+  slug: 
+  comment_markdown: "for multiprocessing, I wrote a detailed example here. \r\n\r\nhttps://github.com/stanfordnmbl/osim-rl/issues/58\r\n\r\nyou
+    should also read every issue on github about osim-rl to avoid all kinds of problems."
+  mentions_cache: 
+comment_357:
+  id: 357
+  topic_id: 96
+  participant_id: 1725
+  comment: |
+    <p>(opensim-rl) ubuntu@ip-172-31-7-98:~$ python -c “import opensim”
+    Traceback (most recent call last):
+      File “<string>", line 1, in <module>
+      File "/home/ubuntu/anaconda3/envs/opensim-rl/lib/python2.7/site-packages/opensim/__init__.py", line 1, in <module>
+        from simbody import *
+      File "/home/ubuntu/anaconda3/envs/opensim-rl/lib/python2.7/site-packages/opensim/simbody.py", line 28, in <module>
+        _simbody = swig_import_helper()
+      File "/home/ubuntu/anaconda3/envs/opensim-rl/lib/python2.7/site-packages/opensim/simbody.py", line 24, in swig_import_helper
+        _mod = imp.load_module('_simbody', fp, pathname, description)
+    ImportError: libquadmath.so.0: cannot open shared object file: No such file or directory</module></module></module></string></p>
+  flagged: false
+  notify: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &22 2017-08-22 01:52:16.752171000 Z
+    zone: *2
+    time: *22
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &23 2017-08-22 01:52:16.752171000 Z
+    zone: *2
+    time: *23
+  vote_count: 0
+  slug: 
+  comment_markdown: "(opensim-rl) ubuntu@ip-172-31-7-98:~$ python -c \"import opensim\"\r\nTraceback
+    (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\n  File
+    \"/home/ubuntu/anaconda3/envs/opensim-rl/lib/python2.7/site-packages/opensim/__init__.py\",
+    line 1, in <module>\r\n    from simbody import *\r\n  File \"/home/ubuntu/anaconda3/envs/opensim-rl/lib/python2.7/site-packages/opensim/simbody.py\",
+    line 28, in <module>\r\n    _simbody = swig_import_helper()\r\n  File \"/home/ubuntu/anaconda3/envs/opensim-rl/lib/python2.7/site-packages/opensim/simbody.py\",
+    line 24, in swig_import_helper\r\n    _mod = imp.load_module('_simbody', fp, pathname,
+    description)\r\nImportError: libquadmath.so.0: cannot open shared object file:
+    No such file or directory"
+  mentions_cache: 
+comment_187:
+  id: 187
+  topic_id: 51
+  participant_id: 1006
+  comment: |
+    <p>Hi Admin,
+             I am unable to download dataset . Getting “We’re sorry, but something went wrong.” error for past 3 days.</p>
+  flagged: false
+  notify: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &24 2017-06-06 06:02:10.302125000 Z
+    zone: *2
+    time: *24
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &25 2018-03-30 16:15:54.754209000 Z
+    zone: *2
+    time: *25
+  vote_count: 0
+  slug: 
+  comment_markdown: "Hi Admin,\r\n         I am unable to download dataset . Getting
+    \"We're sorry, but something went wrong.\" error for past 3 days. "
+  mentions_cache: 
+comment_205:
+  id: 205
+  topic_id: 53
+  participant_id: 346
+  comment: "<p>@Anton: osim-rl was updated to v1.3, I think you need to reinstall
+    it  https://github.com/stanfordnmbl/osim-rl/issues/40</p>\n"
+  flagged: false
+  notify: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &26 2017-07-15 08:01:13.632972000 Z
+    zone: *2
+    time: *26
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &27 2018-03-30 16:15:54.818616000 Z
+    zone: *2
+    time: *27
+  vote_count: 0
+  slug: 
+  comment_markdown: "@Anton: osim-rl was updated to v1.3, I think you need to reinstall
+    it  https://github.com/stanfordnmbl/osim-rl/issues/40"
+  mentions_cache: 
+comment_220:
+  id: 220
+  topic_id: 57
+  participant_id: 1345
+  comment: "<p>I noticed the same, ‘done’ is set in the call to client.env_step after
+    500 timesteps, when running the script for submission. Could you please check
+    whether the osim-rl on the grading server http://grader.crowdai.org:1729 is up
+    to date?</p>\n"
+  flagged: false
+  notify: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &28 2017-07-28 08:54:44.677981000 Z
+    zone: *2
+    time: *28
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &29 2018-03-30 16:15:54.835470000 Z
+    zone: *2
+    time: *29
+  vote_count: 1
+  slug: 
+  comment_markdown: I noticed the same, 'done' is set in the call to client.env_step
+    after 500 timesteps, when running the script for submission. Could you please
+    check whether the osim-rl on the grading server http://grader.crowdai.org:1729
+    is up to date?
+  mentions_cache: 
+comment_1039:
+  id: 1039
+  topic_id: 336
+  participant_id: 640
+  comment: "<p>Sorry about the typos and formatting, I can’t edit the post.</p>\n"
+  flagged: false
+  notify: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &30 2018-08-21 04:24:15.448350000 Z
+    zone: *2
+    time: *30
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &31 2018-08-21 04:24:15.448350000 Z
+    zone: *2
+    time: *31
+  vote_count: 0
+  slug: 
+  comment_markdown: 'Sorry about the typos and formatting, I can''t edit the post. '
+  mentions_cache: 
+comment_706:
+  id: 706
+  topic_id: 216
+  participant_id: 4168
+  comment: |
+    <p>Hi @baseline, excellent questions.</p>
+
+    <ol>
+      <li>
+        <p>First, a reminder of how the data is organized. For a time period, say <code>2007_1</code>, you have the future 6-month returns/ranks as of 6/30/2007 and the historic inputs available as of 6/30/2007. Therefore, the data corresponding to <code>2017_1</code> is from Jan 2017 to June 2017 and you are predicting the rank for the future 6 months (July to Dec 2017). There is more detail in the Data Description file on the “Datasets” tab above. Hope this helps.</p>
+      </li>
+      <li>
+        <p>My answer will be similar to the last question. The return/rank data and the inputs at the same time period are non-overlapping. This means that <code>X1:X70</code> would have been available to make predictions for this period, as you are predicting the rank for the second half of 2017 (i.e. the end of <code>2017_1</code>).</p>
+      </li>
+    </ol>
+
+    <p>With the current train/test split, you are unable to leak future data into the training set when predicting for <code>2017_1</code>. However, you need to be more careful for previous periods. For example: When predicting the future 6-month ranks for <code>2007_1</code>, you should not include observations from any periods after <code>2006_2</code>. This means the rank+input observations from <code>2007_1</code> are also off limits when making predictions for <code>2007_1</code>. In the random forest notebook, you will see that for predicting <code>time_period == time</code>, the training set included all data up to and not including <code>time</code>.</p>
+
+    <p>Thanks for your questions. This is the joy of time series data and the financial markets! :) Let me know if further clarification is needed.</p>
+  flagged: false
+  notify: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &32 2018-04-02 01:07:35.481517000 Z
+    zone: *2
+    time: *32
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &33 2018-04-02 01:07:35.481517000 Z
+    zone: *2
+    time: *33
+  vote_count: 0
+  slug: 
+  comment_markdown: "Hi @baseline, excellent questions.\r\n\r\n1. First, a reminder
+    of how the data is organized. For a time period, say `2007_1`, you have the future
+    6-month returns/ranks as of 6/30/2007 and the historic inputs available as of
+    6/30/2007. Therefore, the data corresponding to `2017_1` is from Jan 2017 to June
+    2017 and you are predicting the rank for the future 6 months (July to Dec 2017).
+    There is more detail in the Data Description file on the \"Datasets\" tab above.
+    Hope this helps.\r\n\r\n2. My answer will be similar to the last question. The
+    return/rank data and the inputs at the same time period are non-overlapping. This
+    means that `X1:X70` would have been available to make predictions for this period,
+    as you are predicting the rank for the second half of 2017 (i.e. the end of `2017_1`).\r\n\r\nWith
+    the current train/test split, you are unable to leak future data into the training
+    set when predicting for `2017_1`. However, you need to be more careful for previous
+    periods. For example: When predicting the future 6-month ranks for `2007_1`, you
+    should not include observations from any periods after `2006_2`. This means the
+    rank+input observations from `2007_1` are also off limits when making predictions
+    for `2007_1`. In the random forest notebook, you will see that for predicting
+    `time_period == time`, the training set included all data up to and not including
+    `time`.\r\n\r\nThanks for your questions. This is the joy of time series data
+    and the financial markets! :) Let me know if further clarification is needed."
+  mentions_cache: 
+comment_206:
+  id: 206
+  topic_id: 56
+  participant_id: 1337
+  comment: |
+    <p>Hi @spMohanty,</p>
+
+    <p>1) Where can I see evaluation results for all my submissions?</p>
+
+    <p>2) How can I choose the final submission between them?</p>
+
+    <p>3) What is the limit for submissions per day?</p>
+  flagged: false
+  notify: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &34 2017-07-18 16:03:27.260018000 Z
+    zone: *2
+    time: *34
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &35 2017-07-19 00:27:28.659615000 Z
+    zone: *2
+    time: *35
+  vote_count: 1
+  slug: 
+  comment_markdown: "Hi @spMohanty,\r\n\r\n1) Where can I see evaluation results for
+    all my submissions?\r\n\r\n2) How can I choose the final submission between them?\r\n\r\n3)
+    What is the limit for submissions per day?"
+  mentions_cache: 
+comment_760:
+  id: 760
+  topic_id: 228
+  participant_id: 4890
+  comment: "<p>@spMohanty Yes, confirm that. On the morning I tried to re-generate
+    it and to submit with the new ones,  but the result was the same. Tried to repeat
+    just now, but it’s still unavailable</p>\n"
+  flagged: false
+  notify: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &36 2018-04-18 12:24:39.103255000 Z
+    zone: *2
+    time: *36
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &37 2018-04-18 12:24:39.103255000 Z
+    zone: *2
+    time: *37
+  vote_count: 0
+  slug: 
+  comment_markdown: "@spMohanty Yes, confirm that. On the morning I tried to re-generate
+    it and to submit with the new ones,  but the result was the same. Tried to repeat
+    just now, but it's still unavailable"
+  mentions_cache: 
+comment_836:
+  id: 836
+  topic_id: 250
+  participant_id: 2574
+  comment: "<p>Hey @spMohanty , the updated submission script does not return back
+    Spearman correlation or NDCG is it as per any new rules of round 2?</p>\n"
+  flagged: false
+  notify: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &38 2018-05-14 17:10:51.531077000 Z
+    zone: *2
+    time: *38
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &39 2018-05-14 17:10:51.531077000 Z
+    zone: *2
+    time: *39
+  vote_count: 0
+  slug: 
+  comment_markdown: Hey @spMohanty , the updated submission script does not return
+    back Spearman correlation or NDCG is it as per any new rules of round 2?
+  mentions_cache: 
+comment_904:
+  id: 904
+  topic_id: 270
+  participant_id: 6165
+  comment: "<p>I just knew this competition today. Whether there is any chance to
+    participate although the round 1 already closed?</p>\n"
+  flagged: false
+  notify: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &40 2018-06-18 13:47:44.903152000 Z
+    zone: *2
+    time: *40
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &41 2018-06-18 13:47:44.903152000 Z
+    zone: *2
+    time: *41
+  vote_count: 0
+  slug: 
+  comment_markdown: I just knew this competition today. Whether there is any chance
+    to participate although the round 1 already closed?
+  mentions_cache: 

@@ -1,0 +1,119 @@
+---
+invitation_1:
+  id: 1
+  challenge_id: 26
+  participant_id: 
+  email: adrian.englhardt@gmail.com
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2018-02-12 07:21:31.989801000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2018-02-12 07:21:31.989801000 Z
+    zone: *2
+    time: *3
+invitation_2:
+  id: 2
+  challenge_id: 26
+  participant_id: 
+  email: ming.cai@student.kit.edu
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2018-04-06 06:36:42.389354000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2018-04-06 06:36:42.389354000 Z
+    zone: *2
+    time: *5
+invitation_3:
+  id: 3
+  challenge_id: 26
+  participant_id: 
+  email: aya_sy@hotmail.com
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2018-04-06 06:36:42.392148000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2018-04-06 06:36:42.392148000 Z
+    zone: *2
+    time: *7
+invitation_4:
+  id: 4
+  challenge_id: 26
+  participant_id: 
+  email: kai.schmieder@student.kit.edu
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2018-04-09 07:33:12.642092000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2018-04-09 07:33:12.642092000 Z
+    zone: *2
+    time: *9
+invitation_5:
+  id: 5
+  challenge_id: 32
+  participant_id: 
+  email: ryan@sv.ai
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2018-04-14 03:39:21.248682000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2018-04-14 03:39:21.248682000 Z
+    zone: *2
+    time: *11
+invitation_6:
+  id: 6
+  challenge_id: 36
+  participant_id: 
+  email: ubzjv@student.kit.edu
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2018-05-28 10:09:54.035816000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2018-05-28 10:09:54.035816000 Z
+    zone: *2
+    time: *13
+invitation_7:
+  id: 7
+  challenge_id: 36
+  participant_id: 
+  email: chen.shaohang272@gmail.com
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2018-05-29 06:47:07.958524000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2018-05-29 06:47:07.958524000 Z
+    zone: *2
+    time: *15
+invitation_8:
+  id: 8
+  challenge_id: 36
+  participant_id: 
+  email: starkagd@gmail.com
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2018-06-01 07:08:43.204954000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2018-06-01 07:08:43.204954000 Z
+    zone: *2
+    time: *17
+invitation_9:
+  id: 9
+  challenge_id: 36
+  participant_id: 
+  email: utzzc@student.kit.edu
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2018-06-01 10:44:56.561321000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2018-06-01 10:44:56.561321000 Z
+    zone: *2
+    time: *19

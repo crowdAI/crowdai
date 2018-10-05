@@ -1,0 +1,352 @@
+---
+spMohanty:
+  id: 537913
+  challenge_id: 30
+  challenge_round_id: 42
+  participant_id: 7
+  row_num: 1
+  previous_row_num: 0
+  slug: spmohanty
+  name: spMohanty
+  entries: 8
+  score: 0.2
+  score_secondary: 0.2
+  media_large: 
+  media_thumbnail: 
+  media_content_type: 
+  description: 
+  description_markdown: 
+  leaderboard_type_cd: ongoing
+  refreshed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2018-07-13 05:14:24.000000000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2018-07-13 05:13:27.627879000 Z
+    zone: *2
+    time: *3
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2018-07-13 05:14:24.326295000 Z
+    zone: *2
+    time: *4
+  submission_id: 10654
+  post_challenge: false
+  seq: 
+  baseline: 
+  baseline_comment: 
+d_133:
+  id: 1236920
+  challenge_id: 1
+  challenge_round_id: 8
+  participant_id: 133
+  row_num: 5
+  previous_row_num: 5
+  slug: d_133
+  name: d_133
+  entries: 2
+  score: 0.03
+  score_secondary: 3.941
+  media_large: 
+  media_thumbnail: 
+  media_content_type: 
+  description: Random classifier. This time with correct column headers. Maybe :)
+  description_markdown: 
+  leaderboard_type_cd: ongoing
+  refreshed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2018-08-21 17:42:46.000000000 Z
+    zone: *2
+    time: *5
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2016-04-22 21:08:15.067687000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2018-02-20 15:21:13.442464000 Z
+    zone: *2
+    time: *7
+  submission_id: 8
+  post_challenge: false
+  seq: 5
+  baseline: 
+  baseline_comment: 
+chsasank:
+  id: 1236921
+  challenge_id: 1
+  challenge_round_id: 8
+  participant_id: 95
+  row_num: 1
+  previous_row_num: 0
+  slug: chsasank
+  name: chsasank
+  entries: 11
+  score: 0.992
+  score_secondary: 0.037
+  media_large: 
+  media_thumbnail: 
+  media_content_type: 
+  description: Resnet34 based on fbresnet code
+  description_markdown: 
+  leaderboard_type_cd: previous
+  refreshed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2018-08-21 17:42:48.000000000 Z
+    zone: *2
+    time: *8
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2016-05-09 07:04:04.333122000 Z
+    zone: *2
+    time: *9
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2018-02-20 15:21:12.556845000 Z
+    zone: *2
+    time: *10
+  submission_id: 17
+  post_challenge: false
+  seq: 1
+  baseline: 
+  baseline_comment: 
+UMMS:
+  id: 1388239
+  challenge_id: 14
+  challenge_round_id: 13
+  participant_id: 4358
+  row_num: 1
+  previous_row_num: 0
+  slug: umms
+  name: UMMS
+  entries: 4
+  score: 0.186
+  score_secondary: 0.158
+  media_large: 
+  media_thumbnail: 
+  media_content_type: 
+  description: 
+  description_markdown: 
+  leaderboard_type_cd: previous
+  refreshed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2018-08-27 14:22:17.000000000 Z
+    zone: *2
+    time: *11
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2018-05-08 18:12:42.862327000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2018-05-08 18:13:08.999362000 Z
+    zone: *2
+    time: *13
+  submission_id: 6069
+  post_challenge: false
+  seq: 1
+  baseline: 
+  baseline_comment: 
+TUA1:
+  id: 1388240
+  challenge_id: 14
+  challenge_round_id: 13
+  participant_id: 4419
+  row_num: 2
+  previous_row_num: 0
+  slug: tua1
+  name: TUA1
+  entries: 3
+  score: 0.174
+  score_secondary: 0.135
+  media_large: 
+  media_thumbnail: 
+  media_content_type: 
+  description: 
+  description_markdown: 
+  leaderboard_type_cd: previous
+  refreshed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2018-08-27 14:22:17.000000000 Z
+    zone: *2
+    time: *14
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2018-05-08 01:36:56.734550000 Z
+    zone: *2
+    time: *15
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2018-05-08 01:37:20.191431000 Z
+    zone: *2
+    time: *16
+  submission_id: 5994
+  post_challenge: false
+  seq: 2
+  baseline: 
+  baseline_comment: 
+NLM:
+  id: 1388241
+  challenge_id: 14
+  challenge_round_id: 13
+  participant_id: 4623
+  row_num: 3
+  previous_row_num: 0
+  slug: nlm
+  name: NLM
+  entries: 6
+  score: 0.174
+  score_secondary: 0.121
+  media_large: 
+  media_thumbnail: 
+  media_content_type: 
+  description: 
+  description_markdown: 
+  leaderboard_type_cd: previous
+  refreshed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2018-08-27 14:22:17.000000000 Z
+    zone: *2
+    time: *17
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2018-05-08 19:59:50.392523000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2018-05-08 20:00:17.280237000 Z
+    zone: *2
+    time: *19
+  submission_id: 6084
+  post_challenge: false
+  seq: 3
+  baseline: 
+  baseline_comment: 
+HP:
+  id: 1236923
+  challenge_id: 1
+  challenge_round_id: 8
+  participant_id: 19
+  row_num: 3
+  previous_row_num: 0
+  slug: hp
+  name: HP
+  entries: 7
+  score: 0.952
+  score_secondary: 0.208
+  media_large: 
+  media_thumbnail: 
+  media_content_type: 
+  description: 'Use AlexNet to classify '
+  description_markdown: 
+  leaderboard_type_cd: previous
+  refreshed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2018-08-21 17:42:48.000000000 Z
+    zone: *2
+    time: *20
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2016-04-14 05:49:39.384161000 Z
+    zone: *2
+    time: *21
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &22 2018-02-20 15:21:13.117592000 Z
+    zone: *2
+    time: *22
+  submission_id: 4
+  post_challenge: false
+  seq: 3
+  baseline: 
+  baseline_comment: 
+Bashar:
+  id: 1388242
+  challenge_id: 14
+  challenge_round_id: 13
+  participant_id: 4629
+  row_num: 4
+  previous_row_num: 0
+  slug: bashar
+  name: Bashar
+  entries: 4
+  score: 0.122
+  score_secondary: 0.061
+  media_large: 
+  media_thumbnail: 
+  media_content_type: 
+  description: 
+  description_markdown: 
+  leaderboard_type_cd: previous
+  refreshed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &23 2018-08-27 14:22:17.000000000 Z
+    zone: *2
+    time: *23
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &24 2018-05-08 20:13:35.174553000 Z
+    zone: *2
+    time: *24
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &25 2018-05-08 20:13:59.982900000 Z
+    zone: *2
+    time: *25
+  submission_id: 6086
+  post_challenge: false
+  seq: 4
+  baseline: 
+  baseline_comment: 
+LIST:
+  id: 1388238
+  challenge_id: 14
+  challenge_round_id: 13
+  participant_id: 3579
+  row_num: 6
+  previous_row_num: 5
+  slug: list
+  name: LIST
+  entries: 10
+  score: 0.101
+  score_secondary: 0.054
+  media_large: 
+  media_thumbnail: 
+  media_content_type: 
+  description: 
+  description_markdown: 
+  leaderboard_type_cd: ongoing
+  refreshed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &26 2018-08-27 14:22:17.000000000 Z
+    zone: *2
+    time: *26
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &27 2018-05-10 00:30:55.599981000 Z
+    zone: *2
+    time: *27
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &28 2018-05-10 00:31:33.491537000 Z
+    zone: *2
+    time: *28
+  submission_id: 6183
+  post_challenge: false
+  seq: 6
+  baseline: 
+  baseline_comment: 
+Chakri:
+  id: 1388233
+  challenge_id: 14
+  challenge_round_id: 13
+  participant_id: 4850
+  row_num: 1
+  previous_row_num: 0
+  slug: chakri
+  name: Chakri
+  entries: 4
+  score: 0.209
+  score_secondary: 0.188
+  media_large: 
+  media_thumbnail: 
+  media_content_type: 
+  description: 
+  description_markdown: 
+  leaderboard_type_cd: ongoing
+  refreshed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &29 2018-08-27 14:22:17.000000000 Z
+    zone: *2
+    time: *29
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &30 2018-08-27 14:21:56.753774000 Z
+    zone: *2
+    time: *30
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &31 2018-08-27 14:22:17.558608000 Z
+    zone: *2
+    time: *31
+  submission_id: 14141
+  post_challenge: true
+  seq: 1
+  baseline: 
+  baseline_comment: 

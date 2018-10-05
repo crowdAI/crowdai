@@ -1,0 +1,302 @@
+---
+email_preference_2:
+  id: 2
+  participant_id: 414
+  newsletter: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2016-12-09 13:58:57.083417000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2016-12-09 13:58:57.083417000 Z
+    zone: *2
+    time: *3
+  challenges_followed: true
+  mentions: true
+  email_frequency_cd: daily
+email_preference_3:
+  id: 3
+  participant_id: 23
+  newsletter: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2016-12-09 13:58:57.086372000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2016-12-09 13:58:57.086372000 Z
+    zone: *2
+    time: *5
+  challenges_followed: true
+  mentions: true
+  email_frequency_cd: daily
+email_preference_4:
+  id: 4
+  participant_id: 401
+  newsletter: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2016-12-09 13:58:57.090018000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2016-12-09 13:58:57.090018000 Z
+    zone: *2
+    time: *7
+  challenges_followed: true
+  mentions: true
+  email_frequency_cd: daily
+email_preference_6:
+  id: 6
+  participant_id: 500
+  newsletter: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2016-12-09 13:58:57.098689000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2016-12-09 13:58:57.098689000 Z
+    zone: *2
+    time: *9
+  challenges_followed: true
+  mentions: true
+  email_frequency_cd: daily
+email_preference_8:
+  id: 8
+  participant_id: 22
+  newsletter: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2016-12-09 13:58:57.106780000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2016-12-09 13:58:57.106780000 Z
+    zone: *2
+    time: *11
+  challenges_followed: true
+  mentions: true
+  email_frequency_cd: daily
+email_preference_11:
+  id: 11
+  participant_id: 519
+  newsletter: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2016-12-09 13:58:57.116787000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2016-12-09 13:58:57.116787000 Z
+    zone: *2
+    time: *13
+  challenges_followed: true
+  mentions: true
+  email_frequency_cd: daily
+email_preference_12:
+  id: 12
+  participant_id: 87
+  newsletter: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2016-12-09 13:58:57.119795000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2016-12-09 13:58:57.119795000 Z
+    zone: *2
+    time: *15
+  challenges_followed: true
+  mentions: true
+  email_frequency_cd: daily
+email_preference_13:
+  id: 13
+  participant_id: 442
+  newsletter: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2016-12-09 13:58:57.122597000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2016-12-09 13:58:57.122597000 Z
+    zone: *2
+    time: *17
+  challenges_followed: true
+  mentions: true
+  email_frequency_cd: daily
+email_preference_15:
+  id: 15
+  participant_id: 458
+  newsletter: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2016-12-09 13:58:57.128767000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2016-12-09 13:58:57.128767000 Z
+    zone: *2
+    time: *19
+  challenges_followed: true
+  mentions: true
+  email_frequency_cd: daily
+email_preference_16:
+  id: 16
+  participant_id: 172
+  newsletter: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2016-12-09 13:58:57.132588000 Z
+    zone: *2
+    time: *20
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2016-12-09 13:58:57.132588000 Z
+    zone: *2
+    time: *21
+  challenges_followed: true
+  mentions: true
+  email_frequency_cd: daily
+email_preference_22:
+  id: 22
+  participant_id: 43
+  newsletter: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &22 2016-12-09 13:58:57.161282000 Z
+    zone: *2
+    time: *22
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &23 2016-12-09 13:58:57.161282000 Z
+    zone: *2
+    time: *23
+  challenges_followed: true
+  mentions: true
+  email_frequency_cd: daily
+email_preference_23:
+  id: 23
+  participant_id: 44
+  newsletter: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &24 2016-12-09 13:58:57.164410000 Z
+    zone: *2
+    time: *24
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &25 2016-12-09 13:58:57.164410000 Z
+    zone: *2
+    time: *25
+  challenges_followed: true
+  mentions: true
+  email_frequency_cd: daily
+email_preference_25:
+  id: 25
+  participant_id: 375
+  newsletter: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &26 2016-12-09 13:58:57.170277000 Z
+    zone: *2
+    time: *26
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &27 2016-12-09 13:58:57.170277000 Z
+    zone: *2
+    time: *27
+  challenges_followed: true
+  mentions: true
+  email_frequency_cd: daily
+email_preference_28:
+  id: 28
+  participant_id: 415
+  newsletter: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &28 2016-12-09 13:58:57.180263000 Z
+    zone: *2
+    time: *28
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &29 2016-12-09 13:58:57.180263000 Z
+    zone: *2
+    time: *29
+  challenges_followed: true
+  mentions: true
+  email_frequency_cd: daily
+email_preference_29:
+  id: 29
+  participant_id: 443
+  newsletter: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &30 2016-12-09 13:58:57.183613000 Z
+    zone: *2
+    time: *30
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &31 2016-12-09 13:58:57.183613000 Z
+    zone: *2
+    time: *31
+  challenges_followed: true
+  mentions: true
+  email_frequency_cd: daily
+email_preference_30:
+  id: 30
+  participant_id: 416
+  newsletter: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &32 2016-12-09 13:58:57.186585000 Z
+    zone: *2
+    time: *32
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &33 2016-12-09 13:58:57.186585000 Z
+    zone: *2
+    time: *33
+  challenges_followed: true
+  mentions: true
+  email_frequency_cd: daily
+email_preference_31:
+  id: 31
+  participant_id: 460
+  newsletter: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &34 2016-12-09 13:58:57.189630000 Z
+    zone: *2
+    time: *34
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &35 2016-12-09 13:58:57.189630000 Z
+    zone: *2
+    time: *35
+  challenges_followed: true
+  mentions: true
+  email_frequency_cd: daily
+email_preference_34:
+  id: 34
+  participant_id: 38
+  newsletter: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &36 2016-12-09 13:58:57.197644000 Z
+    zone: *2
+    time: *36
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &37 2016-12-09 13:58:57.197644000 Z
+    zone: *2
+    time: *37
+  challenges_followed: true
+  mentions: true
+  email_frequency_cd: daily
+email_preference_39:
+  id: 39
+  participant_id: 501
+  newsletter: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &38 2016-12-09 13:58:57.217623000 Z
+    zone: *2
+    time: *38
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &39 2016-12-09 13:58:57.217623000 Z
+    zone: *2
+    time: *39
+  challenges_followed: true
+  mentions: true
+  email_frequency_cd: daily
+email_preference_40:
+  id: 40
+  participant_id: 403
+  newsletter: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &40 2016-12-09 13:58:57.220400000 Z
+    zone: *2
+    time: *40
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &41 2016-12-09 13:58:57.220400000 Z
+    zone: *2
+    time: *41
+  challenges_followed: true
+  mentions: true
+  email_frequency_cd: daily

@@ -1,4 +1,4 @@
-sean:
+participant:
   email: sean@example.com
   admin: false
   organizer_id: 1
@@ -17,7 +17,7 @@ admin:
   email: admin@example.com
   admin: true
   organizer_id: 1
-  name: Sean
+  name: Bill
   email_public: false
   bio: MyText
   website: "https://www.crowdai.org/"
@@ -25,5 +25,19 @@ admin:
   linkedin: "https://www.crowdai.org/"
   twitter: "https://www.crowdai.org/"
   api_key: MyString
-  first_name: 'Sean'
-  last_name: 'Carroll'
+  first_name: 'Bill'
+  last_name: 'Blogs'
+
+organizer:
+  email: org@example.com
+  admin: false
+  organizer: crowdai
+  name: crowdAI_admin
+  email_public: false
+
+clef:
+  email: clef@example.com
+  admin: false
+  organizer: clef
+  name: crowdAI_admin
+  email_public: true

@@ -1,0 +1,137 @@
+---
+Google Brain:
+  id: 6
+  organizer_id: 
+  image_file: google_brain.jpeg
+  visible: true
+  seq: 6
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2018-05-01 08:55:26.284872000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2018-05-01 08:57:27.732787000 Z
+    zone: *2
+    time: *3
+  name: Google Brain
+Berkley:
+  id: 7
+  organizer_id: 
+  image_file: berkeley.png
+  visible: true
+  seq: 7
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2018-05-01 08:56:24.815507000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2018-05-01 09:49:04.036792000 Z
+    zone: *2
+    time: *5
+  name: Berkley
+Cornell University:
+  id: 5
+  organizer_id: 
+  image_file: cornell.png
+  visible: true
+  seq: 5
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2018-05-01 08:54:29.346954000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2018-05-01 09:50:11.147001000 Z
+    zone: *2
+    time: *7
+  name: Cornell University
+Penn State University:
+  id: 2
+  organizer_id: 3
+  image_file: Screen_Shot_2018-05-02_at_10.52.27.png
+  visible: true
+  seq: 8
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2018-05-01 08:47:04.758667000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2018-05-02 08:53:36.839907000 Z
+    zone: *2
+    time: *9
+  name: Penn State University
+Stanford:
+  id: 1
+  organizer_id: 4
+  image_file: Screen_Shot_2018-05-02_at_14.50.13.png
+  visible: true
+  seq: 3
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2018-05-01 08:46:23.072242000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2018-05-02 12:50:50.294547000 Z
+    zone: *2
+    time: *11
+  name: Stanford
+Humanity & Inclusion:
+  id: 3
+  organizer_id: 10
+  image_file: hi.png
+  visible: true
+  seq: 20
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2018-05-01 08:49:25.126934000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2018-08-16 14:51:35.530051000 Z
+    zone: *2
+    time: *13
+  name: Humanity & Inclusion
+UN:
+  id: 10
+  organizer_id: 25
+  image_file: UN_emblem_blue.svg
+  visible: true
+  seq: 1
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2018-08-16 14:51:19.756526000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2018-08-20 12:25:26.557842000 Z
+    zone: *2
+    time: *15
+  name: UN
+SBB:
+  id: 8
+  organizer_id: 
+  image_file: Screen_Shot_2018-08-20_at_21.46.11.png
+  visible: true
+  seq: 3
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2018-05-01 08:57:15.649296000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2018-08-20 19:49:26.864439000 Z
+    zone: *2
+    time: *17
+  name: SBB
+Microsoft Research:
+  id: 9
+  organizer_id: 20
+  image_file: MSFT_logo_rgb_C-Gray_D.png
+  visible: true
+  seq: 4
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2018-05-09 14:35:13.077519000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2018-08-20 19:50:15.362087000 Z
+    zone: *2
+    time: *19
+  name: Microsoft Research

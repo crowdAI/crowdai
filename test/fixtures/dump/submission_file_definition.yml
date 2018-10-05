@@ -1,0 +1,182 @@
+---
+submission_file_definition_1:
+  id: 1
+  challenge_id: 3
+  seq: 0
+  submission_file_description: Execution file
+  filetype_cd: any
+  file_required: true
+  submission_file_help_text: This file must be called run.sh and contains the code
+    to extract the text from the images, as described in the challenge.
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2016-09-13 15:36:28.022225000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2016-09-13 15:36:28.022225000 Z
+    zone: *2
+    time: *3
+submission_file_definition_2:
+  id: 2
+  challenge_id: 3
+  seq: 1
+  submission_file_description: Installation file
+  filetype_cd: any
+  file_required: false
+  submission_file_help_text: This is an optional file, and must be called install.sh
+    if included. It will install any additional libraries on the container.
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2016-09-13 15:36:28.034485000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2016-09-13 15:36:28.034485000 Z
+    zone: *2
+    time: *5
+submission_file_definition_3:
+  id: 3
+  challenge_id: 5
+  seq: 1
+  submission_file_description: predictions
+  filetype_cd: csv
+  file_required: true
+  submission_file_help_text: Prediction file with coordinates of the rest of the ants
+    for all the time frames.
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2016-10-19 14:09:54.059412000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2016-10-19 14:09:54.059412000 Z
+    zone: *2
+    time: *7
+submission_file_definition_4:
+  id: 4
+  challenge_id: 5
+  seq: 2
+  submission_file_description: scrips_and_model
+  filetype_cd: tar
+  file_required: false
+  submission_file_help_text: Optional .tar archive of scripts and models.
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2016-10-19 14:09:54.071789000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2016-10-19 14:34:37.089972000 Z
+    zone: *2
+    time: *9
+submission_file_definition_5:
+  id: 5
+  challenge_id: 4
+  seq: 1
+  submission_file_description: Predictions file
+  filetype_cd: txt
+  file_required: true
+  submission_file_help_text: Predictions file in the same format as "Training set
+    extracted text"
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2017-03-10 09:55:37.231446000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2017-03-10 09:55:37.231446000 Z
+    zone: *2
+    time: *11
+submission_file_definition_6:
+  id: 6
+  challenge_id: 10
+  seq: 
+  submission_file_description: ''
+  filetype_cd: csv
+  file_required: true
+  submission_file_help_text: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2017-08-16 07:09:37.380277000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2017-08-16 07:09:37.380277000 Z
+    zone: *2
+    time: *13
+submission_file_definition_7:
+  id: 7
+  challenge_id: 10
+  seq: 
+  submission_file_description: ''
+  filetype_cd: csv
+  file_required: false
+  submission_file_help_text: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2017-08-16 07:10:19.686343000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2017-08-16 07:10:19.686343000 Z
+    zone: *2
+    time: *15
+submission_file_definition_8:
+  id: 8
+  challenge_id: 26
+  seq: 
+  submission_file_description: Forecast
+  filetype_cd: csv
+  file_required: true
+  submission_file_help_text: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2018-02-12 09:04:51.722287000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2018-02-12 09:04:51.722287000 Z
+    zone: *2
+    time: *17
+submission_file_definition_9:
+  id: 9
+  challenge_id: 20
+  seq: 
+  submission_file_description: ''
+  filetype_cd: csv
+  file_required: false
+  submission_file_help_text: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2018-04-05 13:14:54.796464000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2018-04-05 13:14:54.796464000 Z
+    zone: *2
+    time: *19
+submission_file_definition_11:
+  id: 11
+  challenge_id: 37
+  seq: 
+  submission_file_description: ''
+  filetype_cd: csv
+  file_required: false
+  submission_file_help_text: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2018-07-04 12:45:07.473163000 Z
+    zone: *2
+    time: *20
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2018-07-04 12:45:07.473163000 Z
+    zone: *2
+    time: *21
+submission_file_definition_12:
+  id: 12
+  challenge_id: 33
+  seq: 
+  submission_file_description: ''
+  filetype_cd: csv
+  file_required: false
+  submission_file_help_text: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &22 2018-07-24 09:16:54.531549000 Z
+    zone: *2
+    time: *22
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &23 2018-07-24 09:16:54.531549000 Z
+    zone: *2
+    time: *23

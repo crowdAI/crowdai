@@ -1,0 +1,323 @@
+---
+task_dataset_file_5:
+  id: 5
+  clef_task_id: 7
+  seq: 0
+  description: 
+  evaluation: false
+  title: README.txt
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2017-11-17 15:26:20.202116000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2017-11-17 15:26:20.202116000 Z
+    zone: *2
+    time: *3
+  dataset_file_s3_key: task_dataset_files/clef_task_7/698d7f52-55ab-45dd-b19b-c1fed65a4b86_README.txt
+task_dataset_file_13:
+  id: 13
+  clef_task_id: 4
+  seq: 0
+  description: 
+  evaluation: false
+  title: README.txt
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2017-11-17 15:37:10.226093000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2017-11-17 15:37:10.226093000 Z
+    zone: *2
+    time: *5
+  dataset_file_s3_key: task_dataset_files/clef_task_4/63d812f2-8d4b-4c26-87de-7ed0083a401f_README.txt
+task_dataset_file_18:
+  id: 18
+  clef_task_id: 6
+  seq: 0
+  description: 
+  evaluation: false
+  title: Plant Training Data (README.txt)
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2017-11-23 09:55:54.585174000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2017-11-23 09:55:54.585174000 Z
+    zone: *2
+    time: *7
+  dataset_file_s3_key: task_dataset_files/clef_task_6/ea6d3947-e631-4359-bfb2-0ade386b2667_TrainingDataREADMEForCrowdAI
+task_dataset_file_19:
+  id: 19
+  clef_task_id: 5
+  seq: 0
+  description: 
+  evaluation: false
+  title: Training Data (README.txt)
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2017-11-23 10:06:47.254424000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2017-11-23 10:06:47.254424000 Z
+    zone: *2
+    time: *9
+  dataset_file_s3_key: task_dataset_files/clef_task_5/61c2f1fa-a4a1-465f-9463-bbc8fa587d83_TrainingDataREADMEForCrowdAI
+task_dataset_file_21:
+  id: 21
+  clef_task_id: 4
+  seq: 0
+  description: 
+  evaluation: false
+  title: Metadata
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2018-01-03 13:43:05.277754000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2018-01-03 13:43:05.277754000 Z
+    zone: *2
+    time: *11
+  dataset_file_s3_key: task_dataset_files/clef_task_4/c6191d62-3a58-47e1-b6f3-e8a9bc96844d_ImageCLEF2018lifelog_deveset_metadata.xml
+task_dataset_file_23:
+  id: 23
+  clef_task_id: 4
+  seq: 0
+  description: 
+  evaluation: false
+  title: Link to images
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2018-01-03 13:47:22.587689000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2018-01-03 13:47:22.587689000 Z
+    zone: *2
+    time: *13
+  dataset_file_s3_key: task_dataset_files/clef_task_4/b7f3eb64-038e-42b5-9c52-d44c1bdd0a8e_ImageCLEF2018lifelog_datasetlink.txt
+task_dataset_file_24:
+  id: 24
+  clef_task_id: 4
+  seq: 0
+  description: 
+  evaluation: false
+  title: Lifelog ontology
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2018-01-03 13:49:17.572143000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2018-01-03 13:49:17.572143000 Z
+    zone: *2
+    time: *15
+  dataset_file_s3_key: task_dataset_files/clef_task_4/73eeecfc-f28c-41ff-bb3e-c52c732a43b3_NTCIR13-Lifelog-Ontology.pdf
+task_dataset_file_25:
+  id: 25
+  clef_task_id: 4
+  seq: 0
+  description: 
+  evaluation: false
+  title: Image - Concepts
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2018-01-03 14:38:58.610115000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2018-01-03 14:38:58.610115000 Z
+    zone: *2
+    time: *17
+  dataset_file_s3_key: task_dataset_files/clef_task_4/ebe6f54f-bbe7-4d00-b6f6-dd274c323a9f_image_concepts.csv
+task_dataset_file_27:
+  id: 27
+  clef_task_id: 4
+  seq: 0
+  description: 
+  evaluation: false
+  title: ADLT Topics - Devset
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2018-01-05 11:49:41.115380000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2018-01-05 11:49:41.115380000 Z
+    zone: *2
+    time: *19
+  dataset_file_s3_key: task_dataset_files/clef_task_4/f409172c-7ac5-4caa-8c3f-b1177dad690f_ImageCLEF2018lifelog_ADLT_devset.xml
+task_dataset_file_28:
+  id: 28
+  clef_task_id: 4
+  seq: 0
+  description: 
+  evaluation: false
+  title: LMRT Topics - Devset
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2018-01-05 11:50:07.083359000 Z
+    zone: *2
+    time: *20
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2018-01-05 11:50:07.083359000 Z
+    zone: *2
+    time: *21
+  dataset_file_s3_key: task_dataset_files/clef_task_4/4280eac3-90fd-4797-849a-a359bd37a422_ImageCLEF2018lifelog_LMRT_devset
+    .xml
+task_dataset_file_30:
+  id: 30
+  clef_task_id: 7
+  seq: 0
+  description: 
+  evaluation: false
+  title: occurrences_train.csv
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &22 2018-01-18 10:21:45.733258000 Z
+    zone: *2
+    time: *22
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &23 2018-01-18 10:21:45.733258000 Z
+    zone: *2
+    time: *23
+  dataset_file_s3_key: task_dataset_files/clef_task_7/5e90620b-0eb7-40e0-b11d-349180576d21_occurrences_train.csv
+task_dataset_file_32:
+  id: 32
+  clef_task_id: 2
+  seq: 0
+  description: 
+  evaluation: false
+  title: Task1_MDR_TrainingSet_1_of_3
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &24 2018-01-22 09:19:51.738204000 Z
+    zone: *2
+    time: *24
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &25 2018-01-22 09:19:51.738204000 Z
+    zone: *2
+    time: *25
+  dataset_file_s3_key: task_dataset_files/clef_task_2/170ae7c4-3dd3-4bb6-87e2-9e5dce22518c_Task1_MDR_TrainingSet_1_of_3.zip
+task_dataset_file_33:
+  id: 33
+  clef_task_id: 2
+  seq: 0
+  description: 
+  evaluation: false
+  title: Task1_MDR_TrainingSet_2_of_3
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &26 2018-01-22 10:04:19.818199000 Z
+    zone: *2
+    time: *26
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &27 2018-01-22 10:04:19.818199000 Z
+    zone: *2
+    time: *27
+  dataset_file_s3_key: task_dataset_files/clef_task_2/52d9fa28-d5a4-477d-b2ea-1e0fd1131cc0_Task1_MDR_TrainingSet_2_of_3.zip
+task_dataset_file_34:
+  id: 34
+  clef_task_id: 2
+  seq: 0
+  description: 
+  evaluation: false
+  title: Task1_MDR_TrainingSet_3_of_3
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &28 2018-01-22 10:10:49.329419000 Z
+    zone: *2
+    time: *28
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &29 2018-01-22 10:10:49.329419000 Z
+    zone: *2
+    time: *29
+  dataset_file_s3_key: task_dataset_files/clef_task_2/73c78aae-b501-4c84-97b3-36eb09a56091_Task1_MDR_TrainingSet_3_of_3.zip
+task_dataset_file_35:
+  id: 35
+  clef_task_id: 2
+  seq: 0
+  description: 
+  evaluation: false
+  title: Task1_MDR_TrainingSet_Masks
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &30 2018-01-22 10:12:16.249921000 Z
+    zone: *2
+    time: *30
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &31 2018-01-22 10:12:16.249921000 Z
+    zone: *2
+    time: *31
+  dataset_file_s3_key: task_dataset_files/clef_task_2/2d835b85-a56a-4a5c-a1a2-05c7731dc733_Task1_MDR_TrainingSet_Masks.zip
+task_dataset_file_36:
+  id: 36
+  clef_task_id: 2
+  seq: 0
+  description: 
+  evaluation: false
+  title: Task1_MDR_TrainingSet_metaData.csv
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &32 2018-01-22 10:14:18.291166000 Z
+    zone: *2
+    time: *32
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &33 2018-01-22 10:14:18.291166000 Z
+    zone: *2
+    time: *33
+  dataset_file_s3_key: task_dataset_files/clef_task_2/0c383681-9c1d-44b4-a878-777d9b611048_Task1_MDR_TrainingSet_metaData.csv
+task_dataset_file_37:
+  id: 37
+  clef_task_id: 2
+  seq: 0
+  description: 
+  evaluation: false
+  title: Task3_SVR_TrainingSet_1_of_2
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &34 2018-01-22 10:57:04.980165000 Z
+    zone: *2
+    time: *34
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &35 2018-01-22 10:57:04.980165000 Z
+    zone: *2
+    time: *35
+  dataset_file_s3_key: task_dataset_files/clef_task_2/377d33bc-0ec2-42af-a51d-0f1ea8f3ce9d_Task3_SVR_TrainingSet_1_of_2.zip
+task_dataset_file_38:
+  id: 38
+  clef_task_id: 2
+  seq: 0
+  description: 
+  evaluation: false
+  title: Task3_SVR_TrainingSet_2_of_2
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &36 2018-01-22 11:00:55.055893000 Z
+    zone: *2
+    time: *36
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &37 2018-01-22 11:00:55.055893000 Z
+    zone: *2
+    time: *37
+  dataset_file_s3_key: task_dataset_files/clef_task_2/a1875a54-1d77-48d6-bcd3-504bd7b3aef8_Task3_SVR_TrainingSet_2_of_2.zip
+task_dataset_file_39:
+  id: 39
+  clef_task_id: 2
+  seq: 0
+  description: 
+  evaluation: false
+  title: Task3_SVR_TrainingSet_Masks
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &38 2018-01-22 11:01:49.550438000 Z
+    zone: *2
+    time: *38
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &39 2018-01-22 11:01:49.550438000 Z
+    zone: *2
+    time: *39
+  dataset_file_s3_key: task_dataset_files/clef_task_2/eedbcb6a-58c9-41a8-8cce-8833f59cc42d_Task3_SVR_TrainingSet_Masks.zip
+task_dataset_file_40:
+  id: 40
+  clef_task_id: 2
+  seq: 0
+  description: 
+  evaluation: false
+  title: Task3_SVR_TrainingSet_metaData.csv
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &40 2018-01-22 11:02:48.252702000 Z
+    zone: *2
+    time: *40
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &41 2018-01-22 11:02:48.252702000 Z
+    zone: *2
+    time: *41
+  dataset_file_s3_key: task_dataset_files/clef_task_2/9bfbe207-31aa-4c67-87ef-c7e0fa531808_Task3_SVR_TrainingSet_metaData.csv

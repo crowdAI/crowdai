@@ -1,0 +1,282 @@
+---
+submission_file_33:
+  id: 33
+  submission_id: 17
+  seq: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2016-05-09 07:04:04.336761000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2016-05-09 07:04:04.336761000 Z
+    zone: *2
+    time: *3
+  submission_file_s3_key: submission_files/413dc22d-8a30-4717-ba4e-6000d4e397be/submission.csv
+  leaderboard_video: false
+submission_file_51:
+  id: 51
+  submission_id: 26
+  seq: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2016-05-28 21:05:58.784907000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2016-05-28 21:05:58.784907000 Z
+    zone: *2
+    time: *5
+  submission_file_s3_key: submission_files/f0011e7c-4b2d-46cf-9b7a-d3ac4aa9bbd5/result.csv
+  leaderboard_video: false
+submission_file_25:
+  id: 25
+  submission_id: 13
+  seq: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2016-05-08 13:34:14.504705000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2016-05-08 13:34:14.504705000 Z
+    zone: *2
+    time: *7
+  submission_file_s3_key: "#<ActionDispatch::Http::UploadedFile:0x007f24805358f8>"
+  leaderboard_video: false
+submission_file_29:
+  id: 29
+  submission_id: 15
+  seq: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2016-05-08 23:12:09.809818000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2016-05-08 23:12:09.809818000 Z
+    zone: *2
+    time: *9
+  submission_file_s3_key: "#<ActionDispatch::Http::UploadedFile:0x007f2481fd4330>"
+  leaderboard_video: false
+submission_file_47:
+  id: 47
+  submission_id: 24
+  seq: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2016-05-09 23:23:40.441034000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2016-05-09 23:23:40.441034000 Z
+    zone: *2
+    time: *11
+  submission_file_s3_key: submission_files/9062d44d-e711-4cda-a5d5-776f7fa1db35/result8_5.csv
+  leaderboard_video: false
+submission_file_49:
+  id: 49
+  submission_id: 25
+  seq: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2016-05-12 09:33:31.808606000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2016-05-12 09:33:31.808606000 Z
+    zone: *2
+    time: *13
+  submission_file_s3_key: submission_files/6e92510a-1b5a-422f-8370-32d071b27e28/submission.csv
+  leaderboard_video: false
+submission_file_3:
+  id: 3
+  submission_id: 2
+  seq: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2016-04-13 04:10:24.818009000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2016-04-13 04:10:24.818009000 Z
+    zone: *2
+    time: *15
+  submission_file_s3_key: submission_files/2be09269-41f3-4b15-b5f4-354e8871deb8/synthetic_submission.csv
+  leaderboard_video: false
+submission_file_23:
+  id: 23
+  submission_id: 12
+  seq: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2016-05-07 13:04:47.379634000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2016-05-07 13:04:47.379634000 Z
+    zone: *2
+    time: *17
+  submission_file_s3_key: "#<ActionDispatch::Http::UploadedFile:0x007fddd86ec9c8>"
+  leaderboard_video: false
+submission_file_27:
+  id: 27
+  submission_id: 14
+  seq: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2016-05-08 23:05:41.001141000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2016-05-08 23:05:41.001141000 Z
+    zone: *2
+    time: *19
+  submission_file_s3_key: "#<ActionDispatch::Http::UploadedFile:0x007f2459bd8560>"
+  leaderboard_video: false
+submission_file_13:
+  id: 13
+  submission_id: 7
+  seq: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2016-04-22 21:01:13.687532000 Z
+    zone: *2
+    time: *20
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2016-04-22 21:01:13.687532000 Z
+    zone: *2
+    time: *21
+  submission_file_s3_key: submission_files/8d992d48-64e1-4b09-9486-26c80c53bdd5/classification.csv
+  leaderboard_video: false
+submission_file_5:
+  id: 5
+  submission_id: 3
+  seq: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &22 2016-04-13 17:55:55.099638000 Z
+    zone: *2
+    time: *22
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &23 2016-04-13 17:55:55.099638000 Z
+    zone: *2
+    time: *23
+  submission_file_s3_key: submission_files/d1aa84ea-8e18-4109-ad1a-e74c65b33d05/synthetic_submission.csv
+  leaderboard_video: false
+submission_file_45:
+  id: 45
+  submission_id: 23
+  seq: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &24 2016-05-09 23:21:30.032602000 Z
+    zone: *2
+    time: *24
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &25 2016-05-09 23:21:30.032602000 Z
+    zone: *2
+    time: *25
+  submission_file_s3_key: submission_files/9cd72934-4952-430b-893b-4482b46dabdf/result8_5.csv
+  leaderboard_video: false
+submission_file_17:
+  id: 17
+  submission_id: 9
+  seq: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &26 2016-04-23 08:12:11.476043000 Z
+    zone: *2
+    time: *26
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &27 2016-04-23 08:12:11.476043000 Z
+    zone: *2
+    time: *27
+  submission_file_s3_key: "#<ActionDispatch::Http::UploadedFile:0x007ff1ceca5158>"
+  leaderboard_video: false
+submission_file_9:
+  id: 9
+  submission_id: 5
+  seq: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &28 2016-04-18 20:33:14.416969000 Z
+    zone: *2
+    time: *28
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &29 2016-04-18 20:33:14.416969000 Z
+    zone: *2
+    time: *29
+  submission_file_s3_key: submission_files/3da7e968-94b2-4ff5-a7a7-29eab1cffaf9/submission.csv
+  leaderboard_video: false
+submission_file_15:
+  id: 15
+  submission_id: 8
+  seq: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &30 2016-04-22 21:08:15.070387000 Z
+    zone: *2
+    time: *30
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &31 2016-04-23 11:45:36.615391000 Z
+    zone: *2
+    time: *31
+  submission_file_s3_key: submission_files/2af25ed3-3bf2-4b7e-885d-f7f65755087a/classification.csv
+  leaderboard_video: false
+submission_file_19:
+  id: 19
+  submission_id: 10
+  seq: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &32 2016-04-23 13:29:44.807752000 Z
+    zone: *2
+    time: *32
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &33 2016-04-23 13:29:44.807752000 Z
+    zone: *2
+    time: *33
+  submission_file_s3_key: submission_files/2b6c63d2-272a-498f-93c7-6db15f2a962e/submission_alex_net.csv
+  leaderboard_video: false
+submission_file_11:
+  id: 11
+  submission_id: 6
+  seq: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &34 2016-04-20 12:07:45.061597000 Z
+    zone: *2
+    time: *34
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &35 2016-04-20 12:07:45.061597000 Z
+    zone: *2
+    time: *35
+  submission_file_s3_key: submission_files/d7bb361a-d6d5-4898-b9cc-c3fc4f2f92bc/submission.csv
+  leaderboard_video: false
+submission_file_21:
+  id: 21
+  submission_id: 11
+  seq: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &36 2016-04-25 09:20:19.900159000 Z
+    zone: *2
+    time: *36
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &37 2016-04-25 09:20:19.900159000 Z
+    zone: *2
+    time: *37
+  submission_file_s3_key: submission_files/cc8b3abd-99db-4091-93c5-53bd54689003/submission_VGG_16.csv
+  leaderboard_video: false
+submission_file_7:
+  id: 7
+  submission_id: 4
+  seq: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &38 2016-04-14 05:49:39.391232000 Z
+    zone: *2
+    time: *38
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &39 2016-04-14 05:49:39.391232000 Z
+    zone: *2
+    time: *39
+  submission_file_s3_key: submission_files/3e062849-c303-41b8-bcdd-8b193a3afdd1/submission1.csv
+  leaderboard_video: false
+submission_file_53:
+  id: 53
+  submission_id: 27
+  seq: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &40 2016-05-28 21:18:26.957065000 Z
+    zone: *2
+    time: *40
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &41 2016-05-28 21:18:26.957065000 Z
+    zone: *2
+    time: *41
+  submission_file_s3_key: submission_files/2dcf6fc3-1b0e-4437-915f-833b73de5297/alexnet_submission.csv
+  leaderboard_video: false

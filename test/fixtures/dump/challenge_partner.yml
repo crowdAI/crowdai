@@ -1,0 +1,262 @@
+---
+challenge_partner_1:
+  id: 1
+  challenge_id: 25
+  image_file: Logo_Hi_EN_Horiz_blue_rgb.png
+  partner_url: https://hi.org/en/index
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2018-01-26 13:20:52.045540000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2018-01-26 13:20:52.045540000 Z
+    zone: *2
+    time: *3
+challenge_partner_4:
+  id: 4
+  challenge_id: 25
+  image_file: epfl.png
+  partner_url: https://www.epfl.ch/
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2018-01-26 13:24:22.014731000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2018-01-26 13:26:19.730648000 Z
+    zone: *2
+    time: *5
+challenge_partner_5:
+  id: 5
+  challenge_id: 25
+  image_file: crowdai-logo-smile.svg
+  partner_url: https://www.crowdai.org/
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2018-01-26 13:27:31.540781000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2018-01-26 13:27:31.540781000 Z
+    zone: *2
+    time: *7
+challenge_partner_6:
+  id: 6
+  challenge_id: 25
+  image_file: UNITAR_UNOSAT.png
+  partner_url: https://unitar.org/unosat/
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2018-03-27 18:28:09.578490000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2018-03-27 18:28:09.578490000 Z
+    zone: *2
+    time: *9
+challenge_partner_7:
+  id: 7
+  challenge_id: 28
+  image_file: partner_logo_unituebingen2.png
+  partner_url: http://bethgelab.org
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2018-04-12 16:15:37.525773000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2018-04-12 20:24:26.228835000 Z
+    zone: *2
+    time: *11
+challenge_partner_11:
+  id: 11
+  challenge_id: 28
+  image_file: google_brain.png
+  partner_url: https://research.google.com/teams/brain/
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2018-04-12 22:21:19.398343000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2018-04-12 22:21:19.398343000 Z
+    zone: *2
+    time: *13
+challenge_partner_12:
+  id: 12
+  challenge_id: 28
+  image_file: epfl.png
+  partner_url: https://www.epfl.ch/index.en.html
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2018-04-12 22:21:19.584147000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2018-04-12 22:21:19.584147000 Z
+    zone: *2
+    time: *15
+challenge_partner_10:
+  id: 10
+  challenge_id: 28
+  image_file: partner_logo_crowdai4.jpg
+  partner_url: https://www.crowdai.org
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2018-04-12 22:21:19.098166000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2018-04-13 10:13:09.911432000 Z
+    zone: *2
+    time: *17
+challenge_partner_16:
+  id: 16
+  challenge_id: 25
+  image_file: Global-Pulse.jpg
+  partner_url: https://www.unglobalpulse.org/
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2018-05-20 14:35:24.739447000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2018-05-20 14:36:34.009678000 Z
+    zone: *2
+    time: *19
+challenge_partner_17:
+  id: 17
+  challenge_id: 40
+  image_file: partner_logo_unituebingen2.png
+  partner_url: http://bethgelab.org
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2018-06-22 15:33:10.321069000 Z
+    zone: *2
+    time: *20
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2018-06-22 15:33:10.321069000 Z
+    zone: *2
+    time: *21
+challenge_partner_18:
+  id: 18
+  challenge_id: 40
+  image_file: partner_logo_crowdai4.jpg
+  partner_url: https://www.crowdai.org
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &22 2018-06-22 15:33:11.354751000 Z
+    zone: *2
+    time: *22
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &23 2018-06-22 15:33:11.354751000 Z
+    zone: *2
+    time: *23
+challenge_partner_19:
+  id: 19
+  challenge_id: 40
+  image_file: google_brain.png
+  partner_url: https://research.google.com/teams/brain/
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &24 2018-06-22 15:33:11.628234000 Z
+    zone: *2
+    time: *24
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &25 2018-06-22 15:33:11.628234000 Z
+    zone: *2
+    time: *25
+challenge_partner_20:
+  id: 20
+  challenge_id: 40
+  image_file: epfl.png
+  partner_url: https://www.epfl.ch/index.en.html
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &26 2018-06-22 15:33:11.859010000 Z
+    zone: *2
+    time: *26
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &27 2018-06-22 15:33:11.859010000 Z
+    zone: *2
+    time: *27
+challenge_partner_21:
+  id: 21
+  challenge_id: 39
+  image_file: partner_logo_unituebingen2.png
+  partner_url: http://bethgelab.org
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &28 2018-06-22 15:34:05.123013000 Z
+    zone: *2
+    time: *28
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &29 2018-06-22 15:34:05.123013000 Z
+    zone: *2
+    time: *29
+challenge_partner_22:
+  id: 22
+  challenge_id: 39
+  image_file: partner_logo_crowdai4.jpg
+  partner_url: https://www.crowdai.org
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &30 2018-06-22 15:34:05.369240000 Z
+    zone: *2
+    time: *30
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &31 2018-06-22 15:34:05.369240000 Z
+    zone: *2
+    time: *31
+challenge_partner_23:
+  id: 23
+  challenge_id: 39
+  image_file: google_brain.png
+  partner_url: https://research.google.com/teams/brain/
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &32 2018-06-22 15:34:05.620921000 Z
+    zone: *2
+    time: *32
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &33 2018-06-22 15:34:05.620921000 Z
+    zone: *2
+    time: *33
+challenge_partner_24:
+  id: 24
+  challenge_id: 39
+  image_file: epfl.png
+  partner_url: https://www.epfl.ch/index.en.html
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &34 2018-06-22 15:34:05.867792000 Z
+    zone: *2
+    time: *34
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &35 2018-06-22 15:34:05.867792000 Z
+    zone: *2
+    time: *35
+challenge_partner_25:
+  id: 25
+  challenge_id: 42
+  image_file: unosat.png
+  partner_url: https://unitar.org/unosat/
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &36 2018-07-17 02:41:56.812807000 Z
+    zone: *2
+    time: *36
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &37 2018-07-17 02:41:56.812807000 Z
+    zone: *2
+    time: *37
+challenge_partner_26:
+  id: 26
+  challenge_id: 42
+  image_file: un_global_pulse.png
+  partner_url: https://www.unglobalpulse.org/
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &38 2018-07-17 02:41:57.162045000 Z
+    zone: *2
+    time: *38
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &39 2018-07-17 02:41:57.162045000 Z
+    zone: *2
+    time: *39
+challenge_partner_27:
+  id: 27
+  challenge_id: 31
+  image_file: google-cloud-logo.png
+  partner_url: https://cloud.google.com/
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &40 2018-07-25 20:34:46.781571000 Z
+    zone: *2
+    time: *40
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &41 2018-07-25 20:34:46.781571000 Z
+    zone: *2
+    time: *41

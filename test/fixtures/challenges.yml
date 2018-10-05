@@ -1,121 +1,132 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+draft:
+  organizer: crowdai
+  challenge: "Draft challenge"
+  challenge_client_name: draft
+  tagline: "A Draft challenge"
+  status: draft
+  description_markdown: "### The description"
+  evaluation_markdown: "# An evaluation"
+  rules_markdown: "Some *rules*"
+  prizes_markdown: "# Prizes are described here."
+  resources_markdown: "# Helpful resources"
+  dataset_description_markdown: "# Dataset description"
+  submission_instructions_markdown: "## Submission instructions"
+  primary_sort_order_cd: 'ascending'
+  secondary_sort_order_cd: 'descending'
+  score_title: 'Title_primary'
+  score_secondary_title: 'Title_secondary'
+  license_markdown: '## This is a license'
+  submissions_page: true
+  show_leaderboard: true
 
-one:
-  organizer_id: 1
-  challenge: MyString
-  status_cd: MyString
-  tagline: MyString
-  primary_sort_order_cd: MyString
-  secondary_sort_order_cd: MyString
-  perpetual_challenge: false
-  answer_file_s3_key: MyString
-  page_views: 1
-  participant_count: 1
-  submission_count: 1
-  score_title: MyString
-  score_secondary_title: MyString
-  slug: MyString
-  submission_license: MyString
-  api_required: false
-  media_on_leaderboard: false
-  challenge_client_name: MyString
-  online_grading: false
-  vote_count: 1
-  description_markdown: MyText
-  description: MyText
-  evaluation_markdown: MyText
-  evaluation: MyText
-  rules_markdown: MyText
-  rules: MyText
-  prizes_markdown: MyText
-  prizes: MyText
-  resources_markdown: MyText
-  resources: MyText
-  submission_instructions_markdown: MyText
-  submission_instructions: MyText
-  license_markdown: MyText
-  license: MyText
-  dataset_description_markdown: MyText
-  dataset_description: MyText
-  image_file: MyString
-  featured_sequence: 1
-  dynamic_content_flag: false
-  dynamic_content: MyText
-  dynamic_content_tab: MyString
-  winner_description_markdown: MyText
-  winner_description: MyText
-  winners_tab_active: false
-  clef_task_id: 1
-  clef_challenge: false
-  submissions_page: false
-  private_challenge: false
-  show_leaderboard: false
-  grader_identifier: MyString
-  online_submissions: false
-  grader_logs: false
-  require_registration: false
-  grading_history: false
-  post_challenge_submissions: false
-  submissions_downloadable: false
-  dataset_note_markdown: MyText
-  dataset_note: MyText
+running:
+  organizer: crowdai
+  challenge: "running challenge"
+  challenge_client_name: running
+  tagline: "a running challenge"
+  status: running
+  description_markdown: "### The description"
+  evaluation_markdown: "# An evaluation"
+  rules_markdown: "Some *rules*"
+  prizes_markdown: "# Prizes are described here."
+  resources_markdown: "# Helpful resources"
+  dataset_description_markdown: "# Dataset description"
+  submission_instructions_markdown: "## Submission instructions"
+  primary_sort_order_cd: 'ascending'
+  secondary_sort_order_cd: 'descending'
+  score_title: 'Title_primary'
+  score_secondary_title: 'Title_secondary'
+  license_markdown: '## This is a license'
+  submissions_page: true
+  show_leaderboard: true
 
-two:
-  organizer_id: 1
-  challenge: MyString
-  status_cd: MyString
-  tagline: MyString
-  primary_sort_order_cd: MyString
-  secondary_sort_order_cd: MyString
-  perpetual_challenge: false
-  answer_file_s3_key: MyString
-  page_views: 1
-  participant_count: 1
-  submission_count: 1
-  score_title: MyString
-  score_secondary_title: MyString
-  slug: MyString
-  submission_license: MyString
-  api_required: false
-  media_on_leaderboard: false
-  challenge_client_name: MyString
-  online_grading: false
-  vote_count: 1
-  description_markdown: MyText
-  description: MyText
-  evaluation_markdown: MyText
-  evaluation: MyText
-  rules_markdown: MyText
-  rules: MyText
-  prizes_markdown: MyText
-  prizes: MyText
-  resources_markdown: MyText
-  resources: MyText
-  submission_instructions_markdown: MyText
-  submission_instructions: MyText
-  license_markdown: MyText
-  license: MyText
-  dataset_description_markdown: MyText
-  dataset_description: MyText
-  image_file: MyString
-  featured_sequence: 1
-  dynamic_content_flag: false
-  dynamic_content: MyText
-  dynamic_content_tab: MyString
-  winner_description_markdown: MyText
-  winner_description: MyText
-  winners_tab_active: false
-  clef_task_id: 1
-  clef_challenge: false
-  submissions_page: false
-  private_challenge: false
-  show_leaderboard: false
-  grader_identifier: MyString
-  online_submissions: false
-  grader_logs: false
-  require_registration: false
-  grading_history: false
-  post_challenge_submissions: false
-  submissions_downloadable: false
-  dataset_note_markdown: MyText
-  dataset_note: MyText
+
+  trait :running do
+    status :running
+    dataset_files {[ build(:dataset_file) ]}
+    after(:create) do |challenge|
+      FactoryBot.create(:challenge_round, challenge: challenge)
+    end
+  end
+
+  trait :day do
+    status :running
+    dataset_files {[ build(:dataset_file) ]}
+    after(:create) do |challenge|
+      FactoryBot.create(
+        :challenge_round,
+        challenge: challenge,
+        start_dttm: challenge.created_at - 2.weeks,
+        end_dttm: challenge.created_at + 3.weeks,
+        submission_limit_period: :day)
+    end
+  end
+
+  trait :week do
+    status :running
+    dataset_files {[ build(:dataset_file) ]}
+    after(:create) do |challenge|
+      FactoryBot.create(
+        :challenge_round,
+        challenge: challenge,
+        start_dttm: challenge.created_at - 2.weeks,
+        end_dttm: challenge.created_at + 3.weeks,
+        submission_limit_period: :week)
+    end
+  end
+
+  trait :round do
+    status :running
+    dataset_files {[ build(:dataset_file) ]}
+    after(:create) do |challenge|
+      FactoryBot.create(
+        :challenge_round,
+        challenge: challenge,
+        start_dttm: challenge.created_at - 2.weeks,
+        end_dttm: challenge.created_at + 3.weeks,
+        submission_limit_period: :round)
+    end
+  end
+
+  trait :previous_round do
+    status :running
+    dataset_files {[ build(:dataset_file) ]}
+    after(:create) do |challenge|
+      FactoryBot.create(
+        :challenge_round,
+        :historical,
+        challenge: challenge,
+        challenge_round: 'round 1',
+        submission_limit: 5,
+        submission_limit_period: :round,
+        start_dttm: challenge.created_at - 5.weeks,
+        end_dttm: challenge.created_at - 3.weeks)
+      FactoryBot.create(
+        :challenge_round,
+        challenge: challenge,
+        challenge_round: 'round 2',
+        submission_limit: 5,
+        submission_limit_period: :round,
+        start_dttm: challenge.created_at - 2.weeks,
+        end_dttm: challenge.created_at + 3.weeks)
+    end
+  end
+
+  trait :draft do
+    status :draft
+    challenge FFaker::Lorem.sentence(3)
+  end
+
+  trait :completed do
+    status :completed
+    challenge FFaker::Lorem.sentence(3)
+    dataset_files {[ build(:dataset_file) ]}
+    after(:create) do |challenge|
+      FactoryBot.create(:challenge_round, challenge: challenge)
+    end
+  end
+
+  trait :starting_soon do
+    status :starting_soon
+    challenge FFaker::Lorem.sentence(3)
+  end

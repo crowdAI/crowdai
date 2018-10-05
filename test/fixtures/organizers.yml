@@ -1,25 +1,13 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  organizer: MyString
-  address: MyText
-  description: MyText
-  approved: false
-  slug: MyString
-  image_file: MyString
-  tagline: MyString
-  challenge_proposal: MyString
-  api_key: MyString
+crowdai:
+  organizer: 'crowdAI'
+  description: 'Fighting for open science with open data'
+  approved: true
+  tagline: 'Fighting for open science with open data'
   clef_organizer: false
 
-two:
-  organizer: MyString
-  address: MyText
-  description: MyText
-  approved: false
-  slug: MyString
-  image_file: MyString
-  tagline: MyString
-  challenge_proposal: MyString
-  api_key: MyString
-  clef_organizer: false
+clef:
+  organizer: 'crowdAI'
+  description: 'Fighting for open science with open data'
+  approved: true
+  tagline: 'Fighting for open science with open data'
+  clef_organizer: true

@@ -1,0 +1,362 @@
+---
+topic_393:
+  id: 393
+  challenge_id: 37
+  participant_id: 8425
+  topic: Locking of resource by the same service intention and release time
+  sticky: false
+  views: 0
+  posts_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2018-10-04 09:11:02.597915000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2018-10-04 09:11:02.597915000 Z
+    zone: *2
+    time: *3
+  slug: locking-of-resource-by-the-same-service-intention-and-release-time
+  vote_count: 0
+topic_392:
+  id: 392
+  challenge_id: 28
+  participant_id: 1298
+  topic: How long is the evaluating period for each submission?
+  sticky: false
+  views: 0
+  posts_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2018-10-03 17:05:44.640360000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2018-10-03 17:05:44.640360000 Z
+    zone: *2
+    time: *5
+  slug: how-long-is-the-evaluating-period-for-each-submission
+  vote_count: 0
+topic_391:
+  id: 391
+  challenge_id: 37
+  participant_id: 7722
+  topic: What's up with route [77]877 in problem instance six
+  sticky: false
+  views: 0
+  posts_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2018-10-02 15:29:24.390494000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2018-10-02 15:29:24.390494000 Z
+    zone: *2
+    time: *7
+  slug: what-s-up-with-route-77-877-in-problem-instance-six
+  vote_count: 0
+topic_390:
+  id: 390
+  challenge_id: 37
+  participant_id: 7722
+  topic: validate_solution.py returns 404
+  sticky: false
+  views: 0
+  posts_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2018-10-01 17:52:02.843521000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2018-10-01 17:52:02.843521000 Z
+    zone: *2
+    time: *9
+  slug: validate_solution-py-returns-404
+  vote_count: 0
+topic_389:
+  id: 389
+  challenge_id: 31
+  participant_id: 2549
+  topic: 'How can I submit for round 1? '
+  sticky: false
+  views: 0
+  posts_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2018-10-01 17:36:55.112900000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2018-10-04 09:50:59.624293000 Z
+    zone: *2
+    time: *11
+  slug: how-can-i-submit-for-round-1
+  vote_count: 2
+topic_388:
+  id: 388
+  challenge_id: 31
+  participant_id: 2438
+  topic: How exactly are "winners" scored?
+  sticky: false
+  views: 0
+  posts_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2018-10-01 15:45:20.868314000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2018-10-01 15:45:20.868314000 Z
+    zone: *2
+    time: *13
+  slug: how-exactly-are-winners-scored
+  vote_count: 0
+topic_387:
+  id: 387
+  challenge_id: 31
+  participant_id: 2438
+  topic: Leaderboard bugs (mixups between rounds)
+  sticky: false
+  views: 0
+  posts_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2018-10-01 15:27:36.550530000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2018-10-04 09:53:28.987723000 Z
+    zone: *2
+    time: *15
+  slug: leaderboard-bugs-mixups-between-rounds
+  vote_count: 1
+topic_386:
+  id: 386
+  challenge_id: 25
+  participant_id: 3272
+  topic: Challenge Results
+  sticky: false
+  views: 0
+  posts_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2018-10-01 12:01:13.600023000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2018-10-01 12:03:39.865926000 Z
+    zone: *2
+    time: *17
+  slug: challenge-results-507ac823-0cf6-4eb8-8ac2-d2ccf25f44dc
+  vote_count: 1
+topic_385:
+  id: 385
+  challenge_id: 37
+  participant_id: 8676
+  topic: solution validation
+  sticky: false
+  views: 0
+  posts_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2018-09-30 15:00:44.493725000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2018-09-30 15:00:44.493725000 Z
+    zone: *2
+    time: *19
+  slug: solution-validation
+  vote_count: 0
+topic_384:
+  id: 384
+  challenge_id: 31
+  participant_id: 7916
+  topic: Muscle actuators order?
+  sticky: false
+  views: 0
+  posts_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2018-09-28 21:03:46.586077000 Z
+    zone: *2
+    time: *20
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2018-09-28 21:03:46.586077000 Z
+    zone: *2
+    time: *21
+  slug: muscle-actuators-order
+  vote_count: 0
+topic_383:
+  id: 383
+  challenge_id: 31
+  participant_id: 1258
+  topic: Value of "target_vel" in observaton vector
+  sticky: false
+  views: 0
+  posts_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &22 2018-09-28 17:52:06.336029000 Z
+    zone: *2
+    time: *22
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &23 2018-09-28 17:52:06.336029000 Z
+    zone: *2
+    time: *23
+  slug: value-of-target_vel-in-observaton-vector
+  vote_count: 0
+topic_382:
+  id: 382
+  challenge_id: 37
+  participant_id: 8676
+  topic: submission
+  sticky: false
+  views: 0
+  posts_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &24 2018-09-28 10:59:09.117566000 Z
+    zone: *2
+    time: *24
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &25 2018-09-28 10:59:09.117566000 Z
+    zone: *2
+    time: *25
+  slug: submission
+  vote_count: 0
+topic_381:
+  id: 381
+  challenge_id: 31
+  participant_id: 7916
+  topic: Observation Space Shape Mismatch
+  sticky: false
+  views: 0
+  posts_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &26 2018-09-27 22:46:38.246836000 Z
+    zone: *2
+    time: *26
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &27 2018-09-27 22:46:38.246836000 Z
+    zone: *2
+    time: *27
+  slug: observation-space-shape-mismatch
+  vote_count: 0
+topic_380:
+  id: 380
+  challenge_id: 37
+  participant_id: 8676
+  topic: Route sections with alternative marker at entry
+  sticky: false
+  views: 0
+  posts_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &28 2018-09-27 10:11:58.988955000 Z
+    zone: *2
+    time: *28
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &29 2018-09-27 10:11:58.988955000 Z
+    zone: *2
+    time: *29
+  slug: route-sections-with-alternative-marker-at-entry
+  vote_count: 0
+topic_379:
+  id: 379
+  challenge_id: 28
+  participant_id: 8456
+  topic: Model terminated prematurely
+  sticky: false
+  views: 0
+  posts_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &30 2018-09-25 06:12:13.386296000 Z
+    zone: *2
+    time: *30
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &31 2018-09-25 06:12:13.386296000 Z
+    zone: *2
+    time: *31
+  slug: model-terminated-prematurely
+  vote_count: 0
+topic_378:
+  id: 378
+  challenge_id: 37
+  participant_id: 7757
+  topic: '01_dummy validation errors '
+  sticky: false
+  views: 0
+  posts_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &32 2018-09-24 21:35:49.753554000 Z
+    zone: *2
+    time: *32
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &33 2018-09-24 21:35:49.753554000 Z
+    zone: *2
+    time: *33
+  slug: 01_dummy-validation-errors
+  vote_count: 0
+topic_377:
+  id: 377
+  challenge_id: 31
+  participant_id: 7608
+  topic: Error in submission.
+  sticky: false
+  views: 0
+  posts_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &34 2018-09-24 09:47:27.035597000 Z
+    zone: *2
+    time: *34
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &35 2018-09-26 08:54:38.737873000 Z
+    zone: *2
+    time: *35
+  slug: error-in-submission-305c6d03-8492-4c2a-baa3-f63898f676b4
+  vote_count: 0
+topic_376:
+  id: 376
+  challenge_id: 37
+  participant_id: 8355
+  topic: Same route sections on different routes?
+  sticky: false
+  views: 0
+  posts_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &36 2018-09-21 14:49:17.920790000 Z
+    zone: *2
+    time: *36
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &37 2018-09-21 14:49:17.920790000 Z
+    zone: *2
+    time: *37
+  slug: same-route-sections-on-different-routes
+  vote_count: 0
+topic_375:
+  id: 375
+  challenge_id: 30
+  participant_id: 3272
+  topic: Challenge Results
+  sticky: false
+  views: 0
+  posts_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &38 2018-09-21 12:52:30.399357000 Z
+    zone: *2
+    time: *38
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &39 2018-09-21 12:52:30.399357000 Z
+    zone: *2
+    time: *39
+  slug: challenge-results-a984724d-3962-45e0-b486-f9c6831fd829
+  vote_count: 0
+topic_374:
+  id: 374
+  challenge_id: 35
+  participant_id: 3272
+  topic: Challenge Results
+  sticky: false
+  views: 0
+  posts_count: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &40 2018-09-21 11:57:24.314063000 Z
+    zone: *2
+    time: *40
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &41 2018-09-21 11:57:24.314063000 Z
+    zone: *2
+    time: *41
+  slug: challenge-results-c244f035-7506-4f29-89d9-1d001219dd2c
+  vote_count: 0

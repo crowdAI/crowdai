@@ -1,0 +1,262 @@
+---
+dataset_file_download_3540:
+  id: 3540
+  participant_id: 1
+  dataset_file_id: 88
+  ip_address: 128.179.177.190
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2018-03-09 15:52:50.906468000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2018-03-09 15:52:50.906468000 Z
+    zone: *2
+    time: *3
+dataset_file_download_2:
+  id: 2
+  participant_id: 199
+  dataset_file_id: 1
+  ip_address: 210.107.234.151
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2016-05-10 06:06:25.076604000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2016-05-10 06:06:25.076604000 Z
+    zone: *2
+    time: *5
+dataset_file_download_3593:
+  id: 3593
+  participant_id: 4484
+  dataset_file_id: 88
+  ip_address: 157.48.25.163
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2018-03-13 06:39:18.952329000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2018-03-13 06:39:18.952329000 Z
+    zone: *2
+    time: *7
+dataset_file_download_3636:
+  id: 3636
+  participant_id: 4548
+  dataset_file_id: 86
+  ip_address: 129.33.253.141
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2018-03-16 21:49:46.962301000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2018-03-16 21:49:46.962301000 Z
+    zone: *2
+    time: *9
+dataset_file_download_5:
+  id: 5
+  participant_id: 201
+  dataset_file_id: 1
+  ip_address: 93.147.68.155
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2016-05-10 07:56:20.311416000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2016-05-10 07:56:20.311416000 Z
+    zone: *2
+    time: *11
+dataset_file_download_3683:
+  id: 3683
+  participant_id: 949
+  dataset_file_id: 91
+  ip_address: 14.139.128.14
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2018-03-20 16:26:49.899864000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2018-03-20 16:26:49.899864000 Z
+    zone: *2
+    time: *13
+dataset_file_download_7:
+  id: 7
+  participant_id: 67
+  dataset_file_id: 1
+  ip_address: 14.139.82.6
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2016-05-13 13:48:58.247349000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2016-05-13 13:48:58.247349000 Z
+    zone: *2
+    time: *15
+dataset_file_download_3727:
+  id: 3727
+  participant_id: 4570
+  dataset_file_id: 88
+  ip_address: 115.249.106.165
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2018-03-22 19:03:38.660960000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2018-03-22 19:03:38.660960000 Z
+    zone: *2
+    time: *17
+dataset_file_download_3769:
+  id: 3769
+  participant_id: 4645
+  dataset_file_id: 79
+  ip_address: 85.229.253.208
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2018-03-26 12:20:42.463993000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2018-03-26 12:20:42.463993000 Z
+    zone: *2
+    time: *19
+dataset_file_download_3817:
+  id: 3817
+  participant_id: 3537
+  dataset_file_id: 92
+  ip_address: 118.166.126.239
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2018-03-27 16:04:28.109444000 Z
+    zone: *2
+    time: *20
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2018-03-27 16:04:28.109444000 Z
+    zone: *2
+    time: *21
+dataset_file_download_3861:
+  id: 3861
+  participant_id: 4672
+  dataset_file_id: 82
+  ip_address: 112.115.88.212
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &22 2018-03-29 00:39:01.491165000 Z
+    zone: *2
+    time: *22
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &23 2018-03-29 00:39:01.491165000 Z
+    zone: *2
+    time: *23
+dataset_file_download_3920:
+  id: 3920
+  participant_id: 976
+  dataset_file_id: 89
+  ip_address: 73.106.72.198
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &24 2018-03-29 13:06:32.966977000 Z
+    zone: *2
+    time: *24
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &25 2018-03-29 13:06:32.966977000 Z
+    zone: *2
+    time: *25
+dataset_file_download_3961:
+  id: 3961
+  participant_id: 4712
+  dataset_file_id: 101
+  ip_address: 27.17.199.203
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &26 2018-03-30 00:44:28.366902000 Z
+    zone: *2
+    time: *26
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &27 2018-03-30 00:44:28.366902000 Z
+    zone: *2
+    time: *27
+dataset_file_download_3965:
+  id: 3965
+  participant_id: 4711
+  dataset_file_id: 89
+  ip_address: 58.210.42.65
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &28 2018-03-30 00:48:20.682722000 Z
+    zone: *2
+    time: *28
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &29 2018-03-30 00:48:20.682722000 Z
+    zone: *2
+    time: *29
+dataset_file_download_15:
+  id: 15
+  participant_id: 115
+  dataset_file_id: 1
+  ip_address: 212.253.113.174
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &30 2016-05-15 13:44:30.416006000 Z
+    zone: *2
+    time: *30
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &31 2016-05-15 13:44:30.416006000 Z
+    zone: *2
+    time: *31
+dataset_file_download_16:
+  id: 16
+  participant_id: 115
+  dataset_file_id: 1
+  ip_address: 160.75.133.173
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &32 2016-05-15 13:50:58.269777000 Z
+    zone: *2
+    time: *32
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &33 2016-05-15 13:50:58.269777000 Z
+    zone: *2
+    time: *33
+dataset_file_download_3967:
+  id: 3967
+  participant_id: 4711
+  dataset_file_id: 91
+  ip_address: 58.210.42.65
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &34 2018-03-30 00:48:30.576161000 Z
+    zone: *2
+    time: *34
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &35 2018-03-30 00:48:30.576161000 Z
+    zone: *2
+    time: *35
+dataset_file_download_4017:
+  id: 4017
+  participant_id: 2488
+  dataset_file_id: 90
+  ip_address: 86.170.233.183
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &36 2018-03-30 09:57:48.849204000 Z
+    zone: *2
+    time: *36
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &37 2018-03-30 09:57:48.849204000 Z
+    zone: *2
+    time: *37
+dataset_file_download_19:
+  id: 19
+  participant_id: 74
+  dataset_file_id: 1
+  ip_address: 203.200.212.145
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &38 2016-05-16 06:11:53.967392000 Z
+    zone: *2
+    time: *38
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &39 2016-05-16 06:11:53.967392000 Z
+    zone: *2
+    time: *39
+dataset_file_download_20:
+  id: 20
+  participant_id: 192
+  dataset_file_id: 1
+  ip_address: 193.204.74.66
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &40 2016-05-16 10:39:57.631026000 Z
+    zone: *2
+    time: *40
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &41 2016-05-16 10:39:57.631026000 Z
+    zone: *2
+    time: *41

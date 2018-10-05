@@ -247,6 +247,75 @@ CREATE TABLE public.badges_sashes (
 
 
 --
+-- Name: participants; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.participants (
+    id integer NOT NULL,
+    email character varying DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    confirmation_token character varying,
+    confirmed_at timestamp without time zone,
+    confirmation_sent_at timestamp without time zone,
+    failed_attempts integer DEFAULT 0 NOT NULL,
+    unlock_token character varying,
+    locked_at timestamp without time zone,
+    admin boolean DEFAULT false,
+    verified boolean DEFAULT false,
+    verification_date date,
+    timezone character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    unconfirmed_email character varying,
+    organizer_id integer,
+    name character varying,
+    email_public boolean DEFAULT false,
+    bio text,
+    website character varying,
+    github character varying,
+    linkedin character varying,
+    twitter character varying,
+    account_disabled boolean DEFAULT false,
+    account_disabled_reason text,
+    account_disabled_dttm timestamp without time zone,
+    slug character varying,
+    api_key character varying,
+    image_file character varying,
+    affiliation character varying,
+    country_cd character varying,
+    address text,
+    city character varying,
+    first_name character varying,
+    last_name character varying,
+    clef_email boolean DEFAULT false,
+    sash_id integer,
+    level integer DEFAULT 0
+);
+
+
+--
+-- Name: badge_stats; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.badge_stats AS
+ SELECT bc.badge_id,
+    bc.badge_count,
+    pc.participant_count,
+    ((100)::double precision - trunc(((((pc.participant_count - bc.badge_count))::double precision / (pc.participant_count)::double precision) * (100)::double precision))) AS percentile
+   FROM ( SELECT b.badge_id,
+            count(*) AS badge_count
+           FROM public.badges_sashes b,
+            public.participants p
+          WHERE (p.sash_id = b.sash_id)
+          GROUP BY b.badge_id) bc,
+    ( SELECT count(*) AS participant_count
+           FROM public.participants) pc;
+
+
+--
 -- Name: badges_sashes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -558,56 +627,6 @@ CREATE TABLE public.organizers (
 
 
 --
--- Name: participants; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.participants (
-    id integer NOT NULL,
-    email character varying DEFAULT ''::character varying NOT NULL,
-    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
-    reset_password_token character varying,
-    reset_password_sent_at timestamp without time zone,
-    remember_created_at timestamp without time zone,
-    confirmation_token character varying,
-    confirmed_at timestamp without time zone,
-    confirmation_sent_at timestamp without time zone,
-    failed_attempts integer DEFAULT 0 NOT NULL,
-    unlock_token character varying,
-    locked_at timestamp without time zone,
-    admin boolean DEFAULT false,
-    verified boolean DEFAULT false,
-    verification_date date,
-    timezone character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    unconfirmed_email character varying,
-    organizer_id integer,
-    name character varying,
-    email_public boolean DEFAULT false,
-    bio text,
-    website character varying,
-    github character varying,
-    linkedin character varying,
-    twitter character varying,
-    account_disabled boolean DEFAULT false,
-    account_disabled_reason text,
-    account_disabled_dttm timestamp without time zone,
-    slug character varying,
-    api_key character varying,
-    image_file character varying,
-    affiliation character varying,
-    country_cd character varying,
-    address text,
-    city character varying,
-    first_name character varying,
-    last_name character varying,
-    clef_email boolean DEFAULT false,
-    sash_id integer,
-    level integer DEFAULT 0
-);
-
-
---
 -- Name: challenge_organizer_participants; Type: MATERIALIZED VIEW; Schema: public; Owner: -
 --
 
@@ -901,7 +920,8 @@ CREATE TABLE public.challenge_rounds (
     score_secondary_precision integer,
     leaderboard_note_markdown text,
     leaderboard_note text,
-    failed_submissions integer DEFAULT 0
+    failed_submissions integer DEFAULT 0,
+    parallel_submissions integer DEFAULT 0 NOT NULL
 );
 
 
@@ -1340,6 +1360,53 @@ CREATE SEQUENCE public.job_postings_id_seq
 --
 
 ALTER SEQUENCE public.job_postings_id_seq OWNED BY public.job_postings.id;
+
+
+--
+-- Name: leaderboard_snapshots; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.leaderboard_snapshots (
+    id bigint NOT NULL,
+    challenge_id bigint,
+    challenge_round_id bigint,
+    participant_id bigint,
+    row_num integer,
+    previous_row_num integer,
+    slug character varying,
+    name character varying,
+    entries integer,
+    score double precision,
+    score_secondary double precision,
+    leaderboard_type_cd character varying,
+    refreshed_at timestamp without time zone,
+    submission_id bigint,
+    post_challenge boolean,
+    seq integer,
+    baseline boolean,
+    baseline_comment character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: leaderboard_snapshots_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.leaderboard_snapshots_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: leaderboard_snapshots_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.leaderboard_snapshots_id_seq OWNED BY public.leaderboard_snapshots.id;
 
 
 --
@@ -2615,6 +2682,13 @@ ALTER TABLE ONLY public.job_postings ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
+-- Name: leaderboard_snapshots id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.leaderboard_snapshots ALTER COLUMN id SET DEFAULT nextval('public.leaderboard_snapshots_id_seq'::regclass);
+
+
+--
 -- Name: login_activities id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2985,6 +3059,14 @@ ALTER TABLE ONLY public.invitations
 
 ALTER TABLE ONLY public.job_postings
     ADD CONSTRAINT job_postings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: leaderboard_snapshots leaderboard_snapshots_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.leaderboard_snapshots
+    ADD CONSTRAINT leaderboard_snapshots_pkey PRIMARY KEY (id);
 
 
 --
@@ -3485,6 +3567,34 @@ CREATE INDEX index_invitations_on_participant_id ON public.invitations USING btr
 
 
 --
+-- Name: index_leaderboard_snapshots_on_challenge_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_leaderboard_snapshots_on_challenge_id ON public.leaderboard_snapshots USING btree (challenge_id);
+
+
+--
+-- Name: index_leaderboard_snapshots_on_challenge_round_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_leaderboard_snapshots_on_challenge_round_id ON public.leaderboard_snapshots USING btree (challenge_round_id);
+
+
+--
+-- Name: index_leaderboard_snapshots_on_participant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_leaderboard_snapshots_on_participant_id ON public.leaderboard_snapshots USING btree (participant_id);
+
+
+--
+-- Name: index_leaderboard_snapshots_on_submission_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_leaderboard_snapshots_on_submission_id ON public.leaderboard_snapshots USING btree (submission_id);
+
+
+--
 -- Name: index_login_activities_on_identity; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3503,6 +3613,13 @@ CREATE INDEX index_login_activities_on_ip ON public.login_activities USING btree
 --
 
 CREATE INDEX index_login_activities_on_user_type_and_user_id ON public.login_activities USING btree (user_type, user_id);
+
+
+--
+-- Name: index_merit_activity_logs_on_action_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_merit_activity_logs_on_action_id ON public.merit_activity_logs USING btree (action_id);
 
 
 --
@@ -3629,6 +3746,13 @@ CREATE INDEX index_participants_on_organizer_id ON public.participants USING btr
 --
 
 CREATE UNIQUE INDEX index_participants_on_reset_password_token ON public.participants USING btree (reset_password_token);
+
+
+--
+-- Name: index_participants_on_sash_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_participants_on_sash_id ON public.participants USING btree (sash_id);
 
 
 --
@@ -3860,6 +3984,14 @@ ALTER TABLE ONLY public.article_sections
 
 ALTER TABLE ONLY public.comments
     ADD CONSTRAINT fk_rails_30b8c1c680 FOREIGN KEY (participant_id) REFERENCES public.participants(id);
+
+
+--
+-- Name: leaderboard_snapshots fk_rails_3aa46bb895; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.leaderboard_snapshots
+    ADD CONSTRAINT fk_rails_3aa46bb895 FOREIGN KEY (submission_id) REFERENCES public.submissions(id);
 
 
 --
@@ -4511,6 +4643,14 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180827145811'),
 ('20180914093818'),
 ('20180914101925'),
-('20180914101940');
+('20180914101940'),
+('20180921115746'),
+('20180921123944'),
+('20180925075651'),
+('20180925095414'),
+('20181002125010'),
+('20181005123309'),
+('20181005130752'),
+('20181005132446');
 
 

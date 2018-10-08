@@ -35,23 +35,26 @@ class Submission < ApplicationRecord
   end
 
   after_create do
-    rnd = self.challenge
-      .challenge_rounds
-      .where(
-        'start_dttm <= ? and end_dttm >= ?',
-        self.created_at,self.created_at).first
-    if rnd.blank?
-      rnd = self.challenge.challenge_rounds.last
-    end
-    if rnd.present?
-      self.update(challenge_round_id: rnd.id)
-      if self.created_at > rnd.end_dttm
-        self.update(post_challenge: true)
+    if self.challenge_round_id.blank?
+      rnd = self.challenge
+        .challenge_rounds
+        .where(
+          'start_dttm <= ? and end_dttm >= ?',
+          self.created_at,self.created_at).first
+      if rnd.blank?
+        rnd = self.challenge.challenge_rounds.last
       end
-    else
-      raise ChallengeRoundIDMissing
+      if rnd.present?
+        self.update(challenge_round_id: rnd.id)
+        if self.created_at > rnd.end_dttm
+          self.update(post_challenge: true)
+        end
+      else
+        raise ChallengeRoundIDMissing
+      end
     end
   end
+
 
   after_save do
     if self.grading_status_cd == 'graded'

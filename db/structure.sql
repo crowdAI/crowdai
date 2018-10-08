@@ -920,7 +920,8 @@ CREATE TABLE public.challenge_rounds (
     score_secondary_precision integer,
     leaderboard_note_markdown text,
     leaderboard_note text,
-    failed_submissions integer DEFAULT 0
+    failed_submissions integer DEFAULT 0,
+    parallel_submissions integer DEFAULT 0 NOT NULL
 );
 
 
@@ -4648,6 +4649,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180925075651'),
 ('20180925095414'),
 ('20181002125010'),
-('20181005123309');
-
-
+('20181005123309'),
+('20181005130752'),
+('20181005132446');

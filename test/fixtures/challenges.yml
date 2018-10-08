@@ -3,7 +3,7 @@ draft:
   challenge: "Draft challenge"
   challenge_client_name: draft
   tagline: "A Draft challenge"
-  status: draft
+  status_cd: draft
   description_markdown: "### The description"
   evaluation_markdown: "# An evaluation"
   rules_markdown: "Some *rules*"
@@ -24,7 +24,7 @@ running:
   challenge: "running challenge"
   challenge_client_name: running
   tagline: "a running challenge"
-  status: running
+  status_cd: running
   description_markdown: "### The description"
   evaluation_markdown: "# An evaluation"
   rules_markdown: "Some *rules*"
@@ -40,93 +40,44 @@ running:
   submissions_page: true
   show_leaderboard: true
 
+completed:
+  organizer: crowdai
+  challenge: "Completed challenge"
+  challenge_client_name: completed
+  tagline: "A Completed challenge"
+  status_cd: completed
+  description_markdown: "### The description"
+  evaluation_markdown: "# An evaluation"
+  rules_markdown: "Some *rules*"
+  prizes_markdown: "# Prizes are described here."
+  resources_markdown: "# Helpful resources"
+  dataset_description_markdown: "# Dataset description"
+  submission_instructions_markdown: "## Submission instructions"
+  primary_sort_order_cd: 'ascending'
+  secondary_sort_order_cd: 'descending'
+  score_title: 'Title_primary'
+  score_secondary_title: 'Title_secondary'
+  license_markdown: '## This is a license'
+  submissions_page: true
+  show_leaderboard: true
 
-  trait :running do
-    status :running
-    dataset_files {[ build(:dataset_file) ]}
-    after(:create) do |challenge|
-      FactoryBot.create(:challenge_round, challenge: challenge)
-    end
-  end
-
-  trait :day do
-    status :running
-    dataset_files {[ build(:dataset_file) ]}
-    after(:create) do |challenge|
-      FactoryBot.create(
-        :challenge_round,
-        challenge: challenge,
-        start_dttm: challenge.created_at - 2.weeks,
-        end_dttm: challenge.created_at + 3.weeks,
-        submission_limit_period: :day)
-    end
-  end
-
-  trait :week do
-    status :running
-    dataset_files {[ build(:dataset_file) ]}
-    after(:create) do |challenge|
-      FactoryBot.create(
-        :challenge_round,
-        challenge: challenge,
-        start_dttm: challenge.created_at - 2.weeks,
-        end_dttm: challenge.created_at + 3.weeks,
-        submission_limit_period: :week)
-    end
-  end
-
-  trait :round do
-    status :running
-    dataset_files {[ build(:dataset_file) ]}
-    after(:create) do |challenge|
-      FactoryBot.create(
-        :challenge_round,
-        challenge: challenge,
-        start_dttm: challenge.created_at - 2.weeks,
-        end_dttm: challenge.created_at + 3.weeks,
-        submission_limit_period: :round)
-    end
-  end
-
-  trait :previous_round do
-    status :running
-    dataset_files {[ build(:dataset_file) ]}
-    after(:create) do |challenge|
-      FactoryBot.create(
-        :challenge_round,
-        :historical,
-        challenge: challenge,
-        challenge_round: 'round 1',
-        submission_limit: 5,
-        submission_limit_period: :round,
-        start_dttm: challenge.created_at - 5.weeks,
-        end_dttm: challenge.created_at - 3.weeks)
-      FactoryBot.create(
-        :challenge_round,
-        challenge: challenge,
-        challenge_round: 'round 2',
-        submission_limit: 5,
-        submission_limit_period: :round,
-        start_dttm: challenge.created_at - 2.weeks,
-        end_dttm: challenge.created_at + 3.weeks)
-    end
-  end
-
-  trait :draft do
-    status :draft
-    challenge FFaker::Lorem.sentence(3)
-  end
-
-  trait :completed do
-    status :completed
-    challenge FFaker::Lorem.sentence(3)
-    dataset_files {[ build(:dataset_file) ]}
-    after(:create) do |challenge|
-      FactoryBot.create(:challenge_round, challenge: challenge)
-    end
-  end
-
-  trait :starting_soon do
-    status :starting_soon
-    challenge FFaker::Lorem.sentence(3)
-  end
+starting_soon:
+  organizer: crowdai
+  challenge: "Starting soon challenge"
+  challenge_client_name: completed
+  tagline: "A starting soon challenge"
+  status_cd: starting_soon
+  description_markdown: "### The description"
+  evaluation_markdown: "# An evaluation"
+  rules_markdown: "Some *rules*"
+  prizes_markdown: "# Prizes are described here."
+  resources_markdown: "# Helpful resources"
+  dataset_description_markdown: "# Dataset description"
+  submission_instructions_markdown: "## Submission instructions"
+  primary_sort_order_cd: 'ascending'
+  secondary_sort_order_cd: 'descending'
+  score_title: 'Title_primary'
+  score_secondary_title: 'Title_secondary'
+  license_markdown: '## This is a license'
+  submissions_page: true
+  show_leaderboard: true

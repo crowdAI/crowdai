@@ -154,7 +154,6 @@ class Api::ExternalGradersController < Api::BaseController
     end
   end
 
-  private
   def clean_meta(params_meta)
     # Backward Compatibility
     # Across differrent versions of this API we have been passing

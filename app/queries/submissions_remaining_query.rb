@@ -21,7 +21,6 @@
     return remaining
   end
 
-
   def day
     submissions = @challenge
       .submissions

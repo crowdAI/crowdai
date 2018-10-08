@@ -11,6 +11,7 @@ FactoryBot.define do
     score_secondary_precision 3
     ranking_window 48
     ranking_highlight 3
+    parallel_submissions 0
 
     trait :historical do
       start_dttm 5.weeks.ago

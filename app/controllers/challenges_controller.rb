@@ -1,16 +1,10 @@
 class ChallengesController < ApplicationController
-  before_action :authenticate_participant!,
-    except: [:show,:index]
-  before_action :terminate_challenge,
-    only: [:show, :index]
-  before_action :set_challenge,
-    only: [:show, :edit, :update, :destroy]
-  after_action :verify_authorized,
-    except: [:index, :show]
-  before_action :set_s3_direct_post,
-    only: [:edit, :update]
-  before_action :set_organizer,
-    only: [:new, :create, :edit, :update]
+  before_action :authenticate_participant!, except: [:show,:index]
+  before_action :terminate_challenge, only: [:show, :index]
+  before_action :set_challenge, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized, except: [:index, :show]
+  before_action :set_s3_direct_post, only: [:edit, :update]
+  before_action :set_organizer, only: [:new, :create, :edit, :update]
 
   after_action :update_stats_job
   respond_to :html, :js
@@ -118,7 +112,6 @@ class ChallengesController < ApplicationController
     authorize @challenge
   end
 
-
   def challenge_params
     params
       .require(:challenge)
@@ -219,6 +212,7 @@ class ChallengesController < ApplicationController
           :score_significant_digits,
           :score_secondary_significant_digits,
           :leaderboard_note_markdown,
+          :parallel_submissions,
           :_destroy],
         challenge_partners_attributes: [
           :id,

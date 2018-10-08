@@ -33,12 +33,12 @@ class Api::ExternalGradersController < Api::BaseController
       raise DeveloperAPIKeyInvalid if participant.nil?
       challenge = Challenge.where(
                     challenge_client_name: params[:challenge_client_name]).first
-      #byebug
       challenge_round_id = get_challenge_round_id(
         challenge: challenge, params: params)
       raise ChallengeClientNameInvalid if challenge.nil?
       raise ChallengeRoundNotOpen unless challenge_round_open?(challenge)
       raise ParticipantNotQualified unless participant_qualified?(challenge,participant)
+      raise ParallelSubmissionLimitExceeded unless parallel_submissions_allowed?(challenge,participant)
 
       submissions_remaining, reset_dttm = challenge.submissions_remaining(participant.id)
       raise NoSubmissionSlotsRemaining if submissions_remaining < 1
@@ -300,7 +300,7 @@ class Api::ExternalGradersController < Api::BaseController
     Admin::SubmissionNotificationJob.perform_later(submission)
   end
 
-  private
+
   def grading_params
     case params[:grading_status]
     when 'graded'
@@ -333,6 +333,10 @@ class Api::ExternalGradersController < Api::BaseController
     else
       raise GradingStatusInvalid
     end
+  end
+
+  def parallel_submissions_allowed?(challenge,participant)
+    ParallelSubmissionsAllowedService.new(challenge,participant).call
   end
 
   class DeveloperAPIKeyInvalid < StandardError
@@ -391,6 +395,12 @@ class Api::ExternalGradersController < Api::BaseController
 
   class ParticipantNotQualified < StandardError
     def initialize(msg='You have not qualified for this round. Please review the challenge rules at www.crowdai.org')
+      super
+    end
+  end
+
+  class ParallelSubmissionLimitExceeded < StandardError
+    def initialize(msg='You have exceeded the allowed number of parallel submissions. Please wait until your other submission(s) are graded.')
       super
     end
   end

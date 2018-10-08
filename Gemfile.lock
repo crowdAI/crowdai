@@ -675,7 +675,7 @@ GEM
     rspec-support (3.7.1)
     ruby-graphviz (1.2.3)
     ruby_dep (1.5.0)
-    rubyzip (1.2.1)
+    rubyzip (1.2.2)
     rufus-scheduler (3.5.0)
       fugit (~> 1.1, >= 1.1.1)
     sanitize (4.6.5)
@@ -898,6 +898,7 @@ DEPENDENCIES
   rspec-kickstarter
   rspec-rails (~> 3.6)
   rspec-retry
+  rubyzip (~> 1.2.2)
   sanitize (~> 4.6.3)
   sass-rails
   scenic (~> 1.3)

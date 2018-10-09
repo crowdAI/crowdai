@@ -19,9 +19,9 @@ Rails.application.configure do
   config.active_support.deprecation = :stderr
   config.assets.raise_runtime_errors = true
   config.assets.debug = false
-  config.logger = Logger.new(nil)
-  config.log_level = :fatal
-  config.active_record.logger = nil
+  #config.logger = Logger.new(nil)
+  #config.log_level = :fatal
+  #config.active_record.logger = nil
   config.active_storage.service = :test
 end
 Rails.application.routes.default_url_options[:host] = ENV['HOST']

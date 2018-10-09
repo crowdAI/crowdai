@@ -1,7 +1,6 @@
 participant:
   email: sean@example.com
   admin: false
-  organizer_id: 1
   name: Sean
   email_public: false
   bio: MyText
@@ -12,11 +11,12 @@ participant:
   api_key: MyString
   first_name: 'Sean'
   last_name: 'Carroll'
+  encrypted_password: <%= Devise::Encryptor.digest(Participant, "password") %>
+  confirmed_at: <%= Time.now %>
 
 admin:
   email: admin@example.com
   admin: true
-  organizer_id: 1
   name: Bill
   email_public: false
   bio: MyText
@@ -27,6 +27,8 @@ admin:
   api_key: MyString
   first_name: 'Bill'
   last_name: 'Blogs'
+  encrypted_password: <%= Devise::Encryptor.digest(Participant, "password") %>
+  confirmed_at: <%= Time.now %>
 
 organizer:
   email: org@example.com
@@ -34,6 +36,8 @@ organizer:
   organizer: crowdai
   name: crowdAI_admin
   email_public: false
+  encrypted_password: <%= Devise::Encryptor.digest(Participant, "password") %>
+  confirmed_at: <%= Time.now %>
 
 clef:
   email: clef@example.com
@@ -41,3 +45,5 @@ clef:
   organizer: clef
   name: crowdAI_admin
   email_public: true
+  encrypted_password: <%= Devise::Encryptor.digest(Participant, "password") %>
+  confirmed_at: <%= Time.now %>

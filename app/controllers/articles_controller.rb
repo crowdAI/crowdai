@@ -1,8 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_participant!,
-    except: [:show,:index]
-  before_action :set_article,
-    only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_participant!, except: [:show,:index]
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized
 
   def index

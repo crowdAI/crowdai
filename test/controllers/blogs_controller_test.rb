@@ -1,14 +1,22 @@
 require 'test_helper'
 
 class BlogsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
-    @blog = blogs(:one)
+    sign_in participants(:participant)
+    #@blog = blogs(:one)
   end
 
   test "should get index" do
+    byebug
+    get '/'
     get blogs_url
     assert_response :success
   end
+end
+
+=begin
 
   test "should get new" do
     get new_blog_url
@@ -46,3 +54,4 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to blogs_url
   end
 end
+=end

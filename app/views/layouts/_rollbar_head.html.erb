@@ -1,6 +1,6 @@
 <script>
 var _rollbarConfig = {
-    accessToken: "55bb640d55404630afbe465dbbd09189",
+    accessToken: <%= ENV['ROLLBAR_ACCESS_TOKEN'] %>,
     captureUncaught: true,
     captureUnhandledRejections: true,
     payload: {

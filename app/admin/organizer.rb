@@ -24,5 +24,9 @@ ActiveAdmin.register Organizer do
     end
   end
 
+  action_item :details, only: :show do
+    link_to 'Organizer Details', organizer_path(params[:id])
+  end
+
 
 end

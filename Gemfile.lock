@@ -914,7 +914,7 @@ DEPENDENCIES
   simple_enum
   simplecov
   sinatra (~> 2.0.2)
-  skylight
+  skylight (~> 3.0)
   social-share-button
   spring
   sprockets (~> 3.7.2)

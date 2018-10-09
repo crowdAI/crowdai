@@ -77,7 +77,7 @@ gem 'scenic', '~> 1.3'
 gem 'sprockets', '~> 3.7.2'
 gem 'social-share-button'
 gem 'sass-rails'
-gem "skylight"
+gem 'skylight', '~> 3.0'
 gem 'sidekiq', '~> 5.1.1'
 gem 'sidekiq-cron', '~> 0.6.3'
 gem 'sidekiq-history'

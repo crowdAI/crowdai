@@ -733,9 +733,9 @@ GEM
       rack-protection (= 2.0.2)
       tilt (~> 2.0)
     sixarm_ruby_unaccent (1.2.0)
-    skylight (2.0.2)
-      skylight-core (= 2.0.2)
-    skylight-core (2.0.2)
+    skylight (3.0.0)
+      skylight-core (= 3.0.0)
+    skylight-core (3.0.0)
       activesupport (>= 4.2.0)
     social-share-button (1.1.0)
       coffee-rails

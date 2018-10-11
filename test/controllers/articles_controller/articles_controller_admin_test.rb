@@ -30,7 +30,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
         }
       }
     end
-    assert_redirected_to article_url(id: Article.last.slug)
+    assert_redirected_to article_url(Article.all.order(id: :desc).first.slug)
   end
 
   test "should show article" do
@@ -52,8 +52,8 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
         summary: @update_article.summary
       }
     }
-    puts @article.slug
-    assert_redirected_to article_url(id: @article.slug)
+    @article.reload
+    assert_redirected_to article_url(@article.slug)
   end
 
   test "should destroy article" do

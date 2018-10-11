@@ -357,7 +357,7 @@ GEM
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
-    friendly_id (5.1.0)
+    friendly_id (5.2.4)
       activerecord (>= 4.0.0)
     fugit (1.1.1)
       et-orbi (~> 1.1, >= 1.1.1)
@@ -740,7 +740,7 @@ DEPENDENCIES
   file_validators
   fog
   font-awesome-rails
-  friendly_id (~> 5.1.0)
+  friendly_id (~> 5.2.4)
   gibbon
   httparty
   include_media_rails

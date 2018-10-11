@@ -140,3 +140,8 @@ blockquote p {
     padding: 0;
   }
 }
+
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+}

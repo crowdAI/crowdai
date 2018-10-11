@@ -40,6 +40,7 @@ class Leaderboard::Cell::Media < Leaderboard::Cell
   def media_asset
     case content_type
     when nil
+      return nil if size == :large
       return image_tag(default_image_url, size: dimensions)
     when 'video'
       return video

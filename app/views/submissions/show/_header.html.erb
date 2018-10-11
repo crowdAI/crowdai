@@ -19,11 +19,18 @@
     <% end %>
   <% end %>
 
-  <div class='grading_status_cd'>
-    <i class="fa fa-square <%= @submission.grading_status_cd %>" aria-hidden="true"></i>
-    <strong class="<%= @submission.grading_status_cd %>">
-      <%= @submission.grading_status_cd %>
-    </strong>
+  <div class='flex-row'>
+    <div class='grading_status_cd'>
+      <i class="fa fa-square <%= @submission.grading_status_cd %>" aria-hidden="true"></i>
+      <strong class="<%= @submission.grading_status_cd %>">
+        <%= @submission.grading_status_cd %>
+      </strong>
+    </div>
+    <% if policy(@submission).update? %>
+      <%= link_to edit_challenge_submission_path(@challenge,@submission) do %>
+      <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+      <% end %>
+    <% end %>
   </div>
 
 </div>

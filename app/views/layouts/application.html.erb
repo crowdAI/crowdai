@@ -42,15 +42,16 @@
     <meta name="theme-color" content="#ffffff">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Roboto:400,400i,500,500i,700" rel="stylesheet">
     <script src="https://use.fontawesome.com/bee91422da.js"></script>
-    <%= render partial: 'layouts/google_analytics_head' %>
-    <%= render partial: 'layouts/rollbar_head' %>
+    <% if Rails.env.production? %>
+      <%= render partial: 'layouts/google_analytics_head' %>
+      <%= render partial: 'layouts/rollbar_head' %>
+    <% end %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
     <%= javascript_pack_tag 'application' %>
     <%= stylesheet_pack_tag 'application' %>
   </head>
-
 
   <body id='<%= body_id %>'>
     <%= render partial: 'layouts/loader' %>

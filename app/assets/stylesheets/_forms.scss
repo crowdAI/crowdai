@@ -293,10 +293,15 @@ input.switch:checked ~ label:after {
 }
 
 form.leaderboard {
-  margin-top: 32px;
+  margin-top: 20px;
+  width: 200px;
   label {
     font-weight: 400;
   }
+}
+
+.form-switches {
+  display: flex;
 }
 
 form {
@@ -614,4 +619,19 @@ div.additional {
 form p.description {
   color: $color-grey-54;
   margin: -6px 0 10px 0;
+}
+
+/* Filter sidebar */
+
+.filter-sidebar {
+  .sgl-col {
+    margin: 0 20px 0 0;
+    padding: 20px 16px 0 0;
+    max-width: 240px;
+    border-top: 1px solid #e6e6e6;
+    border-right: 1px solid #e6e6e6;
+    input[type=text] {
+      height: 32px;
+    }
+  }
 }

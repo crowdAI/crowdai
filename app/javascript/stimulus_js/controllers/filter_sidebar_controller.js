@@ -3,13 +3,15 @@ import { Controller } from 'stimulus';
 export default class extends Controller {
   static targets = ['open','close','sidebar','form','query','submissions','submit','submissionStatus'];
 
-  openSidebar() {
+  openSidebar(e) {
+    e.preventDefault();
     this.openTarget.classList.add('display-none');
     this.closeTarget.classList.remove('display-none');
     this.sidebarTarget.classList.remove('display-none');
   }
 
-  closeSidebar() {
+  closeSidebar(e) {
+    e.preventDefault();
     this.openTarget.classList.remove('display-none');
     this.closeTarget.classList.add('display-none');
     this.sidebarTarget.classList.add('display-none');

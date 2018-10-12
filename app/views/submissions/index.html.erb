@@ -27,9 +27,21 @@
   <div class='filter-wrapper' data-controller='filter-sidebar'>
     <%= render partial: 'submissions/index/filter' %>
     <div class='filter-table'>
+      <br/><br/>
+      <div class="table-filter">
+        <a href="#"
+          data-target="filter-sidebar.open" data-action="click->filter-sidebar#openSidebar">
+          <i class="fa fa-filter" ></i> Show filters
+        </a>
+        <a href="#"
+          data-target="filter-sidebar.close" data-action="click->filter-sidebar#closeSidebar"
+          class='display-none'>
+          <i class="fa fa-filter" ></i> Hide filters
+        </a>
+      </div>
       <table class='submissions'>
         <%= search_form_for @search,
-            :remote=>"true",
+            remote: true,
             url: challenge_submissions_path(@challenge),
             method: :get do |f| %>
             <thead>
@@ -40,7 +52,7 @@
                 <th>
                   <%= sort_link(@search, :name,"Participant") %>
                 </th>
-                <th>
+                <th class='status'>
                   <%= sort_link(@search, :grading_status_cd,"Status") %>
                 </th>
                 <th class="score">
@@ -54,16 +66,11 @@
                 <th>
                   <%= sort_link(@search, :grading_message, 'Message') %>
                 </th>
-                <th>
+                <th class='submission'>
                   <%= sort_link(@search, :created_at,"Submission (UTC)") %>
                 </th>
                 <th class="action"></th>
-                <th class="action">
-                  <i class="fa fa-filter"
-                    data-target='filter-sidebar.open' data-action="click->filter-sidebar#openSidebar"></i>
-                  <i class="fa fa-filter display-none"
-                    data-target='filter-sidebar.close' data-action="click->filter-sidebar#closeSidebar"></i>
-                </th>
+                <th class="action"></th>
               </tr>
             </thead>
           <% end %>

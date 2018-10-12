@@ -1,0 +1,32 @@
+//
+// Icons
+//
+
+.award-gold,
+.award-silver,
+.award-bronze,
+.award-empty {
+  span {
+    display: none;
+  }
+}
+
+.award-gold {
+  background: url('../../assets/img/awards/award-gold.svg') no-repeat 0 0;
+}
+
+.award-silver {
+  background: url('../../assets/img/awards/award-silver.svg') no-repeat 0 0;
+}
+
+.award-bronze {
+  background: url('../../assets/img/awards/award-bronze.svg') no-repeat 0 0;
+}
+
+.award-empty {
+  background: url('../../assets/img/awards/award-empty.svg') no-repeat 0 0;
+}
+
+.table-filter {
+	margin-top: 32px;
+}

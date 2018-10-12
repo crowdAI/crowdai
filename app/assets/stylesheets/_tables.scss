@@ -7,13 +7,24 @@ table {
 	width: 100%;
 	text-align: left;
   font-weight: normal;
+  overflow-x: auto;
+  // Responsive tables
+  @media screen and (max-width: 800px) {
+		display: block;
+	}
 	a {
 		color: $color-accent-dark;
 	}
 	thead {
 		color: $color-grey-54;
-		tr {
-			height: 40px;
+		a {
+			color: $color-grey-54;
+			&:hover {
+
+			}
+		}
+		th {
+			padding: 16px 0;
 		}
 	}
 	th {
@@ -25,6 +36,12 @@ table {
 	td {
 		padding: 16px 0;
 		vertical-align: middle;
+	}
+	.action {
+		text-align: right;
+		.btn {
+			margin: -4px 0;
+		}
 	}
 }
 
@@ -77,9 +94,6 @@ table.leaderboard {
 			display: none;
 		}
 	}
-	.action {
-		text-align: right;
-	}
 	// Add to first position & user's own submission(s)
 	tr.highlight {
 		font-weight: 700;
@@ -92,7 +106,8 @@ table.leaderboard {
 /* Table - Submissions */
 
 table.submissions {
-	margin-top: 35px;
+	margin-top: 16px;
+	border-top: 1px solid #e6e6e6;
 	@media screen and (max-width: 800px) {
 		margin-top: 31px;
 	}
@@ -101,7 +116,7 @@ table.submissions {
 	}
 	th,
 	td {
-		padding-right: 8px;
+		padding-right: 12px;
 		vertical-align: top;
 	}
 	th:last-of-type,
@@ -119,10 +134,17 @@ table.submissions {
 			}
 		}
 	}
+	th.status {
+		min-width: 96px;
+	}
+	td.description {
+		min-width: 220px;
+	}
 	th.submission,
 	td.submission {
 		text-align: right;
 	}
+
 }
 
 /* Load more bar */

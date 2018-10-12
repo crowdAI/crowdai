@@ -1,5 +1,5 @@
-  <tr id='participant-<%= submission.participant_id %>'>
-    <td><%= submission.id %></td>
+  <tr id='participant-<%= submission.participant_id %>' >
+    <td class='id'><%= submission.id %></td>
     <td class="participant">
       <div class="user-link">
         <div class='text-badge'>
@@ -10,30 +10,37 @@
             <span class='badge badge-accent'>Admin</span>
           <% end %>
           <% if submission.participant.organizer_id == submission.challenge.organizer_id %>
-            <span class='badge'>Organizer</span>
+            <span class='badge badge-accent'>Organizer</span>
           <% end %>
         </div>
       </div>
     </td>
-    <td class="grading_status_cd">
-        <%= link_to challenge_submission_path(
-              submission.challenge_id,submission) do %>
-                <i class="fa fa-square <%= submission.grading_status_cd %>" aria-hidden="true"></i>
-                <strong class="<%= submission.grading_status_cd %>"><%= submission.grading_status_cd %></strong>
-              <% end %>
+    <td>
+      <%= link_to challenge_submission_path(
+            submission.challenge_id,submission) do %>
+              <%= status_badge(submission.grading_status_cd) %>
+      <% end %>
     </td>
     <td>
-      <%= submission.score_display %>
+      <% if submission.score_display.present? %>
+        <%= submission.score_display %>
+      <% else %>
+        –
+      <% end %>
     </td>
     <% unless @challenge.secondary_sort_order_cd == 'not_used' %>
       <td>
-        <%= submission.score_secondary_display %>
+        <% if submission.score_secondary_display.present? %>
+          <%= submission.score_secondary_display %>
+        <% else %>
+          –
+        <% end %>
       </td>
     <% end %>
-    <td>
+    <td class='description'>
       <%= submission.grading_message %>
     </td>
-    <td class='submission_date'><%= submission.created_at %></td>
+    <td class='submission'><%= submission.created_at.strftime('%d %b %Y %H:%M:%S') %></td>
     <td class='action'>
       <% if submission.challenge.submissions_page %>
         <%= link_to challenge_submission_path(

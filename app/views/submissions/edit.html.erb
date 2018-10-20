@@ -11,7 +11,9 @@
   <div class="row">
     <br/>
     <label>Participant</label>
-    <div><%= @submission.participant.name %></div>
+    <div>
+      <%= link_to @submission.participant.name, participant_path(@submission.participant_id), target: :blank %>
+    </div>
 
     <br/>
     <% if @challenge.submissions_downloadable || current_participant.admin? %>
@@ -29,7 +31,7 @@
 
     <% if @submission.meta && @submission.meta.key?('repo_url') %>
       <label>GitLab Repo</label>
-      <%= link_to @submission.meta['repo_url'], @submission.meta['repo_url'] %><br/><br/>
+      <%= link_to @submission.meta['repo_url'], @submission.meta['repo_url'], target: :blank %><br/><br/>
 
       <label>Ref</label>
       <%= @submission.meta['repo_ref'] %><br/><br/>

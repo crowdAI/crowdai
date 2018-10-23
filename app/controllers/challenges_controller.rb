@@ -172,6 +172,7 @@ class ChallengesController < ApplicationController
         :post_challenge_submissions,
         :submissions_downloadable,
         :dataset_note_markdown,
+        :discussions_visible,
         dataset_attributes: [
           :id,
           :challenge_id,

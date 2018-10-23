@@ -11,11 +11,13 @@
                 challenge_leaderboards_path(challenge),
                 class: tab_class('leaderboard') %>
       </li>
-      <li class=<%= tab_class('discussion') %> >
-        <%= link_to 'Discussion',
+      <% if challenge.discussions_visible.present? %>
+        <li class=<%= tab_class('discussion') %> >
+          <%= link_to 'Discussion',
               challenge_topics_path(challenge),
               class: tab_class('discussion') %>
-      </li>
+        </li>
+      <% end %>
       <% if challenge.clef_task.present? %>
         <li class=<%= tab_class('clef_dataset') %> >
           <%= link_to 'Dataset',

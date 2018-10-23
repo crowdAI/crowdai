@@ -42,7 +42,7 @@ class Challenge::Cell::ChallengesSubnav < Challenge::Cell
   end
 
   def draft_challenges_count
-    return 0 unless current_participant &&  current_participant.admin?
+    return 0 unless current_participant &&  (current_participant.admin? || current_participant.organizer_id.present?)
     statuses = [:draft]
     challenges.select { |c| statuses.include?(c.status) }.count
   end

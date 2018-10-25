@@ -1,0 +1,29 @@
+<div class="row">
+  <%= form_for [@organizer,@challenge], validate: true, html: { class: "dbl-col" } do |f| %>
+
+  <fieldset class="checkbox">
+    <div>
+      <%= f.check_box :private_challenge, {}, "true", "false" %>
+      <%= f.label :private_challenge, 'Private challenge' %>
+    </div>
+  </fieldset>
+
+  <%= render partial: 'challenges/form/invitations_table',
+          locals: { challenge: @challenge, f: f } %>
+
+  <%= render partial: 'challenges/form/submit_buttons',
+        locals: { f: f } %>
+
+</fieldset>
+<% end %>
+
+  <% if @challenge.persisted? %>
+    <div class='pull-right'>
+      <%= form_tag import_challenge_invitations_path(@challenge), multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "Import CSV", class: 'btn' %>
+      <% end %>
+    </div>
+  <% end %>
+  
+</div>

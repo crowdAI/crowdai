@@ -1277,7 +1277,8 @@ CREATE TABLE public.invitations (
     participant_id bigint,
     email character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    invitee_name character varying
 );
 
 
@@ -4516,6 +4517,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180914101940'),
 ('20181005130752'),
 ('20181005132446'),
-('20181023161118');
+('20181023161118'),
+('20181025120952');
 
 

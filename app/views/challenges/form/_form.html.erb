@@ -16,6 +16,7 @@
         <li data-tab='tab-details' class='active'>Details</li>
         <li data-tab='tab-type'>Rounds</li>
         <li data-tab='tab-overview'>Overview</li>
+        <li data-tab='tab-private'>Private Challenge</li>
         <li data-tab='tab-dataset'>Dataset</li>
         <li data-tab='tab-submissions'>Submissions</li>
         <li data-tab='tab-winner'>Winner</li>
@@ -34,6 +35,9 @@
     </div>
     <div id='tab-overview' class='tab-content'>
       <%= render partial: 'challenges/form/overview', locals: { challenge: challenge } %>
+    </div>
+    <div id='tab-private' class='tab-content'>
+      <%= render partial: 'challenges/form/private_challenge', locals: { challenge: challenge } %>
     </div>
     <div id='tab-dataset' class='tab-content'>
       <%= render partial: 'challenges/form/dataset', locals: { challenge: challenge } %>

@@ -649,6 +649,9 @@ GEM
       railties (>= 4.2.0, < 5.3)
     rollbar (2.18.0)
       multi_json
+    roo (2.7.1)
+      nokogiri (~> 1)
+      rubyzip (~> 1.1, < 2.0.0)
     rouge (3.1.1)
     rspec-cells (0.3.4)
       cells (>= 4.0.0, < 6.0.0)
@@ -893,6 +896,7 @@ DEPENDENCIES
   ransack
   remotipart
   rollbar
+  roo
   rouge
   rspec-cells
   rspec-kickstarter

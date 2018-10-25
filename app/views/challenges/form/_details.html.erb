@@ -28,7 +28,11 @@
         </div>
         <div class="twin-field">
           <%= f.label :featured_sequence, 'Featured Sequence' %>
-          <%= f.text_field :featured_sequence %>
+          <% if current_participant.admin? %>
+            <%= f.text_field :featured_sequence %>
+          <% else %>
+            <%= f.text_field :featured_sequence, readonly: true %>
+          <% end %>
         </div>
       </div>
 
@@ -127,16 +131,6 @@
         <%= f.select :secondary_sort_order, enum_option_pairs(Challenge, :secondary_sort_order), include_blank: false %>
       </div>
     </div>
-
-    <fieldset class="checkbox">
-      <div>
-        <%= f.check_box :private_challenge, {}, "true", "false" %>
-        <%= f.label :private_challenge, 'Private challenge' %>
-      </div>
-    </fieldset>
-
-    <%= render partial: 'challenges/form/invitations_table',
-            locals: { challenge: @challenge, f: f } %>
 
     <%= render partial: 'challenges/form/submit_buttons',
           locals: { f: f } %>

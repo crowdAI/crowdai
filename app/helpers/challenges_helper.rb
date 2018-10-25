@@ -5,7 +5,7 @@ module ChallengesHelper
     if participant.is_a?(NullParticipant)
       return 'No crowdAI account'
     else
-      return participant.name
+      return link_to participant.name, participant_path(participant)
     end
   end
 

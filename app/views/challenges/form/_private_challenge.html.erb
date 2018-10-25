@@ -17,10 +17,13 @@
 </fieldset>
 <% end %>
 
-  <div class='pull-right'>
-    <%= form_tag import_challenge_invitations_path(@challenge), multipart: true do %>
-      <%= file_field_tag :file %>
-      <%= submit_tag "Import CSV", class: 'btn' %>
-    <% end %>
-  </div>
+  <% if @challenge.persisted? %>
+    <div class='pull-right'>
+      <%= form_tag import_challenge_invitations_path(@challenge), multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "Import CSV", class: 'btn' %>
+      <% end %>
+    </div>
+  <% end %>
+  
 </div>

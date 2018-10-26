@@ -41,6 +41,7 @@ class Participant < ApplicationRecord
     class_name: 'ParticipantChallengeCount'
   has_many :challenge_organizer_participants,
     class_name: 'ChallengeOrganizerParticipant'
+  has_many :base_leaderboards, dependent: :nullify
   has_many :challenges,
     through: :participant_challenges
   has_many :dataset_file_downloads,

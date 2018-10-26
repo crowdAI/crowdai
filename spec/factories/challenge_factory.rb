@@ -19,6 +19,7 @@ FactoryBot.define do
     license_markdown '## This is a license'
     submissions_page true
     show_leaderboard true
+    discussions_visible true
 
     trait :running do
       status :running

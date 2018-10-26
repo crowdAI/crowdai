@@ -3,7 +3,7 @@
     <% if ['notice','info'].include?(key) && value.present? %>
       <div class="flash-bar">
         <div class="row">
-          <p><%= value %></p>
+          <p><%= value.html_safe %></p>
           <a href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
         </div>
       </div>
@@ -11,11 +11,12 @@
     <% if ['error','alert'].include?(key) && value.present? %>
       <div class="flash-bar-error">
         <div class="row">
-          <p><%= value %></p>
+          <p><%= value.html_safe
+           %></p>
           <a href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
         </div>
       </div>
     <% end %>
   <% end %>
 </div>
-<% flash.clear %>
+<%# flash.clear %>

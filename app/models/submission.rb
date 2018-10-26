@@ -65,6 +65,7 @@ class Submission < ApplicationRecord
   end
 
   after_destroy do
+    byebug
     CalculateLeaderboardJob
       .perform_later(challenge_round_id: self.challenge_round_id)
   end

@@ -2,7 +2,7 @@ class CustomFailure < Devise::FailureApp
   include ActionView::Helpers::UrlHelper
 
   def redirect_url
-    if params[:participant].present?
+    if flash[:alert].present? && params[:participant].present?
       participant = Participant.find_by(
         email: params[:participant][:email])
       if participant.present? && participant.confirmed_at.blank?
@@ -10,6 +10,7 @@ class CustomFailure < Devise::FailureApp
       end
     end
     new_participant_session_url(:subdomain => 'secure')
+    super
    end
 
   # You need to override respond to eliminate recall

@@ -1,4 +1,4 @@
-<tr id='participant-<%= entry.participant_id %>' class='<%= leader_class %>'>
+<tr id='participant-<%= entry.try(:participant_id) %>' class='<%= leader_class %>'>
   <td></td>
   <td></td>
   <td class='change'>
@@ -48,7 +48,7 @@
   </td>
   <% end %>
 
-  <% if policy(entry).submission_detail? %>
+  <% if policy(entry).submission_detail? && %>
     <td class="entries">
       <%= link_to entry.entries,
             challenge_leaderboard_submission_detail_path(

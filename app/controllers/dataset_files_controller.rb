@@ -9,6 +9,15 @@ class DatasetFilesController < ApplicationController
   def index
     @dataset_files = policy_scope(DatasetFile)
       .where(challenge_id: @challenge.id)
+    @challenge_participant = @challenge
+      .challenge_participants
+      .find_by(participant_id: current_participant.id)
+    if @challenge_participant.blank?
+      @challenge_participant = ChallengeParticipant.create!(
+        challenge_id: @challenge.id,
+        participant_id: current_participant.id
+      )
+    end
   end
 
   def show

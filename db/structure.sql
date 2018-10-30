@@ -533,7 +533,11 @@ CREATE TABLE public.challenges (
     submissions_downloadable boolean DEFAULT false,
     dataset_note_markdown text,
     dataset_note text,
-    discussions_visible boolean DEFAULT true
+    discussions_visible boolean DEFAULT true,
+    require_toc_acceptance boolean DEFAULT false,
+    toc_acceptance_text character varying,
+    toc_acceptance_instructions text,
+    toc_acceptance_instructions_markdown text
 );
 
 
@@ -644,6 +648,46 @@ CREATE MATERIALIZED VIEW public.challenge_organizer_participants AS
                     public.participants p1
                   WHERE ((c1.clef_challenge IS TRUE) AND (o1.id = c1.organizer_id) AND (o1.id = p1.organizer_id) AND (p1.id = p.id)))))) cop
   WITH NO DATA;
+
+
+--
+-- Name: challenge_participants; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.challenge_participants (
+    id bigint NOT NULL,
+    challenge_id bigint,
+    participant_id bigint,
+    email character varying,
+    name character varying,
+    registered boolean DEFAULT false,
+    accepted_dataset_toc boolean DEFAULT false,
+    clef_task_id integer,
+    clef_eua_file character varying,
+    clef_approved boolean DEFAULT false,
+    clef_status_cd character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: challenge_participants_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.challenge_participants_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: challenge_participants_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.challenge_participants_id_seq OWNED BY public.challenge_participants.id;
 
 
 --
@@ -2527,6 +2571,13 @@ ALTER TABLE ONLY public.challenge_calls ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: challenge_participants id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.challenge_participants ALTER COLUMN id SET DEFAULT nextval('public.challenge_participants_id_seq'::regclass);
+
+
+--
 -- Name: challenge_partners id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2892,6 +2943,14 @@ ALTER TABLE ONLY public.challenge_call_responses
 
 ALTER TABLE ONLY public.challenge_calls
     ADD CONSTRAINT challenge_calls_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: challenge_participants challenge_participants_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.challenge_participants
+    ADD CONSTRAINT challenge_participants_pkey PRIMARY KEY (id);
 
 
 --
@@ -3352,6 +3411,20 @@ CREATE INDEX index_challenge_call_responses_on_challenge_call_id ON public.chall
 --
 
 CREATE INDEX index_challenge_calls_on_organizer_id ON public.challenge_calls USING btree (organizer_id);
+
+
+--
+-- Name: index_challenge_participants_on_challenge_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_challenge_participants_on_challenge_id ON public.challenge_participants USING btree (challenge_id);
+
+
+--
+-- Name: index_challenge_participants_on_participant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_challenge_participants_on_participant_id ON public.challenge_participants USING btree (participant_id);
 
 
 --
@@ -3938,6 +4011,14 @@ ALTER TABLE ONLY public.votes
 
 
 --
+-- Name: challenge_participants fk_rails_7fd31647c0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.challenge_participants
+    ADD CONSTRAINT fk_rails_7fd31647c0 FOREIGN KEY (challenge_id) REFERENCES public.challenges(id);
+
+
+--
 -- Name: submission_grades fk_rails_8198fbcfd9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4039,6 +4120,14 @@ ALTER TABLE ONLY public.invitations
 
 ALTER TABLE ONLY public.submission_files
     ADD CONSTRAINT fk_rails_d1aca45f2f FOREIGN KEY (submission_id) REFERENCES public.submissions(id);
+
+
+--
+-- Name: challenge_participants fk_rails_d8df5b8654; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.challenge_participants
+    ADD CONSTRAINT fk_rails_d8df5b8654 FOREIGN KEY (participant_id) REFERENCES public.participants(id);
 
 
 --
@@ -4518,6 +4607,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181005130752'),
 ('20181005132446'),
 ('20181023161118'),
-('20181025120952');
+('20181025120952'),
+('20181030210046'),
+('20181030211035'),
+('20181030213518'),
+('20181030221452');
 
 

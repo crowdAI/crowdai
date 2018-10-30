@@ -1,0 +1,14 @@
+<br/><br/><br/>
+<%= form_for [@challenge,@challenge_participant],
+  url: challenge_dataset_term_path(@challenge,@challenge_participant),
+  method: :patch do |f| %>
+  <fieldset>
+    <%= f.check_box :accepted_dataset_toc %>
+    <%= @challenge.toc_acceptance_text %>
+    <p>
+      <%= raw(@challenge.toc_acceptance_instructions) %>
+    </p>
+    <br/>
+    <%= f.submit 'Accept', class: 'btn btn-primary' %>
+  </fieldset>
+<% end %>

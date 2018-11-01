@@ -267,15 +267,12 @@ class Api::ExternalGradersController < Api::BaseController
   end
 
   def challenge_round_open?(challenge)
-    return true if challenge.current_round.present?
+    return true if challenge.post_challenge_submissions.present?
     round = ChallengeRoundSummary
-              .where(challenge_id:
-                challenge.id,
+              .where(
+                challenge_id: challenge.id,
                 round_status_cd: 'current')
               .where("current_timestamp between start_dttm and end_dttm")
-    if challenge.post_challenge_submissions.blank? &&   round.end_dttm < Time.now
-      return false
-    end
     return false if round.blank?
   end
 

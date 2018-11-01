@@ -273,6 +273,9 @@ class Api::ExternalGradersController < Api::BaseController
                 challenge.id,
                 round_status_cd: 'current')
               .where("current_timestamp between start_dttm and end_dttm")
+    if challenge.post_challenge_submissions.blank? &&   round.end_dttm < Time.now
+      return false
+    end
     return false if round.blank?
   end
 

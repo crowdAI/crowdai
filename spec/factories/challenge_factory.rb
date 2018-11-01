@@ -20,6 +20,7 @@ FactoryBot.define do
     submissions_page true
     show_leaderboard true
     discussions_visible true
+    post_challenge_submissions true
 
     trait :running do
       status :running

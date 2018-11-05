@@ -18,17 +18,17 @@ RSpec.describe TopicNotificationMailer, type: :mailer do
       expect(man.reject_reason).to eq nil
     end
 
-    it 'addresses the email to the participant' do
-      res = described_class.new.sendmail(participant.id,topic.id)
-      man = MandrillSpecHelper.new(res)
-      expect(man.merge_var('NAME')).to eq(participant.name)
-    end
+    #it 'addresses the email to the participant' do
+    #  res = described_class.new.sendmail(participant.id,topic.id)
+    #  man = MandrillSpecHelper.new(res)
+    #  expect(man.merge_var('NAME')).to eq(participant.name)
+    #end
 
-    it 'produces a body which is correct HTML' do
-      res = described_class.new.sendmail(participant.id,topic.id)
-      man = MandrillSpecHelper.new(res)
-      expect(man.merge_var('BODY')).to be_a_valid_html_fragment
-    end
+    #it 'produces a body which is correct HTML' do
+    #  res = described_class.new.sendmail(participant.id,topic.id)
+    #  man = MandrillSpecHelper.new(res)
+    #  expect(man.merge_var('BODY')).to be_a_valid_html_fragment
+    #end
 
     it 'produces a valid challenge link' do
       link = described_class.new.challenge_link(challenge)

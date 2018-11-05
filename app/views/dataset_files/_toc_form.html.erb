@@ -5,10 +5,16 @@
   <fieldset>
     <%= f.check_box :accepted_dataset_toc %>
     <%= @challenge.toc_acceptance_text %>
-    <p>
-      <%= raw(@challenge.toc_acceptance_instructions) %>
-    </p>
-    <br/>
-    <%= f.submit 'Accept', class: 'btn btn-primary' %>
   </fieldset>
+  <div data-controller='expanding-section'>
+    <abbr data-target='expanding-section.expand'
+         data-action="click->expanding-section#showSection">Show details</abbr>
+    <abbr class='display-none' data-target='expanding-section.collapse'
+    data-action="click->expanding-section#hideSection">Close</abbr>
+    <div class='markdown-wrap display-none' data-target='expanding-section.section'>
+      <%= raw(@challenge.toc_acceptance_instructions) %>
+    </div>
+  </div>
+  <br/>
+  <%= f.submit 'Accept', class: 'btn btn-primary' %>
 <% end %>

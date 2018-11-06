@@ -71,7 +71,7 @@ class GraderService
         grader_id: challenge.grader_identifier,  #CLEFChallenges
         challenge_client_name: challenge.challenge_client_name,
         function_name: "grade_submission",
-        data: [{"file_key": submission_key, submission_id: @submission.id}],
+        data: [{"file_key": submission_key, submission_id: @submission.id, participant_id: @submission.participant_id}],
         dry_run: 'false',
         parallel: 'false',
         enqueue_only: 'true',

@@ -1,0 +1,20 @@
+<br/><br/><br/>
+<%= form_for [@challenge,@challenge_participant],
+  url: challenge_dataset_term_path(@challenge,@challenge_participant),
+  method: :patch do |f| %>
+  <fieldset>
+    <%= f.check_box :accepted_dataset_toc %>
+    <%= @challenge.toc_acceptance_text %>
+  </fieldset>
+  <div data-controller='expanding-section'>
+    <abbr data-target='expanding-section.expand'
+         data-action="click->expanding-section#showSection">Show details</abbr>
+    <abbr class='display-none' data-target='expanding-section.collapse'
+    data-action="click->expanding-section#hideSection">Close</abbr>
+    <div class='markdown-wrap display-none' data-target='expanding-section.section'>
+      <%= raw(@challenge.toc_acceptance_instructions) %>
+    </div>
+  </div>
+  <br/>
+  <%= f.submit 'Accept', class: 'btn btn-primary' %>
+<% end %>

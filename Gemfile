@@ -50,7 +50,7 @@ gem 'jquery-atwho-rails'
 gem 'kramdown'
 gem 'kaminari'
 gem 'lodash-rails'
-gem 'loofah', '~> 2.2.1'
+gem "loofah", ">= 2.2.3"
 gem 'maxminddb'
 gem 'mandrill-api'
 gem 'momentjs-rails', '~> 2.9'

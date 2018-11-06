@@ -5,7 +5,7 @@
   <%= render partial: 'challenges/show/subnav',
         locals: { challenge: @challenge } %>
 
-  <% if @challenge.dataset_note.present? %>
+  <% if @challenge.dataset_note.present?  %>
     <div class='row'>
       <div class="leaderboard-note">
         <%= sanitize(@challenge.dataset_note) %>
@@ -14,10 +14,14 @@
   <% end %>
 
   <div class="row">
-    <ul class="list-datasets">
-        <%= concept(Dataset::Cell::ListDetail,
+    <% if @challenge.require_toc_acceptance && !@challenge_participant.accepted_dataset_toc %>
+        <%= render partial: 'toc_form' %>
+    <% else %>
+      <ul class="list-datasets">
+          <%= concept(Dataset::Cell::ListDetail,
                       collection: @dataset_files,
                       current_participant: current_participant) %>
-    </ul>
+      </ul>
+    <% end %>
   </div>
 </div>

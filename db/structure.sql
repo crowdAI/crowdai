@@ -62,6 +62,7 @@ CREATE TABLE public.active_admin_comments (
 --
 
 CREATE SEQUENCE public.active_admin_comments_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -178,6 +179,7 @@ CREATE TABLE public.article_sections (
 --
 
 CREATE SEQUENCE public.article_sections_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -219,6 +221,7 @@ CREATE TABLE public.articles (
 --
 
 CREATE SEQUENCE public.articles_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -533,7 +536,11 @@ CREATE TABLE public.challenges (
     submissions_downloadable boolean DEFAULT false,
     dataset_note_markdown text,
     dataset_note text,
-    discussions_visible boolean DEFAULT true
+    discussions_visible boolean DEFAULT true,
+    require_toc_acceptance boolean DEFAULT false,
+    toc_acceptance_text character varying,
+    toc_acceptance_instructions text,
+    toc_acceptance_instructions_markdown text
 );
 
 
@@ -644,6 +651,46 @@ CREATE MATERIALIZED VIEW public.challenge_organizer_participants AS
                     public.participants p1
                   WHERE ((c1.clef_challenge IS TRUE) AND (o1.id = c1.organizer_id) AND (o1.id = p1.organizer_id) AND (p1.id = p.id)))))) cop
   WITH NO DATA;
+
+
+--
+-- Name: challenge_participants; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.challenge_participants (
+    id bigint NOT NULL,
+    challenge_id bigint,
+    participant_id bigint,
+    email character varying,
+    name character varying,
+    registered boolean DEFAULT false,
+    accepted_dataset_toc boolean DEFAULT false,
+    clef_task_id integer,
+    clef_eua_file character varying,
+    clef_approved boolean DEFAULT false,
+    clef_status_cd character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: challenge_participants_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.challenge_participants_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: challenge_participants_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.challenge_participants_id_seq OWNED BY public.challenge_participants.id;
 
 
 --
@@ -1029,6 +1076,7 @@ CREATE VIEW public.challenge_stats AS
 --
 
 CREATE SEQUENCE public.challenges_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1081,6 +1129,7 @@ ALTER SEQUENCE public.clef_tasks_id_seq OWNED BY public.clef_tasks.id;
 --
 
 CREATE SEQUENCE public.comments_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1100,6 +1149,7 @@ ALTER SEQUENCE public.comments_id_seq OWNED BY public.comments.id;
 --
 
 CREATE SEQUENCE public.dataset_file_downloads_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1119,6 +1169,7 @@ ALTER SEQUENCE public.dataset_file_downloads_id_seq OWNED BY public.dataset_file
 --
 
 CREATE SEQUENCE public.dataset_files_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1154,6 +1205,7 @@ CREATE TABLE public.email_preferences (
 --
 
 CREATE SEQUENCE public.email_preferences_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1220,6 +1272,7 @@ CREATE TABLE public.follows (
 --
 
 CREATE SEQUENCE public.follows_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1253,6 +1306,7 @@ CREATE TABLE public.friendly_id_slugs (
 --
 
 CREATE SEQUENCE public.friendly_id_slugs_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1793,6 +1847,7 @@ CREATE TABLE public.organizer_applications (
 --
 
 CREATE SEQUENCE public.organizer_applications_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1812,6 +1867,7 @@ ALTER SEQUENCE public.organizer_applications_id_seq OWNED BY public.organizer_ap
 --
 
 CREATE SEQUENCE public.organizers_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1982,6 +2038,7 @@ CREATE VIEW public.participant_submissions AS
 --
 
 CREATE SEQUENCE public.participants_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2226,6 +2283,7 @@ CREATE TABLE public.submission_file_definitions (
 --
 
 CREATE SEQUENCE public.submission_file_definitions_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2245,6 +2303,7 @@ ALTER SEQUENCE public.submission_file_definitions_id_seq OWNED BY public.submiss
 --
 
 CREATE SEQUENCE public.submission_files_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2282,6 +2341,7 @@ CREATE TABLE public.submission_grades (
 --
 
 CREATE SEQUENCE public.submission_grades_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2301,6 +2361,7 @@ ALTER SEQUENCE public.submission_grades_id_seq OWNED BY public.submission_grades
 --
 
 CREATE SEQUENCE public.submissions_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2389,6 +2450,7 @@ ALTER SEQUENCE public.task_dataset_files_id_seq OWNED BY public.task_dataset_fil
 --
 
 CREATE SEQUENCE public.topics_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2423,6 +2485,7 @@ CREATE TABLE public.versions (
 --
 
 CREATE SEQUENCE public.versions_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2442,6 +2505,7 @@ ALTER SEQUENCE public.versions_id_seq OWNED BY public.versions.id;
 --
 
 CREATE SEQUENCE public.votes_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2524,6 +2588,13 @@ ALTER TABLE ONLY public.challenge_call_responses ALTER COLUMN id SET DEFAULT nex
 --
 
 ALTER TABLE ONLY public.challenge_calls ALTER COLUMN id SET DEFAULT nextval('public.challenge_calls_id_seq'::regclass);
+
+
+--
+-- Name: challenge_participants id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.challenge_participants ALTER COLUMN id SET DEFAULT nextval('public.challenge_participants_id_seq'::regclass);
 
 
 --
@@ -2895,6 +2966,14 @@ ALTER TABLE ONLY public.challenge_calls
 
 
 --
+-- Name: challenge_participants challenge_participants_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.challenge_participants
+    ADD CONSTRAINT challenge_participants_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: challenge_partners challenge_partners_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2924,6 +3003,14 @@ ALTER TABLE ONLY public.challenges
 
 ALTER TABLE ONLY public.clef_tasks
     ADD CONSTRAINT clef_tasks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: comments comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.comments
+    ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
 
 
 --
@@ -3111,19 +3198,19 @@ ALTER TABLE ONLY public.partners
 
 
 --
--- Name: comments posts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.comments
-    ADD CONSTRAINT posts_pkey PRIMARY KEY (id);
-
-
---
 -- Name: sashes sashes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.sashes
     ADD CONSTRAINT sashes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
 
 
 --
@@ -3352,6 +3439,20 @@ CREATE INDEX index_challenge_call_responses_on_challenge_call_id ON public.chall
 --
 
 CREATE INDEX index_challenge_calls_on_organizer_id ON public.challenge_calls USING btree (organizer_id);
+
+
+--
+-- Name: index_challenge_participants_on_challenge_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_challenge_participants_on_challenge_id ON public.challenge_participants USING btree (challenge_id);
+
+
+--
+-- Name: index_challenge_participants_on_participant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_challenge_participants_on_participant_id ON public.challenge_participants USING btree (participant_id);
 
 
 --
@@ -3874,6 +3975,30 @@ ALTER TABLE ONLY public.challenge_partners
 
 
 --
+-- Name: base_leaderboards fk_rails_3fd0c70c35; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.base_leaderboards
+    ADD CONSTRAINT fk_rails_3fd0c70c35 FOREIGN KEY (challenge_round_id) REFERENCES public.challenge_rounds(id);
+
+
+--
+-- Name: base_leaderboards fk_rails_44e759267b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.base_leaderboards
+    ADD CONSTRAINT fk_rails_44e759267b FOREIGN KEY (challenge_id) REFERENCES public.challenges(id);
+
+
+--
+-- Name: challenge_rounds fk_rails_58f957502d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.challenge_rounds
+    ADD CONSTRAINT fk_rails_58f957502d FOREIGN KEY (challenge_id) REFERENCES public.challenges(id);
+
+
+--
 -- Name: submissions fk_rails_62fce1582b; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3930,6 +4055,14 @@ ALTER TABLE ONLY public.clef_tasks
 
 
 --
+-- Name: comments fk_rails_7b51c0b3c1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.comments
+    ADD CONSTRAINT fk_rails_7b51c0b3c1 FOREIGN KEY (topic_id) REFERENCES public.topics(id);
+
+
+--
 -- Name: votes fk_rails_7d535390f0; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3938,11 +4071,35 @@ ALTER TABLE ONLY public.votes
 
 
 --
+-- Name: base_leaderboards fk_rails_7d7e1d7b57; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.base_leaderboards
+    ADD CONSTRAINT fk_rails_7d7e1d7b57 FOREIGN KEY (participant_id) REFERENCES public.participants(id);
+
+
+--
+-- Name: challenge_participants fk_rails_7fd31647c0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.challenge_participants
+    ADD CONSTRAINT fk_rails_7fd31647c0 FOREIGN KEY (challenge_id) REFERENCES public.challenges(id);
+
+
+--
 -- Name: submission_grades fk_rails_8198fbcfd9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.submission_grades
     ADD CONSTRAINT fk_rails_8198fbcfd9 FOREIGN KEY (submission_id) REFERENCES public.submissions(id);
+
+
+--
+-- Name: dataset_file_downloads fk_rails_9eb5d4b472; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.dataset_file_downloads
+    ADD CONSTRAINT fk_rails_9eb5d4b472 FOREIGN KEY (dataset_file_id) REFERENCES public.dataset_files(id);
 
 
 --
@@ -4034,11 +4191,35 @@ ALTER TABLE ONLY public.invitations
 
 
 --
+-- Name: dataset_file_downloads fk_rails_c485aee385; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.dataset_file_downloads
+    ADD CONSTRAINT fk_rails_c485aee385 FOREIGN KEY (participant_id) REFERENCES public.participants(id);
+
+
+--
 -- Name: submission_files fk_rails_d1aca45f2f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.submission_files
     ADD CONSTRAINT fk_rails_d1aca45f2f FOREIGN KEY (submission_id) REFERENCES public.submissions(id);
+
+
+--
+-- Name: challenge_participants fk_rails_d8df5b8654; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.challenge_participants
+    ADD CONSTRAINT fk_rails_d8df5b8654 FOREIGN KEY (participant_id) REFERENCES public.participants(id);
+
+
+--
+-- Name: comments fk_rails_db8b8e9fe8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.comments
+    ADD CONSTRAINT fk_rails_db8b8e9fe8 FOREIGN KEY (participant_id) REFERENCES public.participants(id);
 
 
 --
@@ -4071,6 +4252,14 @@ ALTER TABLE ONLY public.participant_clef_tasks
 
 ALTER TABLE ONLY public.base_leaderboards
     ADD CONSTRAINT fk_rails_f20ff50e17 FOREIGN KEY (challenge_id) REFERENCES public.challenges(id);
+
+
+--
+-- Name: task_dataset_files fk_rails_f90572ee46; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.task_dataset_files
+    ADD CONSTRAINT fk_rails_f90572ee46 FOREIGN KEY (clef_task_id) REFERENCES public.clef_tasks(id);
 
 
 --
@@ -4112,404 +4301,6 @@ ALTER TABLE ONLY public.notifications
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20160407081843'),
-('20160407092311'),
-('20160407112710'),
-('20160407125051'),
-('20160408131809'),
-('20160411113725'),
-('20160411124048'),
-('20160411204602'),
-('20160411210615'),
-('20160413071435'),
-('20160414151822'),
-('20160414155006'),
-('20160415100532'),
-('20160415111429'),
-('20160421131756'),
-('20160423121002'),
-('20160424093652'),
-('20160426153101'),
-('20160428083335'),
-('20160428091347'),
-('20160428153217'),
-('20160429121145'),
-('20160502081246'),
-('20160502083228'),
-('20160502085313'),
-('20160506095246'),
-('20160506110541'),
-('20160509194714'),
-('20160510081234'),
-('20160517145052'),
-('20160520122904'),
-('20160520125308'),
-('20160520144338'),
-('20160520162419'),
-('20160525084054'),
-('20160525093510'),
-('20160526075046'),
-('20160527111443'),
-('20160527122616'),
-('20160528072650'),
-('20160531063857'),
-('20160531083247'),
-('20160531200705'),
-('20160601050459'),
-('20160601063448'),
-('20160601063815'),
-('20160601071807'),
-('20160601071808'),
-('20160602084110'),
-('20160608120142'),
-('20160608154727'),
-('20160609092417'),
-('20160609133503'),
-('20160609134105'),
-('20160609135532'),
-('20160609145519'),
-('20160614083735'),
-('20160614084436'),
-('20160614135450'),
-('20160614140653'),
-('20160616075346'),
-('20160628121215'),
-('20160628121311'),
-('20160628124302'),
-('20160628125601'),
-('20160628131922'),
-('20160628134855'),
-('20160628142053'),
-('20160630124416'),
-('20160812160955'),
-('20160812161234'),
-('20160812161404'),
-('20160814085435'),
-('20160814090510'),
-('20160814093409'),
-('20160815122552'),
-('20160815122715'),
-('20160816082925'),
-('20160816091243'),
-('20160817073841'),
-('20160817092520'),
-('20160825064544'),
-('20160825064944'),
-('20160825111253'),
-('20160825173922'),
-('20160825180227'),
-('20160825190208'),
-('20160825190403'),
-('20160825190529'),
-('20160913085617'),
-('20160913130914'),
-('20160913141357'),
-('20160913142216'),
-('20160914141444'),
-('20160914164509'),
-('20160914174902'),
-('20160916125846'),
-('20160916130438'),
-('20160916140156'),
-('20160920080738'),
-('20161006081123'),
-('20161009181244'),
-('20161019153059'),
-('20161114141303'),
-('20161121083612'),
-('20161206142527'),
-('20161206153359'),
-('20161206155453'),
-('20161208153220'),
-('20161212105145'),
-('20161212125607'),
-('20161220103253'),
-('20170124155613'),
-('20170125100039'),
-('20170202092825'),
-('20170202092833'),
-('20170202150403'),
-('20170202152914'),
-('20170203142147'),
-('20170203142700'),
-('20170216163129'),
-('20170217105721'),
-('20170217110226'),
-('20170220132101'),
-('20170306164912'),
-('20170307120338'),
-('20170307120421'),
-('20170307122103'),
-('20170313115510'),
-('20170419133220'),
-('20170424114924'),
-('20170425153443'),
-('20170428104235'),
-('20170428113642'),
-('20170428113946'),
-('20170428123839'),
-('20170428201136'),
-('20170501114013'),
-('20170501141558'),
-('20170501143249'),
-('20170501150402'),
-('20170501160042'),
-('20170504122918'),
-('20170504140122'),
-('20170504140152'),
-('20170504140217'),
-('20170504140549'),
-('20170504140709'),
-('20170504141350'),
-('20170504142502'),
-('20170505115311'),
-('20170511121923'),
-('20170512123554'),
-('20170515112222'),
-('20170515113918'),
-('20170515114626'),
-('20170515163223'),
-('20170516124939'),
-('20170518070732'),
-('20170518084928'),
-('20170525115536'),
-('20170526123336'),
-('20170530093608'),
-('20170530155439'),
-('20170602093326'),
-('20170604174630'),
-('20170607093509'),
-('20170612113122'),
-('20170617061056'),
-('20170618091105'),
-('20170731114234'),
-('20170731131136'),
-('20170802084849'),
-('20170802105530'),
-('20170807114111'),
-('20170808081506'),
-('20170808090000'),
-('20170808165254'),
-('20170810140202'),
-('20170810152321'),
-('20170811173059'),
-('20170815063423'),
-('20170815134441'),
-('20170815152114'),
-('20170821111320'),
-('20170829093611'),
-('20170829094317'),
-('20170829131844'),
-('20170829131851'),
-('20170908105547'),
-('20170914074942'),
-('20170914092220'),
-('20170914121625'),
-('20170915095659'),
-('20170928131857'),
-('20171005143743'),
-('20171005145203'),
-('20171010085659'),
-('20171010104709'),
-('20171012090125'),
-('20171012143500'),
-('20171012150240'),
-('20171012153534'),
-('20171012161558'),
-('20171012161948'),
-('20171013094439'),
-('20171013110710'),
-('20171013111310'),
-('20171013113834'),
-('20171013120212'),
-('20171013140600'),
-('20171016074516'),
-('20171016114634'),
-('20171016114757'),
-('20171016135657'),
-('20171017111701'),
-('20171017112642'),
-('20171017141704'),
-('20171019065734'),
-('20171019091056'),
-('20171019092903'),
-('20171019131808'),
-('20171019135125'),
-('20171019142402'),
-('20171020082355'),
-('20171020085025'),
-('20171024150217'),
-('20171027115142'),
-('20171027125813'),
-('20171027131154'),
-('20171102155217'),
-('20171103140955'),
-('20171103142236'),
-('20171103143614'),
-('20171103150833'),
-('20171106091137'),
-('20171106092415'),
-('20171106115035'),
-('20171106115617'),
-('20171106120512'),
-('20171106131532'),
-('20171106151305'),
-('20171106151322'),
-('20171107081358'),
-('20171107084125'),
-('20171107084746'),
-('20171107121203'),
-('20171107144741'),
-('20171107144829'),
-('20171108215005'),
-('20171108221341'),
-('20171108232046'),
-('20171109193047'),
-('20171109204032'),
-('20171113113900'),
-('20171113145639'),
-('20171113154419'),
-('20171113155223'),
-('20171114093034'),
-('20171114094218'),
-('20171116084335'),
-('20171117124805'),
-('20171128092442'),
-('20171128095100'),
-('20171128101702'),
-('20171130135759'),
-('20171130140414'),
-('20171130143104'),
-('20171130144545'),
-('20171201095546'),
-('20171205145353'),
-('20171205152001'),
-('20171205153027'),
-('20171206143858'),
-('20171206152930'),
-('20171207095500'),
-('20171207095811'),
-('20171211134247'),
-('20171211153828'),
-('20171211154717'),
-('20171211163331'),
-('20171212102835'),
-('20171212103928'),
-('20171214132921'),
-('20171214141730'),
-('20171214151954'),
-('20171215121747'),
-('20171222081654'),
-('20171222084410'),
-('20171229102004'),
-('20171229102752'),
-('20180104130954'),
-('20180105102728'),
-('20180111141757'),
-('20180112121633'),
-('20180112152241'),
-('20180126100639'),
-('20180126133748'),
-('20180201161608'),
-('20180202081136'),
-('20180202124013'),
-('20180209135127'),
-('20180209135427'),
-('20180219132511'),
-('20180219134643'),
-('20180227122754'),
-('20180227141703'),
-('20180301113445'),
-('20180305133457'),
-('20180319093756'),
-('20180319094743'),
-('20180320151102'),
-('20180322131032'),
-('20180322131445'),
-('20180322132722'),
-('20180322154756'),
-('20180322155830'),
-('20180322155923'),
-('20180322164128'),
-('20180323095442'),
-('20180323101845'),
-('20180323102918'),
-('20180323115001'),
-('20180323121337'),
-('20180323130750'),
-('20180323135151'),
-('20180326112813'),
-('20180326120054'),
-('20180327104001'),
-('20180330153026'),
-('20180331130258'),
-('20180331132313'),
-('20180331132823'),
-('20180405083345'),
-('20180405104839'),
-('20180405122218'),
-('20180409125058'),
-('20180409141418'),
-('20180410074646'),
-('20180410130318'),
-('20180410131348'),
-('20180410133400'),
-('20180412074556'),
-('20180412080611'),
-('20180412092319'),
-('20180412092602'),
-('20180412092641'),
-('20180412092658'),
-('20180412092712'),
-('20180412111735'),
-('20180419115251'),
-('20180423081313'),
-('20180424121801'),
-('20180427085310'),
-('20180427090328'),
-('20180427091049'),
-('20180427091325'),
-('20180427093328'),
-('20180427095026'),
-('20180501090432'),
-('20180501091947'),
-('20180501092307'),
-('20180501122045'),
-('20180503150537'),
-('20180504121050'),
-('20180508070214'),
-('20180514143803'),
-('20180525103442'),
-('20180528120632'),
-('20180528123915'),
-('20180531120856'),
-('20180605144750'),
-('20180605180520'),
-('20180612154146'),
-('20180613081426'),
-('20180613091620'),
-('20180622125708'),
-('20180625145220'),
-('20180625150458'),
-('20180730115545'),
-('20180731132733'),
-('20180731132734'),
-('20180731132735'),
-('20180731132736'),
-('20180731132737'),
-('20180731132752'),
-('20180803082613'),
-('20180806074029'),
-('20180806091705'),
-('20180806092847'),
-('20180806134654'),
-('20180807130451'),
-('20180814070229'),
-('20180814115657'),
-('20180816140013'),
-('20180820075739'),
-('20180821133251'),
-('20180821134040'),
 ('20180827110235'),
 ('20180827145811'),
 ('20180914093818'),
@@ -4518,6 +4309,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181005130752'),
 ('20181005132446'),
 ('20181023161118'),
-('20181025120952');
+('20181025120952'),
+('20181030210046'),
+('20181030211035'),
+('20181030213518'),
+('20181030221452');
 
 

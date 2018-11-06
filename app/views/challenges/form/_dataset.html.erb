@@ -2,8 +2,23 @@
   <%= form_for [@organizer,@challenge],
         html: { class: "dbl-col" } do |f| %>
 
+    <fieldset class="checkbox">
+      <div>
+        <%= f.check_box :require_toc_acceptance %>
+        <%= f.label :require_toc_acceptance, 'Require TOC Acceptance?' %>
+      </div>
+
+      <%= f.label :toc_acceptance_text, 'TOC Checkbox label' %>
+      <%= f.text_field :toc_acceptance_text %>
+
+      <label>TOC Instructions</label>
+      <%= markdown_editor do |m| %>
+        <%= f.text_area :toc_acceptance_instructions_markdown, class: "txt-med" %>
+      <% end %>
+    </fieldset>
+
     <fieldset>
-      <label>Leaderboard Message</label>
+      <label>Dataset Note</label>
       <%= markdown_editor do |m| %>
         <%= f.text_area :dataset_note_markdown, class: "txt-med" %>
       <% end %>

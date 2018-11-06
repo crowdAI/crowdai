@@ -478,7 +478,7 @@ GEM
       actionpack (>= 3.0)
       activerecord (>= 3.0)
       railties (>= 3.0)
-    loofah (2.2.2)
+    loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     lumberjack (1.0.13)
@@ -522,7 +522,7 @@ GEM
     nenv (0.3.0)
     net-ssh (5.0.1)
     nio4r (2.3.1)
-    nokogiri (1.8.2)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     nokogumbo (1.5.0)
       nokogiri
@@ -866,7 +866,7 @@ DEPENDENCIES
   launchy
   lodash-rails
   lol_dba
-  loofah (~> 2.2.1)
+  loofah (>= 2.2.3)
   mandrill-api
   maxminddb
   merit

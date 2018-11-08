@@ -1,0 +1,414 @@
+---
+login_activity_1:
+  id: 1
+  scope: participant
+  strategy: database_authenticatable
+  identity: simon.eggler@sbb.ch
+  success: true
+  failure_reason: 
+  user_type: Participant
+  user_id: 6657
+  context: devise/sessions#create
+  ip: 195.65.152.62
+  user_agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+    like Gecko) Chrome/68.0.3440.106 Safari/537.36
+  referrer: https://www.crowdai.org/participants/sign_in
+  city: 
+  region: 
+  country: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2018-08-14 08:15:06.890257000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+login_activity_2:
+  id: 2
+  scope: participant
+  strategy: database_authenticatable
+  identity: lichenpe@zju.edu.cn
+  success: true
+  failure_reason: 
+  user_type: Participant
+  user_id: 3261
+  context: devise/sessions#create
+  ip: 117.136.38.128
+  user_agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0
+  referrer: https://www.crowdai.org/participants/sign_in
+  city: 
+  region: 
+  country: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2018-08-14 08:22:37.560729000 Z
+    zone: *2
+    time: *3
+login_activity_3:
+  id: 3
+  scope: participant
+  strategy: database_authenticatable
+  identity: saketkunwar2005@gmail.com
+  success: true
+  failure_reason: 
+  user_type: Participant
+  user_id: 3303
+  context: devise/sessions#create
+  ip: 34.219.21.244
+  user_agent: Lynx/2.8.9dev.8 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/3.4.9
+  referrer: https://www.crowdai.org/participants/sign_in
+  city: 
+  region: 
+  country: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2018-08-14 08:28:03.098918000 Z
+    zone: *2
+    time: *4
+login_activity_4:
+  id: 4
+  scope: participant
+  strategy: database_authenticatable
+  identity: saketkunwar2005@gmail.com
+  success: true
+  failure_reason: 
+  user_type: Participant
+  user_id: 3303
+  context: devise/sessions#create
+  ip: 110.34.22.21
+  user_agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:48.0) Gecko/20100101 Firefox/48.0
+  referrer: https://www.crowdai.org/participants/sign_in
+  city: 
+  region: 
+  country: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2018-08-14 08:33:58.077268000 Z
+    zone: *2
+    time: *5
+login_activity_5:
+  id: 5
+  scope: participant
+  strategy: database_authenticatable
+  identity: ndrwmlnk@gmail.com
+  success: false
+  failure_reason: invalid
+  user_type: 
+  user_id: 
+  context: devise/sessions#create
+  ip: 129.70.135.21
+  user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15
+    (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15
+  referrer: https://www.crowdai.org/participants/sign_in
+  city: 
+  region: 
+  country: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2018-08-14 08:39:02.287214000 Z
+    zone: *2
+    time: *6
+login_activity_6:
+  id: 6
+  scope: participant
+  strategy: database_authenticatable
+  identity: ndrwmlnk@gmail.com
+  success: false
+  failure_reason: invalid
+  user_type: 
+  user_id: 
+  context: devise/sessions#create
+  ip: 129.70.135.21
+  user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15
+    (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15
+  referrer: https://www.crowdai.org/participants/sign_in
+  city: 
+  region: 
+  country: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2018-08-14 08:39:52.038676000 Z
+    zone: *2
+    time: *7
+login_activity_7:
+  id: 7
+  scope: participant
+  strategy: database_authenticatable
+  identity: ndrwmlnk@gmail.com
+  success: false
+  failure_reason: invalid
+  user_type: 
+  user_id: 
+  context: devise/sessions#create
+  ip: 129.70.135.21
+  user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15
+    (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15
+  referrer: https://www.crowdai.org/participants/sign_in
+  city: 
+  region: 
+  country: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2018-08-14 08:39:59.453270000 Z
+    zone: *2
+    time: *8
+login_activity_8:
+  id: 8
+  scope: participant
+  strategy: database_authenticatable
+  identity: ndrwmlnk@mail.ru
+  success: false
+  failure_reason: not_found_in_database
+  user_type: 
+  user_id: 
+  context: devise/sessions#create
+  ip: 129.70.135.21
+  user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15
+    (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15
+  referrer: https://www.crowdai.org/participants/sign_in
+  city: 
+  region: 
+  country: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2018-08-14 08:40:32.341128000 Z
+    zone: *2
+    time: *9
+login_activity_9:
+  id: 9
+  scope: participant
+  strategy: rememberable
+  identity: kix2mix2@yahoo.com
+  success: true
+  failure_reason: 
+  user_type: Participant
+  user_id: 7348
+  context: challenges#show
+  ip: 81.141.14.193
+  user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15
+    (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15
+  referrer: 
+  city: 
+  region: 
+  country: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2018-08-14 08:41:23.138741000 Z
+    zone: *2
+    time: *10
+login_activity_10:
+  id: 10
+  scope: participant
+  strategy: database_authenticatable
+  identity: ndrwmlnk@gmail.com
+  success: true
+  failure_reason: 
+  user_type: Participant
+  user_id: 1926
+  context: devise/passwords#update
+  ip: 129.70.135.21
+  user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15
+    (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15
+  referrer: https://www.crowdai.org/participants/password/edit?reset_password_token=rUieFigA_vtbSJtZbnJn
+  city: 
+  region: 
+  country: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2018-08-14 08:41:24.569583000 Z
+    zone: *2
+    time: *11
+login_activity_11:
+  id: 11
+  scope: participant
+  strategy: database_authenticatable
+  identity: saketkunwar2005@gmail.com
+  success: true
+  failure_reason: 
+  user_type: Participant
+  user_id: 3303
+  context: devise/sessions#create
+  ip: 34.219.21.244
+  user_agent: Lynx/2.8.9dev.8 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/3.4.9
+  referrer: https://www.crowdai.org/participants/sign_in
+  city: 
+  region: 
+  country: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2018-08-14 08:42:07.407441000 Z
+    zone: *2
+    time: *12
+login_activity_12:
+  id: 12
+  scope: participant
+  strategy: database_authenticatable
+  identity: alexandreblanc6924@gmail.com
+  success: true
+  failure_reason: 
+  user_type: Participant
+  user_id: 7391
+  context: devise/sessions#create
+  ip: 194.158.251.199
+  user_agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:59.0) Gecko/20100101 Firefox/59.0
+  referrer: https://www.crowdai.org/participants/sign_in
+  city: 
+  region: 
+  country: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2018-08-14 08:43:24.793195000 Z
+    zone: *2
+    time: *13
+login_activity_13:
+  id: 13
+  scope: participant
+  strategy: database_authenticatable
+  identity: saketkunwar2005@gmail.com
+  success: true
+  failure_reason: 
+  user_type: Participant
+  user_id: 3303
+  context: devise/sessions#create
+  ip: 34.219.21.244
+  user_agent: Lynx/2.8.9dev.8 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/3.4.9
+  referrer: https://www.crowdai.org/participants/sign_in
+  city: 
+  region: 
+  country: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2018-08-14 08:54:25.000039000 Z
+    zone: *2
+    time: *14
+login_activity_14:
+  id: 14
+  scope: participant
+  strategy: database_authenticatable
+  identity: l.g.holdijk@student.rug.nl
+  success: true
+  failure_reason: 
+  user_type: Participant
+  user_id: 7344
+  context: devise/sessions#create
+  ip: 88.128.80.102
+  user_agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0
+  referrer: https://www.crowdai.org/participants/sign_in
+  city: 
+  region: 
+  country: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2018-08-14 08:59:53.816085000 Z
+    zone: *2
+    time: *15
+login_activity_15:
+  id: 15
+  scope: participant
+  strategy: database_authenticatable
+  identity: saketkunwar2005@gmail.com
+  success: true
+  failure_reason: 
+  user_type: Participant
+  user_id: 3303
+  context: devise/sessions#create
+  ip: 52.37.130.188
+  user_agent: Lynx/2.8.9dev.8 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/3.4.9
+  referrer: https://www.crowdai.org/participants/sign_in
+  city: 
+  region: 
+  country: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2018-08-14 09:02:41.449024000 Z
+    zone: *2
+    time: *16
+login_activity_16:
+  id: 16
+  scope: participant
+  strategy: database_authenticatable
+  identity: arnaud.delaunay76@gmail.com
+  success: true
+  failure_reason: 
+  user_type: Participant
+  user_id: 5887
+  context: devise/sessions#create
+  ip: 80.12.27.246
+  user_agent: Mozilla/5.0 (Linux; Android 8.0.0; VTR-L09 Build/HUAWEIVTR-L09) AppleWebKit/537.36
+    (KHTML, like Gecko) Chrome/68.0.3440.91 Mobile Safari/537.36
+  referrer: https://www.crowdai.org/participants/sign_in
+  city: 
+  region: 
+  country: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2018-08-14 09:03:09.410972000 Z
+    zone: *2
+    time: *17
+login_activity_17:
+  id: 17
+  scope: participant
+  strategy: database_authenticatable
+  identity: sascha.fleer@uni-bielefeld.de
+  success: true
+  failure_reason: 
+  user_type: Participant
+  user_id: 3806
+  context: devise/sessions#create
+  ip: 129.70.146.112
+  user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML,
+    like Gecko) Chrome/68.0.3440.106 Safari/537.36
+  referrer: https://www.crowdai.org/participants/sign_in
+  city: 
+  region: 
+  country: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2018-08-14 09:04:40.676446000 Z
+    zone: *2
+    time: *18
+login_activity_18:
+  id: 18
+  scope: participant
+  strategy: database_authenticatable
+  identity: 544093592@qq.com
+  success: true
+  failure_reason: 
+  user_type: Participant
+  user_id: 7620
+  context: devise/sessions#create
+  ip: 113.140.11.123
+  user_agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like
+    Gecko) Chrome/68.0.3440.106 Safari/537.36
+  referrer: https://www.crowdai.org/participants/sign_in
+  city: 
+  region: 
+  country: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2018-08-14 09:16:07.943317000 Z
+    zone: *2
+    time: *19
+login_activity_19:
+  id: 19
+  scope: participant
+  strategy: database_authenticatable
+  identity: 544093592@qq.com
+  success: true
+  failure_reason: 
+  user_type: Participant
+  user_id: 7620
+  context: devise/sessions#create
+  ip: 113.140.11.123
+  user_agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like
+    Gecko) Chrome/68.0.3440.106 Safari/537.36
+  referrer: https://www.crowdai.org/participants/sign_in
+  city: 
+  region: 
+  country: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2018-08-14 09:16:07.963734000 Z
+    zone: *2
+    time: *20
+login_activity_20:
+  id: 20
+  scope: participant
+  strategy: database_authenticatable
+  identity: 544093592@qq.com
+  success: true
+  failure_reason: 
+  user_type: Participant
+  user_id: 7620
+  context: devise/sessions#create
+  ip: 113.140.11.123
+  user_agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like
+    Gecko) Chrome/68.0.3440.106 Safari/537.36
+  referrer: https://www.crowdai.org/participants/sign_in
+  city: 
+  region: 
+  country: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2018-08-14 09:16:16.876566000 Z
+    zone: *2
+    time: *21

@@ -1,0 +1,120 @@
+---
+Jason_Reynolds_H:
+  id: 4
+  participant_id: 696
+  clef_task_id: 
+  organizer_id: 2
+  name: Jason_Reynolds_H
+  challenge: OpenFood Ingredients List Challenge
+David_Hughes:
+  id: 5
+  participant_id: 12
+  clef_task_id: 
+  organizer_id: 3
+  name: David_Hughes
+  challenge: Ants Challenge - Part I
+Andreas_Modlmeier:
+  id: 5
+  participant_id: 407
+  clef_task_id: 
+  organizer_id: 3
+  name: Andreas_Modlmeier
+  challenge: Ants Challenge - Part I
+Lukasz:
+  id: 8
+  participant_id: 600
+  clef_task_id: 
+  organizer_id: 4
+  name: Lukasz
+  challenge: 'NIPS 2017: Learning to Run'
+jdcourcol_599:
+  id: 7
+  participant_id: 599
+  clef_task_id: 
+  organizer_id: 5
+  name: jdcourcol_599
+  challenge: Neuroscientific model optimization, Gecco 2017
+wvangeit:
+  id: 7
+  participant_id: 702
+  clef_task_id: 
+  organizer_id: 5
+  name: wvangeit
+  challenge: Neuroscientific model optimization, Gecco 2017
+MG:
+  id: 7
+  participant_id: 844
+  clef_task_id: 
+  organizer_id: 5
+  name: MG
+  challenge: Neuroscientific model optimization, Gecco 2017
+jfellay:
+  id: 9
+  participant_id: 141
+  clef_task_id: 
+  organizer_id: 6
+  name: jfellay
+  challenge: OpenSNP Height Prediction
+Olivier:
+  id: 9
+  participant_id: 157
+  clef_task_id: 
+  organizer_id: 6
+  name: Olivier
+  challenge: OpenSNP Height Prediction
+Michaël_Defferrard:
+  id: 9
+  participant_id: 2949
+  clef_task_id: 
+  organizer_id: 6
+  name: Michaël_Defferrard
+  challenge: OpenSNP Height Prediction
+FlorianColombo:
+  id: 9
+  participant_id: 3136
+  clef_task_id: 
+  organizer_id: 6
+  name: FlorianColombo
+  challenge: OpenSNP Height Prediction
+Ivan_Eggel:
+  id: 10
+  participant_id: 1361
+  clef_task_id: 1
+  organizer_id: 7
+  name: Ivan_Eggel
+  challenge: ImageCLEF 2018 Caption - Caption prediction
+Henning:
+  id: 10
+  participant_id: 2972
+  clef_task_id: 1
+  organizer_id: 7
+  name: Henning
+  challenge: ImageCLEF 2018 Caption - Caption prediction
+yashindc:
+  id: 10
+  participant_id: 3073
+  clef_task_id: 1
+  organizer_id: 7
+  name: yashindc
+  challenge: ImageCLEF 2018 Caption - Caption prediction
+albagarciaseco:
+  id: 10
+  participant_id: 3099
+  clef_task_id: 1
+  organizer_id: 7
+  name: albagarciaseco
+  challenge: ImageCLEF 2018 Caption - Caption prediction
+Luca_Piras:
+  id: 10
+  participant_id: 3103
+  clef_task_id: 1
+  organizer_id: 7
+  name: Luca_Piras
+  challenge: ImageCLEF 2018 Caption - Caption prediction
+Sadid_Hasan:
+  id: 10
+  participant_id: 3141
+  clef_task_id: 1
+  organizer_id: 7
+  name: Sadid_Hasan
+  challenge: ImageCLEF 2018 Caption - Caption prediction

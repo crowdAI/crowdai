@@ -1,0 +1,13 @@
+dark_skies:
+  article: Dark Skies
+  participant: admin
+  published: true
+  category: tensorflow
+  summary: Tensorflow solution for the Dark Skies Challenge
+
+plant_village:
+  article: Plant Village
+  participant: participant
+  published: true
+  category: caffe
+  summary: Caffe solution for the Plant Village Challenge

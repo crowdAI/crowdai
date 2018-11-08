@@ -1,0 +1,61 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  challenge_id: 1
+  participant_id: 1
+  score: 1.5
+  description: MyText
+  score_secondary: 1.5
+  grading_message: MyString
+  grading_status_cd: MyString
+  description_markdown: MyText
+  vote_count: 1
+  post_challenge: false
+  api: MyString
+  media_large: MyString
+  media_thumbnail: MyString
+  media_content_type: MyString
+  challenge_round_id: 1
+  meta: 
+  short_url: MyString
+  clef_method_description: MyText
+  clef_retrieval_type: MyString
+  clef_run_type: MyString
+  clef_primary_run: false
+  clef_other_info: MyText
+  clef_additional: MyText
+  online_submission: false
+  score_display: 1.5
+  score_secondary_display: 1.5
+  baseline: false
+  baseline_comment: MyString
+
+two:
+  challenge_id: 1
+  participant_id: 1
+  score: 1.5
+  description: MyText
+  score_secondary: 1.5
+  grading_message: MyString
+  grading_status_cd: MyString
+  description_markdown: MyText
+  vote_count: 1
+  post_challenge: false
+  api: MyString
+  media_large: MyString
+  media_thumbnail: MyString
+  media_content_type: MyString
+  challenge_round_id: 1
+  meta: 
+  short_url: MyString
+  clef_method_description: MyText
+  clef_retrieval_type: MyString
+  clef_run_type: MyString
+  clef_primary_run: false
+  clef_other_info: MyText
+  clef_additional: MyText
+  online_submission: false
+  score_display: 1.5
+  score_secondary_display: 1.5
+  baseline: false
+  baseline_comment: MyString

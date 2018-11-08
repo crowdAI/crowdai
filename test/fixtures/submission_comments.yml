@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  submission_id: 1
+  participant_id: 1
+  comment_markdown: MyText
+  comment: MyText
+  vote_count: 1
+
+two:
+  submission_id: 1
+  participant_id: 1
+  comment_markdown: MyText
+  comment: MyText
+  vote_count: 1

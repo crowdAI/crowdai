@@ -1,0 +1,69 @@
+<div class='content'>
+  <%= render partial: 'profile/masthead', locals: { participant: @participant } %>
+  <%= render partial: 'profile/subnav', locals: { participant: @participant } %>
+
+  <div class="row">
+    <% if @achievements.present? %>
+    <div class="section-header section-header-alt">
+      <h6>Awarded</h6>
+      <%= link_to 'All achievements', achievements_path, class: 'btn btn-secondary' %>
+    </div>
+    <% end %>
+
+    <ul class="list-awards">
+      <% @achievements.each do |a| %>
+       <li>
+         <div class="icon">
+           <%= link_to achievement_path(a.id) do %>
+             <%= content_tag :div, class: "award-#{a.custom_fields[:level]}" do %>
+                <span>
+                  <%= "Award: #{a.custom_fields[:level].capitalize}" %>
+                </span>
+             <% end %>
+           <% end %>
+         </div>
+         <div class="details">
+          <h5>
+            <%= link_to achievement_path(a.id) do %>
+              <%= a.custom_fields[:title] %>
+            <% end %>
+          </h5>
+          <p class="description">
+            <%= a.description %> · <%= percentile(badge: a, badge_stats: @badge_stats) %>
+          </p>
+         </div>
+         <div class="awarded">
+          <%= awarded_message(badge_id: a.id, badge_stats: @badge_stats) %>
+         </div>
+       </li>
+      <% end %>
+    </ul>
+
+    <!-- remaining -->
+    <div class="section-header section-header-alt">
+      <h6>Remaining</h6>
+      <%= link_to 'All achievements', achievements_path, class: 'btn btn-secondary' %>
+    </div>
+
+    <ul class="list-awards">
+      <% @unachieved.each do |a| %>
+        <li>
+          <div class="icon">
+            <%= link_to achievement_path(a.id) do %>
+              <div class="award-empty">
+                <span>Award: Empty</span>
+              </div>
+            <% end %>
+          </div>
+          <div class="details">
+            <%= link_to achievement_path(a.id) do %>
+              <h5><%= a.custom_fields[:title] %></h5>
+              <p class="description"><%= a.description %></p>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+
+  </div>
+</div>

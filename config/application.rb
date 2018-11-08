@@ -31,13 +31,15 @@ module Crowdai
         sup dfn cite big small address hr br div span h1 h2 h3 h4 h5 h6 ul ol li dl dt dd abbr
         acronym a img blockquote del ins table tr td))
 
+    config.app_generators.scaffold_controller = :scaffold_controller
+
     config.generators do |g|
-      g.test_framework :rspec
+      #g.test_framework :rspec
       g.stylesheets false
-      g.helper false
-      g.assets false
-      g.view false
-      g.fixture_replacement :factory_bot, dir: 'spec/factories'
+      #g.helper false
+      #g.assets false
+      #g.view false
+      #g.fixture_replacement :factory_bot, dir: 'spec/factories'
     end
 
     config.to_prepare do

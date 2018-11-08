@@ -1,196 +1,278 @@
-# Use this hook to configure merit parameters
 Merit.setup do |config|
   # Check rules on each request or in background
   # config.checks_on_each_request = true
-
-  # Define ORM. Could be :active_record (default) and :mongoid
   config.orm = :active_record
-
-  # Add application observers to get notifications when reputation changes.
-  # config.add_observer 'MyObserverClassName'
-
-  # Define :user_model_name. This model will be used to grand badge if no
-  # `:to` option is given. Default is 'User'.
   config.user_model_name = 'Participant'
-
-  # Define :current_user_method. Similar to previous option. It will be used
-  # to retrieve :user_model_name object if no `:to` option is given. Default
-  # is "current_#{user_model_name.downcase}".
   config.current_user_method = 'current_participant'
 end
 
-# Submissions
-Merit::Badge.create!(
-  id: 1,
-  name: "submission-bronze",
-  description: "First submission made",
-  custom_fields: { difficulty: :bronze }
-)
+challenge_winner = [
+  {
+    id: 1,
+    name: 'winner-gold',
+    description: 'Awarded for winning 3 challenges',
+    level: 3,
+    custom_fields: {
+      title: 'Challenge winner: Gold',
+      level: 'gold'
+    }
+  },
+  {
+    id: 2,
+    name: 'winner-silver',
+    description: 'Awarded for winning 2 challenges',
+    level: 2,
+    custom_fields: {
+      title: 'Challenge winner: Silver',
+      level: 'silver'
+    }
+  },
+  {
+    id: 3,
+    name: 'winner-bronze',
+    description: 'Awarded for winning a challenge',
+    level: 1,
+    custom_fields: {
+      title: 'Challenge winner: Bronze',
+      level: 'bronze'
+    }
+  }
+]
 
-Merit::Badge.create!(
-  id: 2,
-  name: "submission-silver",
-  description: "100 submissions made",
-  custom_fields: { difficulty: :silver }
-)
+challenge_submissions = [
+  {
+    id: 4,
+    name: 'submissions-gold',
+    description: 'Awarded for 1,000 submissions',
+    level: 3,
+    custom_fields: {
+      title: 'Challenge submissions: Gold',
+      level: 'gold'
+    }
+  },
+  {
+    id: 5,
+    name: 'submissions-silver',
+    description: 'Awarded for 100 submissions',
+    level: 2,
+    custom_fields: {
+      title: 'Challenge submissions: Silver',
+      level: 'silver'
+    }
+  },
+  {
+    id: 6,
+    name: 'submissions-bronze',
+    description: 'Awarded for first submission',
+    level: 1,
+    custom_fields: {
+      title: 'Challenge submissions: Bronze',
+      level: 'bronze'
+    }
+  }
+]
 
-Merit::Badge.create!(
-  id: 3,
-  name: "submission-gold",
-  description: "1000 submissions made",
-  custom_fields: { difficulty: :gold }
-)
+top_position = [
+  {
+    id: 7,
+    name: 'top-position-gold',
+    description: 'Awarded for top position during a challenge 25 times',
+    level: 3,
+    custom_fields: {
+      title: 'Top position during challenge: Gold',
+      level: 'gold'
+    }
+  },
+  {
+    id: 8,
+    name: 'top-position-silver',
+    description: 'Awarded for top position during a challenge 5 times',
+    level: 2,
+    custom_fields: {
+      title: 'Top position during challenge: Silver',
+      level: 'silver'
+    }
+  },
+  {
+    id: 9,
+    name: 'top-position-bronze',
+    description: 'Awarded for top position during a challenge',
+    level: 1,
+    custom_fields: {
+      title: 'Top position during challenge: Bronze',
+      level: 'bronze'
+    }
+  }
+]
 
-# Votes
-Merit::Badge.create!(
-  id: 4,
-  name: "votes-bronze",
-  description: "First submission received",
-  custom_fields: { difficulty: :bronze }
-)
+upvotes = [
+  {
+    id: 10,
+    name: 'upvote-gold',
+    description: 'Awarded for receiving 250 upvotes on a comment or tutorial',
+    level: 3,
+    custom_fields: {
+      title: 'Upvote: Gold',
+      level: 'gold'
+    }
+  },
+  {
+    id: 11,
+    name: 'upvote-silver',
+    description: 'Awarded for receiving 25 upvotes on a comment or tutorial',
+    level: 2,
+    custom_fields: {
+      title: 'Upvote: Silver',
+      level: 'silver'
+    }
+  },
+  {
+    id: 12,
+    name: 'upvote-bronze',
+    description: 'Awarded for receiving an upvote on a comment or tutorial',
+    level: 1,
+    custom_fields: {
+      title: 'Upvote: Bronze',
+      level: 'bronze'
+    }
+  }
+]
 
-Merit::Badge.create!(
-  id: 5,
-  name: "votes-silver",
-  description: "25 votes received",
-  custom_fields: { difficulty: :silver }
-)
+tutorials = [
+  {
+    id: 13,
+    name: 'tutorial-gold',
+    description: 'Awarded for writing 30 tutorials',
+    level: 3,
+    custom_fields: {
+      title: 'Tutorial authorship: Gold',
+      level: 'gold'
+    }
+  },
+  {
+    id: 14,
+    name: 'tutorial-silver',
+    description: 'Awarded for writing 3 tutorials',
+    level: 2,
+    custom_fields: {
+      title: 'Tutorial authorship: Silver',
+      level: 'silver'
+    }
+  },
+  {
+    id: 15,
+    name: 'tutorial-bronze',
+    description: 'Awarded for writing a tutorial',
+    level: 1,
+    custom_fields: {
+      title: 'Tutorial authorship: Bronze',
+      level: 'bronze'
+    }
+  }
+]
 
-Merit::Badge.create!(
-  id: 6,
-  name: "votes-gold",
-  description: "250 votes received",
-  custom_fields: { difficulty: :gold }
-)
+top5_during = [
+  {
+    id: 16,
+    name: 'top5-during-gold',
+    description: 'Awarded for top position during a challenge 25 times',
+    level: 3,
+    custom_fields: {
+      title: 'Top 5 during a challenge: Gold',
+      level: 'bronze'
+    }
+  },
+  {
+    id: 17,
+    name: 'top5-during-silver',
+    description: 'Awarded for top position during a challenge 5 times',
+    level: 2,
+    custom_fields: {
+      title: 'Top 5 during a challenge: Silver',
+      level: 'silver'
+    }
+  },
+  {
+    id: 18,
+    name: 'top5-during-bronze',
+    description: 'Awarded for being in the top 5 on a leaderboard during a challenge',
+    level: 1,
+    custom_fields: {
+      title: 'Top 5 during a challenge: Bronze',
+      level: 'bronze'
+    }
+  }
+]
 
-# Top 1 on leaderboard during challenge
-Merit::Badge.create!(
-  id: 7,
-  name: "top-1-during-bronze",
-  description: "First on a leaderboard x1",
-  custom_fields: { difficulty: :bronze }
-)
 
-Merit::Badge.create!(
-  id: 8,
-  name: "top-1-during-silver",
-  description: "First on a leaderboard x5",
-  custom_fields: { difficulty: :silver }
-)
+top5_completed = [
+  {
+    id: 19,
+    name: 'top5-completed-gold',
+    description: 'Awarded for finishing in the top 5 on a leaderboard for a completed challenge 3 times',
+    level: 3,
+    custom_fields: {
+      title: 'Top 5 for completed challenge: Gold',
+      level: 'gold'
+    }
+  },
+  {
+    id: 20,
+    name: 'top5-completed-silver',
+    description: 'Awarded for top position during a challenge 5 times',
+    level: 2,
+    custom_fields: {
+      title: 'Top 5 for completed challenge: Silver',
+      level: 'silver'
+    }
+  },
+  {
+    id: 21,
+    name: 'top5-completed-bronze',
+    description: 'Awarded for finishing in the top 5 on a leaderboard for a completed challenge',
+    level: 1,
+    custom_fields: {
+      title: 'Top 5 for completed challenge: Bronze',
+      level: 'bronze'
+    }
+  }
+]
 
-Merit::Badge.create!(
-  id: 9,
-  name: "top-1-during-gold",
-  description: "First on a leaderboard x25",
-  custom_fields: { difficulty: :gold }
-)
+top10_completed = [
+  {
+    id: 22,
+    name: 'top10-completed-gold',
+    description: 'Awarded for finishing in the top 10 on a leaderboard for a completed challenge 20 times',
+    level: 3,
+    custom_fields: {
+      title: 'Top 10 for completed challenge: Gold',
+      level: 'gold'
+    }
+  },
+  {
+    id: 23,
+    name: 'top10-completed-silver',
+    description: 'Awarded for finishing in the top 10 on a leaderboard for a completed challenge 5 times',
+    level: 2,
+    custom_fields: {
+      title: 'Top 10 for completed challenge: Silver',
+      level: 'silver'
+    }
+  },
+  {
+    id: 24,
+    name: 'top10-completed-bronze',
+    description: 'Awarded for finishing in the top 10 on a leaderboard for a completed challenge',
+    level: 1,
+    custom_fields: {
+      title: 'Top 10 for completed challenge: Bronze',
+      level: 'bronze'
+    }
+  }
+]
 
-# Top 5 on leaderboard during challenge
-Merit::Badge.create!(
-  id: 10,
-  name: "top-5-during-bronze",
-  description: "Leaderboard top 5 x1",
-  custom_fields: { difficulty: :bronze }
-)
+badges = challenge_winner + challenge_submissions + top_position + upvotes + tutorials + top5_during + top5_completed + top10_completed
 
-Merit::Badge.create!(
-  id: 11,
-  name: "top-5-during-silver",
-  description: "Leaderboard top 5 x5",
-  custom_fields: { difficulty: :silver }
-)
-
-Merit::Badge.create!(
-  id: 12,
-  name: "top-5-during-gold",
-  description: "Leaderboard top 5 x25",
-  custom_fields: { difficulty: :gold }
-)
-
-# Authored a tutorial
-Merit::Badge.create!(
-  id: 13,
-  name: "tutorial-bronze",
-  description: "First tutorial",
-  custom_fields: { difficulty: :bronze }
-)
-
-Merit::Badge.create!(
-  id: 14,
-  name: "tutorial-silver",
-  description: "Authored 3 tutorials",
-  custom_fields: { difficulty: :silver }
-)
-
-Merit::Badge.create!(
-  id: 15,
-  name: "tutorial-gold",
-  description: "Authored 30 tutorials",
-  custom_fields: { difficulty: :gold }
-)
-
-# Top 1 for a completed challenge
-Merit::Badge.create!(
-  id: 16,
-  name: "top-1-bronze",
-  description: "Challenge winner",
-  custom_fields: { difficulty: :bronze }
-)
-
-Merit::Badge.create!(
-  id: 17,
-  name: "top-1-silver",
-  description: "Challenge winner - 2 times",
-  custom_fields: { difficulty: :silver }
-)
-
-Merit::Badge.create!(
-  id: 18,
-  name: "top-1-gold",
-  description: "Challenge winner 3 or more times",
-  custom_fields: { difficulty: :gold }
-)
-
-# Top 5 for a completed challenge
-Merit::Badge.create!(
-  id: 19,
-  name: "top-5-bronze",
-  description: "In the top 5 for a challenge",
-  custom_fields: { difficulty: :bronze }
-)
-
-Merit::Badge.create!(
-  id: 20,
-  name: "top-5-silver",
-  description: "In the top 5 for a challenge - 3 times",
-  custom_fields: { difficulty: :silver }
-)
-
-Merit::Badge.create!(
-  id: 21,
-  name: "top-5-gold",
-  description: "In the top 5 for a challenge - 10 times",
-  custom_fields: { difficulty: :gold }
-)
-
-# Top 10 for a completed challenge
-Merit::Badge.create!(
-  id: 22,
-  name: "top-10-bronze",
-  description: "In the top 10 for a challenge",
-  custom_fields: { difficulty: :bronze }
-)
-
-Merit::Badge.create!(
-  id: 23,
-  name: "top-10-silver",
-  description: "In the top 10 for a challenge - 5 times",
-  custom_fields: { difficulty: :silver }
-)
-
-Merit::Badge.create!(
-  id: 24,
-  name: "top-5-gold",
-  description: "In the top 10 for a challenge - 20 times",
-  custom_fields: { difficulty: :gold }
-)
+badges.each do |badge|
+  Merit::Badge.create!(badge)
+end

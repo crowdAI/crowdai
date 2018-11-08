@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  challenge_id: 1
+  seq: 1
+  submission_file_description: MyString
+  filetype_cd: MyString
+  file_required: false
+  submission_file_help_text: MyText
+
+two:
+  challenge_id: 1
+  seq: 1
+  submission_file_description: MyString
+  filetype_cd: MyString
+  file_required: false
+  submission_file_help_text: MyText

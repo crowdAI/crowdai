@@ -1,0 +1,17 @@
+article_section_1:
+  article: article
+  seq: 1
+  description_markdown: "### Section 1"
+  section: Introduction
+
+article_section_2:
+  article: article
+  seq: 2
+  description_markdown: "### Section 2"
+  section: "Getting started"
+
+article_section_3:
+  article: article
+  seq: 3
+  description_markdown: "### Section 3"
+  section: "More details"

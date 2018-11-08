@@ -5,6 +5,7 @@ class Challenge < ApplicationRecord
   friendly_id :challenge,
     use: [:slugged, :finders, :history]
   before_save :reset_featured_seq
+  after_save :award_badges
   belongs_to :organizer
   belongs_to :clef_task,
     optional: true
@@ -144,13 +145,19 @@ class Challenge < ApplicationRecord
   end
 
   def reset_featured_seq
-    if status_changed? && (self.status == :completed || self.status == :terminated)
+    if status_changed? && self.status == :completed
       self.featured_sequence = 0
     end
   end
 
   def post_challenge_submissions?
     self.post_challenge_submissions
+  end
+
+  def award_badges
+    if status_changed? && self.status == :completed
+      CompletedChallengeBadgesService.new(self.id).call
+    end
   end
 
 end

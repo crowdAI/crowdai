@@ -1,0 +1,49 @@
+participant:
+  email: sean@example.com
+  admin: false
+  name: Sean
+  email_public: false
+  bio: MyText
+  website: "https://www.crowdai.org/"
+  github: "https://www.crowdai.org/"
+  linkedin: "https://www.crowdai.org/"
+  twitter: "https://www.crowdai.org/"
+  api_key: MyString
+  first_name: 'Sean'
+  last_name: 'Carroll'
+  encrypted_password: <%= Devise::Encryptor.digest(Participant, "password") %>
+  confirmed_at: <%= Time.now %>
+
+admin:
+  email: admin@example.com
+  admin: true
+  name: Bill
+  email_public: false
+  bio: MyText
+  website: "https://www.crowdai.org/"
+  github: "https://www.crowdai.org/"
+  linkedin: "https://www.crowdai.org/"
+  twitter: "https://www.crowdai.org/"
+  api_key: MyString
+  first_name: 'Bill'
+  last_name: 'Blogs'
+  encrypted_password: <%= Devise::Encryptor.digest(Participant, "password") %>
+  confirmed_at: <%= Time.now %>
+
+organizer:
+  email: org@example.com
+  admin: false
+  organizer: crowdai
+  name: crowdAI_admin
+  email_public: false
+  encrypted_password: <%= Devise::Encryptor.digest(Participant, "password") %>
+  confirmed_at: <%= Time.now %>
+
+clef:
+  email: clef@example.com
+  admin: false
+  organizer: clef
+  name: crowdAI_admin
+  email_public: true
+  encrypted_password: <%= Devise::Encryptor.digest(Participant, "password") %>
+  confirmed_at: <%= Time.now %>

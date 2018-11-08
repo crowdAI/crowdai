@@ -1,0 +1,965 @@
+---
+mandrill_message_1:
+  id: 1
+  res:
+  - _id: 507c50e039f44772b2723da415175e27
+    email: sean.carroll@epfl.ch
+    status: sent
+    reject_reason: 
+  message:
+    to:
+    - type: to
+      email: sean.carroll@epfl.ch
+    subject: "[crowdAI] Daily digest"
+    from_name: crowdAI
+    from_email: no-reply@crowdai.org
+    global_merge_vars:
+    - name: NAME
+      content: Sean
+    - name: BODY
+      content: |-
+        <div><div>Here's a daily summary of activity in crowdAI.</div><br/><h3>Comments Summary</h3>
+
+          <div>Comments on <a href="https://www.crowdai.org/topics/working-as-a-team/comments/new">Working as a team</a></div>
+          <div><b>metro_line_3</b></div>
+          <a href="Working as a team">
+            <div>Is working as a team allowed in this competition?
+
+        </a>  <br/>
+        <hr/>
+        <br/><h3>Submissions Summary</h3>
+
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by vwy.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by vwy.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by DanielLSM.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by alfiansyah.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by alfiansyah.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by alfiansyah.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by David Baranger.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by David Baranger.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by Andrey Oskin.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by Andrey Oskin.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by VM.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by Adam Stelmaszczyk.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by Henryk.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by ddtxra.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by Yujin.
+          <br/>
+        <hr/>
+        <br/></div>
+    - name: EMAIL_PREFERENCES_LINK
+      content: "<div><a href='https://www.crowdai.org/participants/1/email_preferences/204/edit?preferences_token=dK0iOCn6k7ZHMf8KbrkHHuVtkRcOdDzU'>Email
+        Preferences</a></div>"
+  meta: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2017-09-18 08:31:42.052747000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2017-09-18 08:31:42.052747000 Z
+    zone: *2
+    time: *3
+  participant_id: 
+mandrill_message_2:
+  id: 2
+  res:
+  - _id: 0e925c6cd4dc4e3ebbf504831f476808
+    email: lukasz.kidzinski@gmail.com
+    status: sent
+    reject_reason: 
+  message:
+    to:
+    - type: to
+      email: lukasz.kidzinski@gmail.com
+    subject: "[crowdAI] Daily digest"
+    from_name: crowdAI
+    from_email: no-reply@crowdai.org
+    global_merge_vars:
+    - name: NAME
+      content: 'Lukasz '
+    - name: BODY
+      content: |-
+        <div><div>Here's a daily summary of activity in crowdAI.</div><br/><h3>Comments Summary</h3>
+
+          <div>Comments on <a href="https://www.crowdai.org/topics/working-as-a-team/comments/new">Working as a team</a></div>
+          <div><b>metro_line_3</b></div>
+          <a href="Working as a team">
+            <div>Is working as a team allowed in this competition?
+
+        </a>  <br/>
+        <hr/>
+        <br/><span></span><br/></div>
+    - name: EMAIL_PREFERENCES_LINK
+      content: "<div><a href='https://www.crowdai.org/participants/16/email_preferences/195/edit?preferences_token=F9kaJYSA-BvToAhpsIQvyy5yUvg7Av7X'>Email
+        Preferences</a></div>"
+  meta: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2017-09-18 09:07:55.989409000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2017-09-18 09:07:55.989409000 Z
+    zone: *2
+    time: *5
+  participant_id: 
+mandrill_message_3:
+  id: 3
+  res:
+  - _id: fdb691aa082d459881e72d953262d510
+    email: oakshweta11@gmail.com
+    status: sent
+    reject_reason: 
+  message:
+    to:
+    - type: to
+      email: oakshweta11@gmail.com
+    subject: "[crowdAI] Daily digest"
+    from_name: crowdAI
+    from_email: no-reply@crowdai.org
+    global_merge_vars:
+    - name: NAME
+      content: oak11
+    - name: BODY
+      content: |-
+        <div><div>Here's a daily summary of activity in crowdAI.</div><br/><h3>Comments Summary</h3>
+
+          <div>Comments on <a href="https://www.crowdai.org/topics/working-as-a-team/comments/new">Working as a team</a></div>
+          <div><b>metro_line_3</b></div>
+          <a href="Working as a team">
+            <div>Is working as a team allowed in this competition?
+
+        </a>  <br/>
+        <hr/>
+        <br/><span></span><br/></div>
+    - name: EMAIL_PREFERENCES_LINK
+      content: "<div><a href='https://www.crowdai.org/participants/87/email_preferences/12/edit?preferences_token=tfM6pUCdzLparSK2rLf6Gl91ixjHb0rs'>Email
+        Preferences</a></div>"
+  meta: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2017-09-18 09:07:57.033678000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2017-09-18 09:07:57.033678000 Z
+    zone: *2
+    time: *7
+  participant_id: 
+mandrill_message_4:
+  id: 4
+  res:
+  - _id: 196ce7ac20f54aff8c15e47545b3060f
+    email: spmohanty91@gmail.com
+    status: sent
+    reject_reason: 
+  message:
+    to:
+    - type: to
+      email: spmohanty91@gmail.com
+    subject: "[crowdAI] Daily digest"
+    from_name: crowdAI
+    from_email: no-reply@crowdai.org
+    global_merge_vars:
+    - name: NAME
+      content: spMohanty
+    - name: BODY
+      content: |-
+        <div><div>Here's a daily summary of activity in crowdAI.</div><br/><h3>Comments Summary</h3>
+
+          <div>Comments on <a href="https://www.crowdai.org/topics/working-as-a-team/comments/new">Working as a team</a></div>
+          <div><b>metro_line_3</b></div>
+          <a href="Working as a team">
+            <div>Is working as a team allowed in this competition?
+
+        </a>  <br/>
+        <hr/>
+        <br/><h3>Submissions Summary</h3>
+
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by ddtxra.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by vwy.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by vwy.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by DanielLSM.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by alfiansyah.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by alfiansyah.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by alfiansyah.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by David Baranger.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by David Baranger.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by Andrey Oskin.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by Andrey Oskin.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by VM.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by Adam Stelmaszczyk.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by Henryk.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by ddtxra.
+          <br/>
+        <hr/>
+        <br/></div>
+    - name: EMAIL_PREFERENCES_LINK
+      content: "<div><a href='https://www.crowdai.org/participants/7/email_preferences/165/edit?preferences_token=2bGaoEficexwawxL_W5aEK89nLikOE81'>Email
+        Preferences</a></div>"
+  meta: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2017-09-18 09:07:58.104709000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2017-09-18 09:07:58.104709000 Z
+    zone: *2
+    time: *9
+  participant_id: 
+mandrill_message_5:
+  id: 5
+  res:
+  - _id: ce7ec4a56e8b491b8603965c6ce67282
+    email: sean.carroll@epfl.ch
+    status: sent
+    reject_reason: 
+  message:
+    to:
+    - type: to
+      email: sean.carroll@epfl.ch
+    subject: "[crowdAI] Daily digest"
+    from_name: crowdAI
+    from_email: no-reply@crowdai.org
+    global_merge_vars:
+    - name: NAME
+      content: Sean
+    - name: BODY
+      content: |-
+        <div><div>Here's a daily summary of activity in crowdAI.</div><br/><h3>Comments Summary</h3>
+
+          <div>Comments on <a href="https://www.crowdai.org/topics/working-as-a-team/comments/new">Working as a team</a></div>
+          <div><b>metro_line_3</b></div>
+          <a href="Working as a team">
+            <div>Is working as a team allowed in this competition?
+
+        </a>  <br/>
+        <hr/>
+        <br/><h3>Submissions Summary</h3>
+
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by ddtxra.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by vwy.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by vwy.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by DanielLSM.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by alfiansyah.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by alfiansyah.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by alfiansyah.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by David Baranger.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by David Baranger.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by Andrey Oskin.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by Andrey Oskin.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by VM.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by Adam Stelmaszczyk.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by Henryk.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by ddtxra.
+          <br/>
+        <hr/>
+        <br/></div>
+    - name: EMAIL_PREFERENCES_LINK
+      content: "<div><a href='https://www.crowdai.org/participants/1/email_preferences/204/edit?preferences_token=C7giumvYel72M6P4LcBcyVwNb368rW2H'>Email
+        Preferences</a></div>"
+  meta: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2017-09-18 09:07:58.797053000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2017-09-18 09:07:58.797053000 Z
+    zone: *2
+    time: *11
+  participant_id: 
+mandrill_message_6:
+  id: 6
+  res:
+  - _id: 0f66f707a7e645469380ca1d17322ab6
+    email: yannis.jaquet@epfl.ch
+    status: sent
+    reject_reason: 
+  message:
+    to:
+    - type: to
+      email: yannis.jaquet@epfl.ch
+    subject: "[crowdAI] Daily digest"
+    from_name: crowdAI
+    from_email: no-reply@crowdai.org
+    global_merge_vars:
+    - name: NAME
+      content: Yannis
+    - name: BODY
+      content: |-
+        <div><div>Here's a daily summary of activity in crowdAI.</div><br/><span></span><br/><h3>Submissions Summary</h3>
+
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by ddtxra.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by vwy.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by vwy.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by DanielLSM.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by alfiansyah.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by alfiansyah.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by alfiansyah.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by David Baranger.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by David Baranger.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by Andrey Oskin.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by Andrey Oskin.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by VM.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by Adam Stelmaszczyk.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/nips-2017-learning-to-run">NIPS 2017: Learning to Run</a> by Henryk.
+          <br/>
+          <a href="https://www.crowdai.org/challenges/opensnp-height-prediction">OpenSNP Height Prediction</a> by ddtxra.
+          <br/>
+        <hr/>
+        <br/></div>
+    - name: EMAIL_PREFERENCES_LINK
+      content: "<div><a href='https://www.crowdai.org/participants/10/email_preferences/19/edit?preferences_token=OefCINSu3yQYedc_9vE4Dxg5PnM_uec-'>Email
+        Preferences</a></div>"
+  meta: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2017-09-18 09:07:59.490773000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2017-09-18 09:07:59.490773000 Z
+    zone: *2
+    time: *13
+  participant_id: 
+mandrill_message_7:
+  id: 7
+  res:
+  - _id: cf2153f438064271a5060a87d5f3554e
+    email: frederik.kunstner@epfl.ch
+    status: sent
+    reject_reason: 
+  message:
+    to:
+    - type: to
+      email: frederik.kunstner@epfl.ch
+    subject: "[crowdAI] Daily digest"
+    from_name: crowdAI
+    from_email: no-reply@crowdai.org
+    global_merge_vars:
+    - name: NAME
+      content: fKunstner
+    - name: BODY
+      content: |-
+        <div><div>Here's a daily summary of activity in crowdAI.</div><br/><h3>Comments Summary</h3>
+
+          <div>Comments on <a href="https://www.crowdai.org/topics/working-as-a-team/comments/new">Working as a team</a></div>
+          <div><b>metro_line_3</b></div>
+          <a href="Working as a team">
+            <div>Is working as a team allowed in this competition?
+
+        </a>  <br/>
+        <hr/>
+        <br/><span></span><br/></div>
+    - name: EMAIL_PREFERENCES_LINK
+      content: "<div><a href='https://www.crowdai.org/participants/181/email_preferences/367/edit?preferences_token=sQUq9o0acbkPfW0OYcIaleNa30LeIENW'>Email
+        Preferences</a></div>"
+  meta: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2017-09-18 09:08:00.161652000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2017-09-18 09:08:00.161652000 Z
+    zone: *2
+    time: *15
+  participant_id: 
+mandrill_message_8:
+  id: 8
+  res:
+  - _id: 64792acc3f354ccc841d5d2e4353f23c
+    email: dana.kianfar@gmail.com
+    status: sent
+    reject_reason: 
+  message:
+    to:
+    - type: to
+      email: dana.kianfar@gmail.com
+    subject: "[crowdAI] Daily digest"
+    from_name: crowdAI
+    from_email: no-reply@crowdai.org
+    global_merge_vars:
+    - name: NAME
+      content: Dana Kianfar
+    - name: BODY
+      content: |-
+        <div><div>Here's a daily summary of activity in crowdAI.</div><br/><h3>Comments Summary</h3>
+
+          <div>Comments on <a href="https://www.crowdai.org/topics/working-as-a-team/comments/new">Working as a team</a></div>
+          <div><b>metro_line_3</b></div>
+          <a href="Working as a team">
+            <div>Is working as a team allowed in this competition?
+
+        </a>  <br/>
+        <hr/>
+        <br/><span></span><br/></div>
+    - name: EMAIL_PREFERENCES_LINK
+      content: "<div><a href='https://www.crowdai.org/participants/185/email_preferences/343/edit?preferences_token=46huVmdGeFwzDphJppKIHmhIY9ge5ju7'>Email
+        Preferences</a></div>"
+  meta: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2017-09-18 09:08:00.608610000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2017-09-18 09:08:00.608610000 Z
+    zone: *2
+    time: *17
+  participant_id: 
+mandrill_message_9:
+  id: 9
+  res:
+  - _id: 621d808a182d4ee29630af59dbdcaa8b
+    email: ecelis21@gmail.com
+    status: sent
+    reject_reason: 
+  message:
+    to:
+    - type: to
+      email: ecelis21@gmail.com
+    subject: "[crowdAI] Daily digest"
+    from_name: crowdAI
+    from_email: no-reply@crowdai.org
+    global_merge_vars:
+    - name: NAME
+      content: ecelis
+    - name: BODY
+      content: |-
+        <div><div>Here's a daily summary of activity in crowdAI.</div><br/><h3>Comments Summary</h3>
+
+          <div>Comments on <a href="https://www.crowdai.org/topics/working-as-a-team/comments/new">Working as a team</a></div>
+          <div><b>metro_line_3</b></div>
+          <a href="Working as a team">
+            <div>Is working as a team allowed in this competition?
+
+        </a>  <br/>
+        <hr/>
+        <br/><span></span><br/></div>
+    - name: EMAIL_PREFERENCES_LINK
+      content: "<div><a href='https://www.crowdai.org/participants/186/email_preferences/344/edit?preferences_token=sKdskTqvQyHhK6EAmMw_xgAVMDXdHutg'>Email
+        Preferences</a></div>"
+  meta: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2017-09-18 09:08:01.113413000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2017-09-18 09:08:01.113413000 Z
+    zone: *2
+    time: *19
+  participant_id: 
+mandrill_message_10:
+  id: 10
+  res:
+  - _id: 7e1f592fcce14351b5ac2edf51235691
+    email: akshatdewan@gmail.com
+    status: sent
+    reject_reason: 
+  message:
+    to:
+    - type: to
+      email: akshatdewan@gmail.com
+    subject: "[crowdAI] Daily digest"
+    from_name: crowdAI
+    from_email: no-reply@crowdai.org
+    global_merge_vars:
+    - name: NAME
+      content: akshatdewan
+    - name: BODY
+      content: |-
+        <div><div>Here's a daily summary of activity in crowdAI.</div><br/><h3>Comments Summary</h3>
+
+          <div>Comments on <a href="https://www.crowdai.org/topics/working-as-a-team/comments/new">Working as a team</a></div>
+          <div><b>metro_line_3</b></div>
+          <a href="Working as a team">
+            <div>Is working as a team allowed in this competition?
+
+        </a>  <br/>
+        <hr/>
+        <br/><span></span><br/></div>
+    - name: EMAIL_PREFERENCES_LINK
+      content: "<div><a href='https://www.crowdai.org/participants/188/email_preferences/345/edit?preferences_token=sgm2yhJZdABTM4kywB662gHtPkiZkq89'>Email
+        Preferences</a></div>"
+  meta: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2017-09-18 09:08:01.584046000 Z
+    zone: *2
+    time: *20
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2017-09-18 09:08:01.584046000 Z
+    zone: *2
+    time: *21
+  participant_id: 
+mandrill_message_11:
+  id: 11
+  res:
+  - _id: c74cb30363b64c6e83560623e17a2fa3
+    email: massimolombardo@studiocesaf.it
+    status: sent
+    reject_reason: 
+  message:
+    to:
+    - type: to
+      email: massimolombardo@studiocesaf.it
+    subject: "[crowdAI] Daily digest"
+    from_name: crowdAI
+    from_email: no-reply@crowdai.org
+    global_merge_vars:
+    - name: NAME
+      content: Massimo Lombardo
+    - name: BODY
+      content: |-
+        <div><div>Here's a daily summary of activity in crowdAI.</div><br/><h3>Comments Summary</h3>
+
+          <div>Comments on <a href="https://www.crowdai.org/topics/working-as-a-team/comments/new">Working as a team</a></div>
+          <div><b>metro_line_3</b></div>
+          <a href="Working as a team">
+            <div>Is working as a team allowed in this competition?
+
+        </a>  <br/>
+        <hr/>
+        <br/><span></span><br/></div>
+    - name: EMAIL_PREFERENCES_LINK
+      content: "<div><a href='https://www.crowdai.org/participants/189/email_preferences/346/edit?preferences_token=1polbo7T1Y6BUHfOwjEadx0gU5byLYm-'>Email
+        Preferences</a></div>"
+  meta: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &22 2017-09-18 09:08:02.034539000 Z
+    zone: *2
+    time: *22
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &23 2017-09-18 09:08:02.034539000 Z
+    zone: *2
+    time: *23
+  participant_id: 
+mandrill_message_12:
+  id: 12
+  res:
+  - _id: adfa830a08c147d6a753914eb7c0e779
+    email: hasibdelhi@gmail.com
+    status: sent
+    reject_reason: 
+  message:
+    to:
+    - type: to
+      email: hasibdelhi@gmail.com
+    subject: "[crowdAI] Daily digest"
+    from_name: crowdAI
+    from_email: no-reply@crowdai.org
+    global_merge_vars:
+    - name: NAME
+      content: Hasib
+    - name: BODY
+      content: |-
+        <div><div>Here's a daily summary of activity in crowdAI.</div><br/><h3>Comments Summary</h3>
+
+          <div>Comments on <a href="https://www.crowdai.org/topics/working-as-a-team/comments/new">Working as a team</a></div>
+          <div><b>metro_line_3</b></div>
+          <a href="Working as a team">
+            <div>Is working as a team allowed in this competition?
+
+        </a>  <br/>
+        <hr/>
+        <br/><span></span><br/></div>
+    - name: EMAIL_PREFERENCES_LINK
+      content: "<div><a href='https://www.crowdai.org/participants/190/email_preferences/347/edit?preferences_token=UchViJeVqV765XEoqDIvKBnoIFS6LE3u'>Email
+        Preferences</a></div>"
+  meta: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &24 2017-09-18 09:08:02.468894000 Z
+    zone: *2
+    time: *24
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &25 2017-09-18 09:08:02.468894000 Z
+    zone: *2
+    time: *25
+  participant_id: 
+mandrill_message_13:
+  id: 13
+  res:
+  - _id: 376188536c9e4291bea8cad21b235154
+    email: nascagiovanni@gmail.com
+    status: sent
+    reject_reason: 
+  message:
+    to:
+    - type: to
+      email: nascagiovanni@gmail.com
+    subject: "[crowdAI] Daily digest"
+    from_name: crowdAI
+    from_email: no-reply@crowdai.org
+    global_merge_vars:
+    - name: NAME
+      content: 'Giovanni '
+    - name: BODY
+      content: |-
+        <div><div>Here's a daily summary of activity in crowdAI.</div><br/><h3>Comments Summary</h3>
+
+          <div>Comments on <a href="https://www.crowdai.org/topics/working-as-a-team/comments/new">Working as a team</a></div>
+          <div><b>metro_line_3</b></div>
+          <a href="Working as a team">
+            <div>Is working as a team allowed in this competition?
+
+        </a>  <br/>
+        <hr/>
+        <br/><span></span><br/></div>
+    - name: EMAIL_PREFERENCES_LINK
+      content: "<div><a href='https://www.crowdai.org/participants/193/email_preferences/127/edit?preferences_token=VsXlpXEQicrqo0SMCPsAFbm3c5MYEQNm'>Email
+        Preferences</a></div>"
+  meta: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &26 2017-09-18 09:08:02.951759000 Z
+    zone: *2
+    time: *26
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &27 2017-09-18 09:08:02.951759000 Z
+    zone: *2
+    time: *27
+  participant_id: 
+mandrill_message_14:
+  id: 14
+  res:
+  - _id: 13920359059b45e3833d457c973cf4c4
+    email: youssoufkadialy@yahoo.fr
+    status: sent
+    reject_reason: 
+  message:
+    to:
+    - type: to
+      email: youssoufkadialy@yahoo.fr
+    subject: "[crowdAI] Daily digest"
+    from_name: crowdAI
+    from_email: no-reply@crowdai.org
+    global_merge_vars:
+    - name: NAME
+      content: Diaby
+    - name: BODY
+      content: |-
+        <div><div>Here's a daily summary of activity in crowdAI.</div><br/><h3>Comments Summary</h3>
+
+          <div>Comments on <a href="https://www.crowdai.org/topics/working-as-a-team/comments/new">Working as a team</a></div>
+          <div><b>metro_line_3</b></div>
+          <a href="Working as a team">
+            <div>Is working as a team allowed in this competition?
+
+        </a>  <br/>
+        <hr/>
+        <br/><span></span><br/></div>
+    - name: EMAIL_PREFERENCES_LINK
+      content: "<div><a href='https://www.crowdai.org/participants/195/email_preferences/350/edit?preferences_token=16q4ffjVhHbzJxb8opxx6EJ8yA2rOHiO'>Email
+        Preferences</a></div>"
+  meta: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &28 2017-09-18 09:08:03.460150000 Z
+    zone: *2
+    time: *28
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &29 2017-09-18 09:08:03.460150000 Z
+    zone: *2
+    time: *29
+  participant_id: 
+mandrill_message_15:
+  id: 15
+  res:
+  - _id: 2742823e16764746955ac937f45626d7
+    email: cannimaschi@alice.it
+    status: sent
+    reject_reason: 
+  message:
+    to:
+    - type: to
+      email: cannimaschi@alice.it
+    subject: "[crowdAI] Daily digest"
+    from_name: crowdAI
+    from_email: no-reply@crowdai.org
+    global_merge_vars:
+    - name: NAME
+      content: pietro
+    - name: BODY
+      content: |-
+        <div><div>Here's a daily summary of activity in crowdAI.</div><br/><h3>Comments Summary</h3>
+
+          <div>Comments on <a href="https://www.crowdai.org/topics/working-as-a-team/comments/new">Working as a team</a></div>
+          <div><b>metro_line_3</b></div>
+          <a href="Working as a team">
+            <div>Is working as a team allowed in this competition?
+
+        </a>  <br/>
+        <hr/>
+        <br/><span></span><br/></div>
+    - name: EMAIL_PREFERENCES_LINK
+      content: "<div><a href='https://www.crowdai.org/participants/202/email_preferences/150/edit?preferences_token=Pt9pMNKE0whmUSUZfP5DQJr-xu5zHtY9'>Email
+        Preferences</a></div>"
+  meta: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &30 2017-09-18 09:08:03.955929000 Z
+    zone: *2
+    time: *30
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &31 2017-09-18 09:08:03.955929000 Z
+    zone: *2
+    time: *31
+  participant_id: 
+mandrill_message_16:
+  id: 16
+  res:
+  - _id: 6d8a3760eeed42c8a00882a68aef06a2
+    email: tabak.gil@gmail.com
+    status: sent
+    reject_reason: 
+  message:
+    to:
+    - type: to
+      email: tabak.gil@gmail.com
+    subject: "[crowdAI] Daily digest"
+    from_name: crowdAI
+    from_email: no-reply@crowdai.org
+    global_merge_vars:
+    - name: NAME
+      content: Gil Tabak
+    - name: BODY
+      content: |-
+        <div><div>Here's a daily summary of activity in crowdAI.</div><br/><h3>Comments Summary</h3>
+
+          <div>Comments on <a href="https://www.crowdai.org/topics/working-as-a-team/comments/new">Working as a team</a></div>
+          <div><b>metro_line_3</b></div>
+          <a href="Working as a team">
+            <div>Is working as a team allowed in this competition?
+
+        </a>  <br/>
+        <hr/>
+        <br/><span></span><br/></div>
+    - name: EMAIL_PREFERENCES_LINK
+      content: "<div><a href='https://www.crowdai.org/participants/207/email_preferences/358/edit?preferences_token=qpc15ACkMkrQl5oE2LQiyKzX-ZWqMaYO'>Email
+        Preferences</a></div>"
+  meta: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &32 2017-09-18 09:08:04.644272000 Z
+    zone: *2
+    time: *32
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &33 2017-09-18 09:08:04.644272000 Z
+    zone: *2
+    time: *33
+  participant_id: 
+mandrill_message_17:
+  id: 17
+  res:
+  - _id: 3bf4a9c9db724733a77cbc0c396bdfb3
+    email: erik.rodner@uni-jena.de
+    status: sent
+    reject_reason: 
+  message:
+    to:
+    - type: to
+      email: erik.rodner@uni-jena.de
+    subject: "[crowdAI] Daily digest"
+    from_name: crowdAI
+    from_email: no-reply@crowdai.org
+    global_merge_vars:
+    - name: NAME
+      content: Erik
+    - name: BODY
+      content: |-
+        <div><div>Here's a daily summary of activity in crowdAI.</div><br/><h3>Comments Summary</h3>
+
+          <div>Comments on <a href="https://www.crowdai.org/topics/working-as-a-team/comments/new">Working as a team</a></div>
+          <div><b>metro_line_3</b></div>
+          <a href="Working as a team">
+            <div>Is working as a team allowed in this competition?
+
+        </a>  <br/>
+        <hr/>
+        <br/><span></span><br/></div>
+    - name: EMAIL_PREFERENCES_LINK
+      content: "<div><a href='https://www.crowdai.org/participants/208/email_preferences/137/edit?preferences_token=jw-yEFBcbZhSA_biiQXDIzXKLwy1MTRj'>Email
+        Preferences</a></div>"
+  meta: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &34 2017-09-18 09:08:05.228963000 Z
+    zone: *2
+    time: *34
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &35 2017-09-18 09:08:05.228963000 Z
+    zone: *2
+    time: *35
+  participant_id: 
+mandrill_message_18:
+  id: 18
+  res:
+  - _id: 5ac08f0ae33c420bafe33915e036bf40
+    email: elvira.tonelli@gmail.com
+    status: sent
+    reject_reason: 
+  message:
+    to:
+    - type: to
+      email: elvira.tonelli@gmail.com
+    subject: "[crowdAI] Daily digest"
+    from_name: crowdAI
+    from_email: no-reply@crowdai.org
+    global_merge_vars:
+    - name: NAME
+      content: strega
+    - name: BODY
+      content: |-
+        <div><div>Here's a daily summary of activity in crowdAI.</div><br/><h3>Comments Summary</h3>
+
+          <div>Comments on <a href="https://www.crowdai.org/topics/working-as-a-team/comments/new">Working as a team</a></div>
+          <div><b>metro_line_3</b></div>
+          <a href="Working as a team">
+            <div>Is working as a team allowed in this competition?
+
+        </a>  <br/>
+        <hr/>
+        <br/><span></span><br/></div>
+    - name: EMAIL_PREFERENCES_LINK
+      content: "<div><a href='https://www.crowdai.org/participants/209/email_preferences/359/edit?preferences_token=3NK0j2Hmjo9DJFwKofuQ0fJ232Vq0pEl'>Email
+        Preferences</a></div>"
+  meta: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &36 2017-09-18 09:08:05.766010000 Z
+    zone: *2
+    time: *36
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &37 2017-09-18 09:08:05.766010000 Z
+    zone: *2
+    time: *37
+  participant_id: 
+mandrill_message_19:
+  id: 19
+  res:
+  - _id: ccca1b638ad64cf982b183fb6f71911e
+    email: mike@demiliaresearch.com
+    status: sent
+    reject_reason: 
+  message:
+    to:
+    - type: to
+      email: mike@demiliaresearch.com
+    subject: "[crowdAI] Daily digest"
+    from_name: crowdAI
+    from_email: no-reply@crowdai.org
+    global_merge_vars:
+    - name: NAME
+      content: Michael DeMilia
+    - name: BODY
+      content: |-
+        <div><div>Here's a daily summary of activity in crowdAI.</div><br/><h3>Comments Summary</h3>
+
+          <div>Comments on <a href="https://www.crowdai.org/topics/working-as-a-team/comments/new">Working as a team</a></div>
+          <div><b>metro_line_3</b></div>
+          <a href="Working as a team">
+            <div>Is working as a team allowed in this competition?
+
+        </a>  <br/>
+        <hr/>
+        <br/><span></span><br/></div>
+    - name: EMAIL_PREFERENCES_LINK
+      content: "<div><a href='https://www.crowdai.org/participants/210/email_preferences/360/edit?preferences_token=3e57eVijZti_tqahfLiTWBi_UUjvG4j5'>Email
+        Preferences</a></div>"
+  meta: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &38 2017-09-18 09:08:06.310719000 Z
+    zone: *2
+    time: *38
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &39 2017-09-18 09:08:06.310719000 Z
+    zone: *2
+    time: *39
+  participant_id: 
+mandrill_message_20:
+  id: 20
+  res:
+  - _id: bfbb7126bf804050b851566452c5876e
+    email: niratnayake@gmail.com
+    status: sent
+    reject_reason: 
+  message:
+    to:
+    - type: to
+      email: niratnayake@gmail.com
+    subject: "[crowdAI] Daily digest"
+    from_name: crowdAI
+    from_email: no-reply@crowdai.org
+    global_merge_vars:
+    - name: NAME
+      content: Indika Ratnayake
+    - name: BODY
+      content: |-
+        <div><div>Here's a daily summary of activity in crowdAI.</div><br/><h3>Comments Summary</h3>
+
+          <div>Comments on <a href="https://www.crowdai.org/topics/working-as-a-team/comments/new">Working as a team</a></div>
+          <div><b>metro_line_3</b></div>
+          <a href="Working as a team">
+            <div>Is working as a team allowed in this competition?
+
+        </a>  <br/>
+        <hr/>
+        <br/><span></span><br/></div>
+    - name: EMAIL_PREFERENCES_LINK
+      content: "<div><a href='https://www.crowdai.org/participants/212/email_preferences/362/edit?preferences_token=ymycl8QNeDDCOI8aLMWnJEExJmuFHbG-'>Email
+        Preferences</a></div>"
+  meta: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &40 2017-09-18 09:08:06.862882000 Z
+    zone: *2
+    time: *40
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &41 2017-09-18 09:08:06.862882000 Z
+    zone: *2
+    time: *41
+  participant_id: 

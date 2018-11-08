@@ -1,0 +1,93 @@
+---
+clef_task_5:
+  id: 5
+  organizer_id: 9
+  task: LifeCLEF 2018 Bird
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2017-11-09 09:51:42.506341000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2017-11-09 09:51:42.506341000 Z
+    zone: *2
+    time: *3
+  eua_file: 
+clef_task_6:
+  id: 6
+  organizer_id: 9
+  task: LifeCLEF 2018 Expert
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2017-11-09 09:51:51.736809000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2017-11-09 09:51:51.736809000 Z
+    zone: *2
+    time: *5
+  eua_file: 
+clef_task_7:
+  id: 7
+  organizer_id: 9
+  task: LifeCLEF 2018 Geo
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2017-11-09 09:51:57.519541000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2017-11-09 09:51:57.519541000 Z
+    zone: *2
+    time: *7
+  eua_file: 
+clef_task_1:
+  id: 1
+  organizer_id: 7
+  task: ImageCLEF 2018 Caption
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2017-11-09 09:44:52.282325000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2017-11-13 13:36:57.215343000 Z
+    zone: *2
+    time: *9
+  eua_file: ImageCLEFcaption2018EndUserAgreement.pdf
+clef_task_2:
+  id: 2
+  organizer_id: 7
+  task: ImageCLEF 2018 Tuberculosis
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2017-11-09 09:45:17.935115000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2017-11-13 13:38:00.614749000 Z
+    zone: *2
+    time: *11
+  eua_file: ImageCLEFtuberculosis2018EndUserAgreement.pdf
+clef_task_3:
+  id: 3
+  organizer_id: 7
+  task: ImageCLEF 2018 VQA-Med
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2017-11-09 09:46:11.528805000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2017-11-14 07:34:19.833085000 Z
+    zone: *2
+    time: *13
+  eua_file: ImageCLEF-VQA-Med-2018EndUserAgreement.pdf
+clef_task_4:
+  id: 4
+  organizer_id: 7
+  task: ImageCLEF 2018 Lifelog
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2017-11-09 09:46:36.835984000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2017-11-15 07:30:45.884255000 Z
+    zone: *2
+    time: *15
+  eua_file: ImageCLEFLifeLog2018EndUserAgreement.pdf

@@ -1,0 +1,16 @@
+<div class='content'>
+  <%= render partial: 'profile/masthead', locals: { participant: @participant } %>
+  <%= render partial: 'profile/subnav', locals: { participant: @participant } %>
+
+  <div class="row">
+    <div class="article">
+      <% if @participant.bio.present? %>
+        <%= @participant.bio %>
+      <% else %>
+        <p class='light'>
+          <%= "Apparently #{@participant.name} prefers to keep an air of mystery about them..." %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>

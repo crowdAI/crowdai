@@ -24,6 +24,10 @@ class Article < ApplicationRecord
   mount_uploader :image_file, ImageUploader
   validates :image_file, file_size: { less_than: 5.megabytes }
 
+  def should_generate_new_friendly_id?
+    self.slug.blank? || article_changed? || super
+  end
+
   as_enum :article_type,
     [:markdown, :notebook],
     map: :string
@@ -36,10 +40,6 @@ class Article < ApplicationRecord
     self.view_count ||= 0
     self.view_count += 1
     self.save
-  end
-
-  def should_generate_new_friendly_id?
-    article_changed?
   end
 
   def published?

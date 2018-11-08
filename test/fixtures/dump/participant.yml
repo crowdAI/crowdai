@@ -1,0 +1,1123 @@
+---
+"#Mu":
+  id: 1086
+  email: mu@whirldatascience.com
+  encrypted_password: "$2a$10$Vwe0ZZkDy4RwqsF42kNdr.He4flS/l66pY6veEJo9PtDLAzFci9T."
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  confirmation_token: T5m8MdVrfMsUam4Cxhps
+  confirmed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2017-06-23 07:00:44.770735000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  confirmation_sent_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2017-06-23 07:00:18.640352000 Z
+    zone: *2
+    time: *3
+  failed_attempts: 0
+  unlock_token: 
+  locked_at: 
+  admin: false
+  verified: false
+  verification_date: 
+  timezone: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2017-06-23 07:00:18.639829000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2018-01-11 16:10:17.793633000 Z
+    zone: *2
+    time: *5
+  unconfirmed_email: 
+  organizer_id: 
+  name: "#Mu"
+  email_public: false
+  bio: 
+  website: 
+  github: 
+  linkedin: 
+  twitter: 
+  account_disabled: false
+  account_disabled_reason: 
+  account_disabled_dttm: 
+  slug: mu
+  api_key: 95d4d14af6e1f60c5e4b859c53a241db
+  image_file: 
+  affiliation: 
+  country_cd: 
+  address: 
+  city: 
+  first_name: 
+  last_name: 
+  clef_email: false
+  sash_id: 
+  level: 0
+"#mo":
+  id: 5213
+  email: msahmoune@gmail.com
+  encrypted_password: "$2a$10$qFbTp3xCxMmgHlcrPx5VtOcwGgml84uhD7lcGMCqaCndq.eAEbq46"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2018-04-23 16:04:18.918652000 Z
+    zone: *2
+    time: *6
+  confirmation_token: sH6XCYVpyy7xHGBUzHZH
+  confirmed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2018-04-23 16:03:53.302256000 Z
+    zone: *2
+    time: *7
+  confirmation_sent_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2018-04-23 16:03:32.875353000 Z
+    zone: *2
+    time: *8
+  failed_attempts: 0
+  unlock_token: 
+  locked_at: 
+  admin: false
+  verified: false
+  verification_date: 
+  timezone: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2018-04-23 16:03:32.874973000 Z
+    zone: *2
+    time: *9
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2018-04-23 16:22:49.418915000 Z
+    zone: *2
+    time: *10
+  unconfirmed_email: 
+  organizer_id: 
+  name: "#mo"
+  email_public: false
+  bio: 
+  website: 
+  github: 
+  linkedin: 
+  twitter: 
+  account_disabled: false
+  account_disabled_reason: 
+  account_disabled_dttm: 
+  slug: mo
+  api_key: a0df2d73dbcb6d52e183123ffe0a262c
+  image_file: 
+  affiliation: 
+  country_cd: 
+  address: 
+  city: 
+  first_name: 
+  last_name: 
+  clef_email: false
+  sash_id: 
+  level: 0
+"-=Andreas=-":
+  id: 7538
+  email: 4gautschi@gmail.com
+  encrypted_password: "$2a$10$yEOs29Ob.dxZJGH.XUSXX.YGGye2W7sMyDEB6qgQmn6QhS4Wr36Fq"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  confirmation_token: aL3BqcRxbL8c3_rR2wct
+  confirmed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2018-08-13 08:19:46.123183000 Z
+    zone: *2
+    time: *11
+  confirmation_sent_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2018-08-13 07:13:50.684057000 Z
+    zone: *2
+    time: *12
+  failed_attempts: 0
+  unlock_token: 
+  locked_at: 
+  admin: false
+  verified: false
+  verification_date: 
+  timezone: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2018-08-13 07:13:50.683215000 Z
+    zone: *2
+    time: *13
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2018-08-15 11:43:40.454128000 Z
+    zone: *2
+    time: *14
+  unconfirmed_email: 
+  organizer_id: 
+  name: "-=Andreas=-"
+  email_public: false
+  bio: 
+  website: 
+  github: 
+  linkedin: 
+  twitter: 
+  account_disabled: false
+  account_disabled_reason: 
+  account_disabled_dttm: 
+  slug: andreas-4050acac-e4f3-4904-96bb-69cd5bf70dae
+  api_key: 90a4315a0c518b40cac86908d6465e5f
+  image_file: 
+  affiliation: 
+  country_cd: 
+  address: 
+  city: 
+  first_name: 
+  last_name: 
+  clef_email: false
+  sash_id: 
+  level: 0
+".ai":
+  id: 5089
+  email: tandon_akshat@yahoo.com
+  encrypted_password: "$2a$10$QQHbLBc/rBG7n6SjLpnBr.ez6NyGzCRxGSH.VhPhmNkxCOQhkNuF."
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  confirmation_token: XtAe1aoe2MLsJFA-f5nY
+  confirmed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2018-04-19 15:26:34.049820000 Z
+    zone: *2
+    time: *15
+  confirmation_sent_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2018-04-19 15:22:14.573542000 Z
+    zone: *2
+    time: *16
+  failed_attempts: 0
+  unlock_token: 
+  locked_at: 
+  admin: false
+  verified: false
+  verification_date: 
+  timezone: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2018-04-19 15:22:14.573189000 Z
+    zone: *2
+    time: *17
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2018-06-20 17:52:00.995322000 Z
+    zone: *2
+    time: *18
+  unconfirmed_email: 
+  organizer_id: 
+  name: ".ai"
+  email_public: false
+  bio: ''
+  website: ''
+  github: ''
+  linkedin: ''
+  twitter: ''
+  account_disabled: false
+  account_disabled_reason: 
+  account_disabled_dttm: 
+  slug: ai
+  api_key: 386bfca469fc6b8f3dc2eecc293e0f5a
+  image_file: 
+  affiliation: BI
+  country_cd: DE
+  address: ''
+  city: ''
+  first_name: 'Akshat '
+  last_name: Tandon
+  clef_email: false
+  sash_id: 
+  level: 0
+'007':
+  id: 2372
+  email: duino@hust.edu.cn
+  encrypted_password: "$2a$10$sut40oVKgW9XueTO7DJUtO/4xTQmnQdlyKEPj1xU4Lhhb545LQK/C"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2017-09-12 01:18:28.883725000 Z
+    zone: *2
+    time: *19
+  confirmation_token: Lj1iWbck9ciCVhNgyrsd
+  confirmed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2017-09-12 01:18:00.259553000 Z
+    zone: *2
+    time: *20
+  confirmation_sent_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2017-09-12 01:16:54.046341000 Z
+    zone: *2
+    time: *21
+  failed_attempts: 0
+  unlock_token: 
+  locked_at: 
+  admin: false
+  verified: false
+  verification_date: 
+  timezone: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &22 2017-09-12 01:16:54.045883000 Z
+    zone: *2
+    time: *22
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &23 2018-02-02 05:45:14.875581000 Z
+    zone: *2
+    time: *23
+  unconfirmed_email: 
+  organizer_id: 
+  name: '007'
+  email_public: false
+  bio: ''
+  website: https://www.dumin.me
+  github: https://www.github.com/duinodu
+  linkedin: https://www.linkedin.com/in/duinodu/
+  twitter: ''
+  account_disabled: false
+  account_disabled_reason: 
+  account_disabled_dttm: 
+  slug: '007'
+  api_key: 3bdca870608d52c5af98f03c06ddfb9d
+  image_file: 
+  affiliation: Huazhong University of Science and Technology
+  country_cd: CN
+  address: LuoYu Road 1037,Wuhan, Hubei, China
+  city: Wuhan
+  first_name: Duino
+  last_name: Du
+  clef_email: false
+  sash_id: 
+  level: 0
+'0xbee7':
+  id: 6266
+  email: 0xbee7@gmail.com
+  encrypted_password: "$2a$10$2GFkkDWAFeWRsYx9qBTeuezZtWTKiNu32zlqKwMXyasrw3M2A7oAC"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  confirmation_token: RdLAdstUF36UzYLZR7-B
+  confirmed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &24 2018-06-21 17:51:17.098732000 Z
+    zone: *2
+    time: *24
+  confirmation_sent_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &25 2018-06-21 17:50:40.824431000 Z
+    zone: *2
+    time: *25
+  failed_attempts: 0
+  unlock_token: 
+  locked_at: 
+  admin: false
+  verified: false
+  verification_date: 
+  timezone: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &26 2018-06-21 17:50:40.824126000 Z
+    zone: *2
+    time: *26
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &27 2018-06-21 18:04:52.116320000 Z
+    zone: *2
+    time: *27
+  unconfirmed_email: 
+  organizer_id: 
+  name: '0xbee7'
+  email_public: false
+  bio: 
+  website: 
+  github: 
+  linkedin: 
+  twitter: 
+  account_disabled: false
+  account_disabled_reason: 
+  account_disabled_dttm: 
+  slug: '0xbee7'
+  api_key: e984a0e2d1fbb41608ad15198f8f7c81
+  image_file: 
+  affiliation: 
+  country_cd: 
+  address: 
+  city: 
+  first_name: 
+  last_name: 
+  clef_email: false
+  sash_id: 
+  level: 0
+'110100':
+  id: 3314
+  email: asmelashtk@gmail.com
+  encrypted_password: "$2a$10$5WJ6gCq2.lVEv6DcbuOr7u4srhMEYif7PGt/H0eZKVPfMnQJHuLYS"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  confirmation_token: bpxJRyyxbfwukgyHLbLz
+  confirmed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &28 2017-12-01 13:20:10.054677000 Z
+    zone: *2
+    time: *28
+  confirmation_sent_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &29 2017-12-01 13:17:48.100042000 Z
+    zone: *2
+    time: *29
+  failed_attempts: 0
+  unlock_token: 
+  locked_at: 
+  admin: false
+  verified: false
+  verification_date: 
+  timezone: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &30 2017-12-01 13:17:48.099662000 Z
+    zone: *2
+    time: *30
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &31 2017-12-04 20:06:15.585170000 Z
+    zone: *2
+    time: *31
+  unconfirmed_email: 
+  organizer_id: 
+  name: '110100'
+  email_public: false
+  bio: 
+  website: 
+  github: 
+  linkedin: 
+  twitter: 
+  account_disabled: false
+  account_disabled_reason: 
+  account_disabled_dttm: 
+  slug: '110100'
+  api_key: 0431c4126f5a2863baff6f4432532baa
+  image_file: 
+  affiliation: 
+  country_cd: 
+  address: 
+  city: 
+  first_name: 
+  last_name: 
+  clef_email: false
+  sash_id: 
+  level: 0
+111hypo:
+  id: 239
+  email: 644420026@qq.com
+  encrypted_password: "$2a$10$rSgPoNHqi2bFuuDdlh/Jh.i8YOrj.nnlXzLoyJskOzzsCP5TH70ki"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &32 2016-05-21 06:49:25.788455000 Z
+    zone: *2
+    time: *32
+  confirmation_token: eMxQzvpzzs1fbcNp5EEw
+  confirmed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &33 2016-05-21 06:49:20.025861000 Z
+    zone: *2
+    time: *33
+  confirmation_sent_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &34 2016-05-21 06:48:41.480496000 Z
+    zone: *2
+    time: *34
+  failed_attempts: 0
+  unlock_token: 
+  locked_at: 
+  admin: false
+  verified: false
+  verification_date: 
+  timezone: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &35 2016-05-21 06:48:41.477329000 Z
+    zone: *2
+    time: *35
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &36 2017-04-07 11:38:36.096535000 Z
+    zone: *2
+    time: *36
+  unconfirmed_email: 
+  organizer_id: 
+  name: 111hypo
+  email_public: false
+  bio: 
+  website: 
+  github: 
+  linkedin: 
+  twitter: 
+  account_disabled: false
+  account_disabled_reason: 
+  account_disabled_dttm: 
+  slug: 111hypo
+  api_key: 75c88201763c611594937b9038446d60
+  image_file: 
+  affiliation: 
+  country_cd: 
+  address: 
+  city: 
+  first_name: 
+  last_name: 
+  clef_email: false
+  sash_id: 
+  level: 0
+11hifish:
+  id: 4953
+  email: shulij@andrew.cmu.edu
+  encrypted_password: "$2a$10$ZLYm.eKSeQEK5aL4xzpU7u3gaMiximw9FUCfawT0Hmu.kaBbPyc0W"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  confirmation_token: yYfbDEJqG6gzo6x9kwgQ
+  confirmed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &37 2018-04-13 05:47:34.146753000 Z
+    zone: *2
+    time: *37
+  confirmation_sent_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &38 2018-04-13 05:47:22.528913000 Z
+    zone: *2
+    time: *38
+  failed_attempts: 0
+  unlock_token: 
+  locked_at: 
+  admin: false
+  verified: false
+  verification_date: 
+  timezone: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &39 2018-04-13 05:47:22.528678000 Z
+    zone: *2
+    time: *39
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &40 2018-04-25 21:05:41.914043000 Z
+    zone: *2
+    time: *40
+  unconfirmed_email: 
+  organizer_id: 
+  name: 11hifish
+  email_public: false
+  bio: ''
+  website: ''
+  github: ''
+  linkedin: ''
+  twitter: ''
+  account_disabled: false
+  account_disabled_reason: 
+  account_disabled_dttm: 
+  slug: 11hifish
+  api_key: '084765b4a75e4cf3d7014057ca1a38f0'
+  image_file: 
+  affiliation: Carnegie Mellon University
+  country_cd: US
+  address: 5000 Forbes Ave
+  city: Pittsburgh
+  first_name: Shuli
+  last_name: Jiang
+  clef_email: false
+  sash_id: 
+  level: 0
+12sigma:
+  id: 7035
+  email: yhan@12sigma.ai
+  encrypted_password: "$2a$10$ZWBU9HTytTz.MApI11FYZ.tgBSpwzdOqwBZfYyAQRWsw37eLQCxWS"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  confirmation_token: 6eakTiez2W5G1sQSzqhh
+  confirmed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &41 2018-07-26 23:41:00.821786000 Z
+    zone: *2
+    time: *41
+  confirmation_sent_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &42 2018-07-26 23:40:48.176102000 Z
+    zone: *2
+    time: *42
+  failed_attempts: 0
+  unlock_token: 
+  locked_at: 
+  admin: false
+  verified: false
+  verification_date: 
+  timezone: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &43 2018-07-26 23:40:48.175639000 Z
+    zone: *2
+    time: *43
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &44 2018-08-04 19:27:09.931288000 Z
+    zone: *2
+    time: *44
+  unconfirmed_email: 
+  organizer_id: 
+  name: 12sigma
+  email_public: false
+  bio: ''
+  website: ''
+  github: ''
+  linkedin: ''
+  twitter: ''
+  account_disabled: false
+  account_disabled_reason: 
+  account_disabled_dttm: 
+  slug: 12sigma
+  api_key: 75b2a8be1a43e20287ee21abb4b22c69
+  image_file: 
+  affiliation: 12Sigma Technologies
+  country_cd: US
+  address: 11975 EI Camino Real
+  city: San Diego
+  first_name: Hanchao
+  last_name: Yu
+  clef_email: false
+  sash_id: 
+  level: 0
+14codeX1995:
+  id: 2228
+  email: serrao.ryan1995@gmail.com
+  encrypted_password: "$2a$10$R7pnl4Zp/tW9/7iiTopYvuYuxPF2XDp740yGNgJeCeu9oHnNW.1Ye"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &45 2017-09-01 06:07:03.681878000 Z
+    zone: *2
+    time: *45
+  confirmation_token: N2xsgxvy1vY4ivRXHjNJ
+  confirmed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &46 2017-09-01 06:06:59.204317000 Z
+    zone: *2
+    time: *46
+  confirmation_sent_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &47 2017-09-01 06:05:21.151351000 Z
+    zone: *2
+    time: *47
+  failed_attempts: 0
+  unlock_token: 
+  locked_at: 
+  admin: false
+  verified: false
+  verification_date: 
+  timezone: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &48 2017-09-01 06:05:21.150900000 Z
+    zone: *2
+    time: *48
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &49 2017-09-01 06:23:11.782254000 Z
+    zone: *2
+    time: *49
+  unconfirmed_email: 
+  organizer_id: 
+  name: 14codeX1995
+  email_public: false
+  bio: 
+  website: 
+  github: 
+  linkedin: 
+  twitter: 
+  account_disabled: false
+  account_disabled_reason: 
+  account_disabled_dttm: 
+  slug: 14codex1995
+  api_key: 49a8639fc2d29a2b15d59f15cdc1b88e
+  image_file: 
+  affiliation: 
+  country_cd: 
+  address: 
+  city: 
+  first_name: 
+  last_name: 
+  clef_email: false
+  sash_id: 
+  level: 0
+'1981':
+  id: 1502
+  email: dzorlu@gmail.com
+  encrypted_password: "$2a$10$qENSoJ0SUuQxbDh9f.GkXu75l0.35PbppXx4oEeqfisf6BNGkM16q"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  confirmation_token: qeeqTwBut3D-udwTMXMt
+  confirmed_at: 
+  confirmation_sent_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &50 2017-07-22 04:22:36.017472000 Z
+    zone: *2
+    time: *50
+  failed_attempts: 0
+  unlock_token: 
+  locked_at: 
+  admin: false
+  verified: false
+  verification_date: 
+  timezone: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &51 2017-07-22 04:22:36.017257000 Z
+    zone: *2
+    time: *51
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &52 2018-01-11 16:10:30.801287000 Z
+    zone: *2
+    time: *52
+  unconfirmed_email: 
+  organizer_id: 
+  name: '1981'
+  email_public: false
+  bio: 
+  website: 
+  github: 
+  linkedin: 
+  twitter: 
+  account_disabled: false
+  account_disabled_reason: 
+  account_disabled_dttm: 
+  slug: '1981'
+  api_key: df7af9872143c92566d9ad45a78cafe7
+  image_file: 
+  affiliation: 
+  country_cd: 
+  address: 
+  city: 
+  first_name: 
+  last_name: 
+  clef_email: false
+  sash_id: 
+  level: 0
+'2909638069':
+  id: 2634
+  email: 2909638069@qq.com
+  encrypted_password: "$2a$10$UUnFBxyBz5B6lX46KgsMOe9xOhYqVGQwcP1gdr1ocz/uRIoqGoD1C"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &53 2017-10-05 08:47:17.863180000 Z
+    zone: *2
+    time: *53
+  confirmation_token: 54KveHxgTEpmX8tn5AUj
+  confirmed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &54 2017-10-05 08:47:13.519315000 Z
+    zone: *2
+    time: *54
+  confirmation_sent_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &55 2017-10-05 08:46:38.622079000 Z
+    zone: *2
+    time: *55
+  failed_attempts: 0
+  unlock_token: 
+  locked_at: 
+  admin: false
+  verified: false
+  verification_date: 
+  timezone: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &56 2017-10-05 08:46:38.621722000 Z
+    zone: *2
+    time: *56
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &57 2018-01-26 06:21:21.670368000 Z
+    zone: *2
+    time: *57
+  unconfirmed_email: 
+  organizer_id: 
+  name: '2909638069'
+  email_public: false
+  bio: 
+  website: 
+  github: 
+  linkedin: 
+  twitter: 
+  account_disabled: false
+  account_disabled_reason: 
+  account_disabled_dttm: 
+  slug: '2909638069'
+  api_key: 8991622f071f3b0e06c03e12dd495236
+  image_file: 
+  affiliation: 
+  country_cd: 
+  address: 
+  city: 
+  first_name: 
+  last_name: 
+  clef_email: false
+  sash_id: 
+  level: 0
+2karthik:
+  id: 4308
+  email: 2karthik.bhat@gmail.com
+  encrypted_password: "$2a$10$jkDt/nlAkVqT/hISps49GOvx1AisQy1faXFOreKEl1vp6JPWybAu6"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  confirmation_token: 5gSbRkssY4hcdyhQVCdx
+  confirmed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &58 2018-02-22 12:00:51.551778000 Z
+    zone: *2
+    time: *58
+  confirmation_sent_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &59 2018-02-22 11:59:06.333399000 Z
+    zone: *2
+    time: *59
+  failed_attempts: 0
+  unlock_token: 
+  locked_at: 
+  admin: false
+  verified: false
+  verification_date: 
+  timezone: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &60 2018-02-22 11:59:06.332857000 Z
+    zone: *2
+    time: *60
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &61 2018-07-18 04:51:12.430349000 Z
+    zone: *2
+    time: *61
+  unconfirmed_email: 
+  organizer_id: 
+  name: 2karthik
+  email_public: false
+  bio: JRF, working on healthcare analytics
+  website: ''
+  github: ''
+  linkedin: ''
+  twitter: ''
+  account_disabled: false
+  account_disabled_reason: 
+  account_disabled_dttm: 
+  slug: 2karthik
+  api_key: d99a86b484590798e10c20493c1a11a3
+  image_file: 
+  affiliation: National Institute of Technology, Karnataka
+  country_cd: IN
+  address: Srinivasnagar, Surathkal
+  city: Mangaluru
+  first_name: Karthik
+  last_name: kk
+  clef_email: false
+  sash_id: 
+  level: 0
+314szke:
+  id: 2106
+  email: tothenikodonatella@gmail.com
+  encrypted_password: "$2a$10$ZtbeS/TcWPZNzvO/EJ29ceLL0U79VuGvIMjsZCRAOS2jOf1qVvKwS"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  confirmation_token: nQ-CTzkiCVPjX6HH3CuE
+  confirmed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &62 2017-08-26 15:16:38.656883000 Z
+    zone: *2
+    time: *62
+  confirmation_sent_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &63 2017-08-26 15:15:31.970266000 Z
+    zone: *2
+    time: *63
+  failed_attempts: 0
+  unlock_token: 
+  locked_at: 
+  admin: false
+  verified: false
+  verification_date: 
+  timezone: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &64 2017-08-26 15:15:31.969918000 Z
+    zone: *2
+    time: *64
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &65 2017-08-27 20:24:05.288407000 Z
+    zone: *2
+    time: *65
+  unconfirmed_email: 
+  organizer_id: 
+  name: 314szke
+  email_public: false
+  bio: ''
+  website: ''
+  github: ''
+  linkedin: ''
+  twitter: ''
+  account_disabled: false
+  account_disabled_reason: 
+  account_disabled_dttm: 
+  slug: 314szke
+  api_key: aa3d84279f445a39d9660e910b34a8c0
+  image_file: blacklucy__2_.jpg
+  affiliation: 
+  country_cd: 
+  address: 
+  city: 
+  first_name: 
+  last_name: 
+  clef_email: false
+  sash_id: 
+  level: 0
+3448d845ee@emailna.life:
+  id: 7095
+  email: 3448d845ee@emailna.life
+  encrypted_password: "$2a$10$lwB/EsRy9x8k/ynsT5qZPuywL/YBUqvq7atjtRtsRI249SQFd7J5m"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  confirmation_token: BC-_BcxzsF5uRmM_TdkH
+  confirmed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &66 2018-07-29 20:07:05.507266000 Z
+    zone: *2
+    time: *66
+  confirmation_sent_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &67 2018-07-29 20:06:48.055688000 Z
+    zone: *2
+    time: *67
+  failed_attempts: 0
+  unlock_token: 
+  locked_at: 
+  admin: false
+  verified: false
+  verification_date: 
+  timezone: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &68 2018-07-29 20:06:48.055182000 Z
+    zone: *2
+    time: *68
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &69 2018-07-29 20:07:28.995477000 Z
+    zone: *2
+    time: *69
+  unconfirmed_email: 
+  organizer_id: 
+  name: 3448d845ee@emailna.life
+  email_public: false
+  bio: 
+  website: 
+  github: 
+  linkedin: 
+  twitter: 
+  account_disabled: false
+  account_disabled_reason: 
+  account_disabled_dttm: 
+  slug: 3448d845ee-emailna-life
+  api_key: 5919de7a5d1e365d25216999911979bd
+  image_file: 
+  affiliation: 
+  country_cd: 
+  address: 
+  city: 
+  first_name: 
+  last_name: 
+  clef_email: false
+  sash_id: 
+  level: 0
+'375068018':
+  id: 8267
+  email: wytheingz@gmail.com
+  encrypted_password: "$2a$10$fqLvPFRFBz.po2TBRX9Mn.t8Q19AiKyvwYgXLoIMDL3hlRfsTaUBq"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  confirmation_token: FagAvwbUhvMwsFkGB2cC
+  confirmed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &70 2018-09-08 23:28:08.527960000 Z
+    zone: *2
+    time: *70
+  confirmation_sent_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &71 2018-09-08 23:25:00.345104000 Z
+    zone: *2
+    time: *71
+  failed_attempts: 0
+  unlock_token: 
+  locked_at: 
+  admin: false
+  verified: false
+  verification_date: 
+  timezone: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &72 2018-09-08 23:25:00.344510000 Z
+    zone: *2
+    time: *72
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &73 2018-09-17 22:30:29.562980000 Z
+    zone: *2
+    time: *73
+  unconfirmed_email: 
+  organizer_id: 
+  name: '375068018'
+  email_public: false
+  bio: 
+  website: 
+  github: 
+  linkedin: 
+  twitter: 
+  account_disabled: false
+  account_disabled_reason: 
+  account_disabled_dttm: 
+  slug: '375068018'
+  api_key: 79732b3277f9901b60207efac6656410
+  image_file: 
+  affiliation: 
+  country_cd: 
+  address: 
+  city: 
+  first_name: 
+  last_name: 
+  clef_email: false
+  sash_id: 
+  level: 0
+3b3ziz:
+  id: 2778
+  email: a.3b3ziz@gmail.com
+  encrypted_password: "$2a$10$jhNUigWZX2L0zJfOkxzofuUHB6OUJZ4ntGIZnmDbzohj5orlfkiS."
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &74 2017-10-22 09:43:37.155376000 Z
+    zone: *2
+    time: *74
+  confirmation_token: vBJv9JjaQfCy6tBvs_ye
+  confirmed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &75 2017-10-22 09:43:17.396712000 Z
+    zone: *2
+    time: *75
+  confirmation_sent_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &76 2017-10-22 09:42:56.351882000 Z
+    zone: *2
+    time: *76
+  failed_attempts: 0
+  unlock_token: 
+  locked_at: 
+  admin: false
+  verified: false
+  verification_date: 
+  timezone: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &77 2017-10-22 09:42:56.351380000 Z
+    zone: *2
+    time: *77
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &78 2017-12-23 10:00:31.934153000 Z
+    zone: *2
+    time: *78
+  unconfirmed_email: 
+  organizer_id: 
+  name: 3b3ziz
+  email_public: false
+  bio: 
+  website: 
+  github: 
+  linkedin: 
+  twitter: 
+  account_disabled: false
+  account_disabled_reason: 
+  account_disabled_dttm: 
+  slug: 3b3ziz
+  api_key: 6556877060d99db54321f7aa3f917d48
+  image_file: 
+  affiliation: 
+  country_cd: 
+  address: 
+  city: 
+  first_name: 
+  last_name: 
+  clef_email: false
+  sash_id: 
+  level: 0
+3gb:
+  id: 6660
+  email: ycwanglovecake@gmail.com
+  encrypted_password: "$2a$10$qjuWZj6LTxHRkqkSX4oPeeCKZ4OHzr33yZkVb0I3SwT6UmwKykwrW"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &79 2018-08-22 18:16:30.912787000 Z
+    zone: *2
+    time: *79
+  confirmation_token: 4LwkoZRgDPQSkdoCujYu
+  confirmed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &80 2018-07-11 10:54:45.059250000 Z
+    zone: *2
+    time: *80
+  confirmation_sent_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &81 2018-07-10 12:22:33.736292000 Z
+    zone: *2
+    time: *81
+  failed_attempts: 0
+  unlock_token: 
+  locked_at: 
+  admin: false
+  verified: false
+  verification_date: 
+  timezone: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &82 2018-07-10 12:22:33.735814000 Z
+    zone: *2
+    time: *82
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &83 2018-09-03 19:05:57.624020000 Z
+    zone: *2
+    time: *83
+  unconfirmed_email: 
+  organizer_id: 
+  name: 3gb
+  email_public: false
+  bio: ''
+  website: ''
+  github: ''
+  linkedin: ''
+  twitter: ''
+  account_disabled: false
+  account_disabled_reason: 
+  account_disabled_dttm: 
+  slug: 3gb
+  api_key: 9f920da6e66bc55022aeeefec97cd1f9
+  image_file: Mipha._Breath.of.the.Wild_.full.2081262-2542.jpg
+  affiliation: Emory University
+  country_cd: ''
+  address: ''
+  city: ''
+  first_name: Yicheng
+  last_name: Wang
+  clef_email: false
+  sash_id: 
+  level: 0
+'513748035':
+  id: 6396
+  email: 513748035@qq.com
+  encrypted_password: "$2a$10$FrGIMsx5yokggZVrkuLEGOJeSKXdsNMK/R0UYbHA34yGzVGdoseyC"
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &84 2018-06-30 03:14:40.395540000 Z
+    zone: *2
+    time: *84
+  confirmation_token: 18q91YeXHzzttVzsEP1Y
+  confirmed_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &85 2018-06-28 08:09:26.745879000 Z
+    zone: *2
+    time: *85
+  confirmation_sent_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &86 2018-06-28 08:09:12.561380000 Z
+    zone: *2
+    time: *86
+  failed_attempts: 0
+  unlock_token: 
+  locked_at: 
+  admin: false
+  verified: false
+  verification_date: 
+  timezone: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &87 2018-06-28 08:09:12.560555000 Z
+    zone: *2
+    time: *87
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &88 2018-07-01 02:58:43.053590000 Z
+    zone: *2
+    time: *88
+  unconfirmed_email: 
+  organizer_id: 
+  name: '513748035'
+  email_public: false
+  bio: 
+  website: 
+  github: 
+  linkedin: 
+  twitter: 
+  account_disabled: false
+  account_disabled_reason: 
+  account_disabled_dttm: 
+  slug: '513748035'
+  api_key: c72c57a23a19321aba984744491b0238
+  image_file: 
+  affiliation: 
+  country_cd: 
+  address: 
+  city: 
+  first_name: 
+  last_name: 
+  clef_email: false
+  sash_id: 
+  level: 0

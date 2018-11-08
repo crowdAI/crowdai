@@ -23,7 +23,7 @@ class Submission < ApplicationRecord
   validates :grading_status, presence: true
   validate :clef_validations
 
-  delegate :name, to: :participant
+  #delegate :name, to: :participant
 
   def clef_validations
     return true

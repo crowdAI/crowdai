@@ -55,7 +55,7 @@
 /* List - Awards */
 .list-awards {
   li {
-    padding: 20px 0 18px 0;
+    padding: 18px 0 18px 0;
     border-bottom: 1px solid $color-grey-10;
     &:last-of-type {
       border-bottom: 1px solid $color-grey-10;
@@ -64,10 +64,11 @@
       flex: 0 0 auto;
       height: 40px;
       width: 34px;
-      margin-right: 20px;
+      margin-right: 16px;
       .award-gold {
         height: 40px;
         width: 30px;
+        margin-left: 2px;
       }
       .award-silver,
       .award-bronze,

@@ -1,0 +1,11 @@
+one:
+  badge_id: 1
+  badge_count: 1
+  participant_count: 1
+  percentile: 1.5
+
+two:
+  badge_id: 1
+  badge_count: 1
+  participant_count: 1
+  percentile: 1.5

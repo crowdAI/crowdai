@@ -1,0 +1,13 @@
+crowdai:
+  organizer: 'crowdAI'
+  description: 'Fighting for open science with open data'
+  approved: true
+  tagline: 'Fighting for open science with open data'
+  clef_organizer: false
+
+clef:
+  organizer: 'crowdAI'
+  description: 'Fighting for open science with open data'
+  approved: true
+  tagline: 'Fighting for open science with open data'
+  clef_organizer: true

@@ -1,0 +1,37 @@
+<div class="content">
+
+  <div class="row">
+    <div class="masthead-icon">
+      <div class="icon">
+        <%= content_tag :div, class: "award-#{@achievement.custom_fields[:level]}" do %>
+          <span><%= "Award: #{@achievement.custom_fields[:level].capitalize}" %></span>
+        <% end %>
+      </div>
+
+      <div>
+        <h2><%= @achievement.custom_fields[:title] %></h2>
+        <p class="large">
+          <%= @achievement.description %> · <%= awarded_message(badge_id: @achievement.id, badge_stats: @badge_stats) %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="grid-users-awarded">
+      <% @participants.each do |p| %>
+        <div class="user-award">
+          <%= link_to participant_path(p.id) do %>
+            <img src="avatar-default.png" alt="">
+          <% end %>
+          <div>
+            <%= link_to participant_path(p.id), class: 'username' do %>
+              <%= p.name %>
+            <% end %>
+            <span>Awarded <%= time_ago_in_words(p.created_at) %> ago</span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>

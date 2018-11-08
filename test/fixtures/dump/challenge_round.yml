@@ -1,0 +1,642 @@
+---
+challenge_round_8:
+  id: 8
+  challenge_id: 1
+  challenge_round: Round 1
+  active: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2017-10-16 14:07:31.980937000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2017-10-16 14:21:13.385550000 Z
+    zone: *2
+    time: *3
+  submission_limit: 5
+  submission_limit_period_cd: day
+  start_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2016-04-12 09:00:00.000000000 Z
+    zone: *2
+    time: *4
+  end_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2016-06-12 17:00:00.000000000 Z
+    zone: *2
+    time: *5
+  minimum_score: 
+  minimum_score_secondary: 
+  ranking_window: 96
+  ranking_highlight: 3
+  score_precision: 3
+  score_secondary_precision: 3
+  leaderboard_note_markdown: 
+  leaderboard_note: 
+  failed_submissions: 0
+challenge_round_7:
+  id: 7
+  challenge_id: 2
+  challenge_round: Round 1
+  active: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2017-10-16 14:07:31.967395000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2017-10-16 14:21:44.807201000 Z
+    zone: *2
+    time: *7
+  submission_limit: 5
+  submission_limit_period_cd: day
+  start_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2016-06-08 09:00:00.000000000 Z
+    zone: *2
+    time: *8
+  end_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2016-09-08 17:00:00.000000000 Z
+    zone: *2
+    time: *9
+  minimum_score: 
+  minimum_score_secondary: 
+  ranking_window: 96
+  ranking_highlight: 3
+  score_precision: 3
+  score_secondary_precision: 3
+  leaderboard_note_markdown: 
+  leaderboard_note: 
+  failed_submissions: 0
+challenge_round_6:
+  id: 6
+  challenge_id: 3
+  challenge_round: Round 1
+  active: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2017-10-16 14:07:31.954301000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2017-10-16 14:21:44.826106000 Z
+    zone: *2
+    time: *11
+  submission_limit: 5
+  submission_limit_period_cd: day
+  start_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2016-08-23 09:00:00.000000000 Z
+    zone: *2
+    time: *12
+  end_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2016-11-30 17:00:00.000000000 Z
+    zone: *2
+    time: *13
+  minimum_score: 
+  minimum_score_secondary: 
+  ranking_window: 96
+  ranking_highlight: 3
+  score_precision: 3
+  score_secondary_precision: 3
+  leaderboard_note_markdown: 
+  leaderboard_note: 
+  failed_submissions: 0
+challenge_round_4:
+  id: 4
+  challenge_id: 5
+  challenge_round: Round 1
+  active: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2017-10-16 14:07:31.924919000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2017-10-16 14:21:44.845931000 Z
+    zone: *2
+    time: *15
+  submission_limit: 5
+  submission_limit_period_cd: day
+  start_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2016-10-18 09:00:00.000000000 Z
+    zone: *2
+    time: *16
+  end_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2016-12-18 17:00:00.000000000 Z
+    zone: *2
+    time: *17
+  minimum_score: 
+  minimum_score_secondary: 
+  ranking_window: 96
+  ranking_highlight: 3
+  score_precision: 3
+  score_secondary_precision: 3
+  leaderboard_note_markdown: 
+  leaderboard_note: 
+  failed_submissions: 0
+challenge_round_5:
+  id: 5
+  challenge_id: 4
+  challenge_round: Round 1
+  active: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2017-10-16 14:07:31.940179000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2017-10-16 14:21:44.867140000 Z
+    zone: *2
+    time: *19
+  submission_limit: 5
+  submission_limit_period_cd: day
+  start_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2016-12-20 09:00:00.000000000 Z
+    zone: *2
+    time: *20
+  end_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2017-04-24 17:00:00.000000000 Z
+    zone: *2
+    time: *21
+  minimum_score: 
+  minimum_score_secondary: 
+  ranking_window: 96
+  ranking_highlight: 3
+  score_precision: 3
+  score_secondary_precision: 3
+  leaderboard_note_markdown: 
+  leaderboard_note: 
+  failed_submissions: 0
+challenge_round_3:
+  id: 3
+  challenge_id: 6
+  challenge_round: Round 1
+  active: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &22 2017-10-16 14:07:31.911393000 Z
+    zone: *2
+    time: *22
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &23 2017-10-16 14:21:44.895936000 Z
+    zone: *2
+    time: *23
+  submission_limit: 5
+  submission_limit_period_cd: day
+  start_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &24 2017-01-30 09:00:00.000000000 Z
+    zone: *2
+    time: *24
+  end_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &25 2017-05-02 17:00:00.000000000 Z
+    zone: *2
+    time: *25
+  minimum_score: 
+  minimum_score_secondary: 
+  ranking_window: 96
+  ranking_highlight: 3
+  score_precision: 3
+  score_secondary_precision: 3
+  leaderboard_note_markdown: 
+  leaderboard_note: 
+  failed_submissions: 0
+challenge_round_11:
+  id: 11
+  challenge_id: 7
+  challenge_round: Round 1
+  active: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &26 2017-10-16 14:07:32.045153000 Z
+    zone: *2
+    time: *26
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &27 2017-10-16 14:21:44.911670000 Z
+    zone: *2
+    time: *27
+  submission_limit: 5
+  submission_limit_period_cd: day
+  start_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &28 2017-02-24 09:00:00.000000000 Z
+    zone: *2
+    time: *28
+  end_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &29 2017-06-30 17:00:00.000000000 Z
+    zone: *2
+    time: *29
+  minimum_score: 
+  minimum_score_secondary: 
+  ranking_window: 96
+  ranking_highlight: 3
+  score_precision: 3
+  score_secondary_precision: 3
+  leaderboard_note_markdown: 
+  leaderboard_note: 
+  failed_submissions: 0
+challenge_round_38:
+  id: 38
+  challenge_id: 34
+  challenge_round: Round 1
+  active: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &30 2018-04-20 12:24:59.690715000 Z
+    zone: *2
+    time: *30
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &31 2018-04-20 13:03:25.935164000 Z
+    zone: *2
+    time: *31
+  submission_limit: 
+  submission_limit_period_cd: 
+  start_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &32 2017-03-01 00:00:00.000000000 Z
+    zone: *2
+    time: *32
+  end_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &33 2020-12-12 00:00:00.000000000 Z
+    zone: *2
+    time: *33
+  minimum_score: 
+  minimum_score_secondary: 
+  ranking_window: 96
+  ranking_highlight: 3
+  score_precision: 3
+  score_secondary_precision: 3
+  leaderboard_note_markdown: 
+  leaderboard_note: 
+  failed_submissions: 0
+challenge_round_1:
+  id: 1
+  challenge_id: 8
+  challenge_round: Round 1
+  active: false
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &34 2017-10-16 14:07:31.877306000 Z
+    zone: *2
+    time: *34
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &35 2017-11-17 14:14:25.653316000 Z
+    zone: *2
+    time: *35
+  submission_limit: 5
+  submission_limit_period_cd: day
+  start_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &36 2017-06-16 17:30:00.000000000 Z
+    zone: *2
+    time: *36
+  end_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &37 2017-11-04 12:00:00.000000000 Z
+    zone: *2
+    time: *37
+  minimum_score: 15.0
+  minimum_score_secondary: 
+  ranking_window: 96
+  ranking_highlight: 3
+  score_precision: 3
+  score_secondary_precision: 3
+  leaderboard_note_markdown: 
+  leaderboard_note: 
+  failed_submissions: 0
+challenge_round_2:
+  id: 2
+  challenge_id: 9
+  challenge_round: Round 1
+  active: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &38 2017-10-16 14:07:31.891941000 Z
+    zone: *2
+    time: *38
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &39 2018-02-09 12:44:11.487397000 Z
+    zone: *2
+    time: *39
+  submission_limit: 5
+  submission_limit_period_cd: day
+  start_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &40 2017-06-26 09:00:00.000000000 Z
+    zone: *2
+    time: *40
+  end_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &41 2018-03-09 17:00:00.000000000 Z
+    zone: *2
+    time: *41
+  minimum_score: 
+  minimum_score_secondary: 
+  ranking_window: 96
+  ranking_highlight: 3
+  score_precision: 3
+  score_secondary_precision: 3
+  leaderboard_note_markdown: 
+  leaderboard_note: 
+  failed_submissions: 0
+challenge_round_9:
+  id: 9
+  challenge_id: 11
+  challenge_round: Round 1
+  active: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &42 2017-10-16 14:07:32.002262000 Z
+    zone: *2
+    time: *42
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &43 2017-11-07 10:47:09.762611000 Z
+    zone: *2
+    time: *43
+  submission_limit: 5
+  submission_limit_period_cd: day
+  start_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &44 2017-10-31 09:00:00.000000000 Z
+    zone: *2
+    time: *44
+  end_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &45 2017-12-01 17:00:00.000000000 Z
+    zone: *2
+    time: *45
+  minimum_score: 
+  minimum_score_secondary: 
+  ranking_window: 96
+  ranking_highlight: 3
+  score_precision: 3
+  score_secondary_precision: 3
+  leaderboard_note_markdown: 
+  leaderboard_note: 
+  failed_submissions: 0
+challenge_round_12:
+  id: 12
+  challenge_id: 8
+  challenge_round: Round 2
+  active: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &46 2017-11-04 17:33:38.458462000 Z
+    zone: *2
+    time: *46
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &47 2017-11-07 19:19:56.084778000 Z
+    zone: *2
+    time: *47
+  submission_limit: 5
+  submission_limit_period_cd: round
+  start_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &48 2017-11-04 17:30:00.000000000 Z
+    zone: *2
+    time: *48
+  end_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &49 2017-11-13 12:00:00.000000000 Z
+    zone: *2
+    time: *49
+  minimum_score: 15.0
+  minimum_score_secondary: 
+  ranking_window: 96
+  ranking_highlight: 3
+  score_precision: 3
+  score_secondary_precision: 3
+  leaderboard_note_markdown: 
+  leaderboard_note: 
+  failed_submissions: 0
+challenge_round_24:
+  id: 24
+  challenge_id: 12
+  challenge_round: Round 1
+  active: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &50 2017-11-23 14:54:36.709129000 Z
+    zone: *2
+    time: *50
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &51 2018-01-30 13:42:53.218387000 Z
+    zone: *2
+    time: *51
+  submission_limit: 5
+  submission_limit_period_cd: day
+  start_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &52 2017-11-23 09:00:00.000000000 Z
+    zone: *2
+    time: *52
+  end_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &53 2019-01-07 14:00:00.000000000 Z
+    zone: *2
+    time: *53
+  minimum_score: 
+  minimum_score_secondary: 
+  ranking_window: 96
+  ranking_highlight: 3
+  score_precision: 3
+  score_secondary_precision: 3
+  leaderboard_note_markdown: 
+  leaderboard_note: 
+  failed_submissions: 0
+challenge_round_25:
+  id: 25
+  challenge_id: 13
+  challenge_round: Round 1
+  active: false
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &54 2017-12-02 18:21:45.114648000 Z
+    zone: *2
+    time: *54
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &55 2018-03-20 16:13:18.837849000 Z
+    zone: *2
+    time: *55
+  submission_limit: 5
+  submission_limit_period_cd: day
+  start_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &56 2017-12-07 09:00:00.000000000 Z
+    zone: *2
+    time: *56
+  end_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &57 2018-03-01 13:00:00.000000000 Z
+    zone: *2
+    time: *57
+  minimum_score: 
+  minimum_score_secondary: 
+  ranking_window: 96
+  ranking_highlight: 3
+  score_precision: 3
+  score_secondary_precision: 3
+  leaderboard_note_markdown: 
+  leaderboard_note: 
+  failed_submissions: 0
+challenge_round_29:
+  id: 29
+  challenge_id: 13
+  challenge_round: Round 2
+  active: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &58 2018-03-20 16:12:52.187195000 Z
+    zone: *2
+    time: *58
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &59 2018-03-20 16:12:52.187195000 Z
+    zone: *2
+    time: *59
+  submission_limit: 5
+  submission_limit_period_cd: day
+  start_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &60 2018-03-20 17:00:00.000000000 Z
+    zone: *2
+    time: *60
+  end_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &61 2018-04-08 17:00:00.000000000 Z
+    zone: *2
+    time: *61
+  minimum_score: 
+  minimum_score_secondary: 
+  ranking_window: 96
+  ranking_highlight: 3
+  score_precision: 3
+  score_secondary_precision: 3
+  leaderboard_note_markdown: 
+  leaderboard_note: 
+  failed_submissions: 0
+challenge_round_28:
+  id: 28
+  challenge_id: 27
+  challenge_round: Round 1
+  active: false
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &62 2018-03-12 17:47:48.565732000 Z
+    zone: *2
+    time: *62
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &63 2018-05-04 14:12:14.497016000 Z
+    zone: *2
+    time: *63
+  submission_limit: 5
+  submission_limit_period_cd: day
+  start_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &64 2018-03-26 08:00:00.000000000 Z
+    zone: *2
+    time: *64
+  end_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &65 2018-05-03 17:00:00.000000000 Z
+    zone: *2
+    time: *65
+  minimum_score: 
+  minimum_score_secondary: 
+  ranking_window: 24
+  ranking_highlight: 6
+  score_precision: 3
+  score_secondary_precision: 3
+  leaderboard_note_markdown: 
+  leaderboard_note: 
+  failed_submissions: 0
+challenge_round_30:
+  id: 30
+  challenge_id: 25
+  challenge_round: Round 1
+  active: false
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &66 2018-03-27 04:52:15.474487000 Z
+    zone: *2
+    time: *66
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &67 2018-07-30 14:52:26.435132000 Z
+    zone: *2
+    time: *67
+  submission_limit: 5
+  submission_limit_period_cd: day
+  start_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &68 2018-03-27 00:00:00.000000000 Z
+    zone: *2
+    time: *68
+  end_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &69 2018-06-01 00:00:00.000000000 Z
+    zone: *2
+    time: *69
+  minimum_score: 
+  minimum_score_secondary: 
+  ranking_window: 96
+  ranking_highlight: 5
+  score_precision: 3
+  score_secondary_precision: 3
+  leaderboard_note_markdown: ''
+  leaderboard_note: "\n"
+  failed_submissions: 0
+challenge_round_26:
+  id: 26
+  challenge_id: 26
+  challenge_round: AGD Task 1
+  active: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &70 2018-02-12 08:20:41.877479000 Z
+    zone: *2
+    time: *70
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &71 2018-05-16 11:15:58.146847000 Z
+    zone: *2
+    time: *71
+  submission_limit: 100
+  submission_limit_period_cd: day
+  start_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &72 2018-04-05 08:00:00.000000000 Z
+    zone: *2
+    time: *72
+  end_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &73 2018-05-11 10:00:00.000000000 Z
+    zone: *2
+    time: *73
+  minimum_score: 
+  minimum_score_secondary: 
+  ranking_window: 96
+  ranking_highlight: 1
+  score_precision: 3
+  score_secondary_precision: 3
+  leaderboard_note_markdown: 
+  leaderboard_note: 
+  failed_submissions: 0
+challenge_round_35:
+  id: 35
+  challenge_id: 23
+  challenge_round: Official Round
+  active: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &74 2018-04-12 14:27:22.541041000 Z
+    zone: *2
+    time: *74
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &75 2018-05-03 15:34:41.095873000 Z
+    zone: *2
+    time: *75
+  submission_limit: 5
+  submission_limit_period_cd: round
+  start_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &76 2018-04-15 01:00:00.000000000 Z
+    zone: *2
+    time: *76
+  end_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &77 2018-05-08 23:59:00.000000000 Z
+    zone: *2
+    time: *77
+  minimum_score: 
+  minimum_score_secondary: 
+  ranking_window: 96
+  ranking_highlight: 3
+  score_precision: 3
+  score_secondary_precision: 3
+  leaderboard_note_markdown: 
+  leaderboard_note: 
+  failed_submissions: 0
+challenge_round_34:
+  id: 34
+  challenge_id: 24
+  challenge_round: 'Official Round '
+  active: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &78 2018-04-12 14:27:02.961485000 Z
+    zone: *2
+    time: *78
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &79 2018-05-09 14:20:21.204449000 Z
+    zone: *2
+    time: *79
+  submission_limit: 5
+  submission_limit_period_cd: round
+  start_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &80 2018-04-15 01:00:00.000000000 Z
+    zone: *2
+    time: *80
+  end_dttm: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &81 2018-05-08 23:59:00.000000000 Z
+    zone: *2
+    time: *81
+  minimum_score: 
+  minimum_score_secondary: 
+  ranking_window: 96
+  ranking_highlight: 3
+  score_precision: 3
+  score_secondary_precision: 3
+  leaderboard_note_markdown: 
+  leaderboard_note: 
+  failed_submissions: 0

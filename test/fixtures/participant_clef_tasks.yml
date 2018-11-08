@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  participant_id: 1
+  clef_task_id: 1
+  approved: false
+  eua_file: MyString
+  status_cd: MyString
+
+two:
+  participant_id: 1
+  clef_task_id: 1
+  approved: false
+  eua_file: MyString
+  status_cd: MyString

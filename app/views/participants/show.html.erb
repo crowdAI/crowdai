@@ -1,197 +1,860 @@
 <div class='content'>
-  <%= concept(Participant::Cell::ParticipantMasthead,
-                @participant,
-                current_participant: current_participant) %>
+  <%= render partial: 'masthead', locals: { participant: @participant } %>
+  <%= render partial: 'subnav', locals: { participant: @participant } %>
 
-  <div class="sub-nav">
-    <div class="row">
-      <ul class='tabs'>
-        <li data-tab='tab-challenges' class="active">
-          <a href="#" onclick="return false;">Challenges
-            <sup><%= @challenges.count unless @challenges.count == 0 %></sup>
-          </a>
-        </li>
-        <li data-tab='tab-articles'>
-          <a href="#" onclick="return false;">Tutorials
-            <sup><%= @articles.count unless @articles.count == 0%></sup>
-          </a>
-        </li>
-        <li data-tab='tab-posts'>
-          <a href="#" onclick="return false;">Posts
-            <sup><%= @posts.count unless @posts.count == 0 %></sup>
-          </a>
-        </li>
-        <li data-tab='tab-bio'>
-          <a href="#" onclick="return false;">Bio</a>
-        </li>
-        <% if policy(@participant).clef_access? %>
-          <li data-tab='tab-contact-info'>
-            <a href="#" onclick="return false;">Contact</a>
-          </li>
-        <% end %>
-        <% if current_participant && current_participant.admin? %>
-          <li data-tab='tab-badges'>
-            <a href="#" onclick="return false;">Badges</a>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
+  <div class="masthead-detailed">
+       <div class="row">
+         <div class="pic pic-user">
+           <img src="assets/img/users/avatar-default.png" alt="">
+         </div>
+         <div class="info info-user">
+           <h2>Username</h2>
+         </div>
+       </div>
+     </div>
 
-  <div id='tab-challenges' class='tab-content active'>
-    <div class="row">
-      <% if @challenges.any? %>
-      <ul class="list-challenges">
-        <%= concept(Challenge::Cell::ListDetail,
-                        collection: @challenges,
-                        current_participant: current_participant) %>
-      </ul>
-    <% else %>
-      <div class='article'>
-        <p class='light'>
-          <%= "#{@participant.name} hasn't entered any challenges yet..." %>
-        </p>
-      </div>
-      <% end %>
-    </div>
-  </div>
+     <div class="sub-nav">
+       <div class="row">
+         <ul>
+           <li class="active">Achievements <sup>24</sup></li>
+           <li><a href="#">Challenges <sup>3</sup></a></li>
+           <li><a href="#">Tutorials <sup>3</sup></a></li>
+           <li><a href="#">Posts</a></li>
+           <li><a href="#">Bio</a></li>
+         </ul>
+       </div>
+     </div>
 
-  <div id='tab-articles' class='tab-content'>
-    <div class="row">
-      <% if @articles.any? %>
-        <ul class="list-tutorials">
-         <% @articles.each do |article| %>
-           <%= render partial: 'articles/article', locals: { article: article } %>
-         <% end %>
-        </ul>
-      <% else %>
-        <div class='article'>
-          <p class='light'>
-            <%= "#{@participant.name} hasn't authored any tutorials yet..." %>
-          </p>
-        </div>
-      <% end %>
-    </div>
-  </div>
+   <!-- main content -->
+   <div class="row">
 
-  <div id='tab-posts' class='tab-content'>
-    <div class="row">
-      <% if @posts.any? %>
-      <ul class="list-tutorials">
-        <%= concept(Discussion::Cell::ParticipantComment,
-                          collection: @posts,
-                          current_participant: current_participant) %>
-      </ul>
-    <% else %>
-      <div class='article'>
-        <p class='light'>
-          <%= "#{@participant.name} hasn't made any posts yet..." %>
-        </p>
-      </div>
-      <% end %>
-    </div>
-  </div>
+     <!-- awarded -->
+     <div class="section-header section-header-alt">
+       <h6>Awarded</h6>
+       <a class="btn btn-secondary" href="#">All achievements</a>
+     </div>
 
-  <div id='tab-bio' class='tab-content'>
-    <div class="row">
-      <div class="article">
-        <% if @participant.bio.present? %>
-        <%= @participant.bio %>
-      <% else %>
-        <p class='light'>
-          <%= "Apparently #{@participant.name} prefers to keep an air of mystery about them..." %>
-        </p>
-        <% end %>
-      </div>
-    </div>
-  </div>
+    <!-- list awards -->
+     <ul class="list-awards">
 
-  <% if policy(@participant).clef_access? %>
-      <div id='tab-contact-info' class='tab-content'>
-        <div class="row">
-          <div class="article">
-            <table>
-              <tr>
-                <td>First name:</td>
-                <td>
-                <% if @participant.first_name.present? %>
-                  <%= @participant.first_name %>
-                <% else %>
-                  <span class="light">Not specified yet</span>
-                <% end %>
-                </td>
-              </tr>
-              <tr>
-                <td>Last name:</td>
-                <td>
-                <% if @participant.last_name.present? %>
-                  <%= @participant.last_name %>
-                <% else %>
-                  <span class="light">Not specified yet</span>
-                <% end %>
-                </td>
-              </tr>
-              <tr>
-                <td>Email:</td>
-                <td><%= @participant.email %></td>
-              </tr>
-              <tr>
-                <td>Address:</td>
-                <td>
-                  <% if @participant.address.present? %>
-                    <%= @participant.address %>
-                  <% else %>
-                    <span class="light">Not specified yet</span>
-                  <% end %>
-                </td>
-              </tr>
-              <tr>
-                <td>City:</td>
-                <td>
-                  <% if @participant.city.present? %>
-                    <%= @participant.city %>
-                  <% else %>
-                    <span class="light">Not specified yet</span>
-                  <% end %>
-                </td>
-              </tr>
-              <tr>
-                <td>Country:</td>
-                <td>
-                  <% if @participant.country_cd.present? %>
-                    <%= "#{ISO3166::Country.find_country_by_alpha2(@participant.country_cd)} (#{@participant.country_cd})" %>
-                  <% else %>
-                    <span class="light">Not specified yet</span>
-                  <% end %>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </div>
-  <% end %>
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-gold">
+                 <span>Award: Gold</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
 
-  <% if current_participant && current_participant.admin? %>
-    <div id='tab-badges' class='tab-content'>
-      <div class="row">
-        <div class="article">
-          <% if @participant.badges.present? %>
-            <ul>
-              <% @participant.badges.each do |badge| %>
-                <li class='badge badge-accent'>
-                  <%= badge.name %><br/>
-                  <%= badge.description %>
-                </li>
-              <% end %>
-            </ul>
-          <% else %>
-            <p class='light'>
-              No badges yet.
-            </p>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  <% end %>
+         <!-- details -->
+         <div class="details">
+           <h5><a href="#">Challenge winner: Gold</a></h5>
+           <p class="description">Awarded for winning 3 challenges · <span class="badge badge-gold">Top 2%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-silver">
+                 <span>Award: Silver</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5><a href="#">Challenge winner: Silver</a></h5>
+           <p class="description">Awarded for winning 2 challenges · <span class="badge badge-silver">Top 9%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-bronze">
+                 <span>Award: Bronze</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5><a href="#">Challenge winner: Bronze</a></h5>
+           <p class="description">Awarded for winning a challenge · <span class="badge badge-bronze">Top 13%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-gold">
+                 <span>Award: Gold</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5><a href="#">Challenge submissions: Gold</a></h5>
+           <p class="description">Awarded for 1,000 submissions · <span class="badge badge-gold">Top 2%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-silver">
+                 <span>Award: Silver</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5><a href="#">Challenge submissions: Silver</a></h5>
+           <p class="description">Awarded for 100 submissions · <span class="badge badge-silver">Top 9%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-bronze">
+                 <span>Award: Bronze</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5><a href="#">Challenge submissions: Bronze</a></h5>
+           <p class="description">Awarded for first submission · <span class="badge badge-bronze">Top 13%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-gold">
+                 <span>Award: Gold</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5><a href="#">Top position during challenge: Gold</a></h5>
+           <p class="description">Awarded for top position during a challenge 25 times · <span class="badge badge-gold">Top 2%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-silver">
+                 <span>Award: Silver</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+            <h5><a href="#">Top position during challenge: Silver</a></h5>
+           <p class="description">Awarded for top position during a challenge 5 times · <span class="badge badge-silver">Top 9%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-bronze">
+                 <span>Award: Bronze</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+            <h5><a href="#">Top position during challenge: Bronze</a></h5>
+           <p class="description">Awarded for top position during a challenge · <span class="badge badge-bronze">Top 13%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-gold">
+                 <span>Award: Gold</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5><a href="#">Upvote: Gold</a></h5>
+           <p class="description">Awarded for receiving 250 upvotes on a comment or tutorial · <span class="badge badge-gold">Top 2%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-silver">
+                 <span>Award: Silver</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+            <h5><a href="#">Upvote: Silver</a></h5>
+           <p class="description">Awarded for receiving 25 upvotes on a comment or tutorial · <span class="badge badge-silver">Top 9%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-bronze">
+                 <span>Award: Bronze</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5><a href="#">Upvote: Bronze</a></h5>
+           <p class="description">Awarded for receiving an upvote on a comment or tutorial  · <span class="badge badge-bronze">Top 13%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-gold">
+                 <span>Award: Gold</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5><a href="#">Tutorial authorship: Gold</a></h5>
+           <p class="description">Awarded for writing 30 tutorials · <span class="badge badge-gold">Top 2%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-silver">
+                 <span>Award: Silver</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+            <h5><a href="#">Tutorial authorship: Silver</a></h5>
+           <p class="description">Awarded for writing 3 tutorials · <span class="badge badge-silver">Top 9%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-bronze">
+                 <span>Award: Bronze</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5><a href="#">Tutorial authorship: Bronze</a></h5>
+           <p class="description">Awarded for writing a tutorial  · <span class="badge badge-bronze">Top 13%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-gold">
+                 <span>Award: Gold</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5><a href="#">Top 5 during a challenge: Gold</a></h5>
+           <p class="description">Awarded for being in the top 5 on a leaderboard during a challenge 25 times · <span class="badge badge-gold">Top 2%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-silver">
+                 <span>Award: Silver</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5><a href="#">Top 5 during a challenge: Silver</a></h5>
+           <p class="description">Awarded for being in the top 5 on a leaderboard during a challenge 5 times · <span class="badge badge-silver">Top 9%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-bronze">
+                 <span>Award: Bronze</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5><a href="#">Top 5 during a challenge: Bronze</a></h5>
+           <p class="description">Awarded for being in the top 5 on a leaderboard during a challenge  · <span class="badge badge-bronze">Top 13%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-gold">
+                 <span>Award: Gold</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5><a href="#">Top 5 for completed challenge: Gold</a></h5>
+           <p class="description">Awarded for finishing in the top 5 on a leaderboard for a completed challenge 10 times · <span class="badge badge-gold">Top 2%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-silver">
+                 <span>Award: Silver</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5><a href="#">Top 5 for completed challenge: Silver</a></h5>
+           <p class="description">Awarded for finishing in the top 5 on a leaderboard for a completed challenge 3 times · <span class="badge badge-silver">Top 9%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-bronze">
+                 <span>Award: Bronze</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5><a href="#">Top 5 for completed challenge: Bronze</a></h5>
+           <p class="description">Awarded for finishing in the top 5 on a leaderboard for a completed challenge · <span class="badge badge-bronze">Top 13%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-gold">
+                 <span>Award: Gold</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5><a href="#">Top 10 for completed challenge: Gold</a></h5>
+           <p class="description">Awarded for finishing in the top 10 on a leaderboard for a completed challenge 20 times · <span class="badge badge-gold">Top 2%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-silver">
+                 <span>Award: Silver</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+            <h5><a href="#">Top 10 for completed challenge: Silver</a></h5>
+           <p class="description">Awarded for finishing in the top 10 on a leaderboard for a completed challenge 5 times  · <span class="badge badge-silver">Top 9%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <a href="#">
+               <div class="award-bronze">
+                 <span>Award: Bronze</span>
+               </div>
+             </a>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+            <h5><a href="#">Top 10 for completed challenge: Bronze</a></h5>
+           <p class="description">Awarded for finishing in the top 10 on a leaderboard for a completed challenge · <span class="badge badge-bronze">Top 13%</span></p>
+         </div>
+         <!-- /details -->
+
+         <!-- date -->
+         <div class="date">
+           06 August 2018
+         </div>
+         <!-- /date -->
+       </li>
+       <!-- /award -->
+
+     </ul>
+     <!-- /list awards -->
+     <!-- /awarded -->
+
+     <!-- remaining -->
+     <div class="section-header section-header-alt">
+       <h6>Remaining</h6>
+       <a class="btn btn-secondary" href="#">All achievements</a>
+     </div>
+
+    <!-- list awards -->
+     <ul class="list-awards">
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <div class="award-empty">
+                 <span>Award: Empty</span>
+               </div>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5>Challenge winner</h5>
+           <p class="description">Awarded for winning a challenge</p>
+         </div>
+         <!-- /details -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <div class="award-empty">
+                 <span>Award: Empty</span>
+               </div>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5>Challenge submissions</h5>
+           <p class="description">Awarded for a challenge submission</p>
+         </div>
+         <!-- /details -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <div class="award-empty">
+                 <span>Award: Empty</span>
+               </div>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5>Top position during challenge</h5>
+           <p class="description">Awarded for top position during a challenge</p>
+         </div>
+         <!-- /details -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <div class="award-empty">
+                 <span>Award: Empty</span>
+               </div>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5>Upvote</h5>
+           <p class="description">Awarded for receiving an upvote on a comment or tutorial</p>
+         </div>
+         <!-- /details -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <div class="award-empty">
+                 <span>Award: Empty</span>
+               </div>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5>Tutorial authorship</h5>
+           <p class="description">Awarded for writing a tutorial</p>
+         </div>
+         <!-- /details -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <div class="award-empty">
+                 <span>Award: Empty</span>
+               </div>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5>Top 5 during challenge</h5>
+           <p class="description">Awarded for being in the top 5 on a leaderboard during a challenge</p>
+         </div>
+         <!-- /details -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <div class="award-empty">
+                 <span>Award: Empty</span>
+               </div>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5>Top 5 for completed challenge</h5>
+           <p class="description">Awarded for finishing in the top 5 on a leaderboard for a completed challenge</p>
+         </div>
+         <!-- /details -->
+       </li>
+       <!-- /award -->
+
+       <!-- award -->
+       <li>
+         <!-- icon -->
+         <div class="icon">
+           <div class="award-empty">
+                 <span>Award: Empty</span>
+               </div>
+         </div>
+         <!-- /icon -->
+
+         <!-- details -->
+         <div class="details">
+           <h5>Top 10 for completed challenge</h5>
+           <p class="description">Awarded for finishing in the top 5 on a leaderboard for a completed challenge</p>
+         </div>
+         <!-- /details -->
+       </li>
+       <!-- /award -->
+
+     </ul>
+     <!-- /list awards -->
+     <!-- /remaining -->
+
+   </div>
+   <!-- /main content -->
 
 </div><!-- .content -->

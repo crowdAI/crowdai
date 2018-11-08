@@ -1,0 +1,161 @@
+---
+organizer_application_1:
+  id: 1
+  contact_name: Marcel
+  email: marcel.salathe@epfl.ch
+  phone: "+41799018790"
+  organization: EPFL
+  organization_description: Just testing - who gets this?
+  challenge_description: Yada
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2017-08-25 16:15:06.915166000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2017-08-25 16:15:06.915166000 Z
+    zone: *2
+    time: *3
+organizer_application_2:
+  id: 2
+  contact_name: Adith Swaminathan
+  email: adswamin@microsoft.com
+  phone: "+1-6074422517"
+  organization: Microsoft Research
+  organization_description: We are organizing a workshop on Causality and Machine
+    Learning at the NIPS'17 conference (https://nips.cc/Conferences/2017/Schedule?showEvent=9563).
+    The organization team includes researchers from Microsoft Research and professors
+    at Cornell, Duke, University of Chicago and University College London. We want
+    to host a companion challenge with the workshop that serves as a test-bed for
+    counterfactual learning.
+  challenge_description: "We are proposing a challenge problem based on the first
+    real-world dataset of logged contextual bandit feedback with non-uniform action-selection
+    propensities (https://arxiv.org/abs/1612.00367). The dataset consists of several
+    gigabytes of data from an ad placement system, which we have processed into multiple
+    well-defined learning problems of increasing complexity, feedback signal, and
+    context. The dataset is already hosted on AWS (https://s3-eu-west-1.amazonaws.com/reco-dataset/CriteoBannerFillingChallenge.tar.gz).\r\n\r\nA
+    subset of the data that is most relevant for the proposed challenge is about ~3GB
+    train/1,5GB test and has already been pre-processed with appropriate features.
+    The evaluation metric is non-standard, and most similar to a weighted version
+    of 0/1 accuracy (see http://www.cs.cornell.edu/~adith/Criteo/).\r\n\r\nWe are
+    on a tight schedule and the challenge is time-critical (since NIPS workshop submissions
+    are already open and the conference takes place in December). Awaiting your prompt
+    response! Thanks!"
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2017-09-24 18:30:45.595845000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2017-09-24 18:30:45.595845000 Z
+    zone: *2
+    time: *5
+organizer_application_3:
+  id: 3
+  contact_name: Alexandra Smirnova
+  email: a.smirnova@neurodatalab.com
+  phone: "+79104202839"
+  organization: Neurodatalab LLC
+  organization_description: "Our company specializes in cognitive science, psychology
+    and neurophysiology of emotions, machine learning and computer vision.\r\n\r\nPlease
+    contact me by e-mail"
+  challenge_description: "We are planning to host a challenge on multimodal emotion
+    recognition problem with missing data. At the moment we have a draft of problem
+    description and are preparing the data (train set, public and private tests).\r\n\r\nHere
+    are the questions that matter to us the most:\r\n1. What's the cost of hosting
+    a challenge on your platform? What does it consist of (platform fee, prize pool.
+    etc.)? What's the average prize offered in your challenges?\r\n2. How do you promote
+    new challenges?\r\n3. What's the size and demographics of your data science community?
+    What's the average number of teams/participants per challenge?\r\n4. What's the
+    form for submissions requested from participants: just output files or working
+    code?\r\n5. Can we offer an additional prize(s) based on a subjective metric,
+    e.g. \"most innovative\"?\r\n6. How can we as a client own the winning solutions?
+    Can we get a full ownership (exclusive license)?\r\n7. Can anyone see the winning
+    solutions (actual code)?\r\n8. Are winners requested to make final fixes and provide
+    a documentation explaining the logic behind their winning algorithm?\r\n9. Can
+    anyone see the problem description and download data after the challenge ends?"
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2017-09-25 12:54:40.107687000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2017-09-25 12:54:40.107687000 Z
+    zone: *2
+    time: *7
+organizer_application_4:
+  id: 4
+  contact_name: visa
+  email: visalakshi_au@yahoo.in
+  phone: '9944851942'
+  organization: annamalai university
+  organization_description: annamalai university research
+  challenge_description: phd research work
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2017-11-03 05:33:11.932251000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2017-11-03 05:33:11.932251000 Z
+    zone: *2
+    time: *9
+organizer_application_5:
+  id: 5
+  contact_name: Visa
+  email: visalakshi_au@yahoo.in
+  phone: '9944851942'
+  organization: Annamalai university
+  organization_description: Annamalai University is a state university located in
+    Annamalai Nagar, Chidambaram, Tamil Nadu, India. The university is spread across
+    1,500 acres (6.1 km2) in Chidambaram and offers courses of higher education in
+    science, engineering, humanities, agriculture and arts. The university was founded
+    in 1929 by the entrepreneur Annamalai Chettiyar in the aftermath of the Montagu-Chelmsford
+    Reforms. It was the first private university in India. It was taken over by the
+    Tamil Nadu government in 2013
+  challenge_description: Research work
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2017-11-03 05:45:55.186072000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2017-11-03 05:45:55.186072000 Z
+    zone: *2
+    time: *11
+organizer_application_6:
+  id: 6
+  contact_name: Anand Malpani
+  email: amalpan1@jhu.edu
+  phone: '4432531948'
+  organization: Johns Hopkins University
+  organization_description: 'Research university based in Baltimore, Maryland in the
+    USA. '
+  challenge_description: 'Surgical data science related challenge. Probably to be
+    advertised and proposed as part of the MICCAI conference''s challenges. '
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2017-11-15 02:27:05.669878000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2017-11-15 02:27:05.669878000 Z
+    zone: *2
+    time: *13
+organizer_application_7:
+  id: 7
+  contact_name: Abdelkader Hamadi
+  email: abdelkader.hamadi@univ-mosta.dz
+  phone: "+213557822790"
+  organization: Faculty of Exact Sciences and Computer Science - University of Mostaganem
+  organization_description: We are a groupof researches and students from the Department
+    of Mathematics and Informatics of the Faculty of Exact Sciences and Computer Science
+    of the University of Mostaganem (Algeria)
+  challenge_description: 'We paraticpate to Imageclef 2018 challenge. ImageCLEF 2018
+    is an evaluation campaign which is being organized as part of the CLEF initiative
+    labs. The campaign offers several research tasks that welcome participation from
+    teams around the world. The results of the campaign appear in the working notes
+    proceedings, published by CEUR Workshop Proceedings (CEUR-WS.org). '
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2017-11-25 17:17:15.627143000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2017-11-25 17:17:15.627143000 Z
+    zone: *2
+    time: *15

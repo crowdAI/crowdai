@@ -1,0 +1,455 @@
+---
+organizer_1:
+  id: 1
+  organizer: PlantVillage
+  address: "Campus Biotech\r\nChemin des Mines 9, 1202 Genève"
+  description: The goal this challenge is to develop a classifier that can accurately
+    predict crop species and disease, using a dataset of tens of thousands of expert
+    labeled leaf images.
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2016-04-11 16:50:12.806130000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2017-01-30 12:42:31.487124000 Z
+    zone: *2
+    time: *3
+  approved: false
+  slug: plantvillage
+  image_file: 
+  tagline: 
+  challenge_proposal: 
+  api_key: 
+  clef_organizer: false
+organizer_4:
+  id: 4
+  organizer: Stanford Neuromuscular Biomechanics Laboratory
+  address: Stanford
+  description: NMBL investigators use their expertise in biomechanics, computer science,
+    imaging, robotics, and neuroscience to analyze muscle function, study human movement,
+    design medical technologies, and optimize human performance. Professor Scott Delp
+    is the Principal Investigator. The Lab is part of Stanford University's Schools
+    of Engineering and Medicine.
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2017-01-30 12:20:22.531722000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2018-03-22 10:48:06.696131000 Z
+    zone: *2
+    time: *5
+  approved: false
+  slug: stanford-neuromuscular-biomechanics-laboratory
+  image_file: mobilize1.png
+  tagline: Stanford Neuromuscular Biomechanics Laboratory
+  challenge_proposal: 
+  api_key: 665731121ccec3dcf070bbfa589de97e
+  clef_organizer: false
+organizer_3:
+  id: 3
+  organizer: Penn State University
+  address: Old Main, State College, PA 16801, United States
+  description: Penn State University
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2016-08-25 09:54:34.842050000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2017-01-30 12:42:31.501263000 Z
+    zone: *2
+    time: *7
+  approved: false
+  slug: penn-state-university
+  image_file: 
+  tagline: 
+  challenge_proposal: 
+  api_key: 
+  clef_organizer: false
+organizer_5:
+  id: 5
+  organizer: Blue Brain
+  address: Campus Biotech
+  description: ''
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2017-02-24 13:31:50.933709000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2017-05-02 09:49:40.797439000 Z
+    zone: *2
+    time: *9
+  approved: false
+  slug: blue-brain
+  image_file: 
+  tagline: 
+  challenge_proposal: 
+  api_key: 
+  clef_organizer: false
+organizer_12:
+  id: 12
+  organizer: KIT
+  address: Karlsruhe Institute of Technology, Karlsruhe Germany
+  description: Being “The Research University in the Helmholtz Association”, KIT creates
+    and imparts knowledge for the society and the environment. It is the objective
+    to make significant contributions to the global challenges in the fields of energy,
+    mobility, and information. For this, about 9,300 employees cooperate in a broad
+    range of disciplines in natural sciences, engineering sciences, economics, and
+    the humanities and social sciences. KIT prepares its 26,000 students for responsible
+    tasks in society, industry, and science by offering research-based study programs.
+    Innovation efforts at KIT build a bridge between important scientific findings
+    and their application for the benefit of society, economic prosperity, and the
+    preservation of our natural basis of life.
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2018-02-08 14:51:05.836087000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2018-02-12 09:01:50.252035000 Z
+    zone: *2
+    time: *11
+  approved: false
+  slug: kit
+  image_file: KITlogo_farbe-RGB_englisch_quad.png
+  tagline: Karlsruhe Institute of Technology
+  challenge_proposal: ''
+  api_key: ''
+  clef_organizer: false
+organizer_14:
+  id: 14
+  organizer: DSAA
+  address: ''
+  description: ''
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2018-03-02 16:09:54.795583000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2018-03-22 10:48:27.006797000 Z
+    zone: *2
+    time: *13
+  approved: false
+  slug: dsaa
+  image_file: a8As5SDX_400x400.jpg
+  tagline: The IEEE International Conference on Data Science and Advanced Analytics
+  challenge_proposal: ''
+  api_key: ''
+  clef_organizer: false
+organizer_15:
+  id: 15
+  organizer: bethgelab
+  address: University of Tübingen, Max-Planck-Ring 4, 72076 Tübingen, Germany
+  description: Research lab at the interface of artificial intelligence and neuroscience
+    with a focus on representation learning, robust decision making and neuro-computational
+    design principles of perceiving neural networks.
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2018-03-12 12:40:04.489242000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2018-03-22 07:40:27.697509000 Z
+    zone: *2
+    time: *15
+  approved: false
+  slug: bethgelab
+  image_file: tuebingen_deepart.jpg
+  tagline: Perceiving Neural Networks
+  challenge_proposal: ''
+  api_key: ''
+  clef_organizer: false
+organizer_8:
+  id: 8
+  organizer: Cornell University
+  address: ''
+  description: ''
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2017-09-26 09:23:05.338947000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2017-10-09 15:42:54.342263000 Z
+    zone: *2
+    time: *17
+  approved: false
+  slug: cornell-university
+  image_file: cornell_seal.png
+  tagline: Cornell University
+  challenge_proposal: ''
+  api_key: 
+  clef_organizer: false
+organizer_11:
+  id: 11
+  organizer: IEEE
+  address: ''
+  description: ''
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2017-12-11 16:49:31.861058000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2017-12-11 16:49:31.861058000 Z
+    zone: *2
+    time: *19
+  approved: true
+  slug: ieee
+  image_file: 
+  tagline: IEEE
+  challenge_proposal: ''
+  api_key: ''
+  clef_organizer: false
+organizer_10:
+  id: 10
+  organizer: 'Humanity & Inclusion '
+  address: ''
+  description: "HI is an independent and impartial aid organisation working in situations
+    of poverty and exclusion, conflict and disaster. We work alongside people with
+    disabilities and vulnerable populations, taking action and bearing witness in
+    order to respond to their essential needs, improve their living conditions and
+    promote respect for their dignity and fundamental rights.\r\n\r\nOn January 24th
+    2018, the global Handicap International network became Humanity & Inclusion.\r\nThis
+    network is composed of a Federation which implements our programmes in the field
+    in around sixty countries and of eight national associations.\r\nThese programmes
+    or national associations are known as \"Handicap International\" or \"Humanity
+    & Inclusion\", depending on the country.\r\n\r\nhttps://hi.org/en/index.snc"
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2017-11-24 12:24:36.511898000 Z
+    zone: *2
+    time: *20
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2018-01-25 15:47:04.419649000 Z
+    zone: *2
+    time: *21
+  approved: false
+  slug: humanity-inclusion
+  image_file: Symbol_Hi_blue_rgb.png
+  tagline: Handicap International is an independent and impartial aid organisation
+    working in situations of poverty and exclusion, conflict and disaste
+  challenge_proposal: ''
+  api_key: 12574e50fbd0b08a1f9ccc07f9798fed
+  clef_organizer: false
+organizer_2:
+  id: 2
+  organizer: crowdAI
+  address: Campus Biotech Chemin des Mines 9, 1202 Geneva, Switzerland
+  description: Fighting with Open Data for Science.
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &22 2016-05-27 10:22:23.202903000 Z
+    zone: *2
+    time: *22
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &23 2018-03-22 09:16:43.375829000 Z
+    zone: *2
+    time: *23
+  approved: false
+  slug: crowdai
+  image_file: crowdAI_logo.jpg
+  tagline: crowdAI
+  challenge_proposal: 
+  api_key: 
+  clef_organizer: false
+organizer_7:
+  id: 7
+  organizer: ImageCLEF
+  address: ''
+  description: "ImageCLEF is an evaluation campaign that is being organized as part
+    of the CLEF initiative labs. The campaign offers several research tasks that welcome
+    participation from teams around the world.\r\nTarget communities of the tasks
+    involve (but are not limited to): information retrieval (text, vision, audio,
+    multimedia, social media, sensor data), machine learning (including deep learning),
+    data mining, natural language processing, image/video processing, remote sensing,
+    with special attention to the challenges of multi-modality, multi-linguality,
+    and interactive search. "
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &24 2017-08-15 05:33:33.700133000 Z
+    zone: *2
+    time: *24
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &25 2018-02-02 10:38:25.105748000 Z
+    zone: *2
+    time: *25
+  approved: true
+  slug: imageclef
+  image_file: imageclef_logo_square.png
+  tagline: ImageCLEF
+  challenge_proposal: ''
+  api_key: 43c32afb0ec2fc85bfcbfd3e2b6b7ede
+  clef_organizer: true
+organizer_9:
+  id: 9
+  organizer: LifeCLEF
+  address: ''
+  description: 'LifeCLEF lab is part of the Conference and Labs of the Evaluation
+    Forum: CLEF. CLEF consists of independent peer-reviewed workshops on a broad range
+    of challenges in the fields of multilingual and multimodal information access
+    evaluation, and a set of benchmarking activities carried in various labs designed
+    to test different aspects of mono and cross-language Information retrieval systems'
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &26 2017-11-06 14:19:51.123216000 Z
+    zone: *2
+    time: *26
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &27 2018-02-21 09:05:26.936221000 Z
+    zone: *2
+    time: *27
+  approved: true
+  slug: lifeclef
+  image_file: Lifeclef_logo_square.png
+  tagline: 'LifeCLEF '
+  challenge_proposal: ''
+  api_key: c0fa00ab4e0e029e58a446cb7345a421
+  clef_organizer: true
+organizer_16:
+  id: 16
+  organizer: Rohde & Schwarz
+  address: "Rohde & Schwarz Headquarters\r\nMühldorfstraße 15\r\nMünich"
+  description: Rohde & Schwarz is one of the world's leading manufacturers of information
+    and communications technology products for professional users. Initially focusing
+    on RF engineering and RF applications in test and measurement, radiocommunications
+    and broadcasting, the company has continually expanded its fields of activity
+    over the past decades. In the meantime Rohde & Schwarz has also become one of
+    Germany’s largest manufacturers of IT security products.
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &28 2018-03-13 09:49:22.647843000 Z
+    zone: *2
+    time: *28
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &29 2018-03-13 11:41:35.476477000 Z
+    zone: *2
+    time: *29
+  approved: false
+  slug: rohde-schwarz
+  image_file: RS_diamond_Cyan_rgb_400x400.jpg
+  tagline: Rohde &Schwarz
+  challenge_proposal: ''
+  api_key: ''
+  clef_organizer: false
+organizer_13:
+  id: 13
+  organizer: Principal Financial Group
+  address: ''
+  description: 'The Principal Financial Group offers businesses individuals and institutional
+    clients a wide range of financial products and services including retirement,
+    asset management and insurance, through its diverse family of financial services
+    companies. Principal has offices in 18 countries throughout Asia, Australia, Europe,
+    Latin America and North America. '
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &30 2018-02-09 15:22:36.131496000 Z
+    zone: *2
+    time: *30
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &31 2018-03-30 16:24:16.561081000 Z
+    zone: *2
+    time: *31
+  approved: false
+  slug: principal-financial-group
+  image_file: Big_P.png
+  tagline: Principal Financial Group
+  challenge_proposal: ''
+  api_key: ''
+  clef_organizer: false
+organizer_6:
+  id: 6
+  organizer: EPFL
+  address: ''
+  description: 'EPFL is Europe’s most cosmopolitan technical university with students,
+    professors and staff from over 120 nations. A dynamic environment, open to Switzerland
+    and the world, EPFL is centered on its three missions: teaching, research and
+    technology transfer. EPFL works together with an extensive network of partners
+    including other universities and institutes of technology, secondary schools and
+    colleges, industry and economy, political circles and the general public, to bring
+    about real impact for society.'
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &32 2017-06-27 15:56:24.016770000 Z
+    zone: *2
+    time: *32
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &33 2018-03-13 12:58:23.065711000 Z
+    zone: *2
+    time: *33
+  approved: false
+  slug: epfl
+  image_file: EPFL_logo_1000.jpg
+  tagline: EPFL
+  challenge_proposal: 
+  api_key: 03b19635ad052c1acf0a1f1ebe96566e
+  clef_organizer: false
+organizer_18:
+  id: 18
+  organizer: 'Silicon Valley Artificial Intelligence '
+  address: https://sv.ai/
+  description: https://sv.ai/
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &34 2018-04-09 18:50:25.375545000 Z
+    zone: *2
+    time: *34
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &35 2018-04-09 18:53:11.083836000 Z
+    zone: *2
+    time: *35
+  approved: true
+  slug: silicon-valley-artificial-intelligence
+  image_file: svai.png
+  tagline: A Community for Computational Life Sciences
+  challenge_proposal: ''
+  api_key: 425edfef3107252ed67dd20e1b4fd62b
+  clef_organizer: false
+organizer_19:
+  id: 19
+  organizer: EPFL Extension School
+  address: ''
+  description: ''
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &36 2018-04-10 09:44:41.297784000 Z
+    zone: *2
+    time: *36
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &37 2018-04-10 09:44:41.297784000 Z
+    zone: *2
+    time: *37
+  approved: false
+  slug: epfl-extension-school
+  image_file: 
+  tagline: EPFL Extension School
+  challenge_proposal: ''
+  api_key: ''
+  clef_organizer: false
+organizer_20:
+  id: 20
+  organizer: Microsoft Research
+  address: ''
+  description: ''
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &38 2018-04-18 15:53:41.616151000 Z
+    zone: *2
+    time: *38
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &39 2018-04-18 15:55:27.253212000 Z
+    zone: *2
+    time: *39
+  approved: true
+  slug: microsoft-research
+  image_file: microsoft_logo.png
+  tagline: Microsoft Research
+  challenge_proposal: ''
+  api_key: ''
+  clef_organizer: false
+organizer_17:
+  id: 17
+  organizer: Poznan University of Technology
+  address: Laboratory of Intelligent Decision Support Systems
+  description: ''
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &40 2018-04-04 12:41:07.310659000 Z
+    zone: *2
+    time: *40
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &41 2018-05-02 15:47:14.591655000 Z
+    zone: *2
+    time: *41
+  approved: true
+  slug: poznan-university-of-technology
+  image_file: Poznań_University_of_Technology.png
+  tagline: Poznan University of Technology
+  challenge_proposal: ''
+  api_key: 14b4a11368bb0e22134137aa55bf86af
+  clef_organizer: false

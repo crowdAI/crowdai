@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  submission_id: 1
+  seq: 1
+  submission_file_s3_key: MyString
+  leaderboard_video: false
+
+two:
+  submission_id: 1
+  seq: 1
+  submission_file_s3_key: MyString
+  leaderboard_video: false

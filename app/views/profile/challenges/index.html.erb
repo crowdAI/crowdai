@@ -1,0 +1,22 @@
+<div class='content'>
+  <%= render partial: 'profile/masthead', locals: { participant: @participant } %>
+  <%= render partial: 'profile/subnav', locals: { participant: @participant } %>
+
+  <div class="row">
+    <% if @challenges.any? %>
+      <ul class="list-challenges">
+        <%= concept(Challenge::Cell::ListDetail,
+            collection: @challenges,
+            current_participant: current_participant) %>
+      </ul>
+    <% else %>
+      <div class='article'>
+        <p class='light'>
+          <%= "#{@participant.name} hasn't entered any challenges yet..." %>
+        </p>
+      </div>
+    <% end %>
+    </div>
+  </div>
+
+</div>

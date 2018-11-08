@@ -1,0 +1,409 @@
+---
+dataset_file_83:
+  id: 83
+  seq: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2018-02-09 12:26:13.483631000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2018-02-09 12:26:13.483631000 Z
+    zone: *2
+    time: *3
+  description: Archive of erroneous data
+  challenge_id: 9
+  dataset_file_s3_key: dataset_files/challenge_9/c31a362a-75ce-4bd3-b5e0-9d6141af5917_erroneous_data_archive.zip
+  evaluation: false
+  title: erroreous_data_archive.zip
+  hosting_location: crowdAI
+  external_url: ''
+  visible: true
+  external_file_size: ''
+dataset_file_86:
+  id: 86
+  seq: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2018-02-14 11:43:13.458363000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2018-02-14 11:43:13.458363000 Z
+    zone: *2
+    time: *5
+  description: Genotyping data of the variants subset in a custom format saved as
+    a numpy object. Contain samples of the test set.
+  challenge_id: 9
+  dataset_file_s3_key: dataset_files/challenge_9/7ac1e722-d625-48e6-bc0f-304164a31f61_subset_cm_test.npy
+  evaluation: false
+  title: subset_cm_test.npy
+  hosting_location: crowdAI
+  external_url: ''
+  visible: true
+  external_file_size: ''
+dataset_file_89:
+  id: 89
+  seq: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2018-03-11 23:55:40.451917000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2018-03-11 23:55:40.451917000 Z
+    zone: *2
+    time: *7
+  description: Brief description of the challenge data.
+  challenge_id: 27
+  dataset_file_s3_key: dataset_files/challenge_27/91e82e6b-544a-4e07-9c9f-8b016a00a113_IEEE
+    DSW Dataset_Descriptions.docx
+  evaluation: false
+  title: Dataset Description
+  hosting_location: crowdAI
+  external_url: ''
+  visible: true
+  external_file_size: ''
+dataset_file_92:
+  id: 92
+  seq: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2018-03-12 00:41:40.880353000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2018-03-12 00:41:40.880353000 Z
+    zone: *2
+    time: *9
+  description: Use this template when testing your solution.
+  challenge_id: 27
+  dataset_file_s3_key: dataset_files/challenge_27/273a1053-fafe-44a6-8157-0213472b12d2_prediction_template.csv
+  evaluation: false
+  title: Prediction Template
+  hosting_location: crowdAI
+  external_url: ''
+  visible: true
+  external_file_size: ''
+dataset_file_101:
+  id: 101
+  seq: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2018-03-27 09:04:38.927899000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2018-03-27 09:04:38.927899000 Z
+    zone: *2
+    time: *11
+  description: 'Training Set : 280741 tiles (as 300x300 pixel RGB images) of satellite
+    imagery with the corresponding annotations in MS COCO format'
+  challenge_id: 25
+  dataset_file_s3_key: dataset_files/challenge_25/8e089a94-555c-4d7b-8f2f-4d733aebb058_train.tar.gz
+  evaluation: false
+  title: train.tar.gz
+  hosting_location: crowdAI
+  external_url: ''
+  visible: true
+  external_file_size: ''
+dataset_file_102:
+  id: 102
+  seq: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2018-04-09 02:21:27.002117000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2018-04-09 02:21:27.002117000 Z
+    zone: *2
+    time: *13
+  description: Pretrained Weights from the Mask RCNN based baseline solution
+  challenge_id: 25
+  dataset_file_s3_key: dataset_files/challenge_25/048aea25-cded-4513-8623-fc75f35f83ca_pretrained_weights.h5
+  evaluation: false
+  title: pretrained_weights.h5
+  hosting_location: crowdAI
+  external_url: ''
+  visible: true
+  external_file_size: ''
+dataset_file_104:
+  id: 104
+  seq: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2018-08-10 12:40:50.452913000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2018-08-10 12:40:50.452913000 Z
+    zone: *2
+    time: *15
+  description: Sample datasets that can be used for training
+  challenge_id: 12
+  dataset_file_s3_key: dataset_files/challenge_12/0e7fc577-f2b2-44cd-b2b1-05125ff466b1_crowdAI
+    - Dataset_AIGeneratedMusic.pdf
+  evaluation: false
+  title: Dataset_AIGeneratedMusic
+  hosting_location: crowdAI
+  external_url: ''
+  visible: true
+  external_file_size: ''
+dataset_file_106:
+  id: 106
+  seq: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2018-08-10 12:52:46.838819000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2018-08-10 12:52:46.838819000 Z
+    zone: *2
+    time: *17
+  description: Links to resources and instructions
+  challenge_id: 28
+  dataset_file_s3_key: dataset_files/challenge_28/2591b1b5-fe76-4d74-8afc-d5e1a7dfbbe2_crowdAI
+    - Dataset_AVC_RobModel.pdf
+  evaluation: false
+  title: AVC_RobModel_Instructions
+  hosting_location: crowdAI
+  external_url: ''
+  visible: true
+  external_file_size: ''
+dataset_file_110:
+  id: 110
+  seq: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2018-08-10 12:54:38.864813000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2018-08-10 12:54:38.864813000 Z
+    zone: *2
+    time: *19
+  description: Links to resources and instructions
+  challenge_id: 35
+  dataset_file_s3_key: dataset_files/challenge_35/0e251979-385d-44ec-b2b4-5c7ed8199b36_crowdAI
+    - Dataset_ViZDoom_Multi.pdf
+  evaluation: false
+  title: ViZDoom_Instructions
+  hosting_location: crowdAI
+  external_url: ''
+  visible: true
+  external_file_size: ''
+dataset_file_111:
+  id: 111
+  seq: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2018-08-16 11:59:07.427808000 Z
+    zone: *2
+    time: *20
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2018-08-16 11:59:07.427808000 Z
+    zone: *2
+    time: *21
+  description: Links to Training Sets and Test Sets
+  challenge_id: 43
+  dataset_file_s3_key: dataset_files/challenge_43/9bbf2f78-31d1-4c1f-bc5d-d05fb9a63b8e_League
+    of Nations archives digitization challenge.pdf
+  evaluation: false
+  title: Datasets
+  hosting_location: crowdAI
+  external_url: ''
+  visible: true
+  external_file_size: ''
+dataset_file_84:
+  id: 84
+  seq: 
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &22 2018-02-12 07:49:52.694279000 Z
+    zone: *2
+    time: *22
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &23 2018-02-12 07:49:52.694279000 Z
+    zone: *2
+    time: *23
+  description: Archive containing all available files for the challenge.
+  challenge_id: 26
+  dataset_file_s3_key: 
+  evaluation: false
+  title: Dataset
+  hosting_location: External
+  external_url: https://bwsyncandshare.kit.edu/dlpw/fiPvzk2jsTey4CmecyS8eB1E
+  visible: true
+  external_file_size: 18.3 MB
+dataset_file_4:
+  id: 4
+  seq: 1
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &24 2016-06-08 11:55:58.710638000 Z
+    zone: *2
+    time: *24
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &25 2016-06-08 11:55:58.710638000 Z
+    zone: *2
+    time: *25
+  description: Training Set
+  challenge_id: 2
+  dataset_file_s3_key: dataset_files/48dcde06-ae80-43e2-ab32-29852c0c92a7/train.csv
+  evaluation: false
+  title: 
+  hosting_location: 
+  external_url: 
+  visible: true
+  external_file_size: 
+dataset_file_5:
+  id: 5
+  seq: 2
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &26 2016-06-08 11:56:25.156796000 Z
+    zone: *2
+    time: *26
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &27 2016-06-08 11:56:25.156796000 Z
+    zone: *2
+    time: *27
+  description: Testing Set
+  challenge_id: 2
+  dataset_file_s3_key: dataset_files/c71b861d-da44-4367-9b3b-8562719148c1/test_release.csv
+  evaluation: false
+  title: 
+  hosting_location: 
+  external_url: 
+  visible: true
+  external_file_size: 
+dataset_file_6:
+  id: 6
+  seq: 3
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &28 2016-06-08 12:41:00.429599000 Z
+    zone: *2
+    time: *28
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &29 2016-06-08 12:41:00.429599000 Z
+    zone: *2
+    time: *29
+  description: Sample classification file
+  challenge_id: 2
+  dataset_file_s3_key: dataset_files/aefa4a0c-d164-430a-8321-b7a941f77e3a/sample_classification.csv
+  evaluation: false
+  title: 
+  hosting_location: 
+  external_url: 
+  visible: true
+  external_file_size: 
+dataset_file_7:
+  id: 7
+  seq: 1
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &30 2016-08-22 15:47:20.404610000 Z
+    zone: *2
+    time: *30
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &31 2016-08-22 15:47:20.404610000 Z
+    zone: *2
+    time: *31
+  description: Training images archive
+  challenge_id: 3
+  dataset_file_s3_key: dataset_files/62b7d6f3-4a74-4153-805c-b3603f3baea4/training_images.tar.gz
+  evaluation: false
+  title: 
+  hosting_location: 
+  external_url: 
+  visible: true
+  external_file_size: 
+dataset_file_8:
+  id: 8
+  seq: 2
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &32 2016-08-22 15:48:43.846401000 Z
+    zone: *2
+    time: *32
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &33 2016-08-22 15:48:43.846401000 Z
+    zone: *2
+    time: *33
+  description: Training images extracted nutrition tables
+  challenge_id: 3
+  dataset_file_s3_key: dataset_files/8cf2f19f-154f-47fa-b1f3-0db0b565f780/training.csv
+  evaluation: false
+  title: 
+  hosting_location: 
+  external_url: 
+  visible: true
+  external_file_size: 
+dataset_file_9:
+  id: 9
+  seq: 0
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &34 2016-10-09 12:40:27.955157000 Z
+    zone: *2
+    time: *34
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &35 2016-10-09 12:40:27.955157000 Z
+    zone: *2
+    time: *35
+  description: Training Dataset
+  challenge_id: 5
+  dataset_file_s3_key: dataset_files/challenge_5/1c8d2f81-3f32-4c65-aa2e-b1556a71843f_train.csv
+  evaluation: false
+  title: 
+  hosting_location: 
+  external_url: 
+  visible: true
+  external_file_size: 
+dataset_file_10:
+  id: 10
+  seq: 1
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &36 2016-10-09 12:40:56.467204000 Z
+    zone: *2
+    time: *36
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &37 2016-10-09 12:40:56.467204000 Z
+    zone: *2
+    time: *37
+  description: Testing Dataset
+  challenge_id: 5
+  dataset_file_s3_key: dataset_files/challenge_5/0e07c3ff-55f0-409b-bc8a-c231da94adbc_test.csv
+  evaluation: false
+  title: 
+  hosting_location: 
+  external_url: 
+  visible: true
+  external_file_size: 
+dataset_file_11:
+  id: 11
+  seq: 2
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &38 2016-10-09 12:41:16.800833000 Z
+    zone: *2
+    time: *38
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &39 2016-10-09 12:41:16.800833000 Z
+    zone: *2
+    time: *39
+  description: Sample Prediction
+  challenge_id: 5
+  dataset_file_s3_key: dataset_files/challenge_5/6d262586-055f-4278-892d-f82cfbf45085_sample_prediction.csv
+  evaluation: false
+  title: 
+  hosting_location: 
+  external_url: 
+  visible: true
+  external_file_size: 
+dataset_file_12:
+  id: 12
+  seq: 3
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &40 2016-10-14 03:07:05.092677000 Z
+    zone: *2
+    time: *40
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &41 2016-10-14 03:07:05.092677000 Z
+    zone: *2
+    time: *41
+  description: frames.tar.gz.part-1
+  challenge_id: 5
+  dataset_file_s3_key: dataset_files/challenge_5/477a0f26-5aee-4619-b546-a548803af5bd_frames.tar.gz.part-1
+  evaluation: false
+  title: 
+  hosting_location: 
+  external_url: 
+  visible: true
+  external_file_size: 

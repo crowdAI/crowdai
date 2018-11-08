@@ -1,0 +1,35 @@
+<div class="content">
+  <div class="masthead-minimal">
+    <div class="row">
+      <h1>Achievements</h1>
+      <p class="large">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam augue felis, tempus sit amet tempor non, laoreet id nisi.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <ul class="list-awards bt-1">
+      <% @achievements.each do |a| %>
+        <li>
+          <div class="icon">
+            <%= link_to achievement_path(a.id) do %>
+              <%= content_tag :div, class: "award-#{a.custom_fields[:level]}" do %>
+                <span><%= "Award: #{a.custom_fields[:level].capitalize}" %></span>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="details">
+            <h5>
+              <%= link_to achievement_path(a.id) do %>
+                <%= a.custom_fields[:title] %>
+              <% end %>
+            </h5>
+            <p class="description"><%= a.description %></p>
+          </div>
+          <div class="awarded">
+            <%= awarded_message(badge_id: a.id, badge_stats: @badge_stats) %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

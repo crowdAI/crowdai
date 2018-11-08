@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  followable_id: 1
+  followable_type: MyString
+  participant_id: 1
+
+two:
+  followable_id: 1
+  followable_type: MyString
+  participant_id: 1

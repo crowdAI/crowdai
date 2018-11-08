@@ -1,0 +1,13 @@
+---
+setting_1:
+  id: 1
+  jobs_visible: true
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2017-10-20 13:16:10.745297000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2017-10-20 13:30:59.181043000 Z
+    zone: *2
+    time: *3

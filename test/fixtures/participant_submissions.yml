@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  challenge_id: 1
+  participant_id: 1
+  name: MyString
+  grading_status_cd: MyString
+  post_challenge: false
+  score: 1.5
+  score_secondary: 1.5
+  files: 1
+
+two:
+  challenge_id: 1
+  participant_id: 1
+  name: MyString
+  grading_status_cd: MyString
+  post_challenge: false
+  score: 1.5
+  score_secondary: 1.5
+  files: 1

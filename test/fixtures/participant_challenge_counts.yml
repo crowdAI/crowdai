@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  row_number: 1
+  challenge_id: 1
+  participant_id: 1
+  registration_type: MyText
+
+two:
+  row_number: 1
+  challenge_id: 1
+  participant_id: 1
+  registration_type: MyText

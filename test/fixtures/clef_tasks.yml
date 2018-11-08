@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  organizer_id: 1
+  task: MyString
+  eua_file: MyString
+
+two:
+  organizer_id: 1
+  task: MyString
+  eua_file: MyString

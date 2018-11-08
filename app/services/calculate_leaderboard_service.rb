@@ -1,10 +1,12 @@
 class CalculateLeaderboardService
 
-  def initialize(challenge_round_id:)
+  def initialize(challenge_round_id:,run_dttm: DateTime.current)
     @round = ChallengeRound.find(challenge_round_id)
     @order_by = get_order_by
     @base_order_by = get_base_order_by
+    @run_dttm = run_dttm
     @conn = ActiveRecord::Base.connection
+    @snapshot_instance = nil
   end
 
   def call
@@ -30,6 +32,10 @@ class CalculateLeaderboardService
       insert_baseline_rows(leaderboard_type: 'ongoing')
       set_leaderboard_sequences(leaderboard_type: 'leaderboard')
       set_leaderboard_sequences(leaderboard_type: 'ongoing')
+      snapshot_leaderboard(leaderboard_type: 'leaderboard')
+      snapshot_leaderboard(leaderboard_type: 'ongoing')
+      assign_points
+      assign_badges
     end
     return true
   end
@@ -41,6 +47,7 @@ class CalculateLeaderboardService
         score_display = round(score::numeric,#{@round.score_precision}),
         score_secondary_display = round(score_secondary::numeric,#{@round.score_secondary_precision})
       where challenge_round_id = #{@round.id}
+      and created_at <= TIMESTAMP WITH TIME ZONE '#{Time.zone.parse(@run_dttm)}'
     ]
     @conn.execute sql
   end
@@ -48,6 +55,7 @@ class CalculateLeaderboardService
   def window_border_dttm
     most_recent = Submission
       .where(challenge_round_id: @round.id)
+      .where("created_at <= ?", Time.zone.parse(@run_dttm))
       .order(created_at: :desc)
       .limit(1)
       .first
@@ -333,6 +341,130 @@ class CalculateLeaderboardService
       WHERE base_leaderboards.id = lb.id
     ]
     @conn.execute sql
+  end
+
+  def set_snapshot_instance
+    @snapshot_instance = BaseLeaderboard
+      .where(
+        challenge_round_id: @round.id,
+        leaderboard_type_cd: leaderboard_type)
+      .order(id: :desc)
+      .limit(1)
+      .pluck(:id)
+      .first
+  end
+
+  def snapshot_leaderboard(leaderboard_type:)
+    sql = %Q[
+      INSERT INTO leaderboard_snapshots (
+        snapshot_instance,
+        challenge_id,
+        challenge_round_id,
+        participant_id,
+        submission_id,
+        seq,
+        row_num,
+        previous_row_num,
+        slug,
+        name,
+        entries,
+        score,
+        score_secondary,
+        media_large,
+        media_thumbnail,
+        media_content_type,
+        description,
+        description_markdown,
+        leaderboard_type_cd,
+        post_challenge,
+        baseline,
+        baseline_comment,
+        refreshed_at,
+        created_at,
+        updated_at
+      )
+      SELECT
+        #{@snapshot_instance},
+        l.challenge_id,
+        l.challenge_round_id,
+        l.participant_id,
+        l.submission_id,
+        l.seq,
+        l.row_num,
+        NULL AS previous_row_num,
+        l.slug,
+        l.name,
+        l.entries,
+        l.score,
+        l.score_secondary,
+        l.media_large,
+        l.media_thumbnail,
+        l.media_content_type,
+        l.description,
+        l.description_markdown,
+        l.leaderboard_type_cd,
+        l.post_challenge,
+        l.baseline,
+        l.baseline_comment,
+        l.refreshed_at,
+        l.created_at,
+        l.updated_at
+      FROM base_leaderboards l,
+      WHERE l.challenge_round_id = #{@round.id}
+      AND l.leaderboard_type_cd = '#{leaderboard_type}'
+    ]
+    @conn.execute sql
+  end
+
+  def assign_points
+    top_5 = LeaderboardSnapshot
+      .where(snapshot_instance: @snapshot_instance)
+      .order(seq: :asc)
+      .limit(5)
+    top_position(row: top5.first)
+    top5_during(top5: top_5)
+  end
+
+  def top_position(row:)
+    participant = Participant.find(row.partipant_id)
+    participant.add_points(1, category: 'top-position-during')
+  end
+
+  def top5_during(top5:)
+    top5.each do |row|
+      participant = Participant.find(row.partipant_id)
+      participant.add_points(1, category: 'top5-during')
+    end
+  end
+
+  def assign_badges(top5:)
+    top5.each do |row|
+      participant = Participant.find(row.partipant_id)
+
+      case participant.points(category: 'top-position-during')
+      when 1
+        badge = Merit::Badge.detect{|b| b.name == 'top-position-bronze'}
+        participant.add_badge(badge.id)
+      when 5
+        badge = Merit::Badge.detect{|b| b.name == 'top-position-silver'}
+        participant.add_badge(badge.id)
+      when 25
+        badge = Merit::Badge.detect{|b| b.name == 'top-position-gold'}
+        participant.add_badge(badge.id)
+      end
+
+      case participant.points(category: 'top5-during')
+      when 1
+        badge = Merit::Badge.detect{|b| b.name == 'top5-during-bronze'}
+        participant.add_badge(badge.id)
+      when 5
+        badge = Merit::Badge.detect{|b| b.name == 'top5-during-silver'}
+        participant.add_badge(badge.id)
+      when 25
+        badge = Merit::Badge.detect{|b| b.name == 'top5-during-gold'}
+        participant.add_badge(badge.id)
+      end
+    end
   end
 
 end

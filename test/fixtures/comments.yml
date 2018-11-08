@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  topic_id: 1
+  participant_id: 1
+  comment: MyText
+  flagged: false
+  notify: false
+  vote_count: 1
+  slug: MyString
+  comment_markdown: MyText
+  mentions_cache: MyString
+
+two:
+  topic_id: 1
+  participant_id: 1
+  comment: MyText
+  flagged: false
+  notify: false
+  vote_count: 1
+  slug: MyString
+  comment_markdown: MyText
+  mentions_cache: MyString

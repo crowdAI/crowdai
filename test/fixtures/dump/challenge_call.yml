@@ -1,0 +1,222 @@
+challenge_call:
+  title: 'Call for Challenges: IEEE Data Science Workshop'
+  website: 'https://www.crowdai.org'
+  slug: call-for-challenges-ieee-data-science-workshop
+  organizer: crowdai
+  headline: 'The IEEE Data Science Workshop will run data science challenges with
+    real-world impact. '
+  crowdai: true
+
+challenge_call_3:
+  id: 3
+  title: SDSC Grand Challenge
+  website: ''
+  closing_date: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2018-07-22 22:00:00.000000000 Z
+    zone: *2
+    time: *8
+  description: |+
+    <p>The <a href="https://datascience.ch/">Swiss Data Science Center</a> has been created to realise the national <a href="https://www.ethrat.ch/sites/default/files/FactSheet_Data_Science_E.pdf">Initiative for Data Science in Switzerland</a> to accelerate data science, through both an expansion of education and research, and the provision of infrastructure for data science users across disciplines.</p>
+
+    <p>The <a href="https://github.com/SwissDataScienceCenter/renga">RENGA</a> platform allows scientists to securely share and trace access to data sets, source code and experiment results. Downsteam users can reproduce results or fork them to build on previous work. In 2018 crowdAI will be integrated into the RENGA platform, allowing challenge submission history to be viewed within the RENGA graph, and for participants to build on the work of others and link to their results, using an API or interactive environments such as Jupyter Notebooks.</p>
+
+    <p><strong>This is a call for a unique, large-scale challenge to be run on the crowdAI platform for data science questions with a public interest or research focus.</strong></p>
+
+    <p>Challenges may run across domains and disciplines, with datasets shared publicly via the crowdAI platform. The proposed challenge duration is two to three months, but organisers may request a different duration or a multi-stage event.</p>
+
+    <p>The challenge will have early access to RENGA as a storage and execution environment. Computing resources can be requested for the challenge in a manner defined by the challenge organiser. For example an execution environment for a Reinforcement Learning challenge.</p>
+
+    <p>The tentative schedule is as follows:
+    - Submission deadline for challenges: <strong>July 22, 2018 (22:00 UTC)</strong>
+    - Acceptance notification deadline for challenges: July 30, 2018
+    - Start of challenges: September 2018 (to be defined by challenge organizers)
+    - End of challenges: November/December 2018 (to be defined by challenge organizers)</p>
+
+    <p>For any questions, please contact us directly by email (please use the contact link at the bottom of the page).</p>
+
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2018-01-28 10:21:02.526541000 Z
+    zone: *2
+    time: *9
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2018-03-22 10:37:53.329158000 Z
+    zone: *2
+    time: *10
+  slug: SDSC
+  organizer_id: 2
+  headline: Large-scale data science challenges on the SDSC, crowdAI and RENGA
+  crowdai: false
+  description_markdown: "The [Swiss Data Science Center](https://datascience.ch/)
+    has been created to realise the national [Initiative for Data Science in Switzerland](https://www.ethrat.ch/sites/default/files/FactSheet_Data_Science_E.pdf)
+    to accelerate data science, through both an expansion of education and research,
+    and the provision of infrastructure for data science users across disciplines.
+    \r\n\r\nThe [RENGA](https://github.com/SwissDataScienceCenter/renga) platform
+    allows scientists to securely share and trace access to data sets, source code
+    and experiment results. Downsteam users can reproduce results or fork them to
+    build on previous work. In 2018 crowdAI will be integrated into the RENGA platform,
+    allowing challenge submission history to be viewed within the RENGA graph, and
+    for participants to build on the work of others and link to their results, using
+    an API or interactive environments such as Jupyter Notebooks.\r\n\r\n**This is
+    a call for a unique, large-scale challenge to be run on the crowdAI platform for
+    data science questions with a public interest or research focus.** \r\n\r\nChallenges
+    may run across domains and disciplines, with datasets shared publicly via the
+    crowdAI platform. The proposed challenge duration is two to three months, but
+    organisers may request a different duration or a multi-stage event. \r\n\r\nThe
+    challenge will have early access to RENGA as a storage and execution environment.
+    Computing resources can be requested for the challenge in a manner defined by
+    the challenge organiser. For example an execution environment for a Reinforcement
+    Learning challenge.\r\n\r\n\r\nThe tentative schedule is as follows:\r\n- Submission
+    deadline for challenges: **July 22, 2018 (22:00 UTC)**\r\n- Acceptance notification
+    deadline for challenges: July 30, 2018\r\n- Start of challenges: September 2018
+    (to be defined by challenge organizers)\r\n- End of challenges: November/December
+    2018 (to be defined by challenge organizers)\r\n\r\n\r\nFor any questions, please
+    contact us directly by email (please use the contact link at the bottom of the
+    page).\r\n\r\n"
+challenge_call_4:
+  id: 4
+  title: IEEE International Conference on Data Science and Advanced Analytics
+  website: ''
+  closing_date: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2018-04-03 22:00:00.000000000 Z
+    zone: *2
+    time: *11
+  description: "<h2 id=\"call-for-data-science-contest-proposals\">Call for Data Science
+    Contest proposals</h2>\n\n<p>The <a href=\"https://dsaa2018.isi.it/home\">IEEE
+    International Conference on Data Science and Advanced Analytics, (DSAA)</a> aims
+    to be the flagship annual meeting spanning the interdisciplinary field of Data
+    Science.  <a href=\"https://dsaa2018.isi.it/home\">DSAA</a> focuses on the science
+    of data science, as well as the implications of the science for applications to
+    industry, government, and society. From the science side,  <a href=\"https://dsaa2018.isi.it/home\">DSAA</a>
+    spans all of the component fields of data science, including statistics, probabilistic
+    and mathematical modeling, machine learning, data mining and knowledge discovery,
+    complexity science, network science, business analytics, data management, infrastructure
+    and storage, retrieval and search, security, privacy and ethics. From the applications
+    side,  <a href=\"https://dsaa2018.isi.it/home\">DSAA</a> aims both to show researchers
+    important problems and issues that are revealed by real applications, and to show
+    practitioners and users how the science can be applied to realize value.  <a href=\"https://dsaa2018.isi.it/home\">DSAA</a>
+    is intended to reflect the interdisciplinary nature of data science and analytics,
+    as an alternative to the highly specialized disciplinary conferences.</p>\n\n<p><a
+    href=\"https://dsaa2018.isi.it/home\">DSAA 2018</a> in <strong>Turin, Italy</strong>,
+    is the 5th annual installment of the conference. This year brings the collaboration
+    of the <a href=\"http://www.amstat.org/\">American Statistical Association</a>,
+    to complement the <a href=\"http://cis.ieee.org/\">IEEE Computational Intelligence
+    Society</a> and the <a href=\"http://www.kdd.org/\">ACM SIGKDD</a>. This year
+    \ <a href=\"https://dsaa2018.isi.it/home\">DSAA</a> also adds the support of the
+    <a href=\"https://www.isi.it/en/home\">ISI Foundation</a>, which has worked for
+    35 years to break down traditional silos in the sciences of complexity and data.</p>\n\n<p><strong>This
+    is a call for a unique, large-scale challenge to be run on the <a href=\"https://www.crowdai.org\">crowdAI</a>
+    platform for data science questions with a public interest or research focus.</strong></p>\n\n<p>The
+    tentative schedule is as follows:\n*  Submission deadline for challenges  : <strong>April
+    3, 2018</strong> \n* Acceptance notification deadline for challenges : <strong>April
+    10, 2018</strong>\n* Start of challenges  : <strong>May 2018</strong> <em>(to
+    be defined by challenge organizers)</em>\n* End of challenges :  <strong>July
+    2018</strong> <em>(to be defined by challenge organizers)</em>\n* camera ready
+    papers submission : <strong>August 3rd, 2018</strong>  <em>(to be defined by challenge
+    organizers)</em></p>\n"
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2018-03-02 16:10:37.880646000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2018-03-22 10:34:19.591793000 Z
+    zone: *2
+    time: *13
+  slug: ieee-international-conference-on-data-science-and-advanced-analytics
+  organizer_id: 14
+  headline: ''
+  crowdai: false
+  description_markdown: "## Call for Data Science Contest proposals\r\n\r\nThe [IEEE
+    International Conference on Data Science and Advanced Analytics, (DSAA)](https://dsaa2018.isi.it/home)
+    aims to be the flagship annual meeting spanning the interdisciplinary field of
+    Data Science.  [DSAA](https://dsaa2018.isi.it/home) focuses on the science of
+    data science, as well as the implications of the science for applications to industry,
+    government, and society. From the science side,  [DSAA](https://dsaa2018.isi.it/home)
+    spans all of the component fields of data science, including statistics, probabilistic
+    and mathematical modeling, machine learning, data mining and knowledge discovery,
+    complexity science, network science, business analytics, data management, infrastructure
+    and storage, retrieval and search, security, privacy and ethics. From the applications
+    side,  [DSAA](https://dsaa2018.isi.it/home) aims both to show researchers important
+    problems and issues that are revealed by real applications, and to show practitioners
+    and users how the science can be applied to realize value.  [DSAA](https://dsaa2018.isi.it/home)
+    is intended to reflect the interdisciplinary nature of data science and analytics,
+    as an alternative to the highly specialized disciplinary conferences.\r\n\r\n[DSAA
+    2018](https://dsaa2018.isi.it/home) in **Turin, Italy**, is the 5th annual installment
+    of the conference. This year brings the collaboration of the [American Statistical
+    Association](http://www.amstat.org/), to complement the [IEEE Computational Intelligence
+    Society](http://cis.ieee.org/) and the [ACM SIGKDD](http://www.kdd.org/). This
+    year  [DSAA](https://dsaa2018.isi.it/home) also adds the support of the [ISI Foundation](https://www.isi.it/en/home),
+    which has worked for 35 years to break down traditional silos in the sciences
+    of complexity and data.\r\n\r\n**This is a call for a unique, large-scale challenge
+    to be run on the [crowdAI](https://www.crowdai.org) platform for data science
+    questions with a public interest or research focus.**\r\n\r\nThe tentative schedule
+    is as follows:\r\n*  Submission deadline for challenges  : **April 3, 2018** \r\n*
+    Acceptance notification deadline for challenges : **April 10, 2018**\r\n* Start
+    of challenges  : **May 2018** _(to be defined by challenge organizers)_\r\n* End
+    of challenges :  **July 2018** _(to be defined by challenge organizers)_\r\n*
+    camera ready papers submission : **August 3rd, 2018**  _(to be defined by challenge
+    organizers)_\r\n"
+challenge_call_5:
+  id: 5
+  title: Call for Industry-driven Challenges
+  website: ''
+  closing_date: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2018-08-01 00:00:00.000000000 Z
+    zone: *2
+    time: *14
+  description: |+
+    <p><a href="https://www.crowdai.org/">crowdAI</a> is a platform for open data science challenges. crowdAI helps universities, government agencies, NGOs and businesses to run and manage their data challenges. The crowdAI platform is an open source infrastructure that can immediately reach thousands of data scientists around the world to work on interesting data problems.</p>
+
+    <p>While still running challenges for the global research community, we believe that industry could benefit from the large number of crowdAI data scientists and from the platform itself. A company that rapidly needs to find a solution to a data science problem either depends on an in-house team of data scientists, or needs to buy the expertise from a third party. In both cases, the reach of data science expertise is limited and cost intensive. Crowd-sourced data science challenges offer a solution to this problem by making the data science challenge immediately available to thousands of data science experts.</p>
+
+    <p>The experts are often students or have data science jobs already, but are looking to hone their skills on interesting real-world problems.</p>
+
+    <p><strong>We are looking for data science challenges that industry faces.</strong></p>
+
+    <p>crowdAI recently received a grant from <a href="https://enable.epfl.ch/">enable</a>, an EPFL Technology Transfer Office program aimed at facilitating the path towards commercialization of EPFL innovative technologies and stimulation innovation. This grant of CHF 10’000 is to be used as challenge prizes, to be matched by the industry partner.</p>
+
+    <p>Tentative schedule is as follows:
+    - Submission deadline for challenges: August 1st, 2018
+    - Acceptance notification deadline for challenges: August 8th, 2018
+    - Challenge Development: Fall 2018
+    - Start of challenge: Winter 2018 (to be defined with challenge organizers)
+    - End of challenge: Spring 2019 (to be defined with challenge organizers)</p>
+
+    <p>For any questions, please contact us directly by email (please use the contact link at the bottom of the page).</p>
+
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2018-04-16 12:30:15.782687000 Z
+    zone: *2
+    time: *15
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2018-05-29 14:40:18.114621000 Z
+    zone: *2
+    time: *16
+  slug: call-for-industry-driven-challenges
+  organizer_id: 2
+  headline: Looking for Industry-related challenges
+  crowdai: false
+  description_markdown: "[crowdAI](https://www.crowdai.org/) is a platform for open
+    data science challenges. crowdAI helps universities, government agencies, NGOs
+    and businesses to run and manage their data challenges. The crowdAI platform is
+    an open source infrastructure that can immediately reach thousands of data scientists
+    around the world to work on interesting data problems.\r\n\r\nWhile still running
+    challenges for the global research community, we believe that industry could benefit
+    from the large number of crowdAI data scientists and from the platform itself.
+    A company that rapidly needs to find a solution to a data science problem either
+    depends on an in-house team of data scientists, or needs to buy the expertise
+    from a third party. In both cases, the reach of data science expertise is limited
+    and cost intensive. Crowd-sourced data science challenges offer a solution to
+    this problem by making the data science challenge immediately available to thousands
+    of data science experts.\r\n\r\nThe experts are often students or have data science
+    jobs already, but are looking to hone their skills on interesting real-world problems.\r\n\r\n**We
+    are looking for data science challenges that industry faces.**\r\n\r\ncrowdAI
+    recently received a grant from [enable](https://enable.epfl.ch/), an EPFL Technology
+    Transfer Office program aimed at facilitating the path towards commercialization
+    of EPFL innovative technologies and stimulation innovation. This grant of CHF
+    10'000 is to be used as challenge prizes, to be matched by the industry partner.\r\n\r\nTentative
+    schedule is as follows:\r\n- Submission deadline for challenges: August 1st, 2018\r\n-
+    Acceptance notification deadline for challenges: August 8th, 2018\r\n- Challenge
+    Development: Fall 2018\r\n- Start of challenge: Winter 2018 (to be defined with
+    challenge organizers)\r\n- End of challenge: Spring 2019 (to be defined with challenge
+    organizers)\r\n\r\nFor any questions, please contact us directly by email (please
+    use the contact link at the bottom of the page).\r\n\r\n"

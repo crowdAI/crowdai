@@ -1,0 +1,562 @@
+---
+job_posting_11:
+  id: 11
+  title: Senior Data Scientist
+  organisation: EPFL
+  contact_name: Evarist Planet
+  contact_email: ''
+  contact_phone: ''
+  posting_date: 2018-09-04
+  closing_date: 
+  status_cd: open
+  description: "<b>Your mission</b>\r\nThe EPFL Laboratory of Virology and Genetics
+    (headed by prof. Didier Trono) is looking for a senior data scientist with sound
+    experience in Machine Learning techniques. The team is part of the EPFL School
+    of Life Sciences and offers a challenging and stimulating environment with outstanding
+    career opportunities and excellent benefits.\r\n\r\nThe candidate will apply his/her
+    advanced knowledge of ML algorithms over several huge cancer related datasets.
+    This is a very applied field, with possible impact of data science on genomics
+    and more broadly on personalized health / precision medicine.\r\n\r\nThe selected
+    candidate will be located at the Health 2030 Genome Center (at Campus Biotech
+    in Geneva) and at the EPFL campus in Lausanne. S/he will also collaborate closely
+    with the SDSC.\r\n\r\n<b>Main duties and responsibilities include</b>\r\nThe candidate
+    must be highly motivated, like programming and be Unix-proficient. S/he will apply
+    his/her practical experience in cleaning, mining and analysing huge volumes of
+    data to develop Machine Learning solutions in the field of personalized health
+    and precision medicine. Candidates are expected to possess deep experience in
+    solving complex problems using data-driven methods. The ideal candidate also has
+    good background in Big Data technologies.\r\n\r\n<b>Your profile</b>\r\nTitle:
+    Master’s degree or PhD in Machine Learning, Statistics, Computer Sciences or Electrical
+    Engineering.\r\n\r\nAttitude\r\n\r\n- Highly motivated\r\n- Excellent communication
+    skills\r\n- Proactive\r\n\r\n\r\nTechnical skills\r\n\r\n- Deep understanding
+    of ML algorithms\r\n- Unix and shell scripting\r\n- Good programming ability.
+    Fluent in python and/or R<\r\n- Knowledge of statistics and data modeling\r\n\r\nLanguages\r\n\r\n-
+    English (French is a plus)\r\n\r\n<b>Ideal skills</b>\r\n\r\n- Knowledge of Apache
+    Spark\r\n- Knowledge in biology in general and cancer biology in particular\r\n\r\n<b>We
+    offer</b>\r\n\r\n- Full-time position with an initial fixed-term contract of 1
+    year.\r\n- Salary and employment conditions are according to the regulations of
+    the EPFL.\r\n\r\n<a href='https://recruiting.epfl.ch/Vacancies/645/Description/2'>Apply
+    Online</a>"
+  remote: false
+  location: Lausanne
+  country: CH
+  page_views: 555
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2018-09-04 06:43:59.809724000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2018-10-04 10:45:56.993706000 Z
+    zone: *2
+    time: *3
+  job_url: ''
+job_posting_10:
+  id: 10
+  title: Data Engineer Intern
+  organisation: Rohde & Schwarz GmbH & Co. KG
+  contact_name: Monika Burgmair
+  contact_email: ''
+  contact_phone: "+49 89 4129 13801"
+  posting_date: 2018-03-16
+  closing_date: 
+  status_cd: open
+  description: "Rohde & Schwarz is home to in-depth engineering know-how and highly
+    innovative and committed employees. We're recognized as a world market leader
+    in wireless communications. Plus, we develop future-oriented products for many
+    growth markets such as mobile phone technology, radiocommunications and digital
+    television. We do business in more than 70 countries worldwide, and we value individuals
+    who share our main objective: To be the best!\r\nJoin our Monitoring and Network
+    Testing Division in München (Germany) at the earliest possible date as Data Engineer
+    Intern.\r\n\r\n<h3>Your tasks:</h3>\r\n•\tCustomers would like to know what measurement
+    rates can be expected for their measurement task for different hardware configurations\r\n•\tDue
+    to the complexity of the measurement system it is very hard to estimate the measurement
+    rates which can be reached in the field\r\n•\tDevelop a system which learns from
+    already available measurement data and can provide a measurement rate estimation
+    for a given measurement scenario and hardware setup\r\n\r\n<h3>Your qualifications:</h3>\r\n•\tUniversity
+    enrollment in Computer Engineering, Computer Science, Informatics, Statistics
+    or Communications engineering\r\n•\tKnowledge of programming with C++, C#, Java,
+    Python or other OOP languages\r\n•\tFirst experience with relational databases
+    (MySQL or comparable)\r\n•\tFirst experience in artificial intelligence/machine
+    learning\r\n•\tGood command of written and spoken German and English\r\n\r\n<h3>Our
+    offer:</h3>\r\nYou can expect very good payment, excellent terms and outstanding
+    opportunities for growth and development. We will also be happy to help you find
+    a room. We have a number of favorably priced accommodations at our disposal. We
+    offer mandatory internships for a period of four to six months and voluntary internships
+    for at most three months. Combining a voluntary internship with a mandatory internship
+    is possible. This position is limited to 6 months.\r\n\r\nIf this sounds like
+    the job you‘ve been looking for, please <a href='https://www.careers.rohde-schwarz.com/en/jobboard/?jobid=50579829'>apply
+    online</a>.\r\n\r\n<h3>Contact:</h3>\r\n\r\nRohde & Schwarz GmbH & Co. KG, Monika
+    Burgmair, Human Resources, Ref. number: DE-MUC-50579829-000. \r\n\r\nIf you have
+    any questions, please contact our recruiting team: +49 89 4129 13801. \r\n\r\n<a
+    href='http://www.careers.rohde-schwarz.com'>http://www.careers.rohde-schwarz.com</a>\r\n"
+  remote: false
+  location: München
+  country: DE
+  page_views: 1476
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &4 2018-03-16 08:09:18.211971000 Z
+    zone: *2
+    time: *4
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &5 2018-10-04 10:45:39.586610000 Z
+    zone: *2
+    time: *5
+  job_url: ''
+job_posting_9:
+  id: 9
+  title: Technology Expert Imaging Technologies (m/f)
+  organisation: Bayer AG
+  contact_name: Dr. Steffen Vogler
+  contact_email: steffen.vogler@bayer.com
+  contact_phone: ''
+  posting_date: 2018-02-19
+  closing_date: 
+  status_cd: open
+  description: "<b>Your tasks and responsibilities</b>\r\n•\tDevelop and implement
+    innovative, cutting-edge digital image processing tools and technologies to support
+    our Pharmaceuticals, Consumer Health and Crop Science Divisions in the fields
+    of drug discovery and development, phenotyping, digital farming or digital health\r\n•\tResponsible
+    for the management of a portfolio of cutting-edge, innovative, complex and cross-functional
+    digital projects\r\n•\tResponsible for generating creative and innovative ideas
+    to enhance Bayer´s competitive advantage and innovative edge within this area
+    of expertise\r\n•\tIn charge of seizing initiative for the development and implementation
+    of novel ideas within this area of expertise\r\n•\tContribute towards building
+    a dynamic, flexible, transparent, result-oriented and innovative working atmosphere
+    for both group members and partners\r\n•\tResponsible for maintaining existing
+    and developing new, value-adding internal and external collaboration networks\r\n•\tKeep
+    pace with cutting edge technological developments in academia and industry\r\n \r\n<b>Who
+    you are</b>\r\n•\tMaster of Science or PhD in Life Science Imaging, Computer Vision,
+    Computer Engineering, (Bio)Informatics, (Bio)Physics(IT), Medical Engineering,
+    or a related discipline\r\n•\tSeveral years of working experience in one of the
+    disciplines\r\n•\tPractical experience in the implementation of technology concepts
+    into software solutions\r\n•\tIn-depth experience in programming/scripting (Python,
+    Java, C#, C++, .NET, R etc.), image processing libraries (OpenCV, ImageJ, Matlab,
+    etc.), deep learning frameworks (TensorFlow, Caffe, PyTorch, etc.) and hardware-oriented/interface
+    programming\r\n•\tExcellent knowledge in digital image processing technologies,
+    preferably in the field of Life Sciences (i.e. drug discovery and development,
+    phenotyping, digital farming and/or digital health)\r\n•\tExcellent knowledge
+    in the fields of augmented reality, artificial intelligence, machine learning,
+    deep learning, cloud computing as well as practical experience in handling large
+    volumes of data\r\n•\tFlexibility, self-initiative and delight to work in a highly
+    interdisciplinary environment\r\n•\tSystematic, structured and responsible approach
+    to your work\r\n•\tExcellent German and English skills, both written and spoken\r\n \r\n<b>Your
+    application</b>\r\nAre you looking for a new challenge where you can show your
+    passion for innovation? Are you interested in working as part of a global team
+    to improve people’s lives? Then send us your online application including cover
+    letter, CV and references.\r\n\r\nhttps://karriere.bayer.de/en/job/Technology-Expert-Imaging-Technologies-m-w--SF12752.html\r\n \r\n \r\nBayer
+    welcomes applications from all individuals, regardless of race, national origin,
+    gender, age, physical characteristics, social origin, disability, union membership,
+    religion, family status, pregnancy, sexual orientation, gender identity, gender
+    expression or any unlawful criterion under applicable law. We are committed to
+    treating all applicants fairly and avoiding discrimination.\r\n\r\nCountry: Germany\r\nLocation:
+    Leverkusen\r\nReference Code: 12752\r\n"
+  remote: false
+  location: Leverkusen
+  country: DE
+  page_views: 1501
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &6 2018-02-19 08:12:52.838433000 Z
+    zone: *2
+    time: *6
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &7 2018-10-04 10:45:39.636478000 Z
+    zone: *2
+    time: *7
+  job_url: ''
+job_posting_8:
+  id: 8
+  title: Software Engineer (Java, Machine Learning)
+  organisation: ZZ Vermögensberatung (Schweiz) AG
+  contact_name: Jan Elberry
+  contact_email: jan.elberry@zzag.ch
+  contact_phone: ''
+  posting_date: 2018-01-31
+  closing_date: 
+  status_cd: open
+  description: "We are an independent Asset Management Company and an integral part
+    of the Pühringer Family Office located in Vitznau, Canton of Lucerne, Switzerland.
+    Our major task is the management of investment funds as well as investment mandates
+    from different companies of our group. For the support of our Software Development
+    Team we are looking for a Software Developer (w/m) (100%)\r\n\r\n<b>Your Tasks</b>\r\n\r\n-
+    You develop innovative, top-notch applications in Java 8\r\n- You design and implement
+    robust data models\r\n- You contribute in planning and executing on our software
+    infrastructure and roadmaps\r\n- You develop production quality code in close
+    coordination with the core business team\r\n- You experiment with most recent
+    methods in Data Science\r\n\r\n<b>Your Profile</b>\r\n\r\n- First experience in
+    software/web development in an agile environment\r\n- Knowledge of the Java 8
+    platform\r\n- Experimented with Java associated Frameworks like JSF, JPA, JUnit
+    or JAX-WS\r\n- Experience with PostgreSQL or any other established SQL Database\r\n-
+    Confident in using version control systems (svn/git) as well as bug tracking systems\r\n-
+    Basic know-how of automated build and testing frameworks such as Jenkins and Maven\r\n-
+    Worked with client-side web technologies such as JavaScript, HTML and CSS\r\n-
+    You are curious to learn and enjoy working in a highly collaborative environment\r\n-
+    A strong interest into financial markets is an advantage\r\n\r\n<b>Our Offer</b>\r\n\r\n-
+    Get unique insights into one of the world’s leading Emerging Market Fixed-Income
+    Investors\r\n- The chance to work in a start-up environment and take on responsibility\r\n-
+    Challenging projects in the financial markets area\r\n- Improve your own creative
+    thinking and innovation skills\r\n- Possibility of flexible working hours in a
+    modern office space\r\n- Participate in trainings and attend conferences for your
+    professional development\r\n- Join a young and dynamic team\r\n\r\nFor further
+    information, please do not hesitate to contact <a href=\"mailto:jan.elberry@zzag.ch\">jan.elberry@zzag.ch</a> -
+    otherwise we are looking forward to receiving your application by mail to <a href=\"mailto:petra.buesser@zzag.ch\">petra.buesser@zzag.ch</a>!\r\n\r\nZZ
+    Vermögensberatung (Schweiz) AG\r\nc/o Park Hotel Vitznau\r\nSeestrasse 18\r\nCH-6354
+    Vitznau\r\n"
+  remote: false
+  location: Vitznau
+  country: CH
+  page_views: 1411
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &8 2018-01-31 11:22:01.745428000 Z
+    zone: *2
+    time: *8
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &9 2018-10-03 19:55:20.251721000 Z
+    zone: *2
+    time: *9
+  job_url: ''
+job_posting_6:
+  id: 6
+  title: 'Applied research positions: ML for finance'
+  organisation: ISI Foundation
+  contact_name: Paolo Bajardi
+  contact_email: paolo.bajardi@gmail.com
+  contact_phone: ''
+  posting_date: 2018-01-18
+  closing_date: 
+  status_cd: open
+  description: "<b>Job Description:</b> The ISI Foundation is seeking to appoint a
+    Senior Data Scientist and a Data Scientist to undertake applied research activities
+    within the recently-funded Innovation Laboratory on Artificial Intelligence of
+    Intesa SanPaolo, a mixed initiative between fundamental research performed at
+    ISI Foundation and real-world business-driven challenges posed by one of the major
+    Italian banks.\r\n\r\nInitial appointment will be for a period of 1 year, with
+    the possibility of renewal.\r\n\r\n<b>About the Lab:</b> The research is organized
+    in small and agile research groups addressing vertical business challenges under
+    the scientific advisory of the ISI Foundation and in direct contact with professionals
+    of the financial sector. We provide a truly international and multidisciplinary
+    research environment with plenty of opportunities for collegial interaction in
+    a highly competitive setting, where unique data-assets from one of the major Italian
+    banks are at the core of data-intensive research to address challenging business-driven
+    problems. We provide a competitive salary according to the qualifications and
+    medical and pension benefits according to the Italian State.\r\n\r\nAccording
+    to your experience, your responsibilities will involve: Manage and lead the research
+    of the Data Science Team. Carrying out innovative and business-driven research.
+    Delving into data from different systems, at different timescales, to discover
+    hidden relationships and valuable information. Developing and implementing data
+    science pipeline aimed at bringing profitable and actionable insights into real-world
+    applications. Producing high quality scientific and technical outputs that might
+    be submitted as journal articles, conference papers, and presentations.\r\n\r\n<b>Core
+    skills you will need:</b> Ph.D./Master in Computer Science, Physics, Mathematics,
+    Software Engineer or equivalent experience, with special focus on one of the following
+    fields: Network Analysis and Graph Analytics, Data manipulation and data analysis,
+    Credit Risk Modeling, Applied statistics, Machine Learning, Econometrics. Strong
+    programming skills in Python/R or C/C++ or Java. Creativity and excellent personal
+    skills. Familiarity with financial mathematics will be a plus. Familiarity with
+    GPU programming will be a plus.\r\n\r\n\r\n The ISI Foundation is an equal opportunity
+    employer and does not discriminate on the basis of ethnicity, gender, sexual orientation,
+    age, religion or disability.\r\n\r\nTo apply, please send your cover letter, curriculum
+    vitae and professional reference list to <a href=\"mailto:applied-research@isi.it\">applied-research@isi.it</a>
+    \r\n\r\n"
+  remote: false
+  location: Turin
+  country: IT
+  page_views: 1810
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &10 2018-01-18 08:29:07.108068000 Z
+    zone: *2
+    time: *10
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &11 2018-10-04 10:44:17.784480000 Z
+    zone: *2
+    time: *11
+  job_url: ''
+job_posting_5:
+  id: 5
+  title: Quality Assurance Machine Learning Engineers
+  organisation: Pix4D
+  contact_name: ''
+  contact_email: ''
+  contact_phone: ''
+  posting_date: 
+  closing_date: 
+  status_cd: open
+  description: "DESCRIPTION\r\n\r\nWe are looking for talented QA Machine Learning
+    engineers to join our new team in Berlin. Pix4D develops drone mapping and photogrammetry
+    software that enable tens of thousands of professionals around the world to process,
+    visualize, assess and edit their own maps and 3D models.\r\n\r\nYou will join
+    our new development team in Berlin, focusing on new product development in an
+    agile environment. Within the team, your main task will be to use your QA engineering
+    expertise both to design and develop the software testing framework to train,
+    validate and evaluate Machine Learning models.\r\n\r\nYou have learned by direct
+    experience that the most important characteristic of software is maintainability.
+    You understand the importance of testing and of how to make testing scalable.
+    In this perspective, your focus will be to develop code and build tools rather
+    than directly finding or fixing bugs. You will take the opportunity to accelerate
+    the overall product development by focusing on keeping the products robust and
+    making tools to find problems before our customers do.\r\n\r\n\r\n\r\nRESPONSIBILITIES\r\n\r\nIdentify
+    testing procedures that can or should be automated, and work accordingly on the
+    design and architecture closely with the development teams\r\nDevelop a consistent
+    and scalable Machine Learning-oriented testing framework to accompany new Machine
+    Learning systems’ development\r\nProvide tools and metrics to help the development
+    teams monitor regressions and improvements in the software\r\nCollaborate in the
+    full product life-cycle, from early concepts and prototypes to full deployment.\r\n\r\nREQUIREMENTS\r\n\r\nExcellent
+    Python development skills\r\nKnowledge of computer vision and Machine Learning
+    is a plus\r\nStrong scripting skills\r\nExperience working on cross-platform projects\r\nExcellent
+    bug reporting and tracking skills\r\nUnderstanding of testing best practices and
+    processes\r\nUnderstanding of Continuous Integration systems\r\nEnglish language,
+    written and spoken\r\n\r\n\r\nBONUS SKILLS\r\n\r\nExperience with C++ (or another
+    modern object-oriented programming language)\r\nExperience in Deep Learning\r\nExperience
+    with front-end development for data visualization\r\n\r\n\r\n\r\nBENEFITS\r\n\r\nA
+    company that faces problems together and values people first and foremost when
+    achieving goals.\r\n\r\nHighly collaborative structure maximizes each person's
+    expertise and creativity.\r\n\r\nActive work culture and support system."
+  remote: false
+  location: Berlin
+  country: DE
+  page_views: 2020
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &12 2017-10-21 08:20:13.518297000 Z
+    zone: *2
+    time: *12
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &13 2018-10-03 19:34:14.471816000 Z
+    zone: *2
+    time: *13
+  job_url: https://pix4d.workable.com/j/A08173C7EC
+job_posting_4:
+  id: 4
+  title: Software Engineers (C++, Machine Learning)
+  organisation: Pix4D
+  contact_name: ''
+  contact_email: ''
+  contact_phone: ''
+  posting_date: 
+  closing_date: 
+  status_cd: open
+  description: "DESCRIPTION\r\n\r\nWe are looking for talented software engineers
+    with a background in computer vision and Machine Learning to join our new team
+    in Berlin. Pix4D develops drone photogrammetry software and products that enable
+    tens of thousands of professionals around the world to process, visualize, assess
+    and edit their own maps and 3D models.\r\n\r\nYou will join our new development
+    team in Berlin and work closely together with Pix4D’s multinational development
+    team, located in Lausanne (Switzerland). You will work on the desktop line of
+    Pix4D software, following agile methodologies. Within the team you will be involved
+    in the implementation, deployment and integration of Machine Learning algorithms
+    for image analysis.\r\n\r\nYou’ve learned by direct experience that the most important
+    characteristic of software is maintainability. As such, you strive to keep your
+    code simple, readable and testable. You understand the importance of testing and
+    your definition of “done” contains unit tests complemented by functional and integration
+    tests. You enjoy sharing good practices, pair programming and learning from others,
+    and are passionate about your craft.\r\n\r\n\r\n\r\nRESPONSIBILITIES\r\n\r\nDesign,
+    implement and maintain software algorithms\r\nEngage daily in code reviews and
+    promote good software engineering practices\r\nParticipate actively in the team
+    and company’s agile process\r\n\r\nREQUIREMENTS\r\n\r\nExcellence in modern C++
+    programming: focused on code quality, simplicity, and ease of maintenance\r\nExperience
+    in computer vision and Machine Learning. Experience in Deep Learning is a plus.\r\nStrong
+    problem solving skills; pride in high-quality work\r\nEnglish language, written
+    and spoken\r\nFlexible and open-minded to feel at home in a fast growing international
+    technology company\r\n\r\n\r\n\r\n\r\nBENEFITS\r\n\r\nA company that faces problems
+    together and values people first and foremost when achieving goals.\r\n\r\nHighly
+    collaborative structure maximizes each person's expertise and creativity.\r\n\r\nActive
+    work culture and support system that reaches beyond working hours."
+  remote: false
+  location: Berlin
+  country: DE
+  page_views: 1754
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &14 2017-10-21 07:14:53.737004000 Z
+    zone: *2
+    time: *14
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &15 2018-10-03 19:10:07.235257000 Z
+    zone: *2
+    time: *15
+  job_url: https://pix4d.workable.com/j/EC121A9D87
+job_posting_3:
+  id: 3
+  title: Multiple jobs (ML, AI, software engineer)
+  organisation: Predictive Layer
+  contact_name: Olivier Cognet
+  contact_email: Olivier.Cognet@PredictiveLayer.com
+  contact_phone: "+41 7 6673 0141"
+  posting_date: 
+  closing_date: 
+  status_cd: open
+  description: "We are hiring !\r\n\r\nYou are a young graduate or You have an experience
+    with leading software vendors and applications,\r\n\r\nYou want to be part of
+    a revolution, a business and technical revolution …\r\nYou want to join a dynamic
+    start-up in Geneva/Lausanne area,\r\n\r\nAt Predictive Layer, we enable automated
+    predictive analytics, with Machine Learning, Artificial Intelligence, Big-Data
+    & Open-Data correlation, to optimize Energy, Industry, Commodities, Retail, Catering,
+    Transport sectors. \r\n\r\nWith Predictive Layer automated predictive analytics
+    platform, we transform these sectors, we disrupt their capabilities and we enable
+    brand new business models.  \r\n\r\nThe revolution we create by coupling open-data,
+    mathematics and artificial intelligence and cloud computing virtualization to
+    solve real world problems and creating value for our customers and our employees.\r\n\r\nYou
+    enjoy being part of a team, but you are also a great individual contributor.\r\n\r\nWe
+    are looking for talented software engineers and data scientists, with an ability
+    to understand business problems and come up with innovative ways to solve them. \r\n\r\nHaving
+    being exposed or having an interest for energy trading, smart grid management,
+    commodity trading, transport, logistics, retail or catering optimization could
+    make your venue to PL even more exciting !\r\n\r\nhttp://www.predictivelayer.com/company\r\n\r\n\r\nProfil
+    1: Data Engineer\r\nMissions:\r\n\t- Develop connectors to different data sources\r\n\t-
+    Structure the data to scale up to billions of information\r\n\t- Create meaningful
+    insights from the data \r\nExperience: 0-5 years\r\nEnjoy mathematics\r\nMastering
+    of 2 programming languages eg. Java/C++, Python a plus.\r\nFamiliar with source
+    controls and agile methods\r\n\r\n\r\nProfil 2: Software Engineer\r\nMissions:\r\n\t-
+    Be part of a team developing forecasting solutions for different markets\r\n\t-
+    Handle some optimization problems using different software libraries\r\n\t- \r\nExperience:
+    0-5 years\r\nEnjoy mathematics\r\nKnowledge in optimization a plus\r\nMastering
+    of 2 programming languages eg. Java/C++, Python a plus.\r\nFamiliar with source
+    controls and agile methods\r\n\r\n\r\n\r\n\r\nProfil 3: Data Scientist\r\nMissions:\r\n\t-
+    Contribute to PL core ML algorithms for time series\r\n\t- Solve real\r\nExperience:
+    0-5 years\r\nEnjoy mathematics\r\nDeep understanding of the mathematics behind
+    ML algorithms\r\nAbility to turn around a business question to maximize potential
+    of solving the question using ML \r\n\r\nMastering of a programming language eg.
+    Java/C++, Python a plus.\r\nFamiliar with source controls and agile methods\r\n\r\n\r\n\r\n\r\nProfil
+    4: Front-End Engineer\r\nMissions:\r\n\t- Contribute to help our customers leverage
+    our forecasts\r\n\t- Data visualization to make the most out of the data\r\nExperience:
+    0-5 years\r\nEnjoy mathematics\r\nDeep understanding of the mathematics behind
+    ML algorithms\r\nAbility to turn around a business question to maximize \r\n\r\nMastering
+    of a javascript programming language \r\nKnowledge of MVC framework a plus\r\nFamiliar
+    with source controls and agile methods\r\n\r\n\r\n\r\nProfil 5: Operation Engineer\r\nMissions:\r\n\t-
+    Contribute to PL architecture to run reliable software services\r\n\t- Supervise
+    the operations of our solutions\r\nExperience: 0-5 years\r\nEnjoy IT security
+    and sys admin tasks\r\nMastering of a programming language eg. C++ Java, Python
+    a plus.\r\nMastering of a development framework & cloud computing AWS, Predix
+    or Azure (Ansible a plus).\r\n\r\n\r\n\r\nYou want to be part of the team, please
+    contact :\r\nOlivier.Cognet@PredictiveLayer.com\t\t+41 7 6673 0141\r\nSerge.Rigori@PredictiveLayer.com\t\t+41
+    766 908 233\r\n\r\n\r\nMore Information :  \r\n\r\nwww.predictivelayer.com\r\n\r\nwww.predictivelayer.com/data-correlation-forecasts-usecases\r\n\r\nwww.predictivelayer.com/company#team\r\n\r\nwww.predictivelayer.com/company#news-events\r\n"
+  remote: false
+  location: Rolle
+  country: CH
+  page_views: 1762
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &16 2017-10-20 13:24:00.129229000 Z
+    zone: *2
+    time: *16
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &17 2018-10-04 10:27:53.606619000 Z
+    zone: *2
+    time: *17
+  job_url: http://www.predictivelayer.com/company
+job_posting_2:
+  id: 2
+  title: Senior Machine Learning Experts (Deep Learning, Image Processing, C++)
+  organisation: Pix4D
+  contact_name: ''
+  contact_email: ''
+  contact_phone: ''
+  posting_date: 
+  closing_date: 
+  status_cd: open
+  description: "DESCRIPTION\r\n\r\nWe are looking for talented and curious Machine
+    Learning Experts to join our growing team in Berlin. You will be part of a skilled
+    Machine Learning team at Pix4D and your task will be to design, evaluate and implement
+    image segmentation and object detection pipelines based on Machine Learning techniques
+    that will be integrated in Pix4D products. The ideal candidates will demonstrate
+    outstanding skills in Machine Learning algorithms, in particular with Deep Learning
+    and Image Processing, and will have experience in C++ programming.\r\n\r\nPix4D
+    develops drone photogrammetry software and products that enable tens of thousands
+    of professionals around the world to process, visualize, assess and edit their
+    own maps and 3D models. We are looking for passionate Machine Learning experts
+    to design and develop state-of-the-art Machine Learning algorithms and bring new
+    powerful tools to our users.\r\n\r\n\r\nRESPONSIBILITIES\r\n\r\nResearch, design,
+    implement and maintain Machine Learning algorithms for image segmentation, object
+    detection and object counting\r\nEngage in the full product life-cycle from early
+    concepts and prototypes to full deployment\r\nParticipate in the design, implementation
+    and maintenance of core software components\r\nWork as part of a team and engage
+    in technical discussions in a creative, interactive and dynamic team-based environment\r\nActively
+    participate in the team and Company’s agile processes\r\n\r\n\r\nREQUIREMENTS\r\n\r\nIn-depth
+    understanding of deep learning, boosting and machine learning algorithms\r\nExperience
+    in computer vision and image processing. Additional experience in image segmentation
+    and object detection is a strong plus\r\nStrong background in statistics, applied
+    mathematics and algorithms\r\nPhD (Computer Science, Information Science or Electrical
+    Engineering)\r\n4+ years of relevant work or academic experience in Machine Learning
+    required\r\nExperience with deep learning tools such as Caffe, PyTorch or Tensorflow\r\nFluent
+    in C++ programming and at least one scripting language such as Python or Julia\r\nStrong
+    problem solving skills\r\nFlexible and open-minded to feel at home in a fast growing
+    international technology company\r\nProficient spoken and written English language
+    skills\r\n\r\n\r\nBENEFITS\r\n\r\nA company that faces problems together and values
+    people first and foremost when achieving goals.\r\n\r\nHighly collaborative structure
+    maximizes each person's expertise and creativity.\r\n\r\nActive work culture and
+    support system that reaches beyond working hours."
+  remote: false
+  location: Berlin
+  country: DE
+  page_views: 549
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &18 2017-10-20 13:20:21.066095000 Z
+    zone: *2
+    time: *18
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &19 2018-10-03 19:15:31.882248000 Z
+    zone: *2
+    time: *19
+  job_url: https://pix4d.workable.com/j/A53BE0408B
+job_posting_1:
+  id: 1
+  title: Digital Manufacturing Intern
+  organisation: Nestlé
+  contact_name: ''
+  contact_email: ''
+  contact_phone: ''
+  posting_date: 
+  closing_date: 
+  status_cd: open
+  description: "Digital Manufacturing Intern\r\n\r\n“I want to make an impact locally
+    and have an influence globally”\r\n\r\nNestec S.A., Vevey, Switzerland\tDefined
+    period of time contract (6 months), act. rate 100%\r\n\r\nTo complement our Corporate
+    Operations-Manufacturing Excellence Department, we are currently looking for a
+    Digital Manufacturing Intern.\r\n\r\nAs a Digital Manufacturing Intern, you will
+    research, experiment and deliver the actual and future trends on new Digital technologies
+    like Connectivity, Advanced Analytics and Artificial Intelligence. You will also
+    perform the evaluation of business benefits and you will contribute to Digital
+    technologies knowledge dissemination and increase the ecosystem of partners.\r\n\r\nKey
+    responsibilities (will be fine-tuned and made more specific based on intern’s
+    profile and business needs before the start of the internship)\r\n\r\n•\tResearch,
+    develop and deliver, with cross-functional team, solutions based on the new Digital
+    technologies aligned with Nestlé Operations vision of the future Digital Factory
+    design, including cost estimate and value analysis\r\n•\tSupport, with NPTC's/TCU,
+    the Digital Manufacturing experiments (pilots) projects execution in the markets,
+    to assess Digital technologies value and build/increase knowledge\r\n•\tSupport
+    the scale-up of the successful experiments\r\n•\tContinuously develop the personal
+    and team knowledge and skills in the area of Digital technologies and new methodologies
+    (e.g. fast prototyping, lean Start-Up...), build eLearning's modules and provide
+    trainings for the Manufacturing community\r\n•\tSupport in building the internal
+    network around Digital technologies to create awareness and leverage resources
+    in the group; and the external network with start-ups and academia to build partnership
+    and ecosystems\r\n\r\nRequired Profile\r\n\r\n•\tMaster degree level Student in
+    a field relevant to Digital Operations/Manufacturing\r\n•\tDemonstrated knowledge
+    and interest for digital technologies \r\n•\tPrevious experience on developing
+    new concepts and standards\r\n•\tAbility to learn fast and courage to explore
+    unknown areas \r\n•\tPrevious knowledge in R&D and/or Industrial Manufacturing\r\n•\tFluent
+    in English\r\n\r\nShow us that you are passionate about Digital Technologies and
+    that you have the capability to see the complete picture. You are able to create
+    a climate for success and you are a structured and process oriented person. Your
+    project management and communication skills will contribute to your and our success.
+    If you are also able to communicate clearly the technical topics, please don’t
+    hesitate and apply in English at www.nestle.com/jobs.\r\n\r\nThe Nestlé Group
+    is the world’s largest food and beverage company with 89,5 billion Swiss Francs
+    in sales in 2016. It is present in 191 countries around the world, has 418 factories
+    and its 328,000 employees are committed to Nestlé’s purpose of enhancing quality
+    of life and contributing to a healthier future. Nestlé offers a wide portfolio
+    of products and services for people and their pets throughout their lives. Its
+    more than 2000 brands range from global icons like Nescafé or Nespresso to local
+    favourites. Company performance is driven by its Nutrition, Health and Wellness
+    strategy. Nestlé is based in the Swiss town of Vevey where it was founded more
+    than 150 years ago. Learn more about our Group and reasons to join us on www.nestle.com.\r\n"
+  remote: false
+  location: ''
+  country: CH
+  page_views: 496
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &20 2017-10-20 13:18:07.236991000 Z
+    zone: *2
+    time: *20
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &21 2018-10-03 19:25:43.339932000 Z
+    zone: *2
+    time: *21
+  job_url: https://www.nestle.com/jobs

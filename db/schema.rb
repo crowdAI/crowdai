@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 2018_09_25_095414) do
+=======
 ActiveRecord::Schema.define(version: 2018_10_30_221452) do
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -438,6 +442,35 @@ ActiveRecord::Schema.define(version: 2018_10_30_221452) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "job_url"
+  end
+
+  create_table "leaderboard_snapshots", id: false, force: :cascade do |t|
+    t.bigint "id"
+    t.bigint "challenge_id"
+    t.bigint "challenge_round_id"
+    t.bigint "participant_id"
+    t.integer "row_num"
+    t.integer "previous_row_num"
+    t.string "slug"
+    t.string "name"
+    t.integer "entries"
+    t.float "score"
+    t.float "score_secondary"
+    t.string "media_large"
+    t.string "media_thumbnail"
+    t.string "media_content_type"
+    t.string "description"
+    t.string "description_markdown"
+    t.string "leaderboard_type_cd"
+    t.datetime "refreshed_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer "submission_id"
+    t.boolean "post_challenge"
+    t.integer "seq"
+    t.boolean "baseline"
+    t.string "baseline_comment"
+    t.integer "snapshot_instance"
   end
 
   create_table "login_activities", force: :cascade do |t|
@@ -1248,4 +1281,22 @@ ActiveRecord::Schema.define(version: 2018_10_30_221452) do
     WHERE ((base_leaderboards.leaderboard_type_cd)::text = 'previous_ongoing'::text);
   SQL
 
+<<<<<<< HEAD
+  create_view "badge_stats",  sql_definition: <<-SQL
+      SELECT bc.badge_id,
+      bc.badge_count,
+      pc.participant_count,
+      ((100)::double precision - trunc(((((pc.participant_count - bc.badge_count))::double precision / (pc.participant_count)::double precision) * (100)::double precision))) AS percentile
+     FROM ( SELECT b.badge_id,
+              count(*) AS badge_count
+             FROM badges_sashes b,
+              participants p
+            WHERE (p.sash_id = b.sash_id)
+            GROUP BY b.badge_id) bc,
+      ( SELECT count(*) AS participant_count
+             FROM participants) pc;
+  SQL
+
+=======
+>>>>>>> master
 end

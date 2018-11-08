@@ -172,6 +172,10 @@ class ChallengesController < ApplicationController
         :post_challenge_submissions,
         :submissions_downloadable,
         :dataset_note_markdown,
+        :discussions_visible,
+        :require_toc_acceptance,
+        :toc_acceptance_text,
+        :toc_acceptance_instructions_markdown,
         dataset_attributes: [
           :id,
           :challenge_id,

@@ -1,9 +1,17 @@
   <div class='row'>
+    <div class='links'>
+      <%= link_to_add_association '+ Invite participant',
+            f,
+            :invitations,
+            html_options = {
+              partial: 'challenges/form/invitation_fields' } %>
+    </div>
     <table class='submissions'>
       <thead>
         <tr>
           <th>Email</th>
           <th>Name</th>
+          <th>Username</th>
           <th>Invited (UTC)</th>
           <th></th>
         </tr>
@@ -12,6 +20,7 @@
         <%= f.fields_for :invitations do |invitation| %>
           <tr class="nested-fields">
             <td><%= invitation.object.email %></td>
+            <td><%= invitation.object.invitee_name %></td>
             <td><%= participant_invitation(email: invitation.object.email) %></td>
             <td><%= invitation.object.created_at %></td>
             <td><%= link_to_remove_association "remove", invitation %></td>
@@ -19,14 +28,6 @@
         <% end %>
       </tbody>
     </table>
-    <br/><br/>
-    <div class='links'>
-      <%= link_to_add_association '+ Invite participant',
-            f,
-            :invitations,
-            html_options = {
-              partial: 'challenges/form/invitation_fields' } %>
-    </div>
     <br/><br/>
 
   </div>

@@ -17,6 +17,7 @@ class Leaderboard::Cell::TableRow < Leaderboard::Cell
   end
 
   def participant
+    return NullParticipant.new if entry.participant.blank?
     @participant ||= entry.participant
   end
 

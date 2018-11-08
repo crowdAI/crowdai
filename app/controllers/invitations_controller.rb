@@ -1,12 +1,13 @@
 class InvitationsController < ApplicationController
+  before_action :set_challenge
 
-  def create
-    @challenge = Challenge.find(params[:challenge_id])
-    @organizer = @challenge.organizer
-
+  def import
+    InvitationImporter.new(file: params[:file], challenge_id: @challenge.id).call
+    redirect_to challenge_path(@challenge)
   end
 
-  def destroy
+  def set_challenge
+    @challenge = Challenge.friendly.find(params[:challenge_id])
   end
 
 end

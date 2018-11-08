@@ -28,7 +28,11 @@
         </div>
         <div class="twin-field">
           <%= f.label :featured_sequence, 'Featured Sequence' %>
-          <%= f.text_field :featured_sequence %>
+          <% if current_participant.admin? %>
+            <%= f.text_field :featured_sequence %>
+          <% else %>
+            <%= f.text_field :featured_sequence, readonly: true %>
+          <% end %>
         </div>
       </div>
 
@@ -51,8 +55,16 @@
           </div>
         </div>
       </div>
-      <label>Host</label>
-      <input type='text' value='<%= @challenge.organizer.organizer %>' disabled>
+      <div class="twin-container">
+        <div class="twin-field">
+          <label>Organizer</label>
+          <input type='text' value='<%= @challenge.organizer.organizer %>' disabled>
+        </div>
+        <div class='twin-field'>
+          <label>Challenge ID</label>
+          <%= f.text_field :id, disabled: true %>
+        </div>
+      </div>
     </fieldset>
 
     <%= f.hidden_field :organizer_id %>
@@ -72,15 +84,15 @@
       <div class="twin-field">
         <fieldset class="checkbox">
           <div>
-            <%= f.check_box :require_registration, {}, "true", "false" %>
+            <%= f.check_box :require_registration %>
             <%= f.label :require_registration, 'Registration required?' %>
           </div>
           <div>
-            <%= f.check_box :show_leaderboard, {}, "true", "false" %>
+            <%= f.check_box :show_leaderboard %>
             <%= f.label :show_leaderboard, 'Show leaderboard?' %>
           </div>
           <div>
-            <%= f.check_box :media_on_leaderboard, {}, "true", "false" %>
+            <%= f.check_box :media_on_leaderboard %>
             <%= f.label :media_on_leaderboard, 'Media on leaderboard?' %>
           </div>
         </fieldset>
@@ -88,16 +100,20 @@
       <div class="twin-field">
         <fieldset class="checkbox">
           <div>
-            <%= f.check_box :submissions_page, {}, "true", "false" %>
+            <%= f.check_box :submissions_page %>
             <%= f.label :submissions_page, 'Submissions Details Visible?' %>
           </div>
           <div>
-            <%= f.check_box :grading_history, {}, "true", "false" %>
+            <%= f.check_box :grading_history %>
             <%= f.label :grading_history, 'Grading History Visible?' %>
           </div>
           <div>
-            <%= f.check_box :grader_logs, {}, "true", "false" %>
+            <%= f.check_box :grader_logs %>
             <%= f.label :grader_logs, 'Grader Logs Visible?' %>
+          </div>
+          <div>
+            <%= f.check_box :discussions_visible %>
+            <%= f.label :discussions_visible, 'Discussions Visible?' %>
           </div>
         </fieldset>
       </div>
@@ -123,16 +139,6 @@
         <%= f.select :secondary_sort_order, enum_option_pairs(Challenge, :secondary_sort_order), include_blank: false %>
       </div>
     </div>
-
-    <fieldset class="checkbox">
-      <div>
-        <%= f.check_box :private_challenge, {}, "true", "false" %>
-        <%= f.label :private_challenge, 'Private challenge' %>
-      </div>
-    </fieldset>
-
-    <%= render partial: 'challenges/form/invitations_table',
-            locals: { challenge: @challenge, f: f } %>
 
     <%= render partial: 'challenges/form/submit_buttons',
           locals: { f: f } %>

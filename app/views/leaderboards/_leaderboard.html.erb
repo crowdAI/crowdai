@@ -1,0 +1,124 @@
+<% if leaderboard.baseline %>
+  <tr class='baseline'>
+    <td></td>
+    <td></td>
+    <td class='change'></td>
+    <td class="position"></td>
+    <td class="participant">
+      <div class='badge badge-accent'><%= leaderboard.baseline_comment %></div>
+      <div class='stats'>BASELINE</div>
+    </td>
+
+    <% if @p.cols.include?(:media) %>
+      <td class="video">
+        <%= concept(Leaderboard::Cell::Media,
+              entry,
+              size: :thumb,
+              submission_id: leaderboard.submission_id,
+              current_participant: current_participant) %>
+      </td>
+    <% end %>
+
+    <td class="score">
+      <strong><%= leaderboard.score %></strong>
+    </td>
+
+    <% if @p.cols.include?(:score_secondary) %>
+      <td class="score">
+        <strong><%= leaderboard.score_secondary %></strong>
+      </td>
+    <% end %>
+    <td class="entries"></td>
+    <td class="last-submission">
+      <%= leaderboard.created_at.strftime("%a, %e %b %Y %R") %>
+    </td>
+    <td class='action'></td>
+    <td></td>
+    <td></td>
+  </tr>
+<% else %>
+  <tr id='participant-<%= leaderboard.try(:participant_id) %>' class='<%= @p.leader_class(leaderboard) %>'>
+    <td></td>
+    <td></td>
+    <td class='change'>
+      <%= @p.ranking_change(leaderboard) %>
+    </td>
+
+    <td class="position">
+      <strong><%= "%02d." % (leaderboard.row_num) %></strong>
+    </td>
+
+    <td class="participant">
+      <div class="user-link">
+        <%= link_to participant_path(leaderboard.participant) do %>
+          <%= concept(Image::Cell,leaderboard.participant) %>
+        <% end %>
+        <div class='text-badge'>
+          <%= link_to truncate(leaderboard.name, length: 10),
+                participant_path(leaderboard.slug) %>
+          <% if leaderboard.participant.admin? %>
+            <span class='badge badge-accent'>Admin</span>
+          <% end %>
+          <% if organizer_badge?(
+              challenge_id: leaderboard.challenge_id,
+              participant_id: leaderboard.participant_id) %>
+            <span class='badge'>Organizer</span>
+          <% end %>
+        </div>
+      </div>
+    </td>
+
+    <% if @p.cols.include?(:media) %>
+      <td class="video">
+        <%#= concept(Leaderboard::Cell::Media,
+              leaderboard,
+              size: :thumb,
+              submission_id: entry.submission_id,
+              current_participant: current_participant) %>
+      </td>
+    <% end %>
+
+    <td class="score">
+      <strong><%= leaderboard.score %></strong>
+    </td>
+
+    <% if @p.cols.include?(:score_secondary) %>
+      <td class="score">
+        <strong><%= leaderboard.score_secondary %></strong>
+      </td>
+    <% end %>
+
+    <% if policy(leaderboard).submission_detail? %>
+      <td class="entries">
+        <%= link_to leaderboard.entries,
+              challenge_leaderboard_submission_detail_path(
+                challenge_id: leaderboard.challenge_id,
+                leaderboard_id: leaderboard.id,
+                participant_id: leaderboard.participant_id),
+              id: "participant-link-#{ leaderboard.participant_id }",
+              remote: true %>
+      </td>
+    <% else %>
+      <td class="entries"><%= leaderboard.entries %></td>
+    <% end %>
+
+    <% if @p.cols.include?(:post_challenge) %>
+      <td class="post-challenge"></td>
+    <% end %>
+
+    <td class="last-submission">
+      <%= leaderboard.created_at.strftime("%a, %e %b %Y %R") %>
+    </td>
+    <td class='action'>
+      <% if @challenge.submissions_page %>
+        <%= link_to challenge_submission_path(
+              @challenge, leaderboard.submission_id),
+              class: 'btn btn-secondary' do %>
+                <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
+    </td>
+    <td></td>
+    <td></td>
+  </tr>
+<% end %>

@@ -32,6 +32,11 @@ class LeaderboardsController < ApplicationController
           .per(10)
           .order(:seq)
     end
+    @p = LeaderboardPresenter.new(
+      challenge: @challenge,
+      round: @current_round,
+      view_context: view_context
+    )
   end
 
   def submission_detail

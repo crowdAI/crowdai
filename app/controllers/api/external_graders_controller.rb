@@ -59,7 +59,21 @@ class Api::ExternalGradersController < Api::BaseController
           media_thumbnail: params[:media_thumbnail],
           media_content_type: params[:media_content_type])
       end
-      submission.submission_grades.create!(grading_params)
+
+      # Post challenge submissions
+      # messy hack - to be refactored
+      if submission.post_challenge.present?
+        if submission.challenge.post_challenge_submissions.blank?
+          submission.update(
+            grading_status_cd: 'failed',
+            grading_message: 'Submission made after end of round.')
+        else
+          submission.submission_grades.create!(grading_params)
+        end
+      else
+        submission.submission_grades.create!(grading_params)
+      end
+
       submission_id = submission.id
       notify_admins(submission)
 

@@ -10,7 +10,11 @@ class CalculateLeaderboardService
   end
 
   def call
-    return false if @round.submissions.blank?
+    if @round.submissions.blank?
+      purge_leaderboard
+      return true
+    end
+
     ActiveRecord::Base.transaction do
       truncate_scores
       purge_leaderboard

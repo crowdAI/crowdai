@@ -432,7 +432,7 @@ GEM
       ruby_dep (~> 1.2)
     lodash-rails (4.17.10)
       railties (>= 3.1)
-    loofah (2.2.2)
+    loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     m (1.5.1)
@@ -473,7 +473,7 @@ GEM
     mustermann (1.0.2)
     net-ssh (5.0.1)
     nio4r (2.3.1)
-    nokogiri (1.8.2)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     nokogumbo (1.5.0)
       nokogiri
@@ -582,6 +582,9 @@ GEM
       railties (>= 4.2.0, < 5.3)
     rollbar (2.18.0)
       multi_json
+    roo (2.7.1)
+      nokogiri (~> 1)
+      rubyzip (~> 1.1, < 2.0.0)
     rouge (3.1.1)
     ruby-progressbar (1.10.0)
     ruby_dep (1.5.0)
@@ -754,7 +757,7 @@ DEPENDENCIES
   kramdown
   listen
   lodash-rails
-  loofah (~> 2.2.1)
+  loofah (>= 2.2.3)
   m (~> 1.5.0)
   mandrill-api
   maxminddb
@@ -780,6 +783,7 @@ DEPENDENCIES
   ransack
   remotipart
   rollbar
+  roo
   rouge
   rubyzip (~> 1.2.2)
   sanitize (~> 4.6.3)

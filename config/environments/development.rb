@@ -3,6 +3,7 @@ Rails.application.configure do
   YAML::load_file(figaro_file).symbolize_keys[:development].each do |key,value|
     ENV[key.to_s] = value
   end
+  #Sidekiq::Testing.inline!
   config.cache_classes = false
   config.eager_load = false
   config.consider_all_requests_local = true

@@ -781,6 +781,7 @@ DEPENDENCIES
   rails-assets-jQuery-File-Upload
   rails-html-sanitizer (~> 1.0.4)
   ransack
+  redis
   remotipart
   rollbar
   roo

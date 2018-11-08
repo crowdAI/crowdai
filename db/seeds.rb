@@ -29,6 +29,9 @@ if Rails.env == 'development'
     admin: true,
     name: 'adminuser',
     confirmed_at: Time.now)
+end
+
+=begin
 
   # Challenges
   Challenge.create!([
@@ -398,3 +401,4 @@ if Rails.env == 'development'
 
 
 end
+=end

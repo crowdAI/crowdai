@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:9.6-alpine
+  webpacker:
+    build: .
+    command: ./bin/webpack-dev-server
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - '3035:3035'
+  web:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - '3000:3000'
+    environment:
+      PORT: "3000"
+      PGHOST: "postgres"
+      PGUSER: "postgres"
+      PGDBNAME: "app"
+    depends_on:
+      - postgres

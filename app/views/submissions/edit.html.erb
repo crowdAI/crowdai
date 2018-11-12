@@ -10,6 +10,11 @@
 
   <div class="row">
     <br/>
+    <label>Submission ID</label>
+    <div>
+      <%= @submission.id %>
+    </div>
+    <br/>
     <label>Participant</label>
     <div>
       <%= link_to @submission.participant.name, participant_path(@submission.participant_id), target: :blank %>
@@ -40,6 +45,17 @@
       <%= @submission.meta['gitlab_project_id'] %><br/>
     <% end %>
 
+    <br/>
+    <label>Media Fields</label>
+    <% if @submission.media_content_type.present? %>
+      <ul>
+        <li>Content Type: <% @submission.media_content_type %></li>
+        <li>Thumbnail: <%= @submission.media_thumbnail %></li>
+        <li>Large: <%= @submission.media_thumbnail %></li>
+      </ul>
+    <% else %>
+      No Media attached to this submission.
+    <% end %>
 
     <%= form_for [@challenge, @submission],
           html: {

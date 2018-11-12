@@ -65,14 +65,11 @@
           <%= f.label :grading_message %>
           <%= f.text_field :grading_message %>
         </fieldset>
-        <div class='twin-container'>
-          <div class="twin-field">
-            <%= f.label :media_content_type %>
-            <%= f.text_field :media_content_type %>
-          </div>
-          <div class="twin-field">
-          </div>
-        </div>
+        <fieldset>
+          <%= f.label :media_content_type %>
+          e.g.: image/png, video/mp4, video/youtube<br/><br/>
+          <%= f.text_field :media_content_type %>
+        </fieldset>
         <fieldset>
           <%= f.label :media_thumbnail %>
           <%= f.text_field :media_thumbnail %>

@@ -34,10 +34,34 @@ ActiveAdmin.register Leaderboard do
     end
     column :score
     column :score_secondary
-    column :grading_status_cd
     column :post_challenge
+    column :media_thumbnail
+    column :media_large
     column :media_content_type
     column :updated_at
     actions
+  end
+
+  csv do
+    column "Rank" do |res|
+      res.row_num
+    end
+    column :id
+    column :challenge_round_id
+    column "Round" do |res|
+      res.challenge_round.challenge_round
+    end
+    column :participant_id
+    column :name
+    column "Email" do |res|
+      res.participant.email
+    end
+    column :score
+    column :score_secondary
+    column :post_challenge
+    column :media_thumbnail
+    column :media_large
+    column :media_content_type
+    column :updated_at
   end
 end

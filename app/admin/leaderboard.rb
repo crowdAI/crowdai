@@ -2,6 +2,8 @@ ActiveAdmin.register Leaderboard do
   belongs_to :challenge, parent_class: Challenge
   navigation_menu :challenge
 
+  config.sort_order = 'row_num: :asc'
+
   actions :index, :show
 
   filter :id
@@ -11,8 +13,15 @@ ActiveAdmin.register Leaderboard do
   filter :submission_id
   filter :challenge_round_id
 
+  def scoped_collection
+    super.includes :participant, :challenge_round
+  end
+
   index do
     selectable_column
+    column "Rank" do |res|
+      res.row_num
+    end
     column :id
     column :challenge_round_id
     column "Round" do |res|
@@ -20,6 +29,9 @@ ActiveAdmin.register Leaderboard do
     end
     column :participant_id
     column :name
+    column "Email" do |res|
+      res.participant.email
+    end
     column :score
     column :score_secondary
     column :grading_status_cd

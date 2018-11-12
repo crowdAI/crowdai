@@ -24,8 +24,15 @@ ActiveAdmin.register Submission do
     selectable_column
     column :id
     column :participant_id
-    column "Name" do |participant|
-      participant.name
+    column "Name" do |submission|
+      submission.name
+    end
+    column "Email" do |submission|
+      submission.email
+    end
+    column :challenge_round_id
+    column "Round" do |submission|
+      submission.challenge_round.challenge_round
     end
     column :score
     column :score_secondary
@@ -40,7 +47,7 @@ ActiveAdmin.register Submission do
 
   controller do
     def scoped_collection
-      super.includes :participant
+      super.includes :participant, :challenge_round
     end
     def find_resource
       scoped_collection.find(params[:id])

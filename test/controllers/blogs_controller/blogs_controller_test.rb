@@ -9,20 +9,19 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    byebug
     get '/'
     get blogs_url
     assert_response :success
   end
 end
 
-=begin
+
 
   test "should get new" do
     get new_blog_url
     assert_response :success
   end
-
+=begin
   test "should create blog" do
     assert_difference('Blog.count') do
       post blogs_url, params: { blog: { body: @blog.body, body_markdown: @blog.body_markdown, participant_id: @blog.participant_id, posted_at: @blog.posted_at, published: @blog.published, seq: @blog.seq, title: @blog.title, view_count: @blog.view_count, vote_count: @blog.vote_count } }

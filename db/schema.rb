@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_30_221452) do
+ActiveRecord::Schema.define(version: 2018_11_15_130935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -311,6 +311,7 @@ ActiveRecord::Schema.define(version: 2018_10_30_221452) do
     t.string "toc_acceptance_text"
     t.text "toc_acceptance_instructions"
     t.text "toc_acceptance_instructions_markdown"
+    t.boolean "toc_accordion", default: false
     t.index ["clef_task_id"], name: "index_challenges_on_clef_task_id"
     t.index ["organizer_id"], name: "index_challenges_on_organizer_id"
     t.index ["slug"], name: "index_challenges_on_slug", unique: true
@@ -440,6 +441,32 @@ ActiveRecord::Schema.define(version: 2018_10_30_221452) do
     t.string "job_url"
   end
 
+  create_table "leaderboard_snapshots", force: :cascade do |t|
+    t.bigint "challenge_id"
+    t.bigint "challenge_round_id"
+    t.bigint "participant_id"
+    t.integer "row_num"
+    t.integer "previous_row_num"
+    t.string "slug"
+    t.string "name"
+    t.integer "entries"
+    t.float "score"
+    t.float "score_secondary"
+    t.string "leaderboard_type_cd"
+    t.datetime "refreshed_at"
+    t.bigint "submission_id"
+    t.boolean "post_challenge"
+    t.integer "seq"
+    t.boolean "baseline"
+    t.string "baseline_comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_id"], name: "index_leaderboard_snapshots_on_challenge_id"
+    t.index ["challenge_round_id"], name: "index_leaderboard_snapshots_on_challenge_round_id"
+    t.index ["participant_id"], name: "index_leaderboard_snapshots_on_participant_id"
+    t.index ["submission_id"], name: "index_leaderboard_snapshots_on_submission_id"
+  end
+
   create_table "login_activities", force: :cascade do |t|
     t.string "scope"
     t.string "strategy"
@@ -489,6 +516,7 @@ ActiveRecord::Schema.define(version: 2018_10_30_221452) do
     t.integer "related_change_id"
     t.string "description"
     t.datetime "created_at"
+    t.index ["action_id"], name: "index_merit_activity_logs_on_action_id"
   end
 
   create_table "merit_score_points", force: :cascade do |t|
@@ -647,6 +675,7 @@ ActiveRecord::Schema.define(version: 2018_10_30_221452) do
     t.index ["email"], name: "index_participants_on_email", unique: true
     t.index ["organizer_id"], name: "index_participants_on_organizer_id"
     t.index ["reset_password_token"], name: "index_participants_on_reset_password_token", unique: true
+    t.index ["sash_id"], name: "index_participants_on_sash_id"
     t.index ["slug"], name: "index_participants_on_slug", unique: true
     t.index ["unlock_token"], name: "index_participants_on_unlock_token", unique: true
   end
@@ -836,6 +865,7 @@ ActiveRecord::Schema.define(version: 2018_10_30_221452) do
   add_foreign_key "follows", "participants"
   add_foreign_key "invitations", "challenges"
   add_foreign_key "invitations", "participants"
+  add_foreign_key "leaderboard_snapshots", "submissions"
   add_foreign_key "notifications", "participants"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
@@ -1246,6 +1276,21 @@ ActiveRecord::Schema.define(version: 2018_10_30_221452) do
       base_leaderboards.baseline_comment
      FROM base_leaderboards
     WHERE ((base_leaderboards.leaderboard_type_cd)::text = 'previous_ongoing'::text);
+  SQL
+
+  create_view "badge_stats",  sql_definition: <<-SQL
+      SELECT bc.badge_id,
+      bc.badge_count,
+      pc.participant_count,
+      ((100)::double precision - trunc(((((pc.participant_count - bc.badge_count))::double precision / (pc.participant_count)::double precision) * (100)::double precision))) AS percentile
+     FROM ( SELECT b.badge_id,
+              count(*) AS badge_count
+             FROM badges_sashes b,
+              participants p
+            WHERE (p.sash_id = b.sash_id)
+            GROUP BY b.badge_id) bc,
+      ( SELECT count(*) AS participant_count
+             FROM participants) pc;
   SQL
 
 end

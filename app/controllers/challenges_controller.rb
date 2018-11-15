@@ -176,6 +176,7 @@ class ChallengesController < ApplicationController
         :require_toc_acceptance,
         :toc_acceptance_text,
         :toc_acceptance_instructions_markdown,
+        :toc_accordion,
         dataset_attributes: [
           :id,
           :challenge_id,

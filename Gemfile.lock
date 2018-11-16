@@ -562,7 +562,7 @@ GEM
       activesupport (>= 3.0.0)
     quantile (0.2.1)
     raabro (1.1.5)
-    rack (2.0.5)
+    rack (2.0.6)
     rack-contrib (2.0.1)
       rack (~> 2.0)
     rack-protection (2.0.2)
@@ -887,6 +887,7 @@ DEPENDENCIES
   puma_worker_killer
   pundit
   pundit-matchers!
+  rack (>= 2.0.6)
   rails (= 5.2.0)
   rails-assets-isInViewport
   rails-assets-jQuery-File-Upload

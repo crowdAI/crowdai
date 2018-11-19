@@ -13,9 +13,9 @@
   <% end %>
   <br/>
   <% if @submission.grading_status_cd == 'graded' %>
-    <h5><%= "#{@challenge.score_title}: #{@submission.score}" %></h5>
+    <h5><%= "#{@challenge.score_title}: #{@submission.score_display}" %></h5>
     <% unless @challenge.secondary_sort_order_cd == 'not_used' %>
-      <h5><%= "#{@challenge.score_secondary_title}: #{@submission.score_secondary}" %></h5>
+      <h5><%= "#{@challenge.score_secondary_title}: #{@submission.score_secondary_display}" %></h5>
     <% end %>
   <% end %>  
 

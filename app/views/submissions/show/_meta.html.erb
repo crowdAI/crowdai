@@ -7,7 +7,6 @@
 
 
 <% if policy(submission).update? && submission.meta.present? %>
-  <hr/>
   <h4>Meta tags</h4><br/>
   <ul>
   <% submission.meta.each do |k,v| %>

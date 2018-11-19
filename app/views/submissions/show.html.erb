@@ -11,6 +11,8 @@
             participant: @presenter.participant,
             entry: @submission,
             submission_id: @submission.id } %>
+    <%= render partial: 'submissions/show/meta', locals: { submission: @submission } %>
+    
 
     <%= render partial: 'submissions/show/share',
           locals: { submission: @submission }%>
@@ -31,5 +33,4 @@
     <%# render partial: 'submissions/show/comments',
           locals: { submission: @submission } %>
   </div>
-    <%= render partial: 'submissions/show/meta', locals: { submission: @submission } %>
 </div>

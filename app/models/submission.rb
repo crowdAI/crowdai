@@ -44,7 +44,7 @@ class Submission < ApplicationRecord
       if rnd.blank?
         rnd = self.challenge.challenge_rounds.last
       end
-      if rnd.present?
+      if rnd.present? && rnd.end_dttm.present?
         self.update(challenge_round_id: rnd.id)
         if self.created_at > rnd.end_dttm
           self.update(post_challenge: true)

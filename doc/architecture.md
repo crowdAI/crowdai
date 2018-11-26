@@ -2,7 +2,7 @@
 
 [crowdAI](https://www.crowdai.org/) is made up of several components:
 
-* Ruby on Rails open source web app [Repo] (https://github.com/salathegroup/crowdai)   
+* Ruby on Rails open source web app [Repo](https://github.com/salathegroup/crowdai)   
 
 * [crowdAI Broker](./crowdai_broker.md)
 

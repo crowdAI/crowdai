@@ -12,6 +12,10 @@ class Leaderboard::Cell::TableRow < Leaderboard::Cell
     model
   end
 
+  def formatted_score
+    sprintf("%.#{challenge_round.score_precision}f", entry.score)
+  end
+
   def challenge
     @challenge ||= model.challenge
   end

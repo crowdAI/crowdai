@@ -148,11 +148,11 @@ Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com
 
 ## Installation
 
-We welcome contributions, and are especially interested in welcoming [Beginner issues](#beginner). Read more about [how to contribute](#developers) below! We especially welcome contributions from people belonging to groups under-represented in free and open source software!
+We welcome contributions, and are especially interested in welcoming [Beginner issues](#beginner).
 
 ### Prerequisites
 
-For installation, prerequisites include postgresql and rvm. [Click here for a complete list and instructions](https://github.com/publiclab/plots2/blob/master/doc/PREREQUISITES.md).
+For installation, prerequisites include postgresql and rvm. [Click here for a complete list and instructions](https://github.com/crowdAI/crowdai/blob/master/PREREQUISITES.md).
 
 ### Standard Installation
 

@@ -11,7 +11,7 @@ The following is a set of guidelines for contributing to crowdAI. These are just
   * [Types of Contributors](#types-of-contributors)
   * [Reporting Bugs](#reporting-bugs)
   * [Suggesting Enhancements](#suggesting-enhancements)
-  * [Your First Code Contribution](#your-first-code-contribution)
+  * [Installation](#installation)
   * [Pull Requests](#pull-requests)
 
 ## What should I know before I get started?

@@ -11,7 +11,7 @@ The following is a set of guidelines for contributing to crowdAI. These are just
   * [Types of Contributors](#types-of-contributors)
   * [Reporting Bugs](#reporting-bugs)
   * [Suggesting Enhancements](#suggesting-enhancements)
-  * [Your First Code Contribution](#your-first-code-contribution)
+  * [Installation](#installation)
   * [Pull Requests](#pull-requests)
 
 ## What should I know before I get started?
@@ -145,16 +145,36 @@ Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com
 
     **crowdAI Version:** [Enter crowdAI version here]
     **OS and Version:** [Enter OS name and version here]
-### Your First Code Contribution
 
-    Unsure where to begin contributing to crowdAI? You can start by looking through these `beginner` and `help-wanted` issues:
+## Installation
 
-    * [Beginner issues][beginner] - issues which should only require a few lines of code, and a test or two.
-    * [Help wanted issues][help-wanted] - issues which should be a bit more involved than `beginner` issues.
+We welcome contributions, and are especially interested in welcoming [Beginner issues](#beginner).
 
-    Both issue lists are sorted by total number of comments. While not perfect, number of comments is a reasonable proxy for impact a given change will have.
+### Prerequisites
 
-    If you want to read about using crowdAI, you can have a quick look through these resources in the Wiki.
+For installation, prerequisites include postgresql and rvm. [Click here for a complete list and instructions](PREREQUISITES.md).
+
+### Standard Installation
+
+1. Fork our repo from https://github.com/crowdAI/crowdai.
+2. In the console, download a copy of your forked repo with `git clone https://github.com/your_username/crowdai.git` where `your_username` is your GitHub username.
+3. Enter the new **crowdai** directory with `cd crowdai`.
+4. Install gems with `bundle install` from the rails root folder, to install the gems you'll need. You may need to first run `bundle update` if you have older gems in your environment from previous Rails work.
+5. Make a copy of `config/application.yml.example` and place it at `config/application.yml`.
+6. Run `rake db:migrate` to migrate schema to our database then run `rake db:seed` to seed our database created using postgres.
+7. Run the redis server using `sudo systemctl start redis`.
+8. Run the webpack-dev-server using `./bin/webpack-dev-server`. 
+9. By default, start rails with `rails server` from the Rails root and open http://localhost:3000 in a web browser.
+
+### Bundle exec
+
+For some, it will be necessary to prepend your gem-related commands with `bundle exec`.
+For example, `bundle exec rails server`.
+Adding `bundle exec` ensures you're using the version of passenger you just installed with Bundler.
+`bundle exec rake db:migrate`, `bundle exec rake db:seed` are other examples of where this might be necessary.
+
+
+If you want to read more about using crowdAI, you can have a quick look through these resources in the Wiki.
 
 ### Pull Requests
 

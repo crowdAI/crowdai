@@ -152,7 +152,7 @@ We welcome contributions, and are especially interested in welcoming [Beginner i
 
 ### Prerequisites
 
-For installation, prerequisites include postgresql and rvm. [Click here for a complete list and instructions](https://github.com/crowdAI/crowdai/blob/master/PREREQUISITES.md).
+For installation, prerequisites include postgresql and rvm. [Click here for a complete list and instructions](PREREQUISITES.md).
 
 ### Standard Installation
 

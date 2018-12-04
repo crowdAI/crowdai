@@ -1,0 +1,16 @@
+<div class="row">
+  <form class="leaderboard">
+	<% if post_challenge == "off" %>
+	    <%= link_to challenge_leaderboards_path(challenge, post_challenge: 'on') do %>
+	      <input type="checkbox" id="switch" name="switch" class="switch">
+	      <label for="switch">Show post-challenge submissions</label>
+	    <% end %>
+	<% elsif post_challenge == "on" %>
+	    <%= link_to challenge_leaderboards_path(challenge) do %>
+	      <input type="checkbox" id="switch" name="switch" class="switch" checked>
+	      <label for="switch" data-on="Yes" data-off="No">Show post-challenge submissions</label>
+	    <% end %>
+	<% end %>
+  </form>
+  <p class="light">Entries column includes entries not yet graded which, when graded, may affect the contents of this leaderboard.</p>
+</div>

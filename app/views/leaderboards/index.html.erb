@@ -41,14 +41,8 @@
     <% end %>
   </div>
 
-  <% if @post_challenge == 'off' %>
-    <%= render partial: 'post_challenge_off',
-          locals: { challenge: @challenge } %>
-  <% end %>
-  <% if @post_challenge == 'on' %>
-    <%= render partial: 'post_challenge_on',
-          locals: { challenge: @challenge } %>
-  <% end %>
+  <%= render partial: 'post_challenge',
+        locals: { challenge: @challenge, post_challenge: @post_challenge } %>
 
   <span id='more-anchor'></span>
   <%= render partial: 'shared/load_more',

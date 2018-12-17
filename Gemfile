@@ -7,10 +7,12 @@ gem 'rails-assets-isInViewport'
 gem 'rails-assets-jQuery-File-Upload'
 
 ruby '2.5.1'
-gem 'rails', '5.2.0'
+gem 'rails', '5.2.2'
 
 gem 'active_model_serializers'
-gem 'activeadmin'
+
+
+gem 'activeadmin', '1.4.3'
 gem 'authtrail'
 gem 'aws-sdk', '~> 2.2'
 gem 'browser'
@@ -86,8 +88,8 @@ gem 'sidekiq-unique-jobs'
 gem 'sinatra', '~> 2.0.2', :require => nil
 gem 'therubyracer', platforms: :ruby
 gem 'turbolinks', '~> 5.1'
-gem 'trailblazer'
-gem 'trailblazer-rails'
+gem 'trailblazer', '2.0.7'
+gem 'trailblazer-rails', '1.0.9'
 gem 'uglifier', '~> 4.1.10'
 gem 'validate_url'
 gem 'valid_email2'

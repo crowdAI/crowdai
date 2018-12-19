@@ -1,3 +1,4 @@
+=begin
 ActiveAdmin.register Doorkeeper::AccessToken do
   actions :index, :show
 
@@ -14,3 +15,4 @@ ActiveAdmin.register Doorkeeper::AccessToken do
   end
 
 end
+=end

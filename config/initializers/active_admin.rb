@@ -237,10 +237,10 @@ ActiveAdmin.setup do |config|
   #
   # To disable/customize for the :admin namespace:
   #
-  config.namespace :admin do |admin|
-       # Disable the links entirely
-      admin.download_links = [:csv,:json]
-  end
+  #config.namespace :admin do |admin|
+  #     # Disable the links entirely
+  #    admin.download_links = [:csv,:json]
+  #end
   #
   #     # Only show XML & PDF options
   #     admin.download_links = [:xml, :pdf]
@@ -319,7 +319,7 @@ module ActiveAdmin
 end
 =end
 
-
+=begin
 module ActiveAdmin
   class ResourceController
     module DataAccess
@@ -337,3 +337,4 @@ module ActiveAdmin
     end
   end
 end
+=end

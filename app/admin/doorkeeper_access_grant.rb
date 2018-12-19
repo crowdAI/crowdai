@@ -1,3 +1,4 @@
+=begin
 ActiveAdmin.register Doorkeeper::AccessGrant do
   actions :index, :show
 
@@ -14,6 +15,6 @@ ActiveAdmin.register Doorkeeper::AccessGrant do
   end
 
 end
-
+=end
 
 #admin_doorkeeper_applications

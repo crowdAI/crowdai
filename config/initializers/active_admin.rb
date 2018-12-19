@@ -319,7 +319,7 @@ module ActiveAdmin
 end
 =end
 
-=begin
+
 module ActiveAdmin
   class ResourceController
     module DataAccess
@@ -337,4 +337,3 @@ module ActiveAdmin
     end
   end
 end
-=end

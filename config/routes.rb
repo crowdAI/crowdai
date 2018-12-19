@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   constraints admin do
     mount Sidekiq::Web => '/sidekiq'
-    ActiveAdmin.routes(self) #rescue ActiveAdmin::DatabaseHitDuringLoad
+    ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
   end
 
   namespace :api do

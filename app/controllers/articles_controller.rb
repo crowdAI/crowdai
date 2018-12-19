@@ -6,10 +6,7 @@ class ArticlesController < ApplicationController
   after_action :verify_authorized
 
   def index
-    @articles = policy_scope(Article)
-      .page(params[:page])
-      .per(10)
-    authorize @articles
+    @articles = Article.where(published: true).page(params[:page]).per(10)
   end
 
 

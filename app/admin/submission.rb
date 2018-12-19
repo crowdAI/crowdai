@@ -1,4 +1,3 @@
-=begin
 ActiveAdmin.register Submission do
   belongs_to :challenge, parent_class: Challenge
   navigation_menu :challenge
@@ -84,6 +83,7 @@ ActiveAdmin.register Submission do
     end
     f.actions
   end
+end
 
 =begin
  csv do
@@ -99,7 +99,4 @@ ActiveAdmin.register Submission do
     column :created_at
     column :updated_at
   end
-=end
-
-end
 =end

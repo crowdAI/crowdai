@@ -85,6 +85,7 @@ ActiveAdmin.register Submission do
     f.actions
   end
 
+=begin
  csv do
     column :id
     column :participant_id
@@ -98,6 +99,7 @@ ActiveAdmin.register Submission do
     column :created_at
     column :updated_at
   end
+=end
 
 end
 =end

@@ -1,3 +1,4 @@
+=begin
 ActiveAdmin.register Submission do
   belongs_to :challenge, parent_class: Challenge
   navigation_menu :challenge
@@ -99,3 +100,4 @@ ActiveAdmin.register Submission do
   end
 
 end
+=end

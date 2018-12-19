@@ -77,11 +77,6 @@ GEM
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
-    authtrail (0.1.2)
-      activerecord (>= 5)
-      geocoder
-      railties (>= 5)
-      warden
     aws-sdk (2.11.63)
       aws-sdk-resources (= 2.11.63)
     aws-sdk-core (2.11.63)
@@ -393,7 +388,6 @@ GEM
     fugit (1.1.1)
       et-orbi (~> 1.1, >= 1.1.1)
       raabro (~> 1.1)
-    geocoder (1.5.0)
     get_process_mem (0.2.2)
     gibbon (3.2.0)
       faraday (>= 0.9.1)
@@ -813,7 +807,6 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   activeadmin (= 1.4.3)
-  authtrail
   aws-sdk (~> 2.2)
   brakeman
   browser

@@ -7,6 +7,7 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.where(published: true).page(params[:page]).per(10)
+    authorize @articles
   end
 
 

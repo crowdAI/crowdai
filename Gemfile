@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
-#source 'https://rails-assets.org'
-source 'http://insecure.rails-assets.org' # something wrong with Rails assets
+source 'https://rails-assets.org'
+#source 'http://insecure.rails-assets.org' # something wrong with Rails assets
 
 # Rails assets gems
 gem 'rails-assets-isInViewport'
@@ -12,7 +12,8 @@ gem 'rails', '5.2.2'
 gem 'active_model_serializers'
 
 
-gem 'activeadmin', '1.4.3'
+#gem 'activeadmin', '1.4.3'
+gem 'activeadmin', '1.3.0'
 gem 'authtrail'
 gem 'aws-sdk', '~> 2.2'
 gem 'browser'

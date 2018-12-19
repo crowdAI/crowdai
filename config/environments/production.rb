@@ -7,7 +7,7 @@ Rails.application.configure do
   config.public_file_server.enabled = true
   config.assets.js_compressor = Uglifier.new(harmony: true)
   config.assets.css_compressor = :sass
-  config.assets.compile = true
+  config.assets.compile = false
   config.force_ssl = true
   config.log_level = :info
   config.log_tags = [ :request_id ]

@@ -7,7 +7,7 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       column do
         panel "Background Jobs" do
-          render 'jobs'
+          #render 'jobs'
         end
       end
     end

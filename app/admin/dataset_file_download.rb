@@ -7,5 +7,5 @@ ActiveAdmin.register DatasetFileDownload do
       params.permit!
     end
   end
-  
+
 end

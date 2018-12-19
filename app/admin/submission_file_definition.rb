@@ -7,5 +7,5 @@ ActiveAdmin.register SubmissionFileDefinition do
       params.permit!
     end
   end
-  
+
 end

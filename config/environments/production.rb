@@ -8,7 +8,7 @@ Rails.application.configure do
   config.assets.js_compressor = Uglifier.new(harmony: true)
   config.assets.css_compressor = :sass
   config.assets.compile = false
-  config.force_ssl = true
+  #config.force_ssl = true
   config.log_level = :info
   config.log_tags = [ :request_id ]
   config.i18n.fallbacks = true

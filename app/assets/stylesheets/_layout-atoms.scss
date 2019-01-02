@@ -3,7 +3,7 @@
 
 .logo {
   display: block;
-  background: url('misc/crowdai-logo.svg') no-repeat left center;
+  background: asset-url('misc/crowdai-logo.svg') no-repeat left center;
   width: 121px;
   height: 24px;
   @media screen and (max-width: 800px) {
@@ -11,7 +11,7 @@
     height: 20px;
   }
   @media screen and (max-width: 640px) {
-    background: url('misc/crowdai-head.svg') no-repeat left center;
+    background: asset-url('misc/crowdai-head.svg') no-repeat left center;
     width: 28px;
     height: 28px;
   }

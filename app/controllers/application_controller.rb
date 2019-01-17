@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   after_action :participant_activity
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_paper_trail_whodunnit
+  protect_from_forgery prepend: true, with: :exception
 
   def doorkeeper_unauthorized_render_options(error: nil)
     { json: { error: "Not authorized" } }

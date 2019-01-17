@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="row">
-    <%= form_for @participant, validate: true, html: { class: "sgl-col" } do |f| %>
+    <%= form_for @participant, validate: false, html: { class: "sgl-col" } do |f| %>
     <fieldset>
       <label>Username</label>
       <%= f.text_field :name %>

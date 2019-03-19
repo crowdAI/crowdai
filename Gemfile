@@ -6,7 +6,7 @@ source 'http://insecure.rails-assets.org' # something wrong with Rails assets
 gem 'rails-assets-isInViewport'
 gem 'rails-assets-jQuery-File-Upload'
 
-ruby '2.5.1'
+ruby '2.6.2'
 gem 'rails', '5.2.2.1'
 
 gem 'active_model_serializers'

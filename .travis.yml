@@ -11,7 +11,7 @@ services:
     - redis-server
 
 rvm:
-  - 2.5.1
+  - 2.6.2
 
 env:
   - DB=postgres

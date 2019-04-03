@@ -21,21 +21,24 @@
               <%= status_badge(submission.grading_status_cd) %>
       <% end %>
     </td>
-    <td>
-      <% if submission.score_display.present? %>
-        <%= submission.score_display %>
-      <% else %>
-        –
-      <% end %>
-    </td>
-    <% unless @challenge.secondary_sort_order_cd == 'not_used' %>
+    <% if @challenge.show_leaderboard? || submission.participant.organizer_id == submission.challenge.organizer_id || 
+          submission.participant.admin? %>
       <td>
-        <% if submission.score_secondary_display.present? %>
-          <%= submission.score_secondary_display %>
+        <% if submission.score_display.present? %>
+          <%= submission.score_display %>
         <% else %>
           –
         <% end %>
       </td>
+      <% unless @challenge.secondary_sort_order_cd == 'not_used' %>
+        <td>
+          <% if submission.score_secondary_display.present? %>
+            <%= submission.score_secondary_display %>
+          <% else %>
+            –
+          <% end %>
+        </td>
+      <% end %>
     <% end %>
     <td class='description'>
       <%= submission.grading_message %>

@@ -155,5 +155,9 @@ blockquote p {
   p {
     float: left;
     margin-top: 14px;
+    a {
+      color: #fff;
+      text-decoration: underline;
+    }
   }
 }

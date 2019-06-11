@@ -145,3 +145,19 @@ blockquote p {
   display: flex;
   justify-content: space-between;
 }
+
+.site-message {
+  background: #fffbed;
+  color: #69634d;
+  font-size: 14px;
+  height: 48px;
+  border-bottom: 1px solid #e6e6e6;
+  p {
+    float: left;
+    margin-top: 14px;
+  }
+  .fa {
+    float: right;
+    margin-top: 16px;
+  }
+}

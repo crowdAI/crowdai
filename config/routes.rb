@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     resources :notifications, only: [:index]
   end
 
-  devise_for :participants
+  devise_for :participants, controllers: { registrations: "registrations"}
   resources :participants, only: [:show, :edit, :update, :destroy, :index] do
     get :sync_mailchimp
     get :regen_api_key

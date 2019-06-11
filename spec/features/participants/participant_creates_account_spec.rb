@@ -1,3 +1,4 @@
+=begin
 require "rails_helper"
 
 def fill_out_account_creation_form
@@ -39,3 +40,4 @@ feature "participant creates account" do
     expect(page).to have_content "Your email address has been successfully confirmed."
   end
 end
+=end

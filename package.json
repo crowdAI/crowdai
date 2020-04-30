@@ -17,7 +17,7 @@
     "file-loader": "^1.1.6",
     "flatpickr": "^4.5.0",
     "glob": "^7.1.2",
-    "jquery": "^3.2.1",
+    "jquery": "^3.5.0",
     "js-yaml": "^3.10.0",
     "midi-player-js": "^2.0.3",
     "node-sass": "^4.7.2",

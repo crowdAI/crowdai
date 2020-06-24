@@ -554,7 +554,7 @@ GEM
       activesupport (>= 3.0.0)
     quantile (0.2.1)
     raabro (1.1.5)
-    rack (2.0.6)
+    rack (2.1.4)
     rack-contrib (2.0.1)
       rack (~> 2.0)
     rack-protection (2.0.2)

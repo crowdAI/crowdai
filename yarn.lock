@@ -253,9 +253,9 @@ ansi-styles@^3.0.0, ansi-styles@^3.2.1:
     color-convert "^1.9.0"
 
 ansi_up@>=1.1.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/ansi_up/-/ansi_up-4.0.3.tgz#7cc6683304c71f4dcd83725b7e8d313089e369a7"
-  integrity sha512-ub+xzfB7Mkikx6u0/iHx97Cvs5SJRNjh3yoQpuRaAvC9L2t8ZghlqG6jXIQ7XkbtQyHJU/EP2AnPvwcib0vu6A==
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/ansi_up/-/ansi_up-5.0.0.tgz#9bc3b087a59bd543c98dd235a9c8e0a842c454e9"
+  integrity sha512-RHw/w3Kb2U3k4XKfl8FXZW9ldxtTBbLNdKO0RboYeU4ReVwRP77M7b/OxiavMGZsBWcDxn/T0QiR+VtLf7mPYw==
 
 any-promise@^0.1.0:
   version "0.1.0"
